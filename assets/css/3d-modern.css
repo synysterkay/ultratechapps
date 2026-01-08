@@ -509,6 +509,12 @@
   color: #cbd5e1 !important;
 }
 
+.blog-grid {
+  display: grid !important;
+  gap: 2rem !important;
+  margin-bottom: 3rem !important;
+}
+
 .blog-post-card {
   background: var(--bg-card) !important;
   border: 1px solid var(--border-glow) !important;
