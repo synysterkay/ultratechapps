@@ -80,7 +80,7 @@ Topic: {topic}
 
 SEO OPTIMIZATION REQUIREMENTS (CRITICAL FOR RANKING):
 1. PRIMARY KEYWORD: Create a search-intent focused keyword with 500+ monthly searches
-   - Examples: "best {niche} app 2026", "how to {solve problem} faster", "{niche} tips for beginners"
+   - Examples: "best {niche} app 2026", "how to solve problem faster", "{niche} tips for beginners"
    - Place in: Title (beginning), first paragraph, at least 3 H2 headers
 2. LONG-TAIL KEYWORDS (4-6 keywords): Target low-competition, high-intent searches
    - Format: "[primary keyword] + modifier" (e.g., "for Android", "free", "without account")
