@@ -826,6 +826,30 @@ body {
   .section-title {
     font-size: 2rem;
   }
+  
+  .recent-articles-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .legal-container {
+    padding: 3rem 1.5rem;
+  }
+  
+  .legal-title {
+    font-size: 2.25rem;
+  }
+  
+  .legal-content {
+    font-size: 1rem;
+  }
+  
+  .legal-content h2 {
+    font-size: 1.5rem;
+  }
+  
+  .legal-content h3 {
+    font-size: 1.25rem;
+  }
 }
 
 @media (max-width: 480px) {
