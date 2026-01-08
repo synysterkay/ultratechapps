@@ -14,10 +14,11 @@ title: "UltraTech Apps - AI-Powered Mobile Apps"
   </div>
 </div>
 
-<div class="container" id="apps">
-  <h2 class="section-title" style="margin-top: 4rem;">Featured Apps</h2>
-  
-  <div class="app-grid">
+<section class="app-section" id="apps">
+  <div class="container">
+    <h2 class="section-title">Featured Apps</h2>
+    
+    <div class="app-grid">
     <div class="app-card">
       <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80" alt="Smart Notes" class="app-card-image">
       <div class="app-card-content">
@@ -115,4 +116,5 @@ title: "UltraTech Apps - AI-Powered Mobile Apps"
   <div style="text-align: center; margin: 4rem 0;">
     <a href="https://apps.apple.com/us/developer/anas-kayssi/id1769590510" class="btn btn-primary">View All Apps</a>
   </div>
-</div>
+  </div>
+</section>

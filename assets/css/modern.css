@@ -35,6 +35,12 @@ body {
   background-color: var(--bg-color);
   line-height: 1.7;
   scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+}
+
+.main-content {
+  min-height: 60vh;
 }
 
 .container {
@@ -62,14 +68,31 @@ body {
   align-items: center;
 }
 
-.site-logo {
+.site-logo-img {
+  height: 40px;
+  width: 40px;
+  margin-right: 0.75rem;
+  filter: drop-shadow(0 2px 4px rgba(99, 102, 241, 0.3));
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.logo-link:hover {
+  transform: translateY(-2px);
+}
+
+.logo-text {
   font-size: 1.5rem;
   font-weight: 800;
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-decoration: none;
 }
 
 .site-nav ul {
@@ -95,14 +118,16 @@ body {
   transform: translateY(-2px);
 }
 
-/* Hero Section */
+/* Hero Section - Full Width */
 .hero {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 6rem 2rem;
+  padding: 8rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
+  margin: 0;
+  width: 100%;
 }
 
 .hero::before {
@@ -112,24 +137,30 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('https://images.unsplash.com/photo-1555421689-d68471e189f2?w=1920&q=80') center/cover;
-  opacity: 0.1;
+  background: 
+    url('https://images.unsplash.com/photo-1555421689-d68471e189f2?w=1920&q=80') center/cover,
+    radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.2) 0%, transparent 50%);
+  opacity: 0.15;
   z-index: 0;
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .hero h1 {
-  font-size: 3.5rem;
-  font-weight: 800;
+  font-size: 4rem;
+  font-weight: 900;
   margin-bottom: 1.5rem;
-  line-height: 1.2;
+  line-height: 1.1;
   animation: fadeInUp 0.8s ease;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
 }
 
 .hero p {
@@ -175,6 +206,11 @@ body {
 }
 
 /* App Grid */
+.app-section {
+  padding: 5rem 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
 .app-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
