@@ -1,0 +1,59 @@
+# Site settings
+title: UltraTech Apps Blog
+description: "Indie app developer creating innovative mobile solutions. Discover productivity tools, tech insights, and app development stories."
+author: UltraTech Apps
+email: contact@ultratechapps.dev
+
+# URLs
+url: "https://synysterkay.github.io"
+baseurl: "/marketingtool"
+
+# Build settings
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title/
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:day/:title/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "UltraTech Apps"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# Social links
+social:
+  appstore: "https://apps.apple.com/us/developer/anas-kayssi/id1769590510"
+  playstore: "https://play.google.com/store/apps/dev?id=5116533678587496673"
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .bundle
+  - .sass-cache
+  - .jekyll-cache
+  - cache
+  - venv
+  - "*.py"
+  - requirements.txt
+  - README.md
+  - SETUP.md
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap

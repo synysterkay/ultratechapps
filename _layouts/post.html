@@ -1,0 +1,68 @@
+---
+layout: default
+---
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+      {% if page.author %}
+      <span class="separator">•</span>
+      <span class="author">{{ page.author }}</span>
+      {% endif %}
+      {% if page.categories %}
+      <span class="separator">•</span>
+      <span class="categories">
+        {% for category in page.categories %}
+          <span class="category">{{ category }}</span>{% unless forloop.last %}, {% endunless %}
+        {% endfor %}
+      </span>
+      {% endif %}
+    </div>
+  </header>
+  
+  <div class="post-content">
+    {{ content }}
+  </div>
+  
+  {% if page.tags %}
+  <div class="post-tags">
+    <strong>Tags:</strong>
+    {% for tag in page.tags %}
+      <span class="tag">{{ tag }}</span>
+    {% endfor %}
+  </div>
+  {% endif %}
+  
+  <footer class="post-footer">
+    <div class="author-bio">
+      <p><strong>{{ site.author }}</strong> - Built by an indie developer who ships apps every day.</p>
+      <div class="app-links-footer">
+        <a href="{{ site.social.appstore }}" target="_blank" rel="noopener">App Store</a>
+        <span class="separator">•</span>
+        <a href="{{ site.social.playstore }}" target="_blank" rel="noopener">Google Play</a>
+      </div>
+    </div>
+  </footer>
+</article>
+
+<nav class="post-navigation">
+  {% if page.previous.url %}
+  <div class="prev-post">
+    <a href="{{ page.previous.url | relative_url }}">
+      <span class="nav-label">← Previous</span>
+      <span class="nav-title">{{ page.previous.title }}</span>
+    </a>
+  </div>
+  {% endif %}
+  
+  {% if page.next.url %}
+  <div class="next-post">
+    <a href="{{ page.next.url | relative_url }}">
+      <span class="nav-label">Next →</span>
+      <span class="nav-title">{{ page.next.title }}</span>
+    </a>
+  </div>
+  {% endif %}
+</nav>

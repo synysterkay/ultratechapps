@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Example App 1",
+    "description": "A brief description of your app (used for niche detection)",
+    "google_play_url": "https://play.google.com/store/apps/details?id=com.example.app1",
+    "app_store_url": "https://apps.apple.com/app/id123456789"
+  },
+  {
+    "name": "Example App 2",
+    "description": "Another app description",
+    "google_play_url": "https://play.google.com/store/apps/details?id=com.example.app2",
+    "app_store_url": "https://apps.apple.com/app/id987654321"
+  }
+]

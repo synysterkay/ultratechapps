@@ -1,0 +1,37 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>UltraTech Apps</h3>
+        <p>Indie developer building apps that matter. Shipping every day.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="{{ '/' | relative_url }}">Home</a></li>
+          <li><a href="{{ '/blog' | relative_url }}">Blog</a></li>
+          <li><a href="{{ '/about' | relative_url }}">About</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Apps</h4>
+        <ul>
+          <li><a href="{{ site.social.appstore }}" target="_blank" rel="noopener">App Store</a></li>
+          <li><a href="{{ site.social.playstore }}" target="_blank" rel="noopener">Google Play</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Connect</h4>
+        <p>Check out my apps on iOS and Android platforms.</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; {{ 'now' | date: "%Y" }} UltraTech Apps. All rights reserved.</p>
+      <p class="tagline">Built by an indie developer who ships apps every day.</p>
+    </div>
+  </div>
+</footer>
