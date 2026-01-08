@@ -208,29 +208,10 @@ class MarketingAutomation:
     def _select_apps_for_today(self):
         """
         Select which apps to process today
-        Uses round-robin rotation if we have many apps
+        Now processes ALL apps daily for maximum marketing reach
         """
-        total_apps = len(self.apps)
-        
-        # If 3 or fewer apps, process all daily
-        if total_apps <= 3:
-            return self.apps
-        
-        # For more apps, rotate based on day of year
-        day_of_year = datetime.now().timetuple().tm_yday
-        
-        # Process 1-3 apps per day depending on total
-        apps_per_day = min(3, total_apps)
-        
-        # Rotate through apps
-        start_idx = (day_of_year * apps_per_day) % total_apps
-        
-        selected = []
-        for i in range(apps_per_day):
-            idx = (start_idx + i) % total_apps
-            selected.append(self.apps[idx])
-        
-        return selected
+        # Process all apps every day
+        return self.apps
     
     def test_single_app(self, app_index=0):
         """
