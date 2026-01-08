@@ -210,8 +210,9 @@ class MarketingAutomation:
         Select which apps to process today
         Now processes ALL apps daily for maximum marketing reach
         """
-        # Process all apps every day
-        return self.apps
+        # TESTING MODE: Process only 1 app per run
+        # Change to: return self.apps[:3] for 3 apps, or self.apps for all
+        return self.apps[:1]  # Process just 1 app for testing
     
     def test_single_app(self, app_index=0):
         """
