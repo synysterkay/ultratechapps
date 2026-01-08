@@ -517,3 +517,15 @@
 .blog-post-meta {
   color: #94a3b8 !important;
 }
+
+/* Fix bold/strong text visibility */
+.post-content strong, .article-content strong,
+.post-content b, .article-content b {
+  color: #f8fafc !important;
+  font-weight: 700;
+}
+
+/* Fix list item text */
+.post-content li strong, .article-content li strong {
+  color: #f8fafc !important;
+}

@@ -1,33 +1,48 @@
-<footer class="site-footer">
+<footer class="site-footer" style="background: linear-gradient(135deg, rgba(10, 10, 15, 0.95) 0%, rgba(26, 26, 46, 0.95) 100%); border-top: 1px solid rgba(99, 102, 241, 0.3); padding: 4rem 0 2rem; position: relative; overflow: hidden;">
+  <div style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, #6366f1, #8b5cf6, #ec4899, transparent);"></div>
   <div class="container">
-    <div class="footer-content">
+    <div class="footer-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
       <div class="footer-section">
-        <h3>UltraTech Apps</h3>
-        <p>Indie developer building apps that matter. Shipping every day.</p>
+        <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, #fff 0%, #c4b5fd 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">UltraTech Apps</h3>
+        <p style="color: #94a3b8; line-height: 1.7; margin-bottom: 1.5rem;">Indie developer building apps that matter. Shipping every day.</p>
+        <div style="display: flex; gap: 1rem;">
+          <a href="https://bsky.app/profile/anas.bsky.social" target="_blank" rel="noopener" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); display: flex; align-items: center; justify-content: center; color: #a5b4fc; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(99, 102, 241, 0.2)'; this.style.transform='translateY(-3px)';" onmouseout="this.style.background='rgba(99, 102, 241, 0.1)'; this.style.transform='translateY(0)';">🦋</a>
+          <a href="https://dev.to/anas_kayssi" target="_blank" rel="noopener" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); display: flex; align-items: center; justify-content: center; color: #a5b4fc; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(99, 102, 241, 0.2)'; this.style.transform='translateY(-3px)';" onmouseout="this.style.background='rgba(99, 102, 241, 0.1)'; this.style.transform='translateY(0)';">💻</a>
+        </div>
       </div>
       
       <div class="footer-section">
-        <h4>Navigation</h4>
-        <ul>
-          <li><a href="{{ '/' | relative_url }}">Home</a></li>
-          <li><a href="{{ '/blog' | relative_url }}">Blog</a></li>
-          <li><a href="{{ '/about' | relative_url }}">About</a></li>
+        <h4 style="color: #f8fafc; font-weight: 700; margin-bottom: 1.25rem; font-size: 1.1rem;">Navigation</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="margin-bottom: 0.75rem;"><a href="{{ '/' | relative_url }}" style="color: #cbd5e1; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.color='#a5b4fc'; this.style.paddingLeft='5px';" onmouseout="this.style.color='#cbd5e1'; this.style.paddingLeft='0';">Home</a></li>
+          <li style="margin-bottom: 0.75rem;"><a href="{{ '/blog' | relative_url }}" style="color: #cbd5e1; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.color='#a5b4fc'; this.style.paddingLeft='5px';" onmouseout="this.style.color='#cbd5e1'; this.style.paddingLeft='0';">Blog</a></li>
+          <li style="margin-bottom: 0.75rem;"><a href="{{ '/about' | relative_url }}" style="color: #cbd5e1; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.color='#a5b4fc'; this.style.paddingLeft='5px';" onmouseout="this.style.color='#cbd5e1'; this.style.paddingLeft='0';">About</a></li>
         </ul>
       </div>
       
       <div class="footer-section">
-        <h4>Apps</h4>
-        <ul>
-          <li><a href="{{ site.social.appstore }}" target="_blank" rel="noopener">App Store</a></li>
-          <li><a href="{{ site.social.playstore }}" target="_blank" rel="noopener">Google Play</a></li>
-        </ul>
+        <h4 style="color: #f8fafc; font-weight: 700; margin-bottom: 1.25rem; font-size: 1.1rem;">Download Apps</h4>
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <a href="{{ site.social.appstore }}" target="_blank" rel="noopener" style="padding: 0.75rem 1.25rem; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; transition: all 0.3s; display: inline-block; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(99, 102, 241, 0.5)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(99, 102, 241, 0.3)';">📱 App Store</a>
+          <a href="{{ site.social.playstore }}" target="_blank" rel="noopener" style="padding: 0.75rem 1.25rem; background: linear-gradient(135deg, #8b5cf6, #ec4899); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; transition: all 0.3s; display: inline-block; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(139, 92, 246, 0.5)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(139, 92, 246, 0.3)';">🤖 Google Play</a>
+        </div>
       </div>
       
       <div class="footer-section">
-        <h4>Connect</h4>
-        <ul>
-          <li><a href="https://bsky.app/profile/anas.bsky.social" target="_blank" rel="noopener">Bluesky</a></li>
-          <li><a href="https://dev.to/anas_kayssi" target="_blank" rel="noopener">Dev.to</a></li>
+        <h4 style="color: #f8fafc; font-weight: 700; margin-bottom: 1.25rem; font-size: 1.1rem;">Legal</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="margin-bottom: 0.75rem;"><a href="{{ '/privacy-policy' | relative_url }}" style="color: #cbd5e1; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.color='#a5b4fc'; this.style.paddingLeft='5px';" onmouseout="this.style.color='#cbd5e1'; this.style.paddingLeft='0';">Privacy Policy</a></li>
+          <li style="margin-bottom: 0.75rem;"><a href="{{ '/terms-of-service' | relative_url }}" style="color: #cbd5e1; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.color='#a5b4fc'; this.style.paddingLeft='5px';" onmouseout="this.style.color='#cbd5e1'; this.style.paddingLeft='0';">Terms of Service</a></li>
+          <li style="margin-bottom: 0.75rem;"><a href="{{ '/cookies' | relative_url }}" style="color: #cbd5e1; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.color='#a5b4fc'; this.style.paddingLeft='5px';" onmouseout="this.style.color='#cbd5e1'; this.style.paddingLeft='0';">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div style="border-top: 1px solid rgba(99, 102, 241, 0.2); padding-top: 2rem; text-align: center;">
+      <p style="color: #64748b; font-size: 0.9rem; margin: 0;">&copy; 2026 UltraTech Apps. All rights reserved. Built with ❤️ by an indie developer.</p>
+    </div>
+  </div>
+</footer>
         </ul>
       </div>
       
