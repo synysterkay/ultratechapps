@@ -58,12 +58,13 @@ class MarketingAutomation:
         with open(apps_file, 'r', encoding='utf-8') as f:
             return json.load(f)
     
-    def process_app(self, app):
+    def process_app(self, app, app_index=0):
         """
         Process a single app: generate content and publish
         
         Args:
             app: App dictionary
+            app_index: Index of the app in apps.json (0-12)
         """
         app_name = app['name']
         print(f"\n{'='*60}")
@@ -81,7 +82,7 @@ class MarketingAutomation:
         
         # Step 2: Generate article
         print("\n2️⃣ Generating article...")
-        article = self.article_generator.generate_article(app, niche_info)
+        article = self.article_generator.generate_article(app, niche_info, app_index)
         metadata = self.article_generator.generate_metadata(article)
         
         # Step 3: Publish to GitHub Pages
@@ -179,8 +180,11 @@ class MarketingAutomation:
         for i, app in enumerate(apps_to_process, 1):
             print(f"\n[{i}/{len(apps_to_process)}]")
             
+            # Get app index from self.apps
+            app_index = self.apps.index(app) if app in self.apps else 0
+            
             try:
-                self.process_app(app)
+                self.process_app(app, app_index)
                 
                 # Delay between apps to avoid rate limits
                 if i < len(apps_to_process):

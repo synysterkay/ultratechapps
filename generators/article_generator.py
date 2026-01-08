@@ -3,6 +3,8 @@ AI-powered article generation for marketing content
 """
 import os
 import re
+import json
+import random
 from datetime import datetime
 from openai import OpenAI
 from utils.content_cache import ContentCache
@@ -21,6 +23,10 @@ class ArticleGenerator:
         self.cache = ContentCache()
         self.duplicate_checker = DuplicateChecker()
         
+        # Load app images
+        with open('app_images.json', 'r') as f:
+            self.app_images_data = json.load(f)
+        
         # Content types for variety
         self.content_types = [
             "how_to_guide",
@@ -32,6 +38,15 @@ class ArticleGenerator:
             "comparison",
             "case_study"
         ]
+    
+    def _get_app_image(self, app_index):
+        """Get a random image from the 3 available images for this app"""
+        for app in self.app_images_data['app_images']:
+            if app['app_index'] == app_index:
+                # Rotate through the 3 images randomly
+                return random.choice(app['images'])
+        # Fallback image
+        return "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=500&fit=crop&q=80"
     
     def _get_next_topic(self, app_name, niche_info):
         """Get next topic to write about, avoiding recent topics"""
@@ -52,13 +67,14 @@ class ArticleGenerator:
         # Return random unused topic for variety
         return random.choice(unused_topics)
     
-    def generate_article(self, app_info, niche_info, max_retries=2):
+    def generate_article(self, app_info, niche_info, app_index=0, max_retries=2):
         """
         Generate a complete marketing article
         
         Args:
             app_info: Dict with app_name, google_play_url, app_store_url
             niche_info: Dict with niche information from NicheDetector
+            app_index: Index of the app (0-12) to select correct images
             max_retries: Number of retries if generation fails (default 1)
             
         Returns:
@@ -66,6 +82,9 @@ class ArticleGenerator:
         """
         topic = self._get_next_topic(app_info['name'], niche_info)
         niche = niche_info['primary_niche']
+        
+        # Get featured image for this app
+        featured_image = self._get_app_image(app_index)
         
         # Single generation attempt - no duplicate checking against self
         for attempt in range(max_retries):
@@ -202,7 +221,8 @@ Write the complete SEO-optimized article in Markdown format with Unsplash images
                     'word_count': len(article_content.split()),
                     'generated_at': datetime.now().isoformat(),
                     'google_play_url': app_info['google_play_url'],
-                    'app_store_url': app_info['app_store_url']
+                    'app_store_url': app_info['app_store_url'],
+                    'featured_image': featured_image
                 }
                 
                 print(f"✅ Article generated: {title} ({article['word_count']} words)")

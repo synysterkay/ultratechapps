@@ -39,6 +39,7 @@ date: {datetime.now().strftime('%Y-%m-%d')}
 categories: [{article['niche']}]
 tags: [{', '.join(article['keywords'][:5])}]
 description: "{metadata['meta_description']}"
+image: "{article.get('featured_image', metadata['featured_image'])}"
 ---
 
 """

@@ -11,12 +11,16 @@ permalink: /blog/
     
     <div class="blog-grid">
       {% for post in site.posts %}
-        {% assign image_hash = post.title | size | times: 9973 | plus: forloop.index | times: 7919 %}
-        {% assign image_choices = "1484417954-9a2e-4f63-b0ce-5c4d4e8b0f5a,1551288414-6e82-4a24-9b4e-9e4f4e8d6e3b,1557804506-4e6b-4c5e-9e5f-e5d4e4f0e9b0,1531297484-5b9e-4e4f-9e9f-e6d5e5f1e0c1,1460925895-6f8a-4e5f-9f0e-e7d6e6f2e1d2" | split: "," %}
-        {% assign image_index = image_hash | modulo: 5 %}
-        {% assign selected_image = image_choices[image_index] %}
         <div class="blog-post-card">
-          <img src="https://images.unsplash.com/photo-{{ selected_image }}?w=800&h=500&fit=crop&q=80" alt="{{ post.title }}" class="blog-post-image">
+          {% if post.image %}
+            <img src="{{ post.image }}" alt="{{ post.title }}" class="blog-post-image">
+          {% else %}
+            {% assign image_hash = post.title | size | times: 9973 | plus: forloop.index | times: 7919 %}
+            {% assign image_choices = "1499750310107-5fef28a66643,1551288414-26de491c97e214d9cc9ca05f,1557804506-aa9e4c8bb9842b7a0cc686b0,1531297484-244a42e29d7ee79c8fc8e1e9,1460925895-917f4df0a7b41c8c7e8e6a6d" | split: "," %}
+            {% assign image_index = image_hash | modulo: 5 %}
+            {% assign selected_image = image_choices[image_index] %}
+            <img src="https://images.unsplash.com/photo-{{ selected_image }}?w=800&h=500&fit=crop&q=80" alt="{{ post.title }}" class="blog-post-image">
+          {% endif %}
           <div class="blog-post-content">
             <h2 class="blog-post-title">
               <a href="{{ post.url | relative_url }}" style="text-decoration: none; color: inherit;">{{ post.title }}</a>
