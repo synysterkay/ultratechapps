@@ -72,6 +72,9 @@ jobs:
         run: |
           mkdir -p cache
           mkdir -p _posts
+          # Clear old cache for fresh testing
+          rm -f cache/content_history.json cache/rate_limits.json
+          echo "✅ Directories created and cache cleared"
       
       - name: Determine which app to process
         id: app_selector
