@@ -2,6 +2,7 @@
 Generate social media snippets from articles
 """
 import os
+import re
 import random
 from openai import OpenAI
 
@@ -36,6 +37,25 @@ class SnippetGenerator:
                 'tags_count': 4
             }
         }
+    
+    def _sanitize_tags(self, tags):
+        """
+        Sanitize tags to only contain alphanumeric characters.
+        Dev.to and Hashnode reject tags with hyphens or special characters.
+        
+        Args:
+            tags: List of tag strings
+            
+        Returns:
+            List of sanitized tag strings
+        """
+        sanitized = []
+        for tag in tags:
+            # Remove all non-alphanumeric characters and convert to lowercase
+            clean_tag = re.sub(r'[^a-zA-Z0-9]', '', tag).lower()
+            if clean_tag:  # Only add if not empty after cleaning
+                sanitized.append(clean_tag)
+        return sanitized
     
     def generate_social_posts(self, article, platform, count=3):
         """
@@ -218,10 +238,14 @@ Respond in this JSON format:
             import json
             result = json.loads(result_text)
             
+            # Sanitize tags for Dev.to and Hashnode
+            raw_tags = result.get('tags', [])[:spec['tags_count']]
+            sanitized_tags = self._sanitize_tags(raw_tags) if platform in ['devto', 'hashnode'] else raw_tags
+            
             variant = {
                 'title': article['title'],
                 'content': result['content'],
-                'tags': result.get('tags', [])[:spec['tags_count']],
+                'tags': sanitized_tags,
                 'platform': platform,
                 'app_name': article['app_name']
             }
@@ -231,11 +255,14 @@ Respond in this JSON format:
             
         except Exception as e:
             print(f"❌ Error generating {platform} variant: {e}")
-            # Fallback: use original with tags
+            # Fallback: use original with sanitized tags
+            fallback_tags = [article['niche'], 'mobile', 'app', 'indie'][:spec['tags_count']]
+            sanitized_fallback = self._sanitize_tags(fallback_tags) if platform in ['devto', 'hashnode'] else fallback_tags
+            
             return {
                 'title': article['title'],
                 'content': article['content'],
-                'tags': [article['niche'], 'mobile', 'app', 'indie'][:spec['tags_count']],
+                'tags': sanitized_fallback,
                 'platform': platform,
                 'app_name': article['app_name']
             }
