@@ -35,6 +35,8 @@ class ArticleGenerator:
     
     def _get_next_topic(self, app_name, niche_info):
         """Get next topic to write about, avoiding recent topics"""
+        import random
+        
         topic_history = self.cache.get_topic_history(app_name)
         recent_topics = [entry['topic'] for entry in topic_history[-10:]]  # Last 10 topics
         
@@ -44,10 +46,11 @@ class ArticleGenerator:
         unused_topics = [t for t in available_topics if t not in recent_topics]
         
         if not unused_topics:
-            # All topics used recently, generate a new variation
-            return f"{available_topics[0]} - advanced insights"
+            # All topics used recently, generate a new variation with randomness
+            return f"{available_topics[0]} - {random.choice(['expert tips', 'advanced guide', 'complete walkthrough', 'essential strategies'])}"
         
-        return unused_topics[0]
+        # Return random unused topic for variety
+        return random.choice(unused_topics)
     
     def generate_article(self, app_info, niche_info, max_retries=3):
         """
