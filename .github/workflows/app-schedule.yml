@@ -117,6 +117,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "✅ No new posts generated (rate limit or duplicate)"
           else
+            git pull --rebase origin main
             git commit -m "🤖 Automated marketing content - $(date +'%Y-%m-%d %H:%M UTC')"
             git push
             echo "✅ Successfully pushed new content!"
