@@ -156,7 +156,8 @@ Write the complete SEO-optimized article in Markdown format with Unsplash images
                     messages=[
                         {"role": "system", "content": "You are an expert content writer specializing in practical, SEO-optimized articles for indie app marketing. You write authentic, helpful content that provides real value."},
                         {"role": "user", "content": prompt}
-                    ],0.9,
+                    ],
+                    temperature=0.9,
                     max_tokens=3000,
                     top_p=0.95
                 )
