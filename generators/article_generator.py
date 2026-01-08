@@ -52,7 +52,7 @@ class ArticleGenerator:
         # Return random unused topic for variety
         return random.choice(unused_topics)
     
-    def generate_article(self, app_info, niche_info, max_retries=1):
+    def generate_article(self, app_info, niche_info, max_retries=2):
         """
         Generate a complete marketing article
         
