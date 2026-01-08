@@ -4,6 +4,7 @@ date: 2026-01-08
 categories: [dating]
 tags: [relationship, patterns, scanner, toxic, flag]
 description: "# 7 Toxic Relationship Patterns to Spot & Stop in 2026 (Ultimate Guide) **Meta Description:** Spot toxic relationship patterns before they damage your well-b..."
+image: "https://images.unsplash.com/photo-1494172961521-33799ddd43a5?w=800&h=500&fit=crop&q=80"
 ---
 
 # 7 Toxic Relationship Patterns to Spot & Stop in 2026 (Ultimate Guide)

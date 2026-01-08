@@ -3,8 +3,7 @@ title: "How AI Note-Taking Can Reclaim 5 Hours of Your Week (And Your Sanity)"
 date: 2026-01-08
 categories: [productivity]
 tags: [productivity, meeting, note, taking, summary]
-description: "# How AI Note-Taking Can Reclaim 5 Hours of Your Week (And Your Sanity) Do you ever leave a meeting feeling like you’ve absorbed nothing but a vague sense of..."
----
+description: "# How AI Note-Taking Can Reclaim 5 Hours of Your Week (And Your Sanity) Do you ever leave a meeting feeling like you’ve absorbed nothing but a vague sense of..."image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=500&fit=crop&q=80"---
 
 # How AI Note-Taking Can Reclaim 5 Hours of Your Week (And Your Sanity)
 
