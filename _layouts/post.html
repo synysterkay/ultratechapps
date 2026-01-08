@@ -27,41 +27,40 @@ layout: default
   </div>
   
   {% if page.tags %}
-  <div class="post-tags">
-    <strong>Tags:</strong>
+  <div class="post-tags" style="max-width: 800px; margin: 2rem auto; padding: 1.5rem; background: rgba(99, 102, 241, 0.1); border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.2);">
+    <strong style="color: #a5b4fc; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px;">Tags:</strong>
     {% for tag in page.tags %}
-      <span class="tag">{{ tag }}</span>
+      <span class="tag" style="display: inline-block; margin: 0.25rem 0.5rem; padding: 0.5rem 1rem; background: rgba(99, 102, 241, 0.2); color: #c4b5fd; border-radius: 20px; font-size: 0.9rem; border: 1px solid rgba(99, 102, 241, 0.3);">{{ tag }}</span>
     {% endfor %}
   </div>
   {% endif %}
   
-  <footer class="post-footer">
-    <div class="author-bio">
-      <p><strong>{{ site.author }}</strong> - Built by an indie developer who ships apps every day.</p>
-      <div class="app-links-footer">
-        <a href="{{ site.social.appstore }}" target="_blank" rel="noopener">App Store</a>
-        <span class="separator">•</span>
-        <a href="{{ site.social.playstore }}" target="_blank" rel="noopener">Google Play</a>
+  <footer class="post-footer" style="max-width: 800px; margin: 3rem auto; padding: 2.5rem; background: var(--bg-card); border-radius: 20px; border: 1px solid rgba(99, 102, 241, 0.2); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);">
+    <div class="author-bio" style="text-align: center;">
+      <p style="font-size: 1.1rem; color: #cbd5e1; margin-bottom: 1.5rem;"><strong style="color: #f8fafc; font-size: 1.2rem;">{{ site.author }}</strong> - Built by an indie developer who ships apps every day.</p>
+      <div class="app-links-footer" style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+        <a href="{{ site.social.appstore }}" target="_blank" rel="noopener" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; transition: all 0.3s; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);">📱 App Store</a>
+        <a href="{{ site.social.playstore }}" target="_blank" rel="noopener" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #8b5cf6, #ec4899); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; transition: all 0.3s; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);">🤖 Google Play</a>
       </div>
     </div>
   </footer>
 </article>
 
-<nav class="post-navigation">
+<nav class="post-navigation" style="max-width: 900px; margin: 3rem auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
   {% if page.previous.url %}
-  <div class="prev-post">
-    <a href="{{ page.previous.url | relative_url }}">
-      <span class="nav-label">← Previous</span>
-      <span class="nav-title">{{ page.previous.title }}</span>
+  <div class="prev-post" style="background: var(--bg-card); padding: 2rem; border-radius: 16px; border: 1px solid rgba(99, 102, 241, 0.2); transition: all 0.3s; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
+    <a href="{{ page.previous.url | relative_url }}" style="text-decoration: none; color: inherit; display: block;">
+      <span class="nav-label" style="display: block; color: #6366f1; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem;">← Previous Article</span>
+      <span class="nav-title" style="display: block; color: #f8fafc; font-weight: 700; font-size: 1.1rem; line-height: 1.4;">{{ page.previous.title }}</span>
     </a>
   </div>
   {% endif %}
   
   {% if page.next.url %}
-  <div class="next-post">
-    <a href="{{ page.next.url | relative_url }}">
-      <span class="nav-label">Next →</span>
-      <span class="nav-title">{{ page.next.title }}</span>
+  <div class="next-post" style="background: var(--bg-card); padding: 2rem; border-radius: 16px; border: 1px solid rgba(99, 102, 241, 0.2); transition: all 0.3s; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); text-align: right;">
+    <a href="{{ page.next.url | relative_url }}" style="text-decoration: none; color: inherit; display: block;">
+      <span class="nav-label" style="display: block; color: #8b5cf6; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem;">Next Article →</span>
+      <span class="nav-title" style="display: block; color: #f8fafc; font-weight: 700; font-size: 1.1rem; line-height: 1.4;">{{ page.next.title }}</span>
     </a>
   </div>
   {% endif %}

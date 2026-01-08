@@ -108,13 +108,17 @@ SEO OPTIMIZATION REQUIREMENTS (CRITICAL FOR RANKING):
 9. KEYWORD DENSITY: Primary 1-2%, LSI 0.5-1% (natural, not stuffed)
 10. E-E-A-T SIGNALS: Add experience/expertise indicators, specific data, real examples
 
-IMAGE REQUIREMENTS (CRITICAL FOR ENGAGEMENT):
-- Include 3-4 relevant Unsplash image links throughout the article
-- Format: ![Alt text with keyword](https://images.unsplash.com/photo-[id]?w=1200&q=80)
+IMAGE REQUIREMENTS (CRITICAL - IMAGES MUST APPEAR IN ARTICLE):
+- Include EXACTLY 3-4 relevant images throughout the article
+- Use REAL Unsplash photo IDs from these categories:
+  * Technology/AI: 1555421689-d68471e189f2, 1677442136-a4cf6ec5c3fc, 1487058792-9119ab14e43e
+  * Productivity: 1484480974-28ec3d928524, 1454165804-21f96d4ee769, 1499750310107-5fef28a66643
+  * Mobile Apps: 1512941937669-90a1b58e7e9c, 1551288414-26de-491c-97e2-14d9cc9ca05f
+- Format EXACTLY like this: ![Alt text with keyword](https://images.unsplash.com/photo-1555421689-d68471e189f2?w=1200&q=80)
 - Alt text MUST contain primary or LSI keywords
-- Place images: After introduction, between major sections, before conclusion
-- Choose images matching: {niche}, productivity, technology, mobile apps
-- Example: ![AI note taking app dashboard](https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&q=80)
+- Place images strategically: After intro (1 image), between H2 sections (2 images), before conclusion (1 image)
+- DO NOT use placeholder [id] - use actual numbers
+- Example that works: ![AI productivity app interface](https://images.unsplash.com/photo-1484480974-28ec3d928524?w=1200&q=80)
 
 CONTENT REQUIREMENTS:
 - Length: 1200-1800 words (long-form ranks better)
