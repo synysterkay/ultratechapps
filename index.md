@@ -128,7 +128,8 @@ title: "UltraTech Apps - AI-Powered Mobile Apps"
       {% for post in site.posts limit:3 %}
         <article class="recent-article-card">
           <div class="article-image-wrapper">
-            <img src="https://images.unsplash.com/photo-{{ 1499750310107 | plus: forloop.index }}?w=600&q=80" alt="{{ post.title }}" class="recent-article-image">
+            {% assign image_id = 1499750310107 | plus: forloop.index %}
+            <img src="https://images.unsplash.com/photo-{{ image_id }}?w=600&q=80" alt="{{ post.title }}" class="recent-article-image">
           </div>
           <div class="recent-article-content">
             <div class="article-meta-small">
