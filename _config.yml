@@ -35,8 +35,6 @@ defaults:
 social:
   appstore: "https://apps.apple.com/us/developer/anas-kayssi/id1769590510"
   playstore: "https://play.google.com/store/apps/dev?id=5116533678587496673"
-
-# Exclude from processing
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -57,3 +55,19 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+
+# SEO settings
+lang: en_US
+logo: /assets/images/logo.png
+twitter:
+  username: ultratechapps
+  card: summary
+
+google_site_verification: "your-google-site-verification-code"
+
+# Social defaults for SEO
+social:
+  name: UltraTech Apps
+  links:
+    - https://apps.apple.com/us/developer/anas-kayssi/id1769590510
+    - https://play.google.com/store/apps/dev?id=5116533678587496673

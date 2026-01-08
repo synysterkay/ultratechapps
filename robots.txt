@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://synysterkay.github.io/marketingtool/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 10
+
+# Disallow cache and admin files
+Disallow: /cache/
+Disallow: /venv/
+Disallow: /.git/
+Disallow: /*.py$
+Disallow: /generators/
+Disallow: /publishers/
+Disallow: /utils/
+
+# Allow all pages and blog posts
+Allow: /
+Allow: /blog/
+Allow: /about/
+Allow: /_posts/
+Allow: /assets/
