@@ -482,3 +482,38 @@
   .post-content h1, .article-content h1 { font-size: 2rem; }
   .post-content h2, .article-content h2 { font-size: 1.6rem; }
 }
+
+/* Override modern.css for consistent dark theme */
+.app-section {
+  background: transparent !important;
+}
+
+.recent-articles-section {
+  background: transparent !important;
+}
+
+.blog-section {
+  background: transparent !important;
+}
+
+.article-meta-small {
+  color: #94a3b8 !important;
+}
+
+.article-category {
+  background: rgba(99, 102, 241, 0.2) !important;
+  color: #a5b4fc !important;
+}
+
+.recent-article-excerpt {
+  color: #cbd5e1 !important;
+}
+
+.blog-post-card {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-glow) !important;
+}
+
+.blog-post-meta {
+  color: #94a3b8 !important;
+}
