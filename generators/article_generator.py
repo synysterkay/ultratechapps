@@ -181,8 +181,7 @@ Write the complete SEO-optimized article in Markdown format with Unsplash images
                 self.duplicate_checker.add_content(
                     article_content,
                     metadata={'app_name': app_info['name'], 'topic': topic}
-                )f"{topic} - {self.content_types[attempt % len(self.content_types)]}"
-                    continue
+                )
                 
                 # Extract metadata
                 title = self._extract_title(article_content)
