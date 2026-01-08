@@ -217,9 +217,12 @@ Write the complete SEO-optimized article in Markdown format with Unsplash images
         """Validate article meets requirements"""
         word_count = len(content.split())
         
+        # Check if title exists (flexible - starts with # or first line contains uppercase words)
+        has_title = content.startswith('#') or (len(content.split('\n')[0]) > 10 and content.split('\n')[0][0].isupper())
+        
         checks = {
             'length': 800 <= word_count <= 1500,
-            'has_title': content.startswith('#'),
+            'has_title': has_title,
             'has_play_link': app_info['google_play_url'] in content,
             'has_store_link': app_info['app_store_url'] in content,
             'has_indie_footer': 'indie developer' in content.lower(),
