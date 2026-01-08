@@ -76,5 +76,4 @@ jobs:
         with:
           name: marketing-cache
           path: cache/
-          path: cache/
           retention-days: 30
