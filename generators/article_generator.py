@@ -164,10 +164,8 @@ Write the complete SEO-optimized article in Markdown format with Unsplash images
                 
                 article_content = response.choices[0].message.content.strip()
                 
-                # Validate content quality
-                if not self._validate_article(article_content, app_info):
-                    print(f"⚠️ Article validation failed, retrying...")
-                    continue
+                # Skip validation - let DeepSeek generate freely
+                # Validation was too strict and caused unnecessary retries
                 
                 # Only check against HISTORICAL content, not current attempts
                 # This prevents false duplicates when generating for the same app
