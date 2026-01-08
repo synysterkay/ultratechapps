@@ -126,10 +126,13 @@ title: "UltraTech Apps - AI-Powered Mobile Apps"
     
     <div class="recent-articles-grid">
       {% for post in site.posts limit:3 %}
+        {% assign image_hash = post.title | size | times: 7919 | plus: forloop.index | times: 9973 %}
+        {% assign image_choices = "1499750310107-5fef28a66643,1551288414-26de-491c-97e2-14d9cc9ca05f,1557804506-aa9e-4c8b-b984-2b7a0cc686b0,1531297484-244a-42e2-9d7e-e79c8fc8e1e9,1460925895-917f-4df0-a7b4-1c8c7e8e6a6d" | split: "," %}
+        {% assign image_index = image_hash | modulo: 5 %}
+        {% assign selected_image = image_choices[image_index] %}
         <article class="recent-article-card">
           <div class="article-image-wrapper">
-            {% assign image_id = 1499750310107 | plus: forloop.index %}
-            <img src="https://images.unsplash.com/photo-{{ image_id }}?w=600&q=80" alt="{{ post.title }}" class="recent-article-image">
+            <img src="https://images.unsplash.com/photo-{{ selected_image }}?w=800&h=500&fit=crop&q=80" alt="{{ post.title }}" class="recent-article-image">
           </div>
           <div class="recent-article-content">
             <div class="article-meta-small">
