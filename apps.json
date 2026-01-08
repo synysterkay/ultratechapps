@@ -1,14 +1,86 @@
 [
   {
-    "name": "Example App 1",
-    "description": "A brief description of your app (used for niche detection)",
-    "google_play_url": "https://play.google.com/store/apps/details?id=com.example.app1",
-    "app_store_url": "https://apps.apple.com/app/id123456789"
+    "name": "Smart Notes - AI Meeting Summary",
+    "description": "AI-powered note-taking app with meeting transcription and smart organization",
+    "google_play_url": "",
+    "app_store_url": "https://apps.apple.com/us/app/smart-notes-ai-meeting-summary/id6756840480"
   },
   {
-    "name": "Example App 2",
-    "description": "Another app description",
-    "google_play_url": "https://play.google.com/store/apps/details?id=com.example.app2",
-    "app_store_url": "https://apps.apple.com/app/id987654321"
+    "name": "Volume Booster - Sound Booster",
+    "description": "Boost volume to max! Sound amplifier, bass booster & equalizer for louder audio",
+    "google_play_url": "https://play.google.com/store/apps/details?id=com.volume.booster.free.pro",
+    "app_store_url": ""
+  },
+  {
+    "name": "Predictify: Soccer AI",
+    "description": "AI-powered soccer predictions and match analysis for football fans",
+    "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+    "app_store_url": ""
+  },
+  {
+    "name": "Fresh Start: Breakup Therapy",
+    "description": "AI-powered breakup therapy and emotional healing support for moving forward",
+    "google_play_url": "https://play.google.com/store/apps/details?id=com.breakup.therapy.therapyforabreakup.therapistforbreakups",
+    "app_store_url": "https://apps.apple.com/us/app/fresh-start-breakup-therapy-ai/id6749954260"
+  },
+  {
+    "name": "Ai Girlfriend: Virtual Love",
+    "description": "AI-powered virtual companion for meaningful conversations and emotional connection",
+    "google_play_url": "",
+    "app_store_url": "https://apps.apple.com/us/app/ai-girlfriend-virtual-love/id6757268335"
+  },
+  {
+    "name": "Ai Boyfriend: Virtual Love",
+    "description": "AI-powered virtual boyfriend for engaging conversations and companionship",
+    "google_play_url": "",
+    "app_store_url": "https://apps.apple.com/us/app/ai-boyfriend-virtual-love/id6757331334"
+  },
+  {
+    "name": "Fertile AI - Menopause Fertility",
+    "description": "AI-powered menopause tracking and fertility insights for women's health",
+    "google_play_url": "https://play.google.com/store/apps/details?id=com.fertileai.menopause.fertility.fertile_ai",
+    "app_store_url": ""
+  },
+  {
+    "name": "Red Flag Scanner AI",
+    "description": "AI-powered relationship analyzer to identify red flags and relationship patterns",
+    "google_play_url": "https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner",
+    "app_store_url": ""
+  },
+  {
+    "name": "PupShape: Dog Weight Loss Plan",
+    "description": "Personalized meal plans and weight loss strategies for your dog's health",
+    "google_play_url": "https://play.google.com/store/apps/details?id=com.mealplanner.foodofdogs.petmeal",
+    "app_store_url": ""
+  },
+  {
+    "name": "Thesis Generator: Essay AI",
+    "description": "AI-powered thesis statement generator and essay writing assistant for students",
+    "google_play_url": "https://play.google.com/store/apps/details?id=com.thesis.generator.ai",
+    "app_store_url": ""
+  },
+  {
+    "name": "SoulPlan: Plan Dates Together",
+    "description": "AI-powered date planning app to discover and organize romantic activities together",
+    "google_play_url": "https://play.google.com/store/apps/details?id=com.aifun.dateideas.planadate",
+    "app_store_url": ""
+  },
+  {
+    "name": "Prankster Fart - Prank Airhorn",
+    "description": "Hilarious prank sounds including farts, airhorns, and haircut pranks for fun",
+    "google_play_url": "https://play.google.com/store/apps/details?id=com.pranksounds.haircutprank.airhorn",
+    "app_store_url": ""
+  },
+  {
+    "name": "Clean My Speaker - Water Cleaner",
+    "description": "Remove water and dust from phone speaker using sound wave technology",
+    "google_play_url": "https://play.google.com/store/apps/details?id=com.speakercleaner.headphonecleaner.speakerdustcleaner",
+    "app_store_url": ""
+  },
+  {
+    "name": "Super Quiz with Pictures",
+    "description": "Engaging picture-based trivia quiz game with thousands of questions and images",
+    "google_play_url": "https://play.google.com/store/apps/details?id=com.superquiz.easyquiz.triviastar",
+    "app_store_url": ""
   }
 ]
