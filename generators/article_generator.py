@@ -67,7 +67,7 @@ class ArticleGenerator:
         for attempt in range(max_retries):
             print(f"📝 Generating article for {app_info['name']} (attempt {attempt + 1}/{max_retries})...")
             
-            prompt = f"""Write a high-quality, SEO-optimized marketing article for an indie app.
+            prompt = f"""Write a high-quality, SEO-optimized marketing article designed to RANK on Google page 1.
 
 App Information:
 - Name: {app_info['name']}
@@ -78,26 +78,73 @@ App Information:
 
 Topic: {topic}
 
-Requirements:
-1. Length: 800-1200 words
-2. Provide PRACTICAL, ACTIONABLE value for users in the {niche} niche
-3. Include clear headings (##), bullet points, and examples
-4. Naturally integrate the Google Play and App Store links in the article body (not just at the end)
-5. Include 6-12 SEO keywords related to {niche}
-6. Be unique and engaging - avoid generic content
-7. End with: "Built by an indie developer who ships apps every day."
-8. Maximum 2 emojis in the entire article
-9. Write in a helpful, authentic tone
+SEO OPTIMIZATION REQUIREMENTS (CRITICAL FOR RANKING):
+1. PRIMARY KEYWORD: Create a search-intent focused keyword with 500+ monthly searches
+   - Examples: "best {niche} app 2026", "how to {solve problem} faster", "{niche} tips for beginners"
+   - Place in: Title (beginning), first paragraph, at least 3 H2 headers
+2. LONG-TAIL KEYWORDS (4-6 keywords): Target low-competition, high-intent searches
+   - Format: "[primary keyword] + modifier" (e.g., "for Android", "free", "without account")
+3. LSI KEYWORDS (10-15 terms): Semantic variations Google expects to see
+   - Spread naturally across headers, lists, and body paragraphs
+4. TITLE OPTIMIZATION (60 char max):
+   - Formula: [Number] + [Primary Keyword] + [Power Word] + [Benefit]
+   - Power words: Ultimate, Complete, Essential, Proven, Secret, Easy, Fast
+   - Include year "2026" for freshness signal
+   - Example: "15 AI Meeting Tools to 10x Productivity in 2026"
+5. META DESCRIPTION (150-160 char): Compelling summary with primary keyword + CTA
+6. HEADER HIERARCHY (H2/H3 with keywords):
+   - H2: Question format ("How to...", "Why...", "What is...")
+   - Include primary/LSI keywords in every H2
+   - Example: "How to Choose the Best {niche} App for Your Needs"
+7. FEATURED SNIPPET TARGETING:
+   - Add boxed "Quick Answer" section (40-50 words)
+   - Use numbered/bulleted lists for step-by-step content
+   - Include comparison tables where relevant
+8. INTERNAL LINKING: Mention related topics with anchor text (simulate internal links)
+9. KEYWORD DENSITY: Primary 1-2%, LSI 0.5-1% (natural, not stuffed)
+10. E-E-A-T SIGNALS: Add experience/expertise indicators, specific data, real examples
 
-Article Structure:
-- Compelling title
-- Introduction (the problem/goal)
-- Main content with practical steps/advice
-- Common mistakes to avoid
-- How helpful tools (mention the app naturally here with links)
-- Final motivation/reflection
+IMAGE REQUIREMENTS (CRITICAL FOR ENGAGEMENT):
+- Include 3-4 relevant Unsplash image links throughout the article
+- Format: ![Alt text with keyword](https://images.unsplash.com/photo-[id]?w=1200&q=80)
+- Alt text MUST contain primary or LSI keywords
+- Place images: After introduction, between major sections, before conclusion
+- Choose images matching: {niche}, productivity, technology, mobile apps
+- Example: ![AI note taking app dashboard](https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&q=80)
 
-Write the complete article in Markdown format."""
+CONTENT REQUIREMENTS:
+- Length: 1200-1800 words (long-form ranks better)
+- Include: statistics, specific numbers, timeframes (e.g., "save 5 hours weekly")
+- Answer: WHO (target user), WHAT (solution), WHY (benefits), HOW (steps), WHEN (use cases)
+- Use schema-friendly formats: step-by-step lists, comparison tables, FAQs
+- Naturally integrate app store links 2-3 times (not just end)
+- Add "Quick Takeaways" box at top (bulleted list, 3-5 points)
+- End with: "Built by an indie developer who ships apps every day."
+- Maximum 2 emojis total
+
+Article Structure (SEO-Optimized):
+1. TITLE: [Number] [Primary Keyword] [Power Word] [Benefit] [Year]
+2. META DESCRIPTION: [Primary keyword + benefit + CTA] (150-160 char)
+3. Quick Takeaways (bulleted, 3-5 key points)
+4. Introduction (100-150 words)
+   - Hook with relatable problem
+   - Include primary keyword in first sentence
+   - Promise specific outcome
+5. [IMAGE 1] - Relevant hero image
+6. Main Content (4-6 H2 sections with LSI keywords)
+   - Section 1: "What is [Primary Keyword]?" (definition + context)
+   - Section 2: "Why [LSI Keyword] Matters in 2026" (benefits + data)
+   - Section 3: "How to [Action] Step-by-Step" (numbered list)
+   - [IMAGE 2] - Process or example image
+   - Section 4: "Common Mistakes to Avoid" (bulleted list)
+   - Section 5: "[LSI Keyword]: Tips from Experts" (actionable advice)
+   - [IMAGE 3] - Results or comparison image
+   - Section 6: "Best Tools for [Primary Keyword]" (mention app + links naturally)
+7. FAQ Section (3-5 questions with H3 headers)
+8. [IMAGE 4] - Conclusion or CTA image
+9. Conclusion (Call-to-action + indie developer signature)
+
+Write the complete SEO-optimized article in Markdown format with Unsplash images."""
 
             try:
                 response = self.client.chat.completions.create(
@@ -176,6 +223,26 @@ Write the complete article in Markdown format."""
         
         return True
     
+    def _get_featured_image(self, niche, app_name):
+        """Get unique featured image URL based on niche"""
+        # Map niches to relevant Unsplash search queries
+        niche_images = {
+            'productivity': 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1200&q=80',
+            'health': 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=1200&q=80',
+            'fitness': 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1200&q=80',
+            'education': 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=80',
+            'entertainment': 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=1200&q=80',
+            'social': 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=1200&q=80',
+            'relationships': 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=1200&q=80',
+            'sports': 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1200&q=80',
+            'audio': 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1200&q=80',
+            'pets': 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=1200&q=80',
+            'tools': 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=80',
+            'ai': 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80',
+            'crypto': 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=1200&q=80'
+        }
+        return niche_images.get(niche.lower(), 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1200&q=80')
+    
     def _extract_title(self, content):
         """Extract title from markdown content"""
         lines = content.split('\n')
@@ -212,23 +279,23 @@ Write the complete article in Markdown format."""
             article: Article dictionary
             
         Returns:
-            Dictionary with meta_title, meta_description, og_image_idea
+            Dictionary with meta_title, meta_description, featured_image, keywords
         """
         title = article['title']
         content_preview = ' '.join(article['content'].split()[:50])
         
-        # Generate meta title (max 60 chars)
+        # Generate meta title (max 60 chars for Google SERP)
         meta_title = title[:60] if len(title) <= 60 else title[:57] + '...'
         
-        # Generate meta description (140-160 chars)
+        # Generate meta description (150-160 chars optimal for SEO)
         meta_description = content_preview[:157] + '...' if len(content_preview) > 160 else content_preview
         
-        # OG image idea
-        og_image_idea = f"Banner image with {article['niche']} theme featuring the app name '{article['app_name']}'"
+        # Get unique featured image based on niche
+        featured_image = self._get_featured_image(article['niche'], article['app_name'])
         
         return {
             'meta_title': meta_title,
             'meta_description': meta_description,
-            'og_image_idea': og_image_idea,
+            'featured_image': featured_image,
             'keywords': ', '.join(article['keywords'])
         }

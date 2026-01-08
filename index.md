@@ -118,3 +118,37 @@ title: "UltraTech Apps - AI-Powered Mobile Apps"
   </div>
   </div>
 </section>
+
+<section class="recent-articles-section">
+  <div class="container">
+    <h2 class="section-title">Latest Insights</h2>
+    <p style="text-align: center; color: var(--text-light); margin-bottom: 3rem; font-size: 1.125rem;">Expert tips and guides to get the most out of our apps</p>
+    
+    <div class="recent-articles-grid">
+      {% for post in site.posts limit:3 %}
+        <article class="recent-article-card">
+          <div class="article-image-wrapper">
+            <img src="https://images.unsplash.com/photo-{{ 1499750310107 | plus: forloop.index }}?w=600&q=80" alt="{{ post.title }}" class="recent-article-image">
+          </div>
+          <div class="recent-article-content">
+            <div class="article-meta-small">
+              <span>📅 {{ post.date | date: "%b %d, %Y" }}</span>
+              {% if post.categories.first %}
+                <span class="article-category">{{ post.categories.first | capitalize }}</span>
+              {% endif %}
+            </div>
+            <h3 class="recent-article-title">
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h3>
+            <p class="recent-article-excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+            <a href="{{ post.url | relative_url }}" class="read-more-link">Read Article →</a>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+    
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="/marketingtool/blog/" class="btn btn-outline" style="color: var(--primary-color); border-color: var(--primary-color);">View All Articles</a>
+    </div>
+  </div>
+</section>

@@ -9,20 +9,11 @@
       </div>
       
       <nav class="site-nav">
-        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-        <label for="nav-trigger" class="nav-icon">
-          <span></span>
-          <span></span>
-          <span></span>
-        </label>
-        
-        <div class="nav-links">
-          <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a>
-          <a href="{{ '/blog' | relative_url }}" {% if page.url contains '/blog' %}class="active"{% endif %}>Blog</a>
-          <a href="{{ '/about' | relative_url }}" {% if page.url == '/about/' %}class="active"{% endif %}>About</a>
-          <a href="{{ site.social.appstore }}" target="_blank" rel="noopener" class="store-link">App Store</a>
-          <a href="{{ site.social.playstore }}" target="_blank" rel="noopener" class="store-link">Google Play</a>
-        </div>
+        <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a>
+        <a href="{{ '/blog' | relative_url }}" {% if page.url contains '/blog' %}class="active"{% endif %}>Blog</a>
+        <a href="{{ '/about' | relative_url }}" {% if page.url == '/about/' %}class="active"{% endif %}>About</a>
+        <a href="{{ site.social.appstore }}" target="_blank" rel="noopener" class="store-link">App Store</a>
+        <a href="{{ site.social.playstore }}" target="_blank" rel="noopener" class="store-link">Google Play</a>
       </nav>
     </div>
   </div>
