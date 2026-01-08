@@ -6,24 +6,6 @@
     "app_store_url": ""
   },
   {
-    "name": "Video Volume Booster - Equalizer",
-    "description": "Amplify video sound with powerful equalizer and bass boost for enhanced audio experience",
-    "google_play_url": "https://play.google.com/store/apps/details?id=com.videovolumebooster.equalizer",
-    "app_store_url": ""
-  },
-  {
-    "name": "Headphone Volume Booster",
-    "description": "Maximize headphone volume beyond system limits for louder, clearer audio",
-    "google_play_url": "https://play.google.com/store/apps/details?id=com.headphonevolumebooster",
-    "app_store_url": ""
-  },
-  {
-    "name": "Increase Volume Booster",
-    "description": "Professional audio amplifier to increase volume and enhance sound quality",
-    "google_play_url": "https://play.google.com/store/apps/details?id=com.increasevolumebooster",
-    "app_store_url": ""
-  },
-  {
     "name": "Smart Notes - AI Meeting Summary",
     "description": "AI-powered note-taking app with meeting transcription and smart organization",
     "google_play_url": "https://play.google.com/store/apps/details?id=com.smartnotes.aimeetingsummary",
@@ -52,24 +34,6 @@
     "description": "AI-powered breakup therapy and emotional healing support for moving forward",
     "google_play_url": "https://play.google.com/store/apps/details?id=com.freshstart.breakuptherapy",
     "app_store_url": "https://apps.apple.com/us/app/fresh-start-breakup-therapy-ai/id6749954260"
-  },
-  {
-    "name": "Dog Translator - Dogtok App",
-    "description": "Translate dog barks and sounds to understand what your pet is trying to communicate",
-    "google_play_url": "https://play.google.com/store/apps/details?id=com.dogtranslator.dogtokapp",
-    "app_store_url": ""
-  },
-  {
-    "name": "Fertile AI - Menopause Fertility",
-    "description": "AI-powered menopause tracking and fertility insights for women's health",
-    "google_play_url": "https://play.google.com/store/apps/details?id=com.fertileai.menopausefertility",
-    "app_store_url": ""
-  },
-  {
-    "name": "Cal Dogs AI - Dog Diets",
-    "description": "AI-powered personalized diet plans and nutrition tracking for your dog's optimal health",
-    "google_play_url": "https://play.google.com/store/apps/details?id=com.caldogsai.dogdiets",
-    "app_store_url": ""
   },
   {
     "name": "Reelit Downloader For Reddit",
