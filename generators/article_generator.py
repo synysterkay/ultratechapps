@@ -52,14 +52,14 @@ class ArticleGenerator:
         # Return random unused topic for variety
         return random.choice(unused_topics)
     
-    def generate_article(self, app_info, niche_info, max_retries=3):
+    def generate_article(self, app_info, niche_info, max_retries=1):
         """
         Generate a complete marketing article
         
         Args:
             app_info: Dict with app_name, google_play_url, app_store_url
             niche_info: Dict with niche information from NicheDetector
-            max_retries: Number of retries if content is duplicate
+            max_retries: Number of retries if generation fails (default 1)
             
         Returns:
             Dictionary with article content and metadata
@@ -67,8 +67,9 @@ class ArticleGenerator:
         topic = self._get_next_topic(app_info['name'], niche_info)
         niche = niche_info['primary_niche']
         
+        # Single generation attempt - no duplicate checking against self
         for attempt in range(max_retries):
-            print(f"📝 Generating article for {app_info['name']} (attempt {attempt + 1}/{max_retries})...")
+            print(f"📝 Generating article for {app_info['name']}...")
             
             prompt = f"""Write a high-quality, SEO-optimized marketing article designed to RANK on Google page 1.
 
@@ -155,27 +156,31 @@ Write the complete SEO-optimized article in Markdown format with Unsplash images
                     messages=[
                         {"role": "system", "content": "You are an expert content writer specializing in practical, SEO-optimized articles for indie app marketing. You write authentic, helpful content that provides real value."},
                         {"role": "user", "content": prompt}
-                    ],
-                    temperature=1.0 + (attempt * 0.1),  # Increase randomness on retries
+                    ],0.9,
                     max_tokens=3000,
                     top_p=0.95
                 )
                 
                 article_content = response.choices[0].message.content.strip()
                 
-                # Validate content
+                # Validate content quality
                 if not self._validate_article(article_content, app_info):
                     print(f"⚠️ Article validation failed, retrying...")
                     continue
                 
-                # Check for duplicates
-                if not self.duplicate_checker.check_and_add(
+                # Only check against HISTORICAL content, not current attempts
+                # This prevents false duplicates when generating for the same app
+                if self.duplicate_checker.is_duplicate(article_content, threshold=0.85):
+                    print(f"⚠️ Content too similar to previous articles")
+                    if attempt == max_retries - 1:
+                        raise Exception("Content too similar to historical articles")
+                    continue
+                
+                # Add to history ONLY if we're keeping this article
+                self.duplicate_checker.add_content(
                     article_content,
-                    threshold=0.85,
                     metadata={'app_name': app_info['name'], 'topic': topic}
-                ):
-                    print(f"⚠️ Duplicate content detected, retrying with variation...")
-                    topic = f"{topic} - {self.content_types[attempt % len(self.content_types)]}"
+                )f"{topic} - {self.content_types[attempt % len(self.content_types)]}"
                     continue
                 
                 # Extract metadata
@@ -202,7 +207,7 @@ Write the complete SEO-optimized article in Markdown format with Unsplash images
                 return article
                 
             except Exception as e:
-                print(f"❌ Error generating article: {e}")
+                print(f"❌ Error generating ar{e}")
                 if attempt == max_retries - 1:
                     raise
         
