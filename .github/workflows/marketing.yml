@@ -8,6 +8,9 @@ on:
   # Allow manual trigger
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   marketing:
     runs-on: ubuntu-latest
@@ -69,8 +72,9 @@ jobs:
       
       - name: Upload cache artifacts
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: marketing-cache
+          path: cache/
           path: cache/
           retention-days: 30
