@@ -62,7 +62,7 @@ jobs:
         run: |
           git config --local user.email "bot@ultratech-apps.com"
           git config --local user.name "Marketing Bot"
-          git add _posts/ cache/
+          git add _posts/
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else

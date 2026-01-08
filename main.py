@@ -208,11 +208,26 @@ class MarketingAutomation:
     def _select_apps_for_today(self):
         """
         Select which apps to process today
-        Now processes ALL apps daily for maximum marketing reach
+        Supports environment variable APP_INDEX for scheduled runs
         """
-        # TESTING MODE: Process only 1 app per run
-        # Change to: return self.apps[:3] for 3 apps, or self.apps for all
-        return self.apps[:1]  # Process just 1 app for testing
+        # Check if APP_INDEX is set (from GitHub Actions)
+        app_index = os.getenv('APP_INDEX')
+        
+        if app_index is not None:
+            try:
+                index = int(app_index)
+                if 0 <= index < len(self.apps):
+                    print(f"📍 Processing app at index {index}")
+                    return [self.apps[index]]
+                else:
+                    print(f"⚠️ Invalid APP_INDEX {index}, defaulting to first app")
+                    return self.apps[:1]
+            except ValueError:
+                print(f"⚠️ Invalid APP_INDEX format, defaulting to first app")
+                return self.apps[:1]
+        
+        # Default: Process only first app for testing
+        return self.apps[:1]
     
     def test_single_app(self, app_index=0):
         """

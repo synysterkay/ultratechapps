@@ -1,0 +1,128 @@
+name: Scheduled Marketing by App
+
+on:
+  schedule:
+    # Smart Notes - 9:00 AM UTC
+    - cron: '0 9 * * 1-5'
+    # AI Girlfriend - 10:00 AM UTC  
+    - cron: '0 10 * * 1-5'
+    # Predictify Soccer - 11:00 AM UTC
+    - cron: '0 11 * * 1-5'
+    # Volume Booster - 12:00 PM UTC
+    - cron: '0 12 * * 1-5'
+    # Fresh Start Breakup Therapy - 1:00 PM UTC
+    - cron: '0 13 * * 1-5'
+    # PupShape - 2:00 PM UTC
+    - cron: '0 14 * * 1-5'
+    # Thesis Generator - 3:00 PM UTC
+    - cron: '0 15 * * 1-5'
+    # LoveStory AI - 4:00 PM UTC
+    - cron: '0 16 * * 1-5'
+    # AI Boyfriend - 5:00 PM UTC
+    - cron: '0 17 * * 1-5'
+    # Crypto AI - 6:00 PM UTC
+    - cron: '0 18 * * 1-5'
+    # SoulPlan - 7:00 PM UTC
+    - cron: '0 19 * * 1-5'
+    # Red Flag Scanner - 8:00 PM UTC
+    - cron: '0 20 * * 1-5'
+    # Reelit Downloader - 9:00 PM UTC
+    - cron: '0 21 * * 1-5'
+  
+  # Allow manual trigger with app selection
+  workflow_dispatch:
+    inputs:
+      app_index:
+        description: 'App index to process (0-12, or leave empty for rotation)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  marketing:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Create directories
+        run: |
+          mkdir -p cache
+          mkdir -p _posts
+      
+      - name: Determine which app to process
+        id: app_selector
+        run: |
+          # If manual trigger with app_index, use that
+          if [ -n "${{ github.event.inputs.app_index }}" ]; then
+            echo "app_index=${{ github.event.inputs.app_index }}" >> $GITHUB_OUTPUT
+          else
+            # Calculate app index based on hour (0-12 for 13 apps)
+            hour=$(date -u +%H)
+            if [ $hour -ge 9 ] && [ $hour -le 21 ]; then
+              app_index=$((hour - 9))
+            else
+              app_index=0
+            fi
+            echo "app_index=$app_index" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: Run marketing automation
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
+          HASHNODE_TOKEN: ${{ secrets.HASHNODE_TOKEN }}
+          HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
+          BLUESKY_USERNAME: ${{ secrets.BLUESKY_USERNAME }}
+          BLUESKY_PASSWORD: ${{ secrets.BLUESKY_PASSWORD }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPO: ${{ github.repository }}
+          BLOG_PATH: _posts
+          APP_INDEX: ${{ steps.app_selector.outputs.app_index }}
+        run: |
+          echo "🚀 Processing app at index: $APP_INDEX"
+          python main.py
+      
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "bot@ultratech-apps.com"
+          git config --local user.name "Marketing Bot"
+          git add _posts/
+          if git diff --staged --quiet; then
+            echo "✅ No new posts generated (rate limit or duplicate)"
+          else
+            git commit -m "🤖 Automated marketing content - $(date +'%Y-%m-%d %H:%M UTC')"
+            git push
+            echo "✅ Successfully pushed new content!"
+          fi
+      
+      - name: Upload cache artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: marketing-cache-${{ steps.app_selector.outputs.app_index }}
+          path: cache/
+          retention-days: 7
