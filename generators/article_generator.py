@@ -171,7 +171,14 @@ Article Structure (SEO-Optimized):
 8. [IMAGE 4] - Conclusion or CTA image
 9. Conclusion (Call-to-action + indie developer signature)
 
-Write the complete SEO-optimized article in Markdown format with Unsplash images."""
+CRITICAL OUTPUT FORMAT:
+- Write ONLY the article content starting with the H1 title (#)
+- DO NOT wrap the article in markdown code blocks (```markdown)
+- DO NOT include frontmatter (---)
+- Start directly with: # [Article Title]
+- The frontmatter will be added automatically by the publishing system
+
+Write the complete SEO-optimized article now:"""
 
             try:
                 response = self.client.chat.completions.create(
