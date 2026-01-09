@@ -2,32 +2,31 @@ name: Scheduled Marketing by App
 
 on:
   schedule:
-    # Smart Notes - 9:00 AM UTC
-    - cron: '0 9 * * 1-5'
-    # AI Girlfriend - 10:00 AM UTC  
-    - cron: '0 10 * * 1-5'
-    # Predictify Soccer - 11:00 AM UTC
-    - cron: '0 11 * * 1-5'
-    # Volume Booster - 12:00 PM UTC
-    - cron: '0 12 * * 1-5'
-    # Fresh Start Breakup Therapy - 1:00 PM UTC
-    - cron: '0 13 * * 1-5'
-    # PupShape - 2:00 PM UTC
-    - cron: '0 14 * * 1-5'
-    # Thesis Generator - 3:00 PM UTC
-    - cron: '0 15 * * 1-5'
-    # LoveStory AI - 4:00 PM UTC
-    - cron: '0 16 * * 1-5'
-    # AI Boyfriend - 5:00 PM UTC
-    - cron: '0 17 * * 1-5'
-    # Crypto AI - 6:00 PM UTC
-    - cron: '0 18 * * 1-5'
-    # SoulPlan - 7:00 PM UTC
-    - cron: '0 19 * * 1-5'
-    # Red Flag Scanner - 8:00 PM UTC
-    - cron: '0 20 * * 1-5'
-    # Reelit Downloader - 9:00 PM UTC
-    - cron: '0 21 * * 1-5'
+    # 24/7 posting - one app per hour, cycling through all 13 apps
+    - cron: '0 0 * * *'   # 12:00 AM UTC - App 0
+    - cron: '0 1 * * *'   # 1:00 AM UTC - App 1
+    - cron: '0 2 * * *'   # 2:00 AM UTC - App 2
+    - cron: '0 3 * * *'   # 3:00 AM UTC - App 3
+    - cron: '0 4 * * *'   # 4:00 AM UTC - App 4
+    - cron: '0 5 * * *'   # 5:00 AM UTC - App 5
+    - cron: '0 6 * * *'   # 6:00 AM UTC - App 6
+    - cron: '0 7 * * *'   # 7:00 AM UTC - App 7
+    - cron: '0 8 * * *'   # 8:00 AM UTC - App 8
+    - cron: '0 9 * * *'   # 9:00 AM UTC - App 9
+    - cron: '0 10 * * *'  # 10:00 AM UTC - App 10
+    - cron: '0 11 * * *'  # 11:00 AM UTC - App 11
+    - cron: '0 12 * * *'  # 12:00 PM UTC - App 12
+    - cron: '0 13 * * *'  # 1:00 PM UTC - App 0 (cycle repeats)
+    - cron: '0 14 * * *'  # 2:00 PM UTC - App 1
+    - cron: '0 15 * * *'  # 3:00 PM UTC - App 2
+    - cron: '0 16 * * *'  # 4:00 PM UTC - App 3
+    - cron: '0 17 * * *'  # 5:00 PM UTC - App 4
+    - cron: '0 18 * * *'  # 6:00 PM UTC - App 5
+    - cron: '0 19 * * *'  # 7:00 PM UTC - App 6
+    - cron: '0 20 * * *'  # 8:00 PM UTC - App 7
+    - cron: '0 21 * * *'  # 9:00 PM UTC - App 8
+    - cron: '0 22 * * *'  # 10:00 PM UTC - App 9
+    - cron: '0 23 * * *'  # 11:00 PM UTC - App 10
   
   # Allow manual trigger with app selection
   workflow_dispatch:
@@ -83,13 +82,9 @@ jobs:
           if [ -n "${{ github.event.inputs.app_index }}" ]; then
             echo "app_index=${{ github.event.inputs.app_index }}" >> $GITHUB_OUTPUT
           else
-            # Calculate app index based on hour (0-12 for 13 apps)
+            # Calculate app index based on hour (0-23) modulo 13 apps
             hour=$(date -u +%H)
-            if [ $hour -ge 9 ] && [ $hour -le 21 ]; then
-              app_index=$((hour - 9))
-            else
-              app_index=0
-            fi
+            app_index=$((hour % 13))
             echo "app_index=$app_index" >> $GITHUB_OUTPUT
           fi
           
