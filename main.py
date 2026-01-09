@@ -21,6 +21,8 @@ from generators.snippet_generator import SnippetGenerator
 from publishers.github_publisher import GitHubPublisher
 from publishers.devto_publisher import DevToPublisher, HashnodePublisher
 from publishers.social_publisher import SocialPublisher
+from publishers.reddit_publisher import RedditPublisher
+from publishers.medium_publisher import MediumPublisher
 from publishers.analytics_tracker import AnalyticsTracker
 from utils.rate_limiter import RateLimiter
 from utils.content_cache import ContentCache
@@ -39,6 +41,8 @@ class MarketingAutomation:
         self.devto_publisher = DevToPublisher()
         self.hashnode_publisher = HashnodePublisher()
         self.social_publisher = SocialPublisher()
+        self.reddit_publisher = RedditPublisher()
+        self.medium_publisher = MediumPublisher()
         
         self.analytics = AnalyticsTracker()
         self.rate_limiter = RateLimiter()
@@ -123,11 +127,72 @@ class MarketingAutomation:
             print(f"⏸️ Skipping Hashnode: {reason}")
         
         # Step 6: Generate and publish social media posts
-        self._publish_social_posts(article, app_name)
+        self._publish_social_posts(article, app_name, article_url, app)
+        
+        # Step 7: Reddit posting (1 post per day max)
+        self._publish_to_reddit(article, article_url, app, app_name)
+        
+        # Step 8: Medium (via RSS import)
+        self._publish_to_medium(article, article_url, app)
         
         print(f"\n✅ Completed processing {app_name}")
     
-    def _publish_social_posts(self, article, app_name):
+    def _publish_social_posts(self, article, app_name, article_url, app):
+        """Publish social media posts for an article"""
+        social_platforms = ['bluesky']
+        
+        for platform in social_platforms:
+            print(f"\n📱 Publishing to {platform.upper()}...")
+            
+            can_post, reason = self.rate_limiter.can_post(platform, app_name)
+            if not can_post:
+                print(f"⏸️ Skipping {platform}: {reason}")
+                continue
+            
+            # Generate posts for this platform
+            posts = self.snippet_generator.generate_social_posts(
+                article, 
+                platform,
+                count=1  # Generate 1 post per run to avoid spam
+            )
+            
+            for post in posts:
+                result = self.social_publisher.post(platform, post)
+                self.analytics.track_post(platform, app_name, 'social', result)
+                
+                if result['success']:
+                    self.rate_limiter.record_post(platform, app_name)
+                    time.sleep(2)  # Small delay between posts
+                else:
+                    print(f"⚠️ Failed to post to {platform}")
+                    break  # Stop if posting fails
+    
+    def _publish_to_reddit(self, article, article_url, app, app_name):
+        """Publish article to Reddit (1 per day max)"""
+        print(f"\n🔴 Publishing to Reddit...")
+        
+        can_post, reason = self.rate_limiter.can_post('reddit', app_name)
+        if not can_post:
+            print(f"⏸️ Skipping Reddit: {reason}")
+            return
+        
+        result = self.reddit_publisher.publish(article, article_url, app)
+        self.analytics.track_post('reddit', app_name, 'article', result)
+        
+        if result['success']:
+            self.rate_limiter.record_post('reddit', app_name)
+        
+    def _publish_to_medium(self, article, article_url, app):
+        """Track Medium RSS import status"""
+        print(f"\n📝 Medium RSS import status...")
+        result = self.medium_publisher.publish(article, article_url, app)
+        
+        if result['success']:
+            print(f"✅ Article available in RSS feed for Medium auto-import")
+        else:
+            print(f"ℹ️  Medium: {result.get('message', 'Not configured')}")
+    
+    def _publish_social_posts(self, article, app_name, article_url, app):
         """Publish social media posts for an article"""
         social_platforms = ['bluesky']
         

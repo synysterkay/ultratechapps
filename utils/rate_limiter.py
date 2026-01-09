@@ -16,7 +16,8 @@ class RateLimiter:
             'bluesky': 3,
             'devto': 1,
             'hashnode': 1,
-            'github': 50  # Commits per day
+            'github': 50,  # Commits per day
+            'reddit': 1    # 1 post per day to avoid spam detection
         }
         
         # Cooldown periods between same app posts (in hours)
@@ -24,7 +25,8 @@ class RateLimiter:
             'bluesky': 8,
             'devto': 24,
             'hashnode': 24,
-            'github': 1
+            'github': 1,
+            'reddit': 24   # 24 hours between posts
         }
     
     def _load_state(self):
