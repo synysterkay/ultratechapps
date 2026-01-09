@@ -533,6 +533,75 @@
   font-weight: 700;
 }
 
+/* Clickable card wrapper styles */
+.recent-article-card-link,
+.blog-post-card-link {
+  text-decoration: none !important;
+  color: inherit !important;
+  display: block !important;
+  transition: transform 0.3s ease !important;
+}
+
+.recent-article-card-link:hover,
+.blog-post-card-link:hover {
+  text-decoration: none !important;
+}
+
+.recent-article-title a,
+.blog-post-title a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+/* Mobile Responsive Fixes */
+@media (max-width: 768px) {
+  .blog-post-card {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .blog-post-image {
+    height: 200px !important;
+    width: 100% !important;
+  }
+  
+  .recent-articles-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  
+  .recent-article-card {
+    max-width: 100% !important;
+  }
+  
+  .site-nav {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem !important;
+  }
+  
+  .section-title {
+    font-size: 2rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 2rem !important;
+  }
+  
+  .container {
+    padding: 0 1rem !important;
+  }
+  
+  .blog-post-content,
+  .recent-article-content {
+    padding: 1.5rem !important;
+  }
+}
+
 /* Fix list item text */
 .post-content li strong, .article-content li strong {
   color: #f8fafc !important;

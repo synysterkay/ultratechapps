@@ -126,32 +126,32 @@ title: "UltraTech Apps - AI-Powered Mobile Apps"
     
     <div class="recent-articles-grid">
       {% for post in site.posts limit:3 %}
-        <article class="recent-article-card">
-          <div class="article-image-wrapper">
-            {% if post.image %}
-              <img src="{{ post.image }}" alt="{{ post.title }}" class="recent-article-image">
-            {% else %}
-              {% assign image_hash = post.title | size | times: 7919 | plus: forloop.index | times: 9973 %}
-              {% assign image_choices = "1499750310107-5fef28a66643,1551288414-26de491c97e214d9cc9ca05f,1557804506-aa9e4c8bb9842b7a0cc686b0,1531297484-244a42e29d7ee79c8fc8e1e9,1460925895-917f4df0a7b41c8c7e8e6a6d" | split: "," %}
-              {% assign image_index = image_hash | modulo: 5 %}
-              {% assign selected_image = image_choices[image_index] %}
-              <img src="https://images.unsplash.com/photo-{{ selected_image }}?w=800&h=500&fit=crop&q=80" alt="{{ post.title }}" class="recent-article-image">
-            {% endif %}
-          </div>
-          <div class="recent-article-content">
-            <div class="article-meta-small">
-              <span>📅 {{ post.date | date: "%b %d, %Y" }}</span>
-              {% if post.categories.first %}
-                <span class="article-category">{{ post.categories.first | capitalize }}</span>
+        <a href="{{ post.url | relative_url }}" class="recent-article-card-link">
+          <article class="recent-article-card">
+            <div class="article-image-wrapper">
+              {% if post.image %}
+                <img src="{{ post.image }}" alt="{{ post.title }}" class="recent-article-image">
+              {% else %}
+                {% assign image_hash = post.title | size | times: 7919 | plus: forloop.index | times: 9973 %}
+                {% assign image_choices = "1499750310107-5fef28a66643,1551288414-26de491c97e214d9cc9ca05f,1557804506-aa9e4c8bb9842b7a0cc686b0,1531297484-244a42e29d7ee79c8fc8e1e9,1460925895-917f4df0a7b41c8c7e8e6a6d" | split: "," %}
+                {% assign image_index = image_hash | modulo: 5 %}
+                {% assign selected_image = image_choices[image_index] %}
+                <img src="https://images.unsplash.com/photo-{{ selected_image }}?w=800&h=500&fit=crop&q=80" alt="{{ post.title }}" class="recent-article-image">
               {% endif %}
             </div>
-            <h3 class="recent-article-title">
-              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            </h3>
-            <p class="recent-article-excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
-            <a href="{{ post.url | relative_url }}" class="read-more-link">Read Article →</a>
-          </div>
-        </article>
+            <div class="recent-article-content">
+              <div class="article-meta-small">
+                <span>📅 {{ post.date | date: "%b %d, %Y" }}</span>
+                {% if post.categories.first %}
+                  <span class="article-category">{{ post.categories.first | capitalize }}</span>
+                {% endif %}
+              </div>
+              <h3 class="recent-article-title">{{ post.title }}</h3>
+              <p class="recent-article-excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+              <span class="read-more-link">Read Article →</span>
+            </div>
+          </article>
+        </a>
       {% endfor %}
     </div>
     
