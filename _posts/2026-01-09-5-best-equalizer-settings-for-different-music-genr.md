@@ -116,7 +116,7 @@ Think of it this way: your equalizer is the master chef seasoning the dish, and 
 *   **Noisy Environments:** Getting volume above ambient noise on trains, in gyms, or outdoors.
 *   **Media with Low Volume:** Boosting quiet podcasts, vintage music tracks, or poorly mastered videos.
 
-By integrating this app into your audio setup, you ensure your meticulously crafted **best equalizer settings for different music genres** are delivered with the power and presence they deserve. You can download it for free on [Google Play](https://play.google.com/store/apps/details?id=com.volumebooster.soundbooster) to start experiencing the difference.
+By integrating this app into your audio setup, you ensure your meticulously crafted **best equalizer settings for different music genres** are delivered with the power and presence they deserve. You can download it for free on [Google Play](https://play.google.com/store/apps/details?id=com.volume.booster.free.pro) to start experiencing the difference.
 
 ![Person enjoying powerful music on headphones with a smartphone displaying a booster app](https://images.unsplash.com/photo-1487058792-9119ab14e43e?w=1200&q=80)
 
