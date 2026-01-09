@@ -215,6 +215,14 @@ Write the complete SEO-optimized article now:"""
                 title = self._extract_title(article_content)
                 keywords = self._extract_keywords(article_content, niche)
                 
+                # Add download CTAs to article content
+                article_content = self._inject_download_ctas(
+                    article_content, 
+                    app_info['name'],
+                    app_info.get('google_play_url'),
+                    app_info.get('app_store_url')
+                )
+                
                 # Track topic usage
                 self.cache.add_topic(app_info['name'], topic)
                 
@@ -283,6 +291,70 @@ Write the complete SEO-optimized article now:"""
             'crypto': 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=1200&q=80'
         }
         return niche_images.get(niche.lower(), 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1200&q=80')
+    
+    def _inject_download_ctas(self, content, app_name, google_play_url, app_store_url):
+        """
+        Inject 3 prominent download CTAs throughout the article:
+        - After introduction (first H2)
+        - In the middle (after 50% of content)
+        - At the end (before conclusion)
+        """
+        # Create CTA box with download buttons
+        def create_cta_box(position):
+            cta_messages = {
+                'intro': f"**Ready to get started?** Download {app_name} now:",
+                'middle': f"**Want to try it yourself?** Get {app_name} today:",
+                'end': f"**Don't wait!** Download {app_name} and start now:"
+            }
+            
+            buttons = []
+            if google_play_url:
+                buttons.append(f"### [📱 Download on Google Play]({google_play_url})")
+            if app_store_url:
+                buttons.append(f"### [🍎 Download on App Store]({app_store_url})")
+            
+            if not buttons:
+                return ""
+            
+            cta = f"\n\n---\n\n## {cta_messages[position]}\n\n"
+            cta += "\n\n".join(buttons)
+            cta += "\n\n---\n\n"
+            return cta
+        
+        # Split content into sections by H2 headers
+        lines = content.split('\n')
+        h2_positions = []
+        
+        for i, line in enumerate(lines):
+            if line.startswith('## ') and not line.startswith('###'):
+                h2_positions.append(i)
+        
+        if len(h2_positions) < 3:
+            # If not enough H2s, just add CTAs at beginning, middle, end
+            total_lines = len(lines)
+            positions = [
+                int(total_lines * 0.15),  # After intro
+                int(total_lines * 0.5),   # Middle
+                int(total_lines * 0.85)   # Before conclusion
+            ]
+        else:
+            # Place after 1st H2, middle H2, and 2nd to last H2
+            positions = [
+                h2_positions[0] + 5,      # After first section
+                h2_positions[len(h2_positions)//2] + 5,  # Middle section
+                h2_positions[-2] + 5      # Near end
+            ]
+        
+        # Insert CTAs in reverse order to maintain line numbers
+        positions.sort(reverse=True)
+        cta_types = ['end', 'middle', 'intro']
+        
+        for pos, cta_type in zip(positions, cta_types):
+            if pos < len(lines):
+                cta_box = create_cta_box(cta_type)
+                lines.insert(pos, cta_box)
+        
+        return '\n'.join(lines)
     
     def _extract_title(self, content):
         """Extract title from markdown content"""

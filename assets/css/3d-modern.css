@@ -622,3 +622,77 @@
   object-fit: cover;
   display: block;
 }
+/* ============================================
+   Download CTA Buttons in Articles
+   ============================================ */
+
+/* Style download button links as prominent CTAs */
+.post-content h3 a[href*="play.google.com"],
+.post-content h3 a[href*="apps.apple.com"],
+.article-content h3 a[href*="play.google.com"],
+.article-content h3 a[href*="apps.apple.com"] {
+  display: inline-block !important;
+  padding: 1.2rem 2.5rem !important;
+  margin: 1rem 0.5rem !important;
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  border-radius: 15px !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4) !important;
+  transition: all 0.3s ease !important;
+  transform: translateY(0) !important;
+  border: none !important;
+  text-align: center !important;
+  min-width: 280px !important;
+}
+
+.post-content h3 a[href*="play.google.com"]:hover,
+.post-content h3 a[href*="apps.apple.com"]:hover,
+.article-content h3 a[href*="play.google.com"]:hover,
+.article-content h3 a[href*="apps.apple.com"]:hover {
+  transform: translateY(-5px) scale(1.05) !important;
+  box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6) !important;
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%) !important;
+}
+
+/* Apple specific styling */
+.post-content h3 a[href*="apps.apple.com"],
+.article-content h3 a[href*="apps.apple.com"] {
+  background: linear-gradient(135deg, #000000 0%, #434343 100%) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+.post-content h3 a[href*="apps.apple.com"]:hover,
+.article-content h3 a[href*="apps.apple.com"]:hover {
+  background: linear-gradient(135deg, #434343 0%, #000000 100%) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Container for download buttons */
+.post-content h2:has(+ h3 a[href*="play.google.com"]),
+.post-content h2:has(+ h3 a[href*="apps.apple.com"]),
+.article-content h2:has(+ h3 a[href*="play.google.com"]),
+.article-content h2:has(+ h3 a[href*="apps.apple.com"]) {
+  text-align: center !important;
+  font-size: 1.5rem !important;
+  margin-top: 3rem !important;
+  margin-bottom: 1.5rem !important;
+  color: #6366f1 !important;
+}
+
+/* Mobile responsive download buttons */
+@media (max-width: 768px) {
+  .post-content h3 a[href*="play.google.com"],
+  .post-content h3 a[href*="apps.apple.com"],
+  .article-content h3 a[href*="play.google.com"],
+  .article-content h3 a[href*="apps.apple.com"] {
+    display: block !important;
+    width: 100% !important;
+    min-width: auto !important;
+    margin: 1rem 0 !important;
+    padding: 1rem 1.5rem !important;
+    font-size: 1.1rem !important;
+  }
+}
