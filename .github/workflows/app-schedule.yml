@@ -116,14 +116,18 @@ jobs:
           git config --local user.email "bot@ultratech-apps.com"
           git config --local user.name "Marketing Bot"
           
-          # Check if there are new files before pulling
+          # Check if there are new files
           if [ -n "$(git status --porcelain _posts/)" ]; then
-            # Pull latest changes first (before staging)
-            git pull --rebase origin main
-            
-            # Now add and commit
+            # Stage files first (prevents "untracked files" error during pull)
             git add _posts/
-            git commit -m "🤖 Automated marketing content - $(date +'%Y-%m-%d %H:%M UTC')"
+            
+            # Pull latest changes with rebase, auto-stashing our staged changes
+            git pull --rebase --autostash origin main
+            
+            # Commit our changes
+            git commit -m "🤖 Automated marketing content - $(date +'%Y-%m-%d %H:%M UTC')" || true
+            
+            # Push
             git push
             echo "✅ Successfully pushed new content!"
           else
