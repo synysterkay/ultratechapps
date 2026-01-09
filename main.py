@@ -23,6 +23,7 @@ from publishers.devto_publisher import DevToPublisher, HashnodePublisher
 from publishers.social_publisher import SocialPublisher
 from publishers.reddit_publisher import RedditPublisher
 from publishers.medium_publisher import MediumPublisher
+from publishers.pinterest_publisher import PinterestPublisher
 from publishers.analytics_tracker import AnalyticsTracker
 from utils.rate_limiter import RateLimiter
 from utils.content_cache import ContentCache
@@ -43,6 +44,7 @@ class MarketingAutomation:
         self.social_publisher = SocialPublisher()
         self.reddit_publisher = RedditPublisher()
         self.medium_publisher = MediumPublisher()
+        self.pinterest_publisher = PinterestPublisher()
         
         self.analytics = AnalyticsTracker()
         self.rate_limiter = RateLimiter()
@@ -135,6 +137,9 @@ class MarketingAutomation:
         # Step 8: Medium (via RSS import)
         self._publish_to_medium(article, article_url, app)
         
+        # Step 9: Pinterest (only for approved apps: Thesis Generator)
+        self._publish_to_pinterest(article, article_url, app, app_name)
+        
         print(f"\n✅ Completed processing {app_name}")
     
     def _publish_social_posts(self, article, app_name, article_url, app):
@@ -191,6 +196,27 @@ class MarketingAutomation:
             print(f"✅ Article available in RSS feed for Medium auto-import")
         else:
             print(f"ℹ️  Medium: {result.get('message', 'Not configured')}")
+    
+    def _publish_to_pinterest(self, article, article_url, app, app_name):
+        """Publish article to Pinterest (only for Thesis Generator)"""
+        print(f"\n📌 Publishing to Pinterest...")
+        
+        can_post, reason = self.rate_limiter.can_post('pinterest', app_name)
+        if not can_post:
+            print(f"⏸️ Skipping Pinterest: {reason}")
+            return
+        
+        result = self.pinterest_publisher.publish(article, article_url, app)
+        
+        # Check if skipped due to app restriction
+        if result.get('skipped'):
+            print(f"⏭️  Pinterest: {result.get('error')}")
+            return
+        
+        self.analytics.track_post('pinterest', app_name, 'pin', result)
+        
+        if result['success']:
+            self.rate_limiter.record_post('pinterest', app_name)
     
     def _publish_social_posts(self, article, app_name, article_url, app):
         """Publish social media posts for an article"""

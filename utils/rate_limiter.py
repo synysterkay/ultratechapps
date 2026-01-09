@@ -17,7 +17,8 @@ class RateLimiter:
             'devto': 1,
             'hashnode': 1,
             'github': 50,  # Commits per day
-            'reddit': 1    # 1 post per day to avoid spam detection
+            'reddit': 1,   # 1 post per day to avoid spam detection
+            'pinterest': 5 # 5 pins per day
         }
         
         # Cooldown periods between same app posts (in hours)
@@ -26,7 +27,8 @@ class RateLimiter:
             'devto': 24,
             'hashnode': 24,
             'github': 1,
-            'reddit': 24   # 24 hours between posts
+            'reddit': 24,   # 24 hours between posts
+            'pinterest': 24 # 24 hours between pins
         }
     
     def _load_state(self):
