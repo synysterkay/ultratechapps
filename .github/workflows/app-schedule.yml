@@ -113,14 +113,19 @@ jobs:
         run: |
           git config --local user.email "bot@ultratech-apps.com"
           git config --local user.name "Marketing Bot"
-          git add _posts/
-          if git diff --staged --quiet; then
-            echo "✅ No new posts generated (rate limit or duplicate)"
-          else
+          
+          # Check if there are new files before pulling
+          if [ -n "$(git status --porcelain _posts/)" ]; then
+            # Pull latest changes first (before staging)
             git pull --rebase origin main
+            
+            # Now add and commit
+            git add _posts/
             git commit -m "🤖 Automated marketing content - $(date +'%Y-%m-%d %H:%M UTC')"
             git push
             echo "✅ Successfully pushed new content!"
+          else
+            echo "✅ No new posts generated (rate limit or duplicate)"
           fi
       
       - name: Upload cache artifacts
