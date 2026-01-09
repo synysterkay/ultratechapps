@@ -28,7 +28,7 @@ permalink: /privacy-policy/
       <li><strong>Device Information:</strong> Device type, operating system, unique device identifiers</li>
       <li><strong>Usage Data:</strong> App features used, session duration, crash reports</li>
       <li><strong>Analytics:</strong> Anonymous usage statistics to improve our apps</li>
-      <li><strong>Cookies:</strong> See our <a href="/marketingtool/cookies/">Cookie Policy</a> for details</li>
+      <li><strong>Cookies:</strong> See our <a href="/ultratechapps/cookies/">Cookie Policy</a> for details</li>
     </ul>
 
     <h2>2. How We Use Your Information</h2>
@@ -94,7 +94,7 @@ permalink: /privacy-policy/
     <p>If you have questions or concerns about this Privacy Policy, please contact us:</p>
     <ul>
       <li><strong>Email:</strong> privacy@ultratechapps.com</li>
-      <li><strong>Website:</strong> <a href="https://synysterkay.github.io/marketingtool/">UltraTech Apps</a></li>
+      <li><strong>Website:</strong> <a href="https://synysterkay.github.io/ultratechapps/">UltraTech Apps</a></li>
       <li><strong>Developer:</strong> Anas Kayssi</li>
     </ul>
 

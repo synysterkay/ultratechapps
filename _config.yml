@@ -6,7 +6,7 @@ email: contact@ultratechapps.dev
 
 # URLs
 url: "https://synysterkay.github.io"
-baseurl: "/marketingtool"
+baseurl: "/ultratechapps"
 
 # Build settings
 markdown: kramdown
