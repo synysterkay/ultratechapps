@@ -27,16 +27,13 @@ class ArticleGenerator:
         with open('app_images.json', 'r') as f:
             self.app_images_data = json.load(f)
         
-        # Content types for variety
-        self.content_types = [
-            "how_to_guide",
-            "tips_and_tricks",
-            "common_mistakes",
-            "best_practices",
-            "problem_solving",
-            "beginner_guide",
-            "comparison",
-            "case_study"
+        # Content angles for variety (mixes marketing with value)
+        self.content_angles = [
+            "app_focused",      # Direct app promotion with benefits
+            "news_related",     # AI news/trends + how app fits in
+            "tutorial",         # Teach something + use app as tool
+            "comparison",       # Compare solutions + feature your app
+            "problem_solution", # Start with problem + app as solution
         ]
     
     def _get_app_image(self, app_index):
@@ -47,6 +44,161 @@ class ArticleGenerator:
                 return random.choice(app['images'])
         # Fallback image
         return "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=500&fit=crop&q=80"
+    
+    def _get_prompt_for_angle(self, angle, app_info, niche, topic):
+        """
+        Generate appropriate prompt based on content angle.
+        Each angle has a different structure while maintaining app promotion.
+        """
+        app_name = app_info['name']
+        app_desc = app_info.get('description', '')
+        
+        base_seo = """
+SEO OPTIMIZATION REQUIREMENTS:
+1. PRIMARY KEYWORD: Must have 500+ monthly searches, include in title and first paragraph
+2. LONG-TAIL KEYWORDS: Include 4-6 secondary keywords naturally
+3. LSI KEYWORDS: Use 10-15 related terms throughout
+4. READABILITY: Use short paragraphs (2-3 sentences), bullet points, numbered lists
+5. WORD COUNT: 1200-1500 words minimum for SEO value
+
+FORMATTING REQUIREMENTS:
+- Use H2 (##) and H3 (###) headers for structure
+- Include numbered lists and bullet points
+- Write conversational, engaging tone
+- Use power words and emotional triggers
+- Include actionable takeaways
+"""
+        
+        if angle == "app_focused":
+            return f"""Write a high-quality, SEO-optimized marketing article promoting {app_name}.
+
+App Information:
+- Name: {app_name}
+- Description: {app_desc}
+- Niche: {niche}
+- Topic: {topic}
+
+ARTICLE STRUCTURE:
+1. TITLE: "[Number] {topic} [Power Word] in 2026"
+2. INTRODUCTION: Hook with problem/pain point, present app as solution
+3. MAIN BENEFITS: 5-7 key benefits with examples
+4. HOW IT WORKS: Step-by-step app usage
+5. USER RESULTS: Success stories, statistics
+6. COMPARISON: Brief comparison to alternatives
+7. CONCLUSION: Call-to-action to try the app
+
+{base_seo}
+
+IMPORTANT: Focus heavily on {app_name} throughout the article. This is direct app promotion.
+"""
+        
+        elif angle == "news_related":
+            return f"""Write an SEO-optimized AI news article that naturally features {app_name}.
+
+App Information:
+- Name: {app_name}
+- Niche: {niche}
+- Related Topic: {topic}
+
+ARTICLE STRUCTURE:
+1. TITLE: "[Recent AI Trend/Breakthrough] + How It Changes {niche} in 2026"
+2. NEWS SECTION: Discuss latest AI developments, breakthroughs, or trends (250 words)
+3. IMPACT ANALYSIS: What this means for users in {niche} (200 words)
+4. PRACTICAL APPLICATIONS: Real-world implications (200 words)
+5. APP CONNECTION: Show how {app_name} leverages this trend or helps users adapt (300 words)
+6. EXPERT INSIGHTS: Quote industry predictions, add statistics
+7. CONCLUSION: Future outlook + mention {app_name} as solution
+
+{base_seo}
+
+TONE: Authoritative news article that builds trust, then naturally introduces {app_name} as relevant tool.
+EXAMPLE TITLE: "GPT-5 Launches: 5 Ways It Transforms AI Meeting Notes (+ The Best Tool Using It)"
+"""
+        
+        elif angle == "tutorial":
+            return f"""Write an SEO-optimized tutorial teaching a valuable skill, featuring {app_name} as the primary tool.
+
+App Information:
+- Name: {app_name}
+- Niche: {niche}
+- Tutorial Topic: {topic}
+
+ARTICLE STRUCTURE:
+1. TITLE: "How to [Achieve Specific Result] in [Timeframe] with AI - Step-by-Step Guide"
+2. PROBLEM STATEMENT: Why this tutorial matters, what users will learn (150 words)
+3. PREREQUISITES: What readers need to get started (100 words)
+4. STEP-BY-STEP TUTORIAL: 7-10 detailed steps (600 words)
+   - Steps 3-6 should involve using {app_name}
+   - Describe specific features and how to use them
+   - Include "what you'll see" descriptions
+5. COMMON MISTAKES: 3-5 pitfalls to avoid (200 words)
+6. ADVANCED TIPS: Power user features of {app_name} (150 words)
+7. CONCLUSION: Summary + encourage readers to try {app_name}
+
+{base_seo}
+
+TONE: Helpful instructor voice. Make {app_name} essential to completing the tutorial.
+EXAMPLE TITLE: "How to Build an AI Daily Routine in 15 Minutes (Step-by-Step Tutorial)"
+"""
+        
+        elif angle == "comparison":
+            return f"""Write an SEO-optimized comparison article featuring {app_name} as a top-tier option.
+
+App Information:
+- Name: {app_name}
+- Niche: {niche}
+- Comparison Topic: {topic}
+
+ARTICLE STRUCTURE:
+1. TITLE: "[Number] Best {niche} Apps Compared - 2026 Ultimate Guide"
+2. INTRODUCTION: What to look for in {niche} apps (150 words)
+3. COMPARISON CRITERIA: 5-7 factors that matter most (100 words)
+4. APP REVIEWS: Compare 5-7 apps (600 words)
+   - Review each app fairly (100 words each)
+   - Give {app_name} slightly longer review (150 words)
+   - Highlight where {app_name} excels
+5. FEATURE COMPARISON: Side-by-side table or bullet comparison
+6. WINNER ANNOUNCEMENT: {app_name} wins in [specific criteria] (200 words)
+7. HONEST PROS/CONS: Build trust with balanced assessment
+8. CONCLUSION: Final recommendation favoring {app_name}
+
+{base_seo}
+
+TONE: Objective reviewer who genuinely found {app_name} to be the best option. Balance fairness with preference.
+EXAMPLE TITLE: "7 Best AI Companion Apps Compared: Real Testing, Honest Results (2026)"
+"""
+        
+        elif angle == "problem_solution":
+            return f"""Write an SEO-optimized problem-solving article presenting {app_name} as the solution.
+
+App Information:
+- Name: {app_name}
+- Niche: {niche}
+- Problem/Topic: {topic}
+
+ARTICLE STRUCTURE:
+1. TITLE: "[Painful Problem] in {niche}? Here's the Fix That Actually Works"
+2. PROBLEM DEEP-DIVE: Describe the problem in detail, show empathy (300 words)
+   - Use statistics, common complaints
+   - Make reader feel understood
+3. WHY TRADITIONAL SOLUTIONS FAIL: Explain old approaches (200 words)
+4. THE NEW SOLUTION: Introduce AI-powered approach (150 words)
+5. MEET {app_name}: Present as the breakthrough solution (400 words)
+   - How it solves the specific problem
+   - Key features that address pain points
+   - User success stories
+6. HOW TO GET STARTED: Quick start guide (150 words)
+7. CONCLUSION: Life without the problem + CTA
+
+{base_seo}
+
+TONE: Empathetic problem-solver. Build up pain, then present {app_name} as relief.
+EXAMPLE TITLE: "Meeting Notes Taking Too Long? This AI Tool Cut My Time by 80%"
+"""
+        
+        else:
+            # Fallback to app_focused
+            return self._get_prompt_for_angle("app_focused", app_info, niche, topic)
     
     def _determine_category(self, niche, app_name, description):
         """
@@ -100,6 +252,34 @@ class ArticleGenerator:
         # Return random unused topic for variety
         return random.choice(unused_topics)
     
+    def _select_content_angle(self, app_name):
+        """
+        Select content angle for this article, rotating through different types.
+        Ensures variety across articles for the same app.
+        """
+        import random
+        
+        # Get angle history for this app
+        angle_history = self.cache.get(f"{app_name}_angles") or []
+        
+        # Find angles not used in last 5 articles
+        recent_angles = angle_history[-5:] if len(angle_history) >= 5 else angle_history
+        
+        # Available angles not used recently
+        available_angles = [a for a in self.content_angles if a not in recent_angles]
+        
+        # If all angles used recently, pick the oldest one
+        if not available_angles:
+            selected_angle = self.content_angles[0]
+        else:
+            selected_angle = random.choice(available_angles)
+        
+        # Update history
+        angle_history.append(selected_angle)
+        self.cache.set(f"{app_name}_angles", angle_history[-20:])  # Keep last 20
+        
+        return selected_angle
+    
     def generate_article(self, app_info, niche_info, app_index=0, max_retries=2):
         """
         Generate a complete marketing article
@@ -116,6 +296,10 @@ class ArticleGenerator:
         topic = self._get_next_topic(app_info['name'], niche_info)
         niche = niche_info['primary_niche']
         
+        # Select content angle (app_focused, news_related, tutorial, comparison, problem_solution)
+        content_angle = self._select_content_angle(app_info['name'])
+        print(f"📐 Content angle: {content_angle}")
+        
         # Get featured image for this app
         featured_image = self._get_app_image(app_index)
         
@@ -123,96 +307,39 @@ class ArticleGenerator:
         for attempt in range(max_retries):
             print(f"📝 Generating article for {app_info['name']}...")
             
-            prompt = f"""Write a high-quality, SEO-optimized marketing article designed to RANK on Google page 1.
+            # Get angle-specific prompt
+            prompt = self._get_prompt_for_angle(content_angle, app_info, niche, topic)
+            
+            # Add common instructions to all prompts
+            prompt += f"""
 
-App Information:
-- Name: {app_info['name']}
-- Niche: {niche}
-- Target Audience: {niche_info.get('target_audience', 'mobile users')}
+TARGET AUDIENCE: {niche_info.get('target_audience', 'mobile users')}
+APP LINKS: 
 - Google Play: {app_info['google_play_url']}
 - App Store: {app_info['app_store_url']}
 
-Topic: {topic}
+CRITICAL REQUIREMENTS:
+1. Make the article naturally engaging and valuable first
+2. Integrate {app_info['name']} seamlessly into the content
+3. Use conversational, authoritative tone
+4. Include statistics, examples, real scenarios
+5. End with strong CTA encouraging readers to try the app
 
-SEO OPTIMIZATION REQUIREMENTS (CRITICAL FOR RANKING):
-1. PRIMARY KEYWORD: Create a search-intent focused keyword with 500+ monthly searches
-   - Examples: "best {niche} app 2026", "how to solve problem faster", "{niche} tips for beginners"
-   - Place in: Title (beginning), first paragraph, at least 3 H2 headers
-2. LONG-TAIL KEYWORDS (4-6 keywords): Target low-competition, high-intent searches
-   - Format: "[primary keyword] + modifier" (e.g., "for Android", "free", "without account")
-3. LSI KEYWORDS (10-15 terms): Semantic variations Google expects to see
-   - Spread naturally across headers, lists, and body paragraphs
-4. TITLE OPTIMIZATION (60 char max):
-   - Formula: [Number] + [Primary Keyword] + [Power Word] + [Benefit]
-   - Power words: Ultimate, Complete, Essential, Proven, Secret, Easy, Fast
-   - Include year "2026" for freshness signal
-   - Example: "15 AI Meeting Tools to 10x Productivity in 2026"
-5. META DESCRIPTION (150-160 char): Compelling summary with primary keyword + CTA
-6. HEADER HIERARCHY (H2/H3 with keywords):
-   - H2: Question format ("How to...", "Why...", "What is...")
-   - Include primary/LSI keywords in every H2
-   - Example: "How to Choose the Best {niche} App for Your Needs"
-7. FEATURED SNIPPET TARGETING:
-   - Add boxed "Quick Answer" section (40-50 words)
-   - Use numbered/bulleted lists for step-by-step content
-   - Include comparison tables where relevant
-8. INTERNAL LINKING: Mention related topics with anchor text (simulate internal links)
-9. KEYWORD DENSITY: Primary 1-2%, LSI 0.5-1% (natural, not stuffed)
-10. E-E-A-T SIGNALS: Add experience/expertise indicators, specific data, real examples
+OUTPUT FORMAT:
+Return JSON with:
+{{
+    "title": "SEO-optimized title (60 chars max)",
+    "content": "Full article in Markdown with ## and ### headers",
+    "meta_description": "150-160 char compelling summary",
+    "primary_keyword": "Main keyword with 500+ monthly searches",
+    "long_tail_keywords": ["keyword1", "keyword2", "keyword3", "keyword4"],
+    "lsi_keywords": ["term1", "term2", ...up to 15 terms]
+}}
 
-IMAGE REQUIREMENTS (CRITICAL - IMAGES MUST APPEAR IN ARTICLE):
-- Include EXACTLY 3-4 relevant images throughout the article
-- Use REAL Unsplash photo IDs from these categories:
-  * Technology/AI: 1555421689-d68471e189f2, 1677442136-a4cf6ec5c3fc, 1487058792-9119ab14e43e
-  * Productivity: 1484480974-28ec3d928524, 1454165804-21f96d4ee769, 1499750310107-5fef28a66643
-  * Mobile Apps: 1512941937669-90a1b58e7e9c, 1551288414-26de-491c-97e2-14d9cc9ca05f
-- Format EXACTLY like this: ![Alt text with keyword](https://images.unsplash.com/photo-1555421689-d68471e189f2?w=1200&q=80)
-- Alt text MUST contain primary or LSI keywords
-- Place images strategically: After intro (1 image), between H2 sections (2 images), before conclusion (1 image)
-- DO NOT use placeholder [id] - use actual numbers
-- Example that works: ![AI productivity app interface](https://images.unsplash.com/photo-1484480974-28ec3d928524?w=1200&q=80)
-
-CONTENT REQUIREMENTS:
-- Length: 1200-1800 words (long-form ranks better)
-- Include: statistics, specific numbers, timeframes (e.g., "save 5 hours weekly")
-- Answer: WHO (target user), WHAT (solution), WHY (benefits), HOW (steps), WHEN (use cases)
-- Use schema-friendly formats: step-by-step lists, comparison tables, FAQs
-- Naturally integrate app store links 2-3 times (not just end)
-- Add "Quick Takeaways" box at top (bulleted list, 3-5 points)
-- End with: "Built by an indie developer who ships apps every day."
-- Maximum 2 emojis total
-
-Article Structure (SEO-Optimized):
-1. TITLE: [Number] [Primary Keyword] [Power Word] [Benefit] [Year]
-2. META DESCRIPTION: [Primary keyword + benefit + CTA] (150-160 char)
-3. Quick Takeaways (bulleted, 3-5 key points)
-4. Introduction (100-150 words)
-   - Hook with relatable problem
-   - Include primary keyword in first sentence
-   - Promise specific outcome
-5. [IMAGE 1] - Relevant hero image
-6. Main Content (4-6 H2 sections with LSI keywords)
-   - Section 1: "What is [Primary Keyword]?" (definition + context)
-   - Section 2: "Why [LSI Keyword] Matters in 2026" (benefits + data)
-   - Section 3: "How to [Action] Step-by-Step" (numbered list)
-   - [IMAGE 2] - Process or example image
-   - Section 4: "Common Mistakes to Avoid" (bulleted list)
-   - Section 5: "[LSI Keyword]: Tips from Experts" (actionable advice)
-   - [IMAGE 3] - Results or comparison image
-   - Section 6: "Best Tools for [Primary Keyword]" (mention app + links naturally)
-7. FAQ Section (3-5 questions with H3 headers)
-8. [IMAGE 4] - Conclusion or CTA image
-9. Conclusion (Call-to-action + indie developer signature)
-
-CRITICAL OUTPUT FORMAT:
-- Write ONLY the article content starting with the H1 title (#)
-- DO NOT wrap the article in markdown code blocks (```markdown)
-- DO NOT include frontmatter (---)
-- Start directly with: # [Article Title]
-- The frontmatter will be added automatically by the publishing system
-
-Write the complete SEO-optimized article now:"""
-
+DO NOT mention download buttons or CTAs - those will be added automatically.
+WRITE NATURALLY - let the value of the content speak for itself, then feature the app as a genuine solution.
+"""
+            
             try:
                 response = self.client.chat.completions.create(
                     model="deepseek-chat",
