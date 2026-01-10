@@ -14,7 +14,12 @@
    - **Build output directory**: `_site`
    - **Root directory**: `/`
    
-   **IMPORTANT**: Leave the "Build output directory" settings as shown above. Do NOT add a deploy command - Pages automatically detects functions from the `/functions` directory.
+6. If a deploy command is required, use:
+   ```
+   echo "Deployment handled by Cloudflare Pages"
+   ```
+   
+   **IMPORTANT**: Do NOT use `npx wrangler deploy` - that's for Workers, not Pages. Pages automatically detects and deploys functions from the `/functions` directory.
 
 ### 2. Set Environment Variables
 
