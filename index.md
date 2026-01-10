@@ -140,8 +140,10 @@ title: "Best Ai Apps - Your Guide to AI-Powered Mobile Apps"
     <div class="newsletter-card">
       <h2 class="newsletter-title">📬 Get Weekly AI Insights</h2>
       <p class="newsletter-description">Join 10,000+ readers getting expert tips on AI apps, productivity hacks, and exclusive app reviews delivered to your inbox every week.</p>
-      <form class="newsletter-form" action="#" method="post">
-        <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
+      <form id="newsletter-form" class="newsletter-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="email" name="email" placeholder="Enter your email address" class="newsletter-input" required>
+        <input type="hidden" name="_subject" value="New Newsletter Subscription">
+        <input type="hidden" name="_next" value="#">
         <button type="submit" class="newsletter-button">Subscribe</button>
       </form>
       <p class="newsletter-privacy">🔒 No spam. Unsubscribe anytime. Read our <a href="/privacy-policy/">Privacy Policy</a></p>
@@ -170,6 +172,18 @@ title: "Best Ai Apps - Your Guide to AI-Powered Mobile Apps"
   </div>
 </section>
 
+<!-- Thank You Modal -->
+<div id="thank-you-modal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <div class="modal-icon">🎉</div>
+    <h2>Thank You for Subscribing!</h2>
+    <p>Welcome to our community of AI enthusiasts! You'll receive the latest news about AI apps, productivity tips, exclusive reviews, and cutting-edge insights delivered straight to your inbox.</p>
+    <p class="modal-subtext">Check your email to confirm your subscription.</p>
+    <button class="modal-button" onclick="closeModal()">Got It!</button>
+  </div>
+</div>
+
 <!-- Simple Search Script -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -186,5 +200,58 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
+  
+  // Newsletter form handling
+  const newsletterForm = document.getElementById('newsletter-form');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(newsletterForm);
+      const email = formData.get('email');
+      
+      // Send to Formspree
+      fetch(newsletterForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          // Show thank you modal
+          document.getElementById('thank-you-modal').style.display = 'flex';
+          newsletterForm.reset();
+        } else {
+          alert('Oops! There was a problem. Please try again.');
+        }
+      })
+      .catch(error => {
+        alert('Oops! There was a problem. Please try again.');
+      });
+    });
+  }
+  
+  // Modal close handling
+  const modal = document.getElementById('thank-you-modal');
+  const closeBtn = document.querySelector('.modal-close');
+  
+  if (closeBtn) {
+    closeBtn.onclick = function() {
+      modal.style.display = 'none';
+    };
+  }
+  
+  // Close modal when clicking outside
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = 'none';
+    }
+  };
 });
+
+function closeModal() {
+  document.getElementById('thank-you-modal').style.display = 'none';
+}
 </script>
