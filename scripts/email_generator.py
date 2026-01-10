@@ -194,7 +194,17 @@ Generate the email content now:"""
                     elif '```' in content:
                         content = content.split('```')[1].split('```')[0].strip()
                     
-                    email_data = json.loads(content)
+                    # Try to parse as-is first
+                    try:
+                        email_data = json.loads(content)
+                    except json.JSONDecodeError:
+                        # If direct parse fails, try to find JSON object in content
+                        import re
+                        json_match = re.search(r'\{[\s\S]*\}', content)
+                        if json_match:
+                            email_data = json.loads(json_match.group())
+                        else:
+                            raise json.JSONDecodeError("No valid JSON found", content, 0)
                     
                     # Add metadata
                     email_data['niche'] = niche
