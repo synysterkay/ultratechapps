@@ -9,7 +9,7 @@
 3. Click **Create Application** → **Pages** → **Connect to Git**
 4. Select your GitHub repository: `synysterkay/ultratechapps`
 5. Configure build settings:
-   - **Build command**: (leave empty for Jekyll/static site)
+   - **Build command**: `jekyll build`
    - **Build output directory**: `_site`
    - **Root directory**: `/`
 
