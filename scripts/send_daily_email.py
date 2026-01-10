@@ -110,6 +110,8 @@ class DailyEmailCampaign:
                     <a href="https://bestaiapps.site/apps/" style="color: #667eea; text-decoration: none;">All Apps</a>
                 </p>
                 <p style="margin: 15px 0 5px 0; color: #aaa; font-size: 12px;">
+                    Best AI Apps · Curated AI Tools for Everyone<br>
+                    Józefa Łepkowskiego 5, 31-423 Kraków, Poland<br>
                     You're receiving this because you subscribed to Best AI Apps newsletter.
                 </p>
                 <p style="margin: 5px 0;">

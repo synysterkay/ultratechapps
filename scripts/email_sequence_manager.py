@@ -262,6 +262,7 @@ class EmailSequenceManager:
                                         <tr>
                                             <td align="center" style="padding-top: 10px; color: #999999; font-size: 13px; line-height: 1.6;">
                                                 Best AI Apps · Curated AI Tools for Everyone<br>
+                                                Józefa Łepkowskiego 5, 31-423 Kraków, Poland<br>
                                                 You're receiving this because you subscribed to Best AI Apps.
                                             </td>
                                         </tr>

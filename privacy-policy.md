@@ -121,6 +121,7 @@ permalink: /privacy-policy/
       <li><strong>Email:</strong> privacy@bestaiapps.site</li>
       <li><strong>Website:</strong> <a href="https://bestaiapps.site/">Best Ai Apps</a></li>
       <li><strong>Developer:</strong> Anas Kayssi</li>
+      <li><strong>Mailing Address:</strong> Józefa Łepkowskiego 5, 31-423 Kraków, Poland</li>
     </ul>
 
     <div class="legal-notice">

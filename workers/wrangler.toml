@@ -1,0 +1,9 @@
+name = "subscribe-api"
+main = "subscribe-worker.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+MAILGUN_DOMAIN = "bestaiapps.site"
+
+# Routes - this will handle requests to your domain
+# You'll set up the route in Cloudflare dashboard

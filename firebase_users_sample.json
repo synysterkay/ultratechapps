@@ -1,0 +1,14 @@
+[
+  {
+    "email": "user1@example.com",
+    "app": "Smart Notes"
+  },
+  {
+    "email": "user2@example.com",
+    "app": "Ai Girlfriend"
+  },
+  {
+    "email": "user3@example.com",
+    "app": "PupShape"
+  }
+]
