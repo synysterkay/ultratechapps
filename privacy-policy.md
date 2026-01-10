@@ -37,10 +37,25 @@ permalink: /privacy-policy/
       <li><strong>Service Delivery:</strong> Provide and maintain app functionality</li>
       <li><strong>Personalization:</strong> Customize your experience and recommendations</li>
       <li><strong>Communication:</strong> Send updates, support responses, and important notices</li>
+      <li><strong>Email Marketing:</strong> Send newsletters, product updates, and personalized app recommendations (with your consent)</li>
       <li><strong>Improvement:</strong> Analyze usage patterns to enhance features and performance</li>
       <li><strong>Security:</strong> Detect and prevent fraud, abuse, or security issues</li>
       <li><strong>Legal Compliance:</strong> Comply with applicable laws and regulations</li>
     </ul>
+
+    <h2>2.1 Email Communications & Marketing</h2>
+    <p>When you subscribe to our newsletter or create an account in our apps, we may send you:</p>
+    <ul>
+      <li><strong>Welcome Emails:</strong> Introduction to our services and best practices</li>
+      <li><strong>Product Updates:</strong> Information about new apps, features, and improvements</li>
+      <li><strong>Personalized Recommendations:</strong> AI-powered suggestions based on your interests</li>
+      <li><strong>Educational Content:</strong> Tips, guides, and best practices for our apps</li>
+      <li><strong>Promotional Offers:</strong> Special deals, discounts, and exclusive access</li>
+    </ul>
+    <p><strong>Your Choice:</strong> You can unsubscribe from marketing emails at any time by clicking the "Unsubscribe" link at the bottom of any email or by contacting us at privacy@bestaiapps.site. Transactional emails (account notifications, security alerts) cannot be unsubscribed from as they are essential to your account security.</p>
+    
+    <h2>2.2 Email Service Provider</h2>
+    <p>We use <strong>Mailgun</strong> (a Sinch company) as our email service provider. Mailgun processes email addresses and delivery information on our behalf. Mailgun's privacy practices are governed by their <a href="https://www.mailgun.com/legal/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a>. We ensure all email communications comply with CAN-SPAM, GDPR, and applicable anti-spam regulations.</p>
 
     <h2>3. Third-Party Services</h2>
     <p>Our apps may integrate with third-party services that have their own privacy policies:</p>
@@ -76,10 +91,20 @@ permalink: /privacy-policy/
       <li><strong>Correction:</strong> Update or correct inaccurate information</li>
       <li><strong>Deletion:</strong> Request deletion of your data ("right to be forgotten")</li>
       <li><strong>Portability:</strong> Receive your data in a machine-readable format</li>
-      <li><strong>Opt-Out:</strong> Unsubscribe from marketing communications</li>
+      <li><strong>Opt-Out:</strong> Unsubscribe from marketing communications at any time</li>
       <li><strong>Restriction:</strong> Limit how we process your data</li>
+      <li><strong>Object:</strong> Object to processing of your personal data for direct marketing</li>
     </ul>
-    <p>To exercise these rights, contact us at: <strong>privacy@ultratechapps.com</strong></p>
+    <p>To exercise these rights, contact us at: <strong>privacy@bestaiapps.site</strong></p>
+
+    <h2>6.1 Anti-Spam Compliance</h2>
+    <p>We comply with all applicable anti-spam laws including:</p>
+    <ul>
+      <li><strong>CAN-SPAM Act (USA):</strong> All marketing emails include our physical address and a clear unsubscribe mechanism</li>
+      <li><strong>GDPR (EU):</strong> We obtain explicit consent before sending marketing emails to EU residents</li>
+      <li><strong>CASL (Canada):</strong> We maintain records of consent and honor opt-out requests within 10 business days</li>
+    </ul>
+    <p><strong>Consent:</strong> By subscribing to our newsletter or checking the "receive updates" box in our apps, you consent to receive marketing emails. This consent can be withdrawn at any time.</p>
 
     <h2>7. Children's Privacy</h2>
     <p>Our services are not directed to individuals under 13 (or 16 in the EU). We do not knowingly collect personal information from children. If you believe a child has provided us with personal data, please contact us immediately.</p>
