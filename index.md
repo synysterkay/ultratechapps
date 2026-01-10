@@ -140,7 +140,7 @@ title: "Best Ai Apps - Your Guide to AI-Powered Mobile Apps"
     <div class="newsletter-card">
       <h2 class="newsletter-title">📬 Get Weekly AI Insights</h2>
       <p class="newsletter-description">Join 10,000+ readers getting expert tips on AI apps, productivity hacks, and exclusive app reviews delivered to your inbox every week.</p>
-      <form id="newsletter-form" class="newsletter-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <form id="newsletter-form" class="newsletter-form" action="https://formspree.io/f/xojjakkp" method="POST">
         <input type="email" name="email" placeholder="Enter your email address" class="newsletter-input" required>
         <input type="hidden" name="_subject" value="New Newsletter Subscription">
         <input type="hidden" name="_next" value="#">
