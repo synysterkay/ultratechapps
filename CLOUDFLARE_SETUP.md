@@ -12,7 +12,7 @@
    - **Framework preset**: None
    - **Build command**: `jekyll build`
    - **Build output directory**: `_site`
-   - **Root directory**: `/`
+   - **Root directory**: (leave blank - do not enter "/" or any value)
    
 6. If a deploy command is required, use:
    ```
