@@ -194,16 +194,25 @@ Generate the email content now:"""
                     elif '```' in content:
                         content = content.split('```')[1].split('```')[0].strip()
                     
+                    # Clean up common JSON issues
+                    content = content.strip()
+                    
                     # Try to parse as-is first
                     try:
-                        email_data = json.loads(content)
-                    except json.JSONDecodeError:
-                        # If direct parse fails, try to find JSON object in content
+                        email_data = json.loads(content, strict=False)
+                    except json.JSONDecodeError as e:
+                        # If direct parse fails, try to find and extract valid JSON
                         import re
-                        json_match = re.search(r'\{[\s\S]*\}', content)
+                        # Find the JSON object (from first { to last })
+                        json_match = re.search(r'\{[\s\S]*\}', content, re.DOTALL)
                         if json_match:
-                            email_data = json.loads(json_match.group())
+                            json_str = json_match.group()
+                            # Try to fix common issues
+                            json_str = json_str.replace('\n', ' ')  # Remove newlines in strings
+                            json_str = re.sub(r',(\s*[}\]])', r'\1', json_str)  # Remove trailing commas
+                            email_data = json.loads(json_str, strict=False)
                         else:
+                            print(f"Debug - Full content:\n{content}")
                             raise json.JSONDecodeError("No valid JSON found", content, 0)
                     
                     # Add metadata
