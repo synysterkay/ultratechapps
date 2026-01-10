@@ -22,7 +22,7 @@ class EmailSequenceManager:
         self.api_key = os.getenv('MAILGUN_API_KEY')
         self.domain = os.getenv('MAILGUN_DOMAIN', 'bestaiapps.site')
         self.base_url = 'https://api.mailgun.net/v3'
-        self.from_email = f'Best AI Apps <newsletter@{self.domain}>'
+        self.from_email = f'Best AI Apps <hello@{self.domain}>'
         
         if not self.api_key:
             raise ValueError("MAILGUN_API_KEY not found in environment")
