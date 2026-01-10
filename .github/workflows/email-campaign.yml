@@ -1,0 +1,41 @@
+name: Daily Email Campaign
+
+on:
+  schedule:
+    # Send daily email at 9 AM UTC (adjust timezone as needed)
+    - cron: '0 9 * * *'
+  
+  # Allow manual trigger for testing
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+      
+      - name: Send daily email campaign
+        env:
+          MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
+          MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+        run: |
+          python scripts/send_daily_email.py
+      
+      - name: Log completion
+        run: |
+          echo "✅ Daily email campaign completed at $(date)"
