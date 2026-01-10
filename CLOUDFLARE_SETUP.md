@@ -9,9 +9,12 @@
 3. Click **Create Application** → **Pages** → **Connect to Git**
 4. Select your GitHub repository: `synysterkay/ultratechapps`
 5. Configure build settings:
+   - **Framework preset**: None
    - **Build command**: `jekyll build`
    - **Build output directory**: `_site`
    - **Root directory**: `/`
+   
+   **IMPORTANT**: Leave the "Build output directory" settings as shown above. Do NOT add a deploy command - Pages automatically detects functions from the `/functions` directory.
 
 ### 2. Set Environment Variables
 
