@@ -12,7 +12,7 @@ permalink: /terms-of-service/
     <p>Welcome to UltraTech Apps. By accessing our website or using our mobile applications, you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use our services.</p>
 
     <h2>1. Acceptance of Terms</h2>
-    <p>By downloading, installing, or using any UltraTech Apps application, you acknowledge that you have read, understood, and agree to be bound by these Terms and our <a href="/ultratechapps/privacy-policy/">Privacy Policy</a>.</p>
+    <p>By downloading, installing, or using any UltraTech Apps application, you acknowledge that you have read, understood, and agree to be bound by these Terms and our <a href="/privacy-policy/">Privacy Policy</a>.</p>
 
     <h2>2. Eligibility</h2>
     <p>You must be at least 13 years old (or 16 in the EU) to use our services. By using our apps, you represent and warrant that you meet this age requirement and have the legal capacity to enter into these Terms.</p>
@@ -163,7 +163,7 @@ permalink: /terms-of-service/
     <p>For questions about these Terms, contact us at:</p>
     <ul>
       <li><strong>Email:</strong> legal@ultratechapps.com</li>
-      <li><strong>Website:</strong> <a href="https://synysterkay.github.io/ultratechapps/">UltraTech Apps</a></li>
+      <li><strong>Website:</strong> <a href="https://bestaiapps.site/">UltraTech Apps</a></li>
       <li><strong>Developer:</strong> Anas Kayssi</li>
     </ul>
 

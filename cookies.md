@@ -202,8 +202,8 @@ permalink: /cookies/
     <p>For questions about cookies or this policy:</p>
     <ul>
       <li><strong>Email:</strong> privacy@ultratechapps.com</li>
-      <li><strong>Website:</strong> <a href="https://synysterkay.github.io/ultratechapps/">UltraTech Apps</a></li>
-      <li><strong>Privacy Page:</strong> <a href="/ultratechapps/privacy-policy/">Privacy Policy</a></li>
+      <li><strong>Website:</strong> <a href="https://bestaiapps.site/">UltraTech Apps</a></li>
+      <li><strong>Privacy Page:</strong> <a href="/privacy-policy/">Privacy Policy</a></li>
     </ul>
 
     <div class="legal-notice">

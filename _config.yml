@@ -5,8 +5,8 @@ author: UltraTech Apps
 email: contact@ultratechapps.dev
 
 # URLs
-url: "https://synysterkay.github.io"
-baseurl: "/ultratechapps"
+url: "https://bestaiapps.site"
+baseurl: ""
 
 # Build settings
 markdown: kramdown
