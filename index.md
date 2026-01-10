@@ -27,7 +27,7 @@ title: "Best Ai Apps - Your Guide to AI-Powered Mobile Apps"
 <section class="featured-article-section">
   <div class="container">
     <h2 class="section-label">Featured Article</h2>
-    {% assign featured_post = site.posts.first %}
+    {% assign featured_post = site.posts | sample %}
     <a href="{{ featured_post.url | relative_url }}" class="featured-article-card">
       <div class="featured-article-image">
         {% if featured_post.image %}
