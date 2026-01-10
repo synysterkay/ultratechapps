@@ -1,6 +1,6 @@
-# UltraTech Apps - Marketing & Blog Platform
+# Best Ai Apps - Marketing & Blog Platform
 
-Professional marketing automation and blog website for indie app developer UltraTech Apps.
+Professional marketing automation and blog website for indie app developer Best Ai Apps.
 
 🌐 **Website:** https://synysterkay.github.io/marketingtool/
 

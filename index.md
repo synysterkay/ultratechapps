@@ -1,6 +1,6 @@
 ---
 layout: home
-title: "UltraTech Apps - AI-Powered Mobile Apps"
+title: "Best Ai Apps - AI-Powered Mobile Apps"
 ---
 
 <div class="hero">

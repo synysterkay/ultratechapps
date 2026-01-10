@@ -9,7 +9,7 @@ permalink: /privacy-policy/
   <p class="legal-updated">Last Updated: January 8, 2026</p>
 
   <div class="legal-content">
-    <p>At UltraTech Apps ("we," "our," or "us"), we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our mobile applications.</p>
+    <p>At Best Ai Apps ("we," "our," or "us"), we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our mobile applications.</p>
 
     <h2>1. Information We Collect</h2>
     
@@ -94,7 +94,7 @@ permalink: /privacy-policy/
     <p>If you have questions or concerns about this Privacy Policy, please contact us:</p>
     <ul>
       <li><strong>Email:</strong> privacy@ultratechapps.com</li>
-      <li><strong>Website:</strong> <a href="https://bestaiapps.site/">UltraTech Apps</a></li>
+      <li><strong>Website:</strong> <a href="https://bestaiapps.site/">Best Ai Apps</a></li>
       <li><strong>Developer:</strong> Anas Kayssi</li>
     </ul>
 

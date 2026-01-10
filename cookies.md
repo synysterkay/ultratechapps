@@ -9,7 +9,7 @@ permalink: /cookies/
   <p class="legal-updated">Last Updated: January 8, 2026</p>
 
   <div class="legal-content">
-    <p>This Cookie Policy explains how UltraTech Apps ("we," "our," or "us") uses cookies and similar technologies on our website and mobile applications. By using our services, you consent to the use of cookies as described in this policy.</p>
+    <p>This Cookie Policy explains how Best Ai Apps ("we," "our," or "us") uses cookies and similar technologies on our website and mobile applications. By using our services, you consent to the use of cookies as described in this policy.</p>
 
     <h2>1. What Are Cookies?</h2>
     <p>Cookies are small text files stored on your device (computer, tablet, smartphone) when you visit websites or use apps. They help us recognize your device and remember information about your visit.</p>
@@ -202,7 +202,7 @@ permalink: /cookies/
     <p>For questions about cookies or this policy:</p>
     <ul>
       <li><strong>Email:</strong> privacy@ultratechapps.com</li>
-      <li><strong>Website:</strong> <a href="https://bestaiapps.site/">UltraTech Apps</a></li>
+      <li><strong>Website:</strong> <a href="https://bestaiapps.site/">Best Ai Apps</a></li>
       <li><strong>Privacy Page:</strong> <a href="/privacy-policy/">Privacy Policy</a></li>
     </ul>
 

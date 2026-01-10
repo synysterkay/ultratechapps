@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-# About UltraTech Apps
+# About Best Ai Apps
 
 ## Building Apps That Matter
 

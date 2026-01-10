@@ -9,10 +9,10 @@ permalink: /terms-of-service/
   <p class="legal-updated">Last Updated: January 8, 2026</p>
 
   <div class="legal-content">
-    <p>Welcome to UltraTech Apps. By accessing our website or using our mobile applications, you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use our services.</p>
+    <p>Welcome to Best Ai Apps. By accessing our website or using our mobile applications, you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use our services.</p>
 
     <h2>1. Acceptance of Terms</h2>
-    <p>By downloading, installing, or using any UltraTech Apps application, you acknowledge that you have read, understood, and agree to be bound by these Terms and our <a href="/privacy-policy/">Privacy Policy</a>.</p>
+    <p>By downloading, installing, or using any Best Ai Apps application, you acknowledge that you have read, understood, and agree to be bound by these Terms and our <a href="/privacy-policy/">Privacy Policy</a>.</p>
 
     <h2>2. Eligibility</h2>
     <p>You must be at least 13 years old (or 16 in the EU) to use our services. By using our apps, you represent and warrant that you meet this age requirement and have the legal capacity to enter into these Terms.</p>
@@ -96,7 +96,7 @@ permalink: /terms-of-service/
       <li>Trademarks, logos, and brand assets</li>
       <li>Documentation and content</li>
     </ul>
-    <p>...are owned by UltraTech Apps or our licensors and protected by copyright, trademark, and other intellectual property laws.</p>
+    <p>...are owned by Best Ai Apps or our licensors and protected by copyright, trademark, and other intellectual property laws.</p>
 
     <h2>9. Third-Party Services</h2>
     <p>Our apps may integrate with or link to third-party services (AI APIs, analytics, social media). We are not responsible for:</p>
@@ -119,7 +119,7 @@ permalink: /terms-of-service/
     </ul>
 
     <h3>10.2 Limitation of Liability</h3>
-    <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, UltraTech Apps SHALL NOT BE LIABLE FOR:</p>
+    <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, Best Ai Apps SHALL NOT BE LIABLE FOR:</p>
     <ul>
       <li>Indirect, incidental, special, or consequential damages</li>
       <li>Loss of profits, data, or business opportunities</li>
@@ -129,7 +129,7 @@ permalink: /terms-of-service/
     <p>Our total liability shall not exceed the amount you paid for the app in the past 12 months, or $100 USD, whichever is less.</p>
 
     <h2>11. Indemnification</h2>
-    <p>You agree to indemnify and hold harmless UltraTech Apps, its developers, and affiliates from any claims, damages, or expenses arising from:</p>
+    <p>You agree to indemnify and hold harmless Best Ai Apps, its developers, and affiliates from any claims, damages, or expenses arising from:</p>
     <ul>
       <li>Your violation of these Terms</li>
       <li>Your use or misuse of our apps</li>
@@ -163,7 +163,7 @@ permalink: /terms-of-service/
     <p>For questions about these Terms, contact us at:</p>
     <ul>
       <li><strong>Email:</strong> legal@ultratechapps.com</li>
-      <li><strong>Website:</strong> <a href="https://bestaiapps.site/">UltraTech Apps</a></li>
+      <li><strong>Website:</strong> <a href="https://bestaiapps.site/">Best Ai Apps</a></li>
       <li><strong>Developer:</strong> Anas Kayssi</li>
     </ul>
 

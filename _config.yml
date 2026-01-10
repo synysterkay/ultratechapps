@@ -1,7 +1,7 @@
 # Site settings
-title: UltraTech Apps Blog
+title: Best Ai Apps Blog
 description: "Indie app developer creating innovative mobile solutions. Discover productivity tools, tech insights, and app development stories."
-author: UltraTech Apps
+author: Best Ai Apps
 email: contact@ultratechapps.dev
 
 # URLs
@@ -25,7 +25,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      author: "UltraTech Apps"
+      author: "Best Ai Apps"
   - scope:
       path: ""
     values:
@@ -67,7 +67,7 @@ google_site_verification: "your-google-site-verification-code"
 
 # Social defaults for SEO
 social:
-  name: UltraTech Apps
+  name: Best Ai Apps
   links:
     - https://apps.apple.com/us/developer/anas-kayssi/id1769590510
     - https://play.google.com/store/apps/dev?id=5116533678587496673
