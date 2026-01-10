@@ -225,39 +225,35 @@ document.addEventListener('DOMContentLoaded', function() {
       subscribeBtn.disabled = true;
       
       try {
-        // Add to Mailgun via API
-        const apiKey = 'YOUR_MAILGUN_API_KEY'; // Set via GitHub Actions or environment
-        const domain = 'bestaiapps.site';
-        
-        const response = await fetch(`https://api.mailgun.net/v3/lists/subscribers@${domain}/members`, {
+        // Call Cloudflare Pages Function
+        const response = await fetch('/api/subscribe', {
           method: 'POST',
           headers: {
-            'Authorization': 'Basic ' + btoa('api:' + apiKey),
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/json'
           },
-          body: new URLSearchParams({
-            'address': email,
-            'subscribed': 'yes',
-            'upsert': 'yes'
+          body: JSON.stringify({
+            email: email,
+            niche: 'general'  // You can detect this from page context if needed
           })
         });
+            'upsert': 'yes'
         
         // Reset button state
         btnText.style.display = 'inline';
         btnLoading.style.display = 'none';
         subscribeBtn.disabled = false;
         
-        if (response.ok || response.status === 200) {
+        const result = await response.json();
+        
+        if (response.ok && result.success) {
           // Show thank you modal
           document.getElementById('thank-you-modal').style.display = 'flex';
           newsletterForm.reset();
         } else {
-          // Fallback: show modal anyway (API might have CORS issues)
-          document.getElementById('thank-you-modal').style.display = 'flex';
-          newsletterForm.reset();
+          alert(result.error || 'Failed to subscribe. Please try again.');
         }
       } catch (error) {
-        console.log('Subscription handled:', error);
+        console.error('Subscription error:', error);
         // Reset button
         btnText.style.display = 'inline';
         btnLoading.style.display = 'none';
