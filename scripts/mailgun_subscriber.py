@@ -11,7 +11,7 @@ from datetime import datetime
 class MailgunSubscriber:
     def __init__(self):
         self.api_key = os.getenv('MAILGUN_API_KEY')
-        self.domain = os.getenv('MAILGUN_DOMAIN', 'sandboxa4301ed5a4be45c78f5a6d53c6f1452b.mailgun.org')
+        self.domain = os.getenv('MAILGUN_DOMAIN', 'bestaiapps.site')
         self.base_url = 'https://api.mailgun.net/v3'
         self.mailing_list = f'subscribers@{self.domain}'
         

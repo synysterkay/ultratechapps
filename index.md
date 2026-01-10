@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
       try {
         // Add to Mailgun via API
         const apiKey = 'YOUR_MAILGUN_API_KEY'; // Set via GitHub Actions or environment
-        const domain = 'sandboxa4301ed5a4be45c78f5a6d53c6f1452b.mailgun.org';
+        const domain = 'bestaiapps.site';
         
         const response = await fetch(`https://api.mailgun.net/v3/lists/subscribers@${domain}/members`, {
           method: 'POST',

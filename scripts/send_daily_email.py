@@ -14,10 +14,10 @@ from pathlib import Path
 class DailyEmailCampaign:
     def __init__(self):
         self.api_key = os.getenv('MAILGUN_API_KEY')
-        self.domain = os.getenv('MAILGUN_DOMAIN', 'sandboxa4301ed5a4be45c78f5a6d53c6f1452b.mailgun.org')
+        self.domain = os.getenv('MAILGUN_DOMAIN', 'bestaiapps.site')
         self.base_url = 'https://api.mailgun.net/v3'
         self.mailing_list = f'subscribers@{self.domain}'
-        self.from_email = f'Best AI Apps <noreply@{self.domain}>'
+        self.from_email = f'Best AI Apps <newsletter@{self.domain}>'
         
         if not self.api_key:
             raise ValueError("MAILGUN_API_KEY not found in environment")

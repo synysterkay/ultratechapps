@@ -54,3 +54,4 @@ Thumbs.db
 
 # Generated content (for review before commit)
 pending_review/
+.env.mailgun
