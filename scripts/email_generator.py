@@ -94,6 +94,8 @@ REQUIREMENTS:
 8. Soft CTA at end (invitation, not demand)
 9. Write in first person ("I tested", "Here's what I discovered")
 10. Start with a hook that creates curiosity or addresses pain point
+11. NEVER use the word "newsletter" - this is an email series from Best AI Apps
+12. Don't say "you subscribed to our newsletter" - say "you joined Best AI Apps" or similar
 
 STRUCTURE GUIDELINE:
 {self._get_structure_guide(type_config['structure'], app_data['name'], app_mention)}
