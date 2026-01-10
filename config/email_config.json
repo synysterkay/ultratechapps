@@ -1,0 +1,193 @@
+{
+  "niches": {
+    "productivity": {
+      "keywords": ["time management", "note-taking", "focus", "efficiency", "meetings"],
+      "pain_points": ["wasted time", "information overload", "missed deadlines", "disorganization"],
+      "apps": ["Smart Notes - AI Meeting Summary", "Thesis Generator: Essay AI"]
+    },
+    "relationships": {
+      "keywords": ["dating", "communication", "red flags", "emotional intelligence", "companionship"],
+      "pain_points": ["loneliness", "toxic patterns", "breakups", "finding love", "trust issues"],
+      "apps": ["Ai Girlfriend App - Cupid Ai", "Red Flag Scanner AI", "Fresh Start: Breakup Therapy", "SoulPlan: Plan Dates Together", "Ai Boyfriend: Virtual Love"]
+    },
+    "wellness": {
+      "keywords": ["health tracking", "weight loss", "fitness", "nutrition", "pet care"],
+      "pain_points": ["unhealthy habits", "lack of motivation", "pet health concerns"],
+      "apps": ["PupShape: Dog Weight Loss Plan"]
+    },
+    "entertainment": {
+      "keywords": ["content saving", "media", "streaming", "videos", "social media"],
+      "pain_points": ["losing favorite content", "limited downloads", "content disappearing"],
+      "apps": ["Reelit Downloader For Reddit", "LoveStory AI: Romance Novel"]
+    },
+    "finance": {
+      "keywords": ["crypto", "investing", "trading", "market analysis", "portfolio"],
+      "pain_points": ["market volatility", "poor decisions", "missed opportunities", "analysis paralysis"],
+      "apps": ["Crypto AI: Trading Analyzer"]
+    },
+    "lifestyle": {
+      "keywords": ["audio", "sound quality", "music", "volume", "entertainment"],
+      "pain_points": ["low volume", "poor audio quality", "lack of bass"],
+      "apps": ["Volume Booster - Sound Booster"]
+    },
+    "sports": {
+      "keywords": ["soccer", "football", "predictions", "betting", "match analysis"],
+      "pain_points": ["losing bets", "poor predictions", "lack of data"],
+      "apps": ["Predictify: Soccer AI"]
+    },
+    "personal_growth": {
+      "keywords": ["life coaching", "emotional support", "guidance", "self-improvement", "parenting"],
+      "pain_points": ["lack of guidance", "emotional struggles", "life decisions", "isolation"],
+      "apps": ["Kinbound: AI Parent Life Coach"]
+    }
+  },
+  
+  "sequences": {
+    "welcome": {
+      "day_0": {
+        "type": "immediate_value",
+        "subject_templates": [
+          "Your AI toolkit is ready (here's what's inside)",
+          "Welcome to Best AI Apps - Your first win awaits",
+          "This is exactly what you signed up for",
+          "Inside: The tools that will change your {niche}"
+        ],
+        "psychological_triggers": ["instant gratification", "curiosity", "value delivery"],
+        "email_focus": "Set expectations, deliver quick win, build trust",
+        "app_mention": "subtle",
+        "value_ratio": 90
+      },
+      "day_3": {
+        "type": "problem_solution",
+        "subject_templates": [
+          "The mistake 87% of people make with {niche}",
+          "Why most {niche} solutions fail (and what works)",
+          "You're probably doing this wrong with {niche}",
+          "This common {niche} trap costs you daily"
+        ],
+        "psychological_triggers": ["fear of missing out", "authority", "problem awareness"],
+        "email_focus": "Identify common problem, provide solution, introduce app naturally",
+        "app_mention": "natural",
+        "value_ratio": 80
+      },
+      "day_7": {
+        "type": "transformation_story",
+        "subject_templates": [
+          "This changes everything about {niche}",
+          "After 30 days, here's what happened with {niche}",
+          "The {niche} breakthrough nobody expected",
+          "What I discovered after testing 50 {niche} solutions"
+        ],
+        "psychological_triggers": ["social proof", "transformation", "curiosity"],
+        "email_focus": "Case study or personal story, show transformation, feature app as key tool",
+        "app_mention": "featured",
+        "value_ratio": 70
+      }
+    },
+    
+    "value_sequence": {
+      "cadence": "every_2_days",
+      "subject_templates": [
+        "The hidden cost of ignoring {topic}",
+        "What nobody tells you about {topic}",
+        "I tested 47 solutions. Here's what actually works",
+        "3 {niche} hacks that saved me 10 hours this week",
+        "Why smart people are ditching {old_method} in 2026",
+        "This {niche} detail changed how I work forever",
+        "The productivity secret nobody's talking about",
+        "What I learned spending $2000 on {niche} tools",
+        "Stop losing money to bad {niche} decisions",
+        "Your {niche} workflow is outdated (here's why)",
+        "While others struggle with {topic}, these people thrive",
+        "After 6 months, here's what actually works for {niche}",
+        "Tired of wasting 3 hours daily on {topic}?",
+        "The data reveals something shocking about {niche}"
+      ],
+      "psychological_triggers": ["curiosity", "urgency", "FOMO", "authority", "problem-solution"],
+      "email_focus": "70% valuable tips/insights, 30% subtle app mention",
+      "app_mention": "integrated",
+      "value_ratio": 70
+    },
+    
+    "promotional": {
+      "cadence": "once_per_week",
+      "subject_templates": [
+        "Join 10,000+ who discovered this {niche} tool first",
+        "Why everyone's switching to this {niche} method",
+        "Last chance to fix this before it costs you",
+        "Time-sensitive: Your {niche} needs this now",
+        "This app detail solves the {pain_point} problem"
+      ],
+      "psychological_triggers": ["FOMO", "urgency", "social proof", "scarcity"],
+      "email_focus": "Direct app promotion with strong value proposition",
+      "app_mention": "primary",
+      "value_ratio": 40
+    }
+  },
+  
+  "email_types": {
+    "immediate_value": {
+      "structure": ["warm_welcome", "expectation_setting", "quick_win_tip", "subtle_app_intro", "next_steps"],
+      "tone": "friendly, welcoming, helpful"
+    },
+    "problem_solution": {
+      "structure": ["relatable_problem", "why_it_matters", "common_mistakes", "solution_framework", "app_as_tool", "action_step"],
+      "tone": "empathetic, authoritative, solution-oriented"
+    },
+    "transformation_story": {
+      "structure": ["before_state", "struggle_points", "discovery_moment", "implementation", "results", "app_role", "invitation"],
+      "tone": "storytelling, inspirational, authentic"
+    },
+    "tips_value": {
+      "structure": ["attention_hook", "context_setting", "tip_1", "tip_2", "tip_3", "bonus_tool", "cta"],
+      "tone": "conversational, actionable, expert"
+    },
+    "promotional": {
+      "structure": ["strong_hook", "pain_point_amplification", "app_introduction", "feature_benefits", "social_proof", "urgent_cta"],
+      "tone": "persuasive, confident, benefit-focused"
+    }
+  },
+  
+  "psychological_frameworks": {
+    "curiosity_gap": "Create questions or incomplete information that demands resolution",
+    "loss_aversion": "Emphasize what they're losing by not taking action",
+    "social_proof": "Show others are already benefiting",
+    "authority": "Demonstrate expertise through testing, data, results",
+    "reciprocity": "Give value first, create obligation to reciprocate",
+    "scarcity": "Limited time, limited spots, urgent action needed",
+    "specificity": "Use specific numbers, timeframes, results for credibility"
+  },
+  
+  "subscriber_journey": {
+    "stage_1_newcomer": {
+      "days": "0-7",
+      "sequence": "welcome",
+      "goal": "Build trust, deliver value, set expectations"
+    },
+    "stage_2_engaged": {
+      "days": "8-30",
+      "sequence": "value_sequence",
+      "goal": "Provide consistent value, introduce apps naturally"
+    },
+    "stage_3_loyal": {
+      "days": "31+",
+      "sequence": "value_sequence + promotional",
+      "goal": "Mix value with direct promotions, leverage trust"
+    }
+  },
+  
+  "ab_testing": {
+    "enabled": true,
+    "subject_line_variants": 2,
+    "test_percentage": 20,
+    "winner_criteria": "open_rate"
+  },
+  
+  "content_generation": {
+    "word_count_range": [250, 400],
+    "paragraph_count": [4, 6],
+    "include_statistics": true,
+    "include_personal_anecdotes": true,
+    "cta_style": "soft_invitation"
+  }
+}

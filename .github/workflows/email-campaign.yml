@@ -29,12 +29,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
       
-      - name: Send daily email campaign
+      - name: Run email sequence manager
         env:
           MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
           MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
         run: |
-          python scripts/send_daily_email.py
+          python scripts/email_sequence_manager.py
       
       - name: Log completion
         run: |

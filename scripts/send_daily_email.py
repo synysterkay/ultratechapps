@@ -55,7 +55,7 @@ class DailyEmailCampaign:
         
         if app_store:
             download_buttons += f'''
-            <a href="{app_store}" style="display: inline-block; background: linear-gradient(135deg, #000000, #434343); color: white; padding: 15px 30px; text-decoration: none; border-radius: 50px; margin: 10px 5px; font-weight: 600;">
+            <a href="{app_store}" style="display: inline-block; background: linear-gradient(135deg, #000000, #434343); color: white !important; padding: 15px 30px; text-decoration: none; border-radius: 50px; margin: 10px 5px; font-weight: 600;">
                 🍎 Download on App Store
             </a>
             '''

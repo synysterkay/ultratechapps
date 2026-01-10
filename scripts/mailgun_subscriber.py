@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
 Mailgun Subscriber Management
-Add subscribers to mailing list via API
+Add subscribers to mailing list via API with journey tracking
 """
 import os
 import sys
+import json
 import requests
 from datetime import datetime
 
@@ -18,8 +19,8 @@ class MailgunSubscriber:
         if not self.api_key:
             raise ValueError("MAILGUN_API_KEY not found in environment")
     
-    def add_subscriber(self, email, name=None):
-        """Add email to mailing list"""
+    def add_subscriber(self, email, name=None, niche='general'):
+        """Add email to mailing list with subscriber journey tracking"""
         url = f'{self.base_url}/lists/{self.mailing_list}/members'
         
         data = {
@@ -31,12 +32,19 @@ class MailgunSubscriber:
         if name:
             data['name'] = name
         
-        # Add metadata
-        data['vars'] = {
+        # Add metadata for subscriber journey tracking
+        data['vars'] = json.dumps({
             'subscribed_at': datetime.now().isoformat(),
             'source': 'bestaiapps.site',
-            'status': 'active'
-        }
+            'status': 'active',
+            'niche': niche,
+            'sequence_stage': 'welcome',
+            'welcome_day': 0,
+            'last_email_sent': None,
+            'emails_received': 0,
+            'opens': 0,
+            'clicks': 0
+        })
         
         try:
             response = requests.post(
@@ -57,7 +65,7 @@ class MailgunSubscriber:
             return {'success': False, 'error': str(e)}
     
     def get_subscribers(self):
-        """Get all subscribers from mailing list"""
+        """Get all subscribers from mailing list with metadata"""
         url = f'{self.base_url}/lists/{self.mailing_list}/members/pages'
         
         try:
@@ -71,6 +79,17 @@ class MailgunSubscriber:
                 data = response.json()
                 subscribers = data.get('items', [])
                 print(f"📊 Total subscribers: {len(subscribers)}")
+                
+                # Parse metadata for each subscriber
+                for sub in subscribers:
+                    if 'vars' in sub and sub['vars']:
+                        try:
+                            sub['metadata'] = json.loads(sub['vars']) if isinstance(sub['vars'], str) else sub['vars']
+                        except:
+                            sub['metadata'] = {}
+                    else:
+                        sub['metadata'] = {}
+                
                 return subscribers
             else:
                 print(f"❌ Error fetching subscribers: {response.text}")
@@ -79,6 +98,27 @@ class MailgunSubscriber:
         except Exception as e:
             print(f"❌ Exception: {str(e)}")
             return []
+    
+    def update_subscriber_metadata(self, email, metadata):
+        """Update subscriber metadata (journey tracking)"""
+        url = f'{self.base_url}/lists/{self.mailing_list}/members/{email}'
+        
+        try:
+            response = requests.put(
+                url,
+                auth=('api', self.api_key),
+                data={'vars': json.dumps(metadata)}
+            )
+            
+            if response.status_code == 200:
+                return {'success': True}
+            else:
+                print(f"❌ Error updating metadata: {response.text}")
+                return {'success': False, 'error': response.text}
+                
+        except Exception as e:
+            print(f"❌ Exception: {str(e)}")
+            return {'success': False, 'error': str(e)}
     
     def create_mailing_list(self):
         """Create mailing list if it doesn't exist"""
