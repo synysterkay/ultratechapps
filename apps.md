@@ -129,7 +129,7 @@ permalink: /apps/
           <h3 class="app-card-title">Reelit Downloader For Reddit</h3>
           <p class="app-card-description">Fast and easy Reddit video downloader to save your favorite content offline</p>
           <div class="app-card-links">
-            <a href="https://play.google.com/store/apps/details?id=com.reelitdownloader.reddit" class="app-badge app-badge-android">
+            <a href="https://play.google.com/store/apps/details?id=com.reelit.reddit.downloader" class="app-badge app-badge-android">
               <span>🤖</span> Google Play
             </a>
           </div>
