@@ -126,8 +126,8 @@ class MailgunSubscriber:
         
         data = {
             'address': self.mailing_list,
-            'name': 'Best AI Apps Newsletter',
-            'description': 'Subscribers to Best AI Apps newsletter',
+            'name': 'Best AI Apps',
+            'description': 'Subscribers to Best AI Apps',
             'access_level': 'members'
         }
         

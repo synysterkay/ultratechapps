@@ -210,7 +210,7 @@ class EmailSequenceManager:
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <title>Best AI Apps Newsletter</title>
+            <title>Best AI Apps</title>
             <!--[if mso]>
             <style type="text/css">
                 body, table, td {{font-family: Arial, Helvetica, sans-serif !important;}}
@@ -262,7 +262,7 @@ class EmailSequenceManager:
                                         <tr>
                                             <td align="center" style="padding-top: 10px; color: #999999; font-size: 13px; line-height: 1.6;">
                                                 Best AI Apps · Curated AI Tools for Everyone<br>
-                                                You're receiving this because you subscribed to our newsletter.
+                                                You're receiving this because you subscribed to Best AI Apps.
                                             </td>
                                         </tr>
                                         <tr>

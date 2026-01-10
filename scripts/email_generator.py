@@ -60,7 +60,7 @@ class EmailGenerator:
         value_ratio = sequence_config.get('value_ratio', 70)
         
         # Build comprehensive prompt
-        prompt = f"""You are an expert email marketer writing for Best AI Apps newsletter.
+        prompt = f"""You are an expert email marketer writing for Best AI Apps.
 
 TARGET AUDIENCE: People interested in {niche}
 NICHE PAIN POINTS: {', '.join(pain_points)}
