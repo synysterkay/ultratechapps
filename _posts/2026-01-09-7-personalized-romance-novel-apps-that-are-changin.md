@@ -1,7 +1,7 @@
 ---
 title: "7 Personalized Romance Novel Apps That Are Changing Digital Reading in 2026"
 date: 2026-01-09
-categories: [ai_tools]
+categories: [ai-tools]
 tags: [ai_tools, romance, story, apps, novel]
 description: "# 7 Personalized Romance Novel Apps That Are Changing Digital Reading in 2026 **Meta Description:** Discover why personalized romance novels are the next big..."
 image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&h=500&fit=crop&q=80"

@@ -1,7 +1,7 @@
 ---
 title: "7 Best AI Soccer Prediction Tools to Beat the Experts in 2026"
 date: 2026-01-09
-categories: [ai_tools]
+categories: [ai-tools]
 tags: [ai_tools, soccer, data, prediction, tools]
 description: "# 7 Best AI Soccer Prediction Tools to Beat the Experts in 2026 **Meta Description:** Discover the best AI soccer prediction tools that outperform expert pun..."
 image: "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=800&h=500&fit=crop&q=80"

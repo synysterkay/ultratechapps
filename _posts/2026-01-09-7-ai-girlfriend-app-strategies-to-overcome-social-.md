@@ -1,7 +1,7 @@
 ---
 title: "7 AI Girlfriend App Strategies to Overcome Social Anxiety in 2026"
 date: 2026-01-09
-categories: [ai_tools]
+categories: [ai-tools]
 tags: [ai_tools, social, practice, anxiety, girlfriend]
 description: "Discover how the best AI girlfriend app for social anxiety in 2026 provides a safe space to build confidence, reduce loneliness, and practice social skills. Start your journey with Cupid Ai today."
 image: "https://images.unsplash.com/photo-1522543558187-768b6df7c25c?w=800&h=500&fit=crop&q=80"

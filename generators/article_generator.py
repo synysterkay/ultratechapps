@@ -48,6 +48,39 @@ class ArticleGenerator:
         # Fallback image
         return "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=500&fit=crop&q=80"
     
+    def _determine_category(self, niche, app_name, description):
+        """
+        Determine blog category based on niche and content
+        Categories: ai-tools, productivity, reviews, tutorials, news, guides
+        """
+        niche_lower = niche.lower()
+        app_lower = app_name.lower()
+        desc_lower = description.lower()
+        
+        # Map niches to categories
+        if any(word in niche_lower or word in app_lower or word in desc_lower 
+               for word in ['ai', 'artificial intelligence', 'machine learning', 'chatbot', 'gpt']):
+            return 'ai-tools'
+        
+        if any(word in niche_lower or word in app_lower or word in desc_lower 
+               for word in ['productivity', 'notes', 'meeting', 'organize', 'planner', 'task']):
+            return 'productivity'
+        
+        if any(word in niche_lower or word in desc_lower 
+               for word in ['how to', 'guide', 'step', 'tutorial', 'learn']):
+            return 'tutorials'
+        
+        if any(word in niche_lower or word in desc_lower 
+               for word in ['review', 'best', 'top', 'comparison']):
+            return 'reviews'
+        
+        if any(word in niche_lower or word in desc_lower 
+               for word in ['tips', 'tricks', 'secret', 'hack']):
+            return 'guides'
+        
+        # Default to ai-tools for AI-related content, otherwise guides
+        return 'ai-tools' if 'ai' in app_lower else 'guides'
+    
     def _get_next_topic(self, app_name, niche_info):
         """Get next topic to write about, avoiding recent topics"""
         import random
@@ -226,11 +259,15 @@ Write the complete SEO-optimized article now:"""
                 # Track topic usage
                 self.cache.add_topic(app_info['name'], topic)
                 
+                # Determine category for blog organization
+                category = self._determine_category(niche, app_info['name'], app_info.get('description', ''))
+                
                 article = {
                     'title': title,
                     'content': article_content,
                     'topic': topic,
                     'niche': niche,
+                    'category': category,  # Add category field
                     'keywords': keywords,
                     'app_name': app_info['name'],
                     'word_count': len(article_content.split()),
@@ -240,7 +277,7 @@ Write the complete SEO-optimized article now:"""
                     'featured_image': featured_image
                 }
                 
-                print(f"✅ Article generated: {title} ({article['word_count']} words)")
+                print(f"✅ Article generated: {title} ({article['word_count']} words) [Category: {category}]")
                 return article
                 
             except Exception as e:

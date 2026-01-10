@@ -1,7 +1,7 @@
 ---
 title: "7 AI Companion App Secrets to Build a Deeper Connection in 2026"
 date: 2026-01-10
-categories: [ai_tools]
+categories: [ai-tools]
 tags: [ai_tools, companion, emotional, connection, virtual]
 description: "# 7 AI Companion App Secrets to Build a Deeper Connection in 2026 **Meta Description:** Discover the ultimate AI companion app secrets for 2026. Learn how to..."
 image: "https://images.unsplash.com/photo-1522543558187-768b6df7c25c?w=800&h=500&fit=crop&q=80"

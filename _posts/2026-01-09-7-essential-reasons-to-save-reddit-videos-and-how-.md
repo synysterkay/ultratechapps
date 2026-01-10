@@ -1,7 +1,7 @@
 ---
 title: "7 Essential Reasons to Save Reddit Videos and How to Organize Them in 2026"
 date: 2026-01-09
-categories: [photo_video]
+categories: [photo-video]
 tags: [photo_video, reddit, video, videos, saving]
 description: "# 7 Essential Reasons to Save Reddit Videos and How to Organize Them in 2026 **Meta Description:** Discover the 7 essential reasons to save Reddit videos and..."
 image: "https://images.unsplash.com/photo-1551817958-d9d86fb29431?w=800&h=500&fit=crop&q=80"

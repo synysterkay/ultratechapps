@@ -1,7 +1,7 @@
 ---
 title: "7 Best AI Companion Apps to Combat Loneliness in 2026 (Proven Method)"
 date: 2026-01-09
-categories: [ai_tools]
+categories: [ai-tools]
 tags: [ai_tools, apps, companion, emotional, like]
 description: "# 7 Best AI Companion Apps to Combat Loneliness in 2026 (Proven Method) **Meta Description:** Discover the 7 best AI companion apps that provide emotional su..."
 image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=500&fit=crop&q=80"

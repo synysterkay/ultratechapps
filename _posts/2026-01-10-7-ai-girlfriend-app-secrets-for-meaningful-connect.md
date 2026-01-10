@@ -1,7 +1,7 @@
 ---
 title: "7 AI Girlfriend App Secrets for Meaningful Connections in 2026"
 date: 2026-01-10
-categories: [ai_tools]
+categories: [ai-tools]
 tags: [ai_tools, emotional, apps, human, girlfriend]
 description: "# 7 AI Girlfriend App Secrets for Meaningful Connections in 2026 **Meta Description:** Discover the top AI girlfriend app secrets for companionship and emoti..."
 image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=500&fit=crop&q=80"

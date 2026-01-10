@@ -33,10 +33,13 @@ class GitHubPublisher:
     
     def _format_frontmatter(self, article, metadata):
         """Format Jekyll/Hugo frontmatter"""
+        # Use article category if available, otherwise fallback to niche
+        category = article.get('category', article.get('niche', 'ai-tools'))
+        
         frontmatter = f"""---
 title: "{article['title']}"
 date: {datetime.now().strftime('%Y-%m-%d')}
-categories: [{article['niche']}]
+categories: [{category}]
 tags: [{', '.join(article['keywords'][:5])}]
 description: "{metadata['meta_description']}"
 image: "{article.get('featured_image', metadata['featured_image'])}"

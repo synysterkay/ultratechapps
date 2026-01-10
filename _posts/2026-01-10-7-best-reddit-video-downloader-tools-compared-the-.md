@@ -1,7 +1,7 @@
 ---
 title: "7 Best Reddit Video Downloader Tools Compared: The Ultimate Guide for 2026"
 date: 2026-01-10
-categories: [photo_video]
+categories: [photo-video]
 tags: [photo_video, reddit, video, downloader, reelit]
 description: "# 7 Best Reddit Video Downloader Tools Compared: The Ultimate Guide for 2026 **Meta Description:** Looking for the best Reddit video downloader? Our 2026 com..."
 image: "https://images.unsplash.com/photo-1551817958-d9d86fb29431?w=800&h=500&fit=crop&q=80"

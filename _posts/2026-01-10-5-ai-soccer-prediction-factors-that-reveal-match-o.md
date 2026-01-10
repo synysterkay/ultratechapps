@@ -1,7 +1,7 @@
 ---
 title: "5 AI Soccer Prediction Factors That Reveal Match Outcomes in 2026"
 date: 2026-01-10
-categories: [ai_tools]
+categories: [ai-tools]
 tags: [ai_tools, soccer, match, data, factors]
 description: "# 5 AI Soccer Prediction Factors That Reveal Match Outcomes in 2026 **Meta Description:** Discover the top 5 factors AI uses for soccer match outcomes. Get d..."
 image: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&h=500&fit=crop&q=80"
