@@ -1,147 +1,120 @@
 ---
 layout: home
-title: "Best Ai Apps - AI-Powered Mobile Apps"
+title: "Best Ai Apps - Your Guide to AI-Powered Mobile Apps"
 ---
 
 <div class="hero">
   <div class="hero-content">
-    <h1>Transform Your Life with AI-Powered Apps</h1>
-    <p>Discover innovative mobile applications designed to boost productivity, enhance creativity, and simplify your daily tasks</p>
-    <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
-      <a href="#apps" class="btn btn-primary">Explore Apps</a>
-      <a href="/marketingtool/blog/" class="btn btn-outline">Read Blog</a>
+    <h1>Your Guide to the Best AI Apps</h1>
+    <p>Expert reviews, tips, and insights on AI-powered mobile applications that transform how you work and live</p>
+    
+    <!-- Search Bar -->
+    <div class="hero-search">
+      <input type="text" id="search-input" placeholder="🔍 Search articles, apps, topics..." class="search-input">
+    </div>
+    
+    <!-- Trending Topics -->
+    <div class="trending-topics">
+      <span class="trending-label">Popular:</span>
+      <a href="/blog/?tag=ai-tools" class="topic-pill">AI Tools</a>
+      <a href="/blog/?tag=productivity" class="topic-pill">Productivity</a>
+      <a href="/blog/?tag=reviews" class="topic-pill">Reviews</a>
+      <a href="/blog/?tag=tutorials" class="topic-pill">Tutorials</a>
     </div>
   </div>
 </div>
 
-<section class="app-section" id="apps">
+<section class="featured-article-section">
   <div class="container">
-    <h2 class="section-title">Featured Apps</h2>
-    
-    <div class="app-grid">
-    <div class="app-card">
-      <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80" alt="Smart Notes" class="app-card-image">
-      <div class="app-card-content">
-        <h3 class="app-card-title">Smart Notes - AI Meeting Summary</h3>
-        <p class="app-card-description">AI-powered note-taking app with meeting transcription and smart organization</p>
-        <div class="app-card-links">
-          <a href="https://apps.apple.com/us/app/smart-notes-ai-meeting-summary/id6756840480" class="app-badge app-badge-ios">
-            <span>📱</span> App Store
-          </a>
-          <a href="https://play.google.com/store/apps/details?id=com.smartnotes.aimeetingsummary" class="app-badge app-badge-android">
-            <span>🤖</span> Google Play
-          </a>
-        </div>
+    <h2 class="section-label">Featured Article</h2>
+    {% assign featured_post = site.posts.first %}
+    <a href="{{ featured_post.url | relative_url }}" class="featured-article-card">
+      <div class="featured-article-image">
+        {% if featured_post.image %}
+          <img src="{{ featured_post.image }}" alt="{{ featured_post.title }}" loading="lazy">
+        {% else %}
+          <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1200&h=600&fit=crop&q=80" alt="{{ featured_post.title }}" loading="lazy">
+        {% endif %}
       </div>
-    </div>
-
-    <div class="app-card">
-      <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80" alt="AI Girlfriend" class="app-card-image">
-      <div class="app-card-content">
-        <h3 class="app-card-title">Ai Girlfriend App - Cupid Ai</h3>
-        <p class="app-card-description">AI-powered virtual companion for meaningful conversations and emotional connection</p>
-        <div class="app-card-links">
-          <a href="https://apps.apple.com/us/app/ai-girlfriend-virtual-love/id6757268335" class="app-badge app-badge-ios">
-            <span>📱</span> App Store
-          </a>
-          <a href="https://play.google.com/store/apps/details?id=com.aigirlfriend.virtuallove" class="app-badge app-badge-android">
-            <span>🤖</span> Google Play
-          </a>
+      <div class="featured-article-content">
+        <div class="article-meta">
+          <span class="article-date">📅 {{ featured_post.date | date: "%B %d, %Y" }}</span>
+          {% if featured_post.categories.first %}
+            <span class="article-category-badge">{{ featured_post.categories.first | capitalize }}</span>
+          {% endif %}
+          <span class="article-read-time">⏱️ 5 min read</span>
         </div>
+        <h2 class="featured-article-title">{{ featured_post.title }}</h2>
+        <p class="featured-article-excerpt">{{ featured_post.excerpt | strip_html | truncatewords: 30 }}</p>
+        <span class="read-more-featured">Read Full Article →</span>
       </div>
-    </div>
-
-    <div class="app-card">
-      <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80" alt="Dog Apps" class="app-card-image">
-      <div class="app-card-content">
-        <h3 class="app-card-title">PupShape: Dog Weight Loss Plan</h3>
-        <p class="app-card-description">Personalized meal plans and weight loss strategies for your dog's health</p>
-        <div class="app-card-links">
-          <a href="https://apps.apple.com/us/app/pupshape-dog-weight-loss-plan/id6750132047" class="app-badge app-badge-ios">
-            <span>📱</span> App Store
-          </a>
-          <a href="https://play.google.com/store/apps/details?id=com.pupshape.dogweightloss" class="app-badge app-badge-android">
-            <span>🤖</span> Google Play
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="app-card">
-      <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&q=80" alt="Predictify" class="app-card-image">
-      <div class="app-card-content">
-        <h3 class="app-card-title">Predictify: Soccer AI</h3>
-        <p class="app-card-description">AI-powered soccer predictions and match analysis for football fans</p>
-        <div class="app-card-links">
-          <a href="https://apps.apple.com/app/predictify-soccer-ai/id6756571193" class="app-badge app-badge-ios">
-            <span>📱</span> App Store
-          </a>
-          <a href="https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction" class="app-badge app-badge-android">
-            <span>🤖</span> Google Play
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="app-card">
-      <img src="https://images.unsplash.com/photo-1501290741922-b56c0d0884af?w=800&q=80" alt="Volume Booster" class="app-card-image">
-      <div class="app-card-content">
-        <h3 class="app-card-title">Volume Booster - Sound Booster</h3>
-        <p class="app-card-description">Boost volume to max! Sound amplifier, bass booster & equalizer for louder audio</p>
-        <div class="app-card-links">
-          <a href="https://play.google.com/store/apps/details?id=com.volumebooster.soundbooster" class="app-badge app-badge-android">
-            <span>🤖</span> Google Play
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="app-card">
-      <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80" alt="Breakup Therapy" class="app-card-image">
-      <div class="app-card-content">
-        <h3 class="app-card-title">Fresh Start: Breakup Therapy</h3>
-        <p class="app-card-description">AI-powered breakup therapy and emotional healing support for moving forward</p>
-        <div class="app-card-links">
-          <a href="https://apps.apple.com/us/app/fresh-start-breakup-therapy-ai/id6749954260" class="app-badge app-badge-ios">
-            <span>📱</span> App Store
-          </a>
-          <a href="https://play.google.com/store/apps/details?id=com.freshstart.breakuptherapy" class="app-badge app-badge-android">
-            <span>🤖</span> Google Play
-          </a>
-        </div>
-      </div>
-    </div>
+    </a>
   </div>
+</section>
 
-  <div style="text-align: center; margin: 4rem 0;">
-    <a href="https://apps.apple.com/us/developer/anas-kayssi/id1769590510" class="btn btn-primary">View All Apps</a>
-  </div>
+<!-- Category Navigation -->
+<section class="category-section">
+  <div class="container">
+    <h2 class="section-title">Explore by Category</h2>
+    <div class="category-grid">
+      <a href="/blog/?category=ai-tools" class="category-card">
+        <div class="category-icon">🤖</div>
+        <h3>AI Tools</h3>
+        <p class="category-count">{{ site.posts | where_exp: "post", "post.categories contains 'ai-tools'" | size }} articles</p>
+      </a>
+      <a href="/blog/?category=productivity" class="category-card">
+        <div class="category-icon">⚡</div>
+        <h3>Productivity</h3>
+        <p class="category-count">{{ site.posts | where_exp: "post", "post.categories contains 'productivity'" | size }} articles</p>
+      </a>
+      <a href="/blog/?category=reviews" class="category-card">
+        <div class="category-icon">⭐</div>
+        <h3>App Reviews</h3>
+        <p class="category-count">{{ site.posts | where_exp: "post", "post.categories contains 'reviews'" | size }} articles</p>
+      </a>
+      <a href="/blog/?category=tutorials" class="category-card">
+        <div class="category-icon">📚</div>
+        <h3>Tutorials</h3>
+        <p class="category-count">{{ site.posts | where_exp: "post", "post.categories contains 'tutorials'" | size }} articles</p>
+      </a>
+      <a href="/blog/?category=news" class="category-card">
+        <div class="category-icon">📰</div>
+        <h3>AI News</h3>
+        <p class="category-count">{{ site.posts | where_exp: "post", "post.categories contains 'news'" | size }} articles</p>
+      </a>
+      <a href="/blog/?category=guides" class="category-card">
+        <div class="category-icon">🎯</div>
+        <h3>How-to Guides</h3>
+        <p class="category-count">{{ site.posts | where_exp: "post", "post.categories contains 'guides'" | size }} articles</p>
+      </a>
+    </div>
   </div>
 </section>
 
 <section class="recent-articles-section">
   <div class="container">
-    <h2 class="section-title">Latest Insights</h2>
-    <p style="text-align: center; color: var(--text-light); margin-bottom: 3rem; font-size: 1.125rem;">Expert tips and guides to get the most out of our apps</p>
+    <h2 class="section-title">Latest Articles</h2>
+    <p style="text-align: center; color: var(--text-light); margin-bottom: 3rem; font-size: 1.125rem;">Expert insights and practical guides on AI apps</p>
     
     <div class="recent-articles-grid">
-      {% for post in site.posts limit:3 %}
+      {% for post in site.posts limit:6 offset:1 %}
         <a href="{{ post.url | relative_url }}" class="recent-article-card-link">
           <article class="recent-article-card">
             <div class="article-image-wrapper">
               {% if post.image %}
-                <img src="{{ post.image }}" alt="{{ post.title }}" class="recent-article-image">
+                <img src="{{ post.image }}" alt="{{ post.title }}" class="recent-article-image" loading="lazy">
               {% else %}
                 {% assign image_hash = post.title | size | times: 7919 | plus: forloop.index | times: 9973 %}
                 {% assign image_choices = "1499750310107-5fef28a66643,1551288414-26de491c97e214d9cc9ca05f,1557804506-aa9e4c8bb9842b7a0cc686b0,1531297484-244a42e29d7ee79c8fc8e1e9,1460925895-917f4df0a7b41c8c7e8e6a6d" | split: "," %}
                 {% assign image_index = image_hash | modulo: 5 %}
                 {% assign selected_image = image_choices[image_index] %}
-                <img src="https://images.unsplash.com/photo-{{ selected_image }}?w=800&h=500&fit=crop&q=80" alt="{{ post.title }}" class="recent-article-image">
+                <img src="https://images.unsplash.com/photo-{{ selected_image }}?w=800&h=500&fit=crop&q=80" alt="{{ post.title }}" class="recent-article-image" loading="lazy">
               {% endif %}
             </div>
             <div class="recent-article-content">
               <div class="article-meta-small">
                 <span>📅 {{ post.date | date: "%b %d, %Y" }}</span>
+                <span>⏱️ 5 min</span>
                 {% if post.categories.first %}
                   <span class="article-category">{{ post.categories.first | capitalize }}</span>
                 {% endif %}
@@ -160,3 +133,58 @@ title: "Best Ai Apps - AI-Powered Mobile Apps"
     </div>
   </div>
 </section>
+
+<!-- Newsletter Signup Section -->
+<section class="newsletter-section">
+  <div class="container">
+    <div class="newsletter-card">
+      <h2 class="newsletter-title">📬 Get Weekly AI Insights</h2>
+      <p class="newsletter-description">Join 10,000+ readers getting expert tips on AI apps, productivity hacks, and exclusive app reviews delivered to your inbox every week.</p>
+      <form class="newsletter-form" action="#" method="post">
+        <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
+        <button type="submit" class="newsletter-button">Subscribe</button>
+      </form>
+      <p class="newsletter-privacy">🔒 No spam. Unsubscribe anytime. Read our <a href="/privacy-policy/">Privacy Policy</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- Popular Tags Section -->
+<section class="tags-section">
+  <div class="container">
+    <h2 class="section-title">Popular Topics</h2>
+    <div class="tags-cloud">
+      <a href="/blog/?tag=ai" class="tag-pill">AI</a>
+      <a href="/blog/?tag=productivity" class="tag-pill">Productivity</a>
+      <a href="/blog/?tag=mobile-apps" class="tag-pill">Mobile Apps</a>
+      <a href="/blog/?tag=reviews" class="tag-pill">Reviews</a>
+      <a href="/blog/?tag=tutorials" class="tag-pill">Tutorials</a>
+      <a href="/blog/?tag=automation" class="tag-pill">Automation</a>
+      <a href="/blog/?tag=machine-learning" class="tag-pill">Machine Learning</a>
+      <a href="/blog/?tag=chatbots" class="tag-pill">Chatbots</a>
+      <a href="/blog/?tag=voice-ai" class="tag-pill">Voice AI</a>
+      <a href="/blog/?tag=computer-vision" class="tag-pill">Computer Vision</a>
+      <a href="/blog/?tag=nlp" class="tag-pill">NLP</a>
+      <a href="/blog/?tag=deep-learning" class="tag-pill">Deep Learning</a>
+    </div>
+  </div>
+</section>
+
+<!-- Simple Search Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('search-input');
+  
+  if (searchInput) {
+    searchInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const query = this.value.trim();
+        if (query) {
+          window.location.href = '/blog/?search=' + encodeURIComponent(query);
+        }
+      }
+    });
+  }
+});
+</script>
