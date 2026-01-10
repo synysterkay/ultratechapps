@@ -23,7 +23,7 @@ permalink: /apps/
             <a href="https://apps.apple.com/us/app/smart-notes-ai-meeting-summary/id6756840480" class="app-badge app-badge-ios">
               <span>📱</span> App Store
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.smartnotes.aimeetingsummary" class="app-badge app-badge-android">
+            <a href="https://play.google.com/store/apps/details?id=pl.audiorecorder.voicerecorder.callrecorder" class="app-badge app-badge-android">
               <span>🤖</span> Google Play
             </a>
           </div>
@@ -55,7 +55,7 @@ permalink: /apps/
             <a href="https://apps.apple.com/us/app/pupshape-dog-weight-loss-plan/id6750132047" class="app-badge app-badge-ios">
               <span>📱</span> App Store
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.pupshape.dogweightloss" class="app-badge app-badge-android">
+            <a href="https://play.google.com/store/apps/details?id=com.mealplanner.foodofdogs.petmeal" class="app-badge app-badge-android">
               <span>🤖</span> Google Play
             </a>
           </div>
@@ -100,7 +100,7 @@ permalink: /apps/
             <a href="https://apps.apple.com/us/app/fresh-start-breakup-therapy-ai/id6749954260" class="app-badge app-badge-ios">
               <span>📱</span> App Store
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.freshstart.breakuptherapy" class="app-badge app-badge-android">
+            <a href="https://play.google.com/store/apps/details?id=com.breakup.therapy.therapyforabreakup.therapistforbreakups" class="app-badge app-badge-android">
               <span>🤖</span> Google Play
             </a>
           </div>
@@ -145,7 +145,7 @@ permalink: /apps/
             <a href="https://apps.apple.com/app/soulplan-plan-dates-together/id6750098574" class="app-badge app-badge-ios">
               <span>📱</span> App Store
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.soulplan.dateideas" class="app-badge app-badge-android">
+            <a href="https://play.google.com/store/apps/details?id=com.aifun.dateideas.planadate" class="app-badge app-badge-android">
               <span>🤖</span> Google Play
             </a>
           </div>

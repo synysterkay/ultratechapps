@@ -35,7 +35,7 @@ Being ready to **start dating again after a breakup** isn't about a specific tim
 
 ## **Ready to get started?** Download Fresh Start: Breakup Therapy now:
 
-### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.freshstart.breakuptherapy)
+### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.breakup.therapy.therapyforabreakup.therapistforbreakups)
 
 ### [🍎 Download on App Store](https://apps.apple.com/us/app/fresh-start-breakup-therapy-ai/id6749954260)
 
@@ -68,7 +68,7 @@ Even with the best intentions, it's easy to stumble. Be mindful of these common 
 
 ## **Want to try it yourself?** Get Fresh Start: Breakup Therapy today:
 
-### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.freshstart.breakuptherapy)
+### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.breakup.therapy.therapyforabreakup.therapistforbreakups)
 
 ### [🍎 Download on App Store](https://apps.apple.com/us/app/fresh-start-breakup-therapy-ai/id6749954260)
 
@@ -91,7 +91,7 @@ Once you've recognized the signs of readiness, these actionable tips from relati
 
 ## **Don't wait!** Download Fresh Start: Breakup Therapy and start now:
 
-### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.freshstart.breakuptherapy)
+### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.breakup.therapy.therapyforabreakup.therapistforbreakups)
 
 ### [🍎 Download on App Store](https://apps.apple.com/us/app/fresh-start-breakup-therapy-ai/id6749954260)
 
@@ -109,7 +109,7 @@ Once you've recognized the signs of readiness, these actionable tips from relati
 
 In 2026, leveraging technology for emotional health is not just common—it's smart. The right tools provide structure and support during this vulnerable time. While traditional dating apps help you meet people, you need a dedicated space for the internal work that ensures you're meeting them as your best self.
 
-This is where a specialized **breakup recovery app** like **Fresh Start: Breakup Therapy** becomes invaluable. Unlike generic journaling apps, it's designed specifically for the journey from heartbreak to healing. It uses AI-driven prompts for **guided self-reflection**, helps you track your emotional progress, and offers science-backed exercises to rebuild your confidence and identity outside of a relationship. By providing daily structure for your **healing journey**, it ensures you're building a solid foundation *before* you dive back into dating. You can begin this supportive journey by downloading Fresh Start on [Google Play](https://play.google.com/store/apps/details?id=com.freshstart.breakuptherapy) or the [App Store](https://apps.apple.com/us/app/fresh-start-breakup-therapy-ai/id6749954260).
+This is where a specialized **breakup recovery app** like **Fresh Start: Breakup Therapy** becomes invaluable. Unlike generic journaling apps, it's designed specifically for the journey from heartbreak to healing. It uses AI-driven prompts for **guided self-reflection**, helps you track your emotional progress, and offers science-backed exercises to rebuild your confidence and identity outside of a relationship. By providing daily structure for your **healing journey**, it ensures you're building a solid foundation *before* you dive back into dating. You can begin this supportive journey by downloading Fresh Start on [Google Play](https://play.google.com/store/apps/details?id=com.breakup.therapy.therapyforabreakup.therapistforbreakups) or the [App Store](https://apps.apple.com/us/app/fresh-start-breakup-therapy-ai/id6749954260).
 
 ### Frequently Asked Questions (FAQ)
 
@@ -129,6 +129,6 @@ Absolutely. A dedicated app like Fresh Start provides the consistent, structured
 
 Knowing when to **start dating again after a breakup** is a profound act of self-knowledge and courage. By looking for the signs of genuine emotional readiness—neutrality towards your ex, internal fulfillment, curious motivation, clear boundaries, and an open heart—you gift yourself the opportunity for a healthier, happier love in the future. This journey isn't about forgetting the past, but about integrating its lessons into a wiser, more resilient you. Embrace this chapter of growth intentionally.
 
-If you're looking for a compassionate, guided path through this transition, consider **Fresh Start: Breakup Therapy**. It’s designed to be your daily companion in turning a painful ending into a confident new beginning. Download it today on [Google Play](https://play.google.com/store/apps/details?id=com.freshstart.breakuptherapy) or the [App Store](https://apps.apple.com/us/app/fresh-start-breakup-therapy-ai/id6749954260) and take the next step toward a fresh start.
+If you're looking for a compassionate, guided path through this transition, consider **Fresh Start: Breakup Therapy**. It’s designed to be your daily companion in turning a painful ending into a confident new beginning. Download it today on [Google Play](https://play.google.com/store/apps/details?id=com.breakup.therapy.therapyforabreakup.therapistforbreakups) or the [App Store](https://apps.apple.com/us/app/fresh-start-breakup-therapy-ai/id6749954260) and take the next step toward a fresh start.
 
 Built by an indie developer who ships apps every day.

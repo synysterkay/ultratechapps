@@ -33,7 +33,7 @@ Gone are the days when a **productivity app** was merely a digital notepad or a 
 
 ## **Ready to get started?** Download Smart Notes - AI Meeting Summary now:
 
-### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.smartnotes.aimeetingsummary)
+### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=pl.audiorecorder.voicerecorder.callrecorder)
 
 ### [🍎 Download on App Store](https://apps.apple.com/us/app/smart-notes-ai-meeting-summary/id6756840480)
 
@@ -76,7 +76,7 @@ Selecting the wrong app can hinder your productivity more than help it. Avoid th
 
 ## **Want to try it yourself?** Get Smart Notes - AI Meeting Summary today:
 
-### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.smartnotes.aimeetingsummary)
+### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=pl.audiorecorder.voicerecorder.callrecorder)
 
 ### [🍎 Download on App Store](https://apps.apple.com/us/app/smart-notes-ai-meeting-summary/id6756840480)
 
@@ -111,7 +111,7 @@ This application exemplifies the 2026 standard by focusing on the most universal
 
 ## **Don't wait!** Download Smart Notes - AI Meeting Summary and start now:
 
-### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.smartnotes.aimeetingsummary)
+### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=pl.audiorecorder.voicerecorder.callrecorder)
 
 ### [🍎 Download on App Store](https://apps.apple.com/us/app/smart-notes-ai-meeting-summary/id6756840480)
 
@@ -119,7 +119,7 @@ This application exemplifies the 2026 standard by focusing on the most universal
 
 
 
-For professionals and remote workers tired of manual note-taking, and for managers needing clarity on team deliverables, it targets a specific pain point with a powerful, focused solution. You can download **Smart Notes - AI Meeting Summary** on the [App Store](https://apps.apple.com/us/app/smart-notes-ai-meeting-summary/id6756840480) or [Google Play](https://play.google.com/store/apps/details?id=com.smartnotes.aimeetingsummary) to experience how a feature-specific productivity app can transform a routine task.
+For professionals and remote workers tired of manual note-taking, and for managers needing clarity on team deliverables, it targets a specific pain point with a powerful, focused solution. You can download **Smart Notes - AI Meeting Summary** on the [App Store](https://apps.apple.com/us/app/smart-notes-ai-meeting-summary/id6756840480) or [Google Play](https://play.google.com/store/apps/details?id=pl.audiorecorder.voicerecorder.callrecorder) to experience how a feature-specific productivity app can transform a routine task.
 
 ![AI and data visualization representing organized information](https://images.unsplash.com/photo-1677442136-a4cf6ec5c3fc?w=1200&q=80)
 

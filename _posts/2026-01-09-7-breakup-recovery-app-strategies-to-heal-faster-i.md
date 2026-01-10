@@ -80,7 +80,7 @@ While willpower is important, the right tools create a framework for success. Fo
 *   **Guided Meditations & Sleep Stories:** Specifically crafted for heartbreak, helping to calm anxiety and improve sleep quality—a common casualty post-breakup.
 *   **Progress Tracking:** Visualize your healing journey over weeks and months, which is motivating when day-to-day progress feels slow.
 
-For direct social media management, also utilize your phone's built-in **Screen Time** (iOS) or **Digital Wellbeing** (Android) features to set hard limits. Combining these practical controls with the emotional scaffolding of **Fresh Start** creates a holistic healing system. You can download the app and begin your structured recovery on [Google Play](https://play.google.com/store/apps/details?id=com.freshstart.breakuptherapy) or the [App Store](https://apps.apple.com/us/app/fresh-start-breakup-therapy-ai/id6749954260).
+For direct social media management, also utilize your phone's built-in **Screen Time** (iOS) or **Digital Wellbeing** (Android) features to set hard limits. Combining these practical controls with the emotional scaffolding of **Fresh Start** creates a holistic healing system. You can download the app and begin your structured recovery on [Google Play](https://play.google.com/store/apps/details?id=com.breakup.therapy.therapyforabreakup.therapistforbreakups) or the [App Store](https://apps.apple.com/us/app/fresh-start-breakup-therapy-ai/id6749954260).
 
 ![Side-by-side comparison of a cluttered phone screen vs. a calm screen with a meditation app open](https://images.unsplash.com/photo-1551288414-26de-491c-97e2-14d9cc9ca05f?w=1200&q=80)
 
@@ -105,6 +105,6 @@ First, be kind to yourself—it's a painful shock. Immediately close the app. Do
 
 Navigating social media after a breakup is a modern life skill essential for emotional well-being. It requires a blend of tactical discipline (unfollowing, detoxing) and compassionate inner work (processing grief, rebuilding identity). By viewing your digital cleanup as an integral part of your healing, you actively create an environment conducive to growth.
 
-The journey from heartbreak to wholeness is challenging, but you don't have to walk it alone. Leverage the tools designed for this moment. Take the first step by downloading **Fresh Start: Breakup Therapy**—your guide to not just surviving this chapter, but emerging from it stronger, more self-aware, and ready for whatever comes next. Begin your fresh start today on [Google Play](https://play.google.com/store/apps/details?id=com.freshstart.breakuptherapy) or the [App Store](https://apps.apple.com/us/app/fresh-start-breakup-therapy-ai/id6749954260).
+The journey from heartbreak to wholeness is challenging, but you don't have to walk it alone. Leverage the tools designed for this moment. Take the first step by downloading **Fresh Start: Breakup Therapy**—your guide to not just surviving this chapter, but emerging from it stronger, more self-aware, and ready for whatever comes next. Begin your fresh start today on [Google Play](https://play.google.com/store/apps/details?id=com.breakup.therapy.therapyforabreakup.therapistforbreakups) or the [App Store](https://apps.apple.com/us/app/fresh-start-breakup-therapy-ai/id6749954260).
 
 Built by an indie developer who ships apps every day.

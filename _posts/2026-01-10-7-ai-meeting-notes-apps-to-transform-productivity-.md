@@ -29,7 +29,7 @@ How many hours did you spend last week trying to decipher scribbled notes, recal
 
 ## **Ready to get started?** Download Smart Notes - AI Meeting Summary now:
 
-### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.smartnotes.aimeetingsummary)
+### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=pl.audiorecorder.voicerecorder.callrecorder)
 
 ### [🍎 Download on App Store](https://apps.apple.com/app/smart-notes-ai-meeting-summary/id6756840480)
 
@@ -59,7 +59,7 @@ The shift to hybrid and remote work has made meetings more frequent yet more fra
 Transitioning to AI-powered documentation is straightforward. Follow this proven process to integrate it seamlessly into your **productivity system**.
 
 1.  **Audit Your Current Meeting Pain Points:** Identify where your process breaks down. Is it tracking action items? Sharing summaries? Searching old discussions? List your top 3 frustrations.
-2.  **Select the Right Tool for Your Ecosystem:** Choose an app that integrates with your primary meeting platform (Zoom, Teams, Google Meet) and work tools (Slack, Notion, Google Docs). For a powerful, user-friendly option, consider **Smart Notes - AI Meeting Summary**, available on [Google Play](https://play.google.com/store/apps/details?id=com.smartnotes.aimeetingsummary) and the [App Store](https://apps.apple.com/app/smart-notes-ai-meeting-summary/id6756840480).
+2.  **Select the Right Tool for Your Ecosystem:** Choose an app that integrates with your primary meeting platform (Zoom, Teams, Google Meet) and work tools (Slack, Notion, Google Docs). For a powerful, user-friendly option, consider **Smart Notes - AI Meeting Summary**, available on [Google Play](https://play.google.com/store/apps/details?id=pl.audiorecorder.voicerecorder.callrecorder) and the [App Store](https://apps.apple.com/app/smart-notes-ai-meeting-summary/id6756840480).
 3.  **Set Up and Integrate:** Install the app and connect it to your calendar and video conferencing software. Most tools, including Smart Notes, offer one-click recording from within your calls.
 4.  **Establish a Post-Meeting Ritual:** Within minutes of the meeting ending, review the AI-generated summary. Edit for clarity, assign the highlighted action items to owners, and set due dates.
 5.  **Share and Archive Systematically:** Distribute the final summary to all attendees and relevant stakeholders. Store it in a designated project folder or knowledge base for future reference.
@@ -77,7 +77,7 @@ Even with the best tools, poor habits can undermine your results. Steer clear of
 
 ## **Want to try it yourself?** Get Smart Notes - AI Meeting Summary today:
 
-### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.smartnotes.aimeetingsummary)
+### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=pl.audiorecorder.voicerecorder.callrecorder)
 
 ### [🍎 Download on App Store](https://apps.apple.com/app/smart-notes-ai-meeting-summary/id6756840480)
 
@@ -110,7 +110,7 @@ The market is filled with options, from enterprise suites to focused indie apps.
 | **Key AI Features** | Auto-chapterization, action item extraction, concise summaries | Multi-speaker diarization, custom vocabulary | Speaker identification, highlight creation |
 | **Pricing** | Very competitive one-time or subscription | High per-user monthly fee | Freemium, paid for advanced features |
 
-For professionals, remote workers, and students seeking a powerful yet straightforward solution, **Smart Notes - AI Meeting Summary** stands out. It cuts through the clutter, delivering accurate transcripts and incredibly useful AI-powered summaries directly to your phone. It’s designed for the user who needs results fast, without a steep learning curve or a hefty subscription. You can download it today on [iOS](https://apps.apple.com/app/smart-notes-ai-meeting-summary/id6756840480) or [Android](https://play.google.com/store/apps/details?id=com.smartnotes.aimeetingsummary) and transform your next meeting.
+For professionals, remote workers, and students seeking a powerful yet straightforward solution, **Smart Notes - AI Meeting Summary** stands out. It cuts through the clutter, delivering accurate transcripts and incredibly useful AI-powered summaries directly to your phone. It’s designed for the user who needs results fast, without a steep learning curve or a hefty subscription. You can download it today on [iOS](https://apps.apple.com/app/smart-notes-ai-meeting-summary/id6756840480) or [Android](https://play.google.com/store/apps/details?id=pl.audiorecorder.voicerecorder.callrecorder) and transform your next meeting.
 
 ![A person looking at a laptop with a satisfied expression, surrounded by organized notes](https://images.unsplash.com/photo-1454165804607-c3d57bc86b40?w=1200&q=80)
 
@@ -125,7 +125,7 @@ Modern AI transcription, like that used in leading **meeting assistant apps**, i
 
 ## **Don't wait!** Download Smart Notes - AI Meeting Summary and start now:
 
-### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.smartnotes.aimeetingsummary)
+### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=pl.audiorecorder.voicerecorder.callrecorder)
 
 ### [🍎 Download on App Store](https://apps.apple.com/app/smart-notes-ai-meeting-summary/id6756840480)
 
@@ -148,6 +148,6 @@ Absolutely. When you calculate the hourly rate of the professionals in a meeting
 
 In 2026, effective meeting documentation isn’t about writing faster; it’s about working smarter. By leveraging an **AI meeting notes app**, you free up mental bandwidth, create a reliable organizational memory, and ensure that every discussion translates into tangible progress. Whether you’re a manager overseeing remote teams, a student recording lectures, or a professional juggling client calls, the right tool can elevate your efficiency.
 
-Stop letting valuable insights evaporate after a call ends. Take control of your meeting intelligence. Start by trying a focused, powerful app designed for real-world use. **Download Smart Notes - AI Meeting Summary** for [Android](https://play.google.com/store/apps/details?id=com.smartnotes.aimeetingsummary) or [iPhone](https://apps.apple.com/app/smart-notes-ai-meeting-summary/id6756840480) and experience the difference AI can make in your very next meeting.
+Stop letting valuable insights evaporate after a call ends. Take control of your meeting intelligence. Start by trying a focused, powerful app designed for real-world use. **Download Smart Notes - AI Meeting Summary** for [Android](https://play.google.com/store/apps/details?id=pl.audiorecorder.voicerecorder.callrecorder) or [iPhone](https://apps.apple.com/app/smart-notes-ai-meeting-summary/id6756840480) and experience the difference AI can make in your very next meeting.
 
 Built by an indie developer who ships apps every day.

@@ -43,7 +43,7 @@ In 2026, remote and hybrid work is the norm, and information overload is at its 
 
 Adopting this technology is straightforward. Follow this simple, numbered process to integrate **AI note-taking** into your workflow seamlessly.
 
-1.  **Choose and Set Up Your AI Tool.** Select an app like Smart Notes AI that fits your ecosystem (iOS, Android, Web). Download it from the [Google Play Store](https://play.google.com/store/apps/details?id=com.smartnotes.aimeetingsummary) or [Apple App Store](https://apps.apple.com/us/app/smart-notes-ai-meeting-summary/id6756840480). Grant the necessary microphone permissions—this is essential for the app to record and transcribe your meetings accurately.
+1.  **Choose and Set Up Your AI Tool.** Select an app like Smart Notes AI that fits your ecosystem (iOS, Android, Web). Download it from the [Google Play Store](https://play.google.com/store/apps/details?id=pl.audiorecorder.voicerecorder.callrecorder) or [Apple App Store](https://apps.apple.com/us/app/smart-notes-ai-meeting-summary/id6756840480). Grant the necessary microphone permissions—this is essential for the app to record and transcribe your meetings accurately.
 2.  **Record and Let AI Work Its Magic.** Join your meeting—whether it's Zoom, Teams, Google Meet, or in-person—and simply tap record within the app. Continue participating normally. The AI will handle the rest in the background: transcribing speech in real-time, identifying different speakers, and analyzing the conversation flow.
 3.  **Review, Organize, and Share.** Within moments of the meeting ending, you’ll receive a fully formatted summary. Review the AI-extracted **key takeaways, action items, and decisions**. You can easily edit any point, assign tasks to colleagues, and share the final note via email or link directly to your project management tools like Slack or Notion.
 
@@ -80,7 +80,7 @@ It combines powerful, real-time transcription with intuitive summarization that 
 *   **Offline Support:** Process notes even without an immediate internet connection.
 *   **Affordable & Accessible:** Offers a robust free tier, making advanced **AI productivity** accessible to everyone.
 
-Ready to stop wasting time and start capturing value? Download Smart Notes AI today and transform your next meeting: Get it on [Google Play](https://play.google.com/store/apps/details?id=com.smartnotes.aimeetingsummary) or the [App Store](https://apps.apple.com/us/app/smart-notes-ai-meeting-summary/id6756840480).
+Ready to stop wasting time and start capturing value? Download Smart Notes AI today and transform your next meeting: Get it on [Google Play](https://play.google.com/store/apps/details?id=pl.audiorecorder.voicerecorder.callrecorder) or the [App Store](https://apps.apple.com/us/app/smart-notes-ai-meeting-summary/id6756840480).
 
 ![Person looking at organized digital tasks on screen with relief](https://images.unsplash.com/photo-1551288419-97ec-6200-9cf9-5e64a0d5c71b?w=1200&q=80)
 
