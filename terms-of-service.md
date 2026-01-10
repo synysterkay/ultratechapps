@@ -162,7 +162,7 @@ permalink: /terms-of-service/
     <h2>17. Contact Information</h2>
     <p>For questions about these Terms, contact us at:</p>
     <ul>
-      <li><strong>Email:</strong> legal@ultratechapps.com</li>
+      <li><strong>Email:</strong> legal@bestaiapps.site</li>
       <li><strong>Website:</strong> <a href="https://bestaiapps.site/">Best Ai Apps</a></li>
       <li><strong>Developer:</strong> Anas Kayssi</li>
     </ul>

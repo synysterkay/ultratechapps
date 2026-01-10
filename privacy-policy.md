@@ -93,7 +93,7 @@ permalink: /privacy-policy/
     <h2>10. Contact Us</h2>
     <p>If you have questions or concerns about this Privacy Policy, please contact us:</p>
     <ul>
-      <li><strong>Email:</strong> privacy@ultratechapps.com</li>
+      <li><strong>Email:</strong> privacy@bestaiapps.site</li>
       <li><strong>Website:</strong> <a href="https://bestaiapps.site/">Best Ai Apps</a></li>
       <li><strong>Developer:</strong> Anas Kayssi</li>
     </ul>

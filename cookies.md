@@ -201,7 +201,7 @@ permalink: /cookies/
     <h2>12. Contact Us</h2>
     <p>For questions about cookies or this policy:</p>
     <ul>
-      <li><strong>Email:</strong> privacy@ultratechapps.com</li>
+      <li><strong>Email:</strong> privacy@bestaiapps.site</li>
       <li><strong>Website:</strong> <a href="https://bestaiapps.site/">Best Ai Apps</a></li>
       <li><strong>Privacy Page:</strong> <a href="/privacy-policy/">Privacy Policy</a></li>
     </ul>

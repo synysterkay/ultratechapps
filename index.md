@@ -156,7 +156,7 @@ title: "Best Ai Apps - AI-Powered Mobile Apps"
     </div>
     
     <div style="text-align: center; margin-top: 3rem;">
-      <a href="/marketingtool/blog/" class="btn btn-outline" style="color: var(--primary-color); border-color: var(--primary-color);">View All Articles</a>
+      <a href="/blog/" class="btn btn-outline" style="color: var(--primary-color); border-color: var(--primary-color);">View All Articles</a>
     </div>
   </div>
 </section>
