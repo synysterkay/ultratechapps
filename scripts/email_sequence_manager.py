@@ -161,71 +161,124 @@ class EmailSequenceManager:
         
         body_html = ""
         for i, paragraph in enumerate(email_data['body_paragraphs']):
-            body_html += f'<p style="color: #333; line-height: 1.8; margin: 20px 0;">{paragraph}</p>'
+            body_html += f'<p style="margin: 0 0 20px 0; color: #333333; font-size: 16px; line-height: 1.8; font-weight: 400;">{paragraph}</p>'
         
         # Add CTA if present
         cta_html = ""
         if email_data.get('cta_text') and email_data.get('cta_url'):
             cta_html = f'''
-            <div style="text-align: center; margin: 40px 0;">
-                <a href="{email_data['cta_url']}" style="display: inline-block; background: linear-gradient(135deg, #667eea, #764ba2); color: white !important; padding: 15px 40px; text-decoration: none; border-radius: 50px; font-weight: 600;">
-                    {email_data['cta_text']}
-                </a>
-            </div>
+            <tr>
+                <td align="center" style="padding: 30px 40px 50px 40px;">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                        <tr>
+                            <td align="center" style="border-radius: 6px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                <a href="{email_data['cta_url']}" target="_blank" style="display: inline-block; padding: 16px 48px; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; letter-spacing: 0.3px;">
+                                    {email_data['cta_text']}
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
             '''
         
         # Add key takeaways if present
         takeaways_html = ""
         if email_data.get('key_takeaways'):
-            takeaways_items = "".join([f"<li style='margin: 10px 0;'>{item}</li>" for item in email_data['key_takeaways']])
+            takeaways_items = "".join([f'<tr><td style="padding: 8px 0;"><table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"><tr><td width="20" valign="top" style="color: #667eea; font-size: 18px; font-weight: 700;">·</td><td style="color: #555555; font-size: 15px; line-height: 1.6;">{item}</td></tr></table></td></tr>' for item in email_data['key_takeaways']])
             takeaways_html = f'''
-            <div style="background: #f8f9fa; border-left: 4px solid #667eea; padding: 20px; margin: 30px 0;">
-                <h3 style="color: #1a1a2e; margin-top: 0; font-size: 18px;">📌 Key Takeaways</h3>
-                <ul style="color: #666; line-height: 1.8; margin: 10px 0; padding-left: 20px;">
-                    {takeaways_items}
-                </ul>
-            </div>
+            <tr>
+                <td style="padding: 0 40px 30px 40px;">
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f8f9fb; border-left: 4px solid #667eea; border-radius: 4px;">
+                        <tr>
+                            <td style="padding: 24px 28px;">
+                                <h3 style="margin: 0 0 16px 0; color: #1a1a2e; font-size: 18px; font-weight: 600;">Key Takeaways</h3>
+                                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                    {takeaways_items}
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
             '''
         
         html = f'''
         <!DOCTYPE html>
-        <html>
+        <html lang="en">
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <title>Best AI Apps Newsletter</title>
+            <!--[if mso]>
+            <style type="text/css">
+                body, table, td {{font-family: Arial, Helvetica, sans-serif !important;}}
+            </style>
+            <![endif]-->
         </head>
-        <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <body style="margin: 0; padding: 0; background-color: #f4f4f4; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
             
-            <!-- Header -->
-            <div style="text-align: center; padding: 30px 0; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; margin-bottom: 30px;">
-                <h1 style="color: white; margin: 0; font-size: 28px;">Best AI Apps</h1>
-                <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0;">Discover AI Tools That Matter</p>
-            </div>
-            
-            <!-- Email Content -->
-            <div style="padding: 20px 0;">
-                {body_html}
-            </div>
-            
-            <!-- Key Takeaways -->
-            {takeaways_html}
-            
-            <!-- CTA -->
-            {cta_html}
-            
-            <!-- Footer -->
-            <div style="text-align: center; padding: 30px 0; color: #999; font-size: 14px; border-top: 1px solid #eee; margin-top: 40px;">
-                <p style="margin: 5px 0;">
-                    <a href="https://bestaiapps.site" style="color: #667eea; text-decoration: none;">Visit Our Blog</a> · 
-                    <a href="https://bestaiapps.site/apps/" style="color: #667eea; text-decoration: none;">All Apps</a>
-                </p>
-                <p style="margin: 15px 0 5px 0; color: #aaa; font-size: 12px;">
-                    You're receiving this because you subscribed to Best AI Apps newsletter.
-                </p>
-                <p style="margin: 5px 0;">
-                    <a href="%mailing_list_unsubscribe_url%" style="color: #999; text-decoration: none; font-size: 12px;">Unsubscribe</a>
-                </p>
-            </div>
+            <!-- Outer Table for Email Clients -->
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin: 0; padding: 0; background-color: #f4f4f4;">
+                <tr>
+                    <td align="center" style="padding: 40px 20px;">
+                        
+                        <!-- Main Container -->
+                        <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="max-width: 600px; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                            
+                            <!-- Header -->
+                            <tr>
+                                <td align="center" style="padding: 50px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                    <h1 style="margin: 0; color: #ffffff; font-size: 32px; font-weight: 700; letter-spacing: -0.5px;">Best AI Apps</h1>
+                                    <p style="margin: 8px 0 0 0; color: rgba(255,255,255,0.95); font-size: 16px; font-weight: 400;">Discover AI Tools That Transform Your Life</p>
+                                </td>
+                            </tr>
+                            
+                            <!-- Content Section -->
+                            <tr>
+                                <td style="padding: 50px 40px;">
+                                    {body_html}
+                                </td>
+                            </tr>
+                            
+                            <!-- Key Takeaways -->
+                            {takeaways_html}
+                            
+                            <!-- CTA Section -->
+                            {cta_html}
+                            
+                            <!-- Footer -->
+                            <tr>
+                                <td style="padding: 40px; background-color: #fafafa; border-top: 1px solid #e8e8e8;">
+                                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                                        <tr>
+                                            <td align="center" style="padding-bottom: 20px;">
+                                                <a href="https://bestaiapps.site" style="color: #667eea; text-decoration: none; font-size: 14px; font-weight: 500; margin: 0 12px;">Visit Blog</a>
+                                                <span style="color: #ddd; margin: 0 4px;">·</span>
+                                                <a href="https://bestaiapps.site/apps/" style="color: #667eea; text-decoration: none; font-size: 14px; font-weight: 500; margin: 0 12px;">All Apps</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="padding-top: 10px; color: #999999; font-size: 13px; line-height: 1.6;">
+                                                Best AI Apps · Curated AI Tools for Everyone<br>
+                                                You're receiving this because you subscribed to our newsletter.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="padding-top: 20px;">
+                                                <a href="%mailing_list_unsubscribe_url%" style="color: #999999; text-decoration: underline; font-size: 12px;">Unsubscribe</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            
+                        </table>
+                        
+                    </td>
+                </tr>
+            </table>
             
         </body>
         </html>
