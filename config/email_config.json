@@ -47,10 +47,13 @@
       "day_0": {
         "type": "immediate_value",
         "subject_templates": [
-          "Your AI toolkit is ready (here's what's inside)",
-          "Welcome to Best AI Apps - Your first win awaits",
-          "This is exactly what you signed up for",
-          "Inside: The tools that will change your {niche}"
+          "I shouldn't be sharing this...",
+          "Delete this after reading",
+          "This is the secret nobody talks about",
+          "Read this before you do anything else today",
+          "I found something you need to see",
+          "Stop what you're doing and read this",
+          "This changed everything for me (seriously)"
         ],
         "psychological_triggers": ["instant gratification", "curiosity", "value delivery"],
         "email_focus": "Set expectations, deliver quick win, build trust",
@@ -60,10 +63,12 @@
       "day_3": {
         "type": "problem_solution",
         "subject_templates": [
-          "The mistake 87% of people make with {niche}",
-          "Why most {niche} solutions fail (and what works)",
-          "You're probably doing this wrong with {niche}",
-          "This common {niche} trap costs you daily"
+          "Why you're still struggling (it's not your fault)",
+          "The lie you've been told about {niche}",
+          "Everyone does this wrong. Here's the fix.",
+          "This mistake is costing you hours every day",
+          "I made this embarrassing mistake for years",
+          "They don't want you to know this"
         ],
         "psychological_triggers": ["fear of missing out", "authority", "problem awareness"],
         "email_focus": "Identify common problem, provide solution, introduce app naturally",
@@ -73,10 +78,12 @@
       "day_7": {
         "type": "transformation_story",
         "subject_templates": [
-          "This changes everything about {niche}",
-          "After 30 days, here's what happened with {niche}",
-          "The {niche} breakthrough nobody expected",
-          "What I discovered after testing 50 {niche} solutions"
+          "I can't believe this actually worked",
+          "30 days later... you won't believe what happened",
+          "This shouldn't be free (but it is)",
+          "The results shocked even me",
+          "I tested 50+ tools. Only ONE worked.",
+          "People keep asking how I did it"
         ],
         "psychological_triggers": ["social proof", "transformation", "curiosity"],
         "email_focus": "Case study or personal story, show transformation, feature app as key tool",
@@ -88,30 +95,21 @@
     "value_sequence": {
       "cadence": "every_2_days",
       "subject_templates": [
-        "The hidden cost of ignoring {topic}",
-        "What nobody tells you about {topic}",
-        "I tested 47 solutions. Here's what actually works",
-        "3 {niche} hacks that saved me 10 hours this week",
-        "Why smart people are ditching {old_method} in 2026",
-        "This {niche} detail changed how I work forever",
-        "The productivity secret nobody's talking about",
-        "What I learned spending $2000 on {niche} tools",
-        "Stop losing money to bad {niche} decisions",
-        "Your {niche} workflow is outdated (here's why)",
-        "While others struggle with {topic}, these people thrive",
-        "After 6 months, here's what actually works for {niche}",
-        "Tired of wasting 3 hours daily on {topic}?",
-        "The data reveals something shocking about {niche}",
-        "I wish I knew this about {topic} sooner",
-        "This changed everything about {niche} for me",
-        "The {niche} mistake I made for years (and how I fixed it)",
-        "Why I almost gave up on {topic} (then found this)",
-        "The one {niche} trick that actually works",
-        "What 10,000 users taught me about {topic}",
-        "I was wrong about {topic}. Here's the truth.",
-        "This app just saved me from a {niche} disaster",
-        "The {topic} shortcut I'm embarrassed I didn't know",
-        "Before you waste another hour on {topic}, read this"
+        "Don't open this email",
+        "I probably shouldn't send this...",
+        "This is the one thing that actually works",
+        "I was wrong about everything",
+        "Read this before you waste another hour",
+        "The ugly truth nobody wants to admit",
+        "I almost deleted this before sending",
+        "This is embarrassing but you need to know",
+        "What happened when I tried this shocked me",
+        "I can't stop thinking about this",
+        "You're going to hate me for this",
+        "This is why you're stuck",
+        "I found the problem (it's not what you think)",
+        "Stop doing this immediately",
+        "The one thing that changed everything"
       ],
       "psychological_triggers": ["curiosity", "urgency", "FOMO", "authority", "problem-solution", "story"],
       "ps_templates": [
@@ -129,16 +127,16 @@
     "promotional": {
       "cadence": "once_per_week",
       "subject_templates": [
-        "Join 10,000+ who discovered this {niche} tool first",
-        "Why everyone's switching to this {niche} method",
-        "Last chance to fix this before it costs you",
-        "Time-sensitive: Your {niche} needs this now",
-        "This app detail solves the {pain_point} problem",
-        "[Urgent] Free access won't last much longer",
-        "They didn't believe me about {topic}. Then they tried it.",
-        "This is your final reminder about {topic}",
-        "The {niche} tool everyone's asking me about",
-        "I'm only sending this once: {topic}"
+        "This won't be free for long",
+        "Last chance (I mean it this time)",
+        "I can't believe this is still available",
+        "They're about to remove this",
+        "You're missing out on something big",
+        "Everyone's talking about this one thing",
+        "This is your final warning",
+        "I only send this once",
+        "Something you need to see right now",
+        "This is urgent (please read)"
       ],
       "ps_templates": [
         "P.S. Premium features are free right now. Not sure how long that'll last.",

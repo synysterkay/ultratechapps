@@ -280,6 +280,10 @@ class EmailSequenceManager:
         
         url = f'{self.base_url}/{self.domain}/messages'
         
+        # Generate unique Message-ID to prevent threading
+        import uuid
+        unique_id = str(uuid.uuid4())
+        
         data = {
             'from': self.from_email,
             'to': email_address,
@@ -288,7 +292,8 @@ class EmailSequenceManager:
             'o:tag': [f"sequence-{sequence_info['sequence']}", email_data.get('niche', 'general')],
             'o:tracking': 'yes',
             'o:tracking-clicks': 'yes',
-            'o:tracking-opens': 'yes'
+            'o:tracking-opens': 'yes',
+            'h:Message-ID': f'<{unique_id}@bestaiapps.site>'
         }
         
         # Add preview text if available

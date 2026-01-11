@@ -47,17 +47,6 @@ class EmailGenerator:
         else:
             sequence_config = self.config['sequences']['promotional']
         
-        # Select random subject template
-        subject_templates = sequence_config.get('subject_templates', [])
-        subject_template = random.choice(subject_templates) if subject_templates else "Improve Your {niche}"
-        
-        # Replace placeholders in subject
-        subject = subject_template.replace('{niche}', niche).replace('{topic}', random.choice(keywords))
-        if '{pain_point}' in subject:
-            subject = subject.replace('{pain_point}', random.choice(pain_points))
-        if '{old_method}' in subject:
-            subject = subject.replace('{old_method}', f'traditional {niche} methods')
-        
         # Get email type structure
         email_type = sequence_config.get('type', 'tips_value')
         type_config = self.config['email_types'].get(email_type, self.config['email_types']['tips_value'])
@@ -88,7 +77,14 @@ APP MENTION STYLE:
 
 PSYCHOLOGICAL TRIGGERS TO USE: {', '.join(sequence_config.get('psychological_triggers', []))}
 
-SUBJECT LINE (already generated): {subject}
+SUBJECT LINE REQUIREMENTS:
+- Generate a UNIQUE, clickbait subject line (5-10 words max)
+- NO EMOJIS in subject
+- Create curiosity gap - make them NEED to open
+- Use psychological triggers: mystery, urgency, fear of missing out, controversy
+- Examples of great subjects: "I shouldn't be sharing this...", "Delete this after reading", "Don't open this email", "This is embarrassing but...", "I was wrong about everything", "They don't want you to know this"
+- Make it personal and intriguing - like a text from a friend
+- NEVER mention app names, brands, or "Best AI Apps" in subject
 
 REQUIREMENTS:
 1. Write {self.config['content_generation']['word_count_range'][0]}-{self.config['content_generation']['word_count_range'][1]} words
@@ -100,16 +96,18 @@ REQUIREMENTS:
 7. Natural app integration (don't be pushy or salesy)
 8. Soft CTA at end (invitation, not demand)
 9. Write in first person ("I tested", "Here's what I discovered")
-10. Start with a hook that creates curiosity or addresses pain point
-11. NEVER use the word "newsletter" - this is an email series from Best AI Apps
-12. Don't say "you subscribed to our newsletter" - say "you joined Best AI Apps" or similar
+10. Start DIRECTLY with a hook, story or problem - DO NOT start with greetings like "Hi there", "Welcome", "Hey" etc (the template already has "Hey there," greeting)
+11. NEVER mention "Best AI Apps", "our website", "our newsletter" or any brand name in the body - users came from various sources
+12. Don't welcome them or say they joined/subscribed anything - just provide value directly
+13. NEVER use the word "newsletter"
+14. Start first paragraph with an engaging story, question, or bold statement - NOT a greeting
 
 STRUCTURE GUIDELINE:
 {self._get_structure_guide(type_config['structure'], app_data['name'], app_mention)}
 
 OUTPUT FORMAT (JSON):
 {{
-  "subject": "{subject}",
+  "subject": "Your unique clickbait subject line here (5-10 words, no emojis)",
   "preview_text": "80-100 character preview text for email clients",
   "body_paragraphs": [
     "paragraph 1 (opening hook)",
