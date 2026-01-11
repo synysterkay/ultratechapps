@@ -58,7 +58,7 @@ plugins:
 
 # SEO settings
 lang: en_US
-logo: /assets/images/logo.png
+logo: /assets/logo/logo.svg
 twitter:
   username: ultratechapps
   card: summary

@@ -22,7 +22,7 @@ layout: default
     "name": "Best AI Apps",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://bestaiapps.site/assets/images/logo.png"
+      "url": "https://bestaiapps.site/assets/logo/logo.svg"
     }
   },
   "mainEntityOfPage": {
@@ -1106,10 +1106,10 @@ layout: default
         </ul>
         
         <div class="sidebar-cta-buttons">
-          <a href="{{ page.app_store_url | default: site.social.appstore }}" target="_blank" rel="noopener" class="sidebar-cta-btn ios">
+          <a href="{{ page.app_store_url | default: 'https://apps.apple.com/app/smart-notes-ai-meeting-summary/id6756840480' }}" target="_blank" rel="noopener" class="sidebar-cta-btn ios">
             🍎 App Store
           </a>
-          <a href="{{ page.google_play_url | default: site.social.playstore }}" target="_blank" rel="noopener" class="sidebar-cta-btn android">
+          <a href="{{ page.google_play_url | default: 'https://play.google.com/store/apps/details?id=pl.audiorecorder.voicerecorder.callrecorder' }}" target="_blank" rel="noopener" class="sidebar-cta-btn android">
             📱 Google Play
           </a>
         </div>
@@ -1198,10 +1198,10 @@ layout: default
   <div class="sticky-cta-inner">
     <span class="sticky-cta-text">📱 <strong>{{ page.app_name | default: "Featured App" }}</strong> — Free download, instant results</span>
     <div class="sticky-cta-buttons">
-      <a href="{{ page.app_store_url | default: site.social.appstore }}" target="_blank" rel="noopener" class="sticky-cta-btn ios">
+      <a href="{{ page.app_store_url | default: 'https://apps.apple.com/app/smart-notes-ai-meeting-summary/id6756840480' }}" target="_blank" rel="noopener" class="sticky-cta-btn ios">
          iOS
       </a>
-      <a href="{{ page.google_play_url | default: site.social.playstore }}" target="_blank" rel="noopener" class="sticky-cta-btn android">
+      <a href="{{ page.google_play_url | default: 'https://play.google.com/store/apps/details?id=pl.audiorecorder.voicerecorder.callrecorder' }}" target="_blank" rel="noopener" class="sticky-cta-btn android">
         ▶ Android
       </a>
     </div>
