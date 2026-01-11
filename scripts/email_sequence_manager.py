@@ -167,129 +167,102 @@ class EmailSequenceManager:
         return self.apps[app_index], 'general'
     
     def _generate_email_html(self, email_data, app_data):
-        """Generate HTML email from AI-generated content"""
+        """Generate HTML email from AI-generated content - Personal marketing style"""
         
+        app_name = app_data['name']
+        
+        # Create landing page URL
+        slug = app_name.lower().replace(':', '-').replace(' ', '-').replace('--', '-').strip('-')
+        landing_page_url = f"https://bestaiapps.site/apps/{slug}/"
+        
+        # Build body paragraphs
         body_html = ""
-        for i, paragraph in enumerate(email_data['body_paragraphs']):
-            body_html += f'<p style="margin: 0 0 20px 0; color: #333333; font-size: 16px; line-height: 1.8; font-weight: 400;">{paragraph}</p>'
-        
-        # Add CTA if present
-        cta_html = ""
-        if email_data.get('cta_text') and email_data.get('cta_url'):
-            cta_html = f'''
-            <tr>
-                <td align="center" style="padding: 30px 40px 50px 40px;">
-                    <table role="presentation" cellspacing="0" cellpadding="0" border="0">
-                        <tr>
-                            <td align="center" style="border-radius: 6px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                                <a href="{email_data['cta_url']}" target="_blank" style="display: inline-block; padding: 16px 48px; color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 600; letter-spacing: 0.3px;">
-                                    {email_data['cta_text']}
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            '''
+        for paragraph in email_data['body_paragraphs']:
+            body_html += f'<p style="margin: 0 0 20px 0; font-size: 16px; color: #2d3748; line-height: 1.7;">{paragraph}</p>'
         
         # Add key takeaways if present
         takeaways_html = ""
         if email_data.get('key_takeaways'):
-            takeaways_items = "".join([f'<tr><td style="padding: 8px 0;"><table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"><tr><td width="20" valign="top" style="color: #667eea; font-size: 18px; font-weight: 700;">·</td><td style="color: #555555; font-size: 15px; line-height: 1.6;">{item}</td></tr></table></td></tr>' for item in email_data['key_takeaways']])
+            items = "".join([f'✓ {item}<br>' for item in email_data['key_takeaways']])
             takeaways_html = f'''
-            <tr>
-                <td style="padding: 0 40px 30px 40px;">
-                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #f8f9fb; border-left: 4px solid #667eea; border-radius: 4px;">
-                        <tr>
-                            <td style="padding: 24px 28px;">
-                                <h3 style="margin: 0 0 16px 0; color: #1a1a2e; font-size: 18px; font-weight: 600;">Key Takeaways</h3>
-                                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
-                                    {takeaways_items}
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
+            <div style="margin: 35px 0 40px 0; padding-top: 25px; border-top: 1px solid #e2e8f0;">
+                <p style="margin: 0 0 15px 0; font-size: 15px; color: #4a5568; line-height: 1.7;">
+                    <strong>Quick takeaways:</strong>
+                </p>
+                <p style="margin: 0 0 10px 0; font-size: 15px; color: #4a5568; line-height: 1.7;">
+                    {items}
+                </p>
+            </div>
             '''
+        
+        # CTA button
+        cta_text = email_data.get('cta_text', f'Try {app_name} Free')
+        cta_url = email_data.get('cta_url', landing_page_url)
         
         html = f'''
         <!DOCTYPE html>
-        <html lang="en">
+        <html>
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <title>Best AI Apps</title>
-            <!--[if mso]>
-            <style type="text/css">
-                body, table, td {{font-family: Arial, Helvetica, sans-serif !important;}}
-            </style>
-            <![endif]-->
         </head>
-        <body style="margin: 0; padding: 0; background-color: #f4f4f4; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+        <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.7; color: #2d3748; max-width: 600px; margin: 0 auto; padding: 40px 20px; background: #ffffff;">
             
-            <!-- Outer Table for Email Clients -->
-            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin: 0; padding: 0; background-color: #f4f4f4;">
-                <tr>
-                    <td align="center" style="padding: 40px 20px;">
-                        
-                        <!-- Main Container -->
-                        <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0" style="max-width: 600px; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-                            
-                            <!-- Header -->
-                            <tr>
-                                <td align="center" style="padding: 50px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                                    <h1 style="margin: 0; color: #ffffff; font-size: 32px; font-weight: 700; letter-spacing: -0.5px;">Best AI Apps</h1>
-                                    <p style="margin: 8px 0 0 0; color: rgba(255,255,255,0.95); font-size: 16px; font-weight: 400;">Discover AI Tools That Transform Your Life</p>
-                                </td>
-                            </tr>
-                            
-                            <!-- Content Section -->
-                            <tr>
-                                <td style="padding: 50px 40px;">
-                                    {body_html}
-                                </td>
-                            </tr>
-                            
-                            <!-- Key Takeaways -->
-                            {takeaways_html}
-                            
-                            <!-- CTA Section -->
-                            {cta_html}
-                            
-                            <!-- Footer -->
-                            <tr>
-                                <td style="padding: 40px; background-color: #fafafa; border-top: 1px solid #e8e8e8;">
-                                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
-                                        <tr>
-                                            <td align="center" style="padding-bottom: 20px;">
-                                                <a href="https://bestaiapps.site" style="color: #667eea; text-decoration: none; font-size: 14px; font-weight: 500; margin: 0 12px;">Visit Blog</a>
-                                                <span style="color: #ddd; margin: 0 4px;">·</span>
-                                                <a href="https://bestaiapps.site/apps/" style="color: #667eea; text-decoration: none; font-size: 14px; font-weight: 500; margin: 0 12px;">All Apps</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td align="center" style="padding-top: 10px; color: #999999; font-size: 13px; line-height: 1.6;">
-                                                Best AI Apps · Curated AI Tools for Everyone<br>
-                                                Józefa Łepkowskiego 5, 31-423 Kraków, Poland<br>
-                                                You're receiving this because you subscribed to Best AI Apps.
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td align="center" style="padding-top: 20px;">
-                                                <a href="%mailing_list_unsubscribe_url%" style="color: #999999; text-decoration: underline; font-size: 12px;">Unsubscribe</a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                            
-                        </table>
-                        
-                    </td>
-                </tr>
-            </table>
+            <!-- Personal Greeting -->
+            <div style="margin-bottom: 30px;">
+                <p style="margin: 0 0 20px 0; font-size: 16px; color: #4a5568;">Hey there,</p>
+                
+                <!-- AI-Generated Body Content -->
+                {body_html}
+                
+                <!-- Social Proof Box -->
+                <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-left: 4px solid #667eea; padding: 15px 20px; margin: 25px 0; border-radius: 4px;">
+                    <p style="margin: 0; font-size: 15px; color: #4a5568; line-height: 1.6;">
+                        ⭐⭐⭐⭐⭐ <strong>Rated 4.8</strong> by 50,000+ users<br>
+                        <span style="color: #0369a1; font-size: 14px; font-weight: 600;">Free while in early access (won't last forever)</span>
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Single Clear CTA -->
+            <div style="text-align: center; margin: 35px 0;">
+                <a href="{cta_url}" style="display: inline-block; background: #667eea; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 16px; box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);">
+                    {cta_text} →
+                </a>
+                <p style="margin: 15px 0 0 0; font-size: 13px; color: #a0aec0;">
+                    Click to see how it works · No signup required
+                </p>
+            </div>
+            
+            <!-- Key Takeaways -->
+            {takeaways_html}
+            
+            <p style="margin: 0 0 25px 0; font-size: 15px; color: #4a5568;">
+                Talk soon,<br>
+                <strong style="color: #2d3748;">Kay</strong>
+            </p>
+            
+            <!-- P.S. Line - Most Read Part -->
+            <div style="margin: 30px 0; padding: 15px 20px; background: #fffbeb; border-radius: 8px; border: 1px solid #fcd34d;">
+                <p style="margin: 0; font-size: 14px; color: #92400e; line-height: 1.6;">
+                    <strong>P.S.</strong> I almost forgot — they're running a promo where premium features are unlocked for free. Not sure how long that'll last, but <a href="{landing_page_url}" style="color: #b45309; font-weight: 600;">might be worth grabbing while you can</a>.
+                </p>
+            </div>
+            
+            <!-- Minimal Footer -->
+            <div style="margin-top: 50px; padding-top: 25px; border-top: 1px solid #e2e8f0; text-align: center;">
+                <p style="margin: 0 0 10px 0; font-size: 13px; color: #a0aec0;">
+                    <a href="https://bestaiapps.site" style="color: #667eea; text-decoration: none;">Blog</a> · 
+                    <a href="https://bestaiapps.site/apps/" style="color: #667eea; text-decoration: none;">All Apps</a>
+                </p>
+                <p style="margin: 0 0 15px 0; font-size: 12px; color: #cbd5e0; line-height: 1.6;">
+                    Best AI Apps · Józefa Łepkowskiego 5, Kraków, Poland<br>
+                    You subscribed to discover the best AI tools.
+                </p>
+                <p style="margin: 0;">
+                    <a href="%mailing_list_unsubscribe_url%" style="color: #cbd5e0; text-decoration: none; font-size: 11px;">Unsubscribe</a>
+                </p>
+            </div>
             
         </body>
         </html>

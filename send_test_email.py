@@ -31,7 +31,37 @@ print(f'Found subscriber: {test_email}')
 print(f'Vars: {subscriber.get("vars", {})}')
 print('---')
 
-# Process this single subscriber
-manager._process_subscriber(subscriber)
+# Get sequence info for subscriber
+should_send, sequence_info = manager._should_send_email(subscriber)
+print(f'Sequence: {sequence_info}')
+
+# Select app for subscriber
+app_data, niche = manager._select_app_for_subscriber(subscriber)
+print(f'App: {app_data["name"]}')
+print(f'Niche: {niche}')
+
+# Generate email content
+day = sequence_info.get('day') if sequence_info['sequence'] == 'welcome' else None
+email_data = manager.email_generator.generate_email(
+    niche=niche,
+    app_data=app_data,
+    sequence_type=sequence_info['sequence'],
+    day=day
+)
+
+if not email_data:
+    print('Failed to generate email content!')
+    sys.exit(1)
+
+print(f'Subject: {email_data["subject"]}')
 print('---')
-print('Done! Check your inbox.')
+
+# Send email
+success = manager.send_to_subscriber(subscriber, email_data, app_data, sequence_info)
+
+if success:
+    print('---')
+    print('✅ Done! Check your inbox.')
+else:
+    print('---')
+    print('❌ Failed to send email')
