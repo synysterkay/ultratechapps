@@ -187,169 +187,6 @@ permalink: /apps/
   </div>
 </section>
 
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1501290741922-b56c0d0884af?w=800&q=80" alt="Volume Booster" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">Volume Booster - Sound Booster</h3>
-          <p class="app-card-description">Boost volume to max! Sound amplifier, bass booster & equalizer for louder audio</p>
-          <div class="app-card-links">
-            <a href="https://play.google.com/store/apps/details?id=com.volume.booster.free.pro" class="app-badge app-badge-android">
-              <span>🤖</span> Google Play
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<style>
-.app-badge-primary {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  padding: 12px 24px;
-  border-radius: 25px;
-  text-decoration: none;
-  display: inline-block;
-  font-weight: 600;
-  transition: transform 0.2s;
-}
-
-.app-badge-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-}
-
-.app-card-wrapper {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.app-card-wrapper:hover {
-  transform: translateY(-5px);
-}
-
-.app-card-wrapper .app-card {
-  cursor: pointer;
-}
-
-.app-card-cta {
-  color: #667eea;
-  font-weight: 600;
-  margin-top: 12px;
-  display: inline-block;
-}
-</style>
-            <a href="https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner" class="app-badge app-badge-android">
-              <span>🤖</span> Google Play
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80" alt="Reddit Downloader" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">Reelit Downloader For Reddit</h3>
-          <p class="app-card-description">Fast and easy Reddit video downloader to save your favorite content offline</p>
-          <div class="app-card-links">
-            <a href="https://play.google.com/store/apps/details?id=com.reelit.reddit.downloader" class="app-badge app-badge-android">
-              <span>🤖</span> Google Play
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&q=80" alt="SoulPlan" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">SoulPlan: Plan Dates Together</h3>
-          <p class="app-card-description">AI-powered date planning app to discover and organize romantic activities together</p>
-          <div class="app-card-links">
-            <a href="https://apps.apple.com/app/soulplan-plan-dates-together/id6750098574" class="app-badge app-badge-ios">
-              <span>📱</span> App Store
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=com.aifun.dateideas.planadate" class="app-badge app-badge-android">
-              <span>🤖</span> Google Play
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&q=80" alt="Thesis Generator" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">Thesis Generator: Essay AI</h3>
-          <p class="app-card-description">AI-powered thesis statement generator and essay writing assistant for students</p>
-          <div class="app-card-links">
-            <a href="https://apps.apple.com/app/thesis-generator-essay-ai/id6750119637" class="app-badge app-badge-ios">
-              <span>📱</span> App Store
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=com.thesis.generator.ai" class="app-badge app-badge-android">
-              <span>🤖</span> Google Play
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&q=80" alt="LoveStory AI" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">LoveStory AI: Romance Novel</h3>
-          <p class="app-card-description">Create and read personalized AI-generated romance novels tailored to your preferences</p>
-          <div class="app-card-links">
-            <a href="https://apps.apple.com/app/lovestory-ai-romance-novel/id6758139751" class="app-badge app-badge-ios">
-              <span>📱</span> App Store
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80" alt="AI Boyfriend" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">Ai Boyfriend: Virtual Love</h3>
-          <p class="app-card-description">AI-powered virtual boyfriend for engaging conversations and companionship</p>
-          <div class="app-card-links">
-            <a href="https://apps.apple.com/app/ai-boyfriend-virtual-love/id6757331334" class="app-badge app-badge-ios">
-              <span>📱</span> App Store
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=800&q=80" alt="Crypto AI" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">Crypto AI: Trading Analyzer</h3>
-          <p class="app-card-description">AI-powered cryptocurrency trading signals, market analysis, and portfolio tracking</p>
-          <div class="app-card-links">
-            <a href="https://apps.apple.com/app/crypto-ai-trading-analyzer/id6758148859" class="app-badge app-badge-ios">
-              <span>📱</span> App Store
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&q=80" alt="Kinbound" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">Kinbound: AI Parent Life Coach</h3>
-          <p class="app-card-description">The guidance you never had. Talk to AI Mom for comfort and Dad for practical plans. 24/7 emotional support, tough love, and life advice in one safe, private space.</p>
-          <div class="app-card-links">
-            <a href="https://apps.apple.com/app/kinbound-ai-parent-life-coach/id6757409071" class="app-badge app-badge-ios">
-              <span>📱</span> App Store
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <style>
 .apps-page-hero {
   background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
@@ -377,5 +214,65 @@ permalink: /apps/
 .apps-showcase {
   padding: 4rem 0;
   background: #0a0a0f;
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.app-card-wrapper {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.app-card-wrapper:hover {
+  transform: translateY(-5px);
+}
+
+.app-card {
+  background: linear-gradient(145deg, #1e1e2e 0%, #2a2a3e 100%);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  height: 100%;
+  cursor: pointer;
+}
+
+.app-card-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.app-card-content {
+  padding: 1.5rem;
+}
+
+.app-card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 0.5rem;
+}
+
+.app-card-description {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.app-card-cta {
+  color: #a78bfa;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.app-card-wrapper:hover .app-card-cta {
+  color: #c4b5fd;
 }
 </style>
