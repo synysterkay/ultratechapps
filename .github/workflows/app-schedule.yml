@@ -130,9 +130,24 @@ jobs:
             # Push
             git push
             echo "✅ Successfully pushed new content!"
+            echo "NEW_CONTENT=true" >> $GITHUB_OUTPUT
           else
             echo "✅ No new posts generated (rate limit or duplicate)"
+            echo "NEW_CONTENT=false" >> $GITHUB_OUTPUT
           fi
+        id: commit_changes
+      
+      - name: Purge Cloudflare cache
+        if: steps.commit_changes.outputs.NEW_CONTENT == 'true'
+        run: |
+          echo "🔄 Purging Cloudflare cache..."
+          curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}' \
+            --silent --show-error --fail \
+            && echo "✅ Cloudflare cache purged successfully!" \
+            || echo "⚠️  Failed to purge Cloudflare cache (check API credentials)"
       
       - name: Upload cache artifacts
         if: always()
