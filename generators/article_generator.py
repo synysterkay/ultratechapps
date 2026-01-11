@@ -319,8 +319,10 @@ EXAMPLE TITLE: "Meeting Notes Taking Too Long? This AI Tool Cut My Time by 80%"
         # Try to load from a simple state file
         try:
             import json
+            import re
             from pathlib import Path
-            angle_file = Path(f"cache/{cache_key.replace(' ', '_').replace('-', '_')}.json")
+            safe_name = re.sub(r'[^\w\-]', '_', app_name)  # Remove all non-word chars except dash
+            angle_file = Path(f"cache/{safe_name}_angles.json")
             if angle_file.exists():
                 with open(angle_file, 'r') as f:
                     data = json.load(f)
@@ -346,9 +348,10 @@ EXAMPLE TITLE: "Meeting Notes Taking Too Long? This AI Tool Cut My Time by 80%"
         # Save updated history
         try:
             import json
+            import re
             from pathlib import Path
-            cache_key = f"{app_name}_angles"
-            angle_file = Path(f"cache/{cache_key.replace(' ', '_').replace('-', '_')}.json")
+            safe_name = re.sub(r'[^\w\-]', '_', app_name)  # Remove all non-word chars except dash
+            angle_file = Path(f"cache/{safe_name}_angles.json")
             angle_file.parent.mkdir(exist_ok=True)
             with open(angle_file, 'w') as f:
                 json.dump({'angles': angle_history[-20:]}, f)  # Keep last 20
