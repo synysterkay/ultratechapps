@@ -12,8 +12,8 @@ pain_hook: "Worried about your dog's weight? Not sure if they're getting the rig
 hero_image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80"
 
 # Store Links
-google_play_url: "https://play.google.com/store/apps/details?id=com.pupshape.dog.weight.loss"
-app_store_url: "https://apps.apple.com/app/pupshape-dog-weight-loss-plan/id6740266581"
+google_play_url: "https://play.google.com/store/apps/details?id=com.mealplanner.foodofdogs.petmeal"
+app_store_url: "https://apps.apple.com/app/pupshape-dog-weight-loss-plan/id6739601749"
 
 # Social Proof
 category: "pets"

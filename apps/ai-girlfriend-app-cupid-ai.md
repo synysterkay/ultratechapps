@@ -12,8 +12,8 @@ pain_hook: "Feeling lonely? Struggling to connect? Wishing someone truly underst
 hero_image: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80"
 
 # Store Links
-google_play_url: "https://play.google.com/store/apps/details?id=com.aifun.aichat.cupidai"
-app_store_url: "https://apps.apple.com/app/ai-girlfriend-app-cupid-ai/id6740266579"
+google_play_url: "https://play.google.com/store/apps/details?id=com.aigirlfriend.virtuallove"
+app_store_url: "https://apps.apple.com/app/ai-girlfriend-virtual-love/id6757268335"
 
 # Social Proof
 category: "lifestyle"

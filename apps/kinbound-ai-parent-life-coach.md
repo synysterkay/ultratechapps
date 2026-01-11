@@ -12,8 +12,8 @@ pain_hook: "3 AM. Your baby won't sleep. Google gives you 47 conflicting answers
 hero_image: "https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=800&q=80"
 
 # Store Links
-google_play_url: "https://play.google.com/store/apps/details?id=com.kinbound.ai.parent"
-app_store_url: "https://apps.apple.com/app/kinbound-ai-parent-coach/id1234567890"
+google_play_url: ""
+app_store_url: "https://apps.apple.com/app/kinbound-ai-parent-life-coach/id6757409071"
 
 # Social Proof
 category: "lifestyle"

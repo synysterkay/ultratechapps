@@ -13,7 +13,7 @@ hero_image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&
 
 # Store Links
 google_play_url: "https://play.google.com/store/apps/details?id=com.thesis.generator.ai"
-app_store_url: "https://apps.apple.com/app/thesis-generator-essay-ai/id6750119637"
+app_store_url: "https://apps.apple.com/app/thesis-generator-essay-ai/id6739264844"
 
 # Social Proof
 category: "education"

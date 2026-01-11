@@ -12,8 +12,8 @@ pain_hook: "Tired of 'expert' predictions that are wrong more than right?"
 hero_image: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&q=80"
 
 # Store Links
-google_play_url: "https://play.google.com/store/apps/details?id=com.predictify.soccer.ai"
-app_store_url: "https://apps.apple.com/app/predictify-soccer-ai/id6740266583"
+google_play_url: "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction"
+app_store_url: "https://apps.apple.com/app/predictify-soccer-ai/id6756571193"
 
 # Social Proof
 category: "sports"

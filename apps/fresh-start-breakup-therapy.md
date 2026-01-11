@@ -12,8 +12,8 @@ pain_hook: "Can't eat? Can't sleep? Keep checking their social media? You're not
 hero_image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80"
 
 # Store Links
-google_play_url: "https://play.google.com/store/apps/details?id=com.freshstart.breakup.therapy"
-app_store_url: "https://apps.apple.com/app/fresh-start-breakup-therapy/id6740266582"
+google_play_url: "https://play.google.com/store/apps/details?id=com.breakup.therapy.therapyforabreakup.therapistforbreakups"
+app_store_url: "https://apps.apple.com/app/fresh-start-breakup-therapy-ai/id6749954260"
 
 # Social Proof
 category: "health"

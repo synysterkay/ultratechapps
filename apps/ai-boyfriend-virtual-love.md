@@ -12,8 +12,8 @@ pain_hook: "Exhausted by dating games and emotional unavailability?"
 hero_image: "https://images.unsplash.com/photo-1516589091380-5d8e87df6999?w=800&q=80"
 
 # Store Links
-google_play_url: "https://play.google.com/store/apps/details?id=com.ai.boyfriend.virtual"
-app_store_url: "https://apps.apple.com/app/ai-boyfriend-virtual-love/id6740440025"
+google_play_url: ""
+app_store_url: "https://apps.apple.com/app/ai-boyfriend-virtual-love/id6757331334"
 
 # Social Proof
 category: "social"

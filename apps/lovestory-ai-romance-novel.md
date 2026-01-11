@@ -12,8 +12,8 @@ pain_hook: "Tired of romance novels that feel like they were written for someone
 hero_image: "https://images.unsplash.com/photo-1474932430478-367dbb6832c1?w=800&q=80"
 
 # Store Links
-google_play_url: "https://play.google.com/store/apps/details?id=com.lovestory.ai.romance"
-app_store_url: "https://apps.apple.com/app/lovestory-ai-romance-novel/id6472909880"
+google_play_url: ""
+app_store_url: "https://apps.apple.com/app/lovestory-ai-romance-novel/id6757317428"
 
 # Social Proof
 category: "entertainment"

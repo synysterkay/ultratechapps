@@ -13,7 +13,7 @@ hero_image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&
 
 # Store Links
 google_play_url: "https://play.google.com/store/apps/details?id=com.aifun.dateideas.planadate"
-app_store_url: "https://apps.apple.com/app/soulplan-plan-dates-together/id6750098574"
+app_store_url: "https://apps.apple.com/app/soulplan-plan-dates-together/id6702018988"
 
 # Social Proof
 category: "lifestyle"

@@ -12,8 +12,8 @@ pain_hook: "Tired of straining to hear your phone in noisy environments?"
 hero_image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80"
 
 # Store Links
-google_play_url: "https://play.google.com/store/apps/details?id=com.volume.booster.sound"
-app_store_url: "https://apps.apple.com/app/volume-booster-sound-booster/id6737323088"
+google_play_url: "https://play.google.com/store/apps/details?id=com.volume.booster.free.pro"
+app_store_url: ""
 
 # Social Proof
 category: "utilities"

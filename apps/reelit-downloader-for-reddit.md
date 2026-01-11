@@ -13,7 +13,7 @@ hero_image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&
 
 # Store Links
 google_play_url: "https://play.google.com/store/apps/details?id=com.reelit.reddit.downloader"
-app_store_url: "https://apps.apple.com/app/reelit-downloader-reddit/id6738990950"
+app_store_url: ""
 
 # Social Proof
 category: "utilities"

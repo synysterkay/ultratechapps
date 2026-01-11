@@ -12,8 +12,8 @@ pain_hook: "Tired of buying the top and selling the bottom?"
 hero_image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&q=80"
 
 # Store Links
-google_play_url: "https://play.google.com/store/apps/details?id=com.crypto.ai.trading"
-app_store_url: "https://apps.apple.com/app/crypto-ai-trading-analyzer/id6738887877"
+google_play_url: ""
+app_store_url: "https://apps.apple.com/app/crypto-ai-trading-analyzer/id6757122088"
 
 # Social Proof
 category: "finance"

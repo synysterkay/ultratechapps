@@ -13,7 +13,7 @@ hero_image: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&
 
 # Store Links
 google_play_url: "https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner"
-app_store_url: ""
+app_store_url: "https://apps.apple.com/app/red-flag-scanner-ai/id6740946063"
 
 # Social Proof
 category: "dating"
