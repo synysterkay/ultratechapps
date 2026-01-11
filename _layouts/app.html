@@ -206,6 +206,8 @@
       margin-bottom: 1.5rem;
       flex-wrap: wrap;
       animation: fadeInUp 0.6s ease 0.6s both;
+      position: relative;
+      z-index: 10;
     }
     
     .btn-download {
@@ -220,6 +222,8 @@
       font-size: 1rem;
       position: relative;
       overflow: hidden;
+      cursor: pointer;
+      z-index: 5;
     }
     
     .btn-download::before {
@@ -231,6 +235,7 @@
       height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
       transition: left 0.5s;
+      pointer-events: none;
     }
     
     .btn-download:hover::before {
@@ -689,10 +694,13 @@
       justify-content: center;
       flex-wrap: wrap;
       margin-bottom: 2rem;
+      position: relative;
+      z-index: 10;
     }
     
     .btn-large {
       padding: 1.5rem 3rem;
+      cursor: pointer;
     }
     
     .btn-large strong {
@@ -752,6 +760,8 @@
     .sticky-cta-buttons {
       display: flex;
       gap: 0.75rem;
+      position: relative;
+      z-index: 10;
     }
     
     .btn-sticky {
@@ -761,6 +771,7 @@
       text-decoration: none;
       font-size: 0.95rem;
       transition: all 0.3s ease;
+      cursor: pointer;
     }
     
     /* ========== MOBILE RESPONSIVE ========== */
