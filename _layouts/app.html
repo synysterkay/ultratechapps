@@ -9,94 +9,203 @@
   <link rel="stylesheet" href="{{ '/assets/css/3d-modern.css' | relative_url }}">
   <link rel="icon" type="image/x-icon" href="{{ '/assets/logo/favicon.ico' | relative_url }}">
   <style>
-    /* App Landing Page Styles */
+    /* HIGH-CONVERTING LANDING PAGE STYLES */
+    * { box-sizing: border-box; }
+    
     .app-landing-page {
       min-height: 100vh;
-      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%);
+      background: linear-gradient(180deg, #0a0a0f 0%, #0f0f1a 100%);
+      color: #fff;
+      overflow-x: hidden;
     }
     
-    .app-hero {
-      padding: 8rem 0 6rem;
-      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
     
-    .app-hero-content {
+    /* ========== HERO SECTION ========== */
+    .hero-section {
+      padding: 6rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -25%;
+      width: 150%;
+      height: 150%;
+      background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    
+    .hero-content {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.2fr 0.8fr;
       gap: 4rem;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
     
-    .trust-badge {
+    /* Social Proof Bar */
+    .social-proof-bar {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      background: rgba(59, 130, 246, 0.1);
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      padding: 0.5rem 1.25rem;
+      gap: 1rem;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 0.75rem 1.5rem;
       border-radius: 50px;
-      margin-bottom: 1.5rem;
-      backdrop-filter: blur(10px);
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.6s ease;
     }
     
-    .stars {
-      color: #fbbf24;
-      font-size: 1rem;
-      letter-spacing: 2px;
+    .live-users {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
     
-    .rating-text {
-      color: #93c5fd;
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+    
+    .live-text {
+      color: #10b981;
       font-weight: 600;
       font-size: 0.9rem;
     }
     
-    .app-hero-title {
+    .divider {
+      color: rgba(255,255,255,0.3);
+    }
+    
+    .rating-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .stars {
+      color: #fbbf24;
+      letter-spacing: 1px;
+    }
+    
+    .rating-count {
+      color: #94a3b8;
+      font-size: 0.85rem;
+    }
+    
+    /* Hero Headline */
+    .hero-headline {
       font-size: 3.5rem;
       font-weight: 900;
-      color: #fff;
+      line-height: 1.1;
       margin-bottom: 1.5rem;
-      line-height: 1.2;
-      background: linear-gradient(135deg, #fff 0%, #c4b5fd 100%);
+      background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #c4b5fd 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      animation: fadeInUp 0.6s ease 0.1s both;
     }
     
-    .app-hero-subtitle {
+    /* Pain Point */
+    .pain-point {
+      font-size: 1.25rem;
+      color: #f87171;
+      margin-bottom: 1rem;
+      animation: fadeInUp 0.6s ease 0.2s both;
+    }
+    
+    /* Hero Subheadline */
+    .hero-subheadline {
       font-size: 1.3rem;
       color: #cbd5e1;
+      line-height: 1.7;
       margin-bottom: 2rem;
-      line-height: 1.6;
+      animation: fadeInUp 0.6s ease 0.3s both;
     }
     
-    .benefit-list {
+    /* Benefit Stack */
+    .benefit-stack {
       list-style: none;
       padding: 0;
-      margin: 2rem 0;
+      margin: 0 0 2rem 0;
+      animation: fadeInUp 0.6s ease 0.4s both;
     }
     
-    .benefit-list li {
-      color: #10b981;
+    .benefit-stack li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 0;
       font-size: 1.1rem;
-      margin-bottom: 0.75rem;
-      font-weight: 500;
+      color: #e2e8f0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
     
-    .urgency-message {
-      color: #fbbf24;
-      font-size: 1rem;
+    .benefit-stack li:last-child {
+      border-bottom: none;
+    }
+    
+    .benefit-icon {
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    
+    /* Urgency Box */
+    .urgency-box {
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
       margin-bottom: 2rem;
-      padding: 1rem;
-      background: rgba(251, 191, 36, 0.1);
-      border-left: 3px solid #fbbf24;
-      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      animation: fadeInUp 0.6s ease 0.5s both;
     }
     
-    .app-download-buttons {
+    .urgency-icon {
+      font-size: 1.5rem;
+    }
+    
+    .urgency-text {
+      color: #fbbf24;
+      font-weight: 600;
+    }
+    
+    .urgency-text strong {
+      color: #fff;
+    }
+    
+    /* CTA Buttons */
+    .cta-buttons {
       display: flex;
       gap: 1rem;
-      margin: 2rem 0;
+      margin-bottom: 1.5rem;
       flex-wrap: wrap;
+      animation: fadeInUp 0.6s ease 0.6s both;
     }
     
     .btn-download {
@@ -109,7 +218,6 @@
       text-decoration: none;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       font-size: 1rem;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
       position: relative;
       overflow: hidden;
     }
@@ -130,32 +238,32 @@
     }
     
     .btn-ios {
-      background: linear-gradient(135deg, #000000 0%, #1c1c1e 100%);
+      background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
       color: white;
-      border: 2px solid rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255,255,255,0.2);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
     }
     
     .btn-ios:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 80px rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(255,255,255,0.3);
     }
     
     .btn-android {
-      background: linear-gradient(135deg, #34a853 0%, #0f9d58 100%);
+      background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
       color: white;
-      border: 2px solid rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255,255,255,0.2);
+      box-shadow: 0 10px 40px rgba(34, 197, 94, 0.3);
     }
     
     .btn-android:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 20px 60px rgba(52, 168, 83, 0.6), 0 0 80px rgba(52, 168, 83, 0.3);
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(34, 197, 94, 0.5);
     }
     
     .btn-download svg {
       width: 28px;
       height: 28px;
-      flex-shrink: 0;
     }
     
     .btn-download span {
@@ -166,102 +274,239 @@
     }
     
     .btn-download small {
-      font-size: 0.75rem;
-      font-weight: 400;
+      font-size: 0.7rem;
+      font-weight: 500;
       opacity: 0.9;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
     
     .btn-download strong {
-      font-size: 1.1rem;
-      font-weight: 700;
+      font-size: 1.15rem;
     }
     
-    .btn-large {
-      padding: 1.5rem 2.5rem;
-    }
-    
-    .btn-large svg {
-      width: 32px;
-      height: 32px;
-    }
-    
-    .btn-large strong {
-      font-size: 1.25rem;
-    }
-    
-    .pulse-animation {
-      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    }
-    
-    @keyframes pulse {
-      0%, 100% {
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-      }
-      50% {
-        box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
-      }
-    }
-    
+    /* Trust Signals */
     .trust-signals {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.6s ease 0.7s both;
+    }
+    
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       color: #94a3b8;
       font-size: 0.9rem;
-      margin-top: 1rem;
     }
     
-    .trust-signals small {
-      display: inline-block;
+    .trust-icon {
+      color: #10b981;
     }
     
-    .app-hero-image img {
+    /* Hero Image */
+    .hero-image {
+      position: relative;
+      animation: fadeInRight 0.8s ease 0.3s both;
+    }
+    
+    .hero-image img {
       width: 100%;
-      max-width: 500px;
+      max-width: 450px;
       border-radius: 24px;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 100px rgba(99, 102, 241, 0.2);
-      border: 2px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255,255,255,0.1);
     }
     
-    .app-features, .testimonials, .related-articles {
-      padding: 6rem 0;
+    .floating-badge {
+      position: absolute;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      padding: 0.75rem 1.25rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
+      animation: float 3s ease-in-out infinite;
     }
     
-    .section-title {
-      font-size: 2.5rem;
-      font-weight: 900;
+    .floating-badge.top-right {
+      top: -10px;
+      right: -10px;
+    }
+    
+    .floating-badge.bottom-left {
+      bottom: 20px;
+      left: -20px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      box-shadow: 0 10px 40px rgba(16, 185, 129, 0.4);
+      animation-delay: 1.5s;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    /* ========== PROBLEM/SOLUTION SECTION ========== */
+    .problem-section {
+      padding: 5rem 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(239, 68, 68, 0.05) 50%, transparent 100%);
+    }
+    
+    .problem-content {
+      max-width: 800px;
+      margin: 0 auto;
       text-align: center;
+    }
+    
+    .section-label {
+      display: inline-block;
+      background: rgba(239, 68, 68, 0.1);
+      color: #f87171;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+    }
+    
+    .section-label.solution {
+      background: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+    }
+    
+    .problem-headline {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      color: #fff;
+    }
+    
+    .problem-list {
+      display: grid;
+      gap: 1rem;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+    
+    .problem-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.25rem;
+      background: rgba(239, 68, 68, 0.05);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      border-radius: 12px;
+    }
+    
+    .problem-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    
+    .problem-text {
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+    
+    .problem-text strong {
+      color: #f87171;
+    }
+    
+    /* ========== SOLUTION SECTION ========== */
+    .solution-section {
+      padding: 5rem 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(16, 185, 129, 0.05) 50%, transparent 100%);
+    }
+    
+    .solution-headline {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .solution-subheadline {
+      font-size: 1.2rem;
+      color: #94a3b8;
+      margin-bottom: 3rem;
+    }
+    
+    /* ========== FEATURES SECTION ========== */
+    .features-section {
+      padding: 5rem 0;
+    }
+    
+    .features-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    .features-headline {
+      font-size: 2.5rem;
+      font-weight: 800;
       margin-bottom: 1rem;
       background: linear-gradient(135deg, #fff 0%, #c4b5fd 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     
-    .section-subtitle {
-      text-align: center;
+    .features-subheadline {
       color: #94a3b8;
-      font-size: 1.1rem;
-      margin-bottom: 4rem;
+      font-size: 1.2rem;
     }
     
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
-      margin-bottom: 4rem;
     }
     
     .feature-card {
-      background: rgba(255, 255, 255, 0.03);
-      padding: 2.5rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
+      padding: 2.5rem;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #6366f1, #8b5cf6, #a855f7);
+      opacity: 0;
+      transition: opacity 0.3s;
     }
     
     .feature-card:hover {
-      transform: translateY(-10px);
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(99, 102, 241, 0.5);
-      box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+      transform: translateY(-8px);
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(99, 102, 241, 0.3);
+      box-shadow: 0 25px 80px rgba(99, 102, 241, 0.2);
+    }
+    
+    .feature-card:hover::before {
+      opacity: 1;
     }
     
     .feature-icon {
@@ -269,59 +514,145 @@
       margin-bottom: 1.5rem;
     }
     
-    .feature-card h3 {
-      color: #fff;
-      font-size: 1.4rem;
+    .feature-title {
+      font-size: 1.3rem;
       font-weight: 700;
+      color: #fff;
       margin-bottom: 1rem;
     }
     
-    .feature-card p {
+    .feature-description {
       color: #94a3b8;
-      line-height: 1.6;
+      line-height: 1.7;
     }
     
-    .inline-cta {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-      border: 2px solid rgba(99, 102, 241, 0.3);
-      border-radius: 24px;
-      padding: 3rem;
+    /* ========== TESTIMONIALS SECTION ========== */
+    .testimonials-section {
+      padding: 5rem 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(99, 102, 241, 0.05) 50%, transparent 100%);
+    }
+    
+    .testimonials-header {
       text-align: center;
-      backdrop-filter: blur(10px);
+      margin-bottom: 4rem;
     }
     
-    .inline-cta-text {
+    .testimonials-headline {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
       color: #fff;
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
     }
     
-    .app-download-buttons-small {
+    .testimonials-subheadline {
+      color: #94a3b8;
+      font-size: 1.1rem;
+    }
+    
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+    
+    .testimonial-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+    }
+    
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 1rem;
+      left: 1.5rem;
+      font-size: 4rem;
+      color: rgba(99, 102, 241, 0.3);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    
+    .testimonial-stars {
+      color: #fbbf24;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+    
+    .testimonial-text {
+      color: #e2e8f0;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    
+    .testimonial-author {
       display: flex;
+      align-items: center;
       gap: 1rem;
+    }
+    
+    .author-avatar {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
-    }
-    
-    .btn-download-small {
-      padding: 0.875rem 2rem;
-      border-radius: 12px;
       font-weight: 700;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
     
-    .app-cta {
-      padding: 8rem 0;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+    .author-info {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .author-name {
+      font-weight: 700;
+      color: #fff;
+    }
+    
+    .author-title {
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+    
+    /* ========== FINAL CTA SECTION ========== */
+    .final-cta-section {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
     
-    .cta-content h2 {
+    .final-cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200%;
+      height: 100%;
+      background: radial-gradient(ellipse at center top, rgba(99, 102, 241, 0.2) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .cta-headline {
       font-size: 3rem;
       font-weight: 900;
-      color: #fff;
       margin-bottom: 1.5rem;
       background: linear-gradient(135deg, #fff 0%, #c4b5fd 100%);
       -webkit-background-clip: text;
@@ -329,122 +660,138 @@
     }
     
     .cta-subheadline {
+      font-size: 1.3rem;
       color: #cbd5e1;
-      font-size: 1.2rem;
       margin-bottom: 2rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      line-height: 1.6;
     }
     
     .cta-benefits {
       display: flex;
-      gap: 2rem;
       justify-content: center;
-      margin: 2rem 0;
+      gap: 2rem;
       flex-wrap: wrap;
+      margin-bottom: 2.5rem;
     }
     
     .cta-benefit {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       color: #10b981;
       font-weight: 600;
       font-size: 1.1rem;
     }
     
-    .cta-guarantee {
+    .cta-buttons-final {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    
+    .btn-large {
+      padding: 1.5rem 3rem;
+    }
+    
+    .btn-large strong {
+      font-size: 1.3rem;
+    }
+    
+    .guarantee-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
       color: #94a3b8;
       font-size: 1rem;
-      margin-top: 2rem;
     }
     
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    .guarantee-icon {
+      font-size: 1.25rem;
+    }
+    
+    /* ========== STICKY CTA BAR ========== */
+    .sticky-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 15, 0.95);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 1rem 2rem;
+      z-index: 1000;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .sticky-cta.visible {
+      transform: translateY(0);
+    }
+    
+    .sticky-cta-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       gap: 2rem;
     }
     
-    .testimonial-card {
-      background: rgba(255, 255, 255, 0.03);
-      padding: 2.5rem;
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-    }
-    
-    .testimonial-rating {
-      color: #fbbf24;
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      letter-spacing: 3px;
-    }
-    
-    .testimonial-text {
-      color: #cbd5e1;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-      font-style: italic;
-    }
-    
-    .testimonial-author {
-      color: #94a3b8;
+    .sticky-cta-text {
       font-weight: 600;
+      color: #fff;
     }
     
-    .articles-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+    .sticky-cta-text span {
+      color: #10b981;
     }
     
-    .article-card {
-      background: rgba(255, 255, 255, 0.03);
-      padding: 2rem;
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    .sticky-cta-buttons {
+      display: flex;
+      gap: 0.75rem;
+    }
+    
+    .btn-sticky {
+      padding: 0.875rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.95rem;
       transition: all 0.3s ease;
     }
     
-    .article-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(99, 102, 241, 0.5);
-      box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
-    }
-    
-    .article-card a {
-      text-decoration: none;
-    }
-    
-    .article-card h3 {
-      color: #fff;
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-      font-weight: 700;
-    }
-    
-    .article-card p {
-      color: #94a3b8;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-    
-    .read-more {
-      color: #6366f1;
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-    
+    /* ========== MOBILE RESPONSIVE ========== */
     @media (max-width: 768px) {
-      .app-hero-content {
+      .hero-content {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        text-align: center;
       }
       
-      .app-hero-title {
-        font-size: 2.5rem;
+      .hero-headline {
+        font-size: 2.25rem;
       }
       
-      .app-download-buttons {
+      .hero-image {
+        order: -1;
+      }
+      
+      .hero-image img {
+        max-width: 300px;
+        margin: 0 auto;
+      }
+      
+      .floating-badge {
+        display: none;
+      }
+      
+      .benefit-stack li {
+        justify-content: center;
+      }
+      
+      .cta-buttons {
         flex-direction: column;
       }
       
@@ -453,13 +800,48 @@
         justify-content: center;
       }
       
-      .cta-content h2 {
+      .trust-signals {
+        justify-content: center;
+      }
+      
+      .problem-headline, .solution-headline, .features-headline, .testimonials-headline {
+        font-size: 1.75rem;
+      }
+      
+      .cta-headline {
         font-size: 2rem;
       }
       
       .cta-benefits {
         flex-direction: column;
         gap: 1rem;
+      }
+      
+      .cta-buttons-final {
+        flex-direction: column;
+      }
+      
+      .sticky-cta-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+      
+      .sticky-cta-buttons {
+        width: 100%;
+      }
+      
+      .btn-sticky {
+        flex: 1;
+      }
+      
+      .social-proof-bar {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      .divider {
+        display: none;
       }
     }
   </style>
@@ -468,145 +850,207 @@
   {% include header.html %}
 
   <main class="app-landing-page">
-    <!-- Hero Section -->
-    <section class="app-hero">
+    
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero-section">
       <div class="container">
-        <div class="app-hero-content">
-          <div class="app-hero-text">
-            <!-- Trust Badge -->
-            {% if page.rating %}
-            <div class="trust-badge">
-              <span class="stars">⭐⭐⭐⭐⭐</span>
-              <span class="rating-text">{{ page.rating }} Rating • {{ page.downloads }}+ Downloads</span>
+        <div class="hero-content">
+          <div class="hero-text">
+            <!-- Social Proof Bar -->
+            <div class="social-proof-bar">
+              <div class="live-users">
+                <div class="pulse-dot"></div>
+                <span class="live-text">{{ page.live_users | default: "2,847" }} people using this right now</span>
+              </div>
+              <span class="divider">|</span>
+              <div class="rating-badge">
+                <span class="stars">★★★★★</span>
+                <span class="rating-count">{{ page.rating | default: "4.8" }} ({{ page.reviews | default: "12,000" }}+ reviews)</span>
+              </div>
             </div>
+            
+            <!-- Pain Point Hook -->
+            {% if page.pain_hook %}
+            <p class="pain-point">{{ page.pain_hook }}</p>
             {% endif %}
             
-            <h1 class="app-hero-title">{{ page.tagline }}</h1>
-            <p class="app-hero-subtitle">{{ page.description }}</p>
+            <!-- Main Headline -->
+            <h1 class="hero-headline">
+              {{ page.headline | default: page.tagline }}
+            </h1>
             
-            <!-- Benefit Bullets -->
-            {% if page.benefits %}
-            <ul class="benefit-list">
-              {% for benefit in page.benefits limit:3 %}
-              <li>✅ {{ benefit }}</li>
+            <!-- Subheadline with Value Prop -->
+            <p class="hero-subheadline">
+              {{ page.subheadline | default: page.description }}
+            </p>
+            
+            <!-- Benefit Stack -->
+            <ul class="benefit-stack">
+              {% for benefit in page.benefits %}
+              <li>
+                <span class="benefit-icon">✓</span>
+                <span>{{ benefit }}</span>
+              </li>
               {% endfor %}
             </ul>
-            {% endif %}
             
-            <!-- Urgency Message -->
-            <p class="urgency-message">🎁 <strong>Free to download.</strong> {{ page.urgency_text | default: "Join thousands of satisfied users today!" }}</p>
+            <!-- Urgency Box -->
+            <div class="urgency-box">
+              <span class="urgency-icon">⚡</span>
+              <span class="urgency-text">{{ page.urgency_text | default: "Limited time: Download FREE today – no credit card required" }}</span>
+            </div>
             
             <!-- Download Buttons -->
-            <div class="app-download-buttons">
+            <div class="cta-buttons">
               {% if page.app_store_url and page.app_store_url != "" %}
-              <a href="{{ page.app_store_url }}" class="btn-download btn-ios pulse-animation" target="_blank" rel="noopener">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+              <a href="{{ page.app_store_url }}" class="btn-download btn-ios" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
                 </svg>
                 <span>
-                  <small>Download on</small>
+                  <small>Download Free on</small>
                   <strong>App Store</strong>
                 </span>
               </a>
               {% endif %}
               
               {% if page.google_play_url and page.google_play_url != "" %}
-              <a href="{{ page.google_play_url }}" class="btn-download btn-android pulse-animation" target="_blank" rel="noopener">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <a href="{{ page.google_play_url }}" class="btn-download btn-android" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor">
                   <path d="M3.609 1.814L13.792 12 3.609 22.186a.996.996 0 0 1-.609-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/>
                 </svg>
                 <span>
-                  <small>Get it on</small>
+                  <small>Get it Free on</small>
                   <strong>Google Play</strong>
                 </span>
               </a>
               {% endif %}
             </div>
             
-            <p class="trust-signals">
-              <small>✓ Free to download &nbsp;•&nbsp; ✓ No credit card required &nbsp;•&nbsp; ✓ Instant access</small>
-            </p>
+            <!-- Trust Signals -->
+            <div class="trust-signals">
+              <div class="trust-item">
+                <span class="trust-icon">✓</span>
+                <span>100% Free Download</span>
+              </div>
+              <div class="trust-item">
+                <span class="trust-icon">✓</span>
+                <span>No Credit Card</span>
+              </div>
+              <div class="trust-item">
+                <span class="trust-icon">✓</span>
+                <span>Instant Access</span>
+              </div>
+            </div>
           </div>
           
-          <div class="app-hero-image">
-            <img src="{{ page.hero_image }}" alt="{{ page.app_name }}" loading="lazy">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="app-features">
-      <div class="container">
-        <h2 class="section-title">{{ page.features_headline | default: "Why Users Love" }} {{ page.app_name }}</h2>
-        <p class="section-subtitle">{{ page.features_subheadline | default: "Everything you need to succeed, all in one powerful app" }}</p>
-        
-        <div class="features-grid">
-          {% for feature in page.features %}
-          <div class="feature-card">
-            <div class="feature-icon">{{ feature.icon }}</div>
-            <h3>{{ feature.title }}</h3>
-            <p>{{ feature.description }}</p>
-          </div>
-          {% endfor %}
-        </div>
-        
-        <!-- Mid-page CTA -->
-        <div class="inline-cta">
-          <p class="inline-cta-text"><strong>Ready to transform your experience?</strong> Download now and see results immediately.</p>
-          <div class="app-download-buttons-small">
-            {% if page.app_store_url and page.app_store_url != "" %}
-            <a href="{{ page.app_store_url }}" class="btn-download-small btn-ios" target="_blank" rel="noopener">
-              📱 App Store
-            </a>
-            {% endif %}
-            {% if page.google_play_url and page.google_play_url != "" %}
-            <a href="{{ page.google_play_url }}" class="btn-download-small btn-android" target="_blank" rel="noopener">
-              🤖 Google Play
-            </a>
-            {% endif %}
+          <!-- Hero Image -->
+          <div class="hero-image">
+            <img src="{{ page.hero_image }}" alt="{{ page.app_name }}">
+            <div class="floating-badge top-right">🔥 #1 in {{ page.category | capitalize }}</div>
+            <div class="floating-badge bottom-left">{{ page.downloads | default: "50K" }}+ Downloads</div>
           </div>
         </div>
       </div>
     </section>
     
-    <!-- Social Proof Section -->
-    {% if page.testimonials %}
-    <section class="testimonials">
+    <!-- ========== PROBLEM SECTION ========== -->
+    {% if page.problems %}
+    <section class="problem-section">
       <div class="container">
-        <h2 class="section-title">What Our Users Say</h2>
-        <div class="testimonials-grid">
-          {% for testimonial in page.testimonials limit:3 %}
-          <div class="testimonial-card">
-            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-            <p class="testimonial-text">"{{ testimonial.text }}"</p>
-            <p class="testimonial-author">— {{ testimonial.author }}</p>
+        <div class="problem-content">
+          <span class="section-label">😫 Sound Familiar?</span>
+          <h2 class="problem-headline">{{ page.problem_headline | default: "You're not alone. These struggles are real:" }}</h2>
+          <div class="problem-list">
+            {% for problem in page.problems %}
+            <div class="problem-item">
+              <span class="problem-icon">😤</span>
+              <p class="problem-text">{{ problem }}</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+    
+    <!-- ========== SOLUTION SECTION ========== -->
+    <section class="solution-section">
+      <div class="container">
+        <div class="problem-content">
+          <span class="section-label solution">✨ The Solution</span>
+          <h2 class="solution-headline">{{ page.solution_headline | default: "Introducing" }} {{ page.app_name }}</h2>
+          <p class="solution-subheadline">{{ page.solution_text | default: "Finally, there's a smarter way. Our AI-powered app does the hard work so you don't have to." }}</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- ========== FEATURES SECTION ========== -->
+    {% if page.features %}
+    <section class="features-section">
+      <div class="container">
+        <div class="features-header">
+          <h2 class="features-headline">{{ page.features_headline | default: "Everything You Need to Succeed" }}</h2>
+          <p class="features-subheadline">{{ page.features_subheadline | default: "Powerful features designed with you in mind" }}</p>
+        </div>
+        <div class="features-grid">
+          {% for feature in page.features %}
+          <div class="feature-card">
+            <div class="feature-icon">{{ feature.icon }}</div>
+            <h3 class="feature-title">{{ feature.title }}</h3>
+            <p class="feature-description">{{ feature.description }}</p>
           </div>
           {% endfor %}
         </div>
       </div>
     </section>
     {% endif %}
-
-    <!-- CTA Section -->
-    <section class="app-cta">
+    
+    <!-- ========== TESTIMONIALS SECTION ========== -->
+    {% if page.testimonials %}
+    <section class="testimonials-section">
+      <div class="container">
+        <div class="testimonials-header">
+          <h2 class="testimonials-headline">{{ page.testimonials_headline | default: "Real People, Real Results" }}</h2>
+          <p class="testimonials-subheadline">Join thousands who have already transformed their lives</p>
+        </div>
+        <div class="testimonials-grid">
+          {% for testimonial in page.testimonials %}
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"{{ testimonial.text }}"</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">{{ testimonial.author | slice: 0 }}</div>
+              <div class="author-info">
+                <span class="author-name">{{ testimonial.author }}</span>
+                <span class="author-title">{{ testimonial.title | default: "Verified User" }}</span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+    
+    <!-- ========== FINAL CTA SECTION ========== -->
+    <section class="final-cta-section">
       <div class="container">
         <div class="cta-content">
-          <h2>{{ page.cta_headline | default: "Don't Miss Out – Download" }} {{ page.app_name }} {{ page.cta_headline | default: "Today" }}</h2>
-          <p class="cta-subheadline">{{ page.cta_text | default: "Join thousands of satisfied users who have already transformed their experience. Free to download, instant access." }}</p>
+          <h2 class="cta-headline">{{ page.final_cta_headline | default: "Ready to Change Your Life?" }}</h2>
+          <p class="cta-subheadline">{{ page.final_cta_text | default: "Join thousands of happy users who made the decision to improve their lives. The only regret you'll have is not starting sooner." }}</p>
           
-          <!-- Value Props -->
           <div class="cta-benefits">
-            <span class="cta-benefit">✅ {{ page.cta_benefit_1 | default: "100% Free" }}</span>
-            <span class="cta-benefit">✅ {{ page.cta_benefit_2 | default: "No Ads" }}</span>
-            <span class="cta-benefit">✅ {{ page.cta_benefit_3 | default: "Instant Setup" }}</span>
+            <span class="cta-benefit">✓ {{ page.cta_benefit_1 | default: "100% Free" }}</span>
+            <span class="cta-benefit">✓ {{ page.cta_benefit_2 | default: "No Credit Card" }}</span>
+            <span class="cta-benefit">✓ {{ page.cta_benefit_3 | default: "Cancel Anytime" }}</span>
           </div>
           
-          <div class="app-download-buttons">
+          <div class="cta-buttons-final">
             {% if page.app_store_url and page.app_store_url != "" %}
             <a href="{{ page.app_store_url }}" class="btn-download btn-ios btn-large" target="_blank" rel="noopener">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
               </svg>
               <span>
                 <small>Download Free on</small>
@@ -617,7 +1061,7 @@
             
             {% if page.google_play_url and page.google_play_url != "" %}
             <a href="{{ page.google_play_url }}" class="btn-download btn-android btn-large" target="_blank" rel="noopener">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+              <svg viewBox="0 0 24 24" fill="currentColor">
                 <path d="M3.609 1.814L13.792 12 3.609 22.186a.996.996 0 0 1-.609-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/>
               </svg>
               <span>
@@ -628,35 +1072,51 @@
             {% endif %}
           </div>
           
-          <p class="cta-guarantee">
-            🔒 <strong>Safe & Secure</strong> • Trusted by {{ page.downloads | default: "10,000" }}+ users worldwide
+          <p class="guarantee-text">
+            <span class="guarantee-icon">🔒</span>
+            <span>Safe & Secure • Trusted by {{ page.downloads | default: "50,000" }}+ users worldwide</span>
           </p>
         </div>
       </div>
     </section>
-
-    <!-- Related Articles -->
-    {% if page.category %}
-    <section class="related-articles">
-      <div class="container">
-        <h2 class="section-title">Related Articles</h2>
-        <div class="articles-grid">
-          {% assign related = site.posts | where_exp: "post", "post.tags contains page.category" | limit: 3 %}
-          {% for post in related %}
-          <article class="article-card">
-            <a href="{{ post.url | relative_url }}">
-              <h3>{{ post.title }}</h3>
-              <p>{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
-              <span class="read-more">Read more →</span>
-            </a>
-          </article>
-          {% endfor %}
-        </div>
-      </div>
-    </section>
-    {% endif %}
+    
   </main>
+  
+  <!-- ========== STICKY CTA BAR ========== -->
+  <div class="sticky-cta" id="stickyCta">
+    <div class="sticky-cta-content">
+      <div class="sticky-cta-text">
+        🔥 <span>{{ page.downloads | default: "50,000" }}+ people</span> already downloaded {{ page.app_name }}
+      </div>
+      <div class="sticky-cta-buttons">
+        {% if page.app_store_url and page.app_store_url != "" %}
+        <a href="{{ page.app_store_url }}" class="btn-sticky btn-ios" target="_blank" rel="noopener">📱 App Store</a>
+        {% endif %}
+        {% if page.google_play_url and page.google_play_url != "" %}
+        <a href="{{ page.google_play_url }}" class="btn-sticky btn-android" target="_blank" rel="noopener">🤖 Google Play</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
 
   {% include footer.html %}
+  
+  <script>
+    // Sticky CTA visibility
+    const stickyCta = document.getElementById('stickyCta');
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll > 600) {
+        stickyCta.classList.add('visible');
+      } else {
+        stickyCta.classList.remove('visible');
+      }
+      
+      lastScroll = currentScroll;
+    });
+  </script>
 </body>
 </html>
