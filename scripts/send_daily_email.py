@@ -6,6 +6,7 @@ Sends daily AI app highlights to subscribers
 import os
 import sys
 import json
+import re
 import random
 import requests
 from datetime import datetime
@@ -106,7 +107,8 @@ class DailyEmailCampaign:
         description = app.get('description', '')
         
         # Create landing page URL
-        slug = app_name.lower().replace(':', '-').replace(' ', '-').replace('--', '-').strip('-')
+        slug = app_name.lower().replace(':', '-').replace(' ', '-')
+        slug = re.sub(r'-+', '-', slug).strip('-')  # Replace multiple dashes
         landing_page_url = f"https://bestaiapps.site/apps/{slug}/"
         
         # Create download button pointing to landing page

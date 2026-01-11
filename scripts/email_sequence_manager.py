@@ -7,6 +7,7 @@ Based on subscriber journey stage and timing
 import os
 import sys
 import json
+import re
 import requests
 import time
 from datetime import datetime, timedelta
@@ -172,7 +173,8 @@ class EmailSequenceManager:
         app_name = app_data['name']
         
         # Create landing page URL
-        slug = app_name.lower().replace(':', '-').replace(' ', '-').replace('--', '-').strip('-')
+        slug = app_name.lower().replace(':', '-').replace(' ', '-')
+        slug = re.sub(r'-+', '-', slug).strip('-')  # Replace multiple dashes
         landing_page_url = f"https://bestaiapps.site/apps/{slug}/"
         
         # Build body paragraphs

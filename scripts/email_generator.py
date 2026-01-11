@@ -6,6 +6,7 @@ Generates personalized, high-value email content based on niche and sequence sta
 import os
 import sys
 import json
+import re
 import random
 import requests
 from pathlib import Path
@@ -13,7 +14,9 @@ from datetime import datetime
 
 def slugify(text):
     """Convert app name to URL slug"""
-    return text.lower().replace(':', '-').replace(' ', '-').replace('--', '-').strip('-')
+    slug = text.lower().replace(':', '-').replace(' ', '-')
+    slug = re.sub(r'-+', '-', slug)  # Replace multiple dashes with single dash
+    return slug.strip('-')
 
 class EmailGenerator:
     def __init__(self):
