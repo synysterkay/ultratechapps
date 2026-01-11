@@ -385,6 +385,17 @@ WRITE NATURALLY - let the value of the content speak for itself, then feature th
                 
                 article_content = response.choices[0].message.content.strip()
                 
+                # DEBUG: Print raw response to understand format
+                print(f"\n{'='*80}")
+                print(f"🔍 DEBUG - Raw DeepSeek Response (first 800 chars):")
+                print(f"{'='*80}")
+                print(article_content[:800])
+                print(f"\n{'='*80}")
+                print(f"Response starts with: {repr(article_content[:100])}")
+                print(f"Response ends with: {repr(article_content[-100:])}")
+                print(f"Total length: {len(article_content)} characters")
+                print(f"{'='*80}\n")
+                
                 # Try to parse JSON response if wrapped in code blocks
                 import json
                 try:
@@ -442,8 +453,7 @@ WRITE NATURALLY - let the value of the content speak for itself, then feature th
                     metadata={'app_name': app_info['name'], 'topic': topic}
                 )
                 
-                # Extract metadata
-                title = self._extract_title(article_content)
+                # Extract keywords (title already extracted from JSON above)
                 keywords = self._extract_keywords(article_content, niche)
                 
                 # Add download CTAs to article content
