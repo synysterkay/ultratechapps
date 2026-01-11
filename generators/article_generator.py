@@ -378,6 +378,30 @@ WRITE NATURALLY - let the value of the content speak for itself, then feature th
                 
                 article_content = response.choices[0].message.content.strip()
                 
+                # Try to parse JSON response if wrapped in code blocks
+                import json
+                try:
+                    # Remove code block markers if present
+                    if article_content.startswith('```'):
+                        # Extract content between ``` markers
+                        json_match = re.search(r'```(?:json)?\s*\n(.*?)\n```', article_content, re.DOTALL)
+                        if json_match:
+                            article_content = json_match.group(1).strip()
+                    
+                    # Try parsing as JSON
+                    article_data = json.loads(article_content)
+                    
+                    # Extract fields from JSON
+                    title = article_data.get('title', 'Untitled Article')
+                    content = article_data.get('content', '')
+                    meta_description = article_data.get('meta_description', '')
+                    keywords (title already extracted abovee rest of processing
+                    article_content = content
+                    
+                except (json.JSONDecodeError, AttributeError):
+                    # Not JSON format, use as-is (legacy behavior)
+                    title = self._extract_title(article_content)
+                
                 # Skip validation - let DeepSeek generate freely
                 # Validation was too strict and caused unnecessary retries
                 
