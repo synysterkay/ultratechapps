@@ -47,7 +47,7 @@ Follow this step-by-step guide to objectively assess your relationship dynamics.
 2.  **Look for Repetition.** Review your notes. Is the same core issue (e.g., dismissiveness, broken promises) appearing? Repetition is the hallmark of a pattern, not a one-off.
 3.  **Analyze the Power Balance.** Who apologizes most? Who sets the plans? Who's feelings are routinely prioritized? A consistent power imbalance is a major **red flag in dating**.
 4.  **Check Your Gut Feeling.** Our nervous system often detects danger before our conscious mind does. Do you feel constantly on edge, like you're "walking on eggshells"?
-5.  **Seek an Objective Perspective.** Share your observations with a trusted friend or use an impartial tool. **Red Flag Scanner AI** is designed for this—paste a conversation or describe a situation for an instant analysis free from emotional bias. [Download it on the App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6750166589) or [Google Play](https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner) to try it.
+5.  **Seek an Objective Perspective.** Share your observations with a trusted friend or use an impartial tool. **Red Flag Scanner AI** is designed for this—paste a conversation or describe a situation for an instant analysis free from emotional bias. [Download it on the App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6740946063) or [Google Play](https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner) to try it.
 
 ![Hand writing in a journal next to a smartphone, representing self-audit](https://images.unsplash.com/photo-1484480974-28ec3d928524?w=1200&q=80)
 
@@ -108,6 +108,6 @@ Understanding the psychology behind **toxic relationship patterns** is your firs
 
 Don't navigate these complex waters on guesswork alone. Use the tools built for today's challenges. **Red Flag Scanner AI** provides the instant, objective clarity you need to validate your concerns and make informed decisions about your love life.
 
-**Ready to see clearly?** [Download Red Flag Scanner AI for iOS](https://apps.apple.com/us/app/red-flag-scanner-ai/id6750166589) or [get it on Android](https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner) and run your first free scan today.
+**Ready to see clearly?** [Download Red Flag Scanner AI for iOS](https://apps.apple.com/us/app/red-flag-scanner-ai/id6740946063) or [get it on Android](https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner) and run your first free scan today.
 
 Built by an indie developer who ships apps every day.

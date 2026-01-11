@@ -66,7 +66,7 @@ Key features include:
 
 You can download it for free to start gaining clarity:
 *   [Get Red Flag Scanner AI on Google Play](https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner)
-*   [Download Red Flag Scanner AI on the App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6750166589)
+*   [Download Red Flag Scanner AI on the App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6740946063)
 
 ![Close-up of a smartphone with a heart and graph visualization on screen](https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&q=80)
 

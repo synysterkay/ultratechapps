@@ -37,7 +37,7 @@ Think of it as a personal concierge for your relationship. It considers variable
 
 ### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.aifun.dateideas.planadate)
 
-### [🍎 Download on App Store](https://apps.apple.com/us/app/soulplan-plan-dates-together/id6750098574)
+### [🍎 Download on App Store](https://apps.apple.com/us/app/soulplan-plan-dates-together/id6702018988)
 
 ---
 
@@ -80,7 +80,7 @@ While powerful, these tools are only as good as how you use them. Avoid these pi
 
 ### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.aifun.dateideas.planadate)
 
-### [🍎 Download on App Store](https://apps.apple.com/us/app/soulplan-plan-dates-together/id6750098574)
+### [🍎 Download on App Store](https://apps.apple.com/us/app/soulplan-plan-dates-together/id6702018988)
 
 ---
 
@@ -113,7 +113,7 @@ The market is growing, but key differentiators separate basic idea generators fr
 
 ### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.aifun.dateideas.planadate)
 
-### [🍎 Download on App Store](https://apps.apple.com/us/app/soulplan-plan-dates-together/id6750098574)
+### [🍎 Download on App Store](https://apps.apple.com/us/app/soulplan-plan-dates-together/id6702018988)
 
 ---
 
@@ -122,7 +122,7 @@ The market is growing, but key differentiators separate basic idea generators fr
 *   **Logistics Integration:** Can it help with booking, calendars, and maps? The more seamless, the better.
 *   **Variety of Modes:** Look for "Quick Date," "At-Home," "Adventure," and "Surprise" modes to cover all contexts.
 
-A leading app that embodies these principles is **SoulPlan: Plan Dates Together**. It’s specifically engineered to turn planning from a solo task into a shared activity that builds excitement. Couples can independently swipe on AI-generated ideas (powered by preferences you set), and the app reveals matches—showing you both what you’re mutually excited about. It includes shared to-do lists for date prep, integrated timing, and a library of creative, personalized suggestions that go beyond the cliché. You can download SoulPlan on the [App Store](https://apps.apple.com/us/app/soulplan-plan-dates-together/id6750098574) or [Google Play](https://play.google.com/store/apps/details?id=com.aifun.dateideas.planadate) to start transforming your date nights from a source of stress to a source of joy.
+A leading app that embodies these principles is **SoulPlan: Plan Dates Together**. It’s specifically engineered to turn planning from a solo task into a shared activity that builds excitement. Couples can independently swipe on AI-generated ideas (powered by preferences you set), and the app reveals matches—showing you both what you’re mutually excited about. It includes shared to-do lists for date prep, integrated timing, and a library of creative, personalized suggestions that go beyond the cliché. You can download SoulPlan on the [App Store](https://apps.apple.com/us/app/soulplan-plan-dates-together/id6702018988) or [Google Play](https://play.google.com/store/apps/details?id=com.aifun.dateideas.planadate) to start transforming your date nights from a source of stress to a source of joy.
 
 ![Happy couple on a date planned using a mobile app](https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&q=80)
 

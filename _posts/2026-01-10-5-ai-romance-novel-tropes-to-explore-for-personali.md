@@ -33,7 +33,7 @@ At its core, the concept of **AI romance novel tropes to explore** combines the 
 
 ## **Ready to get started?** Download LoveStory AI: Romance Novel now:
 
-### [🍎 Download on App Store](https://apps.apple.com/us/app/lovestory-ai-romance-novel/id6758139751)
+### [🍎 Download on App Store](https://apps.apple.com/us/app/lovestory-ai-romance-novel/id6757317428)
 
 ---
 
@@ -64,7 +64,7 @@ Now, let’s dive into the specific **romance tropes for AI stories** that are p
 
 ## **Want to try it yourself?** Get LoveStory AI: Romance Novel today:
 
-### [🍎 Download on App Store](https://apps.apple.com/us/app/lovestory-ai-romance-novel/id6758139751)
+### [🍎 Download on App Store](https://apps.apple.com/us/app/lovestory-ai-romance-novel/id6757317428)
 
 ---
 
@@ -102,7 +102,7 @@ Most apps, including LoveStory AI, operate on a freemium model. You can often st
 
 ## **Don't wait!** Download LoveStory AI: Romance Novel and start now:
 
-### [🍎 Download on App Store](https://apps.apple.com/us/app/lovestory-ai-romance-novel/id6758139751)
+### [🍎 Download on App Store](https://apps.apple.com/us/app/lovestory-ai-romance-novel/id6757317428)
 
 ---
 

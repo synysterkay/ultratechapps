@@ -33,7 +33,7 @@ Personalized romance novel apps are mobile applications that use artificial inte
 
 ## **Ready to get started?** Download LoveStory AI: Romance Novel now:
 
-### [🍎 Download on App Store](https://apps.apple.com/us/app/lovestory-ai-romance-novel/id6758139751)
+### [🍎 Download on App Store](https://apps.apple.com/us/app/lovestory-ai-romance-novel/id6757317428)
 
 ---
 
@@ -45,7 +45,7 @@ The surge in personalized fiction isn't accidental. Several key factors are conv
 
 Getting started with your own custom love story is surprisingly simple. Here’s how you can go from idea to your first chapter in under five minutes using a top-tier app like LoveStory AI: Romance Novel.
 
-1.  **Choose Your Platform:** Download a dedicated app from your device's store. For iOS users, you can get started directly by downloading [LoveStory AI: Romance Novel from the App Store](https://apps.apple.com/us/app/lovestory-ai-romance-novel/id6758139751).
+1.  **Choose Your Platform:** Download a dedicated app from your device's store. For iOS users, you can get started directly by downloading [LoveStory AI: Romance Novel from the App Store](https://apps.apple.com/us/app/lovestory-ai-romance-novel/id6757317428).
 2.  **Define Your Character:** Input your name or a pseudonym. Then, customize your in-story avatar with details like hair color, profession, and key personality traits (e.g., "ambitious," "witty," "shy").
 3.  **Craft Your Ideal Partner:** This is where the fun deepens. Specify your love interest's attributes—are they a brooding CEO, a charming barista, or a mysterious neighbor? Define their demeanor and background.
 4.  **Set the Scene:** Choose your favorite romance genre and setting. Do you want a **second-chance romance** in a small town, an **enemies-to-lovers** plot in a corporate office, or a **fantasy romance** in a magical realm?
@@ -74,7 +74,7 @@ To elevate your **personalized reading experience** from good to unforgettable, 
 
 ## **Want to try it yourself?** Get LoveStory AI: Romance Novel today:
 
-### [🍎 Download on App Store](https://apps.apple.com/us/app/lovestory-ai-romance-novel/id6758139751)
+### [🍎 Download on App Store](https://apps.apple.com/us/app/lovestory-ai-romance-novel/id6757317428)
 
 ---
 
@@ -91,7 +91,7 @@ While several apps are entering this space, they differ in quality, features, an
 *   High-quality, grammatically correct prose.
 *   The ability to save multiple stories and revisit them.
 
-For readers seeking a seamless and immersive experience, **LoveStory AI: Romance Novel** stands out for its user-friendly interface and robust story-generation engine. It expertly handles a variety of sub-genres and allows for detailed personalization, making it a top contender for anyone wanting to try **personalized fiction**. You can explore its features by downloading it on the [App Store for iOS](https://apps.apple.com/us/app/lovestory-ai-romance-novel/id6758139751).
+For readers seeking a seamless and immersive experience, **LoveStory AI: Romance Novel** stands out for its user-friendly interface and robust story-generation engine. It expertly handles a variety of sub-genres and allows for detailed personalization, making it a top contender for anyone wanting to try **personalized fiction**. You can explore its features by downloading it on the [App Store for iOS](https://apps.apple.com/us/app/lovestory-ai-romance-novel/id6757317428).
 
 ![A laptop and phone showing different story outcomes](https://images.unsplash.com/photo-1487058792-9119ab14e43e?w=1200&q=80)
 
@@ -106,7 +106,7 @@ Most apps operate on a freemium model. You can often create a basic story for fr
 
 ## **Don't wait!** Download LoveStory AI: Romance Novel and start now:
 
-### [🍎 Download on App Store](https://apps.apple.com/us/app/lovestory-ai-romance-novel/id6758139751)
+### [🍎 Download on App Store](https://apps.apple.com/us/app/lovestory-ai-romance-novel/id6757317428)
 
 ---
 

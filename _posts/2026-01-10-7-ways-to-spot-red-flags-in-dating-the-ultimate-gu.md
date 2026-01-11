@@ -31,7 +31,7 @@ In the complex world of modern dating, one question creates more anxiety than an
 
 ### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner)
 
-### [🍎 Download on App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6750166589)
+### [🍎 Download on App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6740946063)
 
 ---
 
@@ -82,7 +82,7 @@ Even with the best intentions, we can misclassify flags. Watch out for these pit
 
 ### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner)
 
-### [🍎 Download on App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6750166589)
+### [🍎 Download on App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6740946063)
 
 ---
 
@@ -112,7 +112,7 @@ This tool is particularly powerful for:
 *   **Those in Early Relationships:** Assessing if a conflict is a normal growing pain or a sign of fundamental disrespect.
 *   **Anyone Seeking Clarity:** Overcoming the "fog" of emotions to see the dynamic clearly.
 
-For a practical, confidential way to apply the framework in this guide, you can **download Red Flag Scanner AI for free** on [Google Play](https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner) or the [App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6750166589). It’s like having a relationship coach in your pocket.
+For a practical, confidential way to apply the framework in this guide, you can **download Red Flag Scanner AI for free** on [Google Play](https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner) or the [App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6740946063). It’s like having a relationship coach in your pocket.
 
 ![AI analysis concept for relationship health](https://images.unsplash.com/photo-1555421689-d68471e189f2?w=1200&q=80)
 
@@ -129,7 +129,7 @@ This is the wrong question. One serious, core red flag (like contempt, control, 
 
 ### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner)
 
-### [🍎 Download on App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6750166589)
+### [🍎 Download on App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6740946063)
 
 ---
 
@@ -148,6 +148,6 @@ Use it as a journaling and reflection aid. Be as objective as possible when desc
 Distinguishing a quirky habit from a destructive pattern is the cornerstone of modern dating intelligence. It protects your peace and paves the way for a genuinely healthy connection. By combining your intuition with a structured framework—and augmenting it with objective tools designed for **relationship red flag analysis**—you empower yourself to make choices from a place of clarity, not fear or hope.
 
 Stop second-guessing your gut. Start analyzing with confidence.
-**Download Red Flag Scanner AI today** for your free, private analysis on [Google Play](https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner) or the [App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6750166589).
+**Download Red Flag Scanner AI today** for your free, private analysis on [Google Play](https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner) or the [App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6740946063).
 
 Built by an indie developer who ships apps every day.

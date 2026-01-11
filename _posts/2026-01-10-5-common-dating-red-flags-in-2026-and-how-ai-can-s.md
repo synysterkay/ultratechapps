@@ -31,7 +31,7 @@ Are you tired of investing months into a relationship, only to discover troublin
 
 ### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner)
 
-### [🍎 Download on App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6750166589)
+### [🍎 Download on App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6740946063)
 
 ---
 
@@ -99,7 +99,7 @@ Even with the best intentions, we often fall into traps that blind us to red fla
 
 ### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner)
 
-### [🍎 Download on App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6750166589)
+### [🍎 Download on App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6740946063)
 
 ---
 
@@ -127,7 +127,7 @@ While self-education and therapy are invaluable, dedicated digital tools provide
 
 You can download it for free to start analyzing your dating experiences:
 *   Get it on [Google Play](https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner)
-*   Download on the [App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6750166589)
+*   Download on the [App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6740946063)
 
 ## Frequently Asked Questions (FAQs)
 
@@ -142,7 +142,7 @@ AI accuracy depends on the quality of its training data and algorithms. Tools li
 
 ### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner)
 
-### [🍎 Download on App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6750166589)
+### [🍎 Download on App Store](https://apps.apple.com/us/app/red-flag-scanner-ai/id6740946063)
 
 ---
 
@@ -162,6 +162,6 @@ The AI's job is identification. Your job is action. Use the insight to start a c
 
 Navigating modern dating requires a new kind of toolkit. By understanding the **common dating red flags** of 2026—from digital secrecy to sophisticated love bombing—and leveraging the power of **AI relationship analysis**, you empower yourself to make clearer, more confident choices. You no longer have to wonder if you're "overreacting." Tools like Red Flag Scanner AI provide the objective lens needed to see patterns clearly, protect your emotional well-being, and ultimately steer you toward healthier, more respectful connections. Your future self will thank you for the time and heartache you save.
 
-Take the first step towards more mindful dating. **Download Red Flag Scanner AI today** for [Android](https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner) or [iOS](https://apps.apple.com/us/app/red-flag-scanner-ai/id6750166589) and turn your intuition into actionable insight.
+Take the first step towards more mindful dating. **Download Red Flag Scanner AI today** for [Android](https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner) or [iOS](https://apps.apple.com/us/app/red-flag-scanner-ai/id6740946063) and turn your intuition into actionable insight.
 
 Built by an indie developer who ships apps every day.

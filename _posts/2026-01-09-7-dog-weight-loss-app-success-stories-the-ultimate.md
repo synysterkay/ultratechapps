@@ -43,7 +43,7 @@ A structured plan matters because it moves you from guesswork to precision. Gues
 Following the blueprint common to all **dog weight loss app success stories** can set you and your pet up for victory. Here is a proven, step-by-step approach.
 
 1.  **Consult Your Veterinarian:** Before starting any plan, rule out underlying medical conditions (like hypothyroidism) and get a professional assessment of your dog's ideal target weight.
-2.  **Choose Your Digital Tool:** Download a dedicated app like **PupShape**. Input your dog's profile accurately to generate a personalized baseline plan. You can get started on [Google Play](https://play.google.com/store/apps/details?id=com.mealplanner.foodofdogs.petmeal) or the [App Store](https://apps.apple.com/us/app/pupshape-dog-weight-loss-plan/id6750132047).
+2.  **Choose Your Digital Tool:** Download a dedicated app like **PupShape**. Input your dog's profile accurately to generate a personalized baseline plan. You can get started on [Google Play](https://play.google.com/store/apps/details?id=com.mealplanner.foodofdogs.petmeal) or the [App Store](https://apps.apple.com/us/app/pupshape-dog-weight-loss-plan/id6739601749).
 3.  **Measure and Log Everything:** Use a kitchen scale for food (cups are inaccurate!) and faithfully log every meal, treat, and snack in the app. Consistency here is non-negotiable.
 4.  **Implement Controlled Exercise:** Follow the app's tailored activity suggestions. Start slow, especially for sedentary dogs, and gradually increase duration and intensity. Log each walk or play session.
 5.  **Schedule Regular Weigh-Ins:** Weigh your dog every 1-2 weeks, at the same time of day, and update the app. This data is crucial for tracking progress and adjusting the plan if needed.
@@ -84,7 +84,7 @@ While willpower is essential, the right tool simplifies the process. The best **
 *   **Vet-Approved Guidance:** Educational content on nutrition and safe exercise.
 *   **Reminders & Motivation:** Notifications to log meals and celebrate milestones.
 
-**PupShape: Dog Weight Loss Plan** is built specifically to provide all these features in one place. It transforms the complex science of **canine nutrition and activity** into a simple, daily checklist. By centralizing all the necessary tools—from the calorie calculator to the progress photo album—it removes friction and increases adherence, which is exactly how **dog weight loss app success stories** are made. You can begin your story today by downloading it for free on [iOS](https://apps.apple.com/us/app/pupshape-dog-weight-loss-plan/id6750132047) or [Android](https://play.google.com/store/apps/details?id=com.mealplanner.foodofdogs.petmeal).
+**PupShape: Dog Weight Loss Plan** is built specifically to provide all these features in one place. It transforms the complex science of **canine nutrition and activity** into a simple, daily checklist. By centralizing all the necessary tools—from the calorie calculator to the progress photo album—it removes friction and increases adherence, which is exactly how **dog weight loss app success stories** are made. You can begin your story today by downloading it for free on [iOS](https://apps.apple.com/us/app/pupshape-dog-weight-loss-plan/id6739601749) or [Android](https://play.google.com/store/apps/details?id=com.mealplanner.foodofdogs.petmeal).
 
 ## Frequently Asked Questions (FAQ)
 

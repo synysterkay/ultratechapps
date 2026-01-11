@@ -60,7 +60,7 @@ While general map and review apps have their place, they are designed for the ma
 
 Unlike generic platforms, SoulPlan’s AI is specifically trained on what makes a great *date* experience. It factors in ambiance, privacy, conversation-friendliness, and unique romantic potential. Its database is constantly updated with local, under-the-radar events and venues. The integrated collaborative features mean you and your partner can build a shared list of possibilities, vote on them, and plan the entire outing in one place—from the first "Ooh, what's this?" to booking a table.
 
-The app consolidates the discovery and planning process, which research shows can reduce the "planning burden" that often falls unevenly in relationships. You can download SoulPlan and start discovering together on the [App Store](https://apps.apple.com/us/app/soulplan-plan-dates-together/id6750098574) or [Google Play](https://play.google.com/store/apps/details?id=com.aifun.dateideas.planadate).
+The app consolidates the discovery and planning process, which research shows can reduce the "planning burden" that often falls unevenly in relationships. You can download SoulPlan and start discovering together on the [App Store](https://apps.apple.com/us/app/soulplan-plan-dates-together/id6702018988) or [Google Play](https://play.google.com/store/apps/details?id=com.aifun.dateideas.planadate).
 
 ![Happy couple toasting at a discovered hidden gem restaurant](https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=1200&q=80)
 
@@ -84,6 +84,6 @@ Google Maps and Yelp are fantastic for information and broad reviews, but they a
 ## Conclusion
 The quest for the perfect, unique date spot no longer has to be a game of chance. By leveraging a specialized **AI assistant for date planning**, you unlock a world of hidden gems that reignite excitement and foster deeper connection. You save precious time, eliminate planning stress, and build a library of shared adventures. It’s about working smarter, not harder, on what matters most: your relationship. Stop scrolling through the same old lists and start discovering the secrets your city has been keeping just for you.
 
-**Ready to transform your date nights?** Download [SoulPlan: Plan Dates Together](https://apps.apple.com/us/app/soulplan-plan-dates-together/id6750098574) on the App Store or [Google Play](https://play.google.com/store/apps/details?id=com.aifun.dateideas.planadate) and let your AI guide to romance begin.
+**Ready to transform your date nights?** Download [SoulPlan: Plan Dates Together](https://apps.apple.com/us/app/soulplan-plan-dates-together/id6702018988) on the App Store or [Google Play](https://play.google.com/store/apps/details?id=com.aifun.dateideas.planadate) and let your AI guide to romance begin.
 
 Built by an indie developer who ships apps every day.

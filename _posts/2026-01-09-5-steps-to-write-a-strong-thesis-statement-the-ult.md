@@ -31,7 +31,7 @@ Staring at a blank document, knowing you need to write a compelling thesis state
 
 ### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.thesis.generator.ai)
 
-### [🍎 Download on App Store](https://apps.apple.com/us/app/thesis-generator-essay-ai/id6750119637)
+### [🍎 Download on App Store](https://apps.apple.com/us/app/thesis-generator-essay-ai/id6739264844)
 
 ---
 
@@ -87,7 +87,7 @@ Even with a good process, students often stumble. Here are the top pitfalls in *
 
 ### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.thesis.generator.ai)
 
-### [🍎 Download on App Store](https://apps.apple.com/us/app/thesis-generator-essay-ai/id6750119637)
+### [🍎 Download on App Store](https://apps.apple.com/us/app/thesis-generator-essay-ai/id6739264844)
 
 ---
 
@@ -110,7 +110,7 @@ Each of these fails to make a clear, specific, and debatable claim, which is the
 
 While understanding the theory is vital, leveraging technology can accelerate your learning and execution. The best tools don’t write for you; they guide you through the process. The **Thesis Generator: Essay AI** app is built specifically for this purpose. Instead of just giving you a sentence, it uses intelligent prompts to walk you through a process similar to the 5-step formula above. You input your topic, answer questions about your position, and it helps you formulate a precise, arguable claim. This teaches you the skill while providing a usable output. It’s particularly useful for overcoming writer’s block and ensuring your **essay structure** is sound from the very first line.
 
-For students looking for hands-on help, you can download the app for free: [Get it on Google Play](https://play.google.com/store/apps/details?id=com.thesis.generator.ai) or [Download on the App Store](https://apps.apple.com/us/app/thesis-generator-essay-ai/id6750119637). It’s like having a writing tutor in your pocket, available to help you **generate a thesis** whenever inspiration strikes—or doesn’t.
+For students looking for hands-on help, you can download the app for free: [Get it on Google Play](https://play.google.com/store/apps/details?id=com.thesis.generator.ai) or [Download on the App Store](https://apps.apple.com/us/app/thesis-generator-essay-ai/id6739264844). It’s like having a writing tutor in your pocket, available to help you **generate a thesis** whenever inspiration strikes—or doesn’t.
 
 ![Smartphone screen showing a thesis writing app interface](https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&q=80)
 
@@ -127,7 +127,7 @@ The most important part is its **arguability**. Your thesis must present a claim
 
 ### [📱 Download on Google Play](https://play.google.com/store/apps/details?id=com.thesis.generator.ai)
 
-### [🍎 Download on App Store](https://apps.apple.com/us/app/thesis-generator-essay-ai/id6750119637)
+### [🍎 Download on App Store](https://apps.apple.com/us/app/thesis-generator-essay-ai/id6739264844)
 
 ---
 
