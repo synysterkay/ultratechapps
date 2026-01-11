@@ -259,8 +259,21 @@ EXAMPLE TITLE: "Meeting Notes Taking Too Long? This AI Tool Cut My Time by 80%"
         """
         import random
         
-        # Get angle history for this app
-        angle_history = self.cache.get(f"{app_name}_angles") or []
+        # Get angle history for this app (stored as custom data, not standard cache)
+        cache_key = f"{app_name}_angles"
+        angle_history = []
+        
+        # Try to load from a simple state file
+        try:
+            import json
+            from pathlib import Path
+            angle_file = Path(f"cache/{cache_key.replace(' ', '_').replace('-', '_')}.json")
+            if angle_file.exists():
+                with open(angle_file, 'r') as f:
+                    data = json.load(f)
+                    angle_history = data.get('angles', [])
+        except Exception:
+            pass
         
         # Find angles not used in last 5 articles
         recent_angles = angle_history[-5:] if len(angle_history) >= 5 else angle_history
@@ -274,9 +287,20 @@ EXAMPLE TITLE: "Meeting Notes Taking Too Long? This AI Tool Cut My Time by 80%"
         else:
             selected_angle = random.choice(available_angles)
         
-        # Update history
+        # Update history and save
         angle_history.append(selected_angle)
-        self.cache.set(f"{app_name}_angles", angle_history[-20:])  # Keep last 20
+        
+        # Save updated history
+        try:
+            import json
+            from pathlib import Path
+            cache_key = f"{app_name}_angles"
+            angle_file = Path(f"cache/{cache_key.replace(' ', '_').replace('-', '_')}.json")
+            angle_file.parent.mkdir(exist_ok=True)
+            with open(angle_file, 'w') as f:
+                json.dump({'angles': angle_history[-20:]}, f)  # Keep last 20
+        except Exception:
+            pass
         
         return selected_angle
     
