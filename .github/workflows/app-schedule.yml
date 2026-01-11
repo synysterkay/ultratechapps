@@ -151,6 +151,18 @@ jobs:
       
       - name: Upload cache artifacts
         if: always()
+        run: |
+          # Remove any cache files with invalid characters (colons, etc.) before upload
+          find cache/ -name "*:*" -delete 2>/dev/null || true
+          find cache/ -name '*"*' -delete 2>/dev/null || true
+          find cache/ -name '*<*' -delete 2>/dev/null || true
+          find cache/ -name '*>*' -delete 2>/dev/null || true
+          find cache/ -name '*|*' -delete 2>/dev/null || true
+          find cache/ -name '*?*' -delete 2>/dev/null || true
+          echo "✅ Cache sanitized for artifact upload"
+          
+      - name: Upload cache artifacts (sanitized)
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: marketing-cache-${{ steps.app_selector.outputs.app_index }}
