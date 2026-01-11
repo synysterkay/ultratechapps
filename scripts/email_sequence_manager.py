@@ -177,23 +177,32 @@ class EmailSequenceManager:
         slug = re.sub(r'-+', '-', slug).strip('-')  # Replace multiple dashes
         landing_page_url = f"https://bestaiapps.site/apps/{slug}/"
         
-        # Build body paragraphs
+        # Build body paragraphs with better hierarchy
         body_html = ""
-        for paragraph in email_data['body_paragraphs']:
-            body_html += f'<p style="margin: 0 0 20px 0; font-size: 16px; color: #2d3748; line-height: 1.7;">{paragraph}</p>'
+        paragraphs = email_data['body_paragraphs']
+        for i, paragraph in enumerate(paragraphs):
+            if i == 0:
+                # First paragraph - larger, bold hook
+                body_html += f'<p style="margin: 0 0 28px 0; font-size: 20px; color: #1a202c; line-height: 1.6; font-weight: 500;">{paragraph}</p>'
+            elif i == 1:
+                # Second paragraph - still prominent
+                body_html += f'<p style="margin: 0 0 24px 0; font-size: 18px; color: #2d3748; line-height: 1.7;">{paragraph}</p>'
+            else:
+                # Rest - standard but readable
+                body_html += f'<p style="margin: 0 0 22px 0; font-size: 17px; color: #374151; line-height: 1.8;">{paragraph}</p>'
         
         # Add key takeaways if present
         takeaways_html = ""
         if email_data.get('key_takeaways'):
-            items = "".join([f'✓ {item}<br>' for item in email_data['key_takeaways']])
+            items = "".join([f'<div style="padding: 8px 0; font-size: 16px;">✓ {item}</div>' for item in email_data['key_takeaways']])
             takeaways_html = f'''
-            <div style="margin: 35px 0 40px 0; padding-top: 25px; border-top: 1px solid #e2e8f0;">
-                <p style="margin: 0 0 15px 0; font-size: 15px; color: #4a5568; line-height: 1.7;">
-                    <strong>Quick takeaways:</strong>
+            <div style="margin: 35px 0 40px 0; padding-top: 25px; border-top: 2px solid #e2e8f0;">
+                <p style="margin: 0 0 16px 0; font-size: 18px; color: #1a202c; font-weight: 600;">
+                    Quick takeaways:
                 </p>
-                <p style="margin: 0 0 10px 0; font-size: 15px; color: #4a5568; line-height: 1.7;">
+                <div style="color: #4a5568; line-height: 1.6;">
                     {items}
-                </p>
+                </div>
             </div>
             '''
         
@@ -208,30 +217,30 @@ class EmailSequenceManager:
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         </head>
-        <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.7; color: #2d3748; max-width: 600px; margin: 0 auto; padding: 40px 20px; background: #ffffff;">
+        <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.7; color: #2d3748; max-width: 620px; margin: 0 auto; padding: 48px 24px; background: #ffffff;">
             
             <!-- Personal Greeting -->
-            <div style="margin-bottom: 30px;">
-                <p style="margin: 0 0 20px 0; font-size: 16px; color: #4a5568;">Hey there,</p>
+            <div style="margin-bottom: 32px;">
+                <p style="margin: 0 0 28px 0; font-size: 19px; color: #6b7280;">Hey there,</p>
                 
                 <!-- AI-Generated Body Content -->
                 {body_html}
                 
                 <!-- Social Proof Box -->
-                <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-left: 4px solid #667eea; padding: 15px 20px; margin: 25px 0; border-radius: 4px;">
-                    <p style="margin: 0; font-size: 15px; color: #4a5568; line-height: 1.6;">
+                <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-left: 5px solid #667eea; padding: 20px 24px; margin: 32px 0; border-radius: 6px;">
+                    <p style="margin: 0; font-size: 17px; color: #334155; line-height: 1.6;">
                         ⭐⭐⭐⭐⭐ <strong>Rated 4.8</strong> by 50,000+ users<br>
-                        <span style="color: #0369a1; font-size: 14px; font-weight: 600;">Free while in early access (won't last forever)</span>
+                        <span style="color: #0369a1; font-size: 15px; font-weight: 600;">Free while in early access (won't last forever)</span>
                     </p>
                 </div>
             </div>
             
             <!-- Single Clear CTA -->
-            <div style="text-align: center; margin: 35px 0;">
-                <a href="{cta_url}" style="display: inline-block; background: #667eea; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 16px; box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);">
+            <div style="text-align: center; margin: 40px 0;">
+                <a href="{cta_url}" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; padding: 18px 48px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 18px; box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35);">
                     {cta_text} →
                 </a>
-                <p style="margin: 15px 0 0 0; font-size: 13px; color: #a0aec0;">
+                <p style="margin: 16px 0 0 0; font-size: 14px; color: #9ca3af;">
                     Click to see how it works · No signup required
                 </p>
             </div>
@@ -239,30 +248,29 @@ class EmailSequenceManager:
             <!-- Key Takeaways -->
             {takeaways_html}
             
-            <p style="margin: 0 0 25px 0; font-size: 15px; color: #4a5568;">
+            <p style="margin: 0 0 28px 0; font-size: 17px; color: #4b5563;">
                 Talk soon,<br>
-                <strong style="color: #2d3748;">Kay</strong>
+                <strong style="color: #1f2937; font-size: 18px;">Kay</strong>
             </p>
             
             <!-- P.S. Line - Most Read Part -->
-            <div style="margin: 30px 0; padding: 15px 20px; background: #fffbeb; border-radius: 8px; border: 1px solid #fcd34d;">
-                <p style="margin: 0; font-size: 14px; color: #92400e; line-height: 1.6;">
-                    <strong>P.S.</strong> I almost forgot — they're running a promo where premium features are unlocked for free. Not sure how long that'll last, but <a href="{landing_page_url}" style="color: #b45309; font-weight: 600;">might be worth grabbing while you can</a>.
+            <div style="margin: 36px 0; padding: 20px 24px; background: #fffbeb; border-radius: 10px; border: 1px solid #fcd34d;">
+                <p style="margin: 0; font-size: 16px; color: #92400e; line-height: 1.7;">
+                    <strong style="font-size: 17px;">P.S.</strong> I almost forgot — they're running a promo where premium features are unlocked for free. Not sure how long that'll last, but <a href="{landing_page_url}" style="color: #b45309; font-weight: 700; text-decoration: underline;">might be worth grabbing while you can</a>.
                 </p>
             </div>
             
             <!-- Minimal Footer -->
-            <div style="margin-top: 50px; padding-top: 25px; border-top: 1px solid #e2e8f0; text-align: center;">
-                <p style="margin: 0 0 10px 0; font-size: 13px; color: #a0aec0;">
-                    <a href="https://bestaiapps.site" style="color: #667eea; text-decoration: none;">Blog</a> · 
-                    <a href="https://bestaiapps.site/apps/" style="color: #667eea; text-decoration: none;">All Apps</a>
+            <div style="margin-top: 56px; padding-top: 28px; border-top: 1px solid #e5e7eb; text-align: center;">
+                <p style="margin: 0 0 12px 0; font-size: 14px; color: #9ca3af;">
+                    <a href="https://bestaiapps.site" style="color: #667eea; text-decoration: none; font-weight: 500;">Blog</a> · 
+                    <a href="https://bestaiapps.site/apps/" style="color: #667eea; text-decoration: none; font-weight: 500;">All Apps</a>
                 </p>
-                <p style="margin: 0 0 15px 0; font-size: 12px; color: #cbd5e0; line-height: 1.6;">
-                    Best AI Apps · Józefa Łepkowskiego 5, Kraków, Poland<br>
-                    You subscribed to discover the best AI tools.
+                <p style="margin: 0 0 16px 0; font-size: 13px; color: #d1d5db; line-height: 1.6;">
+                    Józefa Łepkowskiego 5, Kraków, Poland
                 </p>
                 <p style="margin: 0;">
-                    <a href="%mailing_list_unsubscribe_url%" style="color: #cbd5e0; text-decoration: none; font-size: 11px;">Unsubscribe</a>
+                    <a href="%mailing_list_unsubscribe_url%" style="color: #d1d5db; text-decoration: none; font-size: 12px;">Unsubscribe</a>
                 </p>
             </div>
             
