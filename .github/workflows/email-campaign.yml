@@ -2,8 +2,8 @@ name: Daily Email Campaign
 
 on:
   schedule:
-    # Send daily email at 9 AM UTC (adjust timezone as needed)
-    - cron: '0 9 * * *'
+    # Send emails every hour (50 emails per hour for gradual domain warm-up)
+    - cron: '0 * * * *'
   
   # Allow manual trigger for testing
   workflow_dispatch:
