@@ -2,66 +2,1152 @@
 layout: default
 ---
 
+<!-- SEO Schema Markup for Article -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ page.title }}",
+  "description": "{{ page.description | default: page.excerpt | strip_html | truncate: 160 }}",
+  "image": "{{ page.image | default: 'https://bestaiapps.site/assets/images/og-default.jpg' }}",
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.date | date_to_xmlschema }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ page.author | default: site.author }}",
+    "url": "https://bestaiapps.site"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Best AI Apps",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://bestaiapps.site/assets/images/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ page.url | absolute_url }}"
+  }
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://bestaiapps.site"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://bestaiapps.site/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ page.title | truncate: 50 }}",
+      "item": "{{ page.url | absolute_url }}"
+    }
+  ]
+}
+</script>
+
+<style>
+/* Article Layout Styles */
+.post-container {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (max-width: 1024px) {
+  .post-container {
+    grid-template-columns: 1fr;
+  }
+  .floating-sidebar {
+    display: none !important;
+  }
+}
+
+/* Sticky CTA Bar */
+.sticky-cta-bar {
+  position: fixed;
+  bottom: -100px;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  padding: 1rem 2rem;
+  z-index: 1000;
+  transition: bottom 0.4s ease;
+  box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.sticky-cta-bar.visible {
+  bottom: 0;
+}
+
+.sticky-cta-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.sticky-cta-text {
+  color: #e2e8f0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.sticky-cta-text strong {
+  color: #a5b4fc;
+}
+
+.sticky-cta-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.sticky-cta-btn {
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.sticky-cta-btn.ios {
+  background: #000;
+  color: #fff;
+}
+
+.sticky-cta-btn.android {
+  background: #22c55e;
+  color: #fff;
+}
+
+.sticky-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Post Header */
+.post-header-enhanced {
+  max-width: 800px;
+  margin: 2rem auto 0;
+  text-align: center;
+}
+
+.post-meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.reading-time {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(99, 102, 241, 0.15);
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  color: #a5b4fc;
+}
+
+.featured-app-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #000;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.post-title-enhanced {
+  font-size: 2.75rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #fff 0%, #c4b5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (max-width: 768px) {
+  .post-title-enhanced {
+    font-size: 2rem;
+  }
+}
+
+.post-categories {
+  margin-top: 1rem;
+}
+
+.category-tag {
+  display: inline-block;
+  background: rgba(99, 102, 241, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #a5b4fc;
+  margin: 0.25rem;
+}
+
+/* Social Share Bar */
+.social-share-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 12px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.share-label {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.share-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+  text-decoration: none;
+  transition: all 0.3s;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.share-btn:hover {
+  background: #6366f1;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.share-btn.twitter { background: rgba(29, 161, 242, 0.2); color: #1da1f2; }
+.share-btn.twitter:hover { background: #1da1f2; color: #fff; }
+.share-btn.facebook { background: rgba(66, 103, 178, 0.2); color: #4267b2; }
+.share-btn.facebook:hover { background: #4267b2; color: #fff; }
+.share-btn.linkedin { background: rgba(0, 119, 181, 0.2); color: #0077b5; }
+.share-btn.linkedin:hover { background: #0077b5; color: #fff; }
+.share-btn.copy { background: rgba(99, 102, 241, 0.2); color: #a5b4fc; }
+.share-btn.copy:hover { background: #6366f1; color: #fff; }
+
+/* Featured Image */
+.featured-image-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.featured-image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Floating Sidebar */
+.floating-sidebar {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.sidebar-app-card {
+  background: linear-gradient(180deg, #1e1b4b 0%, #312e81 100%);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-app-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.sidebar-featured-badge {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #000;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-app-name {
+  color: #f8fafc;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0.75rem 0 0.5rem;
+}
+
+.sidebar-rating {
+  color: #fbbf24;
+  font-size: 0.85rem;
+}
+
+.sidebar-download-count {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.sidebar-benefits {
+  margin: 1rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-benefits li {
+  color: #cbd5e1;
+  font-size: 0.85rem;
+  padding: 0.4rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.sidebar-benefits li::before {
+  content: "✓";
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.sidebar-cta-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.sidebar-cta-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.sidebar-cta-btn.ios {
+  background: #000;
+  color: #fff;
+}
+
+.sidebar-cta-btn.android {
+  background: #22c55e;
+  color: #fff;
+}
+
+.sidebar-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Table of Contents */
+.toc-container {
+  background: rgba(15, 23, 42, 0.8);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.toc-title {
+  color: #a5b4fc;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.75rem;
+}
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-list li {
+  padding: 0.3rem 0;
+}
+
+.toc-list a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s;
+}
+
+.toc-list a:hover {
+  color: #a5b4fc;
+}
+
+/* Article Content Enhancements */
+.article-content-enhanced {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.article-content-enhanced h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #f8fafc;
+  margin: 2.5rem 0 1rem;
+  scroll-margin-top: 80px;
+}
+
+.article-content-enhanced h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin: 2rem 0 0.75rem;
+}
+
+.article-content-enhanced p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #cbd5e1;
+  margin-bottom: 1.25rem;
+}
+
+.article-content-enhanced ul, .article-content-enhanced ol {
+  margin: 1rem 0 1.5rem 1.5rem;
+  color: #cbd5e1;
+}
+
+.article-content-enhanced li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+.article-content-enhanced img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.article-content-enhanced blockquote {
+  border-left: 4px solid #6366f1;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 0 12px 12px 0;
+  font-style: italic;
+  color: #a5b4fc;
+}
+
+.article-content-enhanced a {
+  color: #818cf8;
+  text-decoration: underline;
+  text-decoration-color: rgba(129, 140, 248, 0.3);
+  transition: all 0.2s;
+}
+
+.article-content-enhanced a:hover {
+  color: #a5b4fc;
+  text-decoration-color: #a5b4fc;
+}
+
+/* Inline App Callout Box */
+.inline-app-callout {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  border: 2px solid rgba(99, 102, 241, 0.4);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.inline-app-callout::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+}
+
+.callout-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #000;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem;
+}
+
+.callout-headline {
+  color: #f8fafc;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.callout-text {
+  color: #cbd5e1;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.callout-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.callout-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.callout-btn.primary {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+}
+
+.callout-btn.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.callout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+/* Key Takeaway Box */
+.key-takeaway-box {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.key-takeaway-box h4 {
+  color: #22c55e;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.key-takeaway-box p {
+  color: #d1fae5;
+  font-size: 1rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Post Tags */
+.post-tags-enhanced {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.tags-label {
+  color: #a5b4fc;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.tag-item {
+  display: inline-block;
+  margin: 0.25rem 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(99, 102, 241, 0.2);
+  color: #c4b5fd;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.tag-item:hover {
+  background: rgba(99, 102, 241, 0.4);
+  color: #fff;
+}
+
+/* Bottom CTA Section */
+.bottom-cta-section {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background: linear-gradient(180deg, #1e1b4b 0%, #312e81 100%);
+  border-radius: 24px;
+  border: 2px solid rgba(99, 102, 241, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.bottom-cta-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+}
+
+.bottom-cta-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #000;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+}
+
+.bottom-cta-headline {
+  color: #f8fafc;
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.bottom-cta-subheadline {
+  color: #cbd5e1;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.bottom-cta-social-proof {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+}
+
+.proof-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #a5b4fc;
+  font-size: 0.9rem;
+}
+
+.proof-item .emoji {
+  font-size: 1.1rem;
+}
+
+.bottom-cta-testimonial {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  border-left: 3px solid #8b5cf6;
+}
+
+.testimonial-text {
+  color: #e2e8f0;
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.testimonial-author {
+  color: #a5b4fc;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.bottom-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.bottom-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.bottom-cta-btn.ios {
+  background: #000;
+  color: #fff;
+}
+
+.bottom-cta-btn.android {
+  background: #22c55e;
+  color: #fff;
+}
+
+.bottom-cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Author Bio */
+.author-bio-enhanced {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .author-bio-enhanced {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.author-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.author-info h4 {
+  color: #f8fafc;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.author-info p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Post Navigation */
+.post-navigation-enhanced {
+  max-width: 900px;
+  margin: 3rem auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.nav-post {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  transition: all 0.3s;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.nav-post:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.nav-post a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.nav-label {
+  display: block;
+  color: #6366f1;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.nav-post.next .nav-label {
+  color: #8b5cf6;
+  text-align: right;
+}
+
+.nav-title {
+  display: block;
+  color: #f8fafc;
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.nav-post.next {
+  text-align: right;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .sticky-cta-inner {
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .sticky-cta-text {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+  
+  .bottom-cta-headline {
+    font-size: 1.5rem;
+  }
+  
+  .bottom-cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .bottom-cta-btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+}
+</style>
+
 <article class="post">
-  <header class="post-header" style="max-width: 800px; margin: 3rem auto 0; text-align: center;">
-    <h1 class="post-title" style="font-size: 3rem; font-weight: 900; margin-bottom: 1.5rem; background: linear-gradient(135deg, #fff 0%, #c4b5fd 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{{ page.title }}</h1>
-    <div class="post-meta" style="color: #94a3b8; font-size: 1rem;">
+  <!-- Post Header -->
+  <header class="post-header-enhanced">
+    <!-- Meta Bar with Reading Time -->
+    <div class="post-meta-bar">
       <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
-      {% if page.author %}
-      <span class="separator" style="margin: 0 0.5rem;">•</span>
-      <span class="author">{{ page.author }}</span>
-      {% endif %}
-      {% if page.categories %}
-      <span class="separator" style="margin: 0 0.5rem;">•</span>
-      <span class="categories">
-        {% for category in page.categories %}
-          <span class="category" style="background: rgba(99, 102, 241, 0.2); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; color: #a5b4fc;">{{ category }}</span>{% unless forloop.last %}, {% endunless %}
-        {% endfor %}
+      <span class="separator">•</span>
+      <span class="reading-time">
+        <span>📖</span>
+        <span id="reading-time">5 min read</span>
+      </span>
+      {% if page.app_name %}
+      <span class="separator">•</span>
+      <span class="featured-app-badge">
+        <span>⭐</span>
+        Featured: {{ page.app_name }}
       </span>
       {% endif %}
     </div>
+    
+    <!-- Title -->
+    <h1 class="post-title-enhanced">{{ page.title }}</h1>
+    
+    <!-- Categories -->
+    {% if page.categories %}
+    <div class="post-categories">
+      {% for category in page.categories %}
+        <span class="category-tag">{{ category }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+    
+    <!-- Social Share Bar -->
+    <div class="social-share-bar">
+      <span class="share-label">Share:</span>
+      <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ page.url | absolute_url }}" target="_blank" rel="noopener" class="share-btn twitter" title="Share on Twitter">𝕏</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url }}" target="_blank" rel="noopener" class="share-btn facebook" title="Share on Facebook">f</a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | absolute_url }}&title={{ page.title | url_encode }}" target="_blank" rel="noopener" class="share-btn linkedin" title="Share on LinkedIn">in</a>
+      <button class="share-btn copy" onclick="copyToClipboard()" title="Copy link">🔗</button>
+    </div>
   </header>
   
-  <div class="article-content">
-    {{ content }}
+  <!-- Featured Image -->
+  {% if page.image %}
+  <div class="featured-image-container">
+    <img src="{{ page.image }}" alt="{{ page.title }}" loading="lazy">
+  </div>
+  {% endif %}
+  
+  <!-- Main Content Area with Sidebar -->
+  <div class="post-container">
+    <!-- Article Content -->
+    <div class="article-content-enhanced">
+      {{ content }}
+    </div>
+    
+    <!-- Floating Sidebar -->
+    <aside class="floating-sidebar">
+      <div class="sidebar-app-card">
+        <div class="sidebar-app-header">
+          <span class="sidebar-featured-badge">Featured App</span>
+          <h3 class="sidebar-app-name">{{ page.app_name | default: "Smart Notes AI" }}</h3>
+          <div class="sidebar-rating">⭐⭐⭐⭐⭐ 4.8</div>
+          <div class="sidebar-download-count">50,000+ downloads</div>
+        </div>
+        
+        <ul class="sidebar-benefits">
+          <li>Free to download</li>
+          <li>Works offline</li>
+          <li>No account required</li>
+          <li>AI-powered features</li>
+        </ul>
+        
+        <div class="sidebar-cta-buttons">
+          <a href="{{ page.app_store_url | default: site.social.appstore }}" target="_blank" rel="noopener" class="sidebar-cta-btn ios">
+             App Store
+          </a>
+          <a href="{{ page.google_play_url | default: site.social.playstore }}" target="_blank" rel="noopener" class="sidebar-cta-btn android">
+            ▶ Google Play
+          </a>
+        </div>
+      </div>
+      
+      <!-- Table of Contents -->
+      <div class="toc-container" id="toc-container">
+        <h4 class="toc-title">📑 Table of Contents</h4>
+        <ul class="toc-list" id="toc-list">
+          <!-- Generated by JS -->
+        </ul>
+      </div>
+    </aside>
   </div>
   
+  <!-- Post Tags -->
   {% if page.tags %}
-  <div class="post-tags" style="max-width: 800px; margin: 2rem auto; padding: 1.5rem; background: rgba(99, 102, 241, 0.1); border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.2);">
-    <strong style="color: #a5b4fc; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px;">Tags:</strong>
+  <div class="post-tags-enhanced">
+    <strong class="tags-label">Tags:</strong>
     {% for tag in page.tags %}
-      <span class="tag" style="display: inline-block; margin: 0.25rem 0.5rem; padding: 0.5rem 1rem; background: rgba(99, 102, 241, 0.2); color: #c4b5fd; border-radius: 20px; font-size: 0.9rem; border: 1px solid rgba(99, 102, 241, 0.3);">{{ tag }}</span>
+      <a href="/blog/tags/{{ tag | slugify }}/" class="tag-item">{{ tag }}</a>
     {% endfor %}
   </div>
   {% endif %}
   
-  <footer class="post-footer" style="max-width: 800px; margin: 3rem auto; padding: 2.5rem; background: var(--bg-card); border-radius: 20px; border: 1px solid rgba(99, 102, 241, 0.2); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);">
-    <div class="author-bio" style="text-align: center;">
-      <p style="font-size: 1.1rem; color: #cbd5e1; margin-bottom: 1.5rem;"><strong style="color: #f8fafc; font-size: 1.2rem;">{{ site.author }}</strong> - Built by an indie developer who ships apps every day.</p>
-      <div class="app-links-footer" style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-        <a href="{{ site.social.appstore }}" target="_blank" rel="noopener" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; transition: all 0.3s; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);">📱 App Store</a>
-        <a href="{{ site.social.playstore }}" target="_blank" rel="noopener" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #8b5cf6, #ec4899); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; transition: all 0.3s; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);">🤖 Google Play</a>
-      </div>
+  <!-- Bottom CTA Section -->
+  <div class="bottom-cta-section">
+    <span class="bottom-cta-badge">🚀 Try It Free Today</span>
+    <h2 class="bottom-cta-headline">Ready to Transform Your {{ page.categories.first | default: "Workflow" }}?</h2>
+    <p class="bottom-cta-subheadline">Join thousands of users who've already discovered the power of AI-powered tools. Download now and see the difference in minutes.</p>
+    
+    <div class="bottom-cta-social-proof">
+      <span class="proof-item"><span class="emoji">⭐</span> 4.8 Rating</span>
+      <span class="proof-item"><span class="emoji">📥</span> 50,000+ Downloads</span>
+      <span class="proof-item"><span class="emoji">💬</span> 5,000+ Reviews</span>
     </div>
-  </footer>
+    
+    <div class="bottom-cta-testimonial">
+      <p class="testimonial-text">"This app completely changed how I work. I can't imagine going back to the old way."</p>
+      <span class="testimonial-author">— Sarah K., Verified User</span>
+    </div>
+    
+    <div class="bottom-cta-buttons">
+      <a href="{{ page.app_store_url | default: site.social.appstore }}" target="_blank" rel="noopener" class="bottom-cta-btn ios">
+         Download for iOS
+      </a>
+      <a href="{{ page.google_play_url | default: site.social.playstore }}" target="_blank" rel="noopener" class="bottom-cta-btn android">
+        ▶ Download for Android
+      </a>
+    </div>
+  </div>
+  
+  <!-- Author Bio -->
+  <div class="author-bio-enhanced">
+    <div class="author-avatar">👨‍💻</div>
+    <div class="author-info">
+      <h4>{{ site.author | default: "Best AI Apps Team" }}</h4>
+      <p>We're indie developers who ship useful AI apps every day. Our mission is to find and share the best AI tools that actually make your life easier.</p>
+    </div>
+  </div>
 </article>
 
-<nav class="post-navigation" style="max-width: 900px; margin: 3rem auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+<!-- Post Navigation -->
+<nav class="post-navigation-enhanced">
   {% if page.previous.url %}
-  <div class="prev-post" style="background: var(--bg-card); padding: 2rem; border-radius: 16px; border: 1px solid rgba(99, 102, 241, 0.2); transition: all 0.3s; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
-    <a href="{{ page.previous.url | relative_url }}" style="text-decoration: none; color: inherit; display: block;">
-      <span class="nav-label" style="display: block; color: #6366f1; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem;">← Previous Article</span>
-      <span class="nav-title" style="display: block; color: #f8fafc; font-weight: 700; font-size: 1.1rem; line-height: 1.4;">{{ page.previous.title }}</span>
+  <div class="nav-post prev">
+    <a href="{{ page.previous.url | relative_url }}">
+      <span class="nav-label">← Previous Article</span>
+      <span class="nav-title">{{ page.previous.title }}</span>
     </a>
   </div>
   {% endif %}
   
   {% if page.next.url %}
-  <div class="next-post" style="background: var(--bg-card); padding: 2rem; border-radius: 16px; border: 1px solid rgba(99, 102, 241, 0.2); transition: all 0.3s; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); text-align: right;">
-    <a href="{{ page.next.url | relative_url }}" style="text-decoration: none; color: inherit; display: block;">
-      <span class="nav-label" style="display: block; color: #8b5cf6; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.9rem;">Next Article →</span>
-      <span class="nav-title" style="display: block; color: #f8fafc; font-weight: 700; font-size: 1.1rem; line-height: 1.4;">{{ page.next.title }}</span>
+  <div class="nav-post next">
+    <a href="{{ page.next.url | relative_url }}">
+      <span class="nav-label">Next Article →</span>
+      <span class="nav-title">{{ page.next.title }}</span>
     </a>
   </div>
   {% endif %}
 </nav>
+
+<!-- Sticky CTA Bar -->
+<div class="sticky-cta-bar" id="sticky-cta">
+  <div class="sticky-cta-inner">
+    <span class="sticky-cta-text">📱 <strong>{{ page.app_name | default: "Featured App" }}</strong> — Free download, instant results</span>
+    <div class="sticky-cta-buttons">
+      <a href="{{ page.app_store_url | default: site.social.appstore }}" target="_blank" rel="noopener" class="sticky-cta-btn ios">
+         iOS
+      </a>
+      <a href="{{ page.google_play_url | default: site.social.playstore }}" target="_blank" rel="noopener" class="sticky-cta-btn android">
+        ▶ Android
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+// Calculate and display reading time
+document.addEventListener('DOMContentLoaded', function() {
+  const content = document.querySelector('.article-content-enhanced');
+  if (content) {
+    const text = content.textContent || content.innerText;
+    const wordCount = text.trim().split(/\s+/).length;
+    const readingTime = Math.ceil(wordCount / 200);
+    document.getElementById('reading-time').textContent = readingTime + ' min read';
+  }
+  
+  // Generate Table of Contents
+  const headings = document.querySelectorAll('.article-content-enhanced h2, .article-content-enhanced h3');
+  const tocList = document.getElementById('toc-list');
+  
+  if (headings.length > 2 && tocList) {
+    headings.forEach((heading, index) => {
+      const id = 'heading-' + index;
+      heading.id = id;
+      
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '#' + id;
+      a.textContent = heading.textContent.substring(0, 50) + (heading.textContent.length > 50 ? '...' : '');
+      
+      if (heading.tagName === 'H3') {
+        a.style.paddingLeft = '1rem';
+        a.style.fontSize = '0.8rem';
+      }
+      
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+  } else if (tocList) {
+    document.getElementById('toc-container').style.display = 'none';
+  }
+  
+  // Sticky CTA Bar - show after scrolling 40% of article
+  const stickyCta = document.getElementById('sticky-cta');
+  const articleContent = document.querySelector('.article-content-enhanced');
+  
+  if (stickyCta && articleContent) {
+    window.addEventListener('scroll', function() {
+      const articleRect = articleContent.getBoundingClientRect();
+      const articleHeight = articleContent.offsetHeight;
+      const scrolledPast = -articleRect.top;
+      const scrollPercentage = scrolledPast / articleHeight;
+      
+      if (scrollPercentage > 0.4 && scrollPercentage < 1.2) {
+        stickyCta.classList.add('visible');
+      } else {
+        stickyCta.classList.remove('visible');
+      }
+    });
+  }
+});
+
+// Copy to clipboard function
+function copyToClipboard() {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(function() {
+    const btn = document.querySelector('.share-btn.copy');
+    btn.textContent = '✓';
+    setTimeout(() => btn.textContent = '🔗', 2000);
+  });
+}
+</script>

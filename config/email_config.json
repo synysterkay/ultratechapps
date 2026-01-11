@@ -101,9 +101,26 @@
         "While others struggle with {topic}, these people thrive",
         "After 6 months, here's what actually works for {niche}",
         "Tired of wasting 3 hours daily on {topic}?",
-        "The data reveals something shocking about {niche}"
+        "The data reveals something shocking about {niche}",
+        "I wish I knew this about {topic} sooner",
+        "This changed everything about {niche} for me",
+        "The {niche} mistake I made for years (and how I fixed it)",
+        "Why I almost gave up on {topic} (then found this)",
+        "The one {niche} trick that actually works",
+        "What 10,000 users taught me about {topic}",
+        "I was wrong about {topic}. Here's the truth.",
+        "This app just saved me from a {niche} disaster",
+        "The {topic} shortcut I'm embarrassed I didn't know",
+        "Before you waste another hour on {topic}, read this"
       ],
-      "psychological_triggers": ["curiosity", "urgency", "FOMO", "authority", "problem-solution"],
+      "psychological_triggers": ["curiosity", "urgency", "FOMO", "authority", "problem-solution", "story"],
+      "ps_templates": [
+        "P.S. Almost forgot - this is still free to try. No strings attached.",
+        "P.S. Reply to this email if you try it. I love hearing your results.",
+        "P.S. If you found this helpful, forward it to someone who's struggling with {topic}.",
+        "P.S. I spent 20+ hours testing this. Save yourself the research and just try it.",
+        "P.S. There's a hidden feature most people miss. Check the settings menu."
+      ],
       "email_focus": "70% valuable tips/insights, 30% subtle app mention",
       "app_mention": "integrated",
       "value_ratio": 70
@@ -116,9 +133,21 @@
         "Why everyone's switching to this {niche} method",
         "Last chance to fix this before it costs you",
         "Time-sensitive: Your {niche} needs this now",
-        "This app detail solves the {pain_point} problem"
+        "This app detail solves the {pain_point} problem",
+        "[Urgent] Free access won't last much longer",
+        "They didn't believe me about {topic}. Then they tried it.",
+        "This is your final reminder about {topic}",
+        "The {niche} tool everyone's asking me about",
+        "I'm only sending this once: {topic}"
       ],
-      "psychological_triggers": ["FOMO", "urgency", "social proof", "scarcity"],
+      "ps_templates": [
+        "P.S. Premium features are free right now. Not sure how long that'll last.",
+        "P.S. I just checked - still free to download. Grab it before that changes.",
+        "P.S. The dev mentioned prices might go up next month. Just a heads up.",
+        "P.S. Already 50,000+ downloads this week. Clearly I'm not the only one who noticed.",
+        "P.S. Forgot to mention - no account needed. Just download and go."
+      ],
+      "psychological_triggers": ["FOMO", "urgency", "social proof", "scarcity", "exclusivity"],
       "email_focus": "Direct app promotion with strong value proposition",
       "app_mention": "primary",
       "value_ratio": 40

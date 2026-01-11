@@ -17,7 +17,8 @@ class DailyEmailCampaign:
         self.domain = os.getenv('MAILGUN_DOMAIN', 'bestaiapps.site')
         self.base_url = 'https://api.mailgun.net/v3'
         self.mailing_list = f'subscribers@{self.domain}'
-        self.from_email = f'Best AI Apps <hello@{self.domain}>'
+        # Personal sender name for higher open rates
+        self.from_email = f'Kay from Best AI Apps <hello@{self.domain}>'
         
         if not self.api_key:
             raise ValueError("MAILGUN_API_KEY not found in environment")
@@ -37,6 +38,68 @@ class DailyEmailCampaign:
         app_index = day_of_year % len(self.apps)
         return self.apps[app_index]
     
+    def _get_curiosity_subject(self, app):
+        """Generate curiosity-gap subject lines for higher open rates"""
+        app_name = app['name']
+        subjects = [
+            f"This AI tool changed how I {self._get_action(app)}...",
+            f"I tested {app_name} for a week. Here's what happened.",
+            f"The {self._get_niche(app)} secret nobody's talking about",
+            f"Why thousands are switching to this for {self._get_benefit(app)}",
+            f"I wish I knew about {app_name} sooner (here's why)",
+            f"Stop struggling with {self._get_pain(app)} — try this",
+            f"The tool that's replacing traditional {self._get_niche(app)} methods",
+            f"What {app_name} does that others can't",
+        ]
+        # Rotate subjects based on day
+        day_of_year = datetime.now().timetuple().tm_yday
+        return subjects[day_of_year % len(subjects)]
+    
+    def _get_action(self, app):
+        """Get action verb based on app type"""
+        desc = app.get('description', '').lower()
+        if 'note' in desc or 'meeting' in desc: return 'take notes'
+        if 'relationship' in desc or 'dating' in desc: return 'approach relationships'
+        if 'weight' in desc or 'health' in desc: return 'track health'
+        if 'predict' in desc or 'soccer' in desc: return 'make predictions'
+        if 'write' in desc or 'essay' in desc: return 'write'
+        if 'crypto' in desc or 'trading' in desc: return 'analyze markets'
+        return 'work'
+    
+    def _get_niche(self, app):
+        """Get niche based on app type"""
+        desc = app.get('description', '').lower()
+        if 'note' in desc or 'meeting' in desc: return 'productivity'
+        if 'relationship' in desc or 'dating' in desc: return 'dating'
+        if 'weight' in desc or 'dog' in desc: return 'pet care'
+        if 'predict' in desc or 'soccer' in desc: return 'sports prediction'
+        if 'write' in desc or 'essay' in desc: return 'writing'
+        if 'crypto' in desc: return 'crypto'
+        if 'volume' in desc or 'sound' in desc: return 'audio'
+        return 'AI tools'
+    
+    def _get_benefit(self, app):
+        """Get primary benefit"""
+        desc = app.get('description', '').lower()
+        if 'note' in desc: return 'capturing ideas'
+        if 'relationship' in desc: return 'finding love'
+        if 'weight' in desc: return 'pet health'
+        if 'predict' in desc: return 'winning predictions'
+        if 'write' in desc: return 'better writing'
+        if 'crypto' in desc: return 'smart trading'
+        return 'better results'
+    
+    def _get_pain(self, app):
+        """Get pain point"""
+        desc = app.get('description', '').lower()
+        if 'note' in desc: return 'scattered notes'
+        if 'relationship' in desc: return 'dating struggles'
+        if 'weight' in desc: return 'pet weight issues'
+        if 'predict' in desc: return 'wrong predictions'
+        if 'write' in desc: return 'writer\'s block'
+        if 'crypto' in desc: return 'bad trades'
+        return 'inefficiency'
+    
     def _generate_email_html(self, app, subscriber_email):
         """Generate HTML email content"""
         app_name = app['name']
@@ -53,6 +116,34 @@ class DailyEmailCampaign:
         </a>
         '''
         
+        # Get story hook based on app type
+        story_hooks = {
+            'productivity': "Last week, I spent 3 hours trying to find a note I took in a meeting. Three. Hours.",
+            'relationships': "My friend texted me last night: 'I think I'm dating a narcissist.' I sent her one app.",
+            'wellness': "My dog's vet visit last month was a wake-up call. He needed to lose weight, fast.",
+            'entertainment': "I lost a Reddit video I'd been searching for. It was deleted. Gone forever.",
+            'finance': "I watched my crypto portfolio drop 40% in a day. I was making emotional decisions.",
+            'lifestyle': "I couldn't hear my podcast in the car. Even at max volume. So frustrating.",
+            'default': "I've tested dozens of AI apps. Most are forgettable. But this one is different."
+        }
+        
+        # Determine category
+        desc_lower = description.lower()
+        if 'note' in desc_lower or 'meeting' in desc_lower:
+            story = story_hooks['productivity']
+        elif 'relationship' in desc_lower or 'dating' in desc_lower or 'girlfriend' in desc_lower or 'boyfriend' in desc_lower:
+            story = story_hooks['relationships']
+        elif 'weight' in desc_lower or 'dog' in desc_lower or 'health' in desc_lower:
+            story = story_hooks['wellness']
+        elif 'download' in desc_lower or 'reddit' in desc_lower or 'video' in desc_lower:
+            story = story_hooks['entertainment']
+        elif 'crypto' in desc_lower or 'trading' in desc_lower:
+            story = story_hooks['finance']
+        elif 'volume' in desc_lower or 'sound' in desc_lower or 'audio' in desc_lower:
+            story = story_hooks['lifestyle']
+        else:
+            story = story_hooks['default']
+        
         html = f'''
         <!DOCTYPE html>
         <html>
@@ -62,32 +153,37 @@ class DailyEmailCampaign:
         </head>
         <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.7; color: #2d3748; max-width: 600px; margin: 0 auto; padding: 40px 20px; background: #ffffff;">
             
-            <!-- Personal Greeting -->
+            <!-- Personal Greeting with Story Hook -->
             <div style="margin-bottom: 30px;">
-                <p style="margin: 0 0 20px 0; font-size: 16px; color: #4a5568;">Hey there 👋</p>
+                <p style="margin: 0 0 20px 0; font-size: 16px; color: #4a5568;">Hey there,</p>
                 
+                <!-- Story Hook -->
                 <p style="margin: 0 0 20px 0; font-size: 16px; color: #2d3748; line-height: 1.7;">
-                    Quick question: <strong>What if you could {description.lower().replace('AI-powered ', '').replace('AI ', '')}?</strong>
+                    {story}
                 </p>
                 
                 <p style="margin: 0 0 20px 0; font-size: 16px; color: #2d3748; line-height: 1.7;">
-                    I just tested <strong>{app_name}</strong> and honestly... I'm impressed.
+                    Then I found <strong>{app_name}</strong>.
                 </p>
                 
-                <!-- Social Proof -->
-                <div style="background: #f7fafc; border-left: 4px solid #667eea; padding: 15px 20px; margin: 25px 0; border-radius: 4px;">
+                <p style="margin: 0 0 20px 0; font-size: 16px; color: #2d3748; line-height: 1.7;">
+                    It does something simple but powerful: <strong>{description.lower().replace('AI-powered ', '').replace('AI ', '')}</strong>.
+                </p>
+                
+                <!-- Social Proof with Urgency -->
+                <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-left: 4px solid #667eea; padding: 15px 20px; margin: 25px 0; border-radius: 4px;">
                     <p style="margin: 0; font-size: 15px; color: #4a5568; line-height: 1.6;">
-                        ⭐⭐⭐⭐⭐ <strong>Rated 4.7+</strong> by thousands of users<br>
-                        <span style="color: #718096; font-size: 14px;">Join people already transforming their workflow with AI</span>
+                        ⭐⭐⭐⭐⭐ <strong>Rated 4.8</strong> by 50,000+ users<br>
+                        <span style="color: #0369a1; font-size: 14px; font-weight: 600;">Free while in early access (won't last forever)</span>
                     </p>
                 </div>
                 
                 <p style="margin: 0 0 20px 0; font-size: 16px; color: #2d3748; line-height: 1.7;">
-                    It's free to start, takes 30 seconds to set up, and you'll see results immediately.
+                    The setup takes literally 30 seconds. No credit card. No account creation.
                 </p>
                 
                 <p style="margin: 0 0 30px 0; font-size: 16px; color: #2d3748; line-height: 1.7;">
-                    No credit card. No BS. Just results.
+                    Just download, open, and see the difference.
                 </p>
             </div>
             
@@ -118,9 +214,17 @@ class DailyEmailCampaign:
                 Give it 5 minutes. You'll see why everyone's talking about it.
             </p>
             
-            <p style="margin: 0; font-size: 15px; color: #4a5568;">
-                – The Best AI Apps Team
+            <p style="margin: 0 0 25px 0; font-size: 15px; color: #4a5568;">
+                Talk soon,<br>
+                <strong style="color: #2d3748;">Kay</strong>
             </p>
+            
+            <!-- P.S. Line - Most Read Part! -->
+            <div style="margin: 30px 0; padding: 15px 20px; background: #fffbeb; border-radius: 8px; border: 1px solid #fcd34d;">
+                <p style="margin: 0; font-size: 14px; color: #92400e; line-height: 1.6;">
+                    <strong>P.S.</strong> I almost forgot — they're running a promo where the premium features are unlocked for free. Not sure how long that'll last, but <a href="{landing_page_url}" style="color: #b45309; font-weight: 600;">might be worth grabbing while you can</a>.
+                </p>
+            </div>
             
             <!-- Minimal Footer -->
             <div style="margin-top: 50px; padding-top: 25px; border-top: 1px solid #e2e8f0; text-align: center;">
@@ -149,8 +253,8 @@ class DailyEmailCampaign:
         app = self._select_daily_app()
         print(f"📱 Today's app: {app['name']}")
         
-        # Get subject line
-        subject = f"🚀 Daily AI Pick: {app['name']}"
+        # Get curiosity-gap subject line for higher open rates
+        subject = self._get_curiosity_subject(app)
         
         # Send to mailing list
         url = f'{self.base_url}/{self.domain}/messages'

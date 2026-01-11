@@ -60,6 +60,8 @@ SEO OPTIMIZATION REQUIREMENTS:
 3. LSI KEYWORDS: Use 10-15 related terms throughout
 4. READABILITY: Use short paragraphs (2-3 sentences), bullet points, numbered lists
 5. WORD COUNT: 1200-1500 words minimum for SEO value
+6. META DESCRIPTION: 150-160 chars with primary keyword and emotional hook
+7. FEATURED SNIPPET: Format one section as a direct answer (40-60 words)
 
 FORMATTING REQUIREMENTS:
 - Use H2 (##) and H3 (###) headers for structure
@@ -67,6 +69,14 @@ FORMATTING REQUIREMENTS:
 - Write conversational, engaging tone
 - Use power words and emotional triggers
 - Include actionable takeaways
+- Add a **Quick Takeaways** section at the start (bullet points)
+
+EMOTIONAL MARKETING HOOKS:
+- Open with a relatable pain point or story ("Ever felt..." "You know that moment when...")
+- Use curiosity gaps ("The secret most people miss..." "What nobody tells you about...")
+- Add urgency where natural ("Before it's too late" "While it's still free")
+- Include social proof language ("Thousands have discovered..." "Join 50,000+ users...")
+- Create FOMO ("Don't be the last to..." "Everyone's already using...")
 """
         
         if angle == "app_focused":
@@ -79,13 +89,14 @@ App Information:
 - Topic: {topic}
 
 ARTICLE STRUCTURE:
-1. TITLE: "[Number] {topic} [Power Word] in 2026"
-2. INTRODUCTION: Hook with problem/pain point, present app as solution
-3. MAIN BENEFITS: 5-7 key benefits with examples
-4. HOW IT WORKS: Step-by-step app usage
-5. USER RESULTS: Success stories, statistics
-6. COMPARISON: Brief comparison to alternatives
-7. CONCLUSION: Call-to-action to try the app
+1. TITLE: Use a curiosity gap pattern: "[Number] [Topic] [Power Word] in 2026" or "The [Topic] Secret Nobody Tells You About"
+2. OPENING HOOK: Start with a story or pain point ("Picture this..." "You know that frustrating moment when...")
+3. QUICK TAKEAWAYS: 3-4 bullet points summarizing key benefits
+4. MAIN BENEFITS: 5-7 key benefits with emotional examples
+5. HOW IT WORKS: Step-by-step app usage with screenshots descriptions
+6. USER RESULTS: Success stories, statistics, transformations
+7. COMPARISON: Brief comparison to alternatives (why this is better)
+8. CONCLUSION: Urgency + call-to-action ("Download now while it's still free")
 
 {base_seo}
 
@@ -101,13 +112,15 @@ App Information:
 - Related Topic: {topic}
 
 ARTICLE STRUCTURE:
-1. TITLE: "[Recent AI Trend/Breakthrough] + How It Changes {niche} in 2026"
-2. NEWS SECTION: Discuss latest AI developments, breakthroughs, or trends (250 words)
-3. IMPACT ANALYSIS: What this means for users in {niche} (200 words)
-4. PRACTICAL APPLICATIONS: Real-world implications (200 words)
-5. APP CONNECTION: Show how {app_name} leverages this trend or helps users adapt (300 words)
-6. EXPERT INSIGHTS: Quote industry predictions, add statistics
-7. CONCLUSION: Future outlook + mention {app_name} as solution
+1. TITLE: Use curiosity pattern: "[Recent AI Trend] + The Tool That's Changing Everything in 2026"
+2. OPENING HOOK: Start with a provocative statement ("AI just changed the game again..." "What happened this week will affect how you...")
+3. QUICK TAKEAWAYS: 3-4 bullet points on what this means for readers
+4. NEWS SECTION: Discuss latest AI developments, breakthroughs, or trends (250 words)
+5. IMPACT ANALYSIS: What this means for users in {niche} - use emotional language (200 words)
+6. PRACTICAL APPLICATIONS: Real-world implications (200 words)
+7. APP CONNECTION: Show how {app_name} leverages this trend or helps users adapt (300 words)
+8. EXPERT INSIGHTS: Quote industry predictions, add statistics
+9. CONCLUSION: Future outlook + FOMO element + mention {app_name} as solution
 
 {base_seo}
 
@@ -177,18 +190,21 @@ App Information:
 - Problem/Topic: {topic}
 
 ARTICLE STRUCTURE:
-1. TITLE: "[Painful Problem] in {niche}? Here's the Fix That Actually Works"
-2. PROBLEM DEEP-DIVE: Describe the problem in detail, show empathy (300 words)
-   - Use statistics, common complaints
-   - Make reader feel understood
-3. WHY TRADITIONAL SOLUTIONS FAIL: Explain old approaches (200 words)
-4. THE NEW SOLUTION: Introduce AI-powered approach (150 words)
-5. MEET {app_name}: Present as the breakthrough solution (400 words)
-   - How it solves the specific problem
-   - Key features that address pain points
-   - User success stories
-6. HOW TO GET STARTED: Quick start guide (150 words)
-7. CONCLUSION: Life without the problem + CTA
+1. TITLE: Use pain-focused pattern: "Struggling with [Problem]? This Changes Everything" or "Why [Problem] is Worse Than You Think (And How to Fix It)"
+2. OPENING HOOK: Start with a visceral story ("It was 2 AM. I was staring at my screen..." "The moment I realized I'd wasted another hour on...")
+3. QUICK TAKEAWAYS: 3-4 bullets on what readers will learn
+4. PROBLEM DEEP-DIVE: Describe the problem with empathy and statistics (300 words)
+   - Use second person ("You've probably felt...")
+   - Include emotional language ("frustrating," "overwhelming," "exhausting")
+   - Add statistics that shock
+5. WHY TRADITIONAL SOLUTIONS FAIL: Explain old approaches with empathy (200 words)
+6. THE BREAKTHROUGH: Introduce AI-powered approach with excitement (150 words)
+7. MEET {app_name}: Present as the breakthrough solution (400 words)
+   - How it solves specific pain points
+   - Features that address frustrations
+   - User transformations
+8. HOW TO GET STARTED: Quick start guide with urgency (150 words)
+9. CONCLUSION: Paint picture of life without the problem + urgent CTA
 
 {base_seo}
 
