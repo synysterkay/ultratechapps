@@ -24,12 +24,12 @@ class EmailSequenceManager:
         self.api_key = os.getenv('MAILGUN_API_KEY')
         self.domain = os.getenv('MAILGUN_DOMAIN', 'bestaiapps.site')
         self.base_url = 'https://api.mailgun.net/v3'
-        self.from_email = f'Best AI Apps <hello@{self.domain}>'
+        self.from_email = f'Kay from Best AI Apps <hello@{self.domain}>'
         
-        # Rate limiting configuration
-        self.batch_size = int(os.getenv('EMAIL_BATCH_SIZE', '50'))  # Emails per batch
-        self.batch_delay = int(os.getenv('EMAIL_BATCH_DELAY', '3600'))  # Seconds between batches (default 1 hour)
-        self.email_delay = int(os.getenv('EMAIL_DELAY', '2'))  # Seconds between individual emails
+        # Rate limiting configuration - aggressive but safe
+        self.batch_size = int(os.getenv('EMAIL_BATCH_SIZE', '100'))  # Emails per batch (increased)
+        self.batch_delay = int(os.getenv('EMAIL_BATCH_DELAY', '60'))  # 60 seconds between batches
+        self.email_delay = int(os.getenv('EMAIL_DELAY', '1'))  # 1 second between individual emails
         
         if not self.api_key:
             raise ValueError("MAILGUN_API_KEY not found in environment")
@@ -74,75 +74,49 @@ class EmailSequenceManager:
             return 'newcomer'
     
     def _should_send_email(self, subscriber):
-        """Check if subscriber should receive email today"""
+        """
+        Check if subscriber should receive email now.
+        
+        Email Schedule (aggressive marketing):
+        - Welcome email: IMMEDIATE (as soon as they subscribe)
+        - Follow-up emails: Every 12 hours minimum
+        - Different app featured each time
+        """
         metadata = subscriber.get('metadata', {})
         
         last_email_sent = metadata.get('last_email_sent')
-        sequence_stage = metadata.get('sequence_stage', 'welcome')
-        welcome_day = metadata.get('welcome_day', 0)
+        emails_received = metadata.get('emails_received', 0)
         
-        # New subscribers: Welcome sequence (Day 0, 3, 7)
-        if sequence_stage == 'welcome':
-            subscribed_at_str = metadata.get('subscribed_at')
-            if not subscribed_at_str:
+        # IMMEDIATE: Never received any email? Send welcome NOW
+        if emails_received == 0 or not last_email_sent:
+            return True, {'sequence': 'welcome', 'day': 0}
+        
+        # Check time since last email
+        try:
+            last_sent = datetime.fromisoformat(last_email_sent)
+            hours_since_last = (datetime.now() - last_sent).total_seconds() / 3600
+            
+            # Minimum 12 hours between emails to avoid spam
+            if hours_since_last < 12:
                 return False, None
             
-            try:
-                subscribed_at = datetime.fromisoformat(subscribed_at_str)
-                days_since_signup = (datetime.now() - subscribed_at).days
-                
-                # Day 0: Immediate (within first 24 hours)
-                if welcome_day == 0 and days_since_signup == 0:
-                    return True, {'sequence': 'welcome', 'day': 0}
-                
-                # Day 3: Send on day 3
-                elif welcome_day <= 0 and days_since_signup == 3:
-                    return True, {'sequence': 'welcome', 'day': 3}
-                
-                # Day 7: Send on day 7 and transition to value sequence
-                elif welcome_day <= 3 and days_since_signup == 7:
-                    return True, {'sequence': 'welcome', 'day': 7}
-                
-                # Transition to value sequence after day 7
-                elif days_since_signup > 7:
-                    # Update subscriber to value sequence
-                    metadata['sequence_stage'] = 'value'
-                    self.subscriber_manager.update_subscriber_metadata(
-                        subscriber['address'],
-                        metadata
-                    )
-                    return False, None
-                
-            except:
-                return False, None
-        
-        # Value sequence: Every 2 days
-        elif sequence_stage == 'value':
-            if not last_email_sent:
+            # Determine sequence based on emails received
+            if emails_received == 1:
+                # Second email: value content
                 return True, {'sequence': 'value'}
-            
-            try:
-                last_sent = datetime.fromisoformat(last_email_sent)
-                days_since_last = (datetime.now() - last_sent).days
-                
-                if days_since_last >= 2:
-                    return True, {'sequence': 'value'}
-            except:
+            elif emails_received == 2:
+                # Third email: more value
                 return True, {'sequence': 'value'}
-        
-        # Promotional sequence: Once per week
-        elif sequence_stage == 'promotional':
-            if not last_email_sent:
-                return True, {'sequence': 'promotional'}
-            
-            try:
-                last_sent = datetime.fromisoformat(last_email_sent)
-                days_since_last = (datetime.now() - last_sent).days
-                
-                if days_since_last >= 7:
+            elif emails_received >= 3:
+                # Rotate between value and promotional
+                if emails_received % 3 == 0:
                     return True, {'sequence': 'promotional'}
-            except:
-                return True, {'sequence': 'promotional'}
+                else:
+                    return True, {'sequence': 'value'}
+                    
+        except Exception as e:
+            # If any error parsing, send email
+            return True, {'sequence': 'value'}
         
         return False, None
     
