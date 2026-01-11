@@ -16,32 +16,28 @@ permalink: /apps/
     <div class="app-grid">
       
       <!-- Smart Notes -->
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80" alt="Smart Notes" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">Smart Notes - AI Meeting Summary</h3>
-          <p class="app-card-description">AI-powered note-taking app with meeting transcription and smart organization</p>
-          <div class="app-card-links">
-            <a href="/apps/smart-notes-ai-meeting-summary/" class="app-badge app-badge-primary">
-              <span>🚀</span> Learn More & Download
-            </a>
+      <a href="/apps/smart-notes-ai-meeting-summary/" class="app-card-wrapper">
+        <div class="app-card">
+          <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80" alt="Smart Notes" class="app-card-image">
+          <div class="app-card-content">
+            <h3 class="app-card-title">Smart Notes - AI Meeting Summary</h3>
+            <p class="app-card-description">AI-powered note-taking app with meeting transcription and smart organization</p>
+            <span class="app-card-cta">Learn More & Download →</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- AI Girlfriend -->
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80" alt="AI Girlfriend" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">Ai Girlfriend App - Cupid Ai</h3>
-          <p class="app-card-description">AI-powered virtual companion for meaningful conversations and emotional connection</p>
-          <div class="app-card-links">
-            <a href="/apps/ai-girlfriend-app-cupid-ai/" class="app-badge app-badge-primary">
-              <span>🚀</span> Learn More & Download
-            </a>
+      <a href="/apps/ai-girlfriend-app-cupid-ai/" class="app-card-wrapper">
+        <div class="app-card">
+          <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80" alt="AI Girlfriend" class="app-card-image">
+          <div class="app-card-content">
+            <h3 class="app-card-title">Ai Girlfriend App - Cupid Ai</h3>
+            <p class="app-card-description">AI-powered virtual companion for meaningful conversations and emotional connection</p>
+            <span class="app-card-cta">Learn More & Download →</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- Red Flag Scanner -->
       <div class="app-card">
@@ -247,6 +243,28 @@ permalink: /apps/
 .app-badge-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.app-card-wrapper {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.app-card-wrapper:hover {
+  transform: translateY(-5px);
+}
+
+.app-card-wrapper .app-card {
+  cursor: pointer;
+}
+
+.app-card-cta {
+  color: #667eea;
+  font-weight: 600;
+  margin-top: 12px;
+  display: inline-block;
 }
 </style>
             <a href="https://play.google.com/store/apps/details?id=com.redflag.scanner.ai.red_flag_scanner" class="app-badge app-badge-android">
