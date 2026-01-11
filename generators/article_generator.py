@@ -204,34 +204,71 @@ EXAMPLE TITLE: "Meeting Notes Taking Too Long? This AI Tool Cut My Time by 80%"
         """
         Determine blog category based on niche and content
         Categories: ai-tools, productivity, reviews, tutorials, news, guides
+        Distribute across all 6 categories for balanced homepage
         """
+        import random
+        
         niche_lower = niche.lower()
         app_lower = app_name.lower()
         desc_lower = description.lower()
         
-        # Map niches to categories
-        if any(word in niche_lower or word in app_lower or word in desc_lower 
-               for word in ['ai', 'artificial intelligence', 'machine learning', 'chatbot', 'gpt']):
-            return 'ai-tools'
+        # Get category distribution to balance content
+        category_counts = self._get_category_counts()
         
-        if any(word in niche_lower or word in app_lower or word in desc_lower 
-               for word in ['productivity', 'notes', 'meeting', 'organize', 'planner', 'task']):
-            return 'productivity'
-        
+        # Priority keywords for specific categories (checked first)
         if any(word in niche_lower or word in desc_lower 
-               for word in ['how to', 'guide', 'step', 'tutorial', 'learn']):
+               for word in ['how to', 'step-by-step', 'guide to', 'learn how']):
             return 'tutorials'
         
         if any(word in niche_lower or word in desc_lower 
-               for word in ['review', 'best', 'top', 'comparison']):
+               for word in ['review', 'best app', 'top app', 'vs', 'comparison', 'rating']):
             return 'reviews'
         
         if any(word in niche_lower or word in desc_lower 
-               for word in ['tips', 'tricks', 'secret', 'hack']):
+               for word in ['tips', 'tricks', 'secrets', 'hacks', 'ways to']):
             return 'guides'
         
-        # Default to ai-tools for AI-related content, otherwise guides
-        return 'ai-tools' if 'ai' in app_lower else 'guides'
+        if any(word in niche_lower or word in app_lower or word in desc_lower 
+               for word in ['productivity', 'notes', 'meeting', 'organize', 'planner', 'task', 'efficient']):
+            return 'productivity'
+        
+        # AI tools gets most content but check if we need to balance
+        if any(word in app_lower or word in desc_lower 
+               for word in ['ai', 'artificial intelligence', 'machine learning', 'chatbot', 'gpt']):
+            # If ai-tools has too many, occasionally switch to related categories
+            if category_counts.get('ai-tools', 0) > category_counts.get('reviews', 0) + 3:
+                return random.choice(['reviews', 'guides'])
+            return 'ai-tools'
+        
+        # Balance distribution - pick category with least articles
+        if category_counts:
+            min_category = min(category_counts.items(), key=lambda x: x[1])[0]
+            if min_category in ['reviews', 'tutorials', 'news', 'guides']:
+                return min_category
+        
+        # Default fallback
+        return random.choice(['ai-tools', 'guides', 'reviews'])
+    
+    def _get_category_counts(self):
+        """Get current article count per category"""
+        from pathlib import Path
+        import re
+        
+        posts_dir = Path(__file__).parent.parent / '_posts'
+        category_counts = {'ai-tools': 0, 'productivity': 0, 'reviews': 0, 
+                          'tutorials': 0, 'news': 0, 'guides': 0}
+        
+        if posts_dir.exists():
+            for post_file in posts_dir.glob('*.md'):
+                content = post_file.read_text()
+                # Extract category from frontmatter
+                match = re.search(r'categories:\s*\[([^\]]+)\]', content)
+                if match:
+                    categories = match.group(1).strip()
+                    if categories in category_counts:
+                        category_counts[categories] += 1
+        
+        return category_counts
     
     def _get_next_topic(self, app_name, niche_info):
         """Get next topic to write about, avoiding recent topics"""
