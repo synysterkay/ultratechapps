@@ -94,10 +94,15 @@ class MarketingAutomation:
         # Step 3: Publish to GitHub Pages
         print("\n3️⃣ Publishing to GitHub Pages...")
         can_post, reason = self.rate_limiter.can_post('github', app_name)
+        article_url = None  # Initialize article URL
         if can_post:
             github_result = self.github_publisher.publish_article(article, metadata)
             self.analytics.track_post('github', app_name, 'article', github_result)
             self.rate_limiter.record_post('github', app_name)
+            
+            # Get article URL from GitHub result
+            if github_result.get('success') and github_result.get('url'):
+                article_url = github_result['url']
             
             # Also save locally
             self.github_publisher.save_locally(article, metadata)
