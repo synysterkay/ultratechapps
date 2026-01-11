@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.app_name }} - {{ site.title }}</title>
+  <meta name="description" content="{{ page.description }}">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="icon" type="image/x-icon" href="{{ '/assets/logo/favicon.ico' | relative_url }}">
+</head>
+<body>
+  {% include header.html %}
+
+  <main class="app-landing-page">
+    <!-- Hero Section -->
+    <section class="app-hero">
+      <div class="container">
+        <div class="app-hero-content">
+          <div class="app-hero-text">
+            <!-- Trust Badge -->
+            {% if page.rating %}
+            <div class="trust-badge">
+              <span class="stars">⭐⭐⭐⭐⭐</span>
+              <span class="rating-text">{{ page.rating }} Rating • {{ page.downloads }}+ Downloads</span>
+            </div>
+            {% endif %}
+            
+            <h1 class="app-hero-title">{{ page.tagline }}</h1>
+            <p class="app-hero-subtitle">{{ page.description }}</p>
+            
+            <!-- Benefit Bullets -->
+            {% if page.benefits %}
+            <ul class="benefit-list">
+              {% for benefit in page.benefits limit:3 %}
+              <li>✅ {{ benefit }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            
+            <!-- Urgency Message -->
+            <p class="urgency-message">🎁 <strong>Free to download.</strong> {{ page.urgency_text | default: "Join thousands of satisfied users today!" }}</p>
+            
+            <!-- Download Buttons -->
+            <div class="app-download-buttons">
+              {% if page.app_store_url and page.app_store_url != "" %}
+              <a href="{{ page.app_store_url }}" class="btn-download btn-ios pulse-animation" target="_blank" rel="noopener">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+                </svg>
+                <span>
+                  <small>Download on</small>
+                  <strong>App Store</strong>
+                </span>
+              </a>
+              {% endif %}
+              
+              {% if page.google_play_url and page.google_play_url != "" %}
+              <a href="{{ page.google_play_url }}" class="btn-download btn-android pulse-animation" target="_blank" rel="noopener">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3.609 1.814L13.792 12 3.609 22.186a.996.996 0 0 1-.609-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/>
+                </svg>
+                <span>
+                  <small>Get it on</small>
+                  <strong>Google Play</strong>
+                </span>
+              </a>
+              {% endif %}
+            </div>
+            
+            <p class="trust-signals">
+              <small>✓ Free to download &nbsp;•&nbsp; ✓ No credit card required &nbsp;•&nbsp; ✓ Instant access</small>
+            </p>
+          </div>
+          
+          <div class="app-hero-image">
+            <img src="{{ page.hero_image }}" alt="{{ page.app_name }}" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="app-features">
+      <div class="container">
+        <h2 class="section-title">{{ page.features_headline | default: "Why Users Love" }} {{ page.app_name }}</h2>
+        <p class="section-subtitle">{{ page.features_subheadline | default: "Everything you need to succeed, all in one powerful app" }}</p>
+        
+        <div class="features-grid">
+          {% for feature in page.features %}
+          <div class="feature-card">
+            <div class="feature-icon">{{ feature.icon }}</div>
+            <h3>{{ feature.title }}</h3>
+            <p>{{ feature.description }}</p>
+          </div>
+          {% endfor %}
+        </div>
+        
+        <!-- Mid-page CTA -->
+        <div class="inline-cta">
+          <p class="inline-cta-text"><strong>Ready to transform your experience?</strong> Download now and see results immediately.</p>
+          <div class="app-download-buttons-small">
+            {% if page.app_store_url and page.app_store_url != "" %}
+            <a href="{{ page.app_store_url }}" class="btn-download-small btn-ios" target="_blank" rel="noopener">
+              📱 App Store
+            </a>
+            {% endif %}
+            {% if page.google_play_url and page.google_play_url != "" %}
+            <a href="{{ page.google_play_url }}" class="btn-download-small btn-android" target="_blank" rel="noopener">
+              🤖 Google Play
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Social Proof Section -->
+    {% if page.testimonials %}
+    <section class="testimonials">
+      <div class="container">
+        <h2 class="section-title">What Our Users Say</h2>
+        <div class="testimonials-grid">
+          {% for testimonial in page.testimonials limit:3 %}
+          <div class="testimonial-card">
+            <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+            <p class="testimonial-text">"{{ testimonial.text }}"</p>
+            <p class="testimonial-author">— {{ testimonial.author }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- CTA Section -->
+    <section class="app-cta">
+      <div class="container">
+        <div class="cta-content">
+          <h2>{{ page.cta_headline | default: "Don't Miss Out – Download" }} {{ page.app_name }} {{ page.cta_headline | default: "Today" }}</h2>
+          <p class="cta-subheadline">{{ page.cta_text | default: "Join thousands of satisfied users who have already transformed their experience. Free to download, instant access." }}</p>
+          
+          <!-- Value Props -->
+          <div class="cta-benefits">
+            <span class="cta-benefit">✅ {{ page.cta_benefit_1 | default: "100% Free" }}</span>
+            <span class="cta-benefit">✅ {{ page.cta_benefit_2 | default: "No Ads" }}</span>
+            <span class="cta-benefit">✅ {{ page.cta_benefit_3 | default: "Instant Setup" }}</span>
+          </div>
+          
+          <div class="app-download-buttons">
+            {% if page.app_store_url and page.app_store_url != "" %}
+            <a href="{{ page.app_store_url }}" class="btn-download btn-ios btn-large" target="_blank" rel="noopener">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+              </svg>
+              <span>
+                <small>Download Free on</small>
+                <strong>App Store</strong>
+              </span>
+            </a>
+            {% endif %}
+            
+            {% if page.google_play_url and page.google_play_url != "" %}
+            <a href="{{ page.google_play_url }}" class="btn-download btn-android btn-large" target="_blank" rel="noopener">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3.609 1.814L13.792 12 3.609 22.186a.996.996 0 0 1-.609-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/>
+              </svg>
+              <span>
+                <small>Get it Free on</small>
+                <strong>Google Play</strong>
+              </span>
+            </a>
+            {% endif %}
+          </div>
+          
+          <p class="cta-guarantee">
+            🔒 <strong>Safe & Secure</strong> • Trusted by {{ page.downloads | default: "10,000" }}+ users worldwide
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Articles -->
+    {% if page.category %}
+    <section class="related-articles">
+      <div class="container">
+        <h2 class="section-title">Related Articles</h2>
+        <div class="articles-grid">
+          {% assign related = site.posts | where_exp: "post", "post.tags contains page.category" | limit: 3 %}
+          {% for post in related %}
+          <article class="article-card">
+            <a href="{{ post.url | relative_url }}">
+              <h3>{{ post.title }}</h3>
+              <p>{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+              <span class="read-more">Read more →</span>
+            </a>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+  </main>
+
+  {% include footer.html %}
+</body>
+</html>
