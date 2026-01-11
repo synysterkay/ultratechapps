@@ -395,7 +395,8 @@ WRITE NATURALLY - let the value of the content speak for itself, then feature th
                     title = article_data.get('title', 'Untitled Article')
                     content = article_data.get('content', '')
                     meta_description = article_data.get('meta_description', '')
-                    keywords (title already extracted abovee rest of processing
+                    
+                    # Use content as article_content for the rest of processing
                     article_content = content
                     
                 except (json.JSONDecodeError, AttributeError):
