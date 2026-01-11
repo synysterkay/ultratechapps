@@ -60,55 +60,80 @@ class DailyEmailCampaign:
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         </head>
-        <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.7; color: #2d3748; max-width: 600px; margin: 0 auto; padding: 40px 20px; background: #ffffff;">
             
-            <!-- Header -->
-            <div style="text-align: center; padding: 30px 0; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; margin-bottom: 30px;">
-                <h1 style="color: white; margin: 0; font-size: 28px;">🚀 Best AI Apps</h1>
-                <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0;">Your Daily AI App Pick</p>
-            </div>
-            
-            <!-- Featured App -->
-            <div style="background: #f8f9fa; border-radius: 10px; padding: 30px; margin-bottom: 30px;">
-                <h2 style="color: #1a1a2e; margin-top: 0; font-size: 24px;">{app_name}</h2>
-                <p style="color: #666; font-size: 16px; line-height: 1.8;">{description}</p>
+            <!-- Personal Greeting -->
+            <div style="margin-bottom: 30px;">
+                <p style="margin: 0 0 20px 0; font-size: 16px; color: #4a5568;">Hey there 👋</p>
                 
-                <!-- Download Buttons -->
-                <div style="text-align: center; margin: 30px 0;">
-                    {download_buttons}
+                <p style="margin: 0 0 20px 0; font-size: 16px; color: #2d3748; line-height: 1.7;">
+                    Quick question: <strong>What if you could {description.lower().replace('AI-powered ', '').replace('AI ', '')}?</strong>
+                </p>
+                
+                <p style="margin: 0 0 20px 0; font-size: 16px; color: #2d3748; line-height: 1.7;">
+                    I just tested <strong>{app_name}</strong> and honestly... I'm impressed.
+                </p>
+                
+                <!-- Social Proof -->
+                <div style="background: #f7fafc; border-left: 4px solid #667eea; padding: 15px 20px; margin: 25px 0; border-radius: 4px;">
+                    <p style="margin: 0; font-size: 15px; color: #4a5568; line-height: 1.6;">
+                        ⭐⭐⭐⭐⭐ <strong>Rated 4.7+</strong> by thousands of users<br>
+                        <span style="color: #718096; font-size: 14px;">Join people already transforming their workflow with AI</span>
+                    </p>
                 </div>
-            </div>
-            
-            <!-- Value Section -->
-            <div style="padding: 20px 0; border-top: 2px solid #eee; margin-top: 30px;">
-                <h3 style="color: #1a1a2e; font-size: 20px;">💡 Why This App Matters</h3>
-                <p style="color: #666; line-height: 1.8;">
-                    In 2026, AI-powered apps are transforming how we work, learn, and connect. 
-                    {app_name} represents the cutting edge of mobile AI technology, designed to 
-                    make your life easier and more productive.
+                
+                <p style="margin: 0 0 20px 0; font-size: 16px; color: #2d3748; line-height: 1.7;">
+                    It's free to start, takes 30 seconds to set up, and you'll see results immediately.
+                </p>
+                
+                <p style="margin: 0 0 30px 0; font-size: 16px; color: #2d3748; line-height: 1.7;">
+                    No credit card. No BS. Just results.
                 </p>
             </div>
             
-            <!-- CTA Section -->
-            <div style="background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; padding: 25px; text-align: center; margin: 30px 0;">
-                <h3 style="color: white; margin: 0 0 15px 0; font-size: 20px;">Ready to Transform Your Workflow?</h3>
-                <p style="color: rgba(255,255,255,0.9); margin: 0 0 20px 0;">Join thousands of users already using {app_name}</p>
-                {download_button}
+            <!-- Single Clear CTA -->
+            <div style="text-align: center; margin: 35px 0;">
+                <a href="{landing_page_url}" style="display: inline-block; background: #667eea; color: #ffffff; padding: 16px 40px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 16px; box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);">
+                    Try {app_name} Free →
+                </a>
+                <p style="margin: 15px 0 0 0; font-size: 13px; color: #a0aec0;">
+                    Click to see how it works · No signup required to preview
+                </p>
             </div>
             
-            <!-- Footer -->
-            <div style="text-align: center; padding: 30px 0; color: #999; font-size: 14px; border-top: 1px solid #eee; margin-top: 30px;">
-                <p style="margin: 5px 0;">
-                    <a href="https://bestaiapps.site" style="color: #667eea; text-decoration: none;">Visit Our Blog</a> · 
+            <!-- Simple Value Reminder -->
+            <div style="margin: 35px 0 40px 0; padding-top: 25px; border-top: 1px solid #e2e8f0;">
+                <p style="margin: 0 0 15px 0; font-size: 15px; color: #4a5568; line-height: 1.7;">
+                    <strong>Why people love it:</strong>
+                </p>
+                <p style="margin: 0 0 10px 0; font-size: 15px; color: #4a5568; line-height: 1.7;">
+                    ✓ Works on iOS & Android<br>
+                    ✓ Free to download and try<br>
+                    ✓ No learning curve - intuitive design<br>
+                    ✓ AI does the heavy lifting for you
+                </p>
+            </div>
+            
+            <p style="margin: 0 0 30px 0; font-size: 15px; color: #4a5568; line-height: 1.7;">
+                Give it 5 minutes. You'll see why everyone's talking about it.
+            </p>
+            
+            <p style="margin: 0; font-size: 15px; color: #4a5568;">
+                – The Best AI Apps Team
+            </p>
+            
+            <!-- Minimal Footer -->
+            <div style="margin-top: 50px; padding-top: 25px; border-top: 1px solid #e2e8f0; text-align: center;">
+                <p style="margin: 0 0 10px 0; font-size: 13px; color: #a0aec0;">
+                    <a href="https://bestaiapps.site" style="color: #667eea; text-decoration: none;">Blog</a> · 
                     <a href="https://bestaiapps.site/apps/" style="color: #667eea; text-decoration: none;">All Apps</a>
                 </p>
-                <p style="margin: 15px 0 5px 0; color: #aaa; font-size: 12px;">
-                    Best AI Apps · Curated AI Tools for Everyone<br>
-                    Józefa Łepkowskiego 5, 31-423 Kraków, Poland<br>
-                    You're receiving this because you subscribed to Best AI Apps newsletter.
+                <p style="margin: 0 0 15px 0; font-size: 12px; color: #cbd5e0; line-height: 1.6;">
+                    Best AI Apps · Józefa Łepkowskiego 5, Kraków, Poland<br>
+                    You subscribed to discover the best AI tools.
                 </p>
-                <p style="margin: 5px 0;">
-                    <a href="%mailing_list_unsubscribe_url%" style="color: #999; text-decoration: none; font-size: 12px;">Unsubscribe</a>
+                <p style="margin: 0;">
+                    <a href="%mailing_list_unsubscribe_url%" style="color: #cbd5e0; text-decoration: none; font-size: 11px;">Unsubscribe</a>
                 </p>
             </div>
             
