@@ -41,24 +41,17 @@ class DailyEmailCampaign:
         """Generate HTML email content"""
         app_name = app['name']
         description = app.get('description', '')
-        google_play = app.get('google_play_url', '')
-        app_store = app.get('app_store_url', '')
         
-        # Create download buttons HTML
-        download_buttons = ""
-        if google_play:
-            download_buttons += f'''
-            <a href="{google_play}" style="display: inline-block; background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 15px 30px; text-decoration: none; border-radius: 50px; margin: 10px 5px; font-weight: 600;">
-                📱 Download on Google Play
-            </a>
-            '''
+        # Create landing page URL
+        slug = app_name.lower().replace(':', '-').replace(' ', '-').replace('--', '-').strip('-')
+        landing_page_url = f"https://bestaiapps.site/apps/{slug}/"
         
-        if app_store:
-            download_buttons += f'''
-            <a href="{app_store}" style="display: inline-block; background: linear-gradient(135deg, #000000, #434343); color: white !important; padding: 15px 30px; text-decoration: none; border-radius: 50px; margin: 10px 5px; font-weight: 600;">
-                🍎 Download on App Store
-            </a>
-            '''
+        # Create download button pointing to landing page
+        download_button = f'''
+        <a href="{landing_page_url}" style="display: inline-block; background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 15px 30px; text-decoration: none; border-radius: 50px; margin: 10px 5px; font-weight: 600; text-align: center;">
+            🚀 Learn More & Download
+        </a>
+        '''
         
         html = f'''
         <!DOCTYPE html>
@@ -100,7 +93,7 @@ class DailyEmailCampaign:
             <div style="background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 10px; padding: 25px; text-align: center; margin: 30px 0;">
                 <h3 style="color: white; margin: 0 0 15px 0; font-size: 20px;">Ready to Transform Your Workflow?</h3>
                 <p style="color: rgba(255,255,255,0.9); margin: 0 0 20px 0;">Join thousands of users already using {app_name}</p>
-                {download_buttons}
+                {download_button}
             </div>
             
             <!-- Footer -->

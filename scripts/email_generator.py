@@ -11,6 +11,10 @@ import requests
 from pathlib import Path
 from datetime import datetime
 
+def slugify(text):
+    """Convert app name to URL slug"""
+    return text.lower().replace(':', '-').replace(' ', '-').replace('--', '-').strip('-')
+
 class EmailGenerator:
     def __init__(self):
         self.api_key = os.getenv('DEEPSEEK_API_KEY')
@@ -113,7 +117,7 @@ OUTPUT FORMAT (JSON):
     "paragraph 6 (closing/CTA)"
   ],
   "cta_text": "Soft invitation CTA text",
-  "cta_url": "{app_data.get('google_play_url') or app_data.get('app_store_url', '')}",
+  "cta_url": "https://bestaiapps.site/apps/{slugify(app_data['name'])}/",
   "key_takeaways": ["takeaway 1", "takeaway 2", "takeaway 3"]
 }}
 
