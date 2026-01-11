@@ -589,26 +589,28 @@ WRITE NATURALLY - let the value of the content speak for itself, then feature th
         - In the middle (after 50% of content)
         - At the end (before conclusion)
         """
-        # Create CTA box with download buttons
+        # Create CTA box with styled HTML download buttons
         def create_cta_box(position):
             cta_messages = {
-                'intro': f"**Ready to get started?** Download {app_name} now:",
-                'middle': f"**Want to try it yourself?** Get {app_name} today:",
-                'end': f"**Don't wait!** Download {app_name} and start now:"
+                'intro': f"Ready to get started? Download {app_name} now:",
+                'middle': f"Want to try it yourself? Get {app_name} today:",
+                'end': f"Don't wait! Download {app_name} and start now:"
             }
             
             buttons = []
             if google_play_url:
-                buttons.append(f"### [📱 Download on Google Play]({google_play_url})")
+                buttons.append(f'<a href="{google_play_url}" class="download-btn android-btn" target="_blank" rel="noopener">📱 Download on Google Play</a>')
             if app_store_url:
-                buttons.append(f"### [🍎 Download on App Store]({app_store_url})")
+                buttons.append(f'<a href="{app_store_url}" class="download-btn ios-btn" target="_blank" rel="noopener">🍎 Download on App Store</a>')
             
             if not buttons:
                 return ""
             
-            cta = f"\n\n---\n\n## {cta_messages[position]}\n\n"
-            cta += "\n\n".join(buttons)
-            cta += "\n\n---\n\n"
+            cta = f'\n\n<div class="app-cta-box">\n'
+            cta += f'<p class="cta-headline">🚀 {cta_messages[position]}</p>\n'
+            cta += '<div class="cta-buttons">\n'
+            cta += '\n'.join(buttons)
+            cta += '\n</div>\n</div>\n\n'
             return cta
         
         # Split content into sections by H2 headers

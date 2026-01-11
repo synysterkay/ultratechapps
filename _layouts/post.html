@@ -906,6 +906,97 @@ layout: default
     justify-content: center;
   }
 }
+
+/* Article Inline CTA Box Styles */
+.app-cta-box {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e3a5f 100%);
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 2.5rem 0;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  box-shadow: 0 10px 40px rgba(99, 102, 241, 0.15);
+  text-align: center;
+}
+
+.cta-headline {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1.25rem;
+  line-height: 1.4;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.75rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  min-width: 200px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+}
+
+.download-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  text-decoration: none !important;
+}
+
+.android-btn {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: #fff !important;
+}
+
+.android-btn:hover {
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  color: #fff !important;
+}
+
+.ios-btn {
+  background: linear-gradient(135deg, #1f2937 0%, #000 100%);
+  color: #fff !important;
+}
+
+.ios-btn:hover {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+  color: #fff !important;
+}
+
+@media (max-width: 640px) {
+  .app-cta-box {
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+  
+  .cta-headline {
+    font-size: 1.2rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .download-btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
 </style>
 
 <article class="post">
