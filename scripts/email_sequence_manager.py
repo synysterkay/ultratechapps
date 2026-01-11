@@ -120,27 +120,6 @@ class EmailSequenceManager:
         
         return False, None
     
-    def _select_app_for_subscriber(self, subscriber):
-        """Select appropriate app based on subscriber's niche"""
-        metadata = subscriber.get('metadata', {})
-        niche = metadata.get('niche', 'general')
-        
-        # Get apps for this niche
-        niche_config = self.config['niches'].get(niche)
-        
-        if niche_config and 'apps' in niche_config:
-            matching_apps = [app for app in self.apps if app['name'] in niche_config['apps']]
-            if matching_apps:
-                # Rotate through niche apps
-                emails_received = metadata.get('emails_received', 0)
-                app_index = emails_received % len(matching_apps)
-                return matching_apps[app_index], niche
-        
-        # Fallback: general rotation
-        emails_received = metadata.get('emails_received', 0)
-        app_index = emails_received % len(self.apps)
-        return self.apps[app_index], 'general'
-    
     def _generate_email_html(self, email_data, app_data):
         """Generate HTML email from AI-generated content - Personal marketing style"""
         
@@ -329,8 +308,59 @@ class EmailSequenceManager:
         with open(self.state_file, 'w') as f:
             json.dump(state, f, indent=2)
     
+    def _get_app_for_email_number(self, emails_received):
+        """Get app based on how many emails subscriber has received"""
+        # Rotate through all apps
+        app_index = emails_received % len(self.apps)
+        return self.apps[app_index]
+    
+    def _pre_generate_emails(self, eligible_subscribers):
+        """
+        Pre-generate ONE email per app needed for this batch.
+        Returns dict: {app_name: email_data}
+        """
+        # Find which apps we need emails for
+        apps_needed = set()
+        for subscriber in eligible_subscribers:
+            metadata = subscriber.get('metadata', {})
+            emails_received = metadata.get('emails_received', 0)
+            app = self._get_app_for_email_number(emails_received)
+            apps_needed.add(app['name'])
+        
+        print(f"\n📝 Pre-generating {len(apps_needed)} unique emails (one per app)...")
+        
+        email_cache = {}
+        for app_name in apps_needed:
+            app_data = next(a for a in self.apps if a['name'] == app_name)
+            
+            # Determine sequence type based on most common stage
+            sequence_type = 'value'  # Default to value emails
+            
+            print(f"   🔄 Generating email for: {app_name}")
+            
+            email_data = self.email_generator.generate_email(
+                niche='general',
+                app_data=app_data,
+                sequence_type=sequence_type,
+                day=None
+            )
+            
+            if email_data:
+                email_cache[app_name] = email_data
+                print(f"   ✅ Generated: {email_data['subject'][:50]}...")
+            else:
+                print(f"   ❌ Failed to generate for {app_name}")
+        
+        print(f"\n✅ Pre-generated {len(email_cache)} emails (saved {len(eligible_subscribers) - len(email_cache)} API calls!)\n")
+        return email_cache
+
     def run_daily_campaign(self):
-        """Main campaign runner - processes all subscribers with rate limiting"""
+        """
+        Optimized campaign runner:
+        1. Group subscribers by which app they should receive
+        2. Generate ONE email per app (not per subscriber!)
+        3. Send same email to all subscribers in that group
+        """
         
         print("🚀 Starting daily email campaign...")
         print(f"⚙️  Rate limiting: {self.batch_size} emails per batch, {self.batch_delay}s between batches")
@@ -359,56 +389,63 @@ class EmailSequenceManager:
         print(f"📋 Total subscribers: {len(subscribers)}")
         print(f"✅ Already processed: {len(already_processed)}")
         print(f"⏳ Pending: {len(pending_subscribers)}")
-        print()
+        
+        # Find eligible subscribers (ready for next email)
+        eligible_subscribers = []
+        for subscriber in pending_subscribers:
+            should_send, sequence_info = self._should_send_email(subscriber)
+            if should_send:
+                subscriber['_sequence_info'] = sequence_info
+                eligible_subscribers.append(subscriber)
+        
+        if not eligible_subscribers:
+            print(f"\n⏳ No subscribers ready for email yet (12h minimum between emails)")
+            # Mark all as processed for today
+            for s in pending_subscribers:
+                already_processed.add(s['address'])
+            state['processed'] = list(already_processed)
+            self._save_campaign_state(state)
+            return
+        
+        print(f"📬 Eligible for email now: {len(eligible_subscribers)}")
+        
+        # PRE-GENERATE emails (one per app - saves API calls!)
+        email_cache = self._pre_generate_emails(eligible_subscribers)
+        
+        if not email_cache:
+            print("❌ Failed to generate any emails")
+            return
         
         skipped_count = 0
         batch_count = 0
         
         # Process in batches
-        for i in range(0, len(pending_subscribers), self.batch_size):
-            batch = pending_subscribers[i:i + self.batch_size]
+        for i in range(0, len(eligible_subscribers), self.batch_size):
+            batch = eligible_subscribers[i:i + self.batch_size]
             batch_count += 1
             batch_sent = 0
             
             print(f"\n{'='*60}")
-            print(f"📦 Batch {batch_count}: Processing {len(batch)} subscribers")
+            print(f"📦 Batch {batch_count}: Sending to {len(batch)} subscribers")
             print(f"{'='*60}")
             
             for subscriber in batch:
                 email_address = subscriber['address']
+                metadata = subscriber.get('metadata', {})
+                emails_received = metadata.get('emails_received', 0)
+                sequence_info = subscriber.get('_sequence_info', {'sequence': 'value'})
                 
-                # Check if should send email
-                should_send, sequence_info = self._should_send_email(subscriber)
+                # Get the app for this subscriber's email number
+                app_data = self._get_app_for_email_number(emails_received)
                 
-                if not should_send:
+                # Use pre-generated email for this app
+                email_data = email_cache.get(app_data['name'])
+                
+                if not email_data:
+                    print(f"⏭️  Skip {email_address}: No email for {app_data['name']}")
                     skipped_count += 1
                     already_processed.add(email_address)
                     continue
-                
-                print(f"\n📧 Processing: {email_address}")
-                print(f"   Stage: {self._get_subscriber_stage(subscriber)}")
-                print(f"   Sequence: {sequence_info['sequence']}")
-                
-                # Select app for subscriber
-                app_data, niche = self._select_app_for_subscriber(subscriber)
-                print(f"   App: {app_data['name']}")
-                print(f"   Niche: {niche}")
-                
-                # Generate email content
-                day = sequence_info.get('day') if sequence_info['sequence'] == 'welcome' else None
-                email_data = self.email_generator.generate_email(
-                    niche=niche,
-                    app_data=app_data,
-                    sequence_type=sequence_info['sequence'],
-                    day=day
-                )
-                
-                if not email_data:
-                    print(f"   ❌ Failed to generate email content")
-                    already_processed.add(email_address)
-                    continue
-                
-                print(f"   Subject: {email_data['subject']}")
                 
                 # Send email
                 if self.send_to_subscriber(subscriber, email_data, app_data, sequence_info):
@@ -419,13 +456,14 @@ class EmailSequenceManager:
                 # Mark as processed
                 already_processed.add(email_address)
                 
-                # Save state after each email
-                state = {
-                    'date': datetime.now().strftime('%Y-%m-%d'),
-                    'processed': list(already_processed),
-                    'sent_count': sent_count
-                }
-                self._save_campaign_state(state)
+                # Save state periodically (every 10 emails)
+                if sent_count % 10 == 0:
+                    state = {
+                        'date': datetime.now().strftime('%Y-%m-%d'),
+                        'processed': list(already_processed),
+                        'sent_count': sent_count
+                    }
+                    self._save_campaign_state(state)
                 
                 # Delay between individual emails
                 if self.email_delay > 0:
@@ -433,8 +471,16 @@ class EmailSequenceManager:
             
             print(f"\n✅ Batch {batch_count} complete: {batch_sent} emails sent")
             
+            # Save state after each batch
+            state = {
+                'date': datetime.now().strftime('%Y-%m-%d'),
+                'processed': list(already_processed),
+                'sent_count': sent_count
+            }
+            self._save_campaign_state(state)
+            
             # Check if there are more batches
-            remaining = len(pending_subscribers) - (i + self.batch_size)
+            remaining = len(eligible_subscribers) - (i + self.batch_size)
             if remaining > 0:
                 print(f"\n⏸️  Rate limit: Waiting {self.batch_delay} seconds before next batch...")
                 print(f"   Remaining subscribers: {remaining}")
@@ -449,6 +495,18 @@ class EmailSequenceManager:
                     # For local runs, actually wait
                     time.sleep(self.batch_delay)
         
+        # Mark non-eligible as processed too
+        for s in pending_subscribers:
+            if s['address'] not in already_processed:
+                already_processed.add(s['address'])
+        
+        state = {
+            'date': datetime.now().strftime('%Y-%m-%d'),
+            'processed': list(already_processed),
+            'sent_count': sent_count
+        }
+        self._save_campaign_state(state)
+        
         print()
         print("=" * 60)
         print(f"📊 Campaign Summary")
@@ -456,6 +514,7 @@ class EmailSequenceManager:
         print(f"   Subscribers skipped: {skipped_count}")
         print(f"   Total processed: {len(already_processed)}")
         print(f"   Total subscribers: {len(subscribers)}")
+        print(f"   🎯 API calls saved: {sent_count - len(email_cache)} (used {len(email_cache)} instead of {sent_count})")
         if len(already_processed) < len(subscribers):
             print(f"   ⏳ Will resume in next run: {len(subscribers) - len(already_processed)} remaining")
         else:
