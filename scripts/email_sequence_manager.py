@@ -8,6 +8,7 @@ import os
 import sys
 import json
 import requests
+import time
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -24,12 +25,21 @@ class EmailSequenceManager:
         self.base_url = 'https://api.mailgun.net/v3'
         self.from_email = f'Best AI Apps <hello@{self.domain}>'
         
+        # Rate limiting configuration
+        self.batch_size = int(os.getenv('EMAIL_BATCH_SIZE', '50'))  # Emails per batch
+        self.batch_delay = int(os.getenv('EMAIL_BATCH_DELAY', '3600'))  # Seconds between batches (default 1 hour)
+        self.email_delay = int(os.getenv('EMAIL_DELAY', '2'))  # Seconds between individual emails
+        
         if not self.api_key:
             raise ValueError("MAILGUN_API_KEY not found in environment")
         
         # Initialize components
         self.subscriber_manager = MailgunSubscriber()
         self.email_generator = EmailGenerator()
+        
+        # State file for tracking progress
+        self.state_file = Path(__file__).parent.parent / "cache" / "email_campaign_state.json"
+        self.state_file.parent.mkdir(exist_ok=True)
         
         # Load apps
         apps_file = Path(__file__).parent.parent / "apps.json"
@@ -339,11 +349,35 @@ class EmailSequenceManager:
             print(f"❌ Exception sending to {email_address}: {str(e)}")
             return False
     
+    def _load_campaign_state(self):
+        """Load campaign state from file"""
+        if self.state_file.exists():
+            try:
+                with open(self.state_file, 'r') as f:
+                    state = json.load(f)
+                    # Check if state is from today
+                    if state.get('date') == datetime.now().strftime('%Y-%m-%d'):
+                        return state
+            except:
+                pass
+        return {'date': datetime.now().strftime('%Y-%m-%d'), 'processed': [], 'sent_count': 0}
+    
+    def _save_campaign_state(self, state):
+        """Save campaign state to file"""
+        with open(self.state_file, 'w') as f:
+            json.dump(state, f, indent=2)
+    
     def run_daily_campaign(self):
-        """Main campaign runner - processes all subscribers"""
+        """Main campaign runner - processes all subscribers with rate limiting"""
         
         print("🚀 Starting daily email campaign...")
+        print(f"⚙️  Rate limiting: {self.batch_size} emails per batch, {self.batch_delay}s between batches")
         print()
+        
+        # Load campaign state
+        state = self._load_campaign_state()
+        already_processed = set(state.get('processed', []))
+        sent_count = state.get('sent_count', 0)
         
         # Get all subscribers
         subscribers = self.subscriber_manager.get_subscribers()
@@ -352,53 +386,118 @@ class EmailSequenceManager:
             print("ℹ️ No subscribers found")
             return
         
-        sent_count = 0
-        skipped_count = 0
+        # Filter out already processed subscribers
+        pending_subscribers = [s for s in subscribers if s['address'] not in already_processed]
         
-        for subscriber in subscribers:
-            email_address = subscriber['address']
+        if not pending_subscribers:
+            print(f"✅ All {len(subscribers)} subscribers already processed today")
+            print(f"📊 Total emails sent today: {sent_count}")
+            return
+        
+        print(f"📋 Total subscribers: {len(subscribers)}")
+        print(f"✅ Already processed: {len(already_processed)}")
+        print(f"⏳ Pending: {len(pending_subscribers)}")
+        print()
+        
+        skipped_count = 0
+        batch_count = 0
+        
+        # Process in batches
+        for i in range(0, len(pending_subscribers), self.batch_size):
+            batch = pending_subscribers[i:i + self.batch_size]
+            batch_count += 1
+            batch_sent = 0
             
-            # Check if should send email
-            should_send, sequence_info = self._should_send_email(subscriber)
+            print(f"\n{'='*60}")
+            print(f"📦 Batch {batch_count}: Processing {len(batch)} subscribers")
+            print(f"{'='*60}")
             
-            if not should_send:
-                skipped_count += 1
-                continue
+            for subscriber in batch:
+                email_address = subscriber['address']
+                
+                # Check if should send email
+                should_send, sequence_info = self._should_send_email(subscriber)
+                
+                if not should_send:
+                    skipped_count += 1
+                    already_processed.add(email_address)
+                    continue
+                
+                print(f"\n📧 Processing: {email_address}")
+                print(f"   Stage: {self._get_subscriber_stage(subscriber)}")
+                print(f"   Sequence: {sequence_info['sequence']}")
+                
+                # Select app for subscriber
+                app_data, niche = self._select_app_for_subscriber(subscriber)
+                print(f"   App: {app_data['name']}")
+                print(f"   Niche: {niche}")
+                
+                # Generate email content
+                day = sequence_info.get('day') if sequence_info['sequence'] == 'welcome' else None
+                email_data = self.email_generator.generate_email(
+                    niche=niche,
+                    app_data=app_data,
+                    sequence_type=sequence_info['sequence'],
+                    day=day
+                )
+                
+                if not email_data:
+                    print(f"   ❌ Failed to generate email content")
+                    already_processed.add(email_address)
+                    continue
+                
+                print(f"   Subject: {email_data['subject']}")
+                
+                # Send email
+                if self.send_to_subscriber(subscriber, email_data, app_data, sequence_info):
+                    sent_count += 1
+                    batch_sent += 1
+                    print(f"   ✅ Email sent ({sent_count} total today)")
+                
+                # Mark as processed
+                already_processed.add(email_address)
+                
+                # Save state after each email
+                state = {
+                    'date': datetime.now().strftime('%Y-%m-%d'),
+                    'processed': list(already_processed),
+                    'sent_count': sent_count
+                }
+                self._save_campaign_state(state)
+                
+                # Delay between individual emails
+                if self.email_delay > 0:
+                    time.sleep(self.email_delay)
             
-            print(f"\n📧 Processing: {email_address}")
-            print(f"   Stage: {self._get_subscriber_stage(subscriber)}")
-            print(f"   Sequence: {sequence_info['sequence']}")
+            print(f"\n✅ Batch {batch_count} complete: {batch_sent} emails sent")
             
-            # Select app for subscriber
-            app_data, niche = self._select_app_for_subscriber(subscriber)
-            print(f"   App: {app_data['name']}")
-            print(f"   Niche: {niche}")
-            
-            # Generate email content
-            day = sequence_info.get('day') if sequence_info['sequence'] == 'welcome' else None
-            email_data = self.email_generator.generate_email(
-                niche=niche,
-                app_data=app_data,
-                sequence_type=sequence_info['sequence'],
-                day=day
-            )
-            
-            if not email_data:
-                print(f"   ❌ Failed to generate email content")
-                continue
-            
-            print(f"   Subject: {email_data['subject']}")
-            
-            # Send email
-            if self.send_to_subscriber(subscriber, email_data, app_data, sequence_info):
-                sent_count += 1
+            # Check if there are more batches
+            remaining = len(pending_subscribers) - (i + self.batch_size)
+            if remaining > 0:
+                print(f"\n⏸️  Rate limit: Waiting {self.batch_delay} seconds before next batch...")
+                print(f"   Remaining subscribers: {remaining}")
+                print(f"   Next batch will start at: {(datetime.now() + timedelta(seconds=self.batch_delay)).strftime('%H:%M:%S UTC')}")
+                
+                # For GitHub Actions, we exit here and let the next run continue
+                if os.getenv('GITHUB_ACTIONS'):
+                    print(f"\n🔄 GitHub Actions: Exiting to resume in next scheduled run")
+                    print(f"   Progress saved: {sent_count} emails sent, {len(already_processed)} processed")
+                    break
+                else:
+                    # For local runs, actually wait
+                    time.sleep(self.batch_delay)
         
         print()
         print("=" * 60)
-        print(f"📊 Campaign Complete")
+        print(f"📊 Campaign Summary")
         print(f"   Emails sent: {sent_count}")
         print(f"   Subscribers skipped: {skipped_count}")
+        print(f"   Total processed: {len(already_processed)}")
         print(f"   Total subscribers: {len(subscribers)}")
+        if len(already_processed) < len(subscribers):
+            print(f"   ⏳ Will resume in next run: {len(subscribers) - len(already_processed)} remaining")
+        else:
+            print(f"   ✅ All subscribers processed!")
         print("=" * 60)
 
 
