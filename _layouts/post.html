@@ -360,8 +360,8 @@ layout: default
 .sidebar-cta-buttons {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  margin-top: 1rem;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
 }
 
 .sidebar-cta-btn {
@@ -369,27 +369,42 @@ layout: default
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 1rem;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: all 0.3s;
+  padding: 0.9rem 1.25rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
 }
 
 .sidebar-cta-btn.ios {
-  background: #000;
-  color: #fff;
+  background: linear-gradient(135deg, #1f2937 0%, #000 100%);
+  color: #fff !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-cta-btn.ios:hover {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  color: #fff !important;
 }
 
 .sidebar-cta-btn.android {
-  background: #22c55e;
-  color: #fff;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: #fff !important;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
 }
 
-.sidebar-cta-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+.sidebar-cta-btn.android:hover {
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+  color: #fff !important;
 }
 
 /* Table of Contents */
@@ -754,23 +769,41 @@ layout: default
 .bottom-cta-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
-  padding: 1rem 2rem;
+  padding: 1.1rem 2.25rem;
   border-radius: 12px;
   font-weight: 700;
-  font-size: 1rem;
-  text-decoration: none;
-  transition: all 0.3s;
+  font-size: 1.1rem;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+  min-width: 220px;
 }
 
 .bottom-cta-btn.ios {
-  background: #000;
-  color: #fff;
+  background: linear-gradient(135deg, #1f2937 0%, #000 100%);
+  color: #fff !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.bottom-cta-btn.ios:hover {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+  color: #fff !important;
 }
 
 .bottom-cta-btn.android {
-  background: #22c55e;
-  color: #fff;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: #fff !important;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+
+.bottom-cta-btn.android:hover {
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  color: #fff !important;
 }
 
 .bottom-cta-btn:hover {
@@ -1074,10 +1107,10 @@ layout: default
         
         <div class="sidebar-cta-buttons">
           <a href="{{ page.app_store_url | default: site.social.appstore }}" target="_blank" rel="noopener" class="sidebar-cta-btn ios">
-             App Store
+            🍎 App Store
           </a>
           <a href="{{ page.google_play_url | default: site.social.playstore }}" target="_blank" rel="noopener" class="sidebar-cta-btn android">
-            ▶ Google Play
+            📱 Google Play
           </a>
         </div>
       </div>
@@ -1121,10 +1154,10 @@ layout: default
     
     <div class="bottom-cta-buttons">
       <a href="{{ page.app_store_url | default: site.social.appstore }}" target="_blank" rel="noopener" class="bottom-cta-btn ios">
-         Download for iOS
+        🍎 Download for iOS
       </a>
       <a href="{{ page.google_play_url | default: site.social.playstore }}" target="_blank" rel="noopener" class="bottom-cta-btn android">
-        ▶ Download for Android
+        📱 Download for Android
       </a>
     </div>
   </div>
