@@ -8,6 +8,461 @@
   <link rel="stylesheet" href="{{ '/assets/css/modern.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/3d-modern.css' | relative_url }}">
   <link rel="icon" type="image/x-icon" href="{{ '/assets/logo/favicon.ico' | relative_url }}">
+  <style>
+    /* App Landing Page Styles */
+    .app-landing-page {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%);
+    }
+    
+    .app-hero {
+      padding: 8rem 0 6rem;
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+    }
+    
+    .app-hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    
+    .trust-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(10px);
+    }
+    
+    .stars {
+      color: #fbbf24;
+      font-size: 1rem;
+      letter-spacing: 2px;
+    }
+    
+    .rating-text {
+      color: #93c5fd;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    
+    .app-hero-title {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #fff 0%, #c4b5fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .app-hero-subtitle {
+      font-size: 1.3rem;
+      color: #cbd5e1;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    
+    .benefit-list {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0;
+    }
+    
+    .benefit-list li {
+      color: #10b981;
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      font-weight: 500;
+    }
+    
+    .urgency-message {
+      color: #fbbf24;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: rgba(251, 191, 36, 0.1);
+      border-left: 3px solid #fbbf24;
+      border-radius: 8px;
+    }
+    
+    .app-download-buttons {
+      display: flex;
+      gap: 1rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+    
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 2rem;
+      border-radius: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 1rem;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-download::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .btn-download:hover::before {
+      left: 100%;
+    }
+    
+    .btn-ios {
+      background: linear-gradient(135deg, #000000 0%, #1c1c1e 100%);
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .btn-ios:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 80px rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .btn-android {
+      background: linear-gradient(135deg, #34a853 0%, #0f9d58 100%);
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .btn-android:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 20px 60px rgba(52, 168, 83, 0.6), 0 0 80px rgba(52, 168, 83, 0.3);
+    }
+    
+    .btn-download svg {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+    
+    .btn-download span {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.2;
+    }
+    
+    .btn-download small {
+      font-size: 0.75rem;
+      font-weight: 400;
+      opacity: 0.9;
+    }
+    
+    .btn-download strong {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    
+    .btn-large {
+      padding: 1.5rem 2.5rem;
+    }
+    
+    .btn-large svg {
+      width: 32px;
+      height: 32px;
+    }
+    
+    .btn-large strong {
+      font-size: 1.25rem;
+    }
+    
+    .pulse-animation {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      }
+      50% {
+        box-shadow: 0 10px 40px rgba(99, 102, 241, 0.4);
+      }
+    }
+    
+    .trust-signals {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+    
+    .trust-signals small {
+      display: inline-block;
+    }
+    
+    .app-hero-image img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 24px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 100px rgba(99, 102, 241, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .app-features, .testimonials, .related-articles {
+      padding: 6rem 0;
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff 0%, #c4b5fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .section-subtitle {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 1.1rem;
+      margin-bottom: 4rem;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    .feature-card {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 2.5rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(99, 102, 241, 0.5);
+      box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+    }
+    
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .feature-card h3 {
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .feature-card p {
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+    
+    .inline-cta {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+      border: 2px solid rgba(99, 102, 241, 0.3);
+      border-radius: 24px;
+      padding: 3rem;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    
+    .inline-cta-text {
+      color: #fff;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .app-download-buttons-small {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-download-small {
+      padding: 0.875rem 2rem;
+      border-radius: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+    
+    .app-cta {
+      padding: 8rem 0;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+      text-align: center;
+    }
+    
+    .cta-content h2 {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fff 0%, #c4b5fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .cta-subheadline {
+      color: #cbd5e1;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .cta-benefits {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+    
+    .cta-benefit {
+      color: #10b981;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    
+    .cta-guarantee {
+      color: #94a3b8;
+      font-size: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 2.5rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+    
+    .testimonial-rating {
+      color: #fbbf24;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      letter-spacing: 3px;
+    }
+    
+    .testimonial-text {
+      color: #cbd5e1;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+    
+    .testimonial-author {
+      color: #94a3b8;
+      font-weight: 600;
+    }
+    
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .article-card {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 2rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .article-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(99, 102, 241, 0.5);
+      box-shadow: 0 10px 40px rgba(99, 102, 241, 0.2);
+    }
+    
+    .article-card a {
+      text-decoration: none;
+    }
+    
+    .article-card h3 {
+      color: #fff;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    
+    .article-card p {
+      color: #94a3b8;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    
+    .read-more {
+      color: #6366f1;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    
+    @media (max-width: 768px) {
+      .app-hero-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .app-hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .app-download-buttons {
+        flex-direction: column;
+      }
+      
+      .btn-download {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .cta-content h2 {
+        font-size: 2rem;
+      }
+      
+      .cta-benefits {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
   {% include header.html %}
