@@ -83,7 +83,8 @@ jobs:
             echo "app_index=${{ github.event.inputs.app_index }}" >> $GITHUB_OUTPUT
           else
             # Calculate app index based on hour (0-23) modulo 13 apps
-            hour=$(date -u +%H)
+            # Use %-H to avoid leading zero (prevents octal interpretation)
+            hour=$(date -u +%-H)
             app_index=$((hour % 13))
             echo "app_index=$app_index" >> $GITHUB_OUTPUT
           fi
