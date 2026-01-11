@@ -24,7 +24,7 @@ class EmailSequenceManager:
         self.api_key = os.getenv('MAILGUN_API_KEY')
         self.domain = os.getenv('MAILGUN_DOMAIN', 'bestaiapps.site')
         self.base_url = 'https://api.mailgun.net/v3'
-        self.from_email = f'Kay from Best AI Apps <hello@{self.domain}>'
+        self.from_email = f'Anas from Best AI Apps <hello@{self.domain}>'
         
         # Rate limiting configuration - aggressive but safe
         self.batch_size = int(os.getenv('EMAIL_BATCH_SIZE', '100'))  # Emails per batch (increased)
@@ -203,13 +203,14 @@ class EmailSequenceManager:
             
             <p style="margin: 0 0 28px 0; font-size: 17px; color: #4b5563;">
                 Talk soon,<br>
-                <strong style="color: #1f2937; font-size: 18px;">Kay</strong>
+                <strong style="color: #1f2937; font-size: 18px;">Anas</strong><br>
+                <span style="font-size: 14px; color: #6b7280;">Indie Developer & Founder, Best AI Apps</span>
             </p>
             
             <!-- P.S. Line - Most Read Part -->
             <div style="margin: 36px 0; padding: 20px 24px; background: #fffbeb; border-radius: 10px; border: 1px solid #fcd34d;">
                 <p style="margin: 0; font-size: 16px; color: #92400e; line-height: 1.7;">
-                    <strong style="font-size: 17px;">P.S.</strong> I almost forgot — they're running a promo where premium features are unlocked for free. Not sure how long that'll last, but <a href="{landing_page_url}" style="color: #b45309; font-weight: 700; text-decoration: underline;">might be worth grabbing while you can</a>.
+                    <strong style="font-size: 17px;">P.S.</strong> I built this app because I genuinely believe it helps people. Premium features are free while we're in early access — <a href="{landing_page_url}" style="color: #b45309; font-weight: 700; text-decoration: underline;">grab it before we have to change that</a>.
                 </p>
             </div>
             
