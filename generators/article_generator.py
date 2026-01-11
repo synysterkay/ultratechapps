@@ -349,19 +349,26 @@ CRITICAL REQUIREMENTS:
 4. Include statistics, examples, real scenarios
 5. End with strong CTA encouraging readers to try the app
 
-OUTPUT FORMAT:
-Return JSON with:
+OUTPUT FORMAT - MANDATORY JSON STRUCTURE:
+You MUST return ONLY a valid JSON object (no markdown, no code blocks, no extra text).
+The JSON must have these exact fields:
 {{
-    "title": "SEO-optimized title (60 chars max)",
-    "content": "Full article in Markdown with ## and ### headers",
+    "title": "SEO-optimized title (60 chars max) - REQUIRED",
+    "content": "Full article in Markdown with ## and ### headers - start with ## not #",
     "meta_description": "150-160 char compelling summary",
     "primary_keyword": "Main keyword with 500+ monthly searches",
     "long_tail_keywords": ["keyword1", "keyword2", "keyword3", "keyword4"],
     "lsi_keywords": ["term1", "term2", ...up to 15 terms]
 }}
 
-DO NOT mention download buttons or CTAs - those will be added automatically.
-WRITE NATURALLY - let the value of the content speak for itself, then feature the app as a genuine solution.
+CRITICAL: 
+- Return ONLY the JSON object, nothing else
+- Do NOT wrap in ```json or ``` code blocks
+- Title field is MANDATORY and must be compelling
+- Content should start with ## heading, NOT # (single hash)
+- DO NOT include download buttons or CTAs in content - those will be added automatically
+
+WRITE NATURALLY - let the value of the content speak for itself, then feature the app a. You MUST return valid JSON objects ONLY, with no markdown formatting, no code blocks, and no extra text. Follow the exact JSON structure specified in the prompt
 """
             
             try:
@@ -401,7 +408,22 @@ WRITE NATURALLY - let the value of the content speak for itself, then feature th
                     
                 except (json.JSONDecodeError, AttributeError):
                     # Not JSON format, use as-is (legacy behavior)
+                    # Try to extract title from markdown content
                     title = self._extract_title(article_content)
+                    
+                    # If still no title, try to create one from the first heading or content
+                    if title == "Untitled Article":
+                        # Try to find any heading in the content
+                        lines = article_content.split('\n')
+                        for line in lines[:10]:  # Check first 10 lines
+                            line = line.strip()
+                            if line.startswith('##'):
+                                title = line.replace('##', '').replace('#', '').strip()
+                                break
+                        
+                        # If still no title, generate one from app name and topic
+                        if title == "Untitled Article":
+                            title = f"{topic[:60]}"  # Use topic as title
                 
                 # Skip validation - let DeepSeek generate freely
                 # Validation was too strict and caused unnecessary retries
