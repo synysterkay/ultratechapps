@@ -40,172 +40,148 @@ permalink: /apps/
       </a>
 
       <!-- Red Flag Scanner -->
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&q=80" alt="Red Flag Scanner" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">Red Flag Scanner - AI</h3>
-          <p class="app-card-description">AI relationship analyzer to spot red flags and toxic patterns before it's too late</p>
-          <div class="app-card-links">
-            <a href="/apps/red-flag-scanner-ai/" class="app-badge app-badge-primary">
-              <span>🚀</span> Learn More & Download
-            </a>
+      <a href="/apps/red-flag-scanner-ai/" class="app-card-wrapper">
+        <div class="app-card">
+          <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&q=80" alt="Red Flag Scanner" class="app-card-image">
+          <div class="app-card-content">
+            <h3 class="app-card-title">Red Flag Scanner - AI</h3>
+            <p class="app-card-description">AI relationship analyzer to spot red flags and toxic patterns before it's too late</p>
+            <span class="app-card-cta">Learn More & Download →</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- PupShape -->
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80" alt="PupShape" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">PupShape: Dog Weight Loss Plan</h3>
-          <p class="app-card-description">Personalized weight loss plans for dogs with AI-powered tracking and vet-approved guidance</p>
-          <div class="app-card-links">
-            <a href="/apps/pupshape-dog-weight-loss-plan/" class="app-badge app-badge-primary">
-              <span>🚀</span> Learn More & Download
-            </a>
+      <a href="/apps/pupshape-dog-weight-loss-plan/" class="app-card-wrapper">
+        <div class="app-card">
+          <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80" alt="PupShape" class="app-card-image">
+          <div class="app-card-content">
+            <h3 class="app-card-title">PupShape: Dog Weight Loss Plan</h3>
+            <p class="app-card-description">Personalized weight loss plans for dogs with AI-powered tracking and vet-approved guidance</p>
+            <span class="app-card-cta">Learn More & Download →</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- Predictify -->
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&q=80" alt="Predictify" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">Predictify: Soccer AI</h3>
-          <p class="app-card-description">AI-powered soccer predictions and match analysis with expert insights</p>
-          <div class="app-card-links">
-            <a href="/apps/predictify-soccer-ai/" class="app-badge app-badge-primary">
-              <span>🚀</span> Learn More & Download
-            </a>
+      <a href="/apps/predictify-soccer-ai/" class="app-card-wrapper">
+        <div class="app-card">
+          <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&q=80" alt="Predictify" class="app-card-image">
+          <div class="app-card-content">
+            <h3 class="app-card-title">Predictify: Soccer AI</h3>
+            <p class="app-card-description">AI-powered soccer predictions and match analysis with expert insights</p>
+            <span class="app-card-cta">Learn More & Download →</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- Fresh Start -->
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80" alt="Fresh Start" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">Fresh Start: Breakup Therapy</h3>
-          <p class="app-card-description">AI-powered breakup recovery app with daily exercises and emotional support</p>
-          <div class="app-card-links">
-            <a href="/apps/fresh-start-breakup-therapy/" class="app-badge app-badge-primary">
-              <span>🚀</span> Learn More & Download
-            </a>
+      <a href="/apps/fresh-start-breakup-therapy/" class="app-card-wrapper">
+        <div class="app-card">
+          <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80" alt="Fresh Start" class="app-card-image">
+          <div class="app-card-content">
+            <h3 class="app-card-title">Fresh Start: Breakup Therapy</h3>
+            <p class="app-card-description">AI-powered breakup recovery app with daily exercises and emotional support</p>
+            <span class="app-card-cta">Learn More & Download →</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- SoulPlan -->
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&q=80" alt="SoulPlan" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">SoulPlan: Plan Dates Together</h3>
-          <p class="app-card-description">AI-powered date planning app that helps couples discover and plan perfect dates together</p>
-          <div class="app-card-links">
-            <a href="/apps/soulplan-plan-dates-together/" class="app-badge app-badge-primary">
-              <span>🚀</span> Learn More & Download
-            </a>
+      <a href="/apps/soulplan-plan-dates-together/" class="app-card-wrapper">
+        <div class="app-card">
+          <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&q=80" alt="SoulPlan" class="app-card-image">
+          <div class="app-card-content">
+            <h3 class="app-card-title">SoulPlan: Plan Dates Together</h3>
+            <p class="app-card-description">AI-powered date planning app that helps couples discover and plan perfect dates together</p>
+            <span class="app-card-cta">Learn More & Download →</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- Thesis Generator -->
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&q=80" alt="Thesis Generator" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">Thesis Generator - Essay AI</h3>
-          <p class="app-card-description">AI-powered thesis statement generator for essays and academic writing</p>
-          <div class="app-card-links">
-            <a href="/apps/thesis-generator-essay-ai/" class="app-badge app-badge-primary">
-              <span>🚀</span> Learn More & Download
-            </a>
+      <a href="/apps/thesis-generator-essay-ai/" class="app-card-wrapper">
+        <div class="app-card">
+          <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&q=80" alt="Thesis Generator" class="app-card-image">
+          <div class="app-card-content">
+            <h3 class="app-card-title">Thesis Generator - Essay AI</h3>
+            <p class="app-card-description">AI-powered thesis statement generator for essays and academic writing</p>
+            <span class="app-card-cta">Learn More & Download →</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- LoveStory AI -->
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&q=80" alt="LoveStory AI" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">LoveStory AI: Romance Novel</h3>
-          <p class="app-card-description">AI generates personalized romance novels based on your preferences</p>
-          <div class="app-card-links">
-            <a href="/apps/lovestory-ai-romance-novel/" class="app-badge app-badge-primary">
-              <span>🚀</span> Learn More & Download
-            </a>
+      <a href="/apps/lovestory-ai-romance-novel/" class="app-card-wrapper">
+        <div class="app-card">
+          <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&q=80" alt="LoveStory AI" class="app-card-image">
+          <div class="app-card-content">
+            <h3 class="app-card-title">LoveStory AI: Romance Novel</h3>
+            <p class="app-card-description">AI generates personalized romance novels based on your preferences</p>
+            <span class="app-card-cta">Learn More & Download →</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- Volume Booster -->
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1501290741922-b56c0d0884af?w=800&q=80" alt="Volume Booster" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">Volume Booster - Sound Booster</h3>
-          <p class="app-card-description">Boost volume to max! Sound amplifier, bass booster & equalizer for louder audio</p>
-          <div class="app-card-links">
-            <a href="/apps/volume-booster-sound-booster/" class="app-badge app-badge-primary">
-              <span>🚀</span> Learn More & Download
-            </a>
+      <a href="/apps/volume-booster-sound-booster/" class="app-card-wrapper">
+        <div class="app-card">
+          <img src="https://images.unsplash.com/photo-1501290741922-b56c0d0884af?w=800&q=80" alt="Volume Booster" class="app-card-image">
+          <div class="app-card-content">
+            <h3 class="app-card-title">Volume Booster - Sound Booster</h3>
+            <p class="app-card-description">Boost volume to max! Sound amplifier, bass booster & equalizer for louder audio</p>
+            <span class="app-card-cta">Learn More & Download →</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- AI Boyfriend -->
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80" alt="AI Boyfriend" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">AI Boyfriend: Virtual Love</h3>
-          <p class="app-card-description">AI-powered virtual boyfriend for meaningful conversations and emotional support</p>
-          <div class="app-card-links">
-            <a href="/apps/ai-boyfriend-virtual-love/" class="app-badge app-badge-primary">
-              <span>🚀</span> Learn More & Download
-            </a>
+      <a href="/apps/ai-boyfriend-virtual-love/" class="app-card-wrapper">
+        <div class="app-card">
+          <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80" alt="AI Boyfriend" class="app-card-image">
+          <div class="app-card-content">
+            <h3 class="app-card-title">AI Boyfriend: Virtual Love</h3>
+            <p class="app-card-description">AI-powered virtual boyfriend for meaningful conversations and emotional support</p>
+            <span class="app-card-cta">Learn More & Download →</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- Kinbound -->
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=800&q=80" alt="Kinbound" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">Kinbound: AI Parent Life Coach</h3>
-          <p class="app-card-description">AI parental figures providing guidance, emotional support, and life advice</p>
-          <div class="app-card-links">
-            <a href="/apps/kinbound-ai-parent-life-coach/" class="app-badge app-badge-primary">
-              <span>🚀</span> Learn More & Download
-            </a>
+      <a href="/apps/kinbound-ai-parent-life-coach/" class="app-card-wrapper">
+        <div class="app-card">
+          <img src="https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=800&q=80" alt="Kinbound" class="app-card-image">
+          <div class="app-card-content">
+            <h3 class="app-card-title">Kinbound: AI Parent Life Coach</h3>
+            <p class="app-card-description">AI parental figures providing guidance, emotional support, and life advice</p>
+            <span class="app-card-cta">Learn More & Download →</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- Crypto AI -->
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=800&q=80" alt="Crypto AI" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">Crypto AI: Trading Analyzer</h3>
-          <p class="app-card-description">AI-powered cryptocurrency trading signals and portfolio analysis</p>
-          <div class="app-card-links">
-            <a href="/apps/crypto-ai-trading-analyzer/" class="app-badge app-badge-primary">
-              <span>🚀</span> Learn More & Download
-            </a>
+      <a href="/apps/crypto-ai-trading-analyzer/" class="app-card-wrapper">
+        <div class="app-card">
+          <img src="https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=800&q=80" alt="Crypto AI" class="app-card-image">
+          <div class="app-card-content">
+            <h3 class="app-card-title">Crypto AI: Trading Analyzer</h3>
+            <p class="app-card-description">AI-powered cryptocurrency trading signals and portfolio analysis</p>
+            <span class="app-card-cta">Learn More & Download →</span>
           </div>
         </div>
-      </div>
+      </a>
 
       <!-- Reelit -->
-      <div class="app-card">
-        <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&q=80" alt="Reelit" class="app-card-image">
-        <div class="app-card-content">
-          <h3 class="app-card-title">Reelit: Downloader for Reddit</h3>
-          <p class="app-card-description">Download Reddit videos instantly in HD quality</p>
-          <div class="app-card-links">
-            <a href="/apps/reelit-downloader-for-reddit/" class="app-badge app-badge-primary">
-              <span>🚀</span> Learn More & Download
-            </a>
+      <a href="/apps/reelit-downloader-for-reddit/" class="app-card-wrapper">
+        <div class="app-card">
+          <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&q=80" alt="Reelit" class="app-card-image">
+          <div class="app-card-content">
+            <h3 class="app-card-title">Reelit: Downloader for Reddit</h3>
+            <p class="app-card-description">Download Reddit videos instantly in HD quality</p>
+            <span class="app-card-cta">Learn More & Download →</span>
           </div>
         </div>
-      </div>
+      </a>
 
     </div>
   </div>
