@@ -120,6 +120,132 @@ class EmailSequenceManager:
         
         return False, None
     
+    def _generate_discovery_email_html(self):
+        """Generate discovery email featuring ALL 14 apps - curator style"""
+        
+        # App categories with emotional one-liners
+        app_categories = {
+            "🎯 Productivity & Learning": [
+                ("Smart Notes - AI Meeting Summary", "smart-notes-ai-meeting-summary", "Never miss a detail in meetings again"),
+                ("Thesis Generator: Essay AI", "thesis-generator-essay-ai", "Write A+ papers in half the time"),
+                ("Volume Booster - Sound Booster", "volume-booster-sound-booster", "Hear every word crystal clear"),
+            ],
+            "❤️ Relationships & Dating": [
+                ("Red Flag Scanner AI", "red-flag-scanner-ai", "Spot toxic patterns before it's too late"),
+                ("SoulPlan: Plan Dates Together", "soulplan-plan-dates-together", "Never run out of date ideas"),
+                ("Fresh Start: Breakup Therapy", "fresh-start-breakup-therapy", "Heal faster with 24/7 AI support"),
+            ],
+            "💬 AI Companions": [
+                ("Ai Girlfriend App - Cupid Ai", "ai-girlfriend-app-cupid-ai", "Practice conversations, build confidence"),
+                ("Ai Boyfriend: Virtual Love", "ai-boyfriend-virtual-love", "Someone who actually listens"),
+                ("Kinbound: AI Parent Life Coach", "kinbound-ai-parent-life-coach", "The guidance you never had"),
+                ("LoveStory AI: Romance Novel", "lovestory-ai-romance-novel", "Star in your own love story"),
+            ],
+            "📊 Sports & Finance": [
+                ("Predictify: Soccer AI", "predictify-soccer-ai", "Beat your friends at predictions"),
+                ("Crypto AI: Trading Analyzer", "crypto-ai-trading-analyzer", "Make smarter trades, not emotional ones"),
+            ],
+            "🐕 Pet Care & Utilities": [
+                ("PupShape: Dog Weight Loss Plan", "pupshape-dog-weight-loss-plan", "Help your furry friend get healthy"),
+                ("Reelit Downloader For Reddit", "reelit-downloader-for-reddit", "Save Reddit videos in one tap"),
+            ],
+        }
+        
+        # Build app grid HTML
+        apps_html = ""
+        for category, apps in app_categories.items():
+            apps_html += f'''
+            <div style="margin: 28px 0;">
+                <p style="margin: 0 0 14px 0; font-size: 16px; font-weight: 700; color: #1f2937;">{category}</p>
+            '''
+            for app_name, slug, tagline in apps:
+                url = f"https://bestaiapps.site/apps/{slug}/"
+                apps_html += f'''
+                <div style="margin: 0 0 12px 0; padding: 14px 18px; background: #f8fafc; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <a href="{url}" style="text-decoration: none;">
+                        <p style="margin: 0 0 4px 0; font-size: 16px; font-weight: 600; color: #667eea;">{app_name}</p>
+                        <p style="margin: 0; font-size: 14px; color: #64748b;">{tagline}</p>
+                    </a>
+                </div>
+                '''
+            apps_html += "</div>"
+        
+        html = f'''
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+        <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.7; color: #2d3748; max-width: 620px; margin: 0 auto; padding: 48px 24px; background: #ffffff;">
+            
+            <!-- Hook -->
+            <div style="margin-bottom: 32px;">
+                <p style="margin: 0 0 24px 0; font-size: 19px; color: #6b7280;">Hey there,</p>
+                
+                <p style="margin: 0 0 24px 0; font-size: 20px; color: #1a202c; line-height: 1.6; font-weight: 500;">
+                    Let's be honest — the App Store is a mess.
+                </p>
+                
+                <p style="margin: 0 0 20px 0; font-size: 17px; color: #374151; line-height: 1.8;">
+                    Thousands of "AI apps" that are just ChatGPT wrappers. Productivity tools that take longer to set up than they save. Dating apps that feel like job interviews.
+                </p>
+                
+                <p style="margin: 0 0 20px 0; font-size: 17px; color: #374151; line-height: 1.8;">
+                    We spent 30+ hours testing over 200 apps so you don't have to. Most were trash. But 14 genuinely impressed us.
+                </p>
+                
+                <p style="margin: 0 0 28px 0; font-size: 18px; color: #1f2937; font-weight: 600;">
+                    Here's your shortlist:
+                </p>
+            </div>
+            
+            <!-- App Grid -->
+            {apps_html}
+            
+            <!-- CTA Section -->
+            <div style="margin: 40px 0; padding: 24px; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-radius: 12px; text-align: center;">
+                <p style="margin: 0 0 16px 0; font-size: 18px; color: #1e40af; font-weight: 600;">
+                    🎁 All apps are FREE while in early access
+                </p>
+                <p style="margin: 0; font-size: 15px; color: #3b82f6;">
+                    Pick one that solves YOUR problem. Try it for 5 minutes.
+                </p>
+            </div>
+            
+            <!-- Sign off -->
+            <p style="margin: 32px 0 28px 0; font-size: 17px; color: #4b5563;">
+                Happy exploring,<br>
+                <strong style="color: #1f2937; font-size: 18px;">The Best AI Apps Team</strong>
+            </p>
+            
+            <!-- P.S. -->
+            <div style="margin: 36px 0; padding: 20px 24px; background: #fffbeb; border-radius: 10px; border: 1px solid #fcd34d;">
+                <p style="margin: 0; font-size: 16px; color: #92400e; line-height: 1.7;">
+                    <strong style="font-size: 17px;">P.S.</strong> We'll send you one app deep-dive per week — the hidden features, pro tips, and real use cases. First one arrives in a few days. Keep an eye out!
+                </p>
+            </div>
+            
+            <!-- Footer -->
+            <div style="margin-top: 56px; padding-top: 28px; border-top: 1px solid #e5e7eb; text-align: center;">
+                <p style="margin: 0 0 12px 0; font-size: 14px; color: #9ca3af;">
+                    <a href="https://bestaiapps.site" style="color: #667eea; text-decoration: none; font-weight: 500;">Blog</a> · 
+                    <a href="https://bestaiapps.site/apps/" style="color: #667eea; text-decoration: none; font-weight: 500;">All Apps</a>
+                </p>
+                <p style="margin: 0 0 16px 0; font-size: 13px; color: #d1d5db; line-height: 1.6;">
+                    Józefa Łepkowskiego 5, Kraków, Poland
+                </p>
+                <p style="margin: 0;">
+                    <a href="%mailing_list_unsubscribe_url%" style="color: #d1d5db; text-decoration: none; font-size: 12px;">Unsubscribe</a>
+                </p>
+            </div>
+            
+        </body>
+        </html>
+        '''
+        
+        return html
+    
     def _generate_email_html(self, email_data, app_data):
         """Generate HTML email from AI-generated content - Personal marketing style"""
         
@@ -291,6 +417,61 @@ class EmailSequenceManager:
             print(f"❌ Exception sending to {email_address}: {str(e)}")
             return False
     
+    def send_discovery_email(self, subscriber):
+        """Send discovery email (all 14 apps) to new subscriber"""
+        
+        email_address = subscriber['address']
+        html_content = self._generate_discovery_email_html()
+        
+        url = f'{self.base_url}/{self.domain}/messages'
+        
+        # Generate unique Message-ID
+        import uuid
+        unique_id = str(uuid.uuid4())
+        
+        # Discovery email subject - curated list style
+        subject = "14 AI apps that actually work (we tested 200+)"
+        preview_text = "The App Store is a mess. Here's your shortlist."
+        
+        data = {
+            'from': self.from_email,
+            'to': email_address,
+            'subject': subject,
+            'html': html_content,
+            'o:tag': ['sequence-discovery', 'all-apps'],
+            'o:tracking': 'yes',
+            'o:tracking-clicks': 'yes',
+            'o:tracking-opens': 'yes',
+            'h:Message-ID': f'<{unique_id}@bestaiapps.site>',
+            'h:X-Preview-Text': preview_text
+        }
+        
+        try:
+            response = requests.post(
+                url,
+                auth=('api', self.api_key),
+                data=data
+            )
+            
+            if response.status_code == 200:
+                # Update subscriber metadata
+                metadata = subscriber.get('metadata', {})
+                metadata['last_email_sent'] = datetime.now().isoformat()
+                metadata['emails_received'] = 1  # First email sent
+                metadata['discovery_email_sent'] = True
+                
+                self.subscriber_manager.update_subscriber_metadata(email_address, metadata)
+                
+                print(f"✅ Discovery email sent to {email_address}")
+                return True
+            else:
+                print(f"❌ Failed to send discovery to {email_address}: {response.text}")
+                return False
+                
+        except Exception as e:
+            print(f"❌ Exception sending discovery to {email_address}: {str(e)}")
+            return False
+    
     def _load_campaign_state(self):
         """Load campaign state from file"""
         if self.state_file.exists():
@@ -436,6 +617,28 @@ class EmailSequenceManager:
                 emails_received = metadata.get('emails_received', 0)
                 sequence_info = subscriber.get('_sequence_info', {'sequence': 'value'})
                 
+                # DISCOVERY EMAIL: First email is the all-apps showcase
+                if emails_received == 0:
+                    if self.send_discovery_email(subscriber):
+                        sent_count += 1
+                        batch_sent += 1
+                        print(f"   ✅ Discovery email sent ({sent_count} total today)")
+                    already_processed.add(email_address)
+                    
+                    # Save state periodically
+                    if sent_count % 10 == 0:
+                        state = {
+                            'date': datetime.now().strftime('%Y-%m-%d'),
+                            'processed': list(already_processed),
+                            'sent_count': sent_count
+                        }
+                        self._save_campaign_state(state)
+                    
+                    if self.email_delay > 0:
+                        time.sleep(self.email_delay)
+                    continue
+                
+                # Regular app-focused emails for emails_received >= 1
                 # Get the app for this subscriber's email number
                 app_data = self._get_app_for_email_number(emails_received)
                 
