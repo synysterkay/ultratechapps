@@ -119,17 +119,23 @@ jobs:
           
           # Check if there are new files
           if [ -n "$(git status --porcelain _posts/)" ]; then
-            # Stage files first (prevents "untracked files" error during pull)
-            git add _posts/
+            # Pull latest changes first (before staging)
+            git pull --rebase origin main || true
             
-            # Pull latest changes with rebase, auto-stashing our staged changes
-            git pull --rebase --autostash origin main
+            # Stage new posts
+            git add _posts/
             
             # Commit our changes
             git commit -m "🤖 Automated marketing content - $(date +'%Y-%m-%d %H:%M UTC')" || true
             
-            # Push
-            git push
+            # Push with retry logic
+            for i in 1 2 3; do
+              git push && break
+              echo "Push failed, pulling and retrying... (attempt $i)"
+              git pull --rebase origin main
+              sleep 2
+            done
+            
             echo "✅ Successfully pushed new content!"
             echo "NEW_CONTENT=true" >> $GITHUB_OUTPUT
           else
