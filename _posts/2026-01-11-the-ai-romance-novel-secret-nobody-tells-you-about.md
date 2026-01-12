@@ -3,7 +3,7 @@ title: "The AI Romance Novel Secret Nobody Tells You About"
 date: 2026-01-11
 categories: [reviews]
 tags: [ai_tools, romance, story, novel, love]
-description: "## The AI Romance Novel Secret Nobody Tells You About Picture this: you’ve just finished a romance novel that left you breathless. The characters felt real, ..."
+description: "Picture this: you’ve just finished a romance novel that left you breathless. The characters felt real, the plot twists were perfect, and the ending was exa..."
 image: "https://images.unsplash.com/photo-1524678606370-a47ad25cb82a?w=800&h=500&fit=crop&q=80"
 ---
 

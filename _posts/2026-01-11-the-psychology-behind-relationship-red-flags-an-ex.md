@@ -3,7 +3,7 @@ title: "The Psychology Behind Relationship Red Flags: An Expert Breakdown in 202
 date: 2026-01-11
 categories: [guides]
 tags: [flag, emotional, relationship, dating, patterns]
-description: "## The Psychology Behind Relationship Red Flags: An Expert Breakdown Have you ever felt a nagging doubt in your gut about someone you're dating, but couldn't..."
+description: "Have you ever felt a nagging doubt in your gut about someone you're dating, but couldn't quite articulate why? You're not alone. In the complex world of mo..."
 image: "https://images.unsplash.com/photo-1516589091380-5d8e87df6999?w=800&h=500&fit=crop&q=80"
 ---
 

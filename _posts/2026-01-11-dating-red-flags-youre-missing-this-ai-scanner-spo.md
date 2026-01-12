@@ -3,7 +3,7 @@ title: "Dating Red Flags You're Missing? This AI Scanner Spots Them Instantly"
 date: 2026-01-11
 categories: [ai-tools]
 tags: [flag, dating, scanner, about, emotional]
-description: "## Feeling Anxious About Modern Dating? You're Not Alone. Modern dating can feel like navigating a minefield blindfolded. You meet someone new, the initial s..."
+description: "Modern dating can feel like navigating a minefield blindfolded. You meet someone new, the initial spark is there, but a nagging feeling in your gut whisper..."
 image: "https://images.unsplash.com/photo-1494172961521-33799ddd43a5?w=800&h=500&fit=crop&q=80"
 ---
 

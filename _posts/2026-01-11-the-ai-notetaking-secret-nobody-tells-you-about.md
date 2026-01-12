@@ -3,7 +3,7 @@ title: "The AI Note-Taking Secret Nobody Tells You About"
 date: 2026-01-11
 categories: [productivity]
 tags: [productivity, meeting, notes, note, smart]
-description: "## The AI Note-Taking Secret Nobody Tells You About You know that frustrating moment when you're in a crucial meeting, trying to listen, contribute, and scri..."
+description: "You know that frustrating moment when you're in a crucial meeting, trying to listen, contribute, and scribble down notes all at once. Your hand cramps, you..."
 image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop&q=80"
 ---
 

@@ -3,7 +3,7 @@ title: "How to Write a Personalized Romance Novel in 30 Minutes with AI"
 date: 2026-01-12
 categories: [guides]
 tags: [ai_tools, story, romance, step, character]
-description: "## Quick Takeaways * Discover how to use AI to co-create a unique romance story tailored to your preferences. * Learn the exact steps to generate compelling ..."
+description: "Ever felt that pang of disappointment when a romance novel almost gets it right, but the hero isn't *quite* your type, or the setting feels off? You're not..."
 image: "https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=800&h=500&fit=crop&q=80"
 ---
 

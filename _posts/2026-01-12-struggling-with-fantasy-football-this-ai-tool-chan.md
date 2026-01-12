@@ -3,7 +3,7 @@ title: "Struggling with Fantasy Football? This AI Tool Changes Everything"
 date: 2026-01-12
 categories: [ai-tools]
 tags: [ai_tools, fantasy, team, player, points]
-description: "## The Fantasy Football Nightmare You Know Too Well It was 2 AM. I was staring at my screen, my eyes burning from the glow of a dozen different tabs. Player ..."
+description: "It was 2 AM. I was staring at my screen, my eyes burning from the glow of a dozen different tabs. Player stats, injury reports, fixture difficulty charts—a..."
 image: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&h=500&fit=crop&q=80"
 ---
 

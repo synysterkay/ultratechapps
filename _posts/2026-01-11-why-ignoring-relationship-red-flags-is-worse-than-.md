@@ -3,7 +3,7 @@ title: "Why Ignoring Relationship Red Flags is Worse Than You Think (And How to 
 date: 2026-01-11
 categories: [reviews]
 tags: [relationship, objective, patterns, dating, clarity]
-description: "## The Moment I Realized I Was Ignoring the Signs It was 2 AM. I was staring at my phone screen, rereading a text thread for the tenth time. My stomach was i..."
+description: "It was 2 AM. I was staring at my phone screen, rereading a text thread for the tenth time. My stomach was in knots. The person I’d been seeing for three mo..."
 image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=500&fit=crop&q=80"
 ---
 

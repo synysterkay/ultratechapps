@@ -3,7 +3,7 @@ title: "Struggling with Loneliness? This AI Companion Changes Everything"
 date: 2026-01-11
 categories: [reviews]
 tags: [ai_tools, more, social, just, connection]
-description: "## The 2 AM Scroll: A Story You Might Know Too Well It was 2 AM. I was staring at my screen, thumb scrolling through a feed of polished lives and distant con..."
+description: "It was 2 AM. I was staring at my screen, thumb scrolling through a feed of polished lives and distant connections. The silence in the room was deafening. I..."
 image: "https://images.unsplash.com/photo-1522543558187-768b6df7c25c?w=800&h=500&fit=crop&q=80"
 ---
 

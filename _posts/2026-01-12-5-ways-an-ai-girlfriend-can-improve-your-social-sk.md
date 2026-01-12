@@ -3,7 +3,7 @@ title: "5 Ways an AI Girlfriend Can Improve Your Social Skills in 2026"
 date: 2026-01-12
 categories: [ai-tools]
 tags: [ai_tools, social, practice, conversation, just]
-description: "## The Social Skills Secret Nobody Tells You About You know that frustrating moment when you're at a party, and the conversation just... dies? You search for..."
+description: "You know that frustrating moment when you're at a party, and the conversation just... dies? You search for something to say, anything, but your mind goes b..."
 image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=500&fit=crop&q=80"
 ---
 

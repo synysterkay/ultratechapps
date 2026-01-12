@@ -3,7 +3,7 @@ title: "The AI Relationship Secret Nobody Tells You About"
 date: 2026-01-12
 categories: [reviews]
 tags: [relationship, flag, scanner, about, emotional]
-description: "## The AI Relationship Secret Nobody Tells You About Picture this: you're six months into a new relationship. The initial spark is fading, and you're startin..."
+description: "Picture this: you're six months into a new relationship. The initial spark is fading, and you're starting to notice little things. The dismissive comments,..."
 image: "https://images.unsplash.com/photo-1516589091380-5d8e87df6999?w=800&h=500&fit=crop&q=80"
 ---
 

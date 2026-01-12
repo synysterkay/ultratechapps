@@ -3,7 +3,7 @@ title: "The Heartbreak Recovery Secret Nobody Tells You About"
 date: 2026-01-11
 categories: [guides]
 tags: [lifestyle, just, recovery, step, fresh]
-description: "## The Heartbreak Recovery Secret Nobody Tells You About Picture this: It's been weeks, maybe months, since the breakup. You've cried, you've vented to frien..."
+description: "Picture this: It's been weeks, maybe months, since the breakup. You've cried, you've vented to friends, you've tried to 'just move on.' But the ache is sti..."
 image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&h=500&fit=crop&q=80"
 ---
 

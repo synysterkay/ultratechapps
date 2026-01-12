@@ -3,7 +3,7 @@ title: "AI Relationship Analysis: The Tool That's Changing Dating in 2026"
 date: 2026-01-12
 categories: [ai-tools]
 tags: [dating, emotional, analysis, relationship, tools]
-description: "## AI Just Changed the Dating Game Again: What Happened This Week Will Affect Your Love Life You know that moment when you're texting someone new, and a subt..."
+description: "You know that moment when you're texting someone new, and a subtle comment makes your stomach drop? That gut feeling is often your first line of defense. B..."
 image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=500&fit=crop&q=80"
 ---
 

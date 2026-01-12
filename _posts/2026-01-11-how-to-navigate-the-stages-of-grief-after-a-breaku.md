@@ -3,7 +3,7 @@ title: "How to Navigate the Stages of Grief After a Breakup in 30 Days"
 date: 2026-01-11
 categories: [reviews]
 tags: [lifestyle, step, grief, breakup, emotional]
-description: "## How to Navigate the Stages of Grief After a Breakup in 30 Days Ever felt completely lost after a relationship ends, like you're on an emotional rollercoas..."
+description: "Ever felt completely lost after a relationship ends, like you're on an emotional rollercoaster with no map? You're not alone. Understanding the **stages of..."
 image: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800&h=500&fit=crop&q=80"
 ---
 

@@ -3,7 +3,7 @@ title: "The Date Planning Secret Nobody Tells You About in 2026"
 date: 2026-01-11
 categories: [productivity]
 tags: [dating, planning, date, soulplan, time]
-description: "## The Date Planning Secret Nobody Tells You About in 2026 You know that frustrating moment when you're staring at your partner, both phones in hand, scrolli..."
+description: "You know that frustrating moment when you're staring at your partner, both phones in hand, scrolling endlessly through the same old restaurant reviews and ..."
 image: "https://images.unsplash.com/photo-1464047736614-af63643285bf?w=800&h=500&fit=crop&q=80"
 ---
 

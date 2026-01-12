@@ -3,7 +3,7 @@ title: "AI Co-Authorship: The Tool That's Changing Romance Novels in 2026"
 date: 2026-01-11
 categories: [reviews]
 tags: [ai_tools, romance, story, emotional, novel]
-description: "## AI Co-Authorship: The Tool That's Changing Romance Novels in 2026 AI just changed the game again for storytellers. What happened this week will affect how..."
+description: "AI just changed the game again for storytellers. What happened this week will affect how you read, write, and experience romance forever. The line between ..."
 image: "https://images.unsplash.com/photo-1474932430478-367dbb6832c1?w=800&h=500&fit=crop&q=80"
 ---
 

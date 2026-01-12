@@ -3,7 +3,7 @@ title: "Personalized AI Discovery: The Tool That's Changing Date Nights in 2026"
 date: 2026-01-12
 categories: [productivity]
 tags: [dating, relationship, shared, date, discovery]
-description: "## Personalized AI Discovery: The Tool That's Changing Date Nights in 2026 AI just changed the game again. What happened this week will affect how you connec..."
+description: "AI just changed the game again. What happened this week will affect how you connect with your partner forever. While most people think of AI for work or co..."
 image: "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800&h=500&fit=crop&q=80"
 ---
 

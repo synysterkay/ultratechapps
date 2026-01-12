@@ -3,7 +3,7 @@ title: "5 Creative Date Ideas to Rekindle the Spark in 2026"
 date: 2026-01-11
 categories: [productivity]
 tags: [dating, date, soulplan, planning, shared]
-description: "## The Secret to Never Running Out of Date Ideas Again Picture this: It’s Friday night. You and your partner are staring at each other, phones in hand, scrol..."
+description: "Picture this: It’s Friday night. You and your partner are staring at each other, phones in hand, scrolling through the same old restaurant listings. 'What ..."
 image: "https://images.unsplash.com/photo-1522413452208-996ff3f3e740?w=800&h=500&fit=crop&q=80"
 ---
 

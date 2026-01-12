@@ -3,7 +3,7 @@ title: "AI-Powered Curation: The Tool That's Changing Everything in 2026"
 date: 2026-01-11
 categories: [tutorials]
 tags: [photo_video, content, video, digital, reddit]
-description: "## AI Just Changed the Game Again: Your Digital Memory is Now an Asset What happened this week will affect how you save, organize, and use every piece of dig..."
+description: "What happened this week will affect how you save, organize, and use every piece of digital content you encounter. The latest AI breakthroughs aren't just a..."
 image: "https://images.unsplash.com/photo-1551817958-d9d86fb29431?w=800&h=500&fit=crop&q=80"
 ---
 
