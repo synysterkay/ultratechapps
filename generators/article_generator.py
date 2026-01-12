@@ -441,6 +441,9 @@ WRITE NATURALLY - let the value of the content speak for itself, then feature th
                 
                 article_content = response.choices[0].message.content.strip()
                 
+                # Initialize meta_description (will be set from JSON if available)
+                extracted_meta_description = ''
+                
                 # Try to parse JSON response if wrapped in code blocks
                 import json
                 try:
@@ -457,7 +460,7 @@ WRITE NATURALLY - let the value of the content speak for itself, then feature th
                     # Extract fields from JSON
                     title = article_data.get('title', 'Untitled Article')
                     content = article_data.get('content', '')
-                    meta_description = article_data.get('meta_description', '')
+                    extracted_meta_description = article_data.get('meta_description', '')
                     
                     # Use content as article_content for the rest of processing
                     article_content = content
@@ -527,7 +530,8 @@ WRITE NATURALLY - let the value of the content speak for itself, then feature th
                     'generated_at': datetime.now().isoformat(),
                     'google_play_url': app_info['google_play_url'],
                     'app_store_url': app_info['app_store_url'],
-                    'featured_image': featured_image
+                    'featured_image': featured_image,
+                    'meta_description': extracted_meta_description  # Store AI-generated meta description
                 }
                 
                 print(f"✅ Article generated: {title} ({article['word_count']} words) [Category: {category}]")
@@ -687,13 +691,30 @@ WRITE NATURALLY - let the value of the content speak for itself, then feature th
             Dictionary with meta_title, meta_description, featured_image, keywords
         """
         title = article['title']
-        content_preview = ' '.join(article['content'].split()[:50])
         
         # Generate meta title (max 60 chars for Google SERP)
         meta_title = title[:60] if len(title) <= 60 else title[:57] + '...'
         
-        # Generate meta description (150-160 chars optimal for SEO)
-        meta_description = content_preview[:157] + '...' if len(content_preview) > 160 else content_preview
+        # Use AI-generated meta description if available, otherwise generate from content
+        if article.get('meta_description') and len(article['meta_description']) > 50:
+            # Clean up meta description - remove markdown headers and extra whitespace
+            meta_description = article['meta_description']
+            meta_description = re.sub(r'^#+\s*', '', meta_description)  # Remove # headers
+            meta_description = re.sub(r'\*\*([^*]+)\*\*', r'\1', meta_description)  # Remove bold
+            meta_description = meta_description.strip()[:160]
+        else:
+            # Fallback: generate from content (skip markdown headers)
+            content_lines = article['content'].split('\n')
+            # Find first non-header line with actual content
+            content_preview = ''
+            for line in content_lines:
+                line = line.strip()
+                if line and not line.startswith('#') and not line.startswith('*'):
+                    content_preview = line
+                    break
+            if not content_preview:
+                content_preview = ' '.join(article['content'].split()[:50])
+            meta_description = content_preview[:157] + '...' if len(content_preview) > 160 else content_preview
         
         # Get unique featured image based on niche
         featured_image = self._get_featured_image(article['niche'], article['app_name'])
