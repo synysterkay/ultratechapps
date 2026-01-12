@@ -36,12 +36,26 @@ class GitHubPublisher:
         # Use article category if available, otherwise fallback to niche
         category = article.get('category', article.get('niche', 'ai-tools'))
         
+        # Sanitize description for YAML - escape quotes and clean up
+        description = metadata['meta_description']
+        description = description.replace('"', "'")  # Replace double quotes with single
+        description = ' '.join(description.split())  # Normalize whitespace
+        # Ensure description doesn't have trailing partial content after ellipsis
+        if '...' in description:
+            description = description.split('...')[0].strip() + '...'
+        # Truncate to 160 chars max
+        if len(description) > 160:
+            description = description[:157] + '...'
+        
+        # Sanitize title for YAML
+        title = article['title'].replace('"', "'")
+        
         frontmatter = f"""---
-title: "{article['title']}"
+title: "{title}"
 date: {datetime.now().strftime('%Y-%m-%d')}
 categories: [{category}]
 tags: [{', '.join(article['keywords'][:5])}]
-description: "{metadata['meta_description']}"
+description: "{description}"
 image: "{article.get('featured_image', metadata['featured_image'])}"
 ---
 

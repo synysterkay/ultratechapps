@@ -716,6 +716,15 @@ WRITE NATURALLY - let the value of the content speak for itself, then feature th
                 content_preview = ' '.join(article['content'].split()[:50])
             meta_description = content_preview[:157] + '...' if len(content_preview) > 160 else content_preview
         
+        # Sanitize meta_description for YAML frontmatter
+        # Replace double quotes with single quotes to avoid YAML parsing issues
+        meta_description = meta_description.replace('"', "'")
+        # Remove any trailing incomplete quotes or text after ellipsis
+        if '...' in meta_description:
+            meta_description = meta_description.split('...')[0] + '...'
+        # Remove any newlines or extra whitespace
+        meta_description = ' '.join(meta_description.split())
+        
         # Get unique featured image based on niche
         featured_image = self._get_featured_image(article['niche'], article['app_name'])
         
