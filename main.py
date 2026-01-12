@@ -64,17 +64,18 @@ class MarketingAutomation:
         with open(apps_file, 'r', encoding='utf-8') as f:
             return json.load(f)
     
-    def process_app(self, app, app_index=0):
+    def process_app(self, app, app_index=0, articles_per_run=4):
         """
         Process a single app: generate content and publish
         
         Args:
             app: App dictionary
             app_index: Index of the app in apps.json (0-12)
+            articles_per_run: Number of articles to generate per run (default: 4)
         """
         app_name = app['name']
         print(f"\n{'='*60}")
-        print(f"Processing: {app_name}")
+        print(f"Processing: {app_name} - Generating {articles_per_run} articles")
         print(f"{'='*60}")
         
         # Step 1: Detect niche (cached after first run)
@@ -86,10 +87,29 @@ class MarketingAutomation:
             app_store_url=app['app_store_url']
         )
         
-        # Step 2: Generate article
-        print("\n2️⃣ Generating article...")
-        article = self.article_generator.generate_article(app, niche_info, app_index)
-        metadata = self.article_generator.generate_metadata(article)
+        # Generate multiple articles per run
+        for article_num in range(articles_per_run):
+            print(f"\n{'─'*60}")
+            print(f"📝 Article {article_num + 1}/{articles_per_run}")
+            print(f"{'─'*60}")
+            
+            # Step 2: Generate article
+            print("\n2️⃣ Generating article...")
+            article = self.article_generator.generate_article(app, niche_info, app_index)
+            metadata = self.article_generator.generate_metadata(article)
+            
+            self._publish_article(article, metadata, app, app_name, app_index)
+            
+            # Small delay between articles to avoid rate limits
+            if article_num < articles_per_run - 1:
+                time.sleep(5)
+        
+        print(f"\n✅ Completed {articles_per_run} articles for {app_name}")
+    
+    def _publish_article(self, article, metadata, app, app_name, app_index):
+        """Publish a single article to all platforms"""
+    def _publish_article(self, article, metadata, app, app_name, app_index):
+        """Publish a single article to all platforms"""
         
         # Step 3: Publish to GitHub Pages
         print("\n3️⃣ Publishing to GitHub Pages...")
@@ -144,8 +164,6 @@ class MarketingAutomation:
         
         # Step 9: Pinterest (only for approved apps: Thesis Generator)
         self._publish_to_pinterest(article, article_url, app, app_name)
-        
-        print(f"\n✅ Completed processing {app_name}")
     
     def _publish_social_posts(self, article, app_name, article_url, app):
         """Publish social media posts for an article"""
