@@ -159,6 +159,18 @@ permalink: /apps/
         </div>
       </a>
 
+      <!-- Humanize AI -->
+      <a href="/apps/humanize-ai/" class="app-card-wrapper">
+        <div class="app-card">
+          <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&q=80" alt="Humanize AI" class="app-card-image">
+          <div class="app-card-content">
+            <h3 class="app-card-title">Humanize AI: AI Text Detector</h3>
+            <p class="app-card-description">Transform AI-generated text into natural, human-written content that bypasses detection</p>
+            <span class="app-card-cta">Learn More & Download →</span>
+          </div>
+        </div>
+      </a>
+
       <!-- Crypto AI -->
       <a href="/apps/crypto-ai-trading-analyzer/" class="app-card-wrapper">
         <div class="app-card">
@@ -168,6 +180,7 @@ permalink: /apps/
             <p class="app-card-description">AI-powered cryptocurrency trading signals and portfolio analysis</p>
             <span class="app-card-cta">Learn More & Download →</span>
           </div>
+        </div>
         </div>
       </a>
 
