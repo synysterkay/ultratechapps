@@ -65,35 +65,55 @@ class MailgunSubscriber:
             return {'success': False, 'error': str(e)}
     
     def get_subscribers(self):
-        """Get all subscribers from mailing list with metadata"""
+        """Get all subscribers from mailing list with metadata (paginated)"""
         url = f'{self.base_url}/lists/{self.mailing_list}/members/pages'
+        all_subscribers = []
+        page = 1
         
         try:
-            response = requests.get(
-                url,
-                auth=('api', self.api_key),
-                params={'subscribed': 'yes', 'limit': 1000}
-            )
-            
-            if response.status_code == 200:
+            while True:
+                response = requests.get(
+                    url,
+                    auth=('api', self.api_key),
+                    params={'subscribed': 'yes', 'limit': 1000}
+                )
+                
+                if response.status_code != 200:
+                    print(f"❌ Error fetching subscribers: {response.text}")
+                    break
+                
                 data = response.json()
-                subscribers = data.get('items', [])
-                print(f"📊 Total subscribers: {len(subscribers)}")
+                items = data.get('items', [])
                 
-                # Parse metadata for each subscriber
-                for sub in subscribers:
-                    if 'vars' in sub and sub['vars']:
-                        try:
-                            sub['metadata'] = json.loads(sub['vars']) if isinstance(sub['vars'], str) else sub['vars']
-                        except:
-                            sub['metadata'] = {}
-                    else:
+                if not items:
+                    break
+                
+                all_subscribers.extend(items)
+                print(f"📄 Fetched page {page}: {len(items)} subscribers (total: {len(all_subscribers)})")
+                
+                # Check for next page
+                paging = data.get('paging', {})
+                next_url = paging.get('next')
+                
+                if not next_url:
+                    break
+                
+                url = next_url
+                page += 1
+            
+            print(f"📊 Total subscribers: {len(all_subscribers)}")
+            
+            # Parse metadata for each subscriber
+            for sub in all_subscribers:
+                if 'vars' in sub and sub['vars']:
+                    try:
+                        sub['metadata'] = json.loads(sub['vars']) if isinstance(sub['vars'], str) else sub['vars']
+                    except:
                         sub['metadata'] = {}
-                
-                return subscribers
-            else:
-                print(f"❌ Error fetching subscribers: {response.text}")
-                return []
+                else:
+                    sub['metadata'] = {}
+            
+            return all_subscribers
                 
         except Exception as e:
             print(f"❌ Exception: {str(e)}")
