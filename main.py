@@ -64,14 +64,14 @@ class MarketingAutomation:
         with open(apps_file, 'r', encoding='utf-8') as f:
             return json.load(f)
     
-    def process_app(self, app, app_index=0, articles_per_run=4):
+    def process_app(self, app, app_index=0, articles_per_run=2):
         """
         Process a single app: generate content and publish
         
         Args:
             app: App dictionary
             app_index: Index of the app in apps.json (0-12)
-            articles_per_run: Number of articles to generate per run (default: 4)
+            articles_per_run: Number of articles to generate per run (default: 2)
         """
         app_name = app['name']
         print(f"\n{'='*60}")
@@ -103,7 +103,7 @@ class MarketingAutomation:
             
             # Wait 15 minutes between articles to spread out commits
             if article_num < articles_per_run - 1:
-                delay_minutes = 15
+                delay_minutes = 20
                 print(f"\n⏱️  Waiting {delay_minutes} minutes before generating next article...")
                 time.sleep(delay_minutes * 60)
         
