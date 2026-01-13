@@ -87,7 +87,7 @@ class MarketingAutomation:
             app_store_url=app['app_store_url']
         )
         
-        # Generate multiple articles per run
+        # Generate and publish articles one at a time with delays
         for article_num in range(articles_per_run):
             print(f"\n{'─'*60}")
             print(f"📝 Article {article_num + 1}/{articles_per_run}")
@@ -98,11 +98,14 @@ class MarketingAutomation:
             article = self.article_generator.generate_article(app, niche_info, app_index)
             metadata = self.article_generator.generate_metadata(article)
             
+            # Step 3: Publish article immediately
             self._publish_article(article, metadata, app, app_name, app_index)
             
-            # Small delay between articles to avoid rate limits
+            # Wait 15 minutes between articles to spread out commits
             if article_num < articles_per_run - 1:
-                time.sleep(5)
+                delay_minutes = 15
+                print(f"\n⏱️  Waiting {delay_minutes} minutes before generating next article...")
+                time.sleep(delay_minutes * 60)
         
         print(f"\n✅ Completed {articles_per_run} articles for {app_name}")
     
