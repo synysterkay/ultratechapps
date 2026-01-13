@@ -26,9 +26,9 @@ class RateLimiter:
             'bluesky': 8,
             'devto': 24,
             'hashnode': 24,
-            'github': 1,
-            'reddit': 24,   # 24 hours between posts
-            'pinterest': 24 # 24 hours between pins
+            'github': 0,     # No cooldown - daily limit of 50 is sufficient
+            'reddit': 24,    # 24 hours between posts
+            'pinterest': 24  # 24 hours between pins
         }
     
     def _load_state(self):

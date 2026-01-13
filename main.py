@@ -108,8 +108,6 @@ class MarketingAutomation:
     
     def _publish_article(self, article, metadata, app, app_name, app_index):
         """Publish a single article to all platforms"""
-    def _publish_article(self, article, metadata, app, app_name, app_index):
-        """Publish a single article to all platforms"""
         
         # Step 3: Publish to GitHub Pages
         print("\n3️⃣ Publishing to GitHub Pages...")
