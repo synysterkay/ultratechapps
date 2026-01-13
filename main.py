@@ -112,21 +112,21 @@ class MarketingAutomation:
     def _publish_article(self, article, metadata, app, app_name, app_index):
         """Publish a single article to all platforms"""
         
-        # Step 3: Publish to GitHub Pages
-        print("\n3️⃣ Publishing to GitHub Pages...")
+        # Step 3: Save to _posts/ directory (workflow will commit all at once)
+        print("\n3️⃣ Saving article to _posts/...")
         can_post, reason = self.rate_limiter.can_post('github', app_name)
         article_url = None  # Initialize article URL
         if can_post:
-            github_result = self.github_publisher.publish_article(article, metadata)
+            # Save locally - workflow's git commit will push all files together
+            local_path = self.github_publisher.save_locally(article, metadata)
+            
+            # Generate expected URL for the article
+            filename = Path(local_path).name
+            article_url = f"https://bestaiapps.site/blog/{filename.replace('.md', '/')}"
+            
+            github_result = {'success': True, 'url': article_url, 'file_path': local_path}
             self.analytics.track_post('github', app_name, 'article', github_result)
             self.rate_limiter.record_post('github', app_name)
-            
-            # Get article URL from GitHub result
-            if github_result.get('success') and github_result.get('url'):
-                article_url = github_result['url']
-            
-            # Also save locally
-            self.github_publisher.save_locally(article, metadata)
         else:
             print(f"⏸️ Skipping GitHub: {reason}")
         
