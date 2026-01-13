@@ -119,24 +119,27 @@ jobs:
           
           # Check if there are new files
           if [ -n "$(git status --porcelain _posts/)" ]; then
-            # Pull latest changes first (before staging)
-            git pull --rebase origin main || true
-            
             # Stage new posts
             git add _posts/
             
             # Commit our changes
             git commit -m "🤖 Automated marketing content - $(date +'%Y-%m-%d %H:%M UTC')" || true
             
-            # Push with retry logic
-            for i in 1 2 3; do
-              git push && break
-              echo "Push failed, pulling and retrying... (attempt $i)"
-              git pull --rebase origin main
-              sleep 2
+            # Push with retry logic (pull before each attempt)
+            for i in 1 2 3 4 5; do
+              echo "Push attempt $i..."
+              git pull --rebase origin main && git push && break
+              echo "Push failed, retrying in $(($i * 2)) seconds..."
+              sleep $(($i * 2))
             done
             
-            echo "✅ Successfully pushed new content!"
+            # Final check
+            if git push --dry-run 2>&1 | grep -q "Everything up-to-date"; then
+              echo "✅ Successfully pushed new content!"
+            else
+              echo "⚠️  Push may have failed after 5 attempts"
+            fi
+            
             echo "NEW_CONTENT=true" >> $GITHUB_OUTPUT
           else
             echo "✅ No new posts generated (rate limit or duplicate)"
