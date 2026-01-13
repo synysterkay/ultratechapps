@@ -167,6 +167,18 @@
         "https://images.unsplash.com/photo-1531983412531-1f49a365ffed?w=800&h=500&fit=crop&q=80",
         "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&h=500&fit=crop&q=80"
       ]
+    },
+    {
+      "app_index": 14,
+      "app_name": "Humanize AI: AI Text Detector",
+      "images": [
+        "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&h=500&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=500&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=500&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=500&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=500&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=500&fit=crop&q=80"
+      ]
     }
   ]
 }
