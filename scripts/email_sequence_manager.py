@@ -542,9 +542,13 @@ class EmailSequenceManager:
     
     def _get_app_for_email_number(self, emails_received):
         """Get app based on how many emails subscriber has received"""
-        # Rotate through all apps
-        app_index = emails_received % len(self.apps)
-        return self.apps[app_index]
+        # LOCKED: Always send Thesis Generator for maximum conversion
+        thesis_app = next((app for app in self.apps if 'Thesis Generator' in app['name']), None)
+        if not thesis_app:
+            # Fallback to rotation if Thesis Generator not found
+            app_index = emails_received % len(self.apps)
+            return self.apps[app_index]
+        return thesis_app
     
     def _pre_generate_emails(self, eligible_subscribers):
         """
@@ -570,8 +574,11 @@ class EmailSequenceManager:
             
             print(f"   🔄 Generating email for: {app_name}")
             
+            # Use optimized niche for Thesis Generator
+            niche = 'productivity' if 'Thesis Generator' in app_name else 'general'
+            
             email_data = self.email_generator.generate_email(
-                niche='general',
+                niche=niche,
                 app_data=app_data,
                 sequence_type=sequence_type,
                 day=None
