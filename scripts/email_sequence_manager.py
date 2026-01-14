@@ -250,8 +250,10 @@ class EmailSequenceManager:
         """Generate HTML email from AI-generated content - Personal marketing style"""
         
         app_name = app_data['name']
+        app_store_url = app_data.get('app_store_url', '')
+        google_play_url = app_data.get('google_play_url', '')
         
-        # Create landing page URL
+        # Create landing page URL (for P.S. section)
         slug = app_name.lower().replace(':', '-').replace(' ', '-')
         slug = re.sub(r'-+', '-', slug).strip('-')  # Replace multiple dashes
         landing_page_url = f"https://bestaiapps.site/apps/{slug}/"
@@ -285,9 +287,64 @@ class EmailSequenceManager:
             </div>
             '''
         
-        # CTA button
-        cta_text = email_data.get('cta_text', f'Try {app_name} Free')
-        cta_url = email_data.get('cta_url', landing_page_url)
+        # CTA buttons - direct to app stores
+        cta_html = ""
+        if app_store_url and google_play_url:
+            # Both stores available
+            cta_html = f'''
+            <div style="text-align: center; margin: 40px 0;">
+                <div style="display: inline-block;">
+                    <a href="{app_store_url}" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; padding: 18px 36px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 17px; box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35); margin: 0 8px;">
+                        📱 Download on App Store
+                    </a>
+                    <a href="{google_play_url}" style="display: inline-block; background: linear-gradient(135deg, #34d399 0%, #10b981 100%); color: #ffffff; padding: 18px 36px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 17px; box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35); margin: 0 8px;">
+                        🤖 Get it on Google Play
+                    </a>
+                </div>
+                <p style="margin: 16px 0 0 0; font-size: 14px; color: #9ca3af;">
+                    Free to download · No credit card required
+                </p>
+            </div>
+            '''
+        elif app_store_url:
+            # App Store only
+            cta_html = f'''
+            <div style="text-align: center; margin: 40px 0;">
+                <a href="{app_store_url}" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; padding: 18px 48px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 18px; box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35);">
+                    📱 Download on App Store →
+                </a>
+                <p style="margin: 16px 0 0 0; font-size: 14px; color: #9ca3af;">
+                    Free to download · No credit card required
+                </p>
+            </div>
+            '''
+        elif google_play_url:
+            # Google Play only
+            cta_html = f'''
+            <div style="text-align: center; margin: 40px 0;">
+                <a href="{google_play_url}" style="display: inline-block; background: linear-gradient(135deg, #34d399 0%, #10b981 100%); color: #ffffff; padding: 18px 48px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 18px; box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);">
+                    🤖 Get it on Google Play →
+                </a>
+                <p style="margin: 16px 0 0 0; font-size: 14px; color: #9ca3af;">
+                    Free to download · No credit card required
+                </p>
+            </div>
+            '''
+        else:
+            # Fallback to landing page
+            cta_html = f'''
+            <div style="text-align: center; margin: 40px 0;">
+                <a href="{landing_page_url}" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; padding: 18px 48px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 18px; box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35);">
+                    Try {app_name} Free →
+                </a>
+                <p style="margin: 16px 0 0 0; font-size: 14px; color: #9ca3af;">
+                    Click to see how it works · No signup required
+                </p>
+            </div>
+            '''
+        
+        # Determine P.S. link URL (prioritize first available store)
+        ps_link_url = app_store_url or google_play_url or landing_page_url
         
         html = f'''
         <!DOCTYPE html>
@@ -314,15 +371,8 @@ class EmailSequenceManager:
                 </div>
             </div>
             
-            <!-- Single Clear CTA -->
-            <div style="text-align: center; margin: 40px 0;">
-                <a href="{cta_url}" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; padding: 18px 48px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 18px; box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35);">
-                    {cta_text} →
-                </a>
-                <p style="margin: 16px 0 0 0; font-size: 14px; color: #9ca3af;">
-                    Click to see how it works · No signup required
-                </p>
-            </div>
+            <!-- App Store CTA Buttons -->
+            {cta_html}
             
             <!-- Key Takeaways -->
             {takeaways_html}
@@ -336,7 +386,7 @@ class EmailSequenceManager:
             <!-- P.S. Line - Most Read Part -->
             <div style="margin: 36px 0; padding: 20px 24px; background: #fffbeb; border-radius: 10px; border: 1px solid #fcd34d;">
                 <p style="margin: 0; font-size: 16px; color: #92400e; line-height: 1.7;">
-                    <strong style="font-size: 17px;">P.S.</strong> I built this app because I genuinely believe it helps people. Premium features are free while we're in early access — <a href="{landing_page_url}" style="color: #b45309; font-weight: 700; text-decoration: underline;">grab it before we have to change that</a>.
+                    <strong style="font-size: 17px;">P.S.</strong> I built this app because I genuinely believe it helps people. Premium features are free while we're in early access — <a href="{ps_link_url}" style="color: #b45309; font-weight: 700; text-decoration: underline;">grab it before we have to change that</a>.
                 </p>
             </div>
             
