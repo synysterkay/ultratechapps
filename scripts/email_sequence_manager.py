@@ -569,6 +569,17 @@ class EmailSequenceManager:
         for app_name in apps_needed:
             app_data = next(a for a in self.apps if a['name'] == app_name)
             
+            # Check for cached Thesis Generator email first
+            if 'Thesis Generator' in app_name:
+                cache_file = Path(__file__).parent.parent / 'cache' / 'thesis_generator_email_cache.json'
+                if cache_file.exists():
+                    print(f"   💾 Using cached email for: {app_name}")
+                    with open(cache_file, 'r') as f:
+                        email_data = json.load(f)
+                        email_cache[app_name] = email_data
+                        print(f"   ✅ Loaded: {email_data['subject'][:50]}...")
+                        continue
+            
             # Determine sequence type based on most common stage
             sequence_type = 'value'  # Default to value emails
             
