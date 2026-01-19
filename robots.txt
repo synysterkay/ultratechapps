@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://synysterkay.github.io/marketingtool/sitemap.xml
+Sitemap: https://bestaiapps.site/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 10

@@ -7,6 +7,13 @@
   
   {% seo %}
   
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  
+  <!-- Open Graph -->
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+  
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/logo/logo.svg' | relative_url }}">
   <link rel="apple-touch-icon" href="{{ '/assets/logo/logo.svg' | relative_url }}">

@@ -61,9 +61,7 @@ lang: en_US
 logo: /assets/logo/logo.svg
 twitter:
   username: ultratechapps
-  card: summary
-
-google_site_verification: "your-google-site-verification-code"
+  card: summary_large_image
 
 # Social defaults for SEO
 social:
