@@ -68,8 +68,11 @@ exclude:
   - "*.json"
   - "*.csv"
   - "*.xlsx"
-  - "*.txt"
   - "*.sh"
+
+# Include IndexNow verification key
+include:
+  - "60f2b8aef55e998676da5ab7c3ed2d7b.txt"
 
 # Plugins
 plugins:
