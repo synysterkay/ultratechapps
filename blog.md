@@ -1,6 +1,7 @@
 ---
 layout: default
-title: Blog
+title: "AI Apps Blog - Tips, Reviews & Guides 2026"
+description: "Expert guides on AI apps, productivity tips, app reviews, and tech insights. Learn how to use AI tools for meetings, relationships, health tracking & more."
 permalink: /blog/
 ---
 

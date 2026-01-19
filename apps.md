@@ -1,6 +1,7 @@
 ---
 layout: default
-title: "Our Apps"
+title: "Best AI Apps 2026 - Free Download for iOS & Android"
+description: "Discover our collection of AI-powered apps: Smart Notes for meeting transcription, AI relationship tools, dog health apps, soccer predictions & more. Free download."
 permalink: /apps/
 ---
 

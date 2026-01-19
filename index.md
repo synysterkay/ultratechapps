@@ -1,6 +1,7 @@
 ---
 layout: home
 title: "Best AI Apps 2026 - Apps That Actually Change Your Life"
+description: "Discover the best AI apps for iOS & Android in 2026. Free downloads for productivity, meeting notes, relationships, health tracking, soccer predictions & more. 2.5M+ downloads."
 ---
 
 <div class="hero">

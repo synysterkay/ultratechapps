@@ -1,6 +1,7 @@
 ---
 layout: default
-title: About
+title: "About Best AI Apps - Indie App Developer"
+description: "Meet the indie developer behind Best AI Apps. We create AI-powered mobile apps for iOS & Android that solve real problems - productivity, relationships, health & more."
 permalink: /about/
 ---
 
