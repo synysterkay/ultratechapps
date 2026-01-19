@@ -53,15 +53,28 @@ class ArticleGenerator:
         app_name = app_info['name']
         app_desc = app_info.get('description', '')
         
-        base_seo = """
+        # Generate a random unique ID to force title variation
+        import random
+        import time
+        unique_seed = f"{int(time.time()) % 10000}{random.randint(1000, 9999)}"
+        
+        base_seo = f"""
 SEO OPTIMIZATION REQUIREMENTS:
 1. PRIMARY KEYWORD: Must have 500+ monthly searches, include in title and first paragraph
 2. LONG-TAIL KEYWORDS: Include 4-6 secondary keywords naturally
 3. LSI KEYWORDS: Use 10-15 related terms throughout
 4. READABILITY: Use short paragraphs (2-3 sentences), bullet points, numbered lists
-5. WORD COUNT: 1200-1500 words minimum for SEO value
-6. META DESCRIPTION: 150-160 chars with primary keyword and emotional hook
+5. WORD COUNT: 1200-1800 words minimum for SEO value
+6. META DESCRIPTION: 150-160 chars with primary keyword and emotional hook - MUST BE COMPLETE, NO TRUNCATION
 7. FEATURED SNIPPET: Format one section as a direct answer (40-60 words)
+
+TITLE UNIQUENESS REQUIREMENTS (CRITICAL):
+- NEVER use these overused patterns: "X Best Apps Compared", "The Secret Nobody Tells You About", "This Changes Everything"
+- Add SPECIFIC details: exact numbers, years, timeframes, locations
+- Use UNIQUE angles: case studies, experiments, personal stories, data-driven insights
+- Include SPECIFICITY: "How I Saved 47 Minutes Daily" vs "How to Save Time"
+- Add UNIQUE IDENTIFIERS to titles using seed #{unique_seed} to ensure no duplicates
+- Title MUST be different from any previous article - add specific details, dates, or numbers
 
 FORMATTING REQUIREMENTS:
 - Use H2 (##) and H3 (###) headers for structure
@@ -70,6 +83,14 @@ FORMATTING REQUIREMENTS:
 - Use power words and emotional triggers
 - Include actionable takeaways
 - Add a **Quick Takeaways** section at the start (bullet points)
+
+CONTENT QUALITY REQUIREMENTS:
+- Include REAL statistics and data points (cite sources)
+- Add SPECIFIC examples with names, numbers, and outcomes
+- Include ORIGINAL insights not found in typical listicles
+- Write ACTIONABLE advice that readers can implement immediately
+- Add EXPERT perspectives or research citations
+- Include CASE STUDIES or real-world examples
 
 EMOTIONAL MARKETING HOOKS:
 - Open with a relatable pain point or story ("Ever felt..." "You know that moment when...")
@@ -89,18 +110,24 @@ App Information:
 - Topic: {topic}
 
 ARTICLE STRUCTURE:
-1. TITLE: Use a curiosity gap pattern: "[Number] [Topic] [Power Word] in 2026" or "The [Topic] Secret Nobody Tells You About"
-2. OPENING HOOK: Start with a story or pain point ("Picture this..." "You know that frustrating moment when...")
-3. QUICK TAKEAWAYS: 3-4 bullet points summarizing key benefits
-4. MAIN BENEFITS: 5-7 key benefits with emotional examples
-5. HOW IT WORKS: Step-by-step app usage with screenshots descriptions
-6. USER RESULTS: Success stories, statistics, transformations
-7. COMPARISON: Brief comparison to alternatives (why this is better)
-8. CONCLUSION: Urgency + call-to-action ("Download now while it's still free")
+1. TITLE: Create a UNIQUE title using one of these patterns (NEVER repeat previous titles):
+   - "I Tested {app_name} for [X Days/Weeks] - Here's What Happened"
+   - "From [Specific Problem] to [Specific Solution]: My {app_name} Journey"
+   - "[Specific Metric] Improved by [X]% After Using {app_name} (Real Data)"
+   - "Why [Specific Group] Are Switching to {app_name} in [Month] 2026"
+   - "The [Specific Feature] in {app_name} That Changed How I [Action]"
+   Add unique details like dates, numbers, or specific outcomes to make title one-of-a-kind.
+2. OPENING HOOK: Start with a SPECIFIC personal story or data point (not generic "Picture this...")
+3. QUICK TAKEAWAYS: 4-5 bullet points summarizing key benefits with specific numbers
+4. MAIN BENEFITS: 5-7 key benefits with SPECIFIC examples, metrics, and real outcomes
+5. HOW IT WORKS: Step-by-step app usage with detailed descriptions
+6. USER RESULTS: Specific success stories with names/numbers/timeframes
+7. COMPARISON: Data-driven comparison to alternatives
+8. CONCLUSION: Urgency + specific call-to-action
 
 {base_seo}
 
-IMPORTANT: Focus heavily on {app_name} throughout the article. This is direct app promotion.
+IMPORTANT: Focus heavily on {app_name} throughout the article. Make it SPECIFIC and DATA-DRIVEN.
 """
         
         elif angle == "news_related":
@@ -112,20 +139,24 @@ App Information:
 - Related Topic: {topic}
 
 ARTICLE STRUCTURE:
-1. TITLE: Use curiosity pattern: "[Recent AI Trend] + The Tool That's Changing Everything in 2026"
-2. OPENING HOOK: Start with a provocative statement ("AI just changed the game again..." "What happened this week will affect how you...")
-3. QUICK TAKEAWAYS: 3-4 bullet points on what this means for readers
-4. NEWS SECTION: Discuss latest AI developments, breakthroughs, or trends (250 words)
-5. IMPACT ANALYSIS: What this means for users in {niche} - use emotional language (200 words)
-6. PRACTICAL APPLICATIONS: Real-world implications (200 words)
-7. APP CONNECTION: Show how {app_name} leverages this trend or helps users adapt (300 words)
-8. EXPERT INSIGHTS: Quote industry predictions, add statistics
-9. CONCLUSION: Future outlook + FOMO element + mention {app_name} as solution
+1. TITLE: Create a UNIQUE news-style title (avoid generic patterns):
+   - "[Specific AI Development] in [Month] 2026: What [User Group] Need to Know"
+   - "Breaking: [Specific Trend] Is Reshaping [Industry] - Here's the Data"
+   - "[X]% of [Group] Now Use AI for [Action]: Inside the Shift"
+   - "The [Specific Technology] Breakthrough That's Changing [Specific Use Case]"
+   Add specific dates, percentages, or tech names to make unique.
+2. OPENING HOOK: Start with a SPECIFIC news event, stat, or development
+3. QUICK TAKEAWAYS: 4-5 bullet points on what this means for readers
+4. NEWS SECTION: Discuss SPECIFIC AI developments with dates and sources (300 words)
+5. IMPACT ANALYSIS: Data-driven analysis for {niche} users (250 words)
+6. PRACTICAL APPLICATIONS: Real-world use cases with specific examples (200 words)
+7. APP CONNECTION: How {app_name} leverages this trend with specific features (300 words)
+8. EXPERT INSIGHTS: Quote industry predictions with sources and statistics
+9. CONCLUSION: Future outlook with specific predictions + mention {app_name}
 
 {base_seo}
 
-TONE: Authoritative news article that builds trust, then naturally introduces {app_name} as relevant tool.
-EXAMPLE TITLE: "GPT-5 Launches: 5 Ways It Transforms AI Meeting Notes (+ The Best Tool Using It)"
+TONE: Authoritative, data-driven news article. Include specific dates, stats, and sources.
 """
         
         elif angle == "tutorial":
@@ -137,21 +168,25 @@ App Information:
 - Tutorial Topic: {topic}
 
 ARTICLE STRUCTURE:
-1. TITLE: "How to [Achieve Specific Result] in [Timeframe] with AI - Step-by-Step Guide"
-2. PROBLEM STATEMENT: Why this tutorial matters, what users will learn (150 words)
-3. PREREQUISITES: What readers need to get started (100 words)
-4. STEP-BY-STEP TUTORIAL: 7-10 detailed steps (600 words)
-   - Steps 3-6 should involve using {app_name}
-   - Describe specific features and how to use them
-   - Include "what you'll see" descriptions
-5. COMMON MISTAKES: 3-5 pitfalls to avoid (200 words)
-6. ADVANCED TIPS: Power user features of {app_name} (150 words)
-7. CONCLUSION: Summary + encourage readers to try {app_name}
+1. TITLE: Create a UNIQUE tutorial title (avoid generic "How to X" patterns):
+   - "[Skill Level] Guide: Achieve [Specific Result] in [Exact Timeframe]"
+   - "From [Starting Point] to [End Result]: Complete [Topic] Walkthrough"
+   - "[Your Role]'s Playbook: [Specific Technique] That Saves [X Hours/Dollars]"
+   - "The [X]-Minute [Task] Method I Use Every [Day/Week]"
+   Include specific outcomes, timeframes, or user roles.
+2. PROBLEM STATEMENT: Why this tutorial matters with specific pain points (150 words)
+3. PREREQUISITES: What readers need with specific versions/requirements (100 words)
+4. STEP-BY-STEP TUTORIAL: 7-10 detailed steps with screenshots descriptions (700 words)
+   - Each step: What to do, what you'll see, common errors
+   - Steps 3-6 should involve using {app_name} features
+   - Include specific settings and configurations
+5. COMMON MISTAKES: 5 specific pitfalls with solutions (200 words)
+6. ADVANCED TIPS: Power user features of {app_name} with use cases (150 words)
+7. CONCLUSION: Summary of what was learned + next steps with {app_name}
 
 {base_seo}
 
-TONE: Helpful instructor voice. Make {app_name} essential to completing the tutorial.
-EXAMPLE TITLE: "How to Build an AI Daily Routine in 15 Minutes (Step-by-Step Tutorial)"
+TONE: Helpful instructor with real experience. Include "when I first tried this" moments.
 """
         
         elif angle == "comparison":
@@ -163,22 +198,26 @@ App Information:
 - Comparison Topic: {topic}
 
 ARTICLE STRUCTURE:
-1. TITLE: "[Number] Best {niche} Apps Compared - 2026 Ultimate Guide"
-2. INTRODUCTION: What to look for in {niche} apps (150 words)
-3. COMPARISON CRITERIA: 5-7 factors that matter most (100 words)
-4. APP REVIEWS: Compare 5-7 apps (600 words)
-   - Review each app fairly (100 words each)
-   - Give {app_name} slightly longer review (150 words)
-   - Highlight where {app_name} excels
-5. FEATURE COMPARISON: Side-by-side table or bullet comparison
-6. WINNER ANNOUNCEMENT: {app_name} wins in [specific criteria] (200 words)
-7. HONEST PROS/CONS: Build trust with balanced assessment
-8. CONCLUSION: Final recommendation favoring {app_name}
+1. TITLE: Create a UNIQUE comparison title (avoid generic "X Best Apps" patterns):
+   - "I Spent [X Hours] Testing [Specific Apps] - Here's What Actually Works"
+   - "[Specific Feature] Face-Off: [App A] vs [App B] vs {app_name} Real Results"
+   - "After [X] Months Using [Category] Apps: My Honest Rankings"
+   - "[User Type]'s Guide: Which [Category] App Delivers on [Specific Promise]?"
+   Make each title specific with timeframes, features, or user perspectives.
+2. INTRODUCTION: Your testing methodology and criteria used (150 words)
+3. COMPARISON CRITERIA: 5-7 factors with weighted importance (150 words)
+4. APP REVIEWS: Compare 5-7 apps with SPECIFIC test results (700 words)
+   - Include actual metrics from testing (speed, accuracy, etc.)
+   - Provide specific use case scenarios
+   - Give {app_name} detailed feature breakdown
+5. FEATURE COMPARISON: Data-driven comparison with specific numbers
+6. WINNER BY CATEGORY: {app_name} excels in [specific areas] with evidence (200 words)
+7. HONEST LIMITATIONS: Build trust with balanced assessment including {app_name}'s weaknesses
+8. CONCLUSION: Recommendation based on user type + specific scenarios
 
 {base_seo}
 
-TONE: Objective reviewer who genuinely found {app_name} to be the best option. Balance fairness with preference.
-EXAMPLE TITLE: "7 Best AI Companion Apps Compared: Real Testing, Honest Results (2026)"
+TONE: Experienced reviewer with real testing data. Show methodology, not just opinions.
 """
         
         elif angle == "problem_solution":
@@ -190,26 +229,30 @@ App Information:
 - Problem/Topic: {topic}
 
 ARTICLE STRUCTURE:
-1. TITLE: Use pain-focused pattern: "Struggling with [Problem]? This Changes Everything" or "Why [Problem] is Worse Than You Think (And How to Fix It)"
-2. OPENING HOOK: Start with a visceral story ("It was 2 AM. I was staring at my screen..." "The moment I realized I'd wasted another hour on...")
-3. QUICK TAKEAWAYS: 3-4 bullets on what readers will learn
-4. PROBLEM DEEP-DIVE: Describe the problem with empathy and statistics (300 words)
-   - Use second person ("You've probably felt...")
-   - Include emotional language ("frustrating," "overwhelming," "exhausting")
-   - Add statistics that shock
-5. WHY TRADITIONAL SOLUTIONS FAIL: Explain old approaches with empathy (200 words)
-6. THE BREAKTHROUGH: Introduce AI-powered approach with excitement (150 words)
-7. MEET {app_name}: Present as the breakthrough solution (400 words)
-   - How it solves specific pain points
-   - Features that address frustrations
-   - User transformations
-8. HOW TO GET STARTED: Quick start guide with urgency (150 words)
-9. CONCLUSION: Paint picture of life without the problem + urgent CTA
+1. TITLE: Create a UNIQUE problem-solution title (avoid generic patterns):
+   - "I Fixed My [Specific Problem] in [Timeframe] - Here's the [Metric] Improvement"
+   - "From [Hours/Days] Wasted to [Specific Result]: My [Problem] Solution"
+   - "[Specific Frustration] Cost Me [Specific Loss] - Until I Found This"
+   - "The [Problem] Trap: Why [X%] of [Group] Struggle (And the Fix)"
+   Use specific metrics, timeframes, and personal angles.
+2. OPENING HOOK: Start with a SPECIFIC personal story with details (time, place, exact situation)
+3. QUICK TAKEAWAYS: 4 bullets with specific promises and metrics
+4. PROBLEM DEEP-DIVE: Describe with empathy, statistics, and real examples (300 words)
+   - Use second person with specific scenarios
+   - Include 2-3 statistics with sources
+   - Add emotional validation
+5. WHY TRADITIONAL SOLUTIONS FAIL: Specific examples of what doesn't work (200 words)
+6. THE BREAKTHROUGH: Explain AI-powered approach with technical details (150 words)
+7. MEET {app_name}: Present as solution with specific features and results (400 words)
+   - Feature-to-benefit mapping
+   - Before/after scenarios with metrics
+   - Specific user transformation stories
+8. HOW TO GET STARTED: Step-by-step quick start (150 words)
+9. CONCLUSION: Paint specific future picture + clear next action
 
 {base_seo}
 
-TONE: Empathetic problem-solver. Build up pain, then present {app_name} as relief.
-EXAMPLE TITLE: "Meeting Notes Taking Too Long? This AI Tool Cut My Time by 80%"
+TONE: Empathetic problem-solver with real experience. Show don't tell - use specific numbers and stories.
 """
         
         else:
