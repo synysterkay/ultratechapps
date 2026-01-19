@@ -4,21 +4,37 @@ Allow: /
 # Sitemaps
 Sitemap: https://bestaiapps.site/sitemap.xml
 
-# Crawl-delay
-Crawl-delay: 10
-
-# Disallow cache and admin files
+# Block internal documentation and setup files
+Disallow: /CLOUDFLARE_SETUP
+Disallow: /EMAIL_MARKETING_SETUP
+Disallow: /GITHUB_ACTIONS_SETUP
+Disallow: /MAILGUN_SETUP
+Disallow: /NEWSLETTER_SETUP
+Disallow: /REDDIT_MEDIUM_SETUP
+Disallow: /WEBSITE_SETUP
+Disallow: /email_templates/
+Disallow: /firebase_exports/
+Disallow: /generators/
+Disallow: /publishers/
+Disallow: /scripts/
+Disallow: /utils/
+Disallow: /workers/
+Disallow: /functions/
+Disallow: /config/
 Disallow: /cache/
 Disallow: /venv/
 Disallow: /.git/
 Disallow: /*.py$
-Disallow: /generators/
-Disallow: /publishers/
-Disallow: /utils/
+Disallow: /*.json$
+Disallow: /*.csv$
+Disallow: /*.xlsx$
+Disallow: /*.txt$
+Disallow: /*.sh$
 
-# Allow all pages and blog posts
+# Allow important pages
 Allow: /
 Allow: /blog/
+Allow: /apps/
 Allow: /about/
-Allow: /_posts/
-Allow: /assets/
+Allow: /privacy-policy/
+Allow: /terms-of-service/

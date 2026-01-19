@@ -49,6 +49,27 @@ exclude:
   - requirements.txt
   - README.md
   - SETUP.md
+  - CLOUDFLARE_SETUP.md
+  - EMAIL_MARKETING_SETUP.md
+  - GITHUB_ACTIONS_SETUP.md
+  - MAILGUN_SETUP.md
+  - NEWSLETTER_SETUP.md
+  - REDDIT_MEDIUM_SETUP.md
+  - WEBSITE_SETUP.md
+  - email_templates
+  - firebase_exports
+  - generators
+  - publishers
+  - scripts
+  - utils
+  - workers
+  - functions
+  - config
+  - "*.json"
+  - "*.csv"
+  - "*.xlsx"
+  - "*.txt"
+  - "*.sh"
 
 # Plugins
 plugins:
