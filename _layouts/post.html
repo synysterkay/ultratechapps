@@ -1193,6 +1193,105 @@ layout: default
   {% endif %}
 </nav>
 
+<!-- Related Posts Section for Internal Linking -->
+<section class="related-posts-section">
+  <h2 class="related-posts-title">📚 More Articles You'll Love</h2>
+  <div class="related-posts-grid">
+    {% assign related_posts = site.posts | where_exp: "post", "post.url != page.url" | sample: 6 %}
+    {% for post in related_posts limit: 6 %}
+    <a href="{{ post.url | relative_url }}" class="related-post-card">
+      <span class="related-post-category">{{ post.category | default: "AI Tools" }}</span>
+      <h3 class="related-post-title">{{ post.title | truncate: 60 }}</h3>
+      <span class="related-post-date">{{ post.date | date: "%b %d, %Y" }}</span>
+    </a>
+    {% endfor %}
+  </div>
+  <div class="related-posts-cta">
+    <a href="/blog/" class="view-all-posts-btn">View All Articles →</a>
+  </div>
+</section>
+
+<style>
+.related-posts-section {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 16px;
+}
+.related-posts-title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+.related-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+@media (max-width: 768px) {
+  .related-posts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 500px) {
+  .related-posts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.related-post-card {
+  background: white;
+  padding: 1.25rem;
+  border-radius: 12px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #e9ecef;
+}
+.related-post-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+.related-post-category {
+  font-size: 0.75rem;
+  color: #7c3aed;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.related-post-title {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.4;
+  margin: 0;
+  font-weight: 600;
+}
+.related-post-date {
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin-top: auto;
+}
+.related-posts-cta {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+.view-all-posts-btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: transform 0.2s;
+}
+.view-all-posts-btn:hover {
+  transform: scale(1.05);
+}
+</style>
+
 <!-- Sticky CTA Bar -->
 <div class="sticky-cta-bar" id="sticky-cta">
   <div class="sticky-cta-inner">
