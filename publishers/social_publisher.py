@@ -1,8 +1,14 @@
 """
-Social media publishers (X, Bluesky, Telegram)
+Social media publishers (X/Twitter, Bluesky, Telegram)
 """
 import os
 from atproto import Client as BlueskyClient
+
+# Import Twitter publisher
+try:
+    from publishers.twitter_publisher import TwitterPublisher
+except ImportError:
+    TwitterPublisher = None
 
 
 class BlueskyPublisher:
@@ -57,13 +63,15 @@ class SocialPublisher:
     
     def __init__(self):
         self.bluesky = BlueskyPublisher()
+        # Initialize Twitter if available
+        self.twitter = TwitterPublisher() if TwitterPublisher else None
     
     def post(self, platform, post_data):
         """
         Post to specified platform
         
         Args:
-            platform: Platform name (bluesky)
+            platform: Platform name (bluesky, twitter/x)
             post_data: Dictionary with 'text' and optionally 'link'
             
         Returns:
@@ -80,5 +88,10 @@ class SocialPublisher:
         
         if platform == 'bluesky':
             return self.bluesky.post(full_text[:300])
+        elif platform in ['twitter', 'x']:
+            if self.twitter and self.twitter.enabled:
+                return self.twitter.post(text, link)  # Twitter handles link separately
+            else:
+                return {'success': False, 'error': 'Twitter publisher not enabled'}
         else:
             return {'success': False, 'error': f'Unknown platform: {platform}'}

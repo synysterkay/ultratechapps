@@ -5,3 +5,4 @@ atproto>=0.0.30
 PyGithub>=2.1.1
 praw>=7.7.1
 feedparser>=6.0.10
+tweepy>=4.14.0

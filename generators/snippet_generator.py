@@ -57,7 +57,7 @@ class SnippetGenerator:
                 sanitized.append(clean_tag)
         return sanitized
     
-    def generate_social_posts(self, article, platform, count=3):
+    def generate_social_posts(self, article, platform, count=3, article_url=None):
         """
         Generate social media posts from article
         
@@ -65,6 +65,7 @@ class SnippetGenerator:
             article: Article dictionary with content
             platform: Platform name (x, bluesky, telegram, etc.)
             count: Number of posts to generate
+            article_url: URL to the blog article (for SEO/indexing)
             
         Returns:
             List of post dictionaries
@@ -74,30 +75,31 @@ class SnippetGenerator:
         
         spec = self.platform_specs[platform]
         
+        # Prioritize blog article URL for SEO, fallback to app store
+        primary_link = article_url if article_url else article.get('google_play_url', '')
+        
         prompt = f"""Extract {count} unique social media posts from this article for {platform}.
 
 Article Title: {article['title']}
+Article URL: {article_url or 'N/A'}
 Article Content: {article['content'][:1000]}...
 
 App Name: {article['app_name']}
-Google Play: {article['google_play_url']}
-App Store: {article['app_store_url']}
 
 Requirements:
 - Each post must be {spec['max_length']} characters or less
 - Maximum {spec['emoji_limit']} emoji per post
 - Tone: {spec['tone']}
 - Each post should highlight a DIFFERENT insight from the article
-- Naturally include ONE app store link (alternate between Google Play and App Store)
-- Make posts actionable and valuable
+- ALWAYS include the blog article URL: {article_url}
+- Make posts valuable and share-worthy
+- Focus on the article content, not just the app
 - No hashtags unless platform is X/Twitter
-- All {count} posts must be completely unique
 
 Generate {count} posts in this JSON format:
 [
-  {{"text": "post text here", "link": "store_url"}},
-  {{"text": "post text here", "link": "store_url"}},
-  {{"text": "post text here", "link": "store_url"}}
+  {{"text": "post text here", "link": "{article_url}"}},
+  {{"text": "post text here", "link": "{article_url}"}}
 ]"""
 
         try:

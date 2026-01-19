@@ -168,7 +168,7 @@ class MarketingAutomation:
     
     def _publish_social_posts(self, article, app_name, article_url, app):
         """Publish social media posts for an article"""
-        social_platforms = ['bluesky']
+        social_platforms = ['bluesky', 'twitter']  # Post to both for SEO
         
         for platform in social_platforms:
             print(f"\n📱 Publishing to {platform.upper()}...")
@@ -178,11 +178,12 @@ class MarketingAutomation:
                 print(f"⏸️ Skipping {platform}: {reason}")
                 continue
             
-            # Generate posts for this platform
+            # Generate posts for this platform - include article URL for SEO/indexing
             posts = self.snippet_generator.generate_social_posts(
                 article, 
                 platform,
-                count=1  # Generate 1 post per run to avoid spam
+                count=1,  # Generate 1 post per run to avoid spam
+                article_url=article_url  # Pass blog URL for Google discovery
             )
             
             for post in posts:
@@ -242,8 +243,8 @@ class MarketingAutomation:
         if result['success']:
             self.rate_limiter.record_post('pinterest', app_name)
     
-    def _publish_social_posts(self, article, app_name, article_url, app):
-        """Publish social media posts for an article"""
+    def _publish_social_posts_v2(self, article, app_name, article_url, app):
+        """Publish social media posts for an article (v2 - with article URL for SEO)"""
         social_platforms = ['bluesky']
         
         for platform in social_platforms:
@@ -254,11 +255,12 @@ class MarketingAutomation:
                 print(f"⏸️ Skipping {platform}: {reason}")
                 continue
             
-            # Generate posts for this platform
+            # Generate posts for this platform - include article URL for SEO/indexing
             posts = self.snippet_generator.generate_social_posts(
                 article, 
                 platform,
-                count=1  # Generate 1 post per run to avoid spam
+                count=1,  # Generate 1 post per run to avoid spam
+                article_url=article_url  # Pass blog URL for Google discovery
             )
             
             for post in posts:
