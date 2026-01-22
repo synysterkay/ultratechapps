@@ -88,5 +88,11 @@
     "description": "Transform AI-generated text into natural, human-written content that bypasses detection. Perfect for students, professionals, and creators who need authentic, undetectable writing.",
     "google_play_url": "",
     "app_store_url": "https://apps.apple.com/app/humanize-ai-ai-text-detector/id6757453204"
+  },
+  {
+    "name": "PassedAI",
+    "description": "Transform AI text into undetectable human writing in 3 seconds. Bypass Turnitin, GPTZero, and Originality.ai with 95%+ success rate. First humanization FREE - no signup required.",
+    "google_play_url": "",
+    "app_store_url": "https://passedai.io/"
   }
 ]

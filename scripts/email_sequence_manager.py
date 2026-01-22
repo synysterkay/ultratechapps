@@ -127,6 +127,7 @@ class EmailSequenceManager:
         app_categories = {
             "🎯 Productivity & Learning": [
                 ("Smart Notes - AI Meeting Summary", "smart-notes-ai-meeting-summary", "Never miss a detail in meetings again"),
+                ("PassedAI", "passedai", "Turn AI text into undetectable human writing - FREE"),
                 ("Thesis Generator: Essay AI", "thesis-generator-essay-ai", "Write A+ papers in half the time"),
                 ("Volume Booster - Sound Booster", "volume-booster-sound-booster", "Hear every word crystal clear"),
             ],
@@ -542,13 +543,13 @@ class EmailSequenceManager:
     
     def _get_app_for_email_number(self, emails_received):
         """Get app based on how many emails subscriber has received"""
-        # LOCKED: Always send Thesis Generator for maximum conversion
-        thesis_app = next((app for app in self.apps if 'Thesis Generator' in app['name']), None)
-        if not thesis_app:
-            # Fallback to rotation if Thesis Generator not found
+        # LOCKED: Always send PassedAI for maximum conversion
+        passedai_app = next((app for app in self.apps if 'PassedAI' in app['name'] or 'Passed AI' in app['name']), None)
+        if not passedai_app:
+            # Fallback to rotation if PassedAI not found
             app_index = emails_received % len(self.apps)
             return self.apps[app_index]
-        return thesis_app
+        return passedai_app
     
     def _pre_generate_emails(self, eligible_subscribers):
         """
@@ -569,9 +570,9 @@ class EmailSequenceManager:
         for app_name in apps_needed:
             app_data = next(a for a in self.apps if a['name'] == app_name)
             
-            # Check for cached Thesis Generator email first
-            if 'Thesis Generator' in app_name:
-                cache_file = Path(__file__).parent.parent / 'cache' / 'thesis_generator_email_cache.json'
+            # Check for cached PassedAI email first
+            if 'PassedAI' in app_name or 'Passed AI' in app_name:
+                cache_file = Path(__file__).parent.parent / 'cache' / 'passedai_email_cache.json'
                 if cache_file.exists():
                     print(f"   💾 Using cached email for: {app_name}")
                     with open(cache_file, 'r') as f:
@@ -585,8 +586,8 @@ class EmailSequenceManager:
             
             print(f"   🔄 Generating email for: {app_name}")
             
-            # Use optimized niche for Thesis Generator
-            niche = 'productivity' if 'Thesis Generator' in app_name else 'general'
+            # Use optimized niche for PassedAI
+            niche = 'education' if 'PassedAI' in app_name or 'Passed AI' in app_name else 'general'
             
             email_data = self.email_generator.generate_email(
                 niche=niche,
