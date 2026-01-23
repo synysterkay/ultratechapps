@@ -288,9 +288,23 @@ class EmailSequenceManager:
             </div>
             '''
         
-        # CTA buttons - direct to app stores
+        # CTA buttons - detect web app vs mobile app
         cta_html = ""
-        if app_store_url and google_play_url:
+        is_web_app = app_store_url and ('.io/' in app_store_url or '.com/' in app_store_url or '.ai/' in app_store_url) and not any(x in app_store_url for x in ['apps.apple.com', 'play.google.com'])
+        
+        if is_web_app:
+            # Web app - use "Start Now" or "Try Free" CTA
+            cta_html = f'''
+            <div style="text-align: center; margin: 40px 0;">
+                <a href="{app_store_url}" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; padding: 18px 48px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 18px; box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35);">
+                    🚀 Start Free Now →
+                </a>
+                <p style="margin: 16px 0 0 0; font-size: 14px; color: #9ca3af;">
+                    No signup required · Free to use
+                </p>
+            </div>
+            '''
+        elif app_store_url and google_play_url:
             # Both stores available
             cta_html = f'''
             <div style="text-align: center; margin: 40px 0;">
@@ -308,7 +322,7 @@ class EmailSequenceManager:
             </div>
             '''
         elif app_store_url:
-            # App Store only
+            # App Store only (iOS app)
             cta_html = f'''
             <div style="text-align: center; margin: 40px 0;">
                 <a href="{app_store_url}" style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #ffffff; padding: 18px 48px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 18px; box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35);">
