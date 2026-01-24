@@ -411,9 +411,6 @@ class EmailSequenceManager:
                     <a href="https://bestaiapps.site" style="color: #667eea; text-decoration: none; font-weight: 500;">Blog</a> · 
                     <a href="https://bestaiapps.site/apps/" style="color: #667eea; text-decoration: none; font-weight: 500;">All Apps</a>
                 </p>
-                <p style="margin: 0 0 16px 0; font-size: 13px; color: #d1d5db; line-height: 1.6;">
-                    Józefa Łepkowskiego 5, Kraków, Poland
-                </p>
                 <p style="margin: 0;">
                     <a href="%mailing_list_unsubscribe_url%" style="color: #d1d5db; text-decoration: none; font-size: 12px;">Unsubscribe</a>
                 </p>
