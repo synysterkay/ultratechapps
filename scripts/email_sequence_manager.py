@@ -584,16 +584,8 @@ class EmailSequenceManager:
         for app_name in apps_needed:
             app_data = next(a for a in self.apps if a['name'] == app_name)
             
-            # Check for cached PassedAI email first
-            if 'PassedAI' in app_name or 'Passed AI' in app_name:
-                cache_file = Path(__file__).parent.parent / 'cache' / 'passedai_email_cache.json'
-                if cache_file.exists():
-                    print(f"   💾 Using cached email for: {app_name}")
-                    with open(cache_file, 'r') as f:
-                        email_data = json.load(f)
-                        email_cache[app_name] = email_data
-                        print(f"   ✅ Loaded: {email_data['subject'][:50]}...")
-                        continue
+            # Generate fresh PassedAI emails every time (avoid repetition)
+            print(f"   🤖 Generating fresh email for: {app_name}")
             
             # Determine sequence type based on most common stage
             sequence_type = 'value'  # Default to value emails
