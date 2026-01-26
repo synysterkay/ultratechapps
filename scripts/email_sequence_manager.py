@@ -584,13 +584,32 @@ class EmailSequenceManager:
         for app_name in apps_needed:
             app_data = next(a for a in self.apps if a['name'] == app_name)
             
-            # Generate fresh PassedAI emails every time (avoid repetition)
-            print(f"   🤖 Generating fresh email for: {app_name}")
+            # Check for cached PassedAI emails by email number
+            if 'PassedAI' in app_name or 'Passed AI' in app_name:
+                # Find the email number for this batch (use the first subscriber's count)
+                email_number = None
+                for sub in eligible_subscribers:
+                    if self._get_app_for_email_number(sub.get('metadata', {}).get('emails_received', 0))['name'] == app_name:
+                        email_number = sub.get('metadata', {}).get('emails_received', 0)
+                        break
+                
+                if email_number is not None and email_number > 0:
+                    cache_file = Path(__file__).parent.parent / 'cache' / f'passedai_email_{email_number}.json'
+                    if cache_file.exists():
+                        print(f"   💾 Using cached email #{email_number} for: {app_name}")
+                        with open(cache_file, 'r') as f:
+                            email_data = json.load(f)
+                            email_cache[app_name] = email_data
+                            print(f"   ✅ Loaded: {email_data['subject'][:50]}...")
+                            continue
+                    else:
+                        print(f"   🤖 Generating and caching email #{email_number} for: {app_name}")
+            
+            # Generate fresh email if not cached
+            print(f"   🤖 Generating email for: {app_name}")
             
             # Determine sequence type based on most common stage
             sequence_type = 'value'  # Default to value emails
-            
-            print(f"   🔄 Generating email for: {app_name}")
             
             # Use optimized niche for PassedAI
             niche = 'education' if 'PassedAI' in app_name or 'Passed AI' in app_name else 'general'
@@ -605,6 +624,20 @@ class EmailSequenceManager:
             if email_data:
                 email_cache[app_name] = email_data
                 print(f"   ✅ Generated: {email_data['subject'][:50]}...")
+                
+                # Save PassedAI emails to cache for reuse
+                if 'PassedAI' in app_name or 'Passed AI' in app_name:
+                    email_number = None
+                    for sub in eligible_subscribers:
+                        if self._get_app_for_email_number(sub.get('metadata', {}).get('emails_received', 0))['name'] == app_name:
+                            email_number = sub.get('metadata', {}).get('emails_received', 0)
+                            break
+                    
+                    if email_number is not None and email_number > 0:
+                        cache_file = Path(__file__).parent.parent / 'cache' / f'passedai_email_{email_number}.json'
+                        with open(cache_file, 'w') as f:
+                            json.dump(email_data, f, indent=2)
+                        print(f"   💾 Cached email #{email_number} for future sends")
             else:
                 print(f"   ❌ Failed to generate for {app_name}")
         
