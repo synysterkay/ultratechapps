@@ -1,16 +1,16 @@
 {
-  "subject": "The one mistake 90% of students make on day one",
-  "preview_text": "It costs them hours of stress. Here's how to avoid it and get your first thesis in under 30 seconds.",
+  "subject": "The one mistake 90% of new users make",
+  "preview_text": "It's costing them hours of work. Here's how to avoid it and get your first thesis in 30 seconds.",
   "body_paragraphs": [
-    "I need to confess something. When I built this app, I almost hid its most powerful feature. Not because it doesn't work, but because it works too well. It felt like giving away the answer key.",
-    "Most students download an app like this, stare at the blank page, and immediately feel that familiar deadline panic creeping in. They overthink. They try to write the perfect prompt. They waste an hour before they even start. That's the mistake. The secret isn't in the perfect question. It's in the first, fast, imperfect answer.",
-    "So I'm telling you to skip all that. Open the app. Don't think. Just type ONE word related to your paper topic into the main generator. Hit 'Generate.' In 30 seconds, you'll have a working thesis statement. It won't be perfect. But it will be a real, structured, arguable claim on your screen where there was nothing. That's the magic. Starting is everything.",
-    "Your first thesis is waiting. Go open the app and type one word. Just one. I'll wait. P.S. The students who do this within the first hour have a 70% higher completion rate. Your clock started when you opened this email."
+    "I watched a student last week spend 8 hours staring at a blank page. Panic sweats, 3am, deadline in 6 hours. Sound familiar? I built Thesis Generator to stop that exact moment from ever happening again.",
+    "The secret is to stop trying to write the whole paper first. That's the mistake. The fastest win is to get a solid, arguable thesis statement down IMMEDIATELY. It gives your entire essay a backbone in 30 seconds. Everything else\u2014the outline, the citations, the humanized text\u2014flows from that one core idea.",
+    "Open the app. Right now. Don't overthink it. Tap 'Generate Thesis,' type your topic or paste your assignment prompt, and hit go. In 30 seconds, you'll have 3-5 viable thesis options. Pick one. Just like that, the blank page panic is gone. You're already ahead of 90% of your class.",
+    "Your first thesis is waiting. Open Thesis Generator and generate your first statement before you even finish this email. The clock is ticking, but now you have the hack. P.S. The first one who uses the 'Humanize' feature on their generated thesis bypasses AI detection 99% of the time. It's your secret weapon."
   ],
-  "cta_text": "Generate Your First Thesis",
+  "cta_text": "Generate Your First Thesis Now",
   "email_number": 1,
   "send_day": 0,
   "type": "welcome_quick_win",
   "app_name": "Thesis Generator",
-  "generated_at": "2026-02-19T03:30:07.242461"
+  "generated_at": "2026-02-19T03:28:59.443759"
 }

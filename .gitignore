@@ -33,8 +33,10 @@ venv/
 ENV/
 env/
 
-# Cache
-cache/
+# Cache (ignore all except pre-generated retention emails)
+cache/*
+!cache/retention_emails/
+cache/retention_emails/.gitkeep
 *.cache
 .cache/
 

@@ -1,0 +1,16 @@
+{
+  "subject": "The one feature 90% of users skip (big mistake)",
+  "preview_text": "I analyzed our data and found something disturbing. Most users who quit never tried this one thing.",
+  "body_paragraphs": [
+    "Okay, confession time. I was looking at our user data last night, and I noticed a pattern that made me actually put my laptop down. The students who get the biggest grade jumps, the ones who email me saying 'you saved my semester'... they all do one specific thing in the app that most people completely ignore.",
+    "It's not the thesis generator. It's not even the humanizer for bypassing AI detectors. It's something simpler, faster, and honestly, a bit of a secret weapon. We built it because we kept hearing the same panic from students: 'My paper is due in 3 hours and I have NOTHING.' This feature turns that panic into a polished draft in under 30 minutes. It's the difference between a frantic all-nighter and getting to bed at a decent hour.",
+    "I checked. You haven't used the 'Outline to Paper' sprint. That's the feature. You feed it a basic thesis or even just a topic, and it doesn't just give you an outline. It builds the entire skeleton of your paper\u2014intro, body paragraphs with topic sentences, even a conclusion draft\u2014in one click. It's for when the blank page is winning and the clock is your enemy. It's the emergency brake on deadline panic.",
+    "Open the app. Tap 'New Project' and just try the 'Outline Sprint' option. Put in your topic and watch it build your paper's backbone in 60 seconds. Then all you have to do is fill in your research. It cuts the hardest part out completely. P.S. The students who use this once average 2.3 more papers completed in the app. They realize they don't have to start from scratch ever again."
+  ],
+  "cta_text": "Try the Outline Sprint Now",
+  "email_number": 11,
+  "send_day": 10,
+  "type": "reengagement_soft",
+  "app_name": "Thesis Generator",
+  "generated_at": "2026-02-19T03:30:47.482884"
+}

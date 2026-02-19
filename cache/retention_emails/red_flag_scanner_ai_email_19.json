@@ -1,0 +1,16 @@
+{
+  "subject": "The confession that stopped me cold last Tuesday",
+  "preview_text": "A user's message hit my inbox. I read it three times. Then I closed my laptop and just sat there.",
+  "body_paragraphs": [
+    "Last Tuesday, I got a message that made my heart drop. It was from a user who'd been scanning conversations with someone for months. The AI kept flagging the same patterns. She kept ignoring them. She wrote, 'I saw every red flag. I just chose to believe they were roses.'",
+    "That line wrecked me. Because it's the quiet, human truth the app can't fix. The scanner can show you the data, the toxicity score, the gaslighting phrases highlighted in red. But it can't make you believe your own eyes when your heart is begging you to look away. She finally believed it. But only after the damage was done.",
+    "That's why I built the Pattern Detection feature. Not just to scan one text. But to connect the dots across weeks or months of conversations. To show you the evidence, laid out like a timeline, so you can't unsee the cycle. It's the cold, hard proof your gut feeling has been whispering about.",
+    "Open the app. Go to your dashboard. Tap 'View Patterns.' Let it show you what you might be trying not to see. Just look. P.S. She ended her message with this: 'Tell your users the scanner isn't for diagnosing others. It's for diagnosing your own blindness.'"
+  ],
+  "cta_text": "Open Pattern Detection",
+  "email_number": 19,
+  "send_day": 18,
+  "type": "emotional_story_2",
+  "app_name": "Red Flag Scanner AI",
+  "generated_at": "2026-02-19T03:37:24.375058"
+}

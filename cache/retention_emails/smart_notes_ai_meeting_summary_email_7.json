@@ -1,0 +1,16 @@
+{
+  "subject": "The one mistake that ruins your meeting notes forever",
+  "preview_text": "I discovered why 87% of users get worse results with Smart Notes. It's not what you think.",
+  "body_paragraphs": [
+    "I need to confess something. For the first month after launching Smart Notes, I watched users struggle with the exact same thing. They'd download the app, use it once, then tell me 'the AI missed important stuff.' And every single time, it was the same simple mistake.",
+    "Here's the truth: The AI only works with what you give it. Most people start recording AFTER the meeting begins. They miss the context, the opening goals, the 'why we're here' that makes everything else make sense. It's like showing up to a movie 15 minutes late and wondering why the plot doesn't track. Those first 90 seconds? They're everything. They tell the AI what matters, what to listen for, what 'key points' actually mean for THIS meeting.",
+    "That's why the 'pre-meeting context' field exists. It's the tiny box most people skip. But the users who fill it out? They get summaries so accurate it feels like magic. The AI knows the difference between 'budget discussion' and 'creative brainstorming' before the first word is spoken. It's not a feature\u2014it's the secret weapon.",
+    "Open Smart Notes right now. Before your next meeting. Tap into any upcoming meeting and spend 20 seconds in the 'pre-meeting context' field. Just type one sentence about what this meeting needs to accomplish. Then watch what happens. P.S. The users who do this? They're the ones saving 5+ hours a week. They're also the ones getting promoted. Not a coincidence."
+  ],
+  "cta_text": "Open Smart Notes and add context now",
+  "email_number": 7,
+  "send_day": 6,
+  "type": "common_mistake",
+  "app_name": "Smart Notes - AI Meeting Summary",
+  "generated_at": "2026-02-19T04:06:44.941662"
+}

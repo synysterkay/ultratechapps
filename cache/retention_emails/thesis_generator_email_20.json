@@ -1,0 +1,17 @@
+{
+  "subject": "The one setting 95% of users never change",
+  "preview_text": "It's buried in the app, but it's the difference between a good paper and a great one. I'll show you.",
+  "body_paragraphs": [
+    "I was looking at our usage data last night, and I saw something that made me stop. A tiny, buried toggle in the settings. Less than 5% of users have ever touched it. But the papers from that 5%? They're scoring, on average, a full letter grade higher.",
+    "It's not magic. It's about control. Most people just hit 'generate' and take what the AI gives them. The pros don't. They use this one setting to steer the AI's entire thought process. It's the difference between getting a generic thesis and one that feels like it came from your own brain, only faster and smarter. It bypasses that 'AI smell' detectors look for because the thinking is more nuanced.",
+    "It's called the 'Argument Weight' slider. It's hidden in the Advanced Settings under 'Generation Profile.' Slide it left for more balanced, analytical theses. Slide it right for bolder, more persuasive claims. Most apps lock you into one style. This lets you match the exact tone your professor wants before you even write the first sentence.",
+    "Open the app right now. Go to Settings > Advanced > Generation Profile. Play with that slider for 60 seconds on your next thesis. You'll feel the difference immediately. P.S. The students who use this? They're the ones emailing me weeks later saying they got their first A+. Don't be the 95%.",
+    "P.S. The students who use this? They're the ones emailing me weeks later saying they got their first A+. Don't be the 95%."
+  ],
+  "cta_text": "Tweak Your Argument Weight",
+  "email_number": 20,
+  "send_day": 19,
+  "type": "power_user_tip",
+  "app_name": "Thesis Generator",
+  "generated_at": "2026-02-19T03:32:23.857209"
+}

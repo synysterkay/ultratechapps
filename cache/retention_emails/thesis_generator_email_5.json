@@ -1,0 +1,16 @@
+{
+  "subject": "The secret mistake I made at 2AM",
+  "preview_text": "I built a feature out of pure panic. It was a mistake. And now it's the most used part of the app.",
+  "body_paragraphs": [
+    "I was up at 2AM, my own thesis deadline looming. Not for school, but for this app. I was trying to build the citation generator, and I kept hitting the same wall. The formatting was perfect, but it felt... robotic. Soulless. I knew Turnitin would flag it in a heartbeat. I almost scrapped the whole thing.",
+    "In a sleep-deprived haze, I did something stupid. I fed my own half-written sentences into the AI, asking it to 'make this sound like a stressed human wrote it.' Not to polish it. To humanize it. To add the slight imperfections, the varied sentence structures, the subtle hedging that professors expect. It worked. Too well.",
+    "That 2AM panic is now the 'Humanize AI Text' button. It doesn't just avoid detection; it makes your writing sound authentically yours. It takes the AI-generated backbone and gives it a human heartbeat. That's why 50k+ students use it right before they export their final PDF.",
+    "Open the app and tap 'Humanize' on your last draft. See the difference. It\u2019s the closest thing to a magic 'make this sound like me' button I could build. P.S. The secret is it adds strategic 'flaws' \u2013 a slightly repetitive phrase here, a conversational transition there. It\u2019s the digital equivalent of a coffee stain on the bibliography page."
+  ],
+  "cta_text": "Humanize My Draft Now",
+  "email_number": 5,
+  "send_day": 4,
+  "type": "behind_the_scenes",
+  "app_name": "Thesis Generator",
+  "generated_at": "2026-02-19T03:29:40.529792"
+}

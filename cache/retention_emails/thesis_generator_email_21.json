@@ -1,0 +1,17 @@
+{
+  "subject": "I wasn't going to send this secret feature",
+  "preview_text": "Built something extra for you that bypasses AI detection completely. Wasn't planning to share it, but here's the truth.",
+  "body_paragraphs": [
+    "Okay, confession time. I was working on Thesis Generator late last night, and I accidentally stumbled onto something. Something that makes the 'humanize AI text' feature look like a toy. I almost deleted it, thinking it was too powerful to release.",
+    "See, I've been watching the AI detection arms race. Turnitin updates. GPTZero gets smarter. Students panic. So I built a separate engine that doesn't just rewrite\u2014it reconstructs. It analyzes academic voice, sentence rhythm, even citation placement patterns from real A+ papers. It wasn't part of the plan. It was my personal 'nuclear option' project.",
+    "It's live. Right now. In your app. Tap 'New Project,' and you'll see a new option: 'Stealth Mode.' Don't let the name scare you. It's the same thesis generation, same outline-to-paper speed, but the output reads like it was crafted over weeks, not minutes. I've tested it against every detector. It's invisible.",
+    "Try Stealth Mode on your next paragraph. Just one. You'll feel the weight lift. The deadline panic fades. P.S. This stays between us. I'm only telling the 50k users who actually downloaded the app. The others? They'll keep struggling.",
+    "Open Thesis Generator and tap 'New Project' to find Stealth Mode. Use it before your next deadline. Seriously."
+  ],
+  "cta_text": "Open Thesis Generator & Try Stealth Mode",
+  "email_number": 21,
+  "send_day": 20,
+  "type": "surprise_bonus",
+  "app_name": "Thesis Generator",
+  "generated_at": "2026-02-19T03:32:34.433511"
+}

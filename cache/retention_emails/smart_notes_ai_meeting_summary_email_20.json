@@ -1,0 +1,16 @@
+{
+  "subject": "The secret setting 95% of users skip (big mistake)",
+  "preview_text": "I discovered this by accident. It turns beginners into pros overnight. Don't ignore this warning.",
+  "body_paragraphs": [
+    "Here's a confession: for the first month after building Smart Notes, I was using it wrong. I'd finish a meeting, get my summary, and think 'good enough.' Then I watched a power user's screen. My jaw dropped. They were getting insights I didn't even know were possible from the same meeting audio.",
+    "The difference wasn't the AI. It was a single toggle buried in settings. Most people never touch it because the default works 'fine.' But fine is the enemy of mastery. This one switch tells the AI to listen for something beyond decisions and action items. It starts hunting for assumptions, unspoken objections, and hidden priorities\u2014the real meat of any conversation.",
+    "It's called 'Deep Context Mode.' Find it in Settings > AI Preferences. It uses slightly more battery, so it's off by default. But turn it on before your next important meeting. You'll get summaries that don't just tell you what was said, but what was meant. You'll spot the landmines before they explode.",
+    "Open the app right now and flip that switch. Do it before your next call. You'll walk into that meeting knowing you'll capture what everyone else will miss. P.S. The real magic happens when you combine this with voice search. Try asking 'What were we unsure about?' after your summary generates."
+  ],
+  "cta_text": "Open Settings & Turn On Deep Context",
+  "email_number": 20,
+  "send_day": 19,
+  "type": "power_user_tip",
+  "app_name": "Smart Notes - AI Meeting Summary",
+  "generated_at": "2026-02-19T04:09:30.135443"
+}
