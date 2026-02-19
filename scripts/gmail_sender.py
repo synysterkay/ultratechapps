@@ -17,8 +17,7 @@ class GmailSender:
         self.sender_email = 'hello@passedai.io'
         self.sender_name = 'Anas'
         self.api_url = 'https://api.brevo.com/v3/smtp/email'
-        self.daily_limit = 290   # Stay under Brevo free 300/day
-        self.delay_between_emails = 1  # seconds
+        self.delay_between_emails = 0.1  # seconds (small pause to avoid overwhelming API)
         
         if not self.api_key:
             raise ValueError("BREVO_API_KEY must be set")
@@ -84,11 +83,6 @@ class GmailSender:
         failed = 0
         
         for i, email in enumerate(emails):
-            if sent >= self.daily_limit:
-                print(f"⚠️ Daily limit ({self.daily_limit}) reached. Stopping.")
-                failed += len(emails) - i
-                break
-            
             success = self.send_email(
                 to_email=email['to'],
                 subject=email['subject'],

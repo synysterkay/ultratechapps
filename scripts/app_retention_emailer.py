@@ -161,13 +161,12 @@ class AppRetentionEmailer:
     
     # ─── CAMPAIGN LOGIC ────────────────────────────────────
     
-    def _get_eligible_users(self, users_by_app, daily_limit=290):
+    def _get_eligible_users(self, users_by_app, daily_limit=None):
         """
         Find users who should receive their next email today.
         Rules:
         - New users (not in state) get email #1 immediately
         - Existing users wait the scheduled days between emails
-        - Max daily_limit emails per run
         """
         eligible = []
         now = datetime.now()
@@ -228,10 +227,10 @@ class AppRetentionEmailer:
                         'next_email': next_email_num,
                     })
                 
-                if len(eligible) >= daily_limit:
+                if daily_limit and len(eligible) >= daily_limit:
                     break
             
-            if len(eligible) >= daily_limit:
+            if daily_limit and len(eligible) >= daily_limit:
                 break
         
         return eligible
