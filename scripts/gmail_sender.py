@@ -3,7 +3,7 @@
 Brevo (Sendinblue) Email Sender
 Sends transactional emails via Brevo API.
 Free tier: 300/day. Paid: scales cheaply.
-Sender: hello@passedai.io
+Login: hello@passedai.io | Sender: apps@kaynel.pl
 """
 import requests
 import time
@@ -14,7 +14,7 @@ import os
 class GmailSender:
     def __init__(self):
         self.api_key = os.getenv('BREVO_API_KEY')
-        self.sender_email = 'hello@passedai.io'
+        self.sender_email = 'apps@kaynel.pl'
         self.sender_name = 'Anas'
         self.api_url = 'https://api.brevo.com/v3/smtp/email'
         self.delay_between_emails = 0.1  # seconds (small pause to avoid overwhelming API)
@@ -59,6 +59,7 @@ class GmailSender:
                 'email': self.sender_email,
             },
             'to': [{'email': to_email}],
+            'replyTo': {'email': self.sender_email},
             'subject': subject,
             'htmlContent': html_body,
         }
