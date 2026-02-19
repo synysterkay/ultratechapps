@@ -15,7 +15,7 @@ class GmailSender:
     def __init__(self):
         self.api_key = os.getenv('BREVO_API_KEY')
         self.sender_email = 'apps@kaynel.pl'
-        self.sender_name = 'Anas'
+        self.sender_name = 'Adam'
         self.api_url = 'https://api.brevo.com/v3/smtp/email'
         self.delay_between_emails = 0.1  # seconds (small pause to avoid overwhelming API)
         
