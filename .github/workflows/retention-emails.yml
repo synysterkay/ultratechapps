@@ -1,0 +1,84 @@
+name: App Retention Emails
+
+on:
+  schedule:
+    # Run twice daily: 9 AM and 6 PM UTC
+    - cron: '0 9 * * *'
+    - cron: '0 18 * * *'
+  
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Run mode'
+        required: false
+        default: 'send'
+        type: choice
+        options:
+          - send
+          - dry-run
+          - status
+          - generate
+          - refresh
+
+permissions:
+  contents: write
+
+jobs:
+  retention-emails:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+      
+      - name: Restore retention state cache
+        uses: actions/cache@v4
+        with:
+          path: cache/retention_state.json
+          key: retention-state-${{ github.run_number }}
+          restore-keys: |
+            retention-state-
+      
+      - name: Run retention email campaign
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: |
+          MODE="${{ github.event.inputs.mode || 'send' }}"
+          
+          if [ "$MODE" = "generate" ]; then
+            python scripts/app_retention_emailer.py --generate
+          elif [ "$MODE" = "status" ]; then
+            python scripts/app_retention_emailer.py --status
+          elif [ "$MODE" = "dry-run" ]; then
+            python scripts/app_retention_emailer.py --dry-run
+          elif [ "$MODE" = "refresh" ]; then
+            python scripts/app_retention_emailer.py --refresh
+          else
+            python scripts/app_retention_emailer.py
+          fi
+      
+      - name: Save retention state
+        if: always()
+        run: |
+          if [ -f cache/retention_state.json ]; then
+            git config user.name "GitHub Actions"
+            git config user.email "actions@github.com"
+            git add cache/retention_state.json cache/retention_emails/ -f 2>/dev/null || true
+            git diff --staged --quiet || git commit -m "Update retention email state [skip ci]" && git push || true
+          fi
+      
+      - name: Log completion
+        run: |
+          echo "✅ Retention email campaign completed at $(date)"
