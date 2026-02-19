@@ -143,7 +143,7 @@ class AppRetentionEmailer:
     
     <p style="margin:32px 0 0;font-size:17px;color:#4b5563;">
         Talk soon,<br>
-        <strong style="color:#1f2937;">{app_name}</strong>
+        <strong style="color:#1f2937;">Adam</strong>
     </p>
     
     <div style="margin-top:48px;padding-top:24px;border-top:1px solid #e5e7eb;text-align:center;">
