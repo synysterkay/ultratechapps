@@ -143,8 +143,7 @@ class AppRetentionEmailer:
     
     <p style="margin:32px 0 0;font-size:17px;color:#4b5563;">
         Talk soon,<br>
-        <strong style="color:#1f2937;">Anas</strong><br>
-        <span style="font-size:14px;color:#6b7280;">Builder of {app_name}</span>
+        <strong style="color:#1f2937;">{app_name}</strong>
     </p>
     
     <div style="margin-top:48px;padding-top:24px;border-top:1px solid #e5e7eb;text-align:center;">
@@ -321,7 +320,7 @@ class AppRetentionEmailer:
                 to_email=email_addr,
                 subject=email_data['subject'],
                 html_body=html,
-                from_name=f"Adam from {app_name}"
+                from_name=app_name
             )
             
             if success:
