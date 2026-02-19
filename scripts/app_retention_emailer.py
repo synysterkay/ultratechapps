@@ -321,7 +321,7 @@ class AppRetentionEmailer:
                 to_email=email_addr,
                 subject=email_data['subject'],
                 html_body=html,
-                from_name=f"Anas from {app_name}"
+                from_name=f"Adam from {app_name}"
             )
             
             if success:
