@@ -161,7 +161,7 @@ class AppRetentionEmailer:
     
     # ─── CAMPAIGN LOGIC ────────────────────────────────────
     
-    def _get_eligible_users(self, users_by_app, daily_limit=450):
+    def _get_eligible_users(self, users_by_app, daily_limit=290):
         """
         Find users who should receive their next email today.
         Rules:
@@ -288,12 +288,12 @@ class AppRetentionEmailer:
             else:
                 print(f"   ❌ Failed: {app_name} #{email_num}")
         
-        # 4. Send emails via Gmail
-        print(f"\n📧 Sending {len(eligible)} emails via Gmail...")
+        # 4. Send emails via Brevo
+        print(f"\n📧 Sending {len(eligible)} emails via Brevo...")
         gmail = GmailSender()
         
         if not gmail.connect():
-            print("❌ Cannot connect to Gmail. Aborting.")
+            print("❌ Cannot connect to Brevo. Aborting.")
             return
         
         today = datetime.now().strftime('%Y-%m-%d')
@@ -350,9 +350,9 @@ class AppRetentionEmailer:
             if (sent + failed) % 25 == 0:
                 self._save_state()
             
-            # Rate limit
+            # Rate limit (1s for Brevo REST API)
             if i < len(eligible) - 1:
-                time.sleep(2)
+                time.sleep(1)
         
         gmail.disconnect()
         
