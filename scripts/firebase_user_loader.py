@@ -65,22 +65,38 @@ class FirebaseUserLoader:
         self.exports_dir.mkdir(exist_ok=True)
     
     def refresh_exports(self):
-        """Re-export users from all Firebase projects using CLI"""
+        """Re-export users from all Firebase projects using CLI.
+        Supports FIREBASE_TOKEN env var for CI/CD (GitHub Actions).
+        """
         print("🔄 Refreshing Firebase user exports...")
+        
+        token = os.environ.get('FIREBASE_TOKEN')
         
         for project_id, app_info in FIREBASE_APPS.items():
             export_file = self.exports_dir / app_info['export_file']
             print(f"   Exporting {app_info['name']} ({project_id})...")
             
             try:
+                cmd = ['firebase', 'auth:export', str(export_file), '--format=JSON', f'--project={project_id}']
+                if token:
+                    cmd.extend(['--token', token])
+                
                 result = subprocess.run(
-                    ['firebase', 'auth:export', str(export_file), '--format=JSON', f'--project={project_id}'],
+                    cmd,
                     capture_output=True, text=True, timeout=120
                 )
                 if result.returncode == 0:
                     print(f"   ✅ {app_info['name']} exported")
                 else:
-                    print(f"   ⚠️ {app_info['name']}: {result.stderr.strip()}")
+                    # Don't fail on projects without Auth (e.g. CONFIGURATION_NOT_FOUND)
+                    stderr = result.stderr.strip()
+                    if 'CONFIGURATION_NOT_FOUND' in stderr:
+                        print(f"   ⏭️  {app_info['name']}: No Auth configured, skipping")
+                    else:
+                        print(f"   ⚠️ {app_info['name']}: {stderr[:200]}")
+            except FileNotFoundError:
+                print("   ❌ Firebase CLI not found. Install with: npm install -g firebase-tools")
+                break
             except Exception as e:
                 print(f"   ❌ {app_info['name']}: {e}")
         
