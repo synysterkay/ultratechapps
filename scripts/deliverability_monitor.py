@@ -49,19 +49,18 @@ class DeliverabilityMonitor:
             "domain": "kaynel.pl",
             "active": True,
         },
-        # ── Add backup senders below ──
-        # {
-        #     "email": "hello@kaynel.pl",
-        #     "name": "Ana",
-        #     "domain": "kaynel.pl",
-        #     "active": True,
-        # },
-        # {
-        #     "email": "noreply@ultratechapps.com",
-        #     "name": "Ana",
-        #     "domain": "ultratechapps.com",
-        #     "active": True,
-        # },
+        {
+            "email": "hello@bestaiapps.site",
+            "name": "Alex",
+            "domain": "bestaiapps.site",
+            "active": True,
+        },
+        {
+            "email": "apps@vitazelki.pl",
+            "name": "Casey",
+            "domain": "vitazelki.pl",
+            "active": True,
+        },
     ]
 
     # ── THRESHOLDS ──────────────────────────────────────────
