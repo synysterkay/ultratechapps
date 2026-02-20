@@ -56,6 +56,15 @@ FIREBASE_APPS = {
         'app_store_url': 'https://apps.apple.com/app/smart-notes-ai-meeting-summary/id6756840480',
         'google_play_url': 'https://play.google.com/store/apps/details?id=pl.audiorecorder.voicerecorder.callrecorder',
     },
+    'predictify-3f30d': {
+        'name': 'Predictify',
+        'export_file': 'predictify_fresh.json',
+        'description': 'AI-powered soccer predictions with advanced analytics for Premier League, La Liga, Champions League and more',
+        'app_store_url': 'https://apps.apple.com/app/predictify-ai-soccer-predict/id6504764906',
+        'google_play_url': 'https://play.google.com/store/apps/details?id=com.kaynel.predictify',
+        'multilingual': True,
+        'supported_languages': ['en', 'ar', 'es', 'fr'],
+    },
 }
 
 

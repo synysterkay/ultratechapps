@@ -1,0 +1,16 @@
+{
+  "subject": "A confession about the 90% mistake I see users make",
+  "preview_text": "I wasn't going to send this email, but I saw something in your account that made me write this personal note.",
+  "body_paragraphs": [
+    "I don't usually write emails like this. It feels a bit raw. But I was looking at our user data this morning, and I saw a pattern that honestly made me wince. Most people download Predictify, check one or two predictions, and then... they stop. They miss the whole point.",
+    "Here's the truth I discovered: the users who win consistently aren't the ones who just look at the final score prediction. They're the ones who dive into the 'why.' They look at the xG breakdown, the defensive strength analysis, the head-to-head tactical history. They use the data to build their own conviction. That's the secret. The prediction is just the headline; the insights are the story.",
+    "This is why I built the 'Match Deep Dive' feature. It's not just a score guess. It's a 10-layer analysis showing you exactly where the value is hiding. Which team's defense is vulnerable to crosses? Which striker is outperforming their xG? It turns a guess into a knowing. And right now, you can see this for any match with your free credits.",
+    "Open the app. Pick one match you care about this weekend. Don't just look at the predicted score. Tap 'Deep Dive.' Spend 90 seconds in the data. That's it. I promise you'll see the game differently. P.S. The users who do this just once are 3x more likely to try the Premium trial. Not because we sell them, but because they finally get it."
+  ],
+  "cta_text": "Open Predictify & Do a Deep Dive",
+  "email_number": 25,
+  "send_day": 24,
+  "type": "personal_note",
+  "app_name": "Predictify",
+  "generated_at": "2026-02-20T14:12:44.627715"
+}

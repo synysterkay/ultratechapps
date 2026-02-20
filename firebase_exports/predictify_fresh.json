@@ -1,0 +1,30 @@
+{"users": [
+{
+  "localId": "RrkIxu6qKbPAAuwlCia5zPPGrOj2",
+  "email": "anaskay.13@gmail.com",
+  "emailVerified": true,
+  "displayName": "Anas Kayssi",
+  "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocIBIYXGVs1gTzged6HwKq5qC4Hxdl5yrlCgT39jNzPUu6siBMX8=s96-c",
+  "lastSignedInAt": "1771538936127",
+  "createdAt": "1771538936127",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "116438507879906775074",
+      "email": "anaskay.13@gmail.com",
+      "displayName": "Anas Kayssi",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocIBIYXGVs1gTzged6HwKq5qC4Hxdl5yrlCgT39jNzPUu6siBMX8=s96-c"
+    }
+  ]
+},
+{
+  "localId": "TXcOZnBAqpREpyTarPqZeFN3uyU2",
+  "email": "kayneltest@gmail.com",
+  "emailVerified": false,
+  "passwordHash": "+EgmIsxAcJcxmz4EURlyQnXnO9X2toEz4+nflcQIl0oDFkrQ9d04ss2xND4V8ak1iA9p79KS6nYBPBNPIWkqng==",
+  "salt": "+CzH6yk2MRDMjQ==",
+  "displayName": "Adam",
+  "lastSignedInAt": "1771590120347",
+  "createdAt": "1771590120347",
+  "providerUserInfo": []
+}]}

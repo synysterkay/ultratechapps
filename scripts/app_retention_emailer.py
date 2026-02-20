@@ -24,6 +24,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from firebase_user_loader import FirebaseUserLoader, FIREBASE_APPS
 from retention_email_generator import RetentionEmailGenerator, APP_CONTEXT
 from gmail_sender import GmailSender
+from firestore_language_loader import FirestoreLanguageLoader
 
 
 class AppRetentionEmailer:
@@ -34,6 +35,8 @@ class AppRetentionEmailer:
         
         self.firebase_loader = FirebaseUserLoader()
         self.email_generator = RetentionEmailGenerator()
+        self.language_loader = FirestoreLanguageLoader()
+        self.user_languages = {}  # email -> language code
         
         # Load tracking state
         self.state = self._load_state()
@@ -72,11 +75,30 @@ class AppRetentionEmailer:
     
     # ─── EMAIL HTML TEMPLATE ───────────────────────────────
     
-    def _build_html(self, email_data, app_info):
-        """Build beautiful HTML email from generated content"""
+    def _build_html(self, email_data, app_info, language='en'):
+        """Build beautiful HTML email from generated content, with language support"""
         
         app_name = email_data.get('app_name', app_info['name'])
         cta_text = email_data.get('cta_text', f'Open {app_name}')
+        
+        # Language-specific settings
+        is_rtl = language == 'ar'
+        dir_attr = ' dir="rtl"' if is_rtl else ''
+        text_align = 'right' if is_rtl else 'left'
+        
+        # Localized greeting and sign-off
+        greetings = {'en': 'Hey there,', 'ar': 'مرحبًا،', 'es': 'Hola,', 'fr': 'Salut,'}
+        signoffs = {'en': 'Talk soon,', 'ar': 'إلى اللقاء،', 'es': 'Hasta pronto,', 'fr': 'À bientôt,'}
+        footers = {
+            'en': f"You're receiving this because you signed up for {app_name}.",
+            'ar': f"تتلقى هذا البريد لأنك سجلت في {app_name}.",
+            'es': f"Recibes esto porque te registraste en {app_name}.",
+            'fr': f"Vous recevez ceci car vous vous êtes inscrit(e) à {app_name}.",
+        }
+        
+        greeting = greetings.get(language, greetings['en'])
+        signoff = signoffs.get(language, signoffs['en'])
+        footer_text = footers.get(language, footers['en'])
         
         # Build body paragraphs
         body_html = ""
@@ -85,11 +107,11 @@ class AppRetentionEmailer:
             # Convert \n to <br> for line breaks within paragraphs
             p_html = p.replace('\n', '<br>')
             if i == 0:
-                body_html += f'<p style="margin:0 0 24px;font-size:18px;color:#1a202c;line-height:1.7;font-weight:500;">{p_html}</p>'
-            elif 'P.S.' in p or 'P.S' in p:
-                body_html += f'<div style="margin:32px 0 0;padding:16px 20px;background:#fffbeb;border-radius:8px;border:1px solid #fcd34d;"><p style="margin:0;font-size:16px;color:#92400e;line-height:1.7;">{p_html}</p></div>'
+                body_html += f'<p style="margin:0 0 24px;font-size:18px;color:#1a202c;line-height:1.7;font-weight:500;text-align:{text_align};">{p_html}</p>'
+            elif 'P.S.' in p or 'P.S' in p or 'ملاحظة' in p or 'P.D.' in p:
+                body_html += f'<div style="margin:32px 0 0;padding:16px 20px;background:#fffbeb;border-radius:8px;border:1px solid #fcd34d;"><p style="margin:0;font-size:16px;color:#92400e;line-height:1.7;text-align:{text_align};">{p_html}</p></div>'
             else:
-                body_html += f'<p style="margin:0 0 20px;font-size:17px;color:#374151;line-height:1.8;">{p_html}</p>'
+                body_html += f'<p style="margin:0 0 20px;font-size:17px;color:#374151;line-height:1.8;text-align:{text_align};">{p_html}</p>'
         
         # CTA button - link to app store
         app_store_url = app_info.get('app_store_url', '')
@@ -130,26 +152,26 @@ class AppRetentionEmailer:
             </div>'''
         
         html = f'''<!DOCTYPE html>
-<html>
+<html{dir_attr}>
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
-<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.7;color:#2d3748;max-width:600px;margin:0 auto;padding:40px 24px;background:#fff;">
+<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.7;color:#2d3748;max-width:600px;margin:0 auto;padding:40px 24px;background:#fff;text-align:{text_align};">
     
     <div style="margin-bottom:28px;">
-        <p style="margin:0 0 24px;font-size:18px;color:#6b7280;">Hey there,</p>
+        <p style="margin:0 0 24px;font-size:18px;color:#6b7280;text-align:{text_align};">{greeting}</p>
         {body_html}
     </div>
     
     {cta_html}
     
-    <p style="margin:32px 0 0;font-size:17px;color:#4b5563;">
-        Talk soon,<br>
+    <p style="margin:32px 0 0;font-size:17px;color:#4b5563;text-align:{text_align};">
+        {signoff}<br>
         <strong style="color:#1f2937;">Ana</strong>
     </p>
     
     <div style="margin-top:48px;padding-top:24px;border-top:1px solid #e5e7eb;text-align:center;">
         <p style="margin:0 0 8px;font-size:13px;color:#d1d5db;">San Francisco, CA 94117, United States</p>
         <p style="margin:0;font-size:12px;color:#d1d5db;">
-            You're receiving this because you signed up for {app_name}.
+            {footer_text}
         </p>
     </div>
     
@@ -190,6 +212,7 @@ class AppRetentionEmailer:
                         'app_name': app_name,
                         'app_info': app_info,
                         'next_email': 1,
+                        'language': user.get('language', 'en'),
                     })
                 else:
                     emails_sent = user_state.get('emails_sent', 0)
@@ -224,6 +247,7 @@ class AppRetentionEmailer:
                         'app_name': app_name,
                         'app_info': app_info,
                         'next_email': next_email_num,
+                        'language': user.get('language', 'en'),
                     })
                 
                 if daily_limit and len(eligible) >= daily_limit:
@@ -248,6 +272,14 @@ class AppRetentionEmailer:
         users_by_app = self.firebase_loader.load_users_by_app()
         total_users = sum(len(u) for u in users_by_app.values())
         print(f"   Total: {total_users} users across {len(users_by_app)} apps")
+        
+        # 1b. Load language preferences for Predictify users from Firestore
+        if 'Predictify' in users_by_app:
+            print("\n🌍 Loading Predictify user languages from Firestore...")
+            self.user_languages = self.language_loader.fetch_user_languages()
+            # Enrich Predictify users with language
+            for user in users_by_app.get('Predictify', []):
+                user['language'] = self.user_languages.get(user['email'], 'en')
         
         # 2. Find eligible users
         print("\n🎯 Finding eligible users...")
@@ -275,16 +307,18 @@ class AppRetentionEmailer:
         print("\n📝 Preparing email content...")
         needed_emails = set()
         for e in eligible:
-            needed_emails.add((e['app_name'], e['next_email']))
+            lang = e.get('language', 'en')
+            needed_emails.add((e['app_name'], e['next_email'], lang))
         
         email_content = {}
-        for app_name, email_num in needed_emails:
-            email_data = self.email_generator.get_email(app_name, email_num)
+        for app_name, email_num, lang in needed_emails:
+            email_data = self.email_generator.get_email(app_name, email_num, language=lang)
             if email_data:
-                email_content[(app_name, email_num)] = email_data
-                print(f"   ✅ {app_name} #{email_num}: {email_data['subject'][:50]}...")
+                email_content[(app_name, email_num, lang)] = email_data
+                lang_label = f" ({lang})" if lang != 'en' else ''
+                print(f"   ✅ {app_name} #{email_num}{lang_label}: {email_data['subject'][:50]}...")
             else:
-                print(f"   ❌ Failed: {app_name} #{email_num}")
+                print(f"   ❌ Failed: {app_name} #{email_num} ({lang})")
         
         # 4. Send emails via Brevo
         print(f"\n📧 Sending {len(eligible)} emails via Brevo...")
@@ -306,14 +340,15 @@ class AppRetentionEmailer:
             app_name = entry['app_name']
             email_num = entry['next_email']
             app_info = entry['app_info']
+            lang = entry.get('language', 'en')
             
-            email_data = email_content.get((app_name, email_num))
+            email_data = email_content.get((app_name, email_num, lang))
             if not email_data:
                 failed += 1
                 continue
             
             # Build HTML
-            html = self._build_html(email_data, app_info)
+            html = self._build_html(email_data, app_info, lang)
             
             # Send
             success = gmail.send_email(

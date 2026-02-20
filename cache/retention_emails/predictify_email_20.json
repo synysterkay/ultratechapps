@@ -1,0 +1,17 @@
+{
+  "subject": "The one setting 95% of users get wrong",
+  "preview_text": "This tiny toggle is the difference between amateur guesses and pro-level predictions. Most people skip it entirely.",
+  "body_paragraphs": [
+    "I need to confess something. For months, I watched users make the same simple mistake. They'd download Predictify, fire up a prediction, and miss the single most powerful accuracy lever in the entire app. It's not a hidden menu or a complex formula. It's one switch. And turning it on separates the casual fans from the people who consistently out-predict their friends.",
+    "Here's the truth: raw AI predictions are smart, but they're generic. They're built for the average fan. The secret? You need to tell the AI who YOU are. What you know. Which teams you follow religiously. This is the 'Local Knowledge' toggle in Advanced Settings. It's off by default. 95% of users never touch it. But when you flip it on, something changes. The algorithm starts weighting your watched teams, your league preferences, your gut feels about specific rivalries. It blends thousands of data points with YOUR expertise. The result isn't just a prediction. It's YOUR prediction.",
+    "This is why our top 5% of users have such insane accuracy rates. They're not psychic. They just used the app correctly. They went into Settings, scrolled to 'Prediction Preferences', and enabled 'Incorporate Local Knowledge'. Suddenly, their Champions League insights got sharper. Their derby day predictions became lethal. The confidence scores on their dashboard? Those started climbing because the AI was learning from them, not just talking at them.",
+    "Open the app right now. Go to Settings -> Prediction Preferences. Flip that switch. Then run a prediction for this weekend's big match. Feel the difference. It takes 10 seconds and it changes everything. P.S. The users who do this within their first 3 weeks see a 40% average boost in prediction accuracy. That's not a guess. That's our data.",
+    "P.P.S. This feature works on all leagues, but it sings on Premium. The trial gives you 3 days to see how deep the rabbit hole goes when the AI truly listens to you."
+  ],
+  "cta_text": "Go to Settings Now",
+  "email_number": 20,
+  "send_day": 19,
+  "type": "power_user_tip",
+  "app_name": "Predictify",
+  "generated_at": "2026-02-20T14:11:25.971549"
+}

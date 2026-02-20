@@ -329,6 +329,26 @@ APP_CONTEXT = {
         "emotional_hooks": ["never miss a key point again", "look like the most organized person in the room", "reclaim your focus", "stop writing and start listening"],
         "tone": "Like a productivity-obsessed colleague sharing their secret weapon",
     },
+    "Predictify": {
+        "target_audience": "Soccer/football fans who want smarter predictions and data-driven insights",
+        "core_pain": "Bad predictions, unreliable tips, missing value bets, no data to back up gut feelings",
+        "killer_features": [
+            "AI analyzes thousands of variables per match for accurate score predictions",
+            "Coverage of Premier League, La Liga, Bundesliga, Serie A, Ligue 1, MLS, Champions League",
+            "Deep player stats: xG, possession, defensive strength, attacking efficiency",
+            "Head-to-head history and tactical analysis",
+            "Confidence scores for every prediction",
+            "Free credits by sharing + Premium unlimited access ($12.99/mo with 3-day trial)",
+        ],
+        "social_proof": "Thousands of match predictions analyzed, trusted by football fans worldwide",
+        "emotional_hooks": ["stop guessing and start knowing", "be the smartest fan in the room", "never miss a winning insight", "data beats gut feeling"],
+        "tone": "Like a sharp football-obsessed friend who always has the stats to back it up",
+        "subscription": {
+            "monthly": "$12.99/month",
+            "trial": "3-day free trial",
+            "cta": "Start Free Trial",
+        },
+    },
 }
 
 
@@ -342,12 +362,14 @@ class RetentionEmailGenerator:
         if not self.api_key:
             raise ValueError("DEEPSEEK_API_KEY not found in environment")
     
-    def _get_cache_path(self, app_name, email_number):
-        """Get cache file path for a specific app's email number"""
+    def _get_cache_path(self, app_name, email_number, language='en'):
+        """Get cache file path for a specific app's email number and language"""
         safe_name = re.sub(r'[^a-z0-9]+', '_', app_name.lower()).strip('_')
+        if language and language != 'en':
+            return self.cache_dir / f"{safe_name}_{language}_email_{email_number}.json"
         return self.cache_dir / f"{safe_name}_email_{email_number}.json"
     
-    def _generate_email(self, app_name, email_number):
+    def _generate_email(self, app_name, email_number, language='en'):
         """Generate a single retention email using DeepSeek"""
         
         sequence = EMAIL_SEQUENCE[email_number - 1]  # 1-indexed
@@ -357,7 +379,24 @@ class RetentionEmailGenerator:
             print(f"   ⚠️ No context defined for {app_name}, using generic")
             return None
         
-        prompt = f"""You are Anas, the indie developer who built {app_name}. You're writing a retention email to someone who already downloaded your app.
+        # Language instructions
+        lang_names = {'en': 'English', 'ar': 'Arabic', 'es': 'Spanish', 'fr': 'French'}
+        lang_name = lang_names.get(language, 'English')
+        
+        lang_instruction = ''
+        if language != 'en':
+            lang_instruction = f"""\n\nLANGUAGE: Write the ENTIRE email in {lang_name}. Subject line, preview text, body paragraphs, CTA text — everything MUST be in {lang_name}. Do NOT mix languages. Write naturally as a native {lang_name} speaker would, not a translation."""
+        
+        # Subscription upsell context for apps with subscriptions
+        sub_context = ''
+        sub_info = context.get('subscription', {})
+        if sub_info:
+            sub_context = f"""\n\nSUBSCRIPTION INFO (weave this in naturally when relevant):
+- Price: {sub_info.get('monthly', '')}
+- Free trial: {sub_info.get('trial', '')}
+- Push users toward trying Premium but don't be salesy every email"""
+        
+        prompt = f"""You are the team behind {app_name}. You're writing a retention email to someone who already downloaded your app.
 
 THIS IS EMAIL #{email_number} OF 30 in a retention sequence.
 
@@ -395,7 +434,7 @@ EMAIL BODY RULES:
 - Make them FEEL something: fear, excitement, curiosity, belonging, relief
 
 CRITICAL: This person ALREADY has the app. You're not selling it to them.
-You're getting them to OPEN IT and USE a specific feature.
+You're getting them to OPEN IT and USE a specific feature.{lang_instruction}{sub_context}
 
 PARAGRAPH STRUCTURE:
 1. Hook (2-3 sentences): Grab attention with story/shock/question
@@ -528,7 +567,7 @@ Generate the email now. Make it impossible to ignore."""
             result.append(ch)
         return ''.join(result)
     
-    def get_email(self, app_name, email_number, max_retries=3):
+    def get_email(self, app_name, email_number, max_retries=3, language='en'):
         """
         Get email for app at position email_number (1-30).
         Returns cached version if exists, otherwise generates and caches.
@@ -538,7 +577,7 @@ Generate the email now. Make it impossible to ignore."""
             print(f"   ❌ Invalid email number: {email_number} (must be 1-30)")
             return None
         
-        cache_path = self._get_cache_path(app_name, email_number)
+        cache_path = self._get_cache_path(app_name, email_number, language)
         
         # Check cache
         if cache_path.exists():
@@ -548,12 +587,12 @@ Generate the email now. Make it impossible to ignore."""
         # Generate and cache (with retries)
         for attempt in range(1, max_retries + 1):
             if attempt > 1:
-                print(f"   🔄 Retry {attempt}/{max_retries} for email #{email_number}...")
+                print(f"   🔄 Retry {attempt}/{max_retries} for email #{email_number} ({language})...")
                 time.sleep(2)
             else:
-                print(f"   🤖 Generating email #{email_number} for {app_name}...")
+                print(f"   🤖 Generating email #{email_number} for {app_name} ({language})...")
             
-            email_data = self._generate_email(app_name, email_number)
+            email_data = self._generate_email(app_name, email_number, language)
             
             if email_data:
                 with open(cache_path, 'w') as f:
@@ -563,9 +602,10 @@ Generate the email now. Make it impossible to ignore."""
         
         return None
     
-    def generate_all_emails(self, app_names=None):
+    def generate_all_emails(self, app_names=None, languages=None):
         """
         Pre-generate all 30 emails for all apps (or specified apps).
+        For multilingual apps, generates for each language.
         Skips already cached emails.
         """
         if app_names is None:
@@ -577,26 +617,37 @@ Generate the email now. Make it impossible to ignore."""
         failed = 0
         
         for app_name in app_names:
-            print(f"\n📱 {app_name}:")
-            for email_num in range(1, 31):
-                total += 1
-                cache_path = self._get_cache_path(app_name, email_num)
-                
-                if cache_path.exists():
-                    cached += 1
-                    print(f"   ✅ Email #{email_num} already cached")
-                    continue
-                
-                email_data = self.get_email(app_name, email_num)
-                if email_data:
-                    generated += 1
-                    print(f"   ✅ Email #{email_num}: {email_data['subject'][:50]}...")
-                else:
-                    failed += 1
-                    print(f"   ❌ Email #{email_num} failed")
-                
-                # Rate limit between API calls
-                time.sleep(1)
+            # Determine languages for this app
+            ctx = APP_CONTEXT.get(app_name, {})
+            if languages:
+                app_languages = languages
+            elif app_name == 'Predictify':
+                app_languages = ['en', 'ar', 'es', 'fr']
+            else:
+                app_languages = ['en']
+            
+            for lang in app_languages:
+                lang_label = f" ({lang})" if lang != 'en' or len(app_languages) > 1 else ''
+                print(f"\n📱 {app_name}{lang_label}:")
+                for email_num in range(1, 31):
+                    total += 1
+                    cache_path = self._get_cache_path(app_name, email_num, lang)
+                    
+                    if cache_path.exists():
+                        cached += 1
+                        print(f"   ✅ Email #{email_num} already cached")
+                        continue
+                    
+                    email_data = self.get_email(app_name, email_num, language=lang)
+                    if email_data:
+                        generated += 1
+                        print(f"   ✅ Email #{email_num}: {email_data['subject'][:50]}...")
+                    else:
+                        failed += 1
+                        print(f"   ❌ Email #{email_num} failed")
+                    
+                    # Rate limit between API calls
+                    time.sleep(1)
         
         print(f"\n{'='*50}")
         print(f"📊 Results: {total} total | {cached} cached | {generated} generated | {failed} failed")
