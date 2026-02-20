@@ -1,0 +1,30 @@
+{
+  "active_sender_index": 0,
+  "senders": {
+    "apps@kaynel.pl": {
+      "last_check": "2026-02-20T15:57:09.973202",
+      "status": "red",
+      "rotated_out_at": null,
+      "metrics_history": [
+        {
+          "date": "2026-02-20",
+          "sent": 5513,
+          "delivered": 4834,
+          "opened": 607,
+          "clicked": 54,
+          "bounced": 227,
+          "hard_bounces": 59,
+          "soft_bounces": 168,
+          "spam_complaints": 0,
+          "blocked": 2,
+          "invalid": 0,
+          "open_rate": 11.01,
+          "bounce_rate": 4.12,
+          "spam_rate": 0.0,
+          "delivery_rate": 87.68
+        }
+      ]
+    }
+  },
+  "rotation_log": []
+}

@@ -460,7 +460,9 @@
       "app": "Thesis Generator",
       "emails_sent": 2,
       "first_email_at": "2026-02-19T13:06:02.422129",
-      "last_email_sent": "2026-02-20T13:46:33.455091"
+      "last_email_sent": "2026-02-20T13:46:33.455091",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "theresamarieshanecortez@gmail.com": {
       "app": "Thesis Generator",
@@ -1606,7 +1608,9 @@
       "app": "Thesis Generator",
       "emails_sent": 2,
       "first_email_at": "2026-02-19T13:13:50.408135",
-      "last_email_sent": "2026-02-20T13:51:31.493730"
+      "last_email_sent": "2026-02-20T13:51:31.493730",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "tetaunbrenda110@gmail.com": {
       "app": "Thesis Generator",
@@ -2722,7 +2726,9 @@
       "app": "Thesis Generator",
       "emails_sent": 2,
       "first_email_at": "2026-02-19T13:21:21.942495",
-      "last_email_sent": "2026-02-20T13:56:29.466436"
+      "last_email_sent": "2026-02-20T13:56:29.466436",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "dahnmeshach6@gmail.com": {
       "app": "Thesis Generator",
@@ -8368,7 +8374,9 @@
       "app": "Thesis Generator",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T14:25:13.045606",
-      "last_email_sent": "2026-02-19T14:25:13.045606"
+      "last_email_sent": "2026-02-19T14:25:13.045606",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "samear.abumukh@icloud.com": {
       "app": "Thesis Generator",
@@ -8590,7 +8598,9 @@
       "app": "Thesis Generator",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T14:26:09.708314",
-      "last_email_sent": "2026-02-19T14:26:09.708314"
+      "last_email_sent": "2026-02-19T14:26:09.708314",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "chasakaratadiwanashe@gmail.com": {
       "app": "Thesis Generator",
@@ -9322,7 +9332,9 @@
       "app": "Thesis Generator",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T14:29:16.883059",
-      "last_email_sent": "2026-02-19T14:29:16.883059"
+      "last_email_sent": "2026-02-19T14:29:16.883059",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "iriartegabriel606@gmail.com": {
       "app": "Thesis Generator",
@@ -9394,7 +9406,9 @@
       "app": "Thesis Generator",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T14:29:35.329622",
-      "last_email_sent": "2026-02-19T14:29:35.329622"
+      "last_email_sent": "2026-02-19T14:29:35.329622",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "k.hadjarkherfane@lagh-univ.dz": {
       "app": "Thesis Generator",
@@ -9550,7 +9564,9 @@
       "app": "Thesis Generator",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T14:30:14.878119",
-      "last_email_sent": "2026-02-19T14:30:14.878119"
+      "last_email_sent": "2026-02-19T14:30:14.878119",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "jhonfiesurigaob@gmail.com": {
       "app": "Thesis Generator",
@@ -10384,7 +10400,9 @@
       "app": "Thesis Generator",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T14:33:48.040660",
-      "last_email_sent": "2026-02-19T14:33:48.040660"
+      "last_email_sent": "2026-02-19T14:33:48.040660",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "wave31batch01@gmail.com": {
       "app": "Thesis Generator",
@@ -10606,7 +10624,9 @@
       "app": "Thesis Generator",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T14:34:44.162826",
-      "last_email_sent": "2026-02-19T14:34:44.162826"
+      "last_email_sent": "2026-02-19T14:34:44.162826",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "andreinagomezdesign@gmail.com": {
       "app": "Thesis Generator",
@@ -10630,7 +10650,9 @@
       "app": "Thesis Generator",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T14:34:50.231290",
-      "last_email_sent": "2026-02-19T14:34:50.231290"
+      "last_email_sent": "2026-02-19T14:34:50.231290",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "banerjeerupa2000@gmail.com": {
       "app": "Thesis Generator",
@@ -10690,7 +10712,9 @@
       "app": "Thesis Generator",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T14:35:05.488750",
-      "last_email_sent": "2026-02-19T14:35:05.488750"
+      "last_email_sent": "2026-02-19T14:35:05.488750",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "mendozqfionnadenise@gmail.com": {
       "app": "Thesis Generator",
@@ -12928,7 +12952,9 @@
       "app": "Thesis Generator",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T14:44:32.779884",
-      "last_email_sent": "2026-02-19T14:44:32.779884"
+      "last_email_sent": "2026-02-19T14:44:32.779884",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "cylinesalbino@gmail.com": {
       "app": "Thesis Generator",
@@ -13048,7 +13074,9 @@
       "app": "Thesis Generator",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T14:45:03.308010",
-      "last_email_sent": "2026-02-19T14:45:03.308010"
+      "last_email_sent": "2026-02-19T14:45:03.308010",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "sds@dfsd.com": {
       "app": "Thesis Generator",
@@ -14872,7 +14900,9 @@
       "app": "Thesis Generator",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T14:52:50.779772",
-      "last_email_sent": "2026-02-19T14:52:50.779772"
+      "last_email_sent": "2026-02-19T14:52:50.779772",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "princeclarkbaraguir07@gmail.com": {
       "app": "Thesis Generator",
@@ -15256,7 +15286,9 @@
       "app": "Thesis Generator",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T14:54:31.475630",
-      "last_email_sent": "2026-02-19T14:54:31.475630"
+      "last_email_sent": "2026-02-19T14:54:31.475630",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "nijasabir@gmail.com": {
       "app": "Thesis Generator",
@@ -15298,7 +15330,9 @@
       "app": "Thesis Generator",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T14:54:42.058881",
-      "last_email_sent": "2026-02-19T14:54:42.058881"
+      "last_email_sent": "2026-02-19T14:54:42.058881",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "esmailcamid9@gmail.com": {
       "app": "Thesis Generator",
@@ -15394,7 +15428,9 @@
       "app": "Thesis Generator",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T14:55:06.305336",
-      "last_email_sent": "2026-02-19T14:55:06.305336"
+      "last_email_sent": "2026-02-19T14:55:06.305336",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "dipamasa38@gmail.com": {
       "app": "Thesis Generator",
@@ -16084,7 +16120,9 @@
       "app": "Thesis Generator",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T14:58:07.515425",
-      "last_email_sent": "2026-02-19T15:50:21.434461"
+      "last_email_sent": "2026-02-19T15:50:21.434461",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "babangidaadamu76@gmail.com": {
       "app": "Thesis Generator",
@@ -16744,7 +16782,9 @@
       "app": "Thesis Generator",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:01:02.772868",
-      "last_email_sent": "2026-02-19T15:01:02.772868"
+      "last_email_sent": "2026-02-19T15:01:02.772868",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "ajayipeter76@gmail.com": {
       "app": "Thesis Generator",
@@ -18016,7 +18056,9 @@
       "app": "Thesis Generator",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:06:37.126726",
-      "last_email_sent": "2026-02-19T15:06:37.126726"
+      "last_email_sent": "2026-02-19T15:06:37.126726",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "krystianedamiane@gmail.com": {
       "app": "Thesis Generator",
@@ -18772,7 +18814,9 @@
       "app": "Red Flag Scanner AI",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:09:57.955093",
-      "last_email_sent": "2026-02-19T15:09:57.955093"
+      "last_email_sent": "2026-02-19T15:09:57.955093",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "zelaevskaat@gmail.com": {
       "app": "Red Flag Scanner AI",
@@ -18844,7 +18888,9 @@
       "app": "Red Flag Scanner AI",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:10:16.236675",
-      "last_email_sent": "2026-02-19T15:10:16.236675"
+      "last_email_sent": "2026-02-19T15:10:16.236675",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "marzenablaszkowska7@gmail.com": {
       "app": "Red Flag Scanner AI",
@@ -19402,7 +19448,9 @@
       "app": "Red Flag Scanner AI",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:12:43.055458",
-      "last_email_sent": "2026-02-19T15:12:43.055458"
+      "last_email_sent": "2026-02-19T15:12:43.055458",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "nadiagiselebotta@gmail.com": {
       "app": "Red Flag Scanner AI",
@@ -19870,7 +19918,9 @@
       "app": "Red Flag Scanner AI",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:14:40.997673",
-      "last_email_sent": "2026-02-19T15:14:40.997673"
+      "last_email_sent": "2026-02-19T15:14:40.997673",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "pax9546@gmail.com": {
       "app": "Red Flag Scanner AI",
@@ -20308,7 +20358,9 @@
       "app": "Red Flag Scanner AI",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:16:35.258307",
-      "last_email_sent": "2026-02-19T15:16:35.258307"
+      "last_email_sent": "2026-02-19T15:16:35.258307",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "dsur41409@gmail.com": {
       "app": "Red Flag Scanner AI",
@@ -21340,7 +21392,9 @@
       "app": "Red Flag Scanner AI",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:21:15.312604",
-      "last_email_sent": "2026-02-19T15:21:15.312604"
+      "last_email_sent": "2026-02-19T15:21:15.312604",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "hannatrickey@gmail.com": {
       "app": "Red Flag Scanner AI",
@@ -21730,13 +21784,17 @@
       "app": "Red Flag Scanner AI",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:22:56.277342",
-      "last_email_sent": "2026-02-19T15:22:56.277342"
+      "last_email_sent": "2026-02-19T15:22:56.277342",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "firewreck26kolot@gmail.com": {
       "app": "Red Flag Scanner AI",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:22:57.832741",
-      "last_email_sent": "2026-02-19T15:22:57.832741"
+      "last_email_sent": "2026-02-19T15:22:57.832741",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "asharniraeweaver@gmail.com": {
       "app": "Red Flag Scanner AI",
@@ -22150,7 +22208,9 @@
       "app": "Red Flag Scanner AI",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:24:47.092695",
-      "last_email_sent": "2026-02-19T15:24:47.092695"
+      "last_email_sent": "2026-02-19T15:24:47.092695",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "catac145po@gmail.com": {
       "app": "Red Flag Scanner AI",
@@ -22168,7 +22228,9 @@
       "app": "Red Flag Scanner AI",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:24:51.565935",
-      "last_email_sent": "2026-02-19T15:24:51.565935"
+      "last_email_sent": "2026-02-19T15:24:51.565935",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "shanayers944@gmail.com": {
       "app": "Red Flag Scanner AI",
@@ -22264,7 +22326,9 @@
       "app": "Red Flag Scanner AI",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:25:16.270025",
-      "last_email_sent": "2026-02-19T15:25:16.270025"
+      "last_email_sent": "2026-02-19T15:25:16.270025",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "irinaevseeva327@gmail.com": {
       "app": "Red Flag Scanner AI",
@@ -22594,7 +22658,9 @@
       "app": "Red Flag Scanner AI",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:26:40.527211",
-      "last_email_sent": "2026-02-19T15:26:40.527211"
+      "last_email_sent": "2026-02-19T15:26:40.527211",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "myjewell13@gmail.com": {
       "app": "Red Flag Scanner AI",
@@ -22828,7 +22894,9 @@
       "app": "Red Flag Scanner AI",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:27:41.013070",
-      "last_email_sent": "2026-02-19T15:27:41.013070"
+      "last_email_sent": "2026-02-19T15:27:41.013070",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "angelinachabo2@gmail.com": {
       "app": "Red Flag Scanner AI",
@@ -23248,7 +23316,9 @@
       "app": "Red Flag Scanner AI",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:29:27.046734",
-      "last_email_sent": "2026-02-19T15:29:27.046734"
+      "last_email_sent": "2026-02-19T15:29:27.046734",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "maletinaulia648@gmail.com": {
       "app": "Red Flag Scanner AI",
@@ -23404,7 +23474,9 @@
       "app": "Fresh Start: Breakup Therapy",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:30:08.785320",
-      "last_email_sent": "2026-02-19T15:30:08.785320"
+      "last_email_sent": "2026-02-19T15:30:08.785320",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "tenzin.oser@icloud.com": {
       "app": "Fresh Start: Breakup Therapy",
@@ -23848,7 +23920,9 @@
       "app": "Fresh Start: Breakup Therapy",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:32:04.485774",
-      "last_email_sent": "2026-02-19T15:32:04.485774"
+      "last_email_sent": "2026-02-19T15:32:04.485774",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "sakura1morgan@gmail.com": {
       "app": "Fresh Start: Breakup Therapy",
@@ -23956,7 +24030,9 @@
       "app": "Fresh Start: Breakup Therapy",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:32:32.511839",
-      "last_email_sent": "2026-02-19T15:32:32.511839"
+      "last_email_sent": "2026-02-19T15:32:32.511839",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "luis19n98@gmail.com": {
       "app": "Fresh Start: Breakup Therapy",
@@ -24232,7 +24308,9 @@
       "app": "Fresh Start: Breakup Therapy",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:33:45.482055",
-      "last_email_sent": "2026-02-19T15:33:45.482055"
+      "last_email_sent": "2026-02-19T15:33:45.482055",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "claudia.klopotowska@gmail.com": {
       "app": "Fresh Start: Breakup Therapy",
@@ -25744,7 +25822,9 @@
       "app": "Fresh Start: Breakup Therapy",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:40:17.815407",
-      "last_email_sent": "2026-02-19T15:40:17.815407"
+      "last_email_sent": "2026-02-19T15:40:17.815407",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "trollip.n@gmail.com": {
       "app": "Fresh Start: Breakup Therapy",
@@ -25858,7 +25938,9 @@
       "app": "Fresh Start: Breakup Therapy",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:40:46.803125",
-      "last_email_sent": "2026-02-19T15:40:46.803125"
+      "last_email_sent": "2026-02-19T15:40:46.803125",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "lilie7306@hotmail.fr": {
       "app": "Fresh Start: Breakup Therapy",
@@ -26434,7 +26516,9 @@
       "app": "Fresh Start: Breakup Therapy",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:43:16.984834",
-      "last_email_sent": "2026-02-19T15:43:16.984834"
+      "last_email_sent": "2026-02-19T15:43:16.984834",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "abigailbih@8.com": {
       "app": "Fresh Start: Breakup Therapy",
@@ -27874,7 +27958,9 @@
       "app": "SoulPlan: Plan Dates Together",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:49:35.153377",
-      "last_email_sent": "2026-02-19T15:49:35.153377"
+      "last_email_sent": "2026-02-19T15:49:35.153377",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "babulhossainkhan10@gmail.com": {
       "app": "SoulPlan: Plan Dates Together",
@@ -28294,7 +28380,9 @@
       "app": "PupShape: Dog Weight Loss Plan",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:51:24.452209",
-      "last_email_sent": "2026-02-19T15:51:24.452209"
+      "last_email_sent": "2026-02-19T15:51:24.452209",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "amarikabidee@gmail.com": {
       "app": "PupShape: Dog Weight Loss Plan",
@@ -28354,7 +28442,9 @@
       "app": "PupShape: Dog Weight Loss Plan",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:51:39.372498",
-      "last_email_sent": "2026-02-19T15:51:39.372498"
+      "last_email_sent": "2026-02-19T15:51:39.372498",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "trinipereira010@gmail.com": {
       "app": "PupShape: Dog Weight Loss Plan",
@@ -28642,7 +28732,9 @@
       "app": "PupShape: Dog Weight Loss Plan",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:52:57.080843",
-      "last_email_sent": "2026-02-19T15:52:57.080843"
+      "last_email_sent": "2026-02-19T15:52:57.080843",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "adyabhkauni2013@gmail.com": {
       "app": "PupShape: Dog Weight Loss Plan",
@@ -28780,7 +28872,9 @@
       "app": "PupShape: Dog Weight Loss Plan",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:53:32.304364",
-      "last_email_sent": "2026-02-19T15:53:32.304364"
+      "last_email_sent": "2026-02-19T15:53:32.304364",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "kovacskitti200904@gmail.com": {
       "app": "PupShape: Dog Weight Loss Plan",
@@ -28984,7 +29078,9 @@
       "app": "Smart Notes - AI Meeting Summary",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:54:25.952817",
-      "last_email_sent": "2026-02-19T15:54:25.952817"
+      "last_email_sent": "2026-02-19T15:54:25.952817",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "yyakub@gmail.com": {
       "app": "Smart Notes - AI Meeting Summary",
@@ -29134,7 +29230,9 @@
       "app": "Smart Notes - AI Meeting Summary",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:55:04.104400",
-      "last_email_sent": "2026-02-19T15:55:04.104400"
+      "last_email_sent": "2026-02-19T15:55:04.104400",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "hamiltonsammy48@gmail.com": {
       "app": "Smart Notes - AI Meeting Summary",
@@ -29380,7 +29478,9 @@
       "app": "Smart Notes - AI Meeting Summary",
       "emails_sent": 1,
       "first_email_at": "2026-02-19T15:56:13.186480",
-      "last_email_sent": "2026-02-19T15:56:13.186480"
+      "last_email_sent": "2026-02-19T15:56:13.186480",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "mhpriyashantha@gmail.com": {
       "app": "Smart Notes - AI Meeting Summary",
