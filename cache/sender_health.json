@@ -1,10 +1,10 @@
 {
-  "active_sender_index": 0,
+  "active_sender_index": 1,
   "senders": {
     "apps@kaynel.pl": {
-      "last_check": "2026-02-20T15:57:09.973202",
+      "last_check": "2026-02-20T18:17:42.480136",
       "status": "red",
-      "rotated_out_at": null,
+      "rotated_out_at": "2026-02-20T18:17:42.480629",
       "metrics_history": [
         {
           "date": "2026-02-20",
@@ -22,9 +22,33 @@
           "bounce_rate": 4.12,
           "spam_rate": 0.0,
           "delivery_rate": 87.68
+        },
+        {
+          "date": "2026-02-20",
+          "sent": 5513,
+          "delivered": 4834,
+          "opened": 623,
+          "clicked": 54,
+          "bounced": 227,
+          "hard_bounces": 59,
+          "soft_bounces": 168,
+          "spam_complaints": 0,
+          "blocked": 2,
+          "invalid": 0,
+          "open_rate": 11.3,
+          "bounce_rate": 4.12,
+          "spam_rate": 0.0,
+          "delivery_rate": 87.68
         }
       ]
     }
   },
-  "rotation_log": []
+  "rotation_log": [
+    {
+      "date": "2026-02-20T18:17:42.480635",
+      "from": "apps@kaynel.pl",
+      "to": "hello@bestaiapps.site",
+      "reason": "\ud83d\udea8 CRITICAL: Bounce rate 4.1% exceeds 3.0%; \u26a0\ufe0f WARNING: Open rate 11.3% is below average"
+    }
+  ]
 }
