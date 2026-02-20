@@ -12,9 +12,12 @@ import time
 from pathlib import Path
 
 
-# 30-day retention email funnel sequence
+# 60-day retention email funnel sequence
+# Week 1: 4 emails (onboarding burst)
+# Week 2-4: 2/week (deepening engagement)
+# Week 5-9: 1/week (habit & loyalty)
 EMAIL_SEQUENCE = [
-    # ── WEEK 1: ACTIVATION & FIRST VALUE ──────────────────
+    # ── WEEK 1: ACTIVATION & FIRST VALUE (4 emails) ──────
     {
         "day": 0,
         "type": "welcome_quick_win",
@@ -30,210 +33,208 @@ EMAIL_SEQUENCE = [
         "angle": "Most users skip this feature but it's the best part",
     },
     {
-        "day": 2,
+        "day": 3,
         "type": "quick_tip",
         "goal": "Deliver a 60-second actionable tip",
         "psychology": "Micro-commitment + competence building",
         "angle": "One tiny trick that makes a noticeable difference right away",
     },
     {
-        "day": 3,
+        "day": 5,
         "type": "social_proof_fomo",
         "goal": "Make them feel they're falling behind",
         "psychology": "Social proof + FOMO + belonging",
         "angle": "X users did THIS today - here's what happened",
     },
+    # ── WEEK 2: DEEPENING ENGAGEMENT (3 emails) ──────────
     {
-        "day": 4,
+        "day": 8,
         "type": "behind_the_scenes",
         "goal": "Build personal connection with the developer",
         "psychology": "Authenticity + relatability + parasocial bond",
         "angle": "Why I built this feature at 2AM - the real story",
     },
     {
-        "day": 5,
+        "day": 10,
         "type": "value_bomb",
         "goal": "Give a pro-level tutorial that makes the app 10x more useful",
         "psychology": "Reciprocity + competence",
         "angle": "Advanced tip/hack that transforms the experience",
     },
     {
-        "day": 6,
+        "day": 13,
         "type": "common_mistake",
         "goal": "Warn them about what most users get wrong",
         "psychology": "Loss aversion + authority",
         "angle": "The #1 mistake that ruins your results (and the easy fix)",
     },
-    # ── WEEK 2: DEEPENING ENGAGEMENT ─────────────────────
+    # ── WEEK 3: STORIES & HABITS (3 emails) ──────────────
     {
-        "day": 7,
+        "day": 15,
         "type": "story_emotional",
         "goal": "Emotional connection through storytelling",
         "psychology": "Narrative transportation + empathy",
         "angle": "Real user success story that mirrors their situation",
     },
     {
-        "day": 8,
+        "day": 18,
         "type": "challenge",
         "goal": "Get them to commit to using the app for a specific task",
         "psychology": "Gamification + commitment + consistency",
         "angle": "Try this 3-day challenge and see the difference yourself",
     },
     {
-        "day": 9,
+        "day": 20,
         "type": "pro_workflow",
         "goal": "Show how power users use the app differently",
         "psychology": "Aspiration + insider knowledge",
         "angle": "How our top 1% of users set up their workflow",
     },
+    # ── WEEK 4: RE-ENGAGEMENT (2 emails) ─────────────────
     {
-        "day": 10,
+        "day": 23,
         "type": "reengagement_soft",
         "goal": "Win back users who may be losing interest",
         "psychology": "Loss aversion + curiosity",
         "angle": "We noticed you haven't tried X yet - here's why you should",
     },
     {
-        "day": 11,
+        "day": 26,
         "type": "myth_buster",
         "goal": "Destroy a common misconception in their domain",
         "psychology": "Surprise + authority + contrarianism",
         "angle": "Everyone thinks this is true. It's not. Here's proof.",
     },
+    # ── WEEK 5: MASTERY (2 emails) ───────────────────────
     {
-        "day": 12,
+        "day": 30,
         "type": "feature_deep_dive",
         "goal": "Showcase an underused but powerful feature in detail",
         "psychology": "Discovery + mastery",
         "angle": "This buried feature changed everything for one user",
     },
     {
-        "day": 13,
+        "day": 33,
         "type": "comparison",
         "goal": "Show what life looks like WITH vs WITHOUT the app",
         "psychology": "Contrast principle + loss aversion",
-        "angle": "Before and after: what 30 days of using this looks like",
+        "angle": "Before and after: what using this app actually looks like",
     },
-    # ── WEEK 3: HABIT FORMATION & COMMUNITY ──────────────
+    # ── WEEK 6: MILESTONE & COMMUNITY (2 emails) ────────
     {
-        "day": 14,
+        "day": 37,
         "type": "milestone_checkin",
-        "goal": "Celebrate their 2-week mark and show progress",
+        "goal": "Celebrate their progress and show momentum",
         "psychology": "Achievement + sunk cost + encouragement",
-        "angle": "2 weeks in - here's what you've accomplished (more than you think)",
+        "angle": "You've been here a month - here's what you've accomplished",
     },
     {
-        "day": 15,
+        "day": 40,
         "type": "exclusive_content",
         "goal": "Deliver insider-only value they can't get anywhere else",
         "psychology": "Exclusivity + reciprocity + VIP feeling",
         "angle": "I only share this with actual users - not on social media",
     },
+    # ── WEEK 7: IDENTITY & POWER TIPS (2 emails) ────────
     {
-        "day": 16,
+        "day": 44,
         "type": "community_belonging",
         "goal": "Make them feel part of something bigger",
         "psychology": "Belonging + identity + tribe",
         "angle": "You're now part of a growing group of people who do THIS differently",
     },
     {
-        "day": 17,
+        "day": 47,
         "type": "productivity_hack",
         "goal": "Show them how to save time with the app",
         "psychology": "Time scarcity + efficiency + competence",
         "angle": "How to do in 2 minutes what used to take 20",
     },
+    # ── WEEK 8: EMOTIONAL & ADVANCED (2 emails) ─────────
     {
-        "day": 18,
+        "day": 50,
         "type": "emotional_story_2",
         "goal": "Another emotional narrative to deepen connection",
         "psychology": "Narrative transportation + vulnerability",
         "angle": "A message I got from a user last week that stopped me cold",
     },
     {
-        "day": 19,
+        "day": 53,
         "type": "power_user_tip",
         "goal": "Advanced trick that separates beginners from pros",
         "psychology": "Mastery + insider knowledge + aspiration",
         "angle": "The settings tweak that 95% of users don't know about",
     },
+    # ── WEEK 9: LOYALTY & CONVERSION (10 emails over remaining days) ─
     {
-        "day": 20,
+        "day": 55,
         "type": "surprise_bonus",
         "goal": "Unexpected value drop to spike engagement",
         "psychology": "Surprise + delight + reciprocity",
         "angle": "I made something extra for you - wasn't planning to share this",
     },
-    # ── WEEK 4: CONVERSION & LOYALTY ─────────────────────
     {
-        "day": 21,
+        "day": 57,
         "type": "habit_builder",
         "goal": "Help them build a daily/weekly habit around the app",
         "psychology": "Habit loop + consistency + identity",
         "angle": "The 3-minute routine that makes this app 10x more effective",
     },
     {
-        "day": 22,
+        "day": 59,
         "type": "advanced_feature",
         "goal": "Unlock a feature they've never tried",
         "psychology": "Discovery + competence + novelty",
-        "angle": "You've been using the app for 3 weeks and still haven't tried THIS?",
+        "angle": "You've been using the app for weeks and still haven't tried THIS?",
     },
     {
-        "day": 23,
+        "day": 61,
         "type": "external_validation",
         "goal": "Share third-party credibility and press",
         "psychology": "Authority + social proof + credibility",
         "angle": "What experts/reviewers are saying about this approach",
     },
     {
-        "day": 24,
+        "day": 63,
         "type": "personal_note",
         "goal": "Raw, honest 1-on-1 message from the developer",
         "psychology": "Vulnerability + authenticity + connection",
         "angle": "I don't usually write emails like this, but...",
     },
     {
-        "day": 25,
+        "day": 65,
         "type": "case_study",
         "goal": "Detailed before/after transformation story",
         "psychology": "Proof + inspiration + possibility",
-        "angle": "From skeptic to evangelist: one user's 30-day journey",
+        "angle": "From skeptic to evangelist: one user's journey",
     },
     {
-        "day": 26,
+        "day": 67,
         "type": "sneak_peek",
         "goal": "Preview upcoming features to build excitement",
         "psychology": "Anticipation + exclusivity + investment",
         "angle": "Here's what's coming next (you heard it here first)",
     },
     {
-        "day": 27,
+        "day": 69,
         "type": "gratitude",
         "goal": "Thank them for being a user and reinforce value",
         "psychology": "Reciprocity + appreciation + loyalty",
         "angle": "Honestly, building this wouldn't mean anything without people like you",
     },
     {
-        "day": 28,
-        "type": "challenge_results",
-        "goal": "Show aggregate results from the user community",
-        "psychology": "Social proof + FOMO + celebration",
-        "angle": "This month's numbers are in - and they're insane",
-    },
-    {
-        "day": 29,
+        "day": 71,
         "type": "vip_offer",
         "goal": "Exclusive upgrade or premium offer with real deadline",
         "psychology": "Scarcity + exclusivity + deadline + value stack",
-        "angle": "I set something aside for 30-day users only - expires tomorrow",
+        "angle": "I set something aside for loyal users only - expires soon",
     },
     {
-        "day": 30,
+        "day": 73,
         "type": "loyalty_farewell",
         "goal": "Close the loop, convert to power user or ambassador",
         "psychology": "Completion + identity shift + next chapter",
-        "angle": "30 days in. You're not a new user anymore - here's what comes next",
+        "angle": "You're not a new user anymore - here's what comes next",
     },
 ]
 
