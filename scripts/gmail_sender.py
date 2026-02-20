@@ -12,10 +12,10 @@ import os
 
 # Keep class name GmailSender so nothing else needs to change
 class GmailSender:
-    def __init__(self):
+    def __init__(self, sender_email=None, sender_name=None):
         self.api_key = os.getenv('BREVO_API_KEY')
-        self.sender_email = 'apps@kaynel.pl'
-        self.sender_name = 'Ana'
+        self.sender_email = sender_email or 'apps@kaynel.pl'
+        self.sender_name = sender_name or 'Ana'
         self.api_url = 'https://api.brevo.com/v3/smtp/email'
         self.delay_between_emails = 0.1  # seconds (small pause to avoid overwhelming API)
         

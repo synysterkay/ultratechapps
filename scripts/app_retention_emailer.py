@@ -25,6 +25,7 @@ from firebase_user_loader import FirebaseUserLoader, FIREBASE_APPS
 from retention_email_generator import RetentionEmailGenerator, APP_CONTEXT
 from gmail_sender import GmailSender
 from firestore_language_loader import FirestoreLanguageLoader
+from deliverability_monitor import DeliverabilityMonitor
 
 
 class AppRetentionEmailer:
@@ -36,6 +37,7 @@ class AppRetentionEmailer:
         self.firebase_loader = FirebaseUserLoader()
         self.email_generator = RetentionEmailGenerator()
         self.language_loader = FirestoreLanguageLoader()
+        self.deliverability = DeliverabilityMonitor()
         self.user_languages = {}  # email -> language code
         
         # Load tracking state
@@ -205,6 +207,10 @@ class AppRetentionEmailer:
                 email = user['email']
                 user_state = self.state['users'].get(email)
                 
+                # Skip suppressed users (spam reporters / hard bounces)
+                if user_state and user_state.get('suppressed'):
+                    continue
+                
                 if user_state is None:
                     # New user — send email #1
                     eligible.append({
@@ -281,6 +287,14 @@ class AppRetentionEmailer:
             for user in users_by_app.get('Predictify', []):
                 user['language'] = self.user_languages.get(user['email'], 'en')
         
+        # 1c. Check sender health & auto-rotate if needed
+        print("\n🏥 Checking sender health...")
+        active_sender = self.deliverability.check_and_rotate_if_needed()
+        
+        # 1d. Clean bad recipients (spam reporters + hard bounces)
+        self.deliverability.clean_bad_recipients(self.state)
+        self._save_state()
+        
         # 2. Find eligible users
         print("\n🎯 Finding eligible users...")
         eligible = self._get_eligible_users(users_by_app)
@@ -320,9 +334,12 @@ class AppRetentionEmailer:
             else:
                 print(f"   ❌ Failed: {app_name} #{email_num} ({lang})")
         
-        # 4. Send emails via Brevo
+        # 4. Send emails via Brevo (using active sender from health check)
         print(f"\n📧 Sending {len(eligible)} emails via Brevo...")
-        gmail = GmailSender()
+        gmail = GmailSender(
+            sender_email=active_sender['email'],
+            sender_name=active_sender['name'],
+        )
         
         if not gmail.connect():
             print("❌ Cannot connect to Brevo. Aborting.")
@@ -368,6 +385,10 @@ class AppRetentionEmailer:
                         'emails_sent': 0,
                         'first_email_at': now_str,
                     }
+                
+                # Skip suppressed users (spam reporters / hard bounces)
+                if self.state['users'].get(email_addr, {}).get('suppressed'):
+                    continue
                 
                 self.state['users'][email_addr]['emails_sent'] = email_num
                 self.state['users'][email_addr]['last_email_sent'] = now_str

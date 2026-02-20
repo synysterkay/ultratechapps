@@ -19,6 +19,7 @@ on:
           - status
           - generate
           - refresh
+          - health-check
 
 permissions:
   contents: write
@@ -52,7 +53,9 @@ jobs:
       - name: Restore retention state cache
         uses: actions/cache@v4
         with:
-          path: cache/retention_state.json
+          path: |
+            cache/retention_state.json
+            cache/sender_health.json
           key: retention-state-${{ github.run_number }}
           restore-keys: |
             retention-state-
@@ -73,6 +76,8 @@ jobs:
             python scripts/app_retention_emailer.py --dry-run
           elif [ "$MODE" = "refresh" ]; then
             python scripts/app_retention_emailer.py --refresh
+          elif [ "$MODE" = "health-check" ]; then
+            python scripts/deliverability_monitor.py --report
           else
             python scripts/app_retention_emailer.py
           fi
@@ -83,7 +88,7 @@ jobs:
           if [ -f cache/retention_state.json ]; then
             git config user.name "GitHub Actions"
             git config user.email "actions@github.com"
-            git add cache/retention_state.json cache/retention_emails/ -f 2>/dev/null || true
+            git add cache/retention_state.json cache/sender_health.json cache/retention_emails/ -f 2>/dev/null || true
             git diff --staged --quiet || git commit -m "Update retention email state [skip ci]" && git push || true
           fi
       
