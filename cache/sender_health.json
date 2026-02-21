@@ -65,6 +65,30 @@
           "delivery_rate": 89.83
         }
       ]
+    },
+    "apps@vitazelki.pl": {
+      "last_check": "2026-02-21T18:10:37.439995",
+      "status": "red",
+      "rotated_out_at": null,
+      "metrics_history": [
+        {
+          "date": "2026-02-21",
+          "sent": 7317,
+          "delivered": 6573,
+          "opened": 697,
+          "clicked": 62,
+          "bounced": 285,
+          "hard_bounces": 59,
+          "soft_bounces": 226,
+          "spam_complaints": 0,
+          "blocked": 9,
+          "invalid": 0,
+          "open_rate": 9.53,
+          "bounce_rate": 3.9,
+          "spam_rate": 0.0,
+          "delivery_rate": 89.83
+        }
+      ]
     }
   },
   "rotation_log": [
