@@ -67,7 +67,7 @@
       ]
     },
     "apps@vitazelki.pl": {
-      "last_check": "2026-02-21T18:10:37.439995",
+      "last_check": "2026-02-22T09:13:14.643622",
       "status": "red",
       "rotated_out_at": null,
       "metrics_history": [
@@ -87,6 +87,23 @@
           "bounce_rate": 3.9,
           "spam_rate": 0.0,
           "delivery_rate": 89.83
+        },
+        {
+          "date": "2026-02-22",
+          "sent": 10164,
+          "delivered": 9320,
+          "opened": 759,
+          "clicked": 70,
+          "bounced": 379,
+          "hard_bounces": 59,
+          "soft_bounces": 320,
+          "spam_complaints": 0,
+          "blocked": 13,
+          "invalid": 0,
+          "open_rate": 7.47,
+          "bounce_rate": 3.73,
+          "spam_rate": 0.0,
+          "delivery_rate": 91.7
         }
       ]
     }
