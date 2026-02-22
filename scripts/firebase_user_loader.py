@@ -49,13 +49,6 @@ FIREBASE_APPS = {
         'app_store_url': 'https://apps.apple.com/app/pupshape-dog-weight-loss-plan/id6739601749',
         'google_play_url': 'https://play.google.com/store/apps/details?id=com.mealplanner.foodofdogs.petmeal',
     },
-    'audio-recorder-microphone': {
-        'name': 'Smart Notes - AI Meeting Summary',
-        'export_file': 'audio-recorder-microphone_fresh.json',
-        'description': 'AI-powered note-taking app with meeting transcription and smart organization',
-        'app_store_url': 'https://apps.apple.com/app/smart-notes-ai-meeting-summary/id6756840480',
-        'google_play_url': 'https://play.google.com/store/apps/details?id=pl.audiorecorder.voicerecorder.callrecorder',
-    },
     'predictify-3f30d': {
         'name': 'Predictify',
         'export_file': 'predictify_fresh.json',

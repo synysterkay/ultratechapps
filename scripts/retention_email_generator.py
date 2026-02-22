@@ -315,21 +315,6 @@ APP_CONTEXT = {
         "emotional_hooks": ["longer life for your best friend", "the guilt of overfeeding", "seeing them struggle to play", "doing right by them"],
         "tone": "Like a caring dog-parent friend who figured out the nutrition puzzle",
     },
-    "Smart Notes - AI Meeting Summary": {
-        "target_audience": "Professionals, students, anyone in meetings who needs to capture everything",
-        "core_pain": "Missing key points in meetings, spending hours organizing notes, forgetting action items",
-        "killer_features": [
-            "AI transcribes meetings in real-time",
-            "Auto-generates summaries with key decisions and action items",
-            "Smart search across all your notes",
-            "Share meeting summaries with team in one tap",
-            "Voice-to-text for quick note capture",
-            "Organize notes by project, meeting, or topic automatically",
-        ],
-        "social_proof": "100+ professionals saving 5+ hours per week on note-taking",
-        "emotional_hooks": ["never miss a key point again", "look like the most organized person in the room", "reclaim your focus", "stop writing and start listening"],
-        "tone": "Like a productivity-obsessed colleague sharing their secret weapon",
-    },
     "Predictify": {
         "target_audience": "Soccer/football fans who want smarter predictions and data-driven insights",
         "core_pain": "Bad predictions, unreliable tips, missing value bets, no data to back up gut feelings",

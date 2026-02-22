@@ -200,7 +200,17 @@ class AppRetentionEmailer:
         eligible = []
         now = datetime.now()
         
+        # Prioritize Predictify — process it first so it always gets slots
+        priority_apps = ['Predictify']
+        ordered_apps = []
+        for app_name in priority_apps:
+            if app_name in users_by_app:
+                ordered_apps.append((app_name, users_by_app[app_name]))
         for app_name, users in users_by_app.items():
+            if app_name not in priority_apps:
+                ordered_apps.append((app_name, users))
+        
+        for app_name, users in ordered_apps:
             app_info = self.firebase_loader.get_app_info(app_name)
             if not app_info:
                 continue
