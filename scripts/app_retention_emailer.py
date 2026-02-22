@@ -29,6 +29,12 @@ from deliverability_monitor import DeliverabilityMonitor
 
 
 class AppRetentionEmailer:
+    # ── DAILY SEND CAP ──────────────────────────────────────
+    # Limits total emails per calendar day across all runs.
+    # 230/day × 30 days = 6,900/month (fits within 10K Starter plan)
+    # Set to None to disable the cap.
+    DAILY_SEND_CAP = 230
+    
     def __init__(self):
         self.base_dir = Path(__file__).parent.parent
         self.state_file = self.base_dir / 'cache' / 'retention_state.json'
@@ -295,9 +301,18 @@ class AppRetentionEmailer:
         self.deliverability.clean_bad_recipients(self.state)
         self._save_state()
         
-        # 2. Find eligible users
+        # 2. Find eligible users (respect daily cap)
         print("\n🎯 Finding eligible users...")
-        eligible = self._get_eligible_users(users_by_app)
+        today = datetime.now().strftime('%Y-%m-%d')
+        sent_today = self.state.get('daily_stats', {}).get(today, {}).get('sent', 0)
+        remaining_today = None
+        if self.DAILY_SEND_CAP is not None:
+            remaining_today = max(0, self.DAILY_SEND_CAP - sent_today)
+            print(f"   📊 Daily cap: {self.DAILY_SEND_CAP} | Already sent today: {sent_today} | Remaining: {remaining_today}")
+            if remaining_today == 0:
+                print("   ⛔ Daily send cap reached. Skipping this run.")
+                return
+        eligible = self._get_eligible_users(users_by_app, daily_limit=remaining_today)
         
         if not eligible:
             print("   ✅ No users eligible right now. All caught up!")
