@@ -188,29 +188,48 @@ class AppRetentionEmailer:
         
         return html
     
+    # ─── ACTIVE APPS (only these receive emails) ─────────
+    # Other apps' configs are preserved but won't be processed.
+    ACTIVE_APPS = ['Predictify', 'Thesis Generator']
+    
     # ─── CAMPAIGN LOGIC ────────────────────────────────────
     
     def _get_eligible_users(self, users_by_app, daily_limit=None):
         """
         Find users who should receive their next email today.
-        Rules:
-        - New users (not in state) get email #1 immediately
-        - Existing users wait the scheduled days between emails
+        Priority order:
+          1. New Predictify users (not yet in state)
+          2. Existing Predictify users (continuing sequence)
+          3. New Thesis Generator users
+          4. Existing Thesis Generator users
         """
         eligible = []
         now = datetime.now()
         
-        # Prioritize Predictify — process it first so it always gets slots
-        priority_apps = ['Predictify']
-        ordered_apps = []
-        for app_name in priority_apps:
-            if app_name in users_by_app:
-                ordered_apps.append((app_name, users_by_app[app_name]))
-        for app_name, users in users_by_app.items():
-            if app_name not in priority_apps:
-                ordered_apps.append((app_name, users))
+        # Build priority-ordered list: new users first, then existing, per app
+        ordered_entries = []  # (priority, app_name, user)
         
-        for app_name, users in ordered_apps:
+        for app_name, users in users_by_app.items():
+            # Only process active apps
+            if app_name not in self.ACTIVE_APPS:
+                continue
+            
+            # App priority: Predictify=0, Thesis Generator=1
+            app_priority = self.ACTIVE_APPS.index(app_name) if app_name in self.ACTIVE_APPS else 99
+            
+            for user in users:
+                email = user['email']
+                is_new = email not in self.state.get('users', {})
+                # New users get priority 0 (first), existing get 1 (second)
+                user_priority = 0 if is_new else 1
+                # Combined: (app_priority * 10 + user_priority) → Predictify new=0, Predictify old=1, Thesis new=10, Thesis old=11
+                combined = app_priority * 10 + user_priority
+                ordered_entries.append((combined, app_name, user))
+        
+        # Sort by priority
+        ordered_entries.sort(key=lambda x: x[0])
+        
+        for _, app_name, user in ordered_entries:
             app_info = self.firebase_loader.get_app_info(app_name)
             if not app_info:
                 continue
@@ -219,61 +238,57 @@ class AppRetentionEmailer:
             if app_name not in APP_CONTEXT:
                 continue
             
-            for user in users:
-                email = user['email']
-                user_state = self.state['users'].get(email)
+            email = user['email']
+            user_state = self.state['users'].get(email)
+            
+            # Skip suppressed users (spam reporters / hard bounces)
+            if user_state and user_state.get('suppressed'):
+                continue
+            
+            if user_state is None:
+                # New user — send email #1
+                eligible.append({
+                    'email': email,
+                    'app_name': app_name,
+                    'app_info': app_info,
+                    'next_email': 1,
+                    'language': user.get('language', 'en'),
+                })
+            else:
+                emails_sent = user_state.get('emails_sent', 0)
                 
-                # Skip suppressed users (spam reporters / hard bounces)
-                if user_state and user_state.get('suppressed'):
+                # Already completed all 30 emails
+                if emails_sent >= 30:
                     continue
                 
-                if user_state is None:
-                    # New user — send email #1
-                    eligible.append({
-                        'email': email,
-                        'app_name': app_name,
-                        'app_info': app_info,
-                        'next_email': 1,
-                        'language': user.get('language', 'en'),
-                    })
-                else:
-                    emails_sent = user_state.get('emails_sent', 0)
-                    
-                    # Already completed all 30 emails
-                    if emails_sent >= 30:
-                        continue
-                    
-                    # Check timing — import the sequence schedule
-                    from retention_email_generator import EMAIL_SEQUENCE
-                    next_email_num = emails_sent + 1
-                    
-                    if next_email_num > 30:
-                        continue
-                    
-                    target_day = EMAIL_SEQUENCE[next_email_num - 1]['day']
-                    prev_day = EMAIL_SEQUENCE[emails_sent - 1]['day'] if emails_sent > 0 else 0
-                    days_to_wait = target_day - prev_day
-                    
-                    # Check if enough time has passed
-                    last_sent_str = user_state.get('last_email_sent')
-                    if last_sent_str:
-                        last_sent = datetime.fromisoformat(last_sent_str)
-                        hours_since_last = (now - last_sent).total_seconds() / 3600
-                        hours_to_wait = max(days_to_wait * 24, 20)  # At least 20 hours
-                        
-                        if hours_since_last < hours_to_wait:
-                            continue
-                    
-                    eligible.append({
-                        'email': email,
-                        'app_name': app_name,
-                        'app_info': app_info,
-                        'next_email': next_email_num,
-                        'language': user.get('language', 'en'),
-                    })
+                # Check timing — import the sequence schedule
+                from retention_email_generator import EMAIL_SEQUENCE
+                next_email_num = emails_sent + 1
                 
-                if daily_limit and len(eligible) >= daily_limit:
-                    break
+                if next_email_num > 30:
+                    continue
+                
+                target_day = EMAIL_SEQUENCE[next_email_num - 1]['day']
+                prev_day = EMAIL_SEQUENCE[emails_sent - 1]['day'] if emails_sent > 0 else 0
+                days_to_wait = target_day - prev_day
+                
+                # Check if enough time has passed
+                last_sent_str = user_state.get('last_email_sent')
+                if last_sent_str:
+                    last_sent = datetime.fromisoformat(last_sent_str)
+                    hours_since_last = (now - last_sent).total_seconds() / 3600
+                    hours_to_wait = max(days_to_wait * 24, 20)  # At least 20 hours
+                    
+                    if hours_since_last < hours_to_wait:
+                        continue
+                
+                eligible.append({
+                    'email': email,
+                    'app_name': app_name,
+                    'app_info': app_info,
+                    'next_email': next_email_num,
+                    'language': user.get('language', 'en'),
+                })
             
             if daily_limit and len(eligible) >= daily_limit:
                 break
