@@ -1,5 +1,142 @@
 {
-  "active_sender_index": 0,
-  "senders": {},
-  "rotation_log": []
+  "active_sender_index": 2,
+  "senders": {
+    "apps@kaynel.pl": {
+      "last_check": "2026-02-20T18:17:42.480136",
+      "status": "red",
+      "rotated_out_at": "2026-02-20T18:17:42.480629",
+      "metrics_history": [
+        {
+          "date": "2026-02-20",
+          "sent": 5513,
+          "delivered": 4834,
+          "opened": 607,
+          "clicked": 54,
+          "bounced": 227,
+          "hard_bounces": 59,
+          "soft_bounces": 168,
+          "spam_complaints": 0,
+          "blocked": 2,
+          "invalid": 0,
+          "open_rate": 11.01,
+          "bounce_rate": 4.12,
+          "spam_rate": 0.0,
+          "delivery_rate": 87.68
+        },
+        {
+          "date": "2026-02-20",
+          "sent": 5513,
+          "delivered": 4834,
+          "opened": 623,
+          "clicked": 54,
+          "bounced": 227,
+          "hard_bounces": 59,
+          "soft_bounces": 168,
+          "spam_complaints": 0,
+          "blocked": 2,
+          "invalid": 0,
+          "open_rate": 11.3,
+          "bounce_rate": 4.12,
+          "spam_rate": 0.0,
+          "delivery_rate": 87.68
+        }
+      ]
+    },
+    "hello@bestaiapps.site": {
+      "last_check": "2026-02-21T09:13:19.699702",
+      "status": "red",
+      "rotated_out_at": "2026-02-21T09:13:19.700191",
+      "metrics_history": [
+        {
+          "date": "2026-02-21",
+          "sent": 7317,
+          "delivered": 6573,
+          "opened": 674,
+          "clicked": 61,
+          "bounced": 284,
+          "hard_bounces": 59,
+          "soft_bounces": 225,
+          "spam_complaints": 0,
+          "blocked": 9,
+          "invalid": 0,
+          "open_rate": 9.21,
+          "bounce_rate": 3.88,
+          "spam_rate": 0.0,
+          "delivery_rate": 89.83
+        }
+      ]
+    },
+    "apps@vitazelki.pl": {
+      "last_check": "2026-02-22T18:11:03.877084",
+      "status": "red",
+      "rotated_out_at": null,
+      "metrics_history": [
+        {
+          "date": "2026-02-21",
+          "sent": 7317,
+          "delivered": 6573,
+          "opened": 697,
+          "clicked": 62,
+          "bounced": 285,
+          "hard_bounces": 59,
+          "soft_bounces": 226,
+          "spam_complaints": 0,
+          "blocked": 9,
+          "invalid": 0,
+          "open_rate": 9.53,
+          "bounce_rate": 3.9,
+          "spam_rate": 0.0,
+          "delivery_rate": 89.83
+        },
+        {
+          "date": "2026-02-22",
+          "sent": 10164,
+          "delivered": 9320,
+          "opened": 759,
+          "clicked": 70,
+          "bounced": 379,
+          "hard_bounces": 59,
+          "soft_bounces": 320,
+          "spam_complaints": 0,
+          "blocked": 13,
+          "invalid": 0,
+          "open_rate": 7.47,
+          "bounce_rate": 3.73,
+          "spam_rate": 0.0,
+          "delivery_rate": 91.7
+        },
+        {
+          "date": "2026-02-22",
+          "sent": 10234,
+          "delivered": 9387,
+          "opened": 794,
+          "clicked": 76,
+          "bounced": 384,
+          "hard_bounces": 60,
+          "soft_bounces": 324,
+          "spam_complaints": 1,
+          "blocked": 13,
+          "invalid": 0,
+          "open_rate": 7.76,
+          "bounce_rate": 3.75,
+          "spam_rate": 0.01,
+          "delivery_rate": 91.72
+        }
+      ]
+    }
+  },
+  "rotation_log": [
+    {
+      "date": "2026-02-20T18:17:42.480635",
+      "from": "apps@kaynel.pl",
+      "to": "hello@bestaiapps.site",
+      "reason": "\ud83d\udea8 CRITICAL: Bounce rate 4.1% exceeds 3.0%; \u26a0\ufe0f WARNING: Open rate 11.3% is below average"
+    },
+    {
+      "date": "2026-02-21T09:13:19.700196",
+      "from": "hello@bestaiapps.site",
+      "to": "apps@vitazelki.pl",
+      "reason": "\ud83d\udea8 CRITICAL: Bounce rate 3.9% exceeds 3.0%; \u26a0\ufe0f WARNING: Open rate 9.2% is below average"
+    }
+  ]
 }
