@@ -956,6 +956,16 @@
   "providerUserInfo": []
 },
 {
+  "localId": "LHmehu6KFSaduLS28DgyHRFTH193",
+  "email": "kushsanduja15@gmail.com",
+  "emailVerified": false,
+  "passwordHash": "FZwaqq5L39zV21Jx1wM4fM4S+aoed8ByKgWjQDQH1NIrO72SGkpoZzOdyOp6/M5myMcP7vDNnmup13mH6AxDOg==",
+  "salt": "wmvOLCIiiyfWyA==",
+  "lastSignedInAt": "1771872845715",
+  "createdAt": "1771872845715",
+  "providerUserInfo": []
+},
+{
   "localId": "LdJpEALSZKOS2B1WGKxLj71tyIo1",
   "email": "fakefuture0@gmail.com",
   "emailVerified": true,
