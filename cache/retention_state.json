@@ -33590,7 +33590,9 @@
       "app": "Predictify",
       "emails_sent": 1,
       "first_email_at": "2026-02-26T09:25:03.623300",
-      "last_email_sent": "2026-02-26T09:25:03.623300"
+      "last_email_sent": "2026-02-26T09:25:03.623300",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "tj2ntsane@gmail.com": {
       "app": "Predictify",
