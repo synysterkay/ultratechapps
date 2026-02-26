@@ -1714,6 +1714,16 @@
   ]
 },
 {
+  "localId": "YaSILxMNBxP4YZVSRcPyU0swPnE3",
+  "email": "nicholas.kobakhidze@gmail.com",
+  "emailVerified": true,
+  "passwordHash": "zxXHYxcFVWI4DE0TqoVEDJquWR0unccFDqYQs6uSlG9GYKgxQafzldHR6D1Ij7NwiGqLIXcJfnuwraDsUrwttQ==",
+  "salt": "Nv6PWUaI9Gi5VQ==",
+  "lastSignedInAt": "1772048682336",
+  "createdAt": "1772048165300",
+  "providerUserInfo": []
+},
+{
   "localId": "Ys4Gud51GJgUyJEMWWl7ogeIv772",
   "email": "antfranmonbal1410@gmail.com",
   "emailVerified": true,
