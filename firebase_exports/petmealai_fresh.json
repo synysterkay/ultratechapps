@@ -918,6 +918,17 @@
   "providerUserInfo": []
 },
 {
+  "localId": "SlWKHXjkFXXRvDL4ni8WxpThPFF2",
+  "email": "j.aded@icloud.com",
+  "emailVerified": false,
+  "passwordHash": "ZNZxjw/PjNgBPLEnqU73m+hVa9vG5wiJPPmqJX1rNrnE34z2GpamHXAa/5H2ZjR2uGvIsqv3dkhgyeZVbsOAuA==",
+  "salt": "YRjoADLJljXv/w==",
+  "displayName": "j.aded",
+  "lastSignedInAt": "1772210824044",
+  "createdAt": "1772210824044",
+  "providerUserInfo": []
+},
+{
   "localId": "TZN5MrofTmQtfmGlsCrXI3llKFj1",
   "email": "pombinha_branca@hotmail.com",
   "emailVerified": false,
