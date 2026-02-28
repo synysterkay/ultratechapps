@@ -467,6 +467,24 @@
   ]
 },
 {
+  "localId": "EsZjj2gXeZQ5Cj1dRxViQ2pWQZn1",
+  "email": "chiara.olaru@gmail.com",
+  "emailVerified": true,
+  "displayName": "Chiara Olaru",
+  "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocLO242Xb5ikbj_x2RFtNQ9jCNVaEobnxCmfpkXlCy8u6iBd8_k=s96-c",
+  "lastSignedInAt": "1772275794160",
+  "createdAt": "1772275794160",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "116258156875530896775",
+      "email": "chiara.olaru@gmail.com",
+      "displayName": "Chiara Olaru",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocLO242Xb5ikbj_x2RFtNQ9jCNVaEobnxCmfpkXlCy8u6iBd8_k=s96-c"
+    }
+  ]
+},
+{
   "localId": "F8XZdmAYd0PJJ4Pw1jKJQYPsOOR2",
   "email": "t.piphitkul@gmail.com",
   "emailVerified": true,
@@ -1448,6 +1466,17 @@
   "displayName": "cashby54",
   "lastSignedInAt": "1770577845917",
   "createdAt": "1770577845917",
+  "providerUserInfo": []
+},
+{
+  "localId": "nBlbafgxzUMAO7VH7XnuxuP6gLB2",
+  "email": "lily.jauneau@hotmail.com",
+  "emailVerified": false,
+  "passwordHash": "U3Lr2yz9TWHDtbn8HTCoVhacyuDByvLN5buol8BbUuuaAUIt78QixZ0CrUogPbApmQsgoDk1ucGMDYFZIDLhmw==",
+  "salt": "Czs0UX5v3t65aQ==",
+  "displayName": "Lily.jauneau",
+  "lastSignedInAt": "1772274957072",
+  "createdAt": "1772274957072",
   "providerUserInfo": []
 },
 {
