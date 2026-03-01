@@ -72,6 +72,18 @@ class DeliverabilityMonitor:
             "domain": "predictifyfootball.com",
             "active": True,
         },
+        {
+            "email": "hello@thesisgenerator.io",
+            "name": "Morgan",
+            "domain": "thesisgenerator.io",
+            "active": True,
+        },
+        {
+            "email": "hello@passedai.io",
+            "name": "Taylor",
+            "domain": "passedai.io",
+            "active": True,
+        },
     ]
 
     # ── THRESHOLDS ──────────────────────────────────────────
