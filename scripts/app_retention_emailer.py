@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 App Retention Email System
-Main orchestrator: Loads Firebase users per app, sends 7-email retention
-funnel via Gmail SMTP. Tracks progress per user to never send duplicates.
+Main orchestrator: Loads Firebase users per app, sends 20-email retention
+funnel via SES. Tracks progress per user to never send duplicates.
 
 Usage:
   python scripts/app_retention_emailer.py              # Send next batch
@@ -263,15 +263,15 @@ class AppRetentionEmailer:
             else:
                 emails_sent = user_state.get('emails_sent', 0)
                 
-                # Already completed all 30 emails
-                if emails_sent >= 30:
+                # Already completed all 20 emails
+                if emails_sent >= 20:
                     continue
                 
                 # Check timing — import the sequence schedule
                 from retention_email_generator import EMAIL_SEQUENCE
                 next_email_num = emails_sent + 1
                 
-                if next_email_num > 30:
+                if next_email_num > 20:
                     continue
                 
                 target_day = EMAIL_SEQUENCE[next_email_num - 1]['day']
@@ -478,11 +478,11 @@ class AppRetentionEmailer:
         
         # Analyze state
         tracked = len(self.state.get('users', {}))
-        completed = sum(1 for u in self.state.get('users', {}).values() if u.get('emails_sent', 0) >= 30)
+        completed = sum(1 for u in self.state.get('users', {}).values() if u.get('emails_sent', 0) >= 20)
         
         print(f"\n📱 Total app users: {total_users}")
         print(f"📧 Users in email system: {tracked}")
-        print(f"✅ Completed all 30 emails: {completed}")
+        print(f"✅ Completed all 20 emails: {completed}")
         print(f"⏳ Still in sequence: {tracked - completed}")
         print(f"🆕 Not yet started: {total_users - tracked}")
         

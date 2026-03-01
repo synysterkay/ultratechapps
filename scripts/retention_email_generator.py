@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 Retention Email Generator
-Uses DeepSeek API to generate 30 high-conversion retention emails per app.
-A full 30-day drip campaign targeting every stage of the user journey.
+Uses DeepSeek API to generate 20 high-conversion retention emails per app.
+A ~47-day drip campaign at 3 emails/week targeting every stage of the user journey.
 """
 import os
 import json
@@ -12,12 +12,13 @@ import time
 from pathlib import Path
 
 
-# 60-day retention email funnel sequence
-# Week 1: 4 emails (onboarding burst)
-# Week 2-4: 2/week (deepening engagement)
-# Week 5-9: 1/week (habit & loyalty)
+# ~47-day retention email funnel sequence (3 emails/week)
+# Phase 1 (Week 1-2): Activation & first value — hook them fast
+# Phase 2 (Week 3-4): Deepening engagement — build habits
+# Phase 3 (Week 5-6): Loyalty & conversion — long-term retention
 EMAIL_SEQUENCE = [
-    # ── WEEK 1: ACTIVATION & FIRST VALUE (4 emails) ──────
+    # ── PHASE 1: ACTIVATION (Week 1-2, 6 emails) ─────────
+    # Goal: Get them using the app and seeing value FAST
     {
         "day": 0,
         "type": "welcome_quick_win",
@@ -26,51 +27,51 @@ EMAIL_SEQUENCE = [
         "angle": "Show the ONE feature that delivers value in 30 seconds",
     },
     {
-        "day": 1,
+        "day": 2,
         "type": "hidden_feature",
         "goal": "Show them something they missed",
         "psychology": "Curiosity + fear of missing out",
         "angle": "Most users skip this feature but it's the best part",
     },
     {
-        "day": 3,
+        "day": 4,
         "type": "quick_tip",
         "goal": "Deliver a 60-second actionable tip",
         "psychology": "Micro-commitment + competence building",
         "angle": "One tiny trick that makes a noticeable difference right away",
     },
     {
-        "day": 5,
+        "day": 7,
         "type": "social_proof_fomo",
         "goal": "Make them feel they're falling behind",
         "psychology": "Social proof + FOMO + belonging",
         "angle": "X users did THIS today - here's what happened",
     },
-    # ── WEEK 2: DEEPENING ENGAGEMENT (3 emails) ──────────
     {
-        "day": 8,
+        "day": 9,
         "type": "behind_the_scenes",
         "goal": "Build personal connection with the developer",
         "psychology": "Authenticity + relatability + parasocial bond",
         "angle": "Why I built this feature at 2AM - the real story",
     },
     {
-        "day": 10,
+        "day": 11,
+        "type": "common_mistake",
+        "goal": "Warn them about what most users get wrong",
+        "psychology": "Loss aversion + authority",
+        "angle": "The #1 mistake that ruins your results (and the easy fix)",
+    },
+    # ── PHASE 2: DEEPENING ENGAGEMENT (Week 3-4, 7 emails) ─
+    # Goal: Build habits, deepen investment, create emotional bond
+    {
+        "day": 14,
         "type": "value_bomb",
         "goal": "Give a pro-level tutorial that makes the app 10x more useful",
         "psychology": "Reciprocity + competence",
         "angle": "Advanced tip/hack that transforms the experience",
     },
     {
-        "day": 13,
-        "type": "common_mistake",
-        "goal": "Warn them about what most users get wrong",
-        "psychology": "Loss aversion + authority",
-        "angle": "The #1 mistake that ruins your results (and the easy fix)",
-    },
-    # ── WEEK 3: STORIES & HABITS (3 emails) ──────────────
-    {
-        "day": 15,
+        "day": 16,
         "type": "story_emotional",
         "goal": "Emotional connection through storytelling",
         "psychology": "Narrative transportation + empathy",
@@ -84,153 +85,79 @@ EMAIL_SEQUENCE = [
         "angle": "Try this 3-day challenge and see the difference yourself",
     },
     {
-        "day": 20,
+        "day": 21,
         "type": "pro_workflow",
         "goal": "Show how power users use the app differently",
         "psychology": "Aspiration + insider knowledge",
         "angle": "How our top 1% of users set up their workflow",
     },
-    # ── WEEK 4: RE-ENGAGEMENT (2 emails) ─────────────────
     {
         "day": 23,
-        "type": "reengagement_soft",
-        "goal": "Win back users who may be losing interest",
-        "psychology": "Loss aversion + curiosity",
-        "angle": "We noticed you haven't tried X yet - here's why you should",
-    },
-    {
-        "day": 26,
         "type": "myth_buster",
         "goal": "Destroy a common misconception in their domain",
         "psychology": "Surprise + authority + contrarianism",
         "angle": "Everyone thinks this is true. It's not. Here's proof.",
     },
-    # ── WEEK 5: MASTERY (2 emails) ───────────────────────
     {
-        "day": 30,
+        "day": 25,
         "type": "feature_deep_dive",
         "goal": "Showcase an underused but powerful feature in detail",
         "psychology": "Discovery + mastery",
         "angle": "This buried feature changed everything for one user",
     },
     {
-        "day": 33,
-        "type": "comparison",
-        "goal": "Show what life looks like WITH vs WITHOUT the app",
-        "psychology": "Contrast principle + loss aversion",
-        "angle": "Before and after: what using this app actually looks like",
-    },
-    # ── WEEK 6: MILESTONE & COMMUNITY (2 emails) ────────
-    {
-        "day": 37,
+        "day": 28,
         "type": "milestone_checkin",
         "goal": "Celebrate their progress and show momentum",
         "psychology": "Achievement + sunk cost + encouragement",
         "angle": "You've been here a month - here's what you've accomplished",
     },
+    # ── PHASE 3: LOYALTY & CONVERSION (Week 5-7, 7 emails) ─
+    # Goal: Lock in retention, drive upgrades, build ambassadors
     {
-        "day": 40,
-        "type": "exclusive_content",
-        "goal": "Deliver insider-only value they can't get anywhere else",
-        "psychology": "Exclusivity + reciprocity + VIP feeling",
-        "angle": "I only share this with actual users - not on social media",
-    },
-    # ── WEEK 7: IDENTITY & POWER TIPS (2 emails) ────────
-    {
-        "day": 44,
+        "day": 30,
         "type": "community_belonging",
         "goal": "Make them feel part of something bigger",
         "psychology": "Belonging + identity + tribe",
-        "angle": "You're now part of a growing group of people who do THIS differently",
+        "angle": "You're now part of a growing group doing THIS differently",
     },
     {
-        "day": 47,
+        "day": 32,
         "type": "productivity_hack",
         "goal": "Show them how to save time with the app",
         "psychology": "Time scarcity + efficiency + competence",
         "angle": "How to do in 2 minutes what used to take 20",
     },
-    # ── WEEK 8: EMOTIONAL & ADVANCED (2 emails) ─────────
     {
-        "day": 50,
-        "type": "emotional_story_2",
-        "goal": "Another emotional narrative to deepen connection",
-        "psychology": "Narrative transportation + vulnerability",
-        "angle": "A message I got from a user last week that stopped me cold",
-    },
-    {
-        "day": 53,
-        "type": "power_user_tip",
-        "goal": "Advanced trick that separates beginners from pros",
-        "psychology": "Mastery + insider knowledge + aspiration",
-        "angle": "The settings tweak that 95% of users don't know about",
-    },
-    # ── WEEK 9: LOYALTY & CONVERSION (10 emails over remaining days) ─
-    {
-        "day": 55,
+        "day": 35,
         "type": "surprise_bonus",
         "goal": "Unexpected value drop to spike engagement",
         "psychology": "Surprise + delight + reciprocity",
         "angle": "I made something extra for you - wasn't planning to share this",
     },
     {
-        "day": 57,
+        "day": 37,
         "type": "habit_builder",
         "goal": "Help them build a daily/weekly habit around the app",
         "psychology": "Habit loop + consistency + identity",
         "angle": "The 3-minute routine that makes this app 10x more effective",
     },
     {
-        "day": 59,
-        "type": "advanced_feature",
-        "goal": "Unlock a feature they've never tried",
-        "psychology": "Discovery + competence + novelty",
-        "angle": "You've been using the app for weeks and still haven't tried THIS?",
-    },
-    {
-        "day": 61,
-        "type": "external_validation",
-        "goal": "Share third-party credibility and press",
-        "psychology": "Authority + social proof + credibility",
-        "angle": "What experts/reviewers are saying about this approach",
-    },
-    {
-        "day": 63,
+        "day": 39,
         "type": "personal_note",
         "goal": "Raw, honest 1-on-1 message from the developer",
         "psychology": "Vulnerability + authenticity + connection",
         "angle": "I don't usually write emails like this, but...",
     },
     {
-        "day": 65,
-        "type": "case_study",
-        "goal": "Detailed before/after transformation story",
-        "psychology": "Proof + inspiration + possibility",
-        "angle": "From skeptic to evangelist: one user's journey",
-    },
-    {
-        "day": 67,
+        "day": 42,
         "type": "sneak_peek",
         "goal": "Preview upcoming features to build excitement",
         "psychology": "Anticipation + exclusivity + investment",
         "angle": "Here's what's coming next (you heard it here first)",
     },
     {
-        "day": 69,
-        "type": "gratitude",
-        "goal": "Thank them for being a user and reinforce value",
-        "psychology": "Reciprocity + appreciation + loyalty",
-        "angle": "Honestly, building this wouldn't mean anything without people like you",
-    },
-    {
-        "day": 71,
-        "type": "vip_offer",
-        "goal": "Exclusive upgrade or premium offer with real deadline",
-        "psychology": "Scarcity + exclusivity + deadline + value stack",
-        "angle": "I set something aside for loyal users only - expires soon",
-    },
-    {
-        "day": 73,
+        "day": 45,
         "type": "loyalty_farewell",
         "goal": "Close the loop, convert to power user or ambassador",
         "psychology": "Completion + identity shift + next chapter",
@@ -384,7 +311,7 @@ class RetentionEmailGenerator:
         
         prompt = f"""You are the team behind {app_name}. You're writing a retention email to someone who already downloaded your app.
 
-THIS IS EMAIL #{email_number} OF 30 in a retention sequence.
+THIS IS EMAIL #{email_number} OF 20 in a retention sequence.
 
 EMAIL TYPE: {sequence['type']}
 SEND DAY: Day {sequence['day']} after signup
@@ -555,12 +482,12 @@ Generate the email now. Make it impossible to ignore."""
     
     def get_email(self, app_name, email_number, max_retries=3, language='en'):
         """
-        Get email for app at position email_number (1-30).
+        Get email for app at position email_number (1-20).
         Returns cached version if exists, otherwise generates and caches.
         Retries up to max_retries times on failure.
         """
-        if email_number < 1 or email_number > 30:
-            print(f"   ❌ Invalid email number: {email_number} (must be 1-30)")
+        if email_number < 1 or email_number > 20:
+            print(f"   ❌ Invalid email number: {email_number} (must be 1-20)")
             return None
         
         cache_path = self._get_cache_path(app_name, email_number, language)
@@ -590,7 +517,7 @@ Generate the email now. Make it impossible to ignore."""
     
     def generate_all_emails(self, app_names=None, languages=None):
         """
-        Pre-generate all 30 emails for all apps (or specified apps).
+        Pre-generate all 20 emails for all apps (or specified apps).
         For multilingual apps, generates for each language.
         Skips already cached emails.
         """
@@ -615,7 +542,7 @@ Generate the email now. Make it impossible to ignore."""
             for lang in app_languages:
                 lang_label = f" ({lang})" if lang != 'en' or len(app_languages) > 1 else ''
                 print(f"\n📱 {app_name}{lang_label}:")
-                for email_num in range(1, 31):
+                for email_num in range(1, 21):
                     total += 1
                     cache_path = self._get_cache_path(app_name, email_num, lang)
                     
