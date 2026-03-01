@@ -83,7 +83,7 @@ class AppRetentionEmailer:
     
     # ─── EMAIL HTML TEMPLATE ───────────────────────────────
     
-    def _build_html(self, email_data, app_info, language='en'):
+    def _build_html(self, email_data, app_info, language='en', sender_name='Ana'):
         """Build beautiful HTML email from generated content, with language support"""
         
         app_name = email_data.get('app_name', app_info['name'])
@@ -173,7 +173,7 @@ class AppRetentionEmailer:
     
     <p style="margin:32px 0 0;font-size:17px;color:#4b5563;text-align:{text_align};">
         {signoff}<br>
-        <strong style="color:#1f2937;">Ana</strong>
+        <strong style="color:#1f2937;">{sender_name}</strong>
     </p>
     
     <div style="margin-top:48px;padding-top:24px;border-top:1px solid #e5e7eb;text-align:center;">
@@ -189,19 +189,25 @@ class AppRetentionEmailer:
         return html
     
     # ─── ACTIVE APPS (only these receive emails) ─────────
-    # Other apps' configs are preserved but won't be processed.
-    ACTIVE_APPS = ['Predictify', 'Thesis Generator']
+    # Priority order: first = highest priority for daily cap allocation.
+    ACTIVE_APPS = [
+        'Predictify',
+        'Thesis Generator',
+        'Red Flag Scanner AI',
+        'Fresh Start: Breakup Therapy',
+        'SoulPlan: Plan Dates Together',
+        'PupShape: Dog Weight Loss Plan',
+    ]
     
     # ─── CAMPAIGN LOGIC ────────────────────────────────────
     
     def _get_eligible_users(self, users_by_app, daily_limit=None):
         """
         Find users who should receive their next email today.
-        Priority order:
-          1. New Predictify users (not yet in state)
-          2. Existing Predictify users (continuing sequence)
-          3. New Thesis Generator users
-          4. Existing Thesis Generator users
+        Priority order (by ACTIVE_APPS index):
+          - New users of each app first, then existing users
+          - Predictify and Thesis Generator get top priority
+          - All other apps follow in order
         """
         eligible = []
         now = datetime.now()
@@ -405,7 +411,7 @@ class AppRetentionEmailer:
                 continue
             
             # Build HTML
-            html = self._build_html(email_data, app_info, lang)
+            html = self._build_html(email_data, app_info, lang, sender_name=active_sender['name'])
             
             # Send
             success = gmail.send_email(
