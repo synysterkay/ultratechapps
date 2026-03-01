@@ -31,9 +31,9 @@ from deliverability_monitor import DeliverabilityMonitor
 class AppRetentionEmailer:
     # ── DAILY SEND CAP ──────────────────────────────────────
     # Limits total emails per calendar day across all runs.
-    # 230/day × 30 days = 6,900/month (fits within 10K Starter plan)
+    # With SES at $0.10/1K, 500/day = $1.50/month — very cheap.
     # Set to None to disable the cap.
-    DAILY_SEND_CAP = 230
+    DAILY_SEND_CAP = 500
     
     def __init__(self):
         self.base_dir = Path(__file__).parent.parent
@@ -374,15 +374,15 @@ class AppRetentionEmailer:
             else:
                 print(f"   ❌ Failed: {app_name} #{email_num} ({lang})")
         
-        # 4. Send emails via Brevo (using active sender from health check)
-        print(f"\n📧 Sending {len(eligible)} emails via Brevo...")
+        # 4. Send emails via SES (using active sender from health check)
+        print(f"\n📧 Sending {len(eligible)} emails via SES...")
         gmail = GmailSender(
             sender_email=active_sender['email'],
             sender_name=active_sender['name'],
         )
         
         if not gmail.connect():
-            print("❌ Cannot connect to Brevo. Aborting.")
+            print("❌ Cannot connect to SES. Aborting.")
             return
         
         today = datetime.now().strftime('%Y-%m-%d')

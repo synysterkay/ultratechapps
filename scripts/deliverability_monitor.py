@@ -2,13 +2,12 @@
 """
 Email Deliverability Monitor & Sender Rotation
 
-Monitors Brevo email health metrics (opens, bounces, spam complaints).
+Monitors email health via AWS SES sending statistics & SNS notifications.
 When a sender's reputation degrades below configurable thresholds,
 automatically rotates to the next healthy sender identity.
 
-Sender identities can be:
-  - Different emails on the same domain (apps@kaynel.pl, hello@kaynel.pl)
-  - Different domains entirely (apps@kaynel.pl, noreply@ultratechapps.com)
+Sender identities use different verified domains in SES.
+All domains share the same AWS account credentials.
 
 Usage:
   python scripts/deliverability_monitor.py --check       # Check current health
@@ -41,7 +40,7 @@ class DeliverabilityMonitor:
 
     # ── SENDER IDENTITIES (add new senders here) ───────────
     # Order matters: first = primary, rest = fallbacks.
-    # Each entry needs to be verified in Brevo dashboard first!
+    # Each domain must be verified in AWS SES.
     SENDER_POOL = [
         {
             "email": "apps@kaynel.pl",
@@ -61,6 +60,18 @@ class DeliverabilityMonitor:
             "domain": "vitazelki.pl",
             "active": True,
         },
+        {
+            "email": "hello@aibettips.io",
+            "name": "Jordan",
+            "domain": "aibettips.io",
+            "active": True,
+        },
+        {
+            "email": "tips@predictifyfootball.com",
+            "name": "Sam",
+            "domain": "predictifyfootball.com",
+            "active": True,
+        },
     ]
 
     # ── THRESHOLDS ──────────────────────────────────────────
@@ -77,11 +88,26 @@ class DeliverabilityMonitor:
     }
 
     def __init__(self):
-        self.api_key = os.getenv('BREVO_API_KEY')
+        self.aws_access_key = os.getenv('AWS_ACCESS_KEY_ID')
+        self.aws_secret_key = os.getenv('AWS_SECRET_ACCESS_KEY')
+        self.aws_region = os.getenv('AWS_SES_REGION', 'us-east-1')
+        self.ses_client = None
         self.base_dir = Path(__file__).parent.parent
         self.health_file = self.base_dir / 'cache' / 'sender_health.json'
         self.health_file.parent.mkdir(exist_ok=True)
         self.health_state = self._load_health_state()
+
+    def _get_ses_client(self):
+        """Lazy-init SES client."""
+        if self.ses_client is None and self.aws_access_key:
+            import boto3
+            self.ses_client = boto3.client(
+                'ses',
+                region_name=self.aws_region,
+                aws_access_key_id=self.aws_access_key,
+                aws_secret_access_key=self.aws_secret_key,
+            )
+        return self.ses_client
 
     # ── STATE PERSISTENCE ───────────────────────────────────
 
@@ -130,76 +156,72 @@ class DeliverabilityMonitor:
         with open(self.health_file, 'w') as f:
             json.dump(self.health_state, f, indent=2)
 
-    # ── BREVO API QUERIES ───────────────────────────────────
-
-    def _brevo_get(self, endpoint, params=None):
-        """Make authenticated GET request to Brevo API"""
-        import requests
-        url = f"https://api.brevo.com/v3{endpoint}"
-        headers = {'api-key': self.api_key, 'Accept': 'application/json'}
-        try:
-            resp = requests.get(url, headers=headers, params=params or {}, timeout=30)
-            if resp.status_code == 200:
-                return resp.json()
-            else:
-                print(f"   ⚠️ Brevo API {resp.status_code}: {resp.text[:200]}")
-                return None
-        except Exception as e:
-            print(f"   ❌ Brevo API error: {e}")
-            return None
+    # ── SES API QUERIES ────────────────────────────────────
 
     def fetch_email_events(self, days=7, sender_email=None):
         """
-        Fetch aggregated email statistics from Brevo.
-        Returns dict with counts for: sent, delivered, opened, bounced, spam, blocked
+        Fetch sending statistics from SES.
+        SES provides: send quota, bounce/complaint rates via account-level stats.
+        For detailed per-email events, SNS notifications would be needed.
         """
-        end_date = datetime.now()
-        start_date = end_date - timedelta(days=days)
-
-        # Brevo aggregated report
-        params = {
-            'startDate': start_date.strftime('%Y-%m-%d'),
-            'endDate': end_date.strftime('%Y-%m-%d'),
-        }
-
-        # Get aggregated stats
-        data = self._brevo_get('/smtp/statistics/aggregatedReport', params)
-        if not data:
+        client = self._get_ses_client()
+        if not client:
             return None
 
-        result = {
-            'sent': data.get('requests', 0),
-            'delivered': data.get('delivered', 0),
-            'opened': data.get('uniqueOpens', 0),  # unique opens more reliable
-            'clicked': data.get('uniqueClicks', 0),
-            'bounced': data.get('hardBounces', 0) + data.get('softBounces', 0),
-            'hard_bounces': data.get('hardBounces', 0),
-            'soft_bounces': data.get('softBounces', 0),
-            'spam_complaints': data.get('spamReports', 0),
-            'blocked': data.get('blocked', 0),
-            'invalid': data.get('invalid', 0),
-        }
+        try:
+            # Get account-level send statistics (last 2 weeks of 15-min data points)
+            stats = client.get_send_statistics()
+            data_points = stats.get('SendDataPoints', [])
 
-        return result
+            # Filter to last N days
+            cutoff = datetime.now() - timedelta(days=days)
+            recent = [dp for dp in data_points
+                      if dp['Timestamp'].replace(tzinfo=None) > cutoff]
+
+            if not recent:
+                # Fall back to quota info
+                quota = client.get_send_quota()
+                return {
+                    'sent': int(quota.get('SentLast24Hours', 0)),
+                    'delivered': int(quota.get('SentLast24Hours', 0)),
+                    'opened': 0,
+                    'clicked': 0,
+                    'bounced': 0,
+                    'hard_bounces': 0,
+                    'soft_bounces': 0,
+                    'spam_complaints': 0,
+                    'blocked': 0,
+                    'invalid': 0,
+                }
+
+            # Aggregate data points
+            total_sent = sum(dp.get('DeliveryAttempts', 0) for dp in recent)
+            total_bounces = sum(dp.get('Bounces', 0) for dp in recent)
+            total_complaints = sum(dp.get('Complaints', 0) for dp in recent)
+            total_rejects = sum(dp.get('Rejects', 0) for dp in recent)
+
+            return {
+                'sent': total_sent,
+                'delivered': total_sent - total_bounces - total_rejects,
+                'opened': 0,  # SES doesn't track opens natively (needs SES v2 + config set)
+                'clicked': 0,
+                'bounced': total_bounces,
+                'hard_bounces': total_bounces,  # SES doesn't split hard/soft in stats
+                'soft_bounces': 0,
+                'spam_complaints': total_complaints,
+                'blocked': total_rejects,
+                'invalid': 0,
+            }
+        except Exception as e:
+            print(f"   ❌ SES stats error: {e}")
+            return None
 
     def fetch_event_log(self, event_type='spam', days=7, limit=50):
         """
-        Fetch specific event log entries (e.g., who marked as spam).
-        Useful for identifying problematic recipients.
+        SES doesn't have a direct event log API like Brevo.
+        Bounce/complaint notifications come via SNS.
+        For now, return empty — we track bounces via send failures.
         """
-        end_date = datetime.now()
-        start_date = end_date - timedelta(days=days)
-
-        params = {
-            'startDate': start_date.strftime('%Y-%m-%d'),
-            'endDate': end_date.strftime('%Y-%m-%d'),
-            'event': event_type,  # spam, hardBounces, softBounces, blocked
-            'limit': limit,
-        }
-        
-        data = self._brevo_get('/smtp/statistics/events', params)
-        if data and 'events' in data:
-            return data['events']
         return []
 
     # ── HEALTH EVALUATION ───────────────────────────────────
@@ -209,8 +231,8 @@ class DeliverabilityMonitor:
         Evaluate current sender's deliverability health.
         Returns: {status: 'green'|'yellow'|'red', metrics: {...}, issues: [...]}
         """
-        if not self.api_key:
-            return {'status': 'unknown', 'metrics': {}, 'issues': ['No BREVO_API_KEY set']}
+        if not self.aws_access_key:
+            return {'status': 'unknown', 'metrics': {}, 'issues': ['No AWS_ACCESS_KEY_ID set']}
 
         metrics = self.fetch_email_events(days=self.THRESHOLDS['lookback_days'])
         if not metrics:
@@ -337,7 +359,7 @@ class DeliverabilityMonitor:
         if not candidates:
             print("⚠️ No backup senders available! Cannot rotate.")
             print("   Add more senders to SENDER_POOL in deliverability_monitor.py")
-            print("   Then verify them in Brevo dashboard: https://app.brevo.com/senders")
+            print("   Then verify them in AWS SES console: https://console.aws.amazon.com/ses/")
             return None
 
         # Pick the next one
