@@ -29,11 +29,6 @@ from deliverability_monitor import DeliverabilityMonitor
 
 
 class AppRetentionEmailer:
-    # ── DAILY SEND CAP ──────────────────────────────────────
-    # Limits total emails per calendar day across all runs.
-    # With Resend free tier = 3K/month, then $20/month for 50K.
-    # Set to None to disable the cap.
-    DAILY_SEND_CAP = 500
     
     def __init__(self):
         self.base_dir = Path(__file__).parent.parent
@@ -198,16 +193,15 @@ class AppRetentionEmailer:
         'SoulPlan: Plan Dates Together',
         'PupShape: Dog Weight Loss Plan',
     ]
-    
+
     # ─── CAMPAIGN LOGIC ────────────────────────────────────
     
-    def _get_eligible_users(self, users_by_app, daily_limit=None):
+    def _get_eligible_users(self, users_by_app):
         """
         Find users who should receive their next email today.
         Priority order (by ACTIVE_APPS index):
           - New users of each app first, then existing users
-          - Predictify and Thesis Generator get top priority
-          - All other apps follow in order
+          - Predictify gets top priority
         """
         eligible = []
         now = datetime.now()
@@ -296,9 +290,6 @@ class AppRetentionEmailer:
                     'language': user.get('language', 'en'),
                 })
             
-            if daily_limit and len(eligible) >= daily_limit:
-                break
-        
         return eligible
     
     def run_campaign(self, dry_run=False):
@@ -332,18 +323,9 @@ class AppRetentionEmailer:
         self.deliverability.clean_bad_recipients(self.state)
         self._save_state()
         
-        # 2. Find eligible users (respect daily cap)
+        # 2. Find eligible users
         print("\n🎯 Finding eligible users...")
-        today = datetime.now().strftime('%Y-%m-%d')
-        sent_today = self.state.get('daily_stats', {}).get(today, {}).get('sent', 0)
-        remaining_today = None
-        if self.DAILY_SEND_CAP is not None:
-            remaining_today = max(0, self.DAILY_SEND_CAP - sent_today)
-            print(f"   📊 Daily cap: {self.DAILY_SEND_CAP} | Already sent today: {sent_today} | Remaining: {remaining_today}")
-            if remaining_today == 0:
-                print("   ⛔ Daily send cap reached. Skipping this run.")
-                return
-        eligible = self._get_eligible_users(users_by_app, daily_limit=remaining_today)
+        eligible = self._get_eligible_users(users_by_app)
         
         if not eligible:
             print("   ✅ No users eligible right now. All caught up!")
