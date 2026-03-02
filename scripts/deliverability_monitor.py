@@ -2,12 +2,12 @@
 """
 Email Deliverability Monitor & Sender Rotation
 
-Monitors email health via AWS SES sending statistics & SNS notifications.
+Monitors email health via Resend API and local tracking.
 When a sender's reputation degrades below configurable thresholds,
 automatically rotates to the next healthy sender identity.
 
-Sender identities use different verified domains in SES.
-All domains share the same AWS account credentials.
+Sender identities use different verified domains in Resend.
+All domains share the same Resend API key.
 
 Usage:
   python scripts/deliverability_monitor.py --check       # Check current health
@@ -17,30 +17,30 @@ Usage:
 import os
 import json
 import time
+import requests
 from pathlib import Path
 from datetime import datetime, timedelta
 
 
 class DeliverabilityMonitor:
     """
-    Monitors email deliverability via Brevo API and manages sender rotation.
+    Monitors email deliverability via Resend API and manages sender rotation.
     
     Metrics tracked:
-    - Open rate (below 5% = red flag for spam folder placement)
     - Bounce rate (above 3% = bad list hygiene, hurts reputation)
     - Spam complaint rate (above 0.1% = critical — ISPs will block you)
-    - Block rate (Brevo-reported hard blocks)
+    - Delivery rate
     
     Decision logic:
-    - GREEN: open rate > 15%, spam < 0.05%, bounce < 2%
-    - YELLOW: open rate 5-15%, or spam 0.05-0.1%, or bounce 2-3%
-    - RED: open rate < 5%, or spam > 0.1%, or bounce > 3%
+    - GREEN: spam < 0.05%, bounce < 2%
+    - YELLOW: spam 0.05-0.1%, or bounce 2-3%
+    - RED: spam > 0.1%, or bounce > 3%
     - On RED → auto-rotate to next sender
     """
 
     # ── SENDER IDENTITIES (add new senders here) ───────────
     # Order matters: first = primary, rest = fallbacks.
-    # Each domain must be verified in AWS SES.
+    # Each domain must be verified in Resend.
     SENDER_POOL = [
         {
             "email": "apps@kaynel.pl",
@@ -100,26 +100,27 @@ class DeliverabilityMonitor:
     }
 
     def __init__(self):
-        self.aws_access_key = os.getenv('AWS_ACCESS_KEY_ID')
-        self.aws_secret_key = os.getenv('AWS_SECRET_ACCESS_KEY')
-        self.aws_region = os.getenv('AWS_SES_REGION', 'us-east-1')
-        self.ses_client = None
+        self.api_key = os.getenv('RESEND_API_KEY')
         self.base_dir = Path(__file__).parent.parent
         self.health_file = self.base_dir / 'cache' / 'sender_health.json'
         self.health_file.parent.mkdir(exist_ok=True)
         self.health_state = self._load_health_state()
 
-    def _get_ses_client(self):
-        """Lazy-init SES client."""
-        if self.ses_client is None and self.aws_access_key:
-            import boto3
-            self.ses_client = boto3.client(
-                'ses',
-                region_name=self.aws_region,
-                aws_access_key_id=self.aws_access_key,
-                aws_secret_access_key=self.aws_secret_key,
+    def _resend_get(self, endpoint):
+        """Make a GET request to Resend API."""
+        if not self.api_key:
+            return None
+        try:
+            resp = requests.get(
+                f"https://api.resend.com{endpoint}",
+                headers={"Authorization": f"Bearer {self.api_key}"},
+                timeout=15,
             )
-        return self.ses_client
+            if resp.status_code == 200:
+                return resp.json()
+            return None
+        except Exception:
+            return None
 
     # ── STATE PERSISTENCE ───────────────────────────────────
 
@@ -168,70 +169,46 @@ class DeliverabilityMonitor:
         with open(self.health_file, 'w') as f:
             json.dump(self.health_state, f, indent=2)
 
-    # ── SES API QUERIES ────────────────────────────────────
+    # ── RESEND API QUERIES ──────────────────────────────────
 
     def fetch_email_events(self, days=7, sender_email=None):
         """
-        Fetch sending statistics from SES.
-        SES provides: send quota, bounce/complaint rates via account-level stats.
-        For detailed per-email events, SNS notifications would be needed.
+        Fetch sending statistics from local health state history.
+        Resend doesn't have an aggregate stats endpoint, so we
+        track metrics locally from send results.
         """
-        client = self._get_ses_client()
-        if not client:
+        if not self.api_key:
             return None
 
         try:
-            # Get account-level send statistics (last 2 weeks of 15-min data points)
-            stats = client.get_send_statistics()
-            data_points = stats.get('SendDataPoints', [])
+            sender = sender_email or self.get_active_sender()['email']
+            sender_state = self.health_state.get('senders', {}).get(sender, {})
+            history = sender_state.get('metrics_history', [])
 
-            # Filter to last N days
-            cutoff = datetime.now() - timedelta(days=days)
-            recent = [dp for dp in data_points
-                      if dp['Timestamp'].replace(tzinfo=None) > cutoff]
+            if history:
+                return history[-1]  # Most recent check
 
-            if not recent:
-                # Fall back to quota info
-                quota = client.get_send_quota()
-                return {
-                    'sent': int(quota.get('SentLast24Hours', 0)),
-                    'delivered': int(quota.get('SentLast24Hours', 0)),
-                    'opened': 0,
-                    'clicked': 0,
-                    'bounced': 0,
-                    'hard_bounces': 0,
-                    'soft_bounces': 0,
-                    'spam_complaints': 0,
-                    'blocked': 0,
-                    'invalid': 0,
-                }
-
-            # Aggregate data points
-            total_sent = sum(dp.get('DeliveryAttempts', 0) for dp in recent)
-            total_bounces = sum(dp.get('Bounces', 0) for dp in recent)
-            total_complaints = sum(dp.get('Complaints', 0) for dp in recent)
-            total_rejects = sum(dp.get('Rejects', 0) for dp in recent)
-
+            # No history yet — return zeros
             return {
-                'sent': total_sent,
-                'delivered': total_sent - total_bounces - total_rejects,
-                'opened': 0,  # SES doesn't track opens natively (needs SES v2 + config set)
+                'sent': 0,
+                'delivered': 0,
+                'opened': 0,
                 'clicked': 0,
-                'bounced': total_bounces,
-                'hard_bounces': total_bounces,  # SES doesn't split hard/soft in stats
+                'bounced': 0,
+                'hard_bounces': 0,
                 'soft_bounces': 0,
-                'spam_complaints': total_complaints,
-                'blocked': total_rejects,
+                'spam_complaints': 0,
+                'blocked': 0,
                 'invalid': 0,
             }
         except Exception as e:
-            print(f"   ❌ SES stats error: {e}")
+            print(f"   ❌ Resend stats error: {e}")
             return None
 
     def fetch_event_log(self, event_type='spam', days=7, limit=50):
         """
-        SES doesn't have a direct event log API like Brevo.
-        Bounce/complaint notifications come via SNS.
+        Resend doesn't expose a bulk event log API.
+        Bounce/complaint tracking works through webhooks or per-email status.
         For now, return empty — we track bounces via send failures.
         """
         return []
@@ -243,12 +220,12 @@ class DeliverabilityMonitor:
         Evaluate current sender's deliverability health.
         Returns: {status: 'green'|'yellow'|'red', metrics: {...}, issues: [...]}
         """
-        if not self.aws_access_key:
-            return {'status': 'unknown', 'metrics': {}, 'issues': ['No AWS_ACCESS_KEY_ID set']}
+        if not self.api_key:
+            return {'status': 'unknown', 'metrics': {}, 'issues': ['No RESEND_API_KEY set']}
 
         metrics = self.fetch_email_events(days=self.THRESHOLDS['lookback_days'])
         if not metrics:
-            return {'status': 'unknown', 'metrics': {}, 'issues': ['Could not fetch metrics from Brevo']}
+            return {'status': 'unknown', 'metrics': {}, 'issues': ['Could not fetch metrics from Resend']}
 
         sent = metrics['sent']
         if sent < self.THRESHOLDS['min_emails_for_eval']:
@@ -371,7 +348,7 @@ class DeliverabilityMonitor:
         if not candidates:
             print("⚠️ No backup senders available! Cannot rotate.")
             print("   Add more senders to SENDER_POOL in deliverability_monitor.py")
-            print("   Then verify them in AWS SES console: https://console.aws.amazon.com/ses/")
+            print("   Then verify them in Resend dashboard: https://resend.com/domains")
             return None
 
         # Pick the next one

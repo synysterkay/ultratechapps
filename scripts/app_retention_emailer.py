@@ -2,7 +2,7 @@
 """
 App Retention Email System
 Main orchestrator: Loads Firebase users per app, sends 20-email retention
-funnel via SES. Tracks progress per user to never send duplicates.
+funnel via Resend. Tracks progress per user to never send duplicates.
 
 Usage:
   python scripts/app_retention_emailer.py              # Send next batch
@@ -31,7 +31,7 @@ from deliverability_monitor import DeliverabilityMonitor
 class AppRetentionEmailer:
     # ── DAILY SEND CAP ──────────────────────────────────────
     # Limits total emails per calendar day across all runs.
-    # With SES at $0.10/1K, 500/day = $1.50/month — very cheap.
+    # With Resend free tier = 3K/month, then $20/month for 50K.
     # Set to None to disable the cap.
     DAILY_SEND_CAP = 500
     
@@ -380,15 +380,15 @@ class AppRetentionEmailer:
             else:
                 print(f"   ❌ Failed: {app_name} #{email_num} ({lang})")
         
-        # 4. Send emails via SES (using active sender from health check)
-        print(f"\n📧 Sending {len(eligible)} emails via SES...")
+        # 4. Send emails via Resend (using active sender from health check)
+        print(f"\n📧 Sending {len(eligible)} emails via Resend...")
         gmail = GmailSender(
             sender_email=active_sender['email'],
             sender_name=active_sender['name'],
         )
         
         if not gmail.connect():
-            print("❌ Cannot connect to SES. Aborting.")
+            print("❌ Cannot connect to Resend. Aborting.")
             return
         
         today = datetime.now().strftime('%Y-%m-%d')

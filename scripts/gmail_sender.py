@@ -1,110 +1,116 @@
 #!/usr/bin/env python3
 """
-Amazon SES Email Sender
-Sends transactional emails via AWS SES API.
-Cost: $0.10 per 1,000 emails ($1/month for 10K emails).
+Resend Email Sender
+Sends transactional emails via Resend API.
+Cost: Free tier = 3,000 emails/month, then $20/month for 50K.
 
-Drop-in replacement for the old Brevo sender.
-Same interface: connect(), send_email(), send_batch(), disconnect().
+Drop-in replacement — same interface: connect(), send_email(), send_batch(), disconnect().
 """
 import time
 import os
-import boto3
-from botocore.exceptions import ClientError
+import requests
 
 
 # Keep class name GmailSender so nothing else needs to change
 class GmailSender:
-    """SES email sender — same interface as the old Brevo sender."""
+    """Resend email sender — same interface as previous senders."""
+
+    API_URL = "https://api.resend.com/emails"
 
     def __init__(self, sender_email=None, sender_name=None):
-        self.aws_access_key = os.getenv('AWS_ACCESS_KEY_ID')
-        self.aws_secret_key = os.getenv('AWS_SECRET_ACCESS_KEY')
-        self.aws_region = os.getenv('AWS_SES_REGION', 'us-east-1')
+        self.api_key = os.getenv('RESEND_API_KEY')
         self.sender_email = sender_email or 'apps@kaynel.pl'
         self.sender_name = sender_name or 'Ana'
-        self.delay_between_emails = 0.3  # Stay under rate limit (adjusted on connect)
-        self.client = None
+        self.delay_between_emails = 0.15  # Resend allows ~10/sec
+        self.connected = False
 
-        if not self.aws_access_key or not self.aws_secret_key:
-            raise ValueError("AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY must be set")
+        if not self.api_key:
+            raise ValueError("RESEND_API_KEY must be set")
 
     def connect(self):
-        """Create SES client and verify credentials work."""
+        """Verify Resend API key works."""
         try:
-            self.client = boto3.client(
-                'ses',
-                region_name=self.aws_region,
-                aws_access_key_id=self.aws_access_key,
-                aws_secret_access_key=self.aws_secret_key,
+            # Quick check: list domains
+            resp = requests.get(
+                "https://api.resend.com/domains",
+                headers={"Authorization": f"Bearer {self.api_key}"},
+                timeout=10,
             )
-            # Quick check: get send quota
-            quota = self.client.get_send_quota()
-            max_rate = quota.get('MaxSendRate', 1)
-            # Adjust delay to stay within rate limit (with 20% buffer)
-            self.delay_between_emails = max(0.1, 1.0 / max_rate * 1.2)
-            print(f"✅ Connected to SES as {self.sender_email} (rate: {max_rate}/sec)")
-            return True
-        except ClientError as e:
-            print(f"❌ SES auth failed: {e.response['Error']['Message']}")
-            return False
+            if resp.status_code == 200:
+                domains = resp.json().get('data', [])
+                domain_names = [d['name'] for d in domains] if domains else []
+                print(f"✅ Connected to Resend as {self.sender_email} (domains: {', '.join(domain_names) or 'none yet'})")
+                self.connected = True
+                return True
+            else:
+                print(f"❌ Resend auth failed: {resp.status_code} {resp.text[:200]}")
+                return False
         except Exception as e:
-            print(f"❌ SES connection failed: {e}")
+            print(f"❌ Resend connection failed: {e}")
             return False
 
     def disconnect(self):
-        """No-op — boto3 manages connections internally."""
-        self.client = None
+        """No-op — REST API, no persistent connection."""
+        self.connected = False
 
     def send_email(self, to_email, subject, html_body, from_name=None):
         """
-        Send a single HTML email via SES.
+        Send a single HTML email via Resend.
         Returns True on success, False on failure.
         """
-        if not self.client:
-            print("   ❌ SES client not connected. Call connect() first.")
+        if not self.connected:
+            print("   ❌ Not connected. Call connect() first.")
             return False
 
         sender = f"{from_name or self.sender_name} <{self.sender_email}>"
 
         try:
-            self.client.send_email(
-                Source=sender,
-                Destination={'ToAddresses': [to_email]},
-                Message={
-                    'Subject': {'Data': subject, 'Charset': 'UTF-8'},
-                    'Body': {
-                        'Html': {'Data': html_body, 'Charset': 'UTF-8'},
-                    },
+            resp = requests.post(
+                self.API_URL,
+                headers={
+                    "Authorization": f"Bearer {self.api_key}",
+                    "Content-Type": "application/json",
                 },
-                ReplyToAddresses=[self.sender_email],
+                json={
+                    "from": sender,
+                    "to": [to_email],
+                    "subject": subject,
+                    "html": html_body,
+                    "reply_to": self.sender_email,
+                },
+                timeout=15,
             )
-            return True
-        except ClientError as e:
-            error_code = e.response['Error']['Code']
-            error_msg = e.response['Error']['Message']
-            if error_code == 'Throttling':
-                print(f"   ⏳ SES throttled — backing off...")
+
+            if resp.status_code in (200, 201):
+                return True
+
+            # Rate limited — back off and retry once
+            if resp.status_code == 429:
+                print(f"   ⏳ Resend rate limited — backing off...")
                 time.sleep(2)
-                try:
-                    self.client.send_email(
-                        Source=sender,
-                        Destination={'ToAddresses': [to_email]},
-                        Message={
-                            'Subject': {'Data': subject, 'Charset': 'UTF-8'},
-                            'Body': {
-                                'Html': {'Data': html_body, 'Charset': 'UTF-8'},
-                            },
-                        },
-                        ReplyToAddresses=[self.sender_email],
-                    )
+                retry = requests.post(
+                    self.API_URL,
+                    headers={
+                        "Authorization": f"Bearer {self.api_key}",
+                        "Content-Type": "application/json",
+                    },
+                    json={
+                        "from": sender,
+                        "to": [to_email],
+                        "subject": subject,
+                        "html": html_body,
+                        "reply_to": self.sender_email,
+                    },
+                    timeout=15,
+                )
+                if retry.status_code in (200, 201):
                     return True
-                except Exception:
-                    pass
-            print(f"   ❌ SES error [{error_code}]: {error_msg[:150]}")
+
+            error_msg = resp.text[:200]
+            print(f"   ❌ Resend error [{resp.status_code}]: {error_msg}")
             return False
         except Exception as e:
-            print(f"   ❌ SES send error: {e}")
+            print(f"   ❌ Resend send error: {e}")
             return False
 
     def send_batch(self, emails, progress_callback=None):
