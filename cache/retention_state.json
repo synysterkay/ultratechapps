@@ -15986,9 +15986,9 @@
     },
     "anaskay.13@gmail.com": {
       "app": "Thesis Generator",
-      "emails_sent": 4,
+      "emails_sent": 5,
       "first_email_at": "2026-02-19T14:57:32.770464",
-      "last_email_sent": "2026-02-26T09:28:07.608235"
+      "last_email_sent": "2026-03-02T10:05:06.272791"
     },
     "cyfoundation4real@gmail.com": {
       "app": "Thesis Generator",
@@ -36489,6 +36489,10 @@
     "2026-03-01": {
       "sent": 230,
       "failed": 0
+    },
+    "2026-03-02": {
+      "sent": 1,
+      "failed": 499
     }
   }
 }
