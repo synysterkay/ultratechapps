@@ -1,5 +1,5 @@
 {
-  "active_sender_index": 2,
+  "active_sender_index": 3,
   "senders": {
     "apps@kaynel.pl": {
       "last_check": "2026-02-20T18:17:42.480136",
@@ -67,9 +67,9 @@
       ]
     },
     "apps@vitazelki.pl": {
-      "last_check": "2026-03-01T18:10:19.238471",
+      "last_check": "2026-03-02T23:49:00.719591",
       "status": "red",
-      "rotated_out_at": null,
+      "rotated_out_at": "2026-03-02T23:49:00.720369",
       "metrics_history": [
         {
           "date": "2026-02-21",
@@ -342,6 +342,23 @@
           "bounce_rate": 3.14,
           "spam_rate": 0.02,
           "delivery_rate": 96.41
+        },
+        {
+          "date": "2026-03-01",
+          "sent": 5039,
+          "delivered": 4858,
+          "opened": 541,
+          "clicked": 63,
+          "bounced": 158,
+          "hard_bounces": 3,
+          "soft_bounces": 155,
+          "spam_complaints": 1,
+          "blocked": 23,
+          "invalid": 0,
+          "open_rate": 10.74,
+          "bounce_rate": 3.14,
+          "spam_rate": 0.02,
+          "delivery_rate": 96.41
         }
       ]
     }
@@ -358,6 +375,12 @@
       "from": "hello@bestaiapps.site",
       "to": "apps@vitazelki.pl",
       "reason": "\ud83d\udea8 CRITICAL: Bounce rate 3.9% exceeds 3.0%; \u26a0\ufe0f WARNING: Open rate 9.2% is below average"
+    },
+    {
+      "date": "2026-03-02T23:49:00.720378",
+      "from": "apps@vitazelki.pl",
+      "to": "hello@aibettips.io",
+      "reason": "\ud83d\udea8 CRITICAL: Bounce rate 3.1% exceeds 3.0%; \u26a0\ufe0f WARNING: Open rate 10.7% is below average"
     }
   ]
 }
