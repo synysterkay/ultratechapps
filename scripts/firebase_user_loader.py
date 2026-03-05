@@ -58,6 +58,15 @@ FIREBASE_APPS = {
         'multilingual': True,
         'supported_languages': ['en', 'ar', 'es', 'fr'],
     },
+    'volume-booster-2f7bf': {
+        'name': 'Volume Booster - Sound Booster',
+        'export_file': 'volume_booster_fresh.json',
+        'description': 'Boost volume to max! Sound amplifier, bass booster & equalizer for louder audio',
+        'google_play_url': 'https://play.google.com/store/apps/details?id=com.volume.booster.free.pro',
+        'app_store_url': '',
+        'multilingual': True,
+        'supported_languages': ['en', 'es', 'fr', 'zh', 'hi', 'pt', 'ru'],
+    },
 }
 
 

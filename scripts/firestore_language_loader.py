@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
 Firestore Language Loader
-Fetches user language preferences from Firestore for Predictify.
+Fetches user language preferences from Firestore for multilingual apps.
 Uses Firebase Auth refresh token (FIREBASE_TOKEN) to get access token,
 then queries Firestore REST API for user documents with language field.
+Supports multiple Firebase projects (Predictify, Volume Booster, etc.)
 """
 import os
 import json
@@ -15,18 +16,37 @@ from pathlib import Path
 TOKEN_URL = 'https://securetoken.googleapis.com/v1/token'
 FIRESTORE_BASE = 'https://firestore.googleapis.com/v1'
 
-# Predictify project
-PROJECT_ID = 'predictify-3f30d'
-# Firebase Web API key for predictify (needed to exchange refresh token)
-# This is a public identifier, not a secret
-FIREBASE_API_KEY = os.getenv('PREDICTIFY_API_KEY', '')
+# Multilingual app projects
+MULTILINGUAL_PROJECTS = {
+    'Predictify': {
+        'project_id': 'predictify-3f30d',
+        'supported_languages': ['en', 'ar', 'es', 'fr'],
+        'cache_file': 'predictify_languages.json',
+    },
+    'Volume Booster - Sound Booster': {
+        'project_id': 'volume-booster-2f7bf',
+        'supported_languages': ['en', 'es', 'fr', 'zh', 'hi', 'pt', 'ru'],
+        'cache_file': 'volume_booster_languages.json',
+    },
+}
+
+# Language code normalization map
+LANGUAGE_NORMALIZE = {
+    'ar': 'ar', 'arabic': 'ar',
+    'es': 'es', 'spanish': 'es', 'español': 'es',
+    'fr': 'fr', 'french': 'fr', 'français': 'fr',
+    'zh': 'zh', 'chinese': 'zh', 'zh_cn': 'zh', 'zh_tw': 'zh',
+    'hi': 'hi', 'hindi': 'hi',
+    'pt': 'pt', 'portuguese': 'pt', 'pt_br': 'pt',
+    'ru': 'ru', 'russian': 'ru',
+    'en': 'en', 'english': 'en', 'en_us': 'en',
+}
 
 
 class FirestoreLanguageLoader:
     def __init__(self):
-        self.project_id = PROJECT_ID
-        self.cache_file = Path(__file__).parent.parent / 'firebase_exports' / 'predictify_languages.json'
-        self.cache_file.parent.mkdir(exist_ok=True)
+        self.cache_dir = Path(__file__).parent.parent / 'firebase_exports'
+        self.cache_dir.mkdir(exist_ok=True)
         self._access_token = None
 
     def _get_access_token(self):
@@ -60,23 +80,32 @@ class FirestoreLanguageLoader:
             print(f"   ❌ Token exchange error: {e}")
             return None
 
-    def fetch_user_languages(self):
+    def fetch_user_languages(self, app_name='Predictify'):
         """
         Fetch all Firestore user documents from 'users' collection.
         Returns: {email: language_code} mapping.
         Default language is 'en' if not set.
         """
+        project_config = MULTILINGUAL_PROJECTS.get(app_name)
+        if not project_config:
+            print(f"   ⚠️ No multilingual config for {app_name}")
+            return {}
+
+        project_id = project_config['project_id']
+        supported = project_config['supported_languages']
+        cache_file = self.cache_dir / project_config['cache_file']
+
         token = self._get_access_token()
         if not token:
-            return self._load_cache()
+            return self._load_cache(cache_file)
 
-        url = f"{FIRESTORE_BASE}/projects/{self.project_id}/databases/(default)/documents/users"
+        url = f"{FIRESTORE_BASE}/projects/{project_id}/databases/(default)/documents/users"
         headers = {'Authorization': f'Bearer {token}'}
 
         user_languages = {}
         page_token = None
 
-        print(f"   🔍 Fetching Predictify user languages from Firestore...")
+        print(f"   🔍 Fetching {app_name} user languages from Firestore ({project_id})...")
 
         while True:
             params = {'pageSize': 300}
@@ -102,16 +131,13 @@ class FirestoreLanguageLoader:
                     # Extract language (default 'en')
                     lang = 'en'
                     if 'language' in fields:
-                        lang = fields['language'].get('stringValue', 'en').lower().strip()
-                    
-                    # Normalize language codes
-                    if lang in ('ar', 'arabic'):
-                        lang = 'ar'
-                    elif lang in ('es', 'spanish', 'español'):
-                        lang = 'es'
-                    elif lang in ('fr', 'french', 'français'):
-                        lang = 'fr'
-                    else:
+                        raw_lang = fields['language'].get('stringValue', 'en').lower().strip()
+                        # Strip locale suffixes (e.g. en_US -> en)
+                        raw_lang = raw_lang.split('_')[0] if '_' in raw_lang and raw_lang not in LANGUAGE_NORMALIZE else raw_lang
+                        lang = LANGUAGE_NORMALIZE.get(raw_lang, 'en')
+
+                    # Only keep languages this app supports
+                    if lang not in supported:
                         lang = 'en'
 
                     if email:
@@ -126,22 +152,22 @@ class FirestoreLanguageLoader:
                 print(f"   ❌ Firestore fetch error: {e}")
                 break
 
-        print(f"   ✅ Got languages for {len(user_languages)} Predictify users")
+        print(f"   ✅ Got languages for {len(user_languages)} {app_name} users")
 
         # Cache locally
-        self._save_cache(user_languages)
+        self._save_cache(user_languages, cache_file)
         return user_languages
 
-    def _save_cache(self, user_languages):
+    def _save_cache(self, user_languages, cache_file):
         """Save language map to local cache file."""
-        with open(self.cache_file, 'w') as f:
+        with open(cache_file, 'w') as f:
             json.dump(user_languages, f, indent=2)
 
-    def _load_cache(self):
+    def _load_cache(self, cache_file):
         """Load cached language map if available."""
-        if self.cache_file.exists():
+        if cache_file.exists():
             try:
-                with open(self.cache_file, 'r') as f:
+                with open(cache_file, 'r') as f:
                     data = json.load(f)
                 print(f"   📦 Loaded cached languages for {len(data)} users")
                 return data
@@ -152,9 +178,11 @@ class FirestoreLanguageLoader:
 
 if __name__ == '__main__':
     loader = FirestoreLanguageLoader()
-    langs = loader.fetch_user_languages()
-    print(f"\nLanguage distribution:")
-    from collections import Counter
-    counts = Counter(langs.values())
-    for lang, count in counts.most_common():
-        print(f"   {lang}: {count} users")
+    for app_name in MULTILINGUAL_PROJECTS:
+        print(f"\n📱 {app_name}:")
+        langs = loader.fetch_user_languages(app_name)
+        print(f"Language distribution:")
+        from collections import Counter
+        counts = Counter(langs.values())
+        for lang, count in counts.most_common():
+            print(f"   {lang}: {count} users")

@@ -90,13 +90,17 @@ class AppRetentionEmailer:
         text_align = 'right' if is_rtl else 'left'
         
         # Localized greeting and sign-off
-        greetings = {'en': 'Hey there,', 'ar': 'مرحبًا،', 'es': 'Hola,', 'fr': 'Salut,'}
-        signoffs = {'en': 'Talk soon,', 'ar': 'إلى اللقاء،', 'es': 'Hasta pronto,', 'fr': 'À bientôt,'}
+        greetings = {'en': 'Hey there,', 'ar': 'مرحبًا،', 'es': 'Hola,', 'fr': 'Salut,', 'zh': '你好，', 'hi': 'नमस्ते,', 'pt': 'Olá,', 'ru': 'Привет,'}
+        signoffs = {'en': 'Talk soon,', 'ar': 'إلى اللقاء،', 'es': 'Hasta pronto,', 'fr': 'À bientôt,', 'zh': '回头聊，', 'hi': 'जल्द बात करते हैं,', 'pt': 'Até logo,', 'ru': 'До скорого,'}
         footers = {
             'en': f"You're receiving this because you signed up for {app_name}.",
             'ar': f"تتلقى هذا البريد لأنك سجلت في {app_name}.",
             'es': f"Recibes esto porque te registraste en {app_name}.",
             'fr': f"Vous recevez ceci car vous vous êtes inscrit(e) à {app_name}.",
+            'zh': f"您收到此邮件是因为您注册了 {app_name}。",
+            'hi': f"आपको यह ईमेल इसलिए मिल रहा है क्योंकि आपने {app_name} के लिए साइन अप किया है।",
+            'pt': f"Você está recebendo isso porque se registrou no {app_name}.",
+            'ru': f"Вы получили это письмо, потому что зарегистрировались в {app_name}.",
         }
         
         greeting = greetings.get(language, greetings['en'])
@@ -187,6 +191,7 @@ class AppRetentionEmailer:
     # Priority order: first = highest priority for daily cap allocation.
     ACTIVE_APPS = [
         'Predictify',
+        'Volume Booster - Sound Booster',
         'Thesis Generator',
         'Red Flag Scanner AI',
         'Fresh Start: Breakup Therapy',
@@ -258,15 +263,15 @@ class AppRetentionEmailer:
             else:
                 emails_sent = user_state.get('emails_sent', 0)
                 
-                # Already completed all 20 emails
-                if emails_sent >= 20:
+                # Already completed all 30 emails
+                if emails_sent >= 30:
                     continue
                 
                 # Check timing — import the sequence schedule
                 from retention_email_generator import EMAIL_SEQUENCE
                 next_email_num = emails_sent + 1
                 
-                if next_email_num > 20:
+                if next_email_num > 30:
                     continue
                 
                 target_day = EMAIL_SEQUENCE[next_email_num - 1]['day']
@@ -308,13 +313,19 @@ class AppRetentionEmailer:
         total_users = sum(len(u) for u in users_by_app.values())
         print(f"   Total: {total_users} users across {len(users_by_app)} apps")
         
-        # 1b. Load language preferences for Predictify users from Firestore
-        if 'Predictify' in users_by_app:
-            print("\n🌍 Loading Predictify user languages from Firestore...")
-            self.user_languages = self.language_loader.fetch_user_languages()
-            # Enrich Predictify users with language
-            for user in users_by_app.get('Predictify', []):
-                user['language'] = self.user_languages.get(user['email'], 'en')
+        # 1b. Load language preferences for multilingual apps from Firestore
+        multilingual_apps = {
+            'Predictify': 'Predictify',
+            'Volume Booster - Sound Booster': 'Volume Booster - Sound Booster',
+        }
+        for app_name, loader_key in multilingual_apps.items():
+            if app_name in users_by_app:
+                print(f"\n🌍 Loading {app_name} user languages from Firestore...")
+                app_languages = self.language_loader.fetch_user_languages(loader_key)
+                self.user_languages.update(app_languages)
+                # Enrich users with language
+                for user in users_by_app.get(app_name, []):
+                    user['language'] = self.user_languages.get(user['email'], 'en')
         
         # 1c. Check sender health & auto-rotate if needed
         print("\n🏥 Checking sender health...")
@@ -461,11 +472,11 @@ class AppRetentionEmailer:
         
         # Analyze state
         tracked = len(self.state.get('users', {}))
-        completed = sum(1 for u in self.state.get('users', {}).values() if u.get('emails_sent', 0) >= 20)
+        completed = sum(1 for u in self.state.get('users', {}).values() if u.get('emails_sent', 0) >= 30)
         
         print(f"\n📱 Total app users: {total_users}")
         print(f"📧 Users in email system: {tracked}")
-        print(f"✅ Completed all 20 emails: {completed}")
+        print(f"✅ Completed all 30 emails: {completed}")
         print(f"⏳ Still in sequence: {tracked - completed}")
         print(f"🆕 Not yet started: {total_users - tracked}")
         

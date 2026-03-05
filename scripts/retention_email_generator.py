@@ -163,6 +163,78 @@ EMAIL_SEQUENCE = [
         "psychology": "Completion + identity shift + next chapter",
         "angle": "You're not a new user anymore - here's what comes next",
     },
+    # ── PHASE 4: RE-ENGAGEMENT & GROWTH (Week 8-10, 10 emails) ─
+    # Goal: Prevent churn, drive referrals, deepen loyalty
+    {
+        "day": 48,
+        "type": "comeback_trigger",
+        "goal": "Pull back users who may be losing interest",
+        "psychology": "Loss aversion + curiosity + novelty",
+        "angle": "Something changed in the app since you last opened it",
+    },
+    {
+        "day": 50,
+        "type": "power_user_shortcut",
+        "goal": "Reveal a hidden shortcut or workflow hack",
+        "psychology": "Insider knowledge + efficiency + mastery",
+        "angle": "The shortcut that power users use but nobody talks about",
+    },
+    {
+        "day": 53,
+        "type": "comparison_reality",
+        "goal": "Show what life looks like with vs without the app",
+        "psychology": "Contrast effect + pain amplification + relief",
+        "angle": "Before this app vs after - the difference is embarrassing",
+    },
+    {
+        "day": 55,
+        "type": "user_spotlight",
+        "goal": "Feature a real user story that builds community",
+        "psychology": "Social proof + belonging + aspiration",
+        "angle": "This user's story made our entire team stop and read",
+    },
+    {
+        "day": 58,
+        "type": "unexpected_use_case",
+        "goal": "Show a creative way to use the app they never considered",
+        "psychology": "Surprise + curiosity + expanded value perception",
+        "angle": "I never expected anyone to use the app THIS way",
+    },
+    {
+        "day": 60,
+        "type": "referral_trigger",
+        "goal": "Get them to share the app with someone specific",
+        "psychology": "Altruism + social currency + reciprocity",
+        "angle": "One person in your life needs this app - you know who",
+    },
+    {
+        "day": 63,
+        "type": "data_insight",
+        "goal": "Share a fascinating data point from app usage",
+        "psychology": "Authority + specificity + curiosity",
+        "angle": "We analyzed 10,000 users and found something shocking",
+    },
+    {
+        "day": 65,
+        "type": "seasonal_relevance",
+        "goal": "Connect the app to something happening right now",
+        "psychology": "Timeliness + urgency + relevance",
+        "angle": "Right now is the perfect time to use this one feature",
+    },
+    {
+        "day": 68,
+        "type": "gratitude_exclusive",
+        "goal": "Thank them and offer exclusive insider access",
+        "psychology": "Reciprocity + exclusivity + appreciation",
+        "angle": "A personal thank you and something only long-term users get",
+    },
+    {
+        "day": 70,
+        "type": "legacy_mission",
+        "goal": "Make them feel part of the app's mission and future",
+        "psychology": "Purpose + identity + long-term commitment",
+        "angle": "You're not just a user anymore - you're part of something bigger",
+    },
 ]
 
 # App-specific context for much better emails
@@ -242,6 +314,26 @@ APP_CONTEXT = {
         "emotional_hooks": ["longer life for your best friend", "the guilt of overfeeding", "seeing them struggle to play", "doing right by them"],
         "tone": "Like a caring dog-parent friend who figured out the nutrition puzzle",
     },
+    "Volume Booster - Sound Booster": {
+        "target_audience": "Music lovers, podcast listeners, and anyone frustrated with low device volume",
+        "core_pain": "Phone speakers too quiet, can't hear audio in noisy environments, poor sound quality, no bass, music sounds flat",
+        "killer_features": [
+            "Boost device volume beyond system maximum with one tap",
+            "Built-in equalizer with genre-optimized presets (Pop, Rock, Jazz, Electronic, Classical)",
+            "Bass booster for deep, rich low-end sound",
+            "Loudness enhancer that amplifies all audio system-wide",
+            "Works with any media app - Spotify, YouTube, Netflix, podcasts",
+            "Premium unlocks unlimited boost levels + advanced EQ controls",
+        ],
+        "social_proof": "Thousands of users boosting their audio daily, avg volume increase 200%",
+        "emotional_hooks": ["finally hear your music properly", "never miss a word in your podcast", "feel the bass like a concert", "your phone sounds like a new device"],
+        "tone": "Like a music-obsessed audiophile friend who just discovered a secret hack",
+        "subscription": {
+            "weekly": "Weekly subscription",
+            "monthly": "Monthly subscription",
+            "cta": "Go Premium",
+        },
+    },
     "Predictify": {
         "target_audience": "Soccer/football fans who want smarter predictions and data-driven insights",
         "core_pain": "Bad predictions, unreliable tips, missing value bets, no data to back up gut feelings",
@@ -293,7 +385,7 @@ class RetentionEmailGenerator:
             return None
         
         # Language instructions
-        lang_names = {'en': 'English', 'ar': 'Arabic', 'es': 'Spanish', 'fr': 'French'}
+        lang_names = {'en': 'English', 'ar': 'Arabic', 'es': 'Spanish', 'fr': 'French', 'zh': 'Chinese', 'hi': 'Hindi', 'pt': 'Portuguese', 'ru': 'Russian'}
         lang_name = lang_names.get(language, 'English')
         
         lang_instruction = ''
@@ -486,8 +578,8 @@ Generate the email now. Make it impossible to ignore."""
         Returns cached version if exists, otherwise generates and caches.
         Retries up to max_retries times on failure.
         """
-        if email_number < 1 or email_number > 20:
-            print(f"   ❌ Invalid email number: {email_number} (must be 1-20)")
+        if email_number < 1 or email_number > 30:
+            print(f"   ❌ Invalid email number: {email_number} (must be 1-30)")
             return None
         
         cache_path = self._get_cache_path(app_name, email_number, language)
@@ -536,13 +628,15 @@ Generate the email now. Make it impossible to ignore."""
                 app_languages = languages
             elif app_name == 'Predictify':
                 app_languages = ['en', 'ar', 'es', 'fr']
+            elif app_name == 'Volume Booster - Sound Booster':
+                app_languages = ['en', 'es', 'fr', 'zh', 'hi', 'pt', 'ru']
             else:
                 app_languages = ['en']
             
             for lang in app_languages:
                 lang_label = f" ({lang})" if lang != 'en' or len(app_languages) > 1 else ''
                 print(f"\n📱 {app_name}{lang_label}:")
-                for email_num in range(1, 21):
+                for email_num in range(1, 31):
                     total += 1
                     cache_path = self._get_cache_path(app_name, email_num, lang)
                     
