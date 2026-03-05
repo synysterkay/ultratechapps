@@ -2,7 +2,7 @@
   "name": "welcome-email-function",
   "description": "Sends instant welcome email when a new user signs up",
   "engines": {
-    "node": "18"
+    "node": "20"
   },
   "main": "index.js",
   "dependencies": {

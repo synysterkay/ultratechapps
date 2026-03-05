@@ -57,3 +57,5 @@ Thumbs.db
 # Generated content (for review before commit)
 pending_review/
 .env.mailgun
+firebase-welcome/functions/node_modules/
+firebase-welcome/functions/package-lock.json
