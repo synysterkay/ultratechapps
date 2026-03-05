@@ -246,12 +246,13 @@ class AppRetentionEmailer:
                 continue
             
             if user_state is None:
-                # New user — send email #1
+                # New user — Cloud Function sends email #1 on signup,
+                # so the scheduled emailer starts at email #2.
                 eligible.append({
                     'email': email,
                     'app_name': app_name,
                     'app_info': app_info,
-                    'next_email': 1,
+                    'next_email': 2,
                     'language': user.get('language', 'en'),
                 })
             else:
