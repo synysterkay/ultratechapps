@@ -251,16 +251,27 @@ class AppRetentionEmailer:
                 continue
             
             if user_state is None:
-                # New user — Cloud Function sends email #1 on signup,
-                # so the scheduled emailer starts at email #2.
-                eligible.append({
-                    'email': email,
-                    'app_name': app_name,
-                    'app_info': app_info,
-                    'next_email': 2,
-                    'language': user.get('language', 'en'),
-                })
-            else:
+                # New user — Cloud Function already sent email #1 on signup.
+                # Register them in state with email #1 as "sent" using their
+                # Firebase signup timestamp, so the normal timing logic waits
+                # the proper 2-day gap before sending email #2.
+                created_at = user.get('created_at', '')
+                if created_at and created_at.isdigit():
+                    # Firebase createdAt is milliseconds since epoch
+                    signup_time = datetime.fromtimestamp(int(created_at) / 1000).isoformat()
+                else:
+                    signup_time = now.isoformat()
+                
+                self.state['users'][email] = {
+                    'app': app_name,
+                    'emails_sent': 1,
+                    'first_email_at': signup_time,
+                    'last_email_sent': signup_time,
+                }
+                # Now fall through to the normal timing check below
+                user_state = self.state['users'][email]
+            
+            if user_state:
                 emails_sent = user_state.get('emails_sent', 0)
                 
                 # Already completed all 30 emails
@@ -338,9 +349,10 @@ class AppRetentionEmailer:
         self.deliverability.clean_bad_recipients(self.state)
         self._save_state()
         
-        # 2. Find eligible users
+        # 2. Find eligible users (also registers new users into state)
         print("\n🎯 Finding eligible users...")
         eligible = self._get_eligible_users(users_by_app)
+        self._save_state()  # Persist newly registered users
         
         if not eligible:
             print("   ✅ No users eligible right now. All caught up!")
