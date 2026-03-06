@@ -251,24 +251,13 @@ class AppRetentionEmailer:
                 continue
             
             if user_state is None:
-                # New user — Cloud Function already sent email #1 on signup.
-                # Register them in state with email #1 as "sent" using their
-                # Firebase signup timestamp, so the normal timing logic waits
-                # the proper 2-day gap before sending email #2.
-                created_at = user.get('created_at', '')
-                if created_at and created_at.isdigit():
-                    # Firebase createdAt is milliseconds since epoch
-                    signup_time = datetime.fromtimestamp(int(created_at) / 1000).isoformat()
-                else:
-                    signup_time = now.isoformat()
-                
+                # New user from Firebase — send them email #1 (welcome) now.
+                # Register in state with emails_sent=0 so they're eligible for #1.
                 self.state['users'][email] = {
                     'app': app_name,
-                    'emails_sent': 1,
-                    'first_email_at': signup_time,
-                    'last_email_sent': signup_time,
+                    'emails_sent': 0,
+                    'first_email_at': now.isoformat(),
                 }
-                # Now fall through to the normal timing check below
                 user_state = self.state['users'][email]
             
             if user_state:
@@ -283,6 +272,17 @@ class AppRetentionEmailer:
                 next_email_num = emails_sent + 1
                 
                 if next_email_num > 30:
+                    continue
+                
+                # Email #1 (welcome): send immediately, no waiting
+                if emails_sent == 0:
+                    eligible.append({
+                        'email': email,
+                        'app_name': app_name,
+                        'app_info': app_info,
+                        'next_email': 1,
+                        'language': user.get('language', 'en'),
+                    })
                     continue
                 
                 target_day = EMAIL_SEQUENCE[next_email_num - 1]['day']
