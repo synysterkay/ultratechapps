@@ -307,7 +307,10 @@ class AppRetentionEmailer:
         print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M')}")
         print("=" * 60)
         
-        # 1. Load users from Firebase exports
+        # 1. Auto-refresh Firebase exports to pick up new signups
+        print("\n🔄 Refreshing Firebase user exports...")
+        self.firebase_loader.refresh_exports()
+        
         print("\n📱 Loading Firebase users...")
         users_by_app = self.firebase_loader.load_users_by_app()
         total_users = sum(len(u) for u in users_by_app.values())
@@ -357,8 +360,8 @@ class AppRetentionEmailer:
             print("\n🏁 DRY RUN - no emails sent")
             return
         
-        # 3. Pre-generate needed emails
-        print("\n📝 Preparing email content...")
+        # 3. Load pre-generated emails from cache (never call DeepSeek API during campaigns)
+        print("\n📝 Loading email content from cache...")
         needed_emails = set()
         for e in eligible:
             lang = e.get('language', 'en')
@@ -366,13 +369,13 @@ class AppRetentionEmailer:
         
         email_content = {}
         for app_name, email_num, lang in needed_emails:
-            email_data = self.email_generator.get_email(app_name, email_num, language=lang)
+            email_data = self.email_generator.get_email(app_name, email_num, language=lang, cache_only=True)
             if email_data:
                 email_content[(app_name, email_num, lang)] = email_data
                 lang_label = f" ({lang})" if lang != 'en' else ''
                 print(f"   ✅ {app_name} #{email_num}{lang_label}: {email_data['subject'][:50]}...")
             else:
-                print(f"   ❌ Failed: {app_name} #{email_num} ({lang})")
+                print(f"   ❌ Not cached: {app_name} #{email_num} ({lang}) — run --generate first")
         
         # 4. Send emails via Resend (using active sender from health check)
         print(f"\n📧 Sending {len(eligible)} emails via Resend...")

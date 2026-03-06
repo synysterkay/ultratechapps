@@ -363,9 +363,6 @@ class RetentionEmailGenerator:
         self.api_url = 'https://api.deepseek.com/v1/chat/completions'
         self.cache_dir = Path(__file__).parent.parent / 'cache' / 'retention_emails'
         self.cache_dir.mkdir(parents=True, exist_ok=True)
-        
-        if not self.api_key:
-            raise ValueError("DEEPSEEK_API_KEY not found in environment")
     
     def _get_cache_path(self, app_name, email_number, language='en'):
         """Get cache file path for a specific app's email number and language"""
@@ -376,6 +373,9 @@ class RetentionEmailGenerator:
     
     def _generate_email(self, app_name, email_number, language='en'):
         """Generate a single retention email using DeepSeek"""
+        
+        if not self.api_key:
+            raise ValueError("DEEPSEEK_API_KEY not found in environment")
         
         sequence = EMAIL_SEQUENCE[email_number - 1]  # 1-indexed
         context = APP_CONTEXT.get(app_name, {})
@@ -572,10 +572,11 @@ Generate the email now. Make it impossible to ignore."""
             result.append(ch)
         return ''.join(result)
     
-    def get_email(self, app_name, email_number, max_retries=3, language='en'):
+    def get_email(self, app_name, email_number, max_retries=3, language='en', cache_only=False):
         """
-        Get email for app at position email_number (1-20).
+        Get email for app at position email_number (1-30).
         Returns cached version if exists, otherwise generates and caches.
+        If cache_only=True, returns None instead of calling DeepSeek API.
         Retries up to max_retries times on failure.
         """
         if email_number < 1 or email_number > 30:
@@ -588,6 +589,11 @@ Generate the email now. Make it impossible to ignore."""
         if cache_path.exists():
             with open(cache_path, 'r') as f:
                 return json.load(f)
+        
+        # Cache-only mode: don't call DeepSeek API
+        if cache_only:
+            print(f"   ⚠️ Email #{email_number} ({language}) not cached for {app_name}, skipping (cache-only mode)")
+            return None
         
         # Generate and cache (with retries)
         for attempt in range(1, max_retries + 1):
