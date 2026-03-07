@@ -9,42 +9,49 @@ import { createClient } from "jsr:@supabase/supabase-js@2";
 // ── Firebase projects → app_id mapping ──────────────────────
 const FIREBASE_PROJECTS: Record<
   string,
-  { appId: string; multilingual: boolean; defaultLang: string }
+  { appId: string; multilingual: boolean; defaultLang: string; supportedLanguages: string[] }
 > = {
   "thesis-generator-web": {
     appId: "thesis_generator",
     multilingual: false,
     defaultLang: "en",
+    supportedLanguages: ["en"],
   },
   redflagscanner: {
     appId: "redflag_scanner",
     multilingual: false,
     defaultLang: "en",
+    supportedLanguages: ["en"],
   },
   "breakuptherapy-e7dc0": {
     appId: "fresh_start",
     multilingual: false,
     defaultLang: "en",
+    supportedLanguages: ["en"],
   },
   "soulplan-dateplanner": {
     appId: "soulplan",
     multilingual: false,
     defaultLang: "en",
+    supportedLanguages: ["en"],
   },
   petmealai: {
     appId: "pupshape",
     multilingual: false,
     defaultLang: "en",
+    supportedLanguages: ["en"],
   },
   "predictify-3f30d": {
     appId: "predictify",
     multilingual: true,
     defaultLang: "en",
+    supportedLanguages: ["en", "ar", "es", "fr"],
   },
   "volume-booster-2f7bf": {
     appId: "volume_booster",
     multilingual: true,
     defaultLang: "en",
+    supportedLanguages: ["en", "es", "fr", "zh", "hi", "pt", "ru"],
   },
 };
 
@@ -79,7 +86,6 @@ interface FirebaseUser {
   localId: string;
   email?: string;
   createdAt: string;
-  customAttributes?: string;
 }
 
 async function listFirebaseUsers(
@@ -119,21 +125,67 @@ async function listFirebaseUsers(
   return allUsers;
 }
 
-// ── Detect language from Firebase user custom attributes ────
-function detectLanguage(user: FirebaseUser, defaultLang: string): string {
-  if (user.customAttributes) {
-    try {
-      const attrs = JSON.parse(user.customAttributes);
-      if (attrs.language) {
-        // Normalize: "en_US" → "en", "zh-Hans" → "zh"
-        const lang = attrs.language.split(/[_-]/)[0].toLowerCase();
-        return lang;
-      }
-    } catch {
-      // ignore parse errors
+// ── Language normalization map ──────────────────────────────
+const LANG_NORMALIZE: Record<string, string> = {
+  ar: "ar", arabic: "ar",
+  es: "es", spanish: "es",
+  fr: "fr", french: "fr",
+  zh: "zh", chinese: "zh", zh_cn: "zh", zh_tw: "zh",
+  hi: "hi", hindi: "hi",
+  pt: "pt", portuguese: "pt", pt_br: "pt",
+  ru: "ru", russian: "ru",
+  en: "en", english: "en", en_us: "en",
+};
+
+// ── Fetch user languages from Firestore for a project ───────
+async function fetchFirestoreLanguages(
+  projectId: string,
+  accessToken: string,
+  supportedLanguages: string[]
+): Promise<Map<string, string>> {
+  const emailToLang = new Map<string, string>();
+  const baseUrl = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/users`;
+  let pageToken: string | undefined;
+
+  do {
+    const url = new URL(baseUrl);
+    url.searchParams.set("pageSize", "300");
+    if (pageToken) url.searchParams.set("pageToken", pageToken);
+
+    const res = await fetch(url.toString(), {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+
+    if (!res.ok) {
+      console.error(`Firestore fetch failed for ${projectId}: ${res.status}`);
+      break;
     }
-  }
-  return defaultLang;
+
+    const data = await res.json();
+    const docs = data.documents || [];
+
+    for (const doc of docs) {
+      const fields = doc.fields || {};
+      const email = fields.email?.stringValue?.toLowerCase().trim();
+      if (!email) continue;
+
+      let lang = "en";
+      const rawLang = fields.language?.stringValue?.toLowerCase().trim();
+      if (rawLang) {
+        // Normalize: strip locale suffixes like en_US, zh-Hans
+        const base = rawLang.split(/[_-]/)[0];
+        lang = LANG_NORMALIZE[base] || LANG_NORMALIZE[rawLang] || "en";
+      }
+
+      // Only keep languages this app actually supports
+      if (!supportedLanguages.includes(lang)) lang = "en";
+      emailToLang.set(email, lang);
+    }
+
+    pageToken = data.nextPageToken;
+  } while (pageToken);
+
+  return emailToLang;
 }
 
 // ── Main handler ────────────────────────────────────────────
@@ -199,7 +251,26 @@ Deno.serve(async (req) => {
 
     results.push(`📊 ${welcomedSet.size} users already welcomed`);
 
-    // 3. Check each Firebase project
+    // 3. Prefetch Firestore languages for multilingual projects
+    const languageMaps = new Map<string, Map<string, string>>();
+    for (const [projectId, config] of Object.entries(FIREBASE_PROJECTS)) {
+      if (config.multilingual) {
+        try {
+          const langMap = await fetchFirestoreLanguages(
+            projectId,
+            accessToken,
+            config.supportedLanguages
+          );
+          languageMaps.set(projectId, langMap);
+          results.push(`🌍 ${config.appId}: ${langMap.size} user languages loaded from Firestore`);
+        } catch (err) {
+          console.error(`Firestore language fetch failed for ${projectId}: ${err}`);
+          results.push(`⚠️ ${config.appId}: language fetch failed, defaulting to en`);
+        }
+      }
+    }
+
+    // 4. Check each Firebase project
     let totalNew = 0;
     let totalSent = 0;
     let totalSkipped = 0;
@@ -233,9 +304,14 @@ Deno.serve(async (req) => {
             await new Promise((r) => setTimeout(r, 600));
           }
 
-          const language = config.multilingual
-            ? detectLanguage(user, config.defaultLang)
-            : config.defaultLang;
+          // Look up language from Firestore for multilingual apps
+          let language = config.defaultLang;
+          if (config.multilingual) {
+            const langMap = languageMaps.get(projectId);
+            if (langMap) {
+              language = langMap.get(email) || config.defaultLang;
+            }
+          }
 
           // Send welcome email via the welcome-email function
           try {
