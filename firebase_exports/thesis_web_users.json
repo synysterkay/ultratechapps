@@ -26088,6 +26088,24 @@
   ]
 },
 {
+  "localId": "TRhAI1lpXQSGvDQm2nJ8X5yxUez2",
+  "email": "iurascuandrei345@gmail.com",
+  "emailVerified": true,
+  "displayName": "Iurascu Andrei",
+  "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKUfF5pTVDp7O0JEBr5Smv4ERmFeD6Uk3-MoGq1KLz3ITWHaQ=s96-c",
+  "lastSignedInAt": "1772823543240",
+  "createdAt": "1772823543239",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "117363438101745885065",
+      "email": "iurascuandrei345@gmail.com",
+      "displayName": "Iurascu Andrei",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKUfF5pTVDp7O0JEBr5Smv4ERmFeD6Uk3-MoGq1KLz3ITWHaQ=s96-c"
+    }
+  ]
+},
+{
   "localId": "TUC1JP4vzcR6KYyw5zopMpDl50h1",
   "email": "javierfgarci@gmail.com",
   "emailVerified": true,
@@ -36876,6 +36894,24 @@
   "lastSignedInAt": "1769633163093",
   "createdAt": "1769633163093",
   "providerUserInfo": []
+},
+{
+  "localId": "g5BwCQgRhVTqWiasI4WVhyJmr2D3",
+  "email": "roscy000016957@educem.mx",
+  "emailVerified": true,
+  "displayName": "RODRIGUEZ SOTO CRISTINA",
+  "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocLSuZ2isSbttdVkPWlmrwRe-xUQOHC5dlWcuHIJ2f8pJ5h7P42u=s96-c",
+  "lastSignedInAt": "1772835794627",
+  "createdAt": "1772835794626",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "112043665721743705265",
+      "email": "roscy000016957@educem.mx",
+      "displayName": "RODRIGUEZ SOTO CRISTINA",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocLSuZ2isSbttdVkPWlmrwRe-xUQOHC5dlWcuHIJ2f8pJ5h7P42u=s96-c"
+    }
+  ]
 },
 {
   "localId": "g87EVt3iFJbp6IxvIf4y6RfNlgR2",
@@ -48284,6 +48320,16 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocLxToy5PbSpHqRFeFg_nuAwQeN_vI3m8lLsuAqaTv0KUeC5m5U=s96-c"
     }
   ]
+},
+{
+  "localId": "sMqQTH0U4ngj4cPGj8L9KOOtqkH2",
+  "email": "omercanayten@gmail.com",
+  "emailVerified": false,
+  "passwordHash": "Gh+jevsQAZReTS3QmdSH2jMWlQdd485e0T1vpniZYCgstRN2kExjYyKhj8EeQsuMyj0Nm5MViF/JpB/3ayrS6g==",
+  "salt": "jvuoCfVIXJooJA==",
+  "lastSignedInAt": "1772826299725",
+  "createdAt": "1772826299725",
+  "providerUserInfo": []
 },
 {
   "localId": "sNWkwkwrGzamGXrVtZXbFAEZVOl2",

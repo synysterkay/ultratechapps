@@ -2,7 +2,7 @@
 // Sends instant welcome email #1 when a new user signs up.
 // Called by mobile apps via POST with { email, app_id, language? }
 //
-// Endpoint: POST https://ldxqwbkizlbanzzfvcxd.supabase.co/functions/v1/welcome-email
+// Endpoint: POST https://jimcdgkwbbrxgakingtg.supabase.co/functions/v1/welcome-email
 // Headers:  Authorization: Bearer <SUPABASE_ANON_KEY>
 //           Content-Type: application/json
 

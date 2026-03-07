@@ -54,6 +54,17 @@ logs/
 .DS_Store
 Thumbs.db
 
+# Scripts with hardcoded secrets (local utility only)
+check_brevo_stats.py
+check_ses_account.py
+check_ses_status.py
+request_ses_production.py
+send_ses_test.py
+setup_ses_domains.py
+seed_welcomed_users.py
+test_volume_booster.py
+config/supabase_config.json
+
 # Generated content (for review before commit)
 pending_review/
 .env.mailgun
