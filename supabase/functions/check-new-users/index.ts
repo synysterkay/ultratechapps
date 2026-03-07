@@ -51,7 +51,7 @@ const FIREBASE_PROJECTS: Record<
     appId: "volume_booster",
     multilingual: true,
     defaultLang: "en",
-    supportedLanguages: ["en", "es", "fr", "zh", "hi", "pt", "ru"],
+    supportedLanguages: ["en", "ar", "es", "fr", "zh", "hi", "pt", "ru"],
   },
 };
 

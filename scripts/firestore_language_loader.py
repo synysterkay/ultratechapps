@@ -25,7 +25,7 @@ MULTILINGUAL_PROJECTS = {
     },
     'Volume Booster - Sound Booster': {
         'project_id': 'volume-booster-2f7bf',
-        'supported_languages': ['en', 'es', 'fr', 'zh', 'hi', 'pt', 'ru'],
+        'supported_languages': ['en', 'ar', 'es', 'fr', 'zh', 'hi', 'pt', 'ru'],
         'cache_file': 'volume_booster_languages.json',
     },
 }

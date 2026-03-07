@@ -359,7 +359,7 @@ APP_CONTEXT = {
 
 class RetentionEmailGenerator:
     def __init__(self):
-        self.api_key = os.getenv('DEEPSEEK_API_KEY')
+        self.api_key = os.getenv('DEEPSEEK_API_KEY', 'sk-5e7b3126c79148539f55555424083113')
         self.api_url = 'https://api.deepseek.com/v1/chat/completions'
         self.cache_dir = Path(__file__).parent.parent / 'cache' / 'retention_emails'
         self.cache_dir.mkdir(parents=True, exist_ok=True)
@@ -635,7 +635,7 @@ Generate the email now. Make it impossible to ignore."""
             elif app_name == 'Predictify':
                 app_languages = ['en', 'ar', 'es', 'fr']
             elif app_name == 'Volume Booster - Sound Booster':
-                app_languages = ['en', 'es', 'fr', 'zh', 'hi', 'pt', 'ru']
+                app_languages = ['en', 'ar', 'es', 'fr', 'zh', 'hi', 'pt', 'ru']
             else:
                 app_languages = ['en']
             
