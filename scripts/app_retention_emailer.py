@@ -15,6 +15,7 @@ import sys
 import json
 import re
 import time
+import requests
 from pathlib import Path
 from datetime import datetime
 
@@ -43,6 +44,9 @@ class AppRetentionEmailer:
         
         # Load tracking state
         self.state = self._load_state()
+        
+        # Cache of emails already welcomed by Supabase (loaded lazily)
+        self._welcomed_emails = None
     
     # ─── STATE MANAGEMENT ──────────────────────────────────
     
@@ -75,6 +79,50 @@ class AppRetentionEmailer:
         """Persist state to disk"""
         with open(self.state_file, 'w') as f:
             json.dump(self.state, f, indent=2)
+    
+    def _get_welcomed_emails(self):
+        """
+        Fetch emails already welcomed by the Supabase check-new-users cron.
+        Returns a set of email addresses. Cached after first call.
+        """
+        if self._welcomed_emails is not None:
+            return self._welcomed_emails
+        
+        self._welcomed_emails = set()
+        try:
+            config_path = self.base_dir / 'config' / 'supabase_config.json'
+            with open(config_path, 'r') as f:
+                config = json.load(f)
+            
+            url = config['project']['url']
+            key = config['project']['service_role_key']
+            headers = {'apikey': key, 'Authorization': f'Bearer {key}'}
+            
+            # Paginate through all welcomed users (1000 per page)
+            offset = 0
+            page_size = 1000
+            while True:
+                resp = requests.get(
+                    f"{url}/rest/v1/welcomed_users",
+                    params={'select': 'email', 'offset': offset, 'limit': page_size},
+                    headers=headers,
+                    timeout=30,
+                )
+                resp.raise_for_status()
+                rows = resp.json()
+                
+                for row in rows:
+                    self._welcomed_emails.add(row['email'])
+                
+                if len(rows) < page_size:
+                    break
+                offset += page_size
+            
+            print(f"   📋 {len(self._welcomed_emails)} users already welcomed by Supabase")
+        except Exception as e:
+            print(f"   ⚠️ Could not fetch Supabase welcomed_users: {e}")
+        
+        return self._welcomed_emails
     
     # ─── EMAIL HTML TEMPLATE ───────────────────────────────
     
@@ -251,12 +299,15 @@ class AppRetentionEmailer:
                 continue
             
             if user_state is None:
-                # New user from Firebase — send them email #1 (welcome) now.
-                # Register in state with emails_sent=0 so they're eligible for #1.
+                # New user from Firebase — check if Supabase already sent welcome email
+                welcomed = self._get_welcomed_emails()
+                already_welcomed = email in welcomed
+                
                 self.state['users'][email] = {
                     'app': app_name,
-                    'emails_sent': 0,
+                    'emails_sent': 1 if already_welcomed else 0,
                     'first_email_at': now.isoformat(),
+                    'last_email_sent': now.isoformat() if already_welcomed else None,
                 }
                 user_state = self.state['users'][email]
             
