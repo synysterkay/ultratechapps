@@ -1514,6 +1514,16 @@
   "providerUserInfo": []
 },
 {
+  "localId": "SI1MwTzxkGfx8x90NqBAqduzSF72",
+  "email": "opsgiovi@icloud.com",
+  "emailVerified": false,
+  "passwordHash": "L3w/gtjARICXrUoF4GlPg7Mhke7rQQ4MESwSF0k/gArvPjbYpz+4zlsIEE1Bb8sHIKIolKTlYxvLtTzTgfALSg==",
+  "salt": "MJJCqctWfDH4+g==",
+  "lastSignedInAt": "1772890870019",
+  "createdAt": "1772890870019",
+  "providerUserInfo": []
+},
+{
   "localId": "T8YMtvcPTnXUsgpd1gq9pFg2OvB2",
   "email": "riversanders353@gmail.com",
   "emailVerified": true,
