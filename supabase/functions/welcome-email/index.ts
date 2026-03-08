@@ -449,6 +449,20 @@ Deno.serve(async (req: Request) => {
 
     if (!resendRes.ok) {
       console.error(`Resend error [${resendRes.status}]:`, resendData);
+
+      // Detect hard bounce (invalid/non-existent address)
+      const errStr = JSON.stringify(resendData).toLowerCase();
+      const bounceIndicators = ['not found', 'does not exist', 'invalid', 'rejected', 'bounce', 'undeliverable', 'mailbox', 'unknown user'];
+      const isBounce = (resendRes.status === 400 || resendRes.status === 422) && bounceIndicators.some(b => errStr.includes(b));
+
+      if (isBounce) {
+        console.log(`BOUNCED: ${email} — removing from system`);
+        return new Response(
+          JSON.stringify({ error: "Bounced", bounced: true, details: resendData }),
+          { status: 400, headers: { "Content-Type": "application/json" } }
+        );
+      }
+
       return new Response(
         JSON.stringify({ error: "Failed to send email", details: resendData }),
         { status: 500, headers: { "Content-Type": "application/json" } }

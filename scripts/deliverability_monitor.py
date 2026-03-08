@@ -173,45 +173,190 @@ class DeliverabilityMonitor:
 
     def fetch_email_events(self, days=7, sender_email=None):
         """
-        Fetch sending statistics from local health state history.
-        Resend doesn't have an aggregate stats endpoint, so we
-        track metrics locally from send results.
+        Fetch sending statistics from Resend API by scanning recent emails.
+        Falls back to local health state history if API fails.
         """
         if not self.api_key:
             return None
 
         try:
+            # Try to get live stats from Resend API
+            stats = {
+                'sent': 0, 'delivered': 0, 'opened': 0, 'clicked': 0,
+                'bounced': 0, 'hard_bounces': 0, 'soft_bounces': 0,
+                'spam_complaints': 0, 'blocked': 0, 'invalid': 0,
+            }
+            cursor = None
+            cutoff = datetime.now() - timedelta(days=days)
+            pages = 0
+            max_pages = 200
+
+            while pages < max_pages:
+                pages += 1
+                params = {}
+                if cursor:
+                    params['starting_after'] = cursor
+
+                resp = requests.get(
+                    'https://api.resend.com/emails',
+                    headers={'Authorization': f'Bearer {self.api_key}'},
+                    params=params,
+                    timeout=15,
+                )
+                if resp.status_code == 429:
+                    time.sleep(2)
+                    resp = requests.get(
+                        'https://api.resend.com/emails',
+                        headers={'Authorization': f'Bearer {self.api_key}'},
+                        params=params,
+                        timeout=15,
+                    )
+                if resp.status_code != 200:
+                    break
+
+                data = resp.json()
+                emails = data.get('data', [])
+                if not emails:
+                    break
+
+                stop = False
+                for e in emails:
+                    created = e.get('created_at', '')
+                    if created:
+                        try:
+                            email_date = datetime.fromisoformat(created.replace('+00', '+00:00').replace(' ', 'T'))
+                            if email_date.replace(tzinfo=None) < cutoff:
+                                stop = True
+                                break
+                        except (ValueError, TypeError):
+                            pass
+
+                    event = e.get('last_event', '')
+                    stats['sent'] += 1
+                    if event == 'delivered':
+                        stats['delivered'] += 1
+                    elif event == 'opened':
+                        stats['delivered'] += 1
+                        stats['opened'] += 1
+                    elif event == 'clicked':
+                        stats['delivered'] += 1
+                        stats['opened'] += 1
+                        stats['clicked'] += 1
+                    elif event == 'bounced':
+                        stats['bounced'] += 1
+                        stats['hard_bounces'] += 1
+                    elif event == 'complained':
+                        stats['delivered'] += 1
+                        stats['spam_complaints'] += 1
+                    elif event == 'delivery_delayed':
+                        pass  # Still in transit
+
+                if stop:
+                    break
+
+                cursor = emails[-1]['id']
+                if not data.get('has_more', False):
+                    break
+
+                time.sleep(0.3)
+
+            if stats['sent'] > 0:
+                return stats
+
+            # Fallback to local history
             sender = sender_email or self.get_active_sender()['email']
             sender_state = self.health_state.get('senders', {}).get(sender, {})
             history = sender_state.get('metrics_history', [])
-
             if history:
-                return history[-1]  # Most recent check
+                return history[-1]
 
-            # No history yet — return zeros
-            return {
-                'sent': 0,
-                'delivered': 0,
-                'opened': 0,
-                'clicked': 0,
-                'bounced': 0,
-                'hard_bounces': 0,
-                'soft_bounces': 0,
-                'spam_complaints': 0,
-                'blocked': 0,
-                'invalid': 0,
-            }
+            return stats
         except Exception as e:
-            print(f"   ❌ Resend stats error: {e}")
+            print(f"   Resend stats error: {e}")
             return None
 
     def fetch_event_log(self, event_type='spam', days=7, limit=50):
         """
-        Resend doesn't expose a bulk event log API.
-        Bounce/complaint tracking works through webhooks or per-email status.
-        For now, return empty — we track bounces via send failures.
+        Fetch bounced/complained emails from Resend API.
+        Paginates through recent emails and filters by last_event.
         """
-        return []
+        if not self.api_key:
+            return []
+
+        target_events = {
+            'spam': ['complained'],
+            'hardBounces': ['bounced'],
+            'bounced': ['bounced'],
+            'complained': ['complained'],
+        }
+        match_events = target_events.get(event_type, [event_type])
+
+        results = []
+        cursor = None
+        pages = 0
+        max_pages = 500  # Safety limit
+
+        while pages < max_pages:
+            pages += 1
+            params = {}
+            if cursor:
+                params['starting_after'] = cursor
+
+            try:
+                resp = requests.get(
+                    'https://api.resend.com/emails',
+                    headers={'Authorization': f'Bearer {self.api_key}'},
+                    params=params,
+                    timeout=15,
+                )
+                if resp.status_code == 429:
+                    time.sleep(2)
+                    resp = requests.get(
+                        'https://api.resend.com/emails',
+                        headers={'Authorization': f'Bearer {self.api_key}'},
+                        params=params,
+                        timeout=15,
+                    )
+                if resp.status_code != 200:
+                    break
+
+                data = resp.json()
+                emails = data.get('data', [])
+                if not emails:
+                    break
+
+                for e in emails:
+                    # Stop if email is older than lookback period
+                    created = e.get('created_at', '')
+                    if created:
+                        try:
+                            email_date = datetime.fromisoformat(created.replace('+00', '+00:00').replace(' ', 'T'))
+                            if email_date < datetime.now(email_date.tzinfo) - timedelta(days=days):
+                                return results
+                        except (ValueError, TypeError):
+                            pass
+
+                    if e.get('last_event') in match_events:
+                        to_list = e.get('to', [])
+                        results.append({
+                            'email': to_list[0] if to_list else 'unknown',
+                            'id': e.get('id'),
+                            'event': e.get('last_event'),
+                            'created_at': created,
+                        })
+                        if len(results) >= limit:
+                            return results
+
+                cursor = emails[-1]['id']
+                if not data.get('has_more', False):
+                    break
+
+                time.sleep(0.3)
+            except Exception as e:
+                print(f"   Resend event log error: {e}")
+                break
+
+        return results
 
     # ── HEALTH EVALUATION ───────────────────────────────────
 

@@ -362,6 +362,25 @@ Deno.serve(async (req) => {
                 // Add to set so we don't re-process within this run
                 welcomedSet.add(key);
               }
+            } else if (welcomeData.bounced) {
+              // Bounced email — record it so we never try again
+              console.log(`BOUNCED: ${email} (${config.appId}) — marking in DB`);
+              await supabase
+                .from("welcomed_users")
+                .upsert(
+                  {
+                    email: email,
+                    app_id: config.appId,
+                    firebase_uid: user.localId,
+                    firebase_project: projectId,
+                    language: language,
+                    welcomed_at: new Date().toISOString(),
+                    bounced: true,
+                  },
+                  { onConflict: "email,app_id" }
+                );
+              welcomedSet.add(key);
+              totalSkipped++;
             } else {
               console.error(
                 `Welcome email failed for ${email} (${config.appId}): status=${welcomeRes.status} response=${JSON.stringify(welcomeData)}`

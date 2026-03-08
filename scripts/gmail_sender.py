@@ -53,14 +53,30 @@ class GmailSender:
         """No-op — REST API, no persistent connection."""
         self.connected = False
 
+    # Resend error messages that indicate a hard bounce / invalid address
+    BOUNCE_INDICATORS = [
+        'not found', 'does not exist', 'invalid', 'rejected',
+        'bounce', 'undeliverable', 'mailbox not found', 'no such user',
+        'address rejected', 'recipient rejected', 'unknown user',
+        'mailbox unavailable', 'relay not permitted',
+    ]
+
+    def _is_bounce(self, status_code, response_text):
+        """Detect if a send failure is a hard bounce (invalid address)."""
+        text_lower = response_text.lower()
+        # 4xx from Resend with bounce-like messaging
+        if status_code in (400, 403, 422):
+            return any(ind in text_lower for ind in self.BOUNCE_INDICATORS)
+        return False
+
     def send_email(self, to_email, subject, html_body, from_name=None):
         """
         Send a single HTML email via Resend.
-        Returns True on success, False on failure.
+        Returns: 'sent' on success, 'bounced' if address is invalid, 'failed' otherwise.
         """
         if not self.connected:
             print("   ❌ Not connected. Call connect() first.")
-            return False
+            return 'failed'
 
         sender = f"{from_name or self.sender_name} <{self.sender_email}>"
 
@@ -82,7 +98,7 @@ class GmailSender:
             )
 
             if resp.status_code in (200, 201):
-                return True
+                return 'sent'
 
             # Rate limited — back off and retry once
             if resp.status_code == 429:
@@ -104,14 +120,20 @@ class GmailSender:
                     timeout=15,
                 )
                 if retry.status_code in (200, 201):
-                    return True
+                    return 'sent'
 
             error_msg = resp.text[:200]
+
+            # Detect hard bounce
+            if self._is_bounce(resp.status_code, resp.text):
+                print(f"   🔴 BOUNCED: {to_email} — {error_msg}")
+                return 'bounced'
+
             print(f"   ❌ Resend error [{resp.status_code}]: {error_msg}")
-            return False
+            return 'failed'
         except Exception as e:
             print(f"   ❌ Resend send error: {e}")
-            return False
+            return 'failed'
 
     def send_batch(self, emails, progress_callback=None):
         """
@@ -123,14 +145,14 @@ class GmailSender:
         failed = 0
 
         for i, email in enumerate(emails):
-            success = self.send_email(
+            result = self.send_email(
                 to_email=email['to'],
                 subject=email['subject'],
                 html_body=email['html_body'],
                 from_name=email.get('from_name', self.sender_name),
             )
 
-            if success:
+            if result == 'sent':
                 sent += 1
                 if progress_callback:
                     progress_callback(email['to'], i + 1, len(emails))

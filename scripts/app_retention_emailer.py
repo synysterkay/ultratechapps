@@ -474,14 +474,14 @@ class AppRetentionEmailer:
             html = self._build_html(email_data, app_info, lang, sender_name=active_sender['name'])
             
             # Send
-            success = gmail.send_email(
+            result = gmail.send_email(
                 to_email=email_addr,
                 subject=email_data['subject'],
                 html_body=html,
                 from_name=app_name
             )
             
-            if success:
+            if result == 'sent':
                 sent += 1
                 # Update user state
                 now_str = datetime.now().isoformat()
@@ -501,6 +501,15 @@ class AppRetentionEmailer:
                 self.state['daily_stats'][today]['sent'] += 1
                 
                 print(f"   ✅ [{sent}/{len(eligible)}] {email_addr} ← {app_name} #{email_num}")
+            elif result == 'bounced':
+                # Auto-remove bounced email from the system
+                failed += 1
+                if email_addr in self.state['users']:
+                    del self.state['users'][email_addr]
+                self.state['daily_stats'][today]['failed'] += 1
+                bounced_count = self.state.get('total_bounced', 0) + 1
+                self.state['total_bounced'] = bounced_count
+                print(f"   🔴 [{i+1}/{len(eligible)}] {email_addr} BOUNCED — removed from system")
             else:
                 failed += 1
                 self.state['daily_stats'][today]['failed'] += 1
