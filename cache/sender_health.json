@@ -1,5 +1,5 @@
 {
-  "active_sender_index": 3,
+  "active_sender_index": 0,
   "senders": {
     "apps@kaynel.pl": {
       "last_check": "2026-02-20T18:17:42.480136",
@@ -361,6 +361,30 @@
           "delivery_rate": 96.41
         }
       ]
+    },
+    "hello@aibettips.io": {
+      "last_check": "2026-03-08T18:15:04.579775",
+      "status": "red",
+      "rotated_out_at": "2026-03-08T18:15:04.580629",
+      "metrics_history": [
+        {
+          "date": "2026-03-08",
+          "sent": 4000,
+          "delivered": 4000,
+          "opened": 0,
+          "clicked": 0,
+          "bounced": 0,
+          "hard_bounces": 0,
+          "soft_bounces": 0,
+          "spam_complaints": 0,
+          "blocked": 0,
+          "invalid": 0,
+          "open_rate": 0.0,
+          "bounce_rate": 0.0,
+          "spam_rate": 0.0,
+          "delivery_rate": 100.0
+        }
+      ]
     }
   },
   "rotation_log": [
@@ -381,6 +405,12 @@
       "from": "apps@vitazelki.pl",
       "to": "hello@aibettips.io",
       "reason": "\ud83d\udea8 CRITICAL: Bounce rate 3.1% exceeds 3.0%; \u26a0\ufe0f WARNING: Open rate 10.7% is below average"
+    },
+    {
+      "date": "2026-03-08T18:15:04.580634",
+      "from": "hello@aibettips.io",
+      "to": "apps@kaynel.pl",
+      "reason": "\ud83d\udea8 CRITICAL: Open rate 0.0% suggests emails going to spam"
     }
   ]
 }
