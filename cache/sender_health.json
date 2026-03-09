@@ -1,10 +1,10 @@
 {
-  "active_sender_index": 0,
+  "active_sender_index": 1,
   "senders": {
     "apps@kaynel.pl": {
-      "last_check": "2026-02-20T18:17:42.480136",
+      "last_check": "2026-03-09T09:30:06.754009",
       "status": "red",
-      "rotated_out_at": "2026-02-20T18:17:42.480629",
+      "rotated_out_at": "2026-03-09T09:30:06.754839",
       "metrics_history": [
         {
           "date": "2026-02-20",
@@ -39,6 +39,23 @@
           "bounce_rate": 4.12,
           "spam_rate": 0.0,
           "delivery_rate": 87.68
+        },
+        {
+          "date": "2026-03-09",
+          "sent": 4000,
+          "delivered": 3400,
+          "opened": 0,
+          "clicked": 0,
+          "bounced": 0,
+          "hard_bounces": 0,
+          "soft_bounces": 0,
+          "spam_complaints": 0,
+          "blocked": 0,
+          "invalid": 0,
+          "open_rate": 0.0,
+          "bounce_rate": 0.0,
+          "spam_rate": 0.0,
+          "delivery_rate": 85.0
         }
       ]
     },
@@ -410,6 +427,12 @@
       "date": "2026-03-08T18:15:04.580634",
       "from": "hello@aibettips.io",
       "to": "apps@kaynel.pl",
+      "reason": "\ud83d\udea8 CRITICAL: Open rate 0.0% suggests emails going to spam"
+    },
+    {
+      "date": "2026-03-09T09:30:06.754846",
+      "from": "apps@kaynel.pl",
+      "to": "hello@bestaiapps.site",
       "reason": "\ud83d\udea8 CRITICAL: Open rate 0.0% suggests emails going to spam"
     }
   ]

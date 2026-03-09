@@ -628,12 +628,20 @@
 {
   "localId": "CYxMortPC5Xv6NMleCOAyLMk3la2",
   "email": "marymc45@ymail.com",
-  "emailVerified": false,
-  "passwordHash": "KpVmIVp1YSw2dOpO4s8tnVthqt0WyC7NFvu9+f8oOg0w0IZVZP+nNbjzG+Yya7sWEFbzOFUsecdWXv4OP1e4Aw==",
-  "salt": "mBnYHQEmfdcFBw==",
-  "lastSignedInAt": "1767560244100",
+  "emailVerified": true,
+  "displayName": "Mary M",
+  "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKbf7j85Umuvp-el4ubuOL36jOWjw3MNy3y0OzngXD33XWd3l09=s96-c",
+  "lastSignedInAt": "1773007397328",
   "createdAt": "1767560244100",
-  "providerUserInfo": []
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "117399631134028378407",
+      "email": "marymc45@ymail.com",
+      "displayName": "Mary M",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKbf7j85Umuvp-el4ubuOL36jOWjw3MNy3y0OzngXD33XWd3l09=s96-c"
+    }
+  ]
 },
 {
   "localId": "CzgUvxDDoeP7tHgyYhnEuwdx5Kw1",
@@ -2788,6 +2796,16 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocLleWTHNB7j8l_9u_OAuZqKPvE007XR9leAsyB20loy_5i-NA=s96-c"
     }
   ]
+},
+{
+  "localId": "p1ysIJHzP7RIIMfiO1TVfJ2O5Ly1",
+  "email": "annekroener@outlook.de",
+  "emailVerified": false,
+  "passwordHash": "PfRf436q7qFcmYeAJ7nkztKmJ3Gr9HiPL3bJS67Lkvxpt0QSxHOtnbdFX372ND+vqo3BEkun9xfl0JR3mTE+sg==",
+  "salt": "S0jOrXp29pZ97A==",
+  "lastSignedInAt": "1772998515810",
+  "createdAt": "1772998515810",
+  "providerUserInfo": []
 },
 {
   "localId": "p54NqNDGqhYmic8C63DZUfSP5043",
