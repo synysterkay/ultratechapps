@@ -529,6 +529,22 @@
   "providerUserInfo": []
 },
 {
+  "localId": "EcSiUoM7FfScZqDY80k1Hl2tIcw1",
+  "email": "kcwright2021@gmail.com",
+  "emailVerified": true,
+  "displayName": "K Cwright",
+  "lastSignedInAt": "1773093703339",
+  "createdAt": "1773093703339",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "113130691989048474707",
+      "email": "kcwright2021@gmail.com",
+      "displayName": "K Cwright"
+    }
+  ]
+},
+{
   "localId": "EczSYqnXQISee3fu4C5XnnOksuq1",
   "email": "langcms@gmail.com",
   "emailVerified": true,

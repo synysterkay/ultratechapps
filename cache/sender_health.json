@@ -1,5 +1,5 @@
 {
-  "active_sender_index": 4,
+  "active_sender_index": 5,
   "senders": {
     "apps@kaynel.pl": {
       "last_check": "2026-03-09T09:30:06.754009",
@@ -419,6 +419,30 @@
           "delivery_rate": 100.0
         }
       ]
+    },
+    "tips@predictifyfootball.com": {
+      "last_check": "2026-03-10T09:58:20.695915",
+      "status": "red",
+      "rotated_out_at": "2026-03-10T09:58:20.697039",
+      "metrics_history": [
+        {
+          "date": "2026-03-10",
+          "sent": 4000,
+          "delivered": 3600,
+          "opened": 0,
+          "clicked": 0,
+          "bounced": 0,
+          "hard_bounces": 0,
+          "soft_bounces": 0,
+          "spam_complaints": 0,
+          "blocked": 0,
+          "invalid": 0,
+          "open_rate": 0.0,
+          "bounce_rate": 0.0,
+          "spam_rate": 0.0,
+          "delivery_rate": 90.0
+        }
+      ]
     }
   },
   "rotation_log": [
@@ -456,6 +480,12 @@
       "date": "2026-03-09T18:25:32.514899",
       "from": "hello@bestaiapps.site",
       "to": "tips@predictifyfootball.com",
+      "reason": "\ud83d\udea8 CRITICAL: Open rate 0.0% suggests emails going to spam"
+    },
+    {
+      "date": "2026-03-10T09:58:20.697047",
+      "from": "tips@predictifyfootball.com",
+      "to": "hello@thesisgenerator.io",
       "reason": "\ud83d\udea8 CRITICAL: Open rate 0.0% suggests emails going to spam"
     }
   ]
