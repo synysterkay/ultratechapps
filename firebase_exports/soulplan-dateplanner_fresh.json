@@ -1408,6 +1408,16 @@
   "providerUserInfo": []
 },
 {
+  "localId": "PewPdEqt5GVpBaGFPwPZuIAzHY52",
+  "email": "nbaradas@gmail.com",
+  "emailVerified": false,
+  "passwordHash": "i7eur9RjyCYpnSSPagS1nDaDm4S5LxKgsVoViOcntyHg3cH/V1GDQTz2kNE4BQriUvisU8FGxaAmlV+pYu1xNw==",
+  "salt": "A+lHB33Z3z9WIg==",
+  "lastSignedInAt": "1773204374377",
+  "createdAt": "1773204374377",
+  "providerUserInfo": []
+},
+{
   "localId": "PoVJv4SovqQydnhrbQ5A0ZoWeYH3",
   "email": "fednel.louis@yahoo.com",
   "emailVerified": false,
