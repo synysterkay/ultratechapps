@@ -382,6 +382,7 @@ class AppRetentionEmailer:
         multilingual_apps = {
             'Predictify': 'Predictify',
             'Volume Booster - Sound Booster': 'Volume Booster - Sound Booster',
+            'Predictify: Horse Racing AI': 'Predictify: Horse Racing AI',
         }
         for app_name, loader_key in multilingual_apps.items():
             if app_name in users_by_app:

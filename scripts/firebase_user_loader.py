@@ -67,6 +67,15 @@ FIREBASE_APPS = {
         'multilingual': True,
         'supported_languages': ['en', 'es', 'fr', 'zh', 'hi', 'pt', 'ru'],
     },
+    'horse-racing-f67e8': {
+        'name': 'Predictify: Horse Racing AI',
+        'export_file': 'horse_racing_fresh.json',
+        'description': 'AI-powered horse racing predictions with advanced analytics for Cheltenham, Royal Ascot, Kentucky Derby and more',
+        'app_store_url': 'https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594',
+        'google_play_url': 'https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction',
+        'multilingual': True,
+        'supported_languages': ['en', 'ar', 'es', 'fr'],
+    },
 }
 
 

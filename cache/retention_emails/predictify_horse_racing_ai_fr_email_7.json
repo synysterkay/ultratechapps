@@ -1,0 +1,17 @@
+{
+  "subject": "Le hack que 90% des parieurs ignorent (erreur co\u00fbteuse)",
+  "preview_text": "J'ai d\u00e9couvert un param\u00e8tre cach\u00e9 qui multiplie par 10 la pr\u00e9cision des pr\u00e9dictions. Ne l'utilisez pas avant de lire ceci.",
+  "body_paragraphs": [
+    "Tu sais ce sentiment quand tu passes des heures sur les cartes de course, \u00e0 comparer les statistiques, et qu'au final, ton choix se plante ? J'\u00e9tais comme \u00e7a. Puis j'ai compris que je regardais les mauvais chiffres. La plupart des gens se focalisent sur la forme du cheval. C'est une erreur monumentale.",
+    "La v\u00e9rit\u00e9, c'est que la forme du jockey sur une piste sp\u00e9cifique, sous des conditions m\u00e9t\u00e9o pr\u00e9cises, est 3 fois plus pr\u00e9dictive que la forme g\u00e9n\u00e9rale du cheval. Un jockey qui excelle sur un terrain lourd \u00e0 Longchamp peut \u00eatre m\u00e9diocre sur un bon terrain \u00e0 Chantilly. L'IA de Predictify analyse cette variable parmi des milliers d'autres, mais presque personne ne va creuser ce niveau de d\u00e9tail.",
+    "C'est l\u00e0 que la fonction 'Analyse Avanc\u00e9e du Jockey' change tout. Dans l'app, sur la page d'une course, appuie sur le nom du jockey. Au lieu de ses stats globales, tu verras son taux de victoires sur CE type de piste, avec CET \u00e9cart de distance, sous CES conditions. C'est la diff\u00e9rence entre suivre un tipster et avoir l'intuition d'un bookmaker.",
+    "Ouvre Predictify maintenant, choisi une course de demain et v\u00e9rifie la fiche d\u00e9taill\u00e9e du jockey favori. Tu vas voir la course d'un \u0153il nouveau. P.S. : Les utilisateurs Premium qui utilisent ce hack voient leur taux de r\u00e9ussite moyen bondir de 22%. La p\u00e9riode d'essai de 3 jours est toujours active si tu veux tester toutes les analyses sans limite.",
+    "P.S. : Les utilisateurs Premium qui utilisent ce hack voient leur taux de r\u00e9ussite moyen bondir de 22%. La p\u00e9riode d'essai de 3 jours est toujours active si tu veux tester toutes les analyses sans limite."
+  ],
+  "cta_text": "Analyser un jockey dans l'app",
+  "email_number": 7,
+  "send_day": 14,
+  "type": "value_bomb",
+  "app_name": "Predictify: Horse Racing AI",
+  "generated_at": "2026-03-11T07:12:27.666226"
+}

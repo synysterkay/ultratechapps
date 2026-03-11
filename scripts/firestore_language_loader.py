@@ -28,6 +28,11 @@ MULTILINGUAL_PROJECTS = {
         'supported_languages': ['en', 'ar', 'es', 'fr', 'zh', 'hi', 'pt', 'ru'],
         'cache_file': 'volume_booster_languages.json',
     },
+    'Predictify: Horse Racing AI': {
+        'project_id': 'horse-racing-f67e8',
+        'supported_languages': ['en', 'ar', 'es', 'fr'],
+        'cache_file': 'horse_racing_languages.json',
+    },
 }
 
 # Language code normalization map

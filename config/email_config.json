@@ -31,9 +31,9 @@
       "apps": ["Volume Booster - Sound Booster"]
     },
     "sports": {
-      "keywords": ["soccer", "football", "predictions", "betting", "match analysis"],
+      "keywords": ["soccer", "football", "horse racing", "predictions", "betting", "match analysis"],
       "pain_points": ["losing bets", "poor predictions", "lack of data"],
-      "apps": ["Predictify: Soccer AI"]
+      "apps": ["Predictify: Soccer AI", "Predictify: Horse Racing AI"]
     },
     "personal_growth": {
       "keywords": ["life coaching", "emotional support", "guidance", "self-improvement", "parenting"],

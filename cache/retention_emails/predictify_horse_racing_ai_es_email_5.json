@@ -1,0 +1,16 @@
+{
+  "subject": "El error que casi arruina todo a las 2AM",
+  "preview_text": "Te cuento la verdadera historia detr\u00e1s de una funci\u00f3n que casi no ve la luz. No es lo que piensas.",
+  "body_paragraphs": [
+    "Eran las 2:17 de la madrugada. Caf\u00e9 fr\u00edo, pantalla brillando. Hab\u00eda estado 14 horas seguidas analizando datos del Grand National. Y comet\u00ed un error que casi hace que borre todo el proyecto. No fue un bug t\u00e9cnico. Fue algo peor: casi ignoro el factor humano.",
+    "Estaba tan obsesionado con los algoritmos, los tiempos por secci\u00f3n y el historial de lesiones, que casi descarto una variable clave: el 'ojo del entrenador'. Es ese sexto sentido que tienen los buenos entrenadores cuando saben que su caballo est\u00e1 en un d\u00eda especial. Mi IA no lo captaba. Hasta que, exhausto, vi el patr\u00f3n en los datos de \u00faltimo minuto que siempre cambiaban antes de las carreras importantes.",
+    "Esa madrugada naci\u00f3 el 'Modo Confianza Plus' que ahora ves en la app. No es solo un porcentaje. Es la capa que cruza el instinto humano documentado con los miles de datos que ya analizamos. Es por eso que, a veces, un caballo con estad\u00edsticas 'perfectas' recibe un 70% y otro con n\u00fameros 'buenos' obtiene un 95%. La IA aprendi\u00f3 a detectar el pico de forma real, no solo la te\u00f3rica.",
+    "Abre la app ahora y mira cualquier predicci\u00f3n de hoy. Toca el score de confianza. Ver\u00e1s el desglose. Ah\u00ed est\u00e1 el trabajo de esa madrugada. Es tu ventaja sobre quien solo mira n\u00fameros en fr\u00edo. P.D.: El caballo sobre el que trabajaba esa noche gan\u00f3 a 16/1. Mi error casi me hizo ignorarlo. No cometas el tuyo."
+  ],
+  "cta_text": "Abrir Predictify y ver el desglose",
+  "email_number": 5,
+  "send_day": 9,
+  "type": "behind_the_scenes",
+  "app_name": "Predictify: Horse Racing AI",
+  "generated_at": "2026-03-11T07:03:54.517980"
+}

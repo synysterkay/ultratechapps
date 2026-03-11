@@ -53,6 +53,12 @@ const FIREBASE_PROJECTS: Record<
     defaultLang: "en",
     supportedLanguages: ["en", "ar", "es", "fr", "zh", "hi", "pt", "ru"],
   },
+  "horse-racing-f67e8": {
+    appId: "horse_racing",
+    multilingual: true,
+    defaultLang: "en",
+    supportedLanguages: ["en", "ar", "es", "fr"],
+  },
 };
 
 // Google OAuth2 client for Firebase CLI token exchange

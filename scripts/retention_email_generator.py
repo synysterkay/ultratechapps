@@ -354,6 +354,26 @@ APP_CONTEXT = {
             "cta": "Start Free Trial",
         },
     },
+    "Predictify: Horse Racing AI": {
+        "target_audience": "Horse racing fans, equestrian enthusiasts, and sports bettors seeking AI-driven racing insights",
+        "core_pain": "Unreliable tips, losing streaks, no data to back up picks, overwhelmed by form guides and racecards",
+        "killer_features": [
+            "AI analyzes thousands of variables - jockey form, trainer performance, track conditions, weather",
+            "Global coverage: UK, Ireland, USA, Australia - Cheltenham, Royal Ascot, Grand National, Kentucky Derby, Melbourne Cup",
+            "Deep racecard analysis with speed ratings, distance proficiency, and handicap weight advantages",
+            "Live track tracking and daily horse racing analysis",
+            "Confidence scores for every prediction",
+            "Free credits by sharing + Premium unlimited access ($12.99/mo with 3-day trial)",
+        ],
+        "social_proof": "Thousands of race predictions analyzed, trusted by horse racing fans worldwide",
+        "emotional_hooks": ["stop guessing and start winning", "be the sharpest punter at the track", "data beats gut feeling", "never miss a valuable insight"],
+        "tone": "Like a sharp racing-obsessed friend who always has the form guide memorized",
+        "subscription": {
+            "monthly": "$12.99/month",
+            "trial": "3-day free trial",
+            "cta": "Start Free Trial",
+        },
+    },
 }
 
 
@@ -636,6 +656,8 @@ Generate the email now. Make it impossible to ignore."""
                 app_languages = ['en', 'ar', 'es', 'fr']
             elif app_name == 'Volume Booster - Sound Booster':
                 app_languages = ['en', 'ar', 'es', 'fr', 'zh', 'hi', 'pt', 'ru']
+            elif app_name == 'Predictify: Horse Racing AI':
+                app_languages = ['en', 'ar', 'es', 'fr']
             else:
                 app_languages = ['en']
             
