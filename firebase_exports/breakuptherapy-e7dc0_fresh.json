@@ -8755,7 +8755,7 @@
   "emailVerified": true,
   "displayName": "Suevesha Baijnath",
   "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocIPV6IHD3O5H6BG0sFxB-wAWtUlYFugXhmC8KByz4-8kLxrcw=s96-c",
-  "lastSignedInAt": "1773164175789",
+  "lastSignedInAt": "1773260685455",
   "createdAt": "1773164175788",
   "providerUserInfo": [
     {
@@ -9527,7 +9527,7 @@
   "emailVerified": true,
   "displayName": "Amanda Dhaver",
   "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJFXxbI4SrGe4OKL3JUnF6PFYxL7eoA--IbGjGDIdeX728epL4=s96-c",
-  "lastSignedInAt": "1771518275194",
+  "lastSignedInAt": "1773256532294",
   "createdAt": "1770720590941",
   "providerUserInfo": [
     {
@@ -11200,6 +11200,17 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocIo_mvCfInXJPCnj2MnkveWPqYjKO6uPcRrK0XUqbiP0TKkeNba=s96-c"
     }
   ]
+},
+{
+  "localId": "whJobEkAmPfGeQ3jzcFzGKnZAOB3",
+  "email": "briannicks95@gmail.com",
+  "emailVerified": false,
+  "passwordHash": "nwRY70bAygxhH/6HZIAmlsvuH7vvCcNCkLqR7QZUE01rGAAoTQuB2lyGNhonOnSn40xS6D7H1f4OrqgBSuW79Q==",
+  "salt": "49OpUHmJGiOs3A==",
+  "displayName": "Brian Kirui",
+  "lastSignedInAt": "1773257844909",
+  "createdAt": "1773257844909",
+  "providerUserInfo": []
 },
 {
   "localId": "wixHIP4eZqg8pakUXDQkbFrnh183",

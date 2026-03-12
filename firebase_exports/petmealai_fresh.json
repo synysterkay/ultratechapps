@@ -1072,6 +1072,17 @@
   "providerUserInfo": []
 },
 {
+  "localId": "T8hTaJsshuX8DiYGPpl9qsT7Ohw2",
+  "email": "lucasc5300@gmail.com",
+  "emailVerified": false,
+  "passwordHash": "6OEz7d2KNynSCYTYXBSWwqwLAZlpITJI+Dc6kS09MlJihD1vJJ1BXRTvai81LDOg0ORz3nxSRMtxn8eZPelMDg==",
+  "salt": "6bLzJ+dBq6Uziw==",
+  "displayName": "lucasc5300",
+  "lastSignedInAt": "1773279592857",
+  "createdAt": "1773279592857",
+  "providerUserInfo": []
+},
+{
   "localId": "TZN5MrofTmQtfmGlsCrXI3llKFj1",
   "email": "pombinha_branca@hotmail.com",
   "emailVerified": false,
