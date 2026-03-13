@@ -1932,6 +1932,22 @@
   "providerUserInfo": []
 },
 {
+  "localId": "vWEMsH208dNkawWaCbhxsls8KX12",
+  "email": "zoelucy104@gmail.com",
+  "emailVerified": true,
+  "displayName": "Zoe-lucy Rafferty",
+  "lastSignedInAt": "1773410532540",
+  "createdAt": "1773410532540",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "104735999361938778011",
+      "email": "zoelucy104@gmail.com",
+      "displayName": "Zoe-lucy Rafferty"
+    }
+  ]
+},
+{
   "localId": "vYBr1siU3dMCo0NcGjyamfKkiL02",
   "email": "sgazica5@gmail.com",
   "emailVerified": true,
