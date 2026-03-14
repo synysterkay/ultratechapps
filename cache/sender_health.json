@@ -469,7 +469,7 @@
       ]
     },
     "hello@passedai.io": {
-      "last_check": "2026-03-14T09:45:27.830030",
+      "last_check": "2026-03-14T18:45:00.931221",
       "status": "red",
       "rotated_out_at": null,
       "metrics_history": [
@@ -591,6 +591,23 @@
           "bounce_rate": 0.0,
           "spam_rate": 0.0,
           "delivery_rate": 94.97
+        },
+        {
+          "date": "2026-03-14",
+          "sent": 4000,
+          "delivered": 3994,
+          "opened": 0,
+          "clicked": 0,
+          "bounced": 0,
+          "hard_bounces": 0,
+          "soft_bounces": 0,
+          "spam_complaints": 0,
+          "blocked": 0,
+          "invalid": 0,
+          "open_rate": 0.0,
+          "bounce_rate": 0.0,
+          "spam_rate": 0.0,
+          "delivery_rate": 99.85
         }
       ]
     }
