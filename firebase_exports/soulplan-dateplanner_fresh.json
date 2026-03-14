@@ -1352,6 +1352,16 @@
   ]
 },
 {
+  "localId": "OinSWKp3m9RyvAC0A4UEjPj9ncy1",
+  "email": "saadkondoh@gmail.com",
+  "emailVerified": false,
+  "passwordHash": "9CVNLS/op0gDDvEf69yP5kj0nasFSeNggI2HMGx0gf2qJJmUnzAhRhnly6FCUGpOymqwAvBJ8ScUa/2ReO6Ttg==",
+  "salt": "fuUXCIzzWI8ETw==",
+  "lastSignedInAt": "1773476635698",
+  "createdAt": "1773476635698",
+  "providerUserInfo": []
+},
+{
   "localId": "Oltk66flP5h0O76GmcfDdvDcVNI2",
   "email": "ariana.sonderegger@gmx.ch",
   "emailVerified": false,
