@@ -3558,4 +3558,22 @@
   "lastSignedInAt": "1766268372520",
   "createdAt": "1766267446624",
   "providerUserInfo": []
+},
+{
+  "localId": "zx3JUQCVNqNmoqrABxipqHSkoas1",
+  "email": "giovannisalanitro02@gmail.com",
+  "emailVerified": true,
+  "displayName": "Giovanni Salanitro",
+  "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocK_beyUdGCUyLHvwXv3agC7V319CWcemJsp3JzTDZng1cLedZ5N=s96-c",
+  "lastSignedInAt": "1773674472877",
+  "createdAt": "1773674472876",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "118413646816309313450",
+      "email": "giovannisalanitro02@gmail.com",
+      "displayName": "Giovanni Salanitro",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocK_beyUdGCUyLHvwXv3agC7V319CWcemJsp3JzTDZng1cLedZ5N=s96-c"
+    }
+  ]
 }]}
