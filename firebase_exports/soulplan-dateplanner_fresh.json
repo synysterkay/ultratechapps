@@ -2182,6 +2182,16 @@
   "providerUserInfo": []
 },
 {
+  "localId": "dUSeQMuu5qV7sHi9sUs14MR2D2K2",
+  "email": "klstearns26@gmail.com",
+  "emailVerified": false,
+  "passwordHash": "eXICyiy9LNnlAm7xa3GFOQKMV3gHk8xO9JVn5hcRwfUE1bwFNGgiVVUPvv87c4F1L8tfWA6Oa7pVy5psIZcA1A==",
+  "salt": "7zieRZCC/1gXKA==",
+  "lastSignedInAt": "1773820711606",
+  "createdAt": "1773805531476",
+  "providerUserInfo": []
+},
+{
   "localId": "e7BydTL4WDd3k6DjnBLWcjXUIeJ3",
   "email": "artiz2003g@gmail.com",
   "emailVerified": true,
