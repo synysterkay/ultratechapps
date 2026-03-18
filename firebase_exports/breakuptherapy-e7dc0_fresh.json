@@ -1818,6 +1818,17 @@
   ]
 },
 {
+  "localId": "8wtFtCoo5CaK5kGgeXdr0jg0EXQ2",
+  "email": "laurentravis0625@gmail.com",
+  "emailVerified": true,
+  "passwordHash": "9Hx+/3b+XrLOb5k+MmsnndZT8mrOWaORA0MoHRf3K4n1NrN45iBSA1B3zlqLQgDCuujJKsg1NIzh24DLY7SjVQ==",
+  "salt": "hwIWADNo0s1FJA==",
+  "displayName": "Lauren Travis",
+  "lastSignedInAt": "1773834366494",
+  "createdAt": "1773834366494",
+  "providerUserInfo": []
+},
+{
   "localId": "92w4Ikr5AIS3JW2qsNPuAxkn2ef1",
   "email": "ggreeshma358@gmail.com",
   "emailVerified": true,
