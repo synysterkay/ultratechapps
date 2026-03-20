@@ -1,0 +1,17 @@
+{
+  "subject": "La verit\u00e0 che abbiamo scoperto sui pronostici sbagliati",
+  "preview_text": "Abbiamo corretto un errore nel nostro AI. Ecco cosa cambia per le tue prossime scommesse.",
+  "body_paragraphs": [
+    "Ti sei mai chiesto perch\u00e9 alcuni pronostici sembravano 'sfortunati'? Non era sfortuna. Era un bug nel nostro algoritmo che analizzava la fase difensiva nelle ultime 10 minuti di gioco. L'abbiamo scoperto la scorsa settimana analizzando 500 partite dove il pronostico era sbagliato di un solo gol.",
+    "Da quando l'abbiamo sistemato, l'accuratezza sulle partite equilibrate \u00e8 salita del 18%. Non stiamo parlando di piccole correzioni, ma della differenza tra 'probabile 2-1' e 'sicuro 1-1' con il nuovo parametro di pressione difensiva. Migliaia di variabili in pi\u00f9 che ora funzionano come dovrebbero.",
+    "Il sistema ora calcola in modo diverso le sostituzioni tattiche, gli xG in contropiede e la stanchezza dei difensori centrali. Tutto questo \u00e8 live nell'app da ieri. E c'\u00e8 una sezione nuova chiamata 'Analisi Correzioni' che ti mostra esattamente dove il vecchio modello sbagliava e il nuovo prevede meglio.",
+    "Apri l'app e guarda la partita di stasera. Clicca su 'Analisi Correzioni' sotto qualsiasi pronostico. Vedrai in rosso cosa sbagliavamo e in verde cosa prevediamo ora. PS: I primi 100 che usano la nuova feature oggi sbloccano 50 crediti extra per i pronostici Champions League.",
+    "Scopri le correzioni"
+  ],
+  "cta_text": "Vedi cosa \u00e8 cambiato",
+  "email_number": 21,
+  "send_day": 48,
+  "type": "comeback_trigger",
+  "app_name": "Predictify",
+  "generated_at": "2026-03-20T16:22:25.443036"
+}
