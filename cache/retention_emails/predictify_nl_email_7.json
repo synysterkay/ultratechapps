@@ -1,0 +1,17 @@
+{
+  "subject": "De fout die 90% van onze gebruikers maakt met voorspellingen",
+  "preview_text": "Er zit een verborgen knop in de app die je voorspellingsniveau compleet transformeert. Dit is waarom je hem mist.",
+  "body_paragraphs": [
+    "Ik moet je iets bekennen. De eerste maand dat ik Predictify gebruikte, keek ik alleen naar de uitslagvoorspelling. Gewoon '2-1' of '1-0' lezen en denken: ok\u00e9, duidelijk. Toen ontdekte ik iets waarvan ik dacht: waarom heeft niemand me dit verteld?",
+    "Het geheim zit niet in de uitslag zelf, maar in het getal ernaast. Die 'confidence score' van 87% of 62%? Dat is niet zomaar een percentage. Dat is de AI die je vertelt: \"Deze wedstrijd heeft een patroon dat ik 9 van de 10 keer correct voorspel.\" Toen ik dat begreep, veranderde alles. Ik stopte met gokken en begon te weten.",
+    "Ga nu naar een wedstrijd in de app en tik op die confidence score. Er opent een volledig scherm met: waarom de AI zo zeker is. Je ziet de exacte variabelen die doorslaggevend zijn - thuissterkte bij regen, de xG van de spits in de laatste 15 minuten, hoe deze scheidsrechter fluit bij overtredingen in het zestienmetergebied. Dit is het niveau dat de pro's gebruiken.",
+    "Open Predictify nu en tik op de confidence score bij de eerstvolgende Premier League-wedstrijd. Je zult binnen 30 seconden meer inzicht hebben dan 90% van de fans die alleen naar de uitslag kijken. P.S. Premium-gebruikers zien hier ook de 'tactical mismatch' analyse - welke speler de zwakste schakel is en precies waarom.",
+    "P.S. Premium-gebruikers zien hier ook de 'tactical mismatch' analyse - welke speler de zwakste schakel is en precies waarom."
+  ],
+  "cta_text": "Bekijk de confidence score details",
+  "email_number": 7,
+  "send_day": 14,
+  "type": "value_bomb",
+  "app_name": "Predictify",
+  "generated_at": "2026-03-20T17:01:40.557497"
+}

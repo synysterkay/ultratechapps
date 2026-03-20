@@ -1,0 +1,16 @@
+{
+  "subject": "De waarheid over die 2AM feature die ik bijna niet bouwde",
+  "preview_text": "Dit was mijn grootste twijfel. Waarom ik het t\u00f3ch deed, en waarom het nu onze best bewaarde voorspellingshack is.",
+  "body_paragraphs": [
+    "Ik zat om 2 uur 's nachts naar een leeg code-scherm te staren. De wedstrijd was al een uur afgelopen. Mijn voorspelling? Fout. Weer. Ik dacht: wat als ik dit gewoon laat zitten? Wat als ik die ene feature niet bouw?",
+    "Het was de zoveelste keer dat een 'zekere' voorspelling van een expert compleet mis ging. Geen data, alleen maar onderbuikgevoel. Ik werd er gek van. Toen realiseerde ik me: dit is precies waar Predictify voor is. Niet om te gokken. Om te weten. Dus ik bouwde door. Tot de zon opkwam.",
+    "Die nacht werd de Confidence Score geboren. Die percentage naast elke voorspelling? Dat is geen gok. Het is het resultaat van duizenden variabelen die tegen elkaar worden afgewogen. Het vertelt je precies hoe zeker onze AI is, zodat jij nooit meer blind vaart op een 'gut feeling'.",
+    "Open de app en check vandaag \u00e9\u00e9n wedstrijdvoorspelling. Kijk naar de Confidence Score. Dat percentage is het resultaat van die ene nacht. P.S. De AI had 87% vertrouwen in deze mail. Ik had er 100% in nodig om 'm te sturen."
+  ],
+  "cta_text": "Bekijk de Confidence Scores",
+  "email_number": 5,
+  "send_day": 9,
+  "type": "behind_the_scenes",
+  "app_name": "Predictify",
+  "generated_at": "2026-03-20T17:01:00.856836"
+}
