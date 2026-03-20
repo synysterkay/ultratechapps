@@ -1,0 +1,16 @@
+{
+  "subject": "O erro #1 que estraga todas as previs\u00f5es (confiss\u00e3o)",
+  "preview_text": "A maioria dos utilizadores ignora isto e perde as melhores oportunidades. A solu\u00e7\u00e3o \u00e9 mais simples do que pensas.",
+  "body_paragraphs": [
+    "Vou ser direto: a maior parte dos utilizadores do Predictify est\u00e1 a usar a app de forma errada. E isso est\u00e1 a custar-lhes as melhores oportunidades. N\u00e3o \u00e9 uma falha da IA, \u00e9 um erro humano t\u00e3o comum que quase me d\u00e1 vontade de gritar.",
+    "O erro? Ignorar o 'Confidence Score' antes de fazer uma aposta ou partilhar uma previs\u00e3o. As pessoas veem '2-1 para o Liverpool' e avan\u00e7am. Mas se o score de confian\u00e7a da IA for 48%, est\u00e1s basicamente a atirar uma moeda ao ar. \u00c9 como comprar um carro sem ver os testes de seguran\u00e7a. A IA analisa milhares de vari\u00e1veis para te dar essa percentagem de certeza. Ignor\u00e1-la \u00e9 deitar dinheiro (e credibilidade) fora.",
+    "A corre\u00e7\u00e3o \u00e9 ridiculamente simples. Antes de qualquer decis\u00e3o, abre a app, v\u00ea a previs\u00e3o e olha PARA O N\u00daMERO AZUL ao lado. Acima de 70%? A IA est\u00e1 confiante. Abaixo de 55%? \u00c9 um jogo imprevis\u00edvel, talvez seja melhor n\u00e3o arriscar. Esta semana, por exemplo, a IA previu um empate no cl\u00e1ssico com 82% de confian\u00e7a. Quem seguiu, ganhou. Quem ignorou, lamentou.",
+    "Abre a Predictify AGORA e v\u00ea o 'Confidence Score' da pr\u00f3xima previs\u00e3o que vais fazer. Vais perceber imediatamente se est\u00e1s no caminho certo ou se est\u00e1s prestes a cometer o erro da maioria. P.S.: Os utilizadores Premium que usam este filtro t\u00eam uma taxa de acerto 37% superior. N\u00e3o \u00e9 magia, \u00e9 s\u00f3 saber ler os n\u00fameros."
+  ],
+  "cta_text": "Ver o Meu Confidence Score",
+  "email_number": 6,
+  "send_day": 11,
+  "type": "common_mistake",
+  "app_name": "Predictify",
+  "generated_at": "2026-03-20T16:27:23.666374"
+}
