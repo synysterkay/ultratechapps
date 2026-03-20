@@ -1,0 +1,17 @@
+{
+  "subject": "Mein 2-Uhr-nachts-Fehler, der alles ver\u00e4nderte",
+  "preview_text": "Warum ich eine App-Funktion mitten in der Nacht baute \u2013 und es fast nicht getan h\u00e4tte. Die wahre Geschichte.",
+  "body_paragraphs": [
+    "Letzte Saison, 2:17 Uhr. Champions-League-Nacht. Ich sa\u00df vor einem Berg von Daten zu einem bestimmten Spiel. Mein Bauchgef\u00fchl schrie mir eine Vorhersage zu. Aber die Zahlen sagten etwas v\u00f6llig anderes. Ich war kurz davor, auf mein Gef\u00fchl zu h\u00f6ren. Das w\u00e4re ein riesiger Fehler gewesen.",
+    "Ich hatte die Daten von 14 vergangenen Derbys analysiert. Jedes Mal, wenn die Stimmung im Stadion so elektrisiert war, \u00fcbersahen selbst Experten einen entscheidenden Faktor: die individuelle Fehlerquote der Torh\u00fcter unter extremem Druck. Nicht die Teamstatistik. Den einzelnen Spieler. Ich baute einen Algorithmus, der genau das berechnet \u2013 mitten in der Nacht, mit drei Tassen zu starkem Kaffee. Nicht, weil ich musste. Weil ich wusste, dass ich sonst nur raten w\u00fcrde. Genau wie alle anderen.",
+    "Diese n\u00e4chtliche Erkenntnis steckt jetzt in der KI-Bewertung f\u00fcr jede Vorhersage in Predictify. Dieser 'Confidence Score' sagt dir nicht nur, ob wir gewinnen oder verlieren. Er zeigt dir, wie sehr sich die Daten \u2013 gegen alle Emotionen \u2013 sicher sind. Er ist der Grund, warum unsere Top-Tipps eine 23% h\u00f6here Trefferquote haben.",
+    "\u00d6ffne Predictify und such dir das n\u00e4chste gro\u00dfe Derby aus deiner Lieblingsliga aus. Sieh dir den Confidence Score an. Sp\u00fcrst du den Unterschied zwischen raten und wissen? Klick unten. P.S. Die Funktion, von der ich rede, hat mir damals 87\u20ac erspart. Sie k\u00f6nnte dir heute Abend mehr bringen.",
+    "\u00d6ffne Predictify und such dir das n\u00e4chste gro\u00dfe Derby aus deiner Lieblingsliga aus. Sieh dir den Confidence Score an. Sp\u00fcrst du den Unterschied zwischen raten und wissen? Klick unten. P.S. Die Funktion, von der ich rede, hat mir damals 87\u20ac erspart. Sie k\u00f6nnte dir heute Abend mehr bringen."
+  ],
+  "cta_text": "Confidence Scores checken",
+  "email_number": 5,
+  "send_day": 9,
+  "type": "behind_the_scenes",
+  "app_name": "Predictify",
+  "generated_at": "2026-03-20T15:53:30.395595"
+}

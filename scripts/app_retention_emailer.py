@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 """
 App Retention Email System
-Main orchestrator: Loads Firebase users per app, sends 20-email retention
+Main orchestrator: Loads Firebase users per app, sends 30-email retention
 funnel via Resend. Tracks progress per user to never send duplicates.
+Includes behavioral branching, streak triggers, and match-day triggers.
 
 Usage:
   python scripts/app_retention_emailer.py              # Send next batch
   python scripts/app_retention_emailer.py --generate   # Pre-generate all emails
   python scripts/app_retention_emailer.py --status      # Show campaign status
   python scripts/app_retention_emailer.py --refresh     # Re-export Firebase users
+  python scripts/app_retention_emailer.py --dry-run     # Simulate campaign (no send)
+  python scripts/app_retention_emailer.py --streak      # Send streak reminder emails
+  python scripts/app_retention_emailer.py --matchday    # Send match-day trigger emails
 """
 import os
 import sys
@@ -23,10 +27,33 @@ from datetime import datetime
 sys.path.insert(0, str(Path(__file__).parent))
 
 from firebase_user_loader import FirebaseUserLoader, FIREBASE_APPS
-from retention_email_generator import RetentionEmailGenerator, APP_CONTEXT
+from retention_email_generator import RetentionEmailGenerator, APP_CONTEXT, EMAIL_SEQUENCE
 from gmail_sender import GmailSender
 from firestore_language_loader import FirestoreLanguageLoader
 from deliverability_monitor import DeliverabilityMonitor
+from firestore_activity_loader import FirestoreActivityLoader
+
+
+# ─── BEHAVIORAL BRANCHING ──────────────────────────────
+# Re-engagement email indices (1-indexed) from EMAIL_SEQUENCE for churning users.
+# These are Phase 4 re-engagement emails that work well out-of-order for win-back.
+REENGAGEMENT_EMAILS = [21, 22, 24, 25, 26, 28]  # comeback_trigger, power_user_shortcut, user_spotlight, unexpected_use_case, referral_trigger, data_insight
+
+# Map: when a churning user is at normal email position X, send them
+# a re-engagement email instead. Only applies to emails 4-13 (deepening phase).
+# After email 13 they rejoin normal sequence at email 14.
+CHURNING_REMAP = {
+    4: 21,   # behind_the_scenes → comeback_trigger
+    5: 22,   # common_mistake → power_user_shortcut  
+    6: 24,   # value_bomb → user_spotlight
+    7: 25,   # story_emotional → unexpected_use_case
+    8: 26,   # challenge → referral_trigger
+    9: 28,   # pro_workflow → data_insight
+    10: 21,  # myth_buster → comeback_trigger (repeat wins)
+    11: 22,  # feature_deep_dive → power_user_shortcut
+    12: 24,  # milestone_checkin → user_spotlight
+    13: 25,  # community_belonging → unexpected_use_case
+}
 
 
 class AppRetentionEmailer:
@@ -40,7 +67,9 @@ class AppRetentionEmailer:
         self.email_generator = RetentionEmailGenerator()
         self.language_loader = FirestoreLanguageLoader()
         self.deliverability = DeliverabilityMonitor()
-        self.user_languages = {}  # email -> language code
+        self.activity_loader = FirestoreActivityLoader()
+        self.user_languages = {}   # email -> language code
+        self.user_activity = {}    # email -> {streak, favoriteLeague, isSubscribed, ...}
         
         # Load tracking state
         self.state = self._load_state()
@@ -255,6 +284,47 @@ class AppRetentionEmailer:
 
     # ─── CAMPAIGN LOGIC ────────────────────────────────────
     
+    def _classify_user(self, user, emails_sent):
+        """
+        Classify user into behavioral segment based on last app login.
+        Returns: 'active', 'churning', or 'normal'.
+        Used for emails #4+ to branch the sequence.
+        """
+        # Only branch after the activation phase (emails 1-3)
+        if emails_sent < 3:
+            return 'normal'
+        
+        last_login = user.get('last_login', '')
+        if not last_login:
+            return 'normal'
+        
+        try:
+            # Firebase timestamp is milliseconds since epoch
+            ts = int(last_login)
+            if ts > 1e12:  # milliseconds
+                ts = ts / 1000
+            last_login_dt = datetime.fromtimestamp(ts)
+            days_since = (datetime.now() - last_login_dt).days
+        except (ValueError, TypeError, OSError):
+            return 'normal'
+        
+        if days_since <= 3:
+            return 'active'
+        elif days_since >= 7:
+            return 'churning'
+        return 'normal'
+    
+    def _get_email_for_segment(self, next_email_num, segment, is_subscribed=False):
+        """
+        Get the actual email number to send based on user segment.
+        Churning users get re-engagement emails instead of deepening emails.
+        Subscribed users skip heavy upsell emails.
+        Returns: (actual_email_num, remapped: bool)
+        """
+        if segment == 'churning' and next_email_num in CHURNING_REMAP:
+            return CHURNING_REMAP[next_email_num], True
+        return next_email_num, False
+    
     def _get_eligible_users(self, users_by_app):
         """
         Find users who should receive their next email today.
@@ -324,7 +394,7 @@ class AppRetentionEmailer:
                 if emails_sent >= 30:
                     continue
                 
-                # Check timing — import the sequence schedule
+                # Check timing
                 from retention_email_generator import EMAIL_SEQUENCE
                 next_email_num = emails_sent + 1
                 
@@ -338,7 +408,9 @@ class AppRetentionEmailer:
                         'app_name': app_name,
                         'app_info': app_info,
                         'next_email': 1,
+                        'actual_email': 1,
                         'language': user.get('language', 'en'),
+                        'segment': 'new',
                     })
                     continue
                 
@@ -351,17 +423,37 @@ class AppRetentionEmailer:
                 if last_sent_str:
                     last_sent = datetime.fromisoformat(last_sent_str)
                     hours_since_last = (now - last_sent).total_seconds() / 3600
-                    hours_to_wait = max(days_to_wait * 24, 20)  # At least 20 hours
+                    
+                    # Churning users get faster re-engagement (min 16 hours vs 20)
+                    segment = self._classify_user(user, emails_sent)
+                    if segment == 'churning':
+                        hours_to_wait = max(days_to_wait * 24 * 0.6, 16)
+                    else:
+                        hours_to_wait = max(days_to_wait * 24, 20)
                     
                     if hours_since_last < hours_to_wait:
                         continue
+                else:
+                    segment = self._classify_user(user, emails_sent)
+                
+                # Check activity data for subscription status
+                activity = self.user_activity.get(email, {})
+                is_subscribed = activity.get('isSubscribed') or activity.get('isPremium', False)
+                
+                # Get actual email to send (may be remapped for churning)
+                actual_email, remapped = self._get_email_for_segment(
+                    next_email_num, segment, is_subscribed
+                )
                 
                 eligible.append({
                     'email': email,
                     'app_name': app_name,
                     'app_info': app_info,
                     'next_email': next_email_num,
+                    'actual_email': actual_email,
                     'language': user.get('language', 'en'),
+                    'segment': segment,
+                    'remapped': remapped,
                 })
             
         return eligible
@@ -399,6 +491,13 @@ class AppRetentionEmailer:
                 for user in users_by_app.get(app_name, []):
                     user['language'] = self.user_languages.get(user['email'], 'en')
         
+        # 1b2. Load activity data for behavioral branching (Predictify)
+        print("\n📊 Loading user activity data for behavioral branching...")
+        for app_name in ['Predictify']:
+            if app_name in users_by_app:
+                activity = self.activity_loader.fetch_user_activity(app_name)
+                self.user_activity.update(activity)
+        
         # 1c. Check sender health & auto-rotate if needed
         print("\n🏥 Checking sender health...")
         active_sender = self.deliverability.check_and_rotate_if_needed()
@@ -424,7 +523,12 @@ class AppRetentionEmailer:
         print(f"   📬 {len(eligible)} users ready for emails:")
         for app, users in sorted(by_app.items(), key=lambda x: -len(x[1])):
             email_nums = [u['next_email'] for u in users]
-            print(f"      {app}: {len(users)} users (emails: {set(email_nums)})")
+            segments = {}
+            for u in users:
+                seg = u.get('segment', 'normal')
+                segments[seg] = segments.get(seg, 0) + 1
+            seg_str = ', '.join(f"{k}:{v}" for k, v in sorted(segments.items()))
+            print(f"      {app}: {len(users)} users (emails: {set(email_nums)}) [{seg_str}]")
         
         if dry_run:
             print("\n🏁 DRY RUN - no emails sent")
@@ -435,7 +539,8 @@ class AppRetentionEmailer:
         needed_emails = set()
         for e in eligible:
             lang = e.get('language', 'en')
-            needed_emails.add((e['app_name'], e['next_email'], lang))
+            actual = e.get('actual_email', e['next_email'])
+            needed_emails.add((e['app_name'], actual, lang))
         
         email_content = {}
         for app_name, email_num, lang in needed_emails:
@@ -469,10 +574,12 @@ class AppRetentionEmailer:
             email_addr = entry['email']
             app_name = entry['app_name']
             email_num = entry['next_email']
+            actual_num = entry.get('actual_email', email_num)
             app_info = entry['app_info']
             lang = entry.get('language', 'en')
+            segment = entry.get('segment', 'normal')
             
-            email_data = email_content.get((app_name, email_num, lang))
+            email_data = email_content.get((app_name, actual_num, lang))
             if not email_data:
                 failed += 1
                 continue
@@ -505,9 +612,11 @@ class AppRetentionEmailer:
                 
                 self.state['users'][email_addr]['emails_sent'] = email_num
                 self.state['users'][email_addr]['last_email_sent'] = now_str
+                self.state['users'][email_addr]['segment'] = segment
                 self.state['daily_stats'][today]['sent'] += 1
                 
-                print(f"   ✅ [{sent}/{len(eligible)}] {email_addr} ← {app_name} #{email_num}")
+                remap_note = f" (re-engage #{actual_num})" if entry.get('remapped') else ""
+                print(f"   ✅ [{sent}/{len(eligible)}] {email_addr} ← {app_name} #{email_num}{remap_note} [{segment}]")
             elif result == 'bounced':
                 # Auto-remove bounced email from the system
                 failed += 1
@@ -541,6 +650,362 @@ class AppRetentionEmailer:
         print(f"   ❌ Failed: {failed}")
         print(f"   📅 Daily total: {self.state['daily_stats'][today]}")
         print(f"{'='*60}")
+    
+    def run_streak_triggers(self, dry_run=False):
+        """
+        Send streak reminder emails to users with active streaks >= 3.
+        Max 1 streak email per user per week.
+        Hooked model: Internal trigger reinforcement — streak anxiety drives re-engagement.
+        """
+        print("=" * 60)
+        print("🔥 STREAK TRIGGER EMAILS")
+        print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+        print("=" * 60)
+        
+        # Load activity data
+        print("\n📊 Loading user activity data...")
+        activity = self.activity_loader.fetch_user_activity('Predictify')
+        if not activity:
+            print("   ⚠️ No activity data available (FIREBASE_TOKEN not set?)")
+            return
+        
+        # Find users with streak >= 3
+        streak_users = []
+        now = datetime.now()
+        for email, data in activity.items():
+            streak = data.get('streak', 0)
+            if streak < 3:
+                continue
+            
+            # Check we haven't sent a streak email in the last 7 days
+            user_state = self.state['users'].get(email, {})
+            last_streak = user_state.get('last_streak_email')
+            if last_streak:
+                last_dt = datetime.fromisoformat(last_streak)
+                if (now - last_dt).days < 7:
+                    continue
+            
+            streak_users.append({'email': email, 'streak': streak})
+        
+        print(f"\n🔥 {len(streak_users)} users eligible for streak reminders")
+        
+        if not streak_users or dry_run:
+            if dry_run:
+                print("\n🏁 DRY RUN — no emails sent")
+                for u in streak_users[:10]:
+                    print(f"   Would send: {u['email']} (streak: {u['streak']})")
+            return
+        
+        # Get sender
+        active_sender = self.deliverability.check_and_rotate_if_needed()
+        gmail = GmailSender(
+            sender_email=active_sender['email'],
+            sender_name=active_sender['name'],
+        )
+        if not gmail.connect():
+            print("❌ Cannot connect to Resend. Aborting.")
+            return
+        
+        # Get user languages
+        languages = self.language_loader.fetch_user_languages('Predictify')
+        app_info = self.firebase_loader.get_app_info('Predictify')
+        
+        sent = 0
+        for user in streak_users:
+            email_addr = user['email']
+            streak = user['streak']
+            lang = languages.get(email_addr, 'en')
+            
+            # Build streak email
+            html = self._build_streak_html(streak, lang, app_info, active_sender['name'])
+            subject = self._get_streak_subject(streak, lang)
+            
+            result = gmail.send_email(
+                to_email=email_addr,
+                subject=subject,
+                html_body=html,
+                from_name='Predictify'
+            )
+            
+            if result == 'sent':
+                sent += 1
+                if email_addr not in self.state['users']:
+                    self.state['users'][email_addr] = {'app': 'Predictify', 'emails_sent': 0}
+                self.state['users'][email_addr]['last_streak_email'] = now.isoformat()
+                print(f"   🔥 {email_addr} (streak: {streak})")
+            
+            time.sleep(1)
+        
+        gmail.disconnect()
+        self._save_state()
+        print(f"\n📊 Streak emails sent: {sent}/{len(streak_users)}")
+    
+    def _get_streak_subject(self, streak, lang):
+        """Get localized streak email subject line."""
+        subjects = {
+            'en': f"Your {streak}-day streak is alive — don't let it die",
+            'ar': f"سلسلتك من {streak} أيام لا تزال قائمة — لا تدعها تنتهي",
+            'es': f"Tu racha de {streak} días sigue viva — no la pierdas",
+            'fr': f"Votre série de {streak} jours est en vie — ne la perdez pas",
+            'pt': f"Sua sequência de {streak} dias continua — não deixe morrer",
+            'de': f"Deine {streak}-Tage-Serie lebt noch — lass sie nicht sterben",
+            'tr': f"{streak} günlük seriniz devam ediyor — kaybetmeyin",
+            'it': f"La tua serie di {streak} giorni è ancora viva — non lasciarla morire",
+            'pp': f"A sua série de {streak} dias continua — não a deixe acabar",
+            'hi': f"आपकी {streak} दिन की स्ट्रीक जारी है — इसे खत्म मत होने दीजिए",
+            'id': f"Streak {streak} hari Anda masih aktif — jangan biarkan berakhir",
+            'nl': f"Je {streak}-daagse reeks is nog actief — laat het niet stoppen",
+            'pl': f"Twoja {streak}-dniowa seria jest aktywna — nie pozwól jej się skończyć",
+            'ja': f"あなたの{streak}日連続記録はまだ続いています — 途切れさせないで",
+        }
+        return subjects.get(lang, subjects['en'])
+    
+    def _build_streak_html(self, streak, lang, app_info, sender_name):
+        """Build streak reminder email HTML."""
+        is_rtl = lang == 'ar'
+        dir_attr = ' dir="rtl"' if is_rtl else ''
+        text_align = 'right' if is_rtl else 'left'
+        
+        greetings = {'en': 'Hey there,', 'ar': 'مرحبًا،', 'es': 'Hola,', 'fr': 'Salut,', 'pt': 'Olá,', 'de': 'Hallo,', 'tr': 'Merhaba,', 'it': 'Ciao,', 'pp': 'Olá,', 'hi': 'नमस्ते,', 'id': 'Halo,', 'nl': 'Hallo,', 'pl': 'Cześć,', 'ja': 'こんにちは、'}
+        
+        bodies = {
+            'en': f"You're on a {streak}-day prediction streak. That puts you ahead of most Predictify users.\n\nToday's matches are already analyzed — the AI has confidence scores ready. One quick prediction keeps your streak alive and climbing.\n\nThe users who build long streaks unlock special badges and climb the leaderboard. Your {streak}-day streak is worth protecting.\n\nP.S. Open the app now — it takes 30 seconds to make a prediction and keep your streak going.",
+            'ar': f"أنت في سلسلة توقعات من {streak} أيام. هذا يضعك متقدمًا على معظم مستخدمي Predictify.\n\nمباريات اليوم تم تحليلها — الذكاء الاصطناعي لديه درجات الثقة جاهزة. توقع واحد سريع يبقي سلسلتك.\n\nالمستخدمون الذين يبنون سلاسل طويلة يفتحون شارات خاصة. سلسلتك من {streak} أيام تستحق الحماية.\n\nملاحظة: افتح التطبيق الآن — يستغرق 30 ثانية فقط.",
+            'es': f"Llevas una racha de {streak} días de predicciones. Eso te pone por delante de la mayoría.\n\nLos partidos de hoy ya están analizados — la IA tiene puntuaciones de confianza listas. Una predicción rápida mantiene tu racha.\n\nLos usuarios con rachas largas desbloquean insignias y suben en el ranking. Tu racha de {streak} días vale la pena protegerla.\n\nP.D. Abre la app ahora — toma 30 segundos.",
+            'fr': f"Vous êtes sur une série de {streak} jours de prédictions. Ça vous place devant la plupart des utilisateurs.\n\nLes matchs d'aujourd'hui sont déjà analysés — l'IA a les scores de confiance prêts. Une prédiction rapide maintient votre série.\n\nLes utilisateurs avec de longues séries débloquent des badges spéciaux. Votre série de {streak} jours mérite d'être protégée.\n\nP.S. Ouvrez l'app maintenant — ça prend 30 secondes.",
+        }
+        
+        greeting = greetings.get(lang, greetings['en'])
+        body = bodies.get(lang, bodies['en'])
+        
+        # Build CTA
+        app_store_url = app_info.get('app_store_url', '')
+        google_play_url = app_info.get('google_play_url', '')
+        
+        cta_html = ""
+        if app_store_url and google_play_url:
+            cta_html = f'''
+            <div style="text-align:center;margin:36px 0;">
+                <a href="{app_store_url}" style="display:inline-block;background:linear-gradient(135deg,#f59e0b 0%,#d97706 100%);color:#fff;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:700;font-size:16px;margin:0 6px;">
+                    🔥 Keep Streak Alive (iOS)
+                </a>
+                <a href="{google_play_url}" style="display:inline-block;background:linear-gradient(135deg,#f59e0b 0%,#d97706 100%);color:#fff;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:700;font-size:16px;margin:0 6px;">
+                    🔥 Keep Streak Alive (Android)
+                </a>
+            </div>'''
+        
+        paragraphs_html = ""
+        for p in body.split("\n\n"):
+            p_html = p.replace('\n', '<br>')
+            if 'P.S.' in p or 'P.D.' in p or 'ملاحظة' in p:
+                paragraphs_html += f'<div style="margin:32px 0 0;padding:16px 20px;background:#fffbeb;border-radius:8px;border:1px solid #fcd34d;"><p style="margin:0;font-size:16px;color:#92400e;line-height:1.7;text-align:{text_align};">{p_html}</p></div>'
+            else:
+                paragraphs_html += f'<p style="margin:0 0 20px;font-size:17px;color:#374151;line-height:1.8;text-align:{text_align};">{p_html}</p>'
+        
+        signoffs = {'en': 'Talk soon,', 'ar': 'إلى اللقاء،', 'es': 'Hasta pronto,', 'fr': 'À bientôt,', 'pt': 'Até logo,', 'de': 'Bis bald,', 'tr': 'Görüşürüz,', 'it': 'A presto,', 'pp': 'Até breve,', 'hi': 'जल्द बात करते हैं,', 'id': 'Sampai jumpa,', 'nl': 'Tot snel,', 'pl': 'Do zobaczenia,', 'ja': 'またね、'}
+        signoff = signoffs.get(lang, signoffs['en'])
+        
+        return f'''<!DOCTYPE html>
+<html{dir_attr}>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
+<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.7;color:#2d3748;max-width:600px;margin:0 auto;padding:40px 24px;background:#fff;text-align:{text_align};">
+    <div style="margin-bottom:28px;">
+        <p style="margin:0 0 24px;font-size:18px;color:#6b7280;text-align:{text_align};">{greeting}</p>
+        {paragraphs_html}
+    </div>
+    {cta_html}
+    <p style="margin:32px 0 0;font-size:17px;color:#4b5563;text-align:{text_align};">
+        {signoff}<br>
+        <strong style="color:#1f2937;">{sender_name}</strong>
+    </p>
+    <div style="margin-top:48px;padding-top:24px;border-top:1px solid #e5e7eb;text-align:center;">
+        <p style="margin:0;font-size:12px;color:#d1d5db;">You're receiving this because you have a Predictify account.</p>
+    </div>
+</body>
+</html>'''
+    
+    def run_matchday_triggers(self, dry_run=False):
+        """
+        Send match-day triggered emails to users whose favorite leagues have matches today.
+        Max 2 match-day emails per user per week.
+        Hooked model: Perfect external trigger — timed to when user thinks about football.
+        """
+        print("=" * 60)
+        print("⚽ MATCH-DAY TRIGGER EMAILS")
+        print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+        print("=" * 60)
+        
+        # Load activity data to get favorite leagues
+        print("\n📊 Loading user favorite leagues...")
+        activity = self.activity_loader.fetch_user_activity('Predictify')
+        if not activity:
+            print("   ⚠️ No activity data available")
+            return
+        
+        # Group users by favorite league
+        users_by_league = {}
+        now = datetime.now()
+        for email, data in activity.items():
+            league = data.get('favoriteLeague')
+            if not league:
+                continue
+            
+            # Check max 2 match-day emails per week
+            user_state = self.state['users'].get(email, {})
+            last_matchday = user_state.get('last_matchday_email')
+            matchday_count = user_state.get('matchday_emails_this_week', 0)
+            
+            if last_matchday:
+                last_dt = datetime.fromisoformat(last_matchday)
+                days_since = (now - last_dt).days
+                if days_since < 1:
+                    continue
+                if days_since >= 7:
+                    matchday_count = 0  # Reset weekly counter
+            
+            if matchday_count >= 2:
+                continue
+            
+            users_by_league.setdefault(league, []).append(email)
+        
+        if not users_by_league:
+            print("   ✅ No users with favorite leagues set")
+            return
+        
+        print(f"   Leagues with users: {list(users_by_league.keys())}")
+        total_eligible = sum(len(v) for v in users_by_league.values())
+        print(f"   Total eligible: {total_eligible} users across {len(users_by_league)} leagues")
+        
+        if dry_run:
+            print("\n🏁 DRY RUN — no emails sent")
+            for league, emails in sorted(users_by_league.items(), key=lambda x: -len(x[1])):
+                print(f"   {league}: {len(emails)} users")
+            return
+        
+        # Get sender and languages
+        active_sender = self.deliverability.check_and_rotate_if_needed()
+        gmail = GmailSender(
+            sender_email=active_sender['email'],
+            sender_name=active_sender['name'],
+        )
+        if not gmail.connect():
+            print("❌ Cannot connect to Resend. Aborting.")
+            return
+        
+        languages = self.language_loader.fetch_user_languages('Predictify')
+        app_info = self.firebase_loader.get_app_info('Predictify')
+        
+        sent = 0
+        for league, user_emails in users_by_league.items():
+            for email_addr in user_emails:
+                lang = languages.get(email_addr, 'en')
+                html = self._build_matchday_html(league, lang, app_info, active_sender['name'])
+                subject = self._get_matchday_subject(league, lang)
+                
+                result = gmail.send_email(
+                    to_email=email_addr,
+                    subject=subject,
+                    html_body=html,
+                    from_name='Predictify'
+                )
+                
+                if result == 'sent':
+                    sent += 1
+                    if email_addr not in self.state['users']:
+                        self.state['users'][email_addr] = {'app': 'Predictify', 'emails_sent': 0}
+                    self.state['users'][email_addr]['last_matchday_email'] = now.isoformat()
+                    prev_count = self.state['users'][email_addr].get('matchday_emails_this_week', 0)
+                    self.state['users'][email_addr]['matchday_emails_this_week'] = prev_count + 1
+                    print(f"   ⚽ {email_addr} ← {league}")
+                
+                time.sleep(1)
+        
+        gmail.disconnect()
+        self._save_state()
+        print(f"\n📊 Match-day emails sent: {sent}/{total_eligible}")
+    
+    def _get_matchday_subject(self, league, lang):
+        """Get localized match-day email subject."""
+        subjects = {
+            'en': f"{league} kicks off today — the AI's top predictions are ready",
+            'ar': f"مباريات {league} اليوم — توقعات الذكاء الاصطناعي جاهزة",
+            'es': f"{league} empieza hoy — las predicciones de la IA están listas",
+            'fr': f"{league} commence aujourd'hui — les prédictions sont prêtes",
+            'pt': f"{league} começa hoje — as previsões da IA estão prontas",
+            'de': f"{league} startet heute — die KI-Vorhersagen sind bereit",
+            'tr': f"{league} bugün başlıyor — yapay zekanın tahminleri hazır",
+            'it': f"{league} inizia oggi — le previsioni dell'IA sono pronte",
+            'pp': f"{league} começa hoje — as previsões da IA estão prontas",
+            'hi': f"{league} आज शुरू होता है — AI की भविष्यवाणियां तैयार हैं",
+            'id': f"{league} dimulai hari ini — prediksi AI sudah siap",
+            'nl': f"{league} begint vandaag — de AI-voorspellingen staan klaar",
+            'pl': f"{league} zaczyna się dzisiaj — prognozy AI są gotowe",
+            'ja': f"{league}が今日開幕 — AIの予測が準備完了",
+        }
+        return subjects.get(lang, subjects['en'])
+    
+    def _build_matchday_html(self, league, lang, app_info, sender_name):
+        """Build match-day trigger email HTML."""
+        is_rtl = lang == 'ar'
+        dir_attr = ' dir="rtl"' if is_rtl else ''
+        text_align = 'right' if is_rtl else 'left'
+        
+        greetings = {'en': 'Hey there,', 'ar': 'مرحبًا،', 'es': 'Hola,', 'fr': 'Salut,', 'pt': 'Olá,', 'de': 'Hallo,', 'tr': 'Merhaba,', 'it': 'Ciao,', 'pp': 'Olá,', 'hi': 'नमस्ते,', 'id': 'Halo,', 'nl': 'Hallo,', 'pl': 'Cześć,', 'ja': 'こんにちは、'}
+        
+        bodies = {
+            'en': f"It's matchday for {league}. The AI has already analyzed today's fixtures — confidence scores, head-to-head stats, and tactical breakdowns are all ready.\n\nOpen Predictify and check the AI's most confident predictions before kickoff. The predictions with the highest confidence scores have been the most accurate this season.\n\nMake your predictions before the matches start and keep your streak going. The best predictions come from checking the AI analysis early.\n\nP.S. Tap on any match to see the full breakdown — xG, defensive strength, recent form. It's all there.",
+            'ar': f"اليوم يوم مباريات {league}. الذكاء الاصطناعي حلل مباريات اليوم — درجات الثقة والإحصائيات جاهزة.\n\nافتح Predictify وتحقق من أكثر التوقعات ثقة قبل صافرة البداية.\n\nقم بتوقعاتك قبل بداية المباريات وحافظ على سلسلتك.\n\nملاحظة: اضغط على أي مباراة لرؤية التحليل الكامل.",
+            'es': f"Hoy es día de partido en {league}. La IA ya analizó los partidos de hoy — predicciones y estadísticas están listas.\n\nAbre Predictify y revisa las predicciones más confiables antes del inicio. Las predicciones con mayor confianza han sido las más precisas esta temporada.\n\nHaz tus predicciones antes de que empiecen los partidos.\n\nP.D. Toca cualquier partido para ver el análisis completo — xG, fortaleza defensiva, forma reciente.",
+            'fr': f"C'est jour de match en {league}. L'IA a déjà analysé les rencontres d'aujourd'hui — scores de confiance et statistiques sont prêts.\n\nOuvrez Predictify et vérifiez les prédictions les plus fiables avant le coup d'envoi.\n\nFaites vos prédictions avant le début des matchs et maintenez votre série.\n\nP.S. Appuyez sur n'importe quel match pour voir l'analyse complète.",
+        }
+        
+        greeting = greetings.get(lang, greetings['en'])
+        body = bodies.get(lang, bodies['en'])
+        
+        app_store_url = app_info.get('app_store_url', '')
+        google_play_url = app_info.get('google_play_url', '')
+        
+        cta_html = ""
+        if app_store_url and google_play_url:
+            cta_html = f'''
+            <div style="text-align:center;margin:36px 0;">
+                <a href="{app_store_url}" style="display:inline-block;background:linear-gradient(135deg,#10b981 0%,#059669 100%);color:#fff;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:700;font-size:16px;margin:0 6px;">
+                    ⚽ See Predictions (iOS)
+                </a>
+                <a href="{google_play_url}" style="display:inline-block;background:linear-gradient(135deg,#10b981 0%,#059669 100%);color:#fff;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:700;font-size:16px;margin:0 6px;">
+                    ⚽ See Predictions (Android)
+                </a>
+            </div>'''
+        
+        paragraphs_html = ""
+        for p in body.split("\n\n"):
+            p_html = p.replace('\n', '<br>')
+            if 'P.S.' in p or 'P.D.' in p or 'ملاحظة' in p:
+                paragraphs_html += f'<div style="margin:32px 0 0;padding:16px 20px;background:#ecfdf5;border-radius:8px;border:1px solid #6ee7b7;"><p style="margin:0;font-size:16px;color:#065f46;line-height:1.7;text-align:{text_align};">{p_html}</p></div>'
+            else:
+                paragraphs_html += f'<p style="margin:0 0 20px;font-size:17px;color:#374151;line-height:1.8;text-align:{text_align};">{p_html}</p>'
+        
+        signoffs = {'en': 'Talk soon,', 'ar': 'إلى اللقاء،', 'es': 'Hasta pronto,', 'fr': 'À bientôt,', 'pt': 'Até logo,', 'de': 'Bis bald,', 'tr': 'Görüşürüz,', 'it': 'A presto,', 'pp': 'Até breve,', 'hi': 'जल्द बात करते हैं,', 'id': 'Sampai jumpa,', 'nl': 'Tot snel,', 'pl': 'Do zobaczenia,', 'ja': 'またね、'}
+        signoff = signoffs.get(lang, signoffs['en'])
+        
+        return f'''<!DOCTYPE html>
+<html{dir_attr}>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
+<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.7;color:#2d3748;max-width:600px;margin:0 auto;padding:40px 24px;background:#fff;text-align:{text_align};">
+    <div style="margin-bottom:28px;">
+        <p style="margin:0 0 24px;font-size:18px;color:#6b7280;text-align:{text_align};">{greeting}</p>
+        {paragraphs_html}
+    </div>
+    {cta_html}
+    <p style="margin:32px 0 0;font-size:17px;color:#4b5563;text-align:{text_align};">
+        {signoff}<br>
+        <strong style="color:#1f2937;">{sender_name}</strong>
+    </p>
+    <div style="margin-top:48px;padding-top:24px;border-top:1px solid #e5e7eb;text-align:center;">
+        <p style="margin:0;font-size:12px;color:#d1d5db;">You're receiving this because you have a Predictify account.</p>
+    </div>
+</body>
+</html>'''
     
     def show_status(self):
         """Show current campaign status"""
@@ -608,6 +1073,16 @@ if __name__ == '__main__':
     
     elif '--dry-run' in sys.argv:
         emailer.run_campaign(dry_run=True)
+    
+    elif '--streak' in sys.argv:
+        # Streak trigger emails
+        dry_run = '--dry-run' in sys.argv or '--streak-dry' in sys.argv
+        emailer.run_streak_triggers(dry_run=dry_run)
+    
+    elif '--matchday' in sys.argv:
+        # Match-day trigger emails
+        dry_run = '--dry-run' in sys.argv or '--matchday-dry' in sys.argv
+        emailer.run_matchday_triggers(dry_run=dry_run)
     
     else:
         emailer.run_campaign()

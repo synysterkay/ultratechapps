@@ -1,0 +1,17 @@
+{
+  "subject": "O erro que 90% dos usu\u00e1rios cometem no Predictify",
+  "preview_text": "A maioria pula a melhor parte do app. Voc\u00ea est\u00e1 perdendo o segredo por tr\u00e1s das previs\u00f5es mais certeiras.",
+  "body_paragraphs": [
+    "Lembra daquela partida que voc\u00ea jurou que ia ser 2x1, mas acabou 0x0? O palpite estava na sua cara o tempo todo. Acontece que quase todo mundo que baixa o Predictify ignora completamente a \u00fanica coisa que separa os chutes cegos das previs\u00f5es cir\u00fargicas.",
+    "N\u00e3o \u00e9 a IA, nem as estat\u00edsticas b\u00e1sicas. \u00c9 o detalhe que transforma dados em convic\u00e7\u00e3o. Enquanto a maioria corre direto para o placar final, os usu\u00e1rios que realmente acertam tudo ficam obcecados por um n\u00famero espec\u00edfico. Esse n\u00famero revela se a IA est\u00e1 s\u00f3 chutando ou se tem dados s\u00f3lidos por tr\u00e1s. Pular isso \u00e9 como apostar no escuro.",
+    "Estou falando do **Confidence Score**. A pontua\u00e7\u00e3o de confian\u00e7a para cada previs\u00e3o. \u00c9 o term\u00f4metro da certeza da IA. Ele n\u00e3o te diz apenas o placar prov\u00e1vel, mas QU\u00c3O prov\u00e1vel ele \u00e9, com base em milhares de vari\u00e1veis cruzadas. A maioria desliza direto por ele, mas \u00e9 a\u00ed que mora o hack. Ver um Confidence Score de 85%+ \u00e9 seu sinal verde para confiar cegamente.",
+    "Abra o Predictify AGORA e, antes de olhar qualquer palpite, encontre o Confidence Score da pr\u00f3xima partida do seu time. \u00c9 o divisor de \u00e1guas. Vai mudar completamente como voc\u00ea usa o app. P.S.: Os usu\u00e1rios Premium veem o Confidence Score detalhado por tempo de jogo e probabilidade de cada evento (pr\u00f3ximo gol, cart\u00e3o, etc.). \u00c9 assustadoramente preciso.",
+    "Ver o Confidence Score"
+  ],
+  "cta_text": "Ver o Confidence Score",
+  "email_number": 2,
+  "send_day": 2,
+  "type": "hidden_feature",
+  "app_name": "Predictify",
+  "generated_at": "2026-03-20T15:42:43.729553"
+}

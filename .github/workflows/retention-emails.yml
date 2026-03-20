@@ -20,6 +20,8 @@ on:
           - generate
           - refresh
           - health-check
+          - streak
+          - matchday
 
 permissions:
   contents: write
@@ -78,8 +80,17 @@ jobs:
             python scripts/app_retention_emailer.py --refresh
           elif [ "$MODE" = "health-check" ]; then
             python scripts/deliverability_monitor.py --report
+          elif [ "$MODE" = "streak" ]; then
+            python scripts/app_retention_emailer.py --streak
+          elif [ "$MODE" = "matchday" ]; then
+            python scripts/app_retention_emailer.py --matchday
           else
             python scripts/app_retention_emailer.py
+            # Also run streak + matchday triggers during normal campaign runs
+            echo "--- Running streak triggers ---"
+            python scripts/app_retention_emailer.py --streak || true
+            echo "--- Running matchday triggers ---"
+            python scripts/app_retention_emailer.py --matchday || true
           fi
       
       - name: Save retention state
