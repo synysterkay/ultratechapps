@@ -1,0 +1,17 @@
+{
+  "subject": "Kesalahan kecil ini merusak semua prediksi Anda",
+  "preview_text": "Hampir semua pengguna baru melewatkan satu pengaturan ini. Dan itu membuat prediksi mereka jadi kurang akurat.",
+  "body_paragraphs": [
+    "Bayangkan ini: Anda sudah menganalisis statistik, cek head-to-head, bahkan baca berita terbaru. Tapi prediksi Anda tetap meleset. Rasanya seperti ada yang hilang, kan? Saya dulu juga begitu, sampai saya sadar satu hal.",
+    "Rahasia yang saya temukan sederhana: jangan pernah lihat prediksi AI tanpa melihat 'Confidence Score'-nya dulu. Itu angka persentase di samping setiap prediksi. Banyak yang langsung loncat ke prediksi skor, tapi melewatkan angka kepercayaan AI. Padahal, itu bedanya antara tebakan buta dan keputusan cerdas. Confidence Score 85% vs 55% itu dunia yang berbeda. Yang satu hampir pasti, yang lain cuma perkiraan.",
+    "Di Predictify, setiap prediksi punya Confidence Score. AI kami menganalisis ribuan variabel\u2014mulai dari xG pemain, kekuatan defensif, sampai performa kandang/tandang\u2014lalu kasih tahu seberapa yakin dia dengan prediksinya. Triknya adalah: fokus dulu pada pertandingan dengan Confidence Score di atas 80%. Itu adalah insight terkuat kami. Coba bandingkan prediksi Anda dengan prediksi AI untuk pertandingan-pertandingan itu. Lihat polanya. Ini cara tercepat untuk 'belajar' cara berpikir AI dan langsung meningkatkan akurasi Anda.",
+    "Buka Predictify sekarang, cari satu pertandingan dengan Confidence Score tinggi, dan bandingkan dengan prediksi Anda. Butuh 60 detik. Hasilnya akan terasa langsung. P.S.: Pengguna Premium bisa lihat Confidence Score untuk SEMUA prediksi dan liga. Coba gratis 3 hari kalau penasaran seberapa tajam prediksi Anda nantinya.",
+    "Buka Predictify Sekarang"
+  ],
+  "cta_text": "Buka Predictify Sekarang",
+  "email_number": 3,
+  "send_day": 4,
+  "type": "quick_tip",
+  "app_name": "Predictify",
+  "generated_at": "2026-03-20T16:50:13.667492"
+}

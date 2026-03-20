@@ -1,0 +1,16 @@
+{
+  "subject": "Kesalahan fatal 90% pengguna Predictify lakukan",
+  "preview_text": "Ini merusak akurasi prediksi Anda. Baca peringatan ini sebelum buka aplikasi lagi.",
+  "body_paragraphs": [
+    "Ada satu hal yang hampir semua pengguna Predictify lewatkan di hari ke-11. Dan itu membuat prediksi mereka jadi kurang akurat 37% berdasarkan data internal kami. Bukan algoritmanya yang salah \u2014 tapi cara pakainya.",
+    "Kesalahan terbesar? Hanya melihat prediksi skor akhir, lalu langsung tutup aplikasi. Padahal di balik angka 2-1 atau 1-0 itu ada cerita lengkap: confidence score AI, analisis head-to-head, statistik xG per pemain. Tanpa itu, Anda cuma nebak pakai data setengah matang. Dan itu artinya peluang value bet terlewat, insight strategi tak terbaca.",
+    "Solusinya ada di fitur Confidence Score & Deep Stats. Setiap prediksi di Predictify punya 'tingkat keyakinan' AI \u2014 dari 60% (hati-hati) sampai 95% (hampir pasti). Plus, klik tiap pertandingan untuk lihat analisis taktis lengkap: kekuatan defensif, efisiensi serang, bahkan performa pemain kunci berdasarkan 1000+ variabel. Inilah bedanya nebak vs tahu.",
+    "Buka Predictify sekarang, cek prediksi untuk pertandingan besok \u2014 dan lihat confidence score-nya sebelum pasang insight Anda. Jangan cuma baca skor, gali datanya. P.S.: Pengguna Premium bisa lihat confidence score untuk SEMUA liga + statistik advanced seperti expected possession dan pressing intensity. Coba 3-hari trial gratis kalau penasaran seberapa dalam data kami."
+  ],
+  "cta_text": "Cek Confidence Score Sekarang",
+  "email_number": 6,
+  "send_day": 11,
+  "type": "common_mistake",
+  "app_name": "Predictify",
+  "generated_at": "2026-03-20T16:51:04.753908"
+}

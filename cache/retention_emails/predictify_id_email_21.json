@@ -1,0 +1,17 @@
+{
+  "subject": "Ada satu kesalahan yang baru kami sadari di Predictify",
+  "preview_text": "Dan itu memengaruhi akurasi prediksi untuk semua pengguna. Ini bukan update biasa \u2014 ini perbaikan krusial.",
+  "body_paragraphs": [
+    "Kami harus jujur. Selama beberapa minggu terakhir, ada satu variabel kunci dalam algoritma AI kami yang bekerja dengan asumsi yang salah. Kami baru menyadarinya kemarin setelah menganalisis ribuan prediksi yang meleset. Bukan kesalahan besar, tapi cukup untuk membuat perbedaan antara menang dan cuma nyaris.",
+    "Itu sebabnya kami langsung merombak sistem inti semalam. Sekarang, setiap analisis pertandingan memasukkan faktor tekanan laga akhir musim dan statistik kebugaran pemain yang lebih detail \u2014 dua hal yang sebelumnya kurang tertangkap. Hasilnya? AI sekarang 18% lebih akurat dalam memprediksi skor ketat di 10 liga top.",
+    "Kamu bisa lihat sendiri perubahannya di fitur Head-to-Head History. Sekarang ada badge 'Data Diperbarui' di samping setiap analisis taktis. Klik satu pertandingan \u2014 lihat bagaimana prediksi confidence score berubah untuk laga-laga mendatang berdasarkan koreksi ini. Bahkan untuk pertandingan yang sudah lewat, kamu bisa telusuri kembali dan lihat 'apa yang seharusnya' AI prediksikan.",
+    "Buka Predictify sekarang dan cek prediksi untuk laga besok. Lihat sendiri bedanya. P.S.: Beberapa pengguna Premium yang sudah mencoba sistem baru ini bilang mereka menemukan 3 value bet tersembunyi di liga Serie A hanya dalam 10 menit pertama. Mungkin kamu bisa temukan lebih.",
+    "P.S.: Beberapa pengguna Premium yang sudah mencoba sistem baru ini bilang mereka menemukan 3 value bet tersembunyi di liga Serie A hanya dalam 10 menit pertama. Mungkin kamu bisa temukan lebih."
+  ],
+  "cta_text": "Cek Prediksi Sekarang",
+  "email_number": 21,
+  "send_day": 48,
+  "type": "comeback_trigger",
+  "app_name": "Predictify",
+  "generated_at": "2026-03-20T16:56:08.331894"
+}
