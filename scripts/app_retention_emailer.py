@@ -138,8 +138,8 @@ class AppRetentionEmailer:
         text_align = 'right' if is_rtl else 'left'
         
         # Localized greeting and sign-off
-        greetings = {'en': 'Hey there,', 'ar': 'مرحبًا،', 'es': 'Hola,', 'fr': 'Salut,', 'zh': '你好，', 'hi': 'नमस्ते,', 'pt': 'Olá,', 'ru': 'Привет,'}
-        signoffs = {'en': 'Talk soon,', 'ar': 'إلى اللقاء،', 'es': 'Hasta pronto,', 'fr': 'À bientôt,', 'zh': '回头聊，', 'hi': 'जल्द बात करते हैं,', 'pt': 'Até logo,', 'ru': 'До скорого,'}
+        greetings = {'en': 'Hey there,', 'ar': 'مرحبًا،', 'es': 'Hola,', 'fr': 'Salut,', 'zh': '你好，', 'hi': 'नमस्ते,', 'pt': 'Olá,', 'ru': 'Привет,', 'de': 'Hallo,', 'tr': 'Merhaba,', 'it': 'Ciao,', 'pp': 'Olá,', 'id': 'Halo,', 'nl': 'Hallo,', 'pl': 'Cześć,', 'ja': 'こんにちは、'}
+        signoffs = {'en': 'Talk soon,', 'ar': 'إلى اللقاء،', 'es': 'Hasta pronto,', 'fr': 'À bientôt,', 'zh': '回头聊，', 'hi': 'जल्द बात करते हैं,', 'pt': 'Até logo,', 'ru': 'До скорого,', 'de': 'Bis bald,', 'tr': 'Görüşürz,', 'it': 'A presto,', 'pp': 'Até breve,', 'id': 'Sampai jumpa,', 'nl': 'Tot snel,', 'pl': 'Do zobaczenia,', 'ja': 'またね、'}
         footers = {
             'en': f"You're receiving this because you signed up for {app_name}.",
             'ar': f"تتلقى هذا البريد لأنك سجلت في {app_name}.",
@@ -148,8 +148,14 @@ class AppRetentionEmailer:
             'zh': f"您收到此邮件是因为您注册了 {app_name}。",
             'hi': f"आपको यह ईमेल इसलिए मिल रहा है क्योंकि आपने {app_name} के लिए साइन अप किया है।",
             'pt': f"Você está recebendo isso porque se registrou no {app_name}.",
-            'ru': f"Вы получили это письмо, потому что зарегистрировались в {app_name}.",
-        }
+            'ru': f"Вы получили это письмо, потому что зарегистрировались в {app_name}.",            'de': f"Du erhältst diese E-Mail, weil du dich bei {app_name} angemeldet hast.",
+            'tr': f"Bu e-postayı {app_name} uygulamasına kayıt olduğunuz için alıyorsunuz.",
+            'it': f"Ricevi questa email perché ti sei registrato su {app_name}.",
+            'pp': f"Recebe este email porque se registou no {app_name}.",
+            'id': f"Anda menerima email ini karena mendaftar di {app_name}.",
+            'nl': f"Je ontvangt dit bericht omdat je je hebt aangemeld voor {app_name}.",
+            'pl': f"Otrzymujesz tę wiadomość, ponieważ zarejestrowaałeś się w {app_name}.",
+            'ja': f"{app_name}にご登録いただいたため、このメールをお送りしています。",        }
         
         greeting = greetings.get(language, greetings['en'])
         signoff = signoffs.get(language, signoffs['en'])

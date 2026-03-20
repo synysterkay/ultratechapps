@@ -45,7 +45,7 @@ const FIREBASE_PROJECTS: Record<
     appId: "predictify",
     multilingual: true,
     defaultLang: "en",
-    supportedLanguages: ["en", "ar", "es", "fr"],
+    supportedLanguages: ["en", "ar", "es", "fr", "pt", "de", "tr", "it", "pp", "hi", "id", "nl", "pl", "ja"],
   },
   "volume-booster-2f7bf": {
     appId: "volume_booster",
@@ -141,6 +141,14 @@ const LANG_NORMALIZE: Record<string, string> = {
   pt: "pt", portuguese: "pt", pt_br: "pt",
   ru: "ru", russian: "ru",
   en: "en", english: "en", en_us: "en",
+  de: "de", german: "de", deutsch: "de",
+  tr: "tr", turkish: "tr",
+  it: "it", italian: "it", italiano: "it",
+  pp: "pp", pt_pt: "pp",
+  id: "id", indonesian: "id",
+  nl: "nl", dutch: "nl", nederlands: "nl",
+  pl: "pl", polish: "pl", polski: "pl",
+  ja: "ja", japanese: "ja",
 };
 
 // ── Fetch user languages from Firestore for a project ───────

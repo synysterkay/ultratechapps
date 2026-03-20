@@ -339,14 +339,20 @@ APP_CONTEXT = {
         "core_pain": "Bad predictions, unreliable tips, missing value bets, no data to back up gut feelings",
         "killer_features": [
             "AI analyzes thousands of variables per match for accurate score predictions",
-            "Coverage of Premier League, La Liga, Bundesliga, Serie A, Ligue 1, MLS, Champions League",
+            "Coverage of Premier League, La Liga, Bundesliga, Serie A, Ligue 1, MLS, Champions League + 50 more leagues",
             "Deep player stats: xG, possession, defensive strength, attacking efficiency",
-            "Head-to-head history and tactical analysis",
-            "Confidence scores for every prediction",
-            "Free credits by sharing + Premium unlimited access ($12.99/mo with 3-day trial)",
+            "Head-to-head history and tactical analysis for every matchup",
+            "Confidence scores for every prediction — know how sure the AI is",
+            "IQ Quiz: test your football knowledge against AI and climb the leaderboard",
+            "Communities: join fan groups, vote on Prediction of the Day (POTD), discuss matches",
+            "Daily streaks and achievements system — build your streak, unlock badges",
+            "AI Chat: ask any football question and get instant data-backed answers",
+            "News feed with match reactions — engage with real-time football stories",
+            "Credits system: earn free credits by sharing, daily login, streaks, and referrals",
+            "Premium unlimited access ($12.99/mo with 3-day trial) unlocks all predictions + advanced stats",
         ],
-        "social_proof": "Thousands of match predictions analyzed, trusted by football fans worldwide",
-        "emotional_hooks": ["stop guessing and start knowing", "be the smartest fan in the room", "never miss a winning insight", "data beats gut feeling"],
+        "social_proof": "Thousands of match predictions analyzed, trusted by football fans in 14 languages worldwide",
+        "emotional_hooks": ["stop guessing and start knowing", "be the smartest fan in the room", "never miss a winning insight", "data beats gut feeling", "prove your football IQ", "join a community of fans like you"],
         "tone": "Like a sharp football-obsessed friend who always has the stats to back it up",
         "subscription": {
             "monthly": "$12.99/month",
@@ -405,7 +411,7 @@ class RetentionEmailGenerator:
             return None
         
         # Language instructions
-        lang_names = {'en': 'English', 'ar': 'Arabic', 'es': 'Spanish', 'fr': 'French', 'zh': 'Chinese', 'hi': 'Hindi', 'pt': 'Portuguese', 'ru': 'Russian'}
+        lang_names = {'en': 'English', 'ar': 'Arabic', 'es': 'Spanish', 'fr': 'French', 'zh': 'Chinese', 'hi': 'Hindi', 'pt': 'Portuguese', 'ru': 'Russian', 'de': 'German', 'tr': 'Turkish', 'it': 'Italian', 'pp': 'European Portuguese', 'id': 'Indonesian', 'nl': 'Dutch', 'pl': 'Polish', 'ja': 'Japanese'}
         lang_name = lang_names.get(language, 'English')
         
         lang_instruction = ''
@@ -653,7 +659,7 @@ Generate the email now. Make it impossible to ignore."""
             if languages:
                 app_languages = languages
             elif app_name == 'Predictify':
-                app_languages = ['en', 'ar', 'es', 'fr']
+                app_languages = ['en', 'ar', 'es', 'fr', 'pt', 'de', 'tr', 'it', 'pp', 'hi', 'id', 'nl', 'pl', 'ja']
             elif app_name == 'Volume Booster - Sound Booster':
                 app_languages = ['en', 'ar', 'es', 'fr', 'zh', 'hi', 'pt', 'ru']
             elif app_name == 'Predictify: Horse Racing AI':

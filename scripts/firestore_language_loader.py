@@ -20,7 +20,7 @@ FIRESTORE_BASE = 'https://firestore.googleapis.com/v1'
 MULTILINGUAL_PROJECTS = {
     'Predictify': {
         'project_id': 'predictify-3f30d',
-        'supported_languages': ['en', 'ar', 'es', 'fr'],
+        'supported_languages': ['en', 'ar', 'es', 'fr', 'pt', 'de', 'tr', 'it', 'pp', 'hi', 'id', 'nl', 'pl', 'ja'],
         'cache_file': 'predictify_languages.json',
     },
     'Volume Booster - Sound Booster': {
@@ -45,6 +45,14 @@ LANGUAGE_NORMALIZE = {
     'pt': 'pt', 'portuguese': 'pt', 'pt_br': 'pt',
     'ru': 'ru', 'russian': 'ru',
     'en': 'en', 'english': 'en', 'en_us': 'en',
+    'de': 'de', 'german': 'de', 'deutsch': 'de',
+    'tr': 'tr', 'turkish': 'tr',
+    'it': 'it', 'italian': 'it', 'italiano': 'it',
+    'pp': 'pp', 'pt_pt': 'pp',
+    'id': 'id', 'indonesian': 'id',
+    'nl': 'nl', 'dutch': 'nl', 'nederlands': 'nl',
+    'pl': 'pl', 'polish': 'pl', 'polski': 'pl',
+    'ja': 'ja', 'japanese': 'ja',
 }
 
 

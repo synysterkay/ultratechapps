@@ -48,13 +48,13 @@ const APP_CONFIG: Record<string, AppConfig> = {
     googlePlayUrl: "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
     emails: {
       en: {
-        subject: "The one mistake 90% of new users make immediately",
-        cta_text: "Show Me The Confidence Score",
+        subject: "Your first match prediction is waiting \u2014 here's what to do",
+        cta_text: "Open My First Prediction",
         body_paragraphs: [
-          "You just downloaded Predictify. And you're about to make the same mistake everyone else does. You're going to look at a match, see the prediction, and think 'yeah, maybe.' But you're missing the one thing that makes our AI smarter than your gut feeling.",
-          "Here's the truth: a prediction without confidence is just a guess. And you've had enough of those. Our AI analyzes thousands of data points\u2014xG, possession, defensive form, head-to-head history\u2014but the real magic is the confidence score. It's the difference between 'Liverpool might win' and 'Liverpool wins 78% of the time with these exact conditions.' That's not a tip. It's a calculated insight.",
-          "Open the app. Right now. Don't browse. Go straight to any Premier League match happening this weekend. Look at the prediction. Then look directly below it. See that percentage? That's your confidence score. That's the secret. That number is built from more data than you could analyze in a month. It tells you exactly how much our AI believes in its own call. In 30 seconds, you'll stop guessing and start knowing.",
-          "Tap the button. Open Predictify and find that confidence score on your next match. It changes everything. P.S. The users who check this score on day one are 3x more likely to spot a value bet in their first week. Don't be the 90%.",
+          "This weekend's biggest match is coming up. Your friends will guess. The pundits will argue. But you? You'll already know what the data says. Predictify just analyzed thousands of variables for every match on the schedule \u2014 xG, form, head-to-head, defensive shape \u2014 and your first prediction is ready.",
+          "Here's what makes this different from every other prediction app: you don't just see who wins. You see HOW confident the AI is. That confidence score is the secret. It's the difference between 'Liverpool might win' and 'Liverpool wins 78% of the time under these exact conditions.' One number. Built from more data than you could process in a month. That's not a tip \u2014 it's an edge.",
+          "Open the app right now. Tap any match on the home screen. Look at the prediction and the confidence score below it. Then make your first prediction to start your streak. It takes 30 seconds. When the match kicks off, you'll know something your friends don't. And that feeling? That's why people open this app every single day.",
+          "Join a community of fans who discuss predictions daily and vote on the Prediction of the Day. P.S. Users who make a prediction on day one are 4x more likely to build a winning streak. Don't just watch football \u2014 know football."
         ],
       },
       ar: {
@@ -85,6 +85,106 @@ const APP_CONFIG: Record<string, AppConfig> = {
           "La raison ? Il ne se fiait pas \u00e0 son instinct. Il avait juste regard\u00e9 une seule chose dans Predictify : le Score de Confiance. En 30 secondes, il a vu que la pr\u00e9diction \"victoire facile\" n'avait qu'un score de 54%. Trop bas. Trop risqu\u00e9. Il a \u00e9vit\u00e9 un mauvais pari.",
           "Cette fonction, c'est ta jauge de v\u00e9rit\u00e9. Notre IA analyse des milliers de donn\u00e9es, puis te donne un pourcentage simple : \u00e0 quel point cette pr\u00e9diction est solide. C'est la premi\u00e8re chose que je regarde maintenant. \u00c7a t'\u00e9vite de suivre le troupeau b\u00eatement.",
           "Ouvre l'appli maintenant. Regarde le Score de Confiance pour le prochain match de ton \u00e9quipe. Tu verras tout de suite les pr\u00e9dictions qui valent le coup. C'est gratuit, et \u00e7a prend 30 secondes. P.S. : La version Premium d\u00e9bloque les analyses compl\u00e8tes derri\u00e8re chaque score. Mais commence par le gratuit, tu vas d\u00e9j\u00e0 avoir un s\u00e9rieux avantage.",
+        ],
+      },
+      pt: {
+        subject: "O erro que 90% dos novos usu\u00e1rios cometem imediatamente",
+        cta_text: "Ver Meu Score de Confian\u00e7a",
+        body_paragraphs: [
+          "Voc\u00ea acabou de baixar o Predictify. E est\u00e1 prestes a cometer o mesmo erro que todo mundo comete. Vai olhar um jogo, ver a previs\u00e3o e pensar 'talvez'. Mas est\u00e1 ignorando a \u00fanica coisa que torna nossa IA mais inteligente que seu instinto.",
+          "A verdade: uma previs\u00e3o sem confian\u00e7a \u00e9 s\u00f3 um palpite. E voc\u00ea j\u00e1 cansou disso. Nossa IA analisa milhares de dados \u2014 xG, posse de bola, forma defensiva, hist\u00f3rico de confrontos \u2014 mas a m\u00e1gica real \u00e9 o score de confian\u00e7a. \u00c9 a diferen\u00e7a entre 'o Liverpool pode ganhar' e 'o Liverpool vence 78% das vezes nessas condi\u00e7\u00f5es exatas'.",
+          "Abra o app agora. V\u00e1 direto para qualquer jogo deste fim de semana. Olhe a previs\u00e3o. Depois olhe logo abaixo. V\u00ea aquela porcentagem? Esse \u00e9 o seu score de confian\u00e7a. Em 30 segundos, voc\u00ea para de adivinhar e come\u00e7a a saber.",
+          "Toque no bot\u00e3o. Abra o Predictify e encontre o score de confian\u00e7a no pr\u00f3ximo jogo. Muda tudo. P.S. Usu\u00e1rios que conferem esse score no primeiro dia t\u00eam 3x mais chances de acertar na primeira semana.",
+        ],
+      },
+      de: {
+        subject: "Der eine Fehler, den 90% der neuen Nutzer sofort machen",
+        cta_text: "Zeig mir den Confidence Score",
+        body_paragraphs: [
+          "Du hast gerade Predictify heruntergeladen. Und du bist dabei, denselben Fehler zu machen wie alle anderen. Du wirst dir ein Spiel ansehen, die Vorhersage sehen und denken 'ja, vielleicht'. Aber du \u00fcbersiehst das Eine, was unsere KI schlauer macht als dein Bauchgef\u00fchl.",
+          "Die Wahrheit: Eine Vorhersage ohne Konfidenz ist nur ein Raten. Und davon hattest du genug. Unsere KI analysiert tausende Datenpunkte \u2014 xG, Ballbesitz, Defensivform, Head-to-Head-Historie \u2014 aber die echte Magie ist der Confidence Score. Das ist der Unterschied zwischen 'Liverpool k\u00f6nnte gewinnen' und 'Liverpool gewinnt zu 78% unter genau diesen Bedingungen'.",
+          "\u00d6ffne die App. Jetzt sofort. Geh direkt zu einem Bundesliga-Spiel an diesem Wochenende. Schau dir die Vorhersage an. Dann schau direkt darunter. Siehst du die Prozentzahl? Das ist dein Confidence Score. In 30 Sekunden h\u00f6rst du auf zu raten und f\u00e4ngst an zu wissen.",
+          "Dr\u00fcck den Button. \u00d6ffne Predictify und finde den Confidence Score f\u00fcr dein n\u00e4chstes Spiel. Es ver\u00e4ndert alles. P.S. Nutzer, die diesen Score am ersten Tag checken, erkennen 3x h\u00e4ufiger einen Value Bet in ihrer ersten Woche.",
+        ],
+      },
+      tr: {
+        subject: "Yeni kullan\u0131c\u0131lar\u0131n %90'\u0131n\u0131n hemen yapt\u0131\u011f\u0131 tek hata",
+        cta_text: "G\u00fcven Skorumu G\u00f6ster",
+        body_paragraphs: [
+          "Predictify'i indirdin. Ve herkesin yapt\u0131\u011f\u0131 ayn\u0131 hatay\u0131 yapmak \u00fczeresin. Bir ma\u00e7a bakacak, tahmini g\u00f6recek ve 'belki' diyeceksin. Ama yapay zekam\u0131z\u0131 i\u00e7g\u00fcd\u00fcnden daha ak\u0131ll\u0131 yapan o tek \u015feyi ka\u00e7\u0131r\u0131yorsun.",
+          "Ger\u00e7ek \u015fu: G\u00fcven olmadan tahmin sadece bir tahminden ibaret. Yapay zekam\u0131z her ma\u00e7 i\u00e7in binlerce veri noktas\u0131n\u0131 analiz eder \u2014 xG, topa sahip olma, defans formu, kar\u015f\u0131la\u015fma ge\u00e7mi\u015fi. As\u0131l sihir g\u00fcven skorunda. 'Liverpool kazanabilir' ile 'Liverpool tam bu ko\u015fullarda %78 oran\u0131nda kazan\u0131r' aras\u0131ndaki fark bu.",
+          "Uygulamay\u0131 \u015fimdi a\u00e7. Do\u011frudan bu hafta sonu S\u00fcper Lig'deki herhangi bir ma\u00e7a git. Tahmine bak. Sonra hemen alt\u0131na bak. O y\u00fczdeyi g\u00f6r\u00fcyor musun? O senin g\u00fcven skorun. 30 saniyede tahmin etmeyi b\u0131rak\u0131p bilmeye ba\u015fl\u0131yorsun.",
+          "Butona dokun. Predictify'i a\u00e7 ve bir sonraki ma\u00e7\u0131n g\u00fcven skorunu bul. Her \u015feyi de\u011fi\u015ftiriyor. P.S. \u0130lk g\u00fcn bu skoru kontrol eden kullan\u0131c\u0131lar\u0131n ilk haftada de\u011ferli bir bahis yakalamas\u0131 3 kat daha olas\u0131.",
+        ],
+      },
+      it: {
+        subject: "L'unico errore che il 90% dei nuovi utenti fa subito",
+        cta_text: "Mostrami il Confidence Score",
+        body_paragraphs: [
+          "Hai appena scaricato Predictify. E stai per fare lo stesso errore di tutti gli altri. Guarderai una partita, vedrai la previsione e penserai 'forse'. Ma ti stai perdendo l'unica cosa che rende la nostra IA pi\u00f9 intelligente del tuo istinto.",
+          "La verit\u00e0: una previsione senza confidenza \u00e8 solo un'ipotesi. La nostra IA analizza migliaia di dati \u2014 xG, possesso palla, forma difensiva, precedenti \u2014 ma la vera magia \u00e8 il confidence score. \u00c8 la differenza tra 'il Milan potrebbe vincere' e 'il Milan vince il 78% delle volte con queste condizioni'.",
+          "Apri l'app. Adesso. Vai direttamente a qualsiasi partita di Serie A di questo weekend. Guarda la previsione. Poi guarda subito sotto. Vedi quella percentuale? Quello \u00e8 il tuo confidence score. In 30 secondi smetti di tirare a indovinare e inizi a sapere.",
+          "Tocca il pulsante. Apri Predictify e trova il confidence score per la tua prossima partita. Cambia tutto. P.S. Gli utenti che controllano questo score il primo giorno hanno 3 volte pi\u00f9 probabilit\u00e0 di individuare una scommessa di valore nella prima settimana.",
+        ],
+      },
+      pp: {
+        subject: "O erro que 90% dos novos utilizadores cometem imediatamente",
+        cta_text: "Ver o Meu Score de Confian\u00e7a",
+        body_paragraphs: [
+          "Acabaste de descarregar o Predictify. E est\u00e1s prestes a cometer o mesmo erro que toda a gente comete. Vais olhar para um jogo, ver a previs\u00e3o e pensar 'talvez'. Mas est\u00e1s a ignorar a \u00fanica coisa que torna a nossa IA mais inteligente que o teu instinto.",
+          "A verdade: uma previs\u00e3o sem confian\u00e7a \u00e9 apenas um palpite. A nossa IA analisa milhares de dados \u2014 xG, posse de bola, forma defensiva, hist\u00f3rico de confrontos \u2014 mas a magia verdadeira \u00e9 o score de confian\u00e7a. \u00c9 a diferen\u00e7a entre 'o Benfica pode ganhar' e 'o Benfica ganha 78% das vezes nestas condi\u00e7\u00f5es exatas'.",
+          "Abre a app agora. Vai diretamente a qualquer jogo da Liga Portugal deste fim de semana. Olha para a previs\u00e3o. Depois olha logo abaixo. V\u00eas aquela percentagem? Esse \u00e9 o teu score de confian\u00e7a. Em 30 segundos, deixas de adivinhar e come\u00e7as a saber.",
+          "Carrega no bot\u00e3o. Abre o Predictify e encontra o score de confian\u00e7a no pr\u00f3ximo jogo. Muda tudo. P.S. Os utilizadores que verificam este score no primeiro dia t\u00eam 3x mais hip\u00f3teses de acertar na primeira semana.",
+        ],
+      },
+      hi: {
+        subject: "\u0935\u094b \u090f\u0915 \u0917\u0932\u0924\u0940 \u091c\u094b 90% \u0928\u090f \u092f\u0942\u091c\u0930\u094d\u0938 \u0924\u0941\u0930\u0902\u0924 \u0915\u0930\u0924\u0947 \u0939\u0948\u0902",
+        cta_text: "\u092e\u0941\u091d\u0947 Confidence Score \u0926\u093f\u0916\u093e\u0913",
+        body_paragraphs: [
+          "\u0906\u092a\u0928\u0947 \u0905\u092d\u0940 Predictify \u0921\u093e\u0909\u0928\u0932\u094b\u0921 \u0915\u093f\u092f\u093e \u0939\u0948\u0964 \u0914\u0930 \u0906\u092a \u0935\u0939\u0940 \u0917\u0932\u0924\u0940 \u0915\u0930\u0928\u0947 \u0935\u093e\u0932\u0947 \u0939\u0948\u0902 \u091c\u094b \u0938\u092c \u0915\u0930\u0924\u0947 \u0939\u0948\u0902\u0964 \u0906\u092a \u090f\u0915 \u092e\u0948\u091a \u0926\u0947\u0916\u0947\u0902\u0917\u0947, \u092a\u094d\u0930\u0947\u0921\u093f\u0915\u094d\u0936\u0928 \u0926\u0947\u0916\u0947\u0902\u0917\u0947 \u0914\u0930 \u0938\u094b\u091a\u0947\u0902\u0917\u0947 '\u0936\u093e\u092f\u0926'\u0964 \u0932\u0947\u0915\u093f\u0928 \u0906\u092a \u0935\u094b \u090f\u0915 \u091a\u0940\u091c\u093c \u092e\u093f\u0938 \u0915\u0930 \u0930\u0939\u0947 \u0939\u0948\u0902 \u091c\u094b \u0939\u092e\u093e\u0930\u0940 AI \u0915\u094b \u0906\u092a\u0915\u0940 \u0905\u0902\u0924\u0930\u094d\u0926\u0943\u0937\u094d\u091f\u093f \u0938\u0947 \u0905\u0927\u093f\u0915 \u0938\u094d\u092e\u093e\u0930\u094d\u091f \u092c\u0928\u093e\u0924\u0940 \u0939\u0948\u0964",
+          "\u0938\u091a\u094d\u091a\u093e\u0908 \u092f\u0939 \u0939\u0948: \u092c\u093f\u0928\u093e confidence \u0915\u0947 \u092a\u094d\u0930\u0947\u0921\u093f\u0915\u094d\u0936\u0928 \u092c\u0938 \u090f\u0915 \u0905\u0902\u0926\u093e\u091c\u093c\u093e \u0939\u0948\u0964 \u0939\u092e\u093e\u0930\u0940 AI \u0939\u091c\u093c\u093e\u0930\u094b\u0902 \u0921\u0947\u091f\u093e \u092a\u0949\u0907\u0902\u091f\u094d\u0938 \u0915\u093e \u0935\u093f\u0936\u094d\u0932\u0947\u0937\u0923 \u0915\u0930\u0924\u0940 \u0939\u0948 \u2014 xG, \u092a\u091c\u0947\u0936\u0928, \u0921\u093f\u092b\u0947\u0902\u0938\u093f\u0935 \u092b\u0949\u0930\u094d\u092e, \u0906\u092e\u0928\u0947-\u0938\u093e\u092e\u0928\u0947 \u0915\u093e \u0907\u0924\u093f\u0939\u093e\u0938 \u2014 \u0932\u0947\u0915\u093f\u0928 \u0905\u0938\u0932\u0940 \u091c\u093e\u0926\u0942 confidence score \u092e\u0947\u0902 \u0939\u0948\u0964",
+          "\u0905\u092d\u0940 \u0905\u092a\u094d\u0932\u093f\u0915\u0947\u0936\u0928 \u0916\u094b\u0932\u0947\u0902\u0964 \u0907\u0938 \u0935\u0940\u0915\u0947\u0902\u0921 \u0915\u093f\u0938\u0940 \u092d\u0940 \u092e\u0948\u091a \u092a\u0930 \u091c\u093e\u090f\u0902\u0964 \u092a\u094d\u0930\u0947\u0921\u093f\u0915\u094d\u0936\u0928 \u0926\u0947\u0916\u0947\u0902\u0964 \u092b\u093f\u0930 \u0909\u0938\u0915\u0947 \u0928\u0940\u091a\u0947 \u0926\u0947\u0916\u0947\u0902\u0964 \u0935\u094b \u092a\u094d\u0930\u0924\u093f\u0936\u0924 \u0926\u093f\u0916 \u0930\u0939\u0940 \u0939\u0948? \u0935\u094b \u0906\u092a\u0915\u093e confidence score \u0939\u0948\u0964 30 \u0938\u0947\u0915\u0902\u0921 \u092e\u0947\u0902 \u0906\u092a \u0905\u0902\u0926\u093e\u091c\u093c\u093e \u0932\u0917\u093e\u0928\u093e \u092c\u0902\u0926 \u0915\u0930 \u0926\u0947\u0902\u0917\u0947\u0964",
+          "\u092c\u091f\u0928 \u0926\u092c\u093e\u090f\u0902\u0964 Predictify \u0916\u094b\u0932\u0947\u0902 \u0914\u0930 \u0905\u092a\u0928\u0947 \u0905\u0917\u0932\u0947 \u092e\u0948\u091a \u0915\u093e confidence score \u0916\u094b\u091c\u0947\u0902\u0964 \u0938\u092c \u0915\u0941\u091b \u092c\u0926\u0932 \u091c\u093e\u0924\u093e \u0939\u0948\u0964 P.S. \u092a\u0939\u0932\u0947 \u0926\u093f\u0928 \u092f\u0939 \u0938\u094d\u0915\u094b\u0930 \u091a\u0947\u0915 \u0915\u0930\u0928\u0947 \u0935\u093e\u0932\u0947 \u092f\u0942\u091c\u0930\u094d\u0938 \u0915\u094b \u092a\u0939\u0932\u0947 \u0939\u092b\u094d\u0924\u0947 \u092e\u0947\u0902 \u0935\u0948\u0932\u094d\u092f\u0942 \u092c\u0947\u091f \u092e\u093f\u0932\u0928\u0947 \u0915\u0940 3 \u0917\u0941\u0928\u093e \u0905\u0927\u093f\u0915 \u0938\u0902\u092d\u093e\u0935\u0928\u093e \u0939\u0948\u0964",
+        ],
+      },
+      id: {
+        subject: "Kesalahan yang dilakukan 90% pengguna baru langsung",
+        cta_text: "Tunjukkan Confidence Score",
+        body_paragraphs: [
+          "Kamu baru saja mengunduh Predictify. Dan kamu akan melakukan kesalahan yang sama seperti orang lain. Kamu akan melihat pertandingan, melihat prediksi, dan berpikir 'mungkin'. Tapi kamu melewatkan satu hal yang membuat AI kami lebih pintar dari instingmu.",
+          "Kenyataannya: prediksi tanpa confidence hanyalah tebakan. AI kami menganalisis ribuan data poin \u2014 xG, penguasaan bola, form pertahanan, rekor pertemuan \u2014 tapi keajaiban sesungguhnya ada di confidence score. Ini bedanya antara 'Liverpool mungkin menang' dan 'Liverpool menang 78% dengan kondisi persis seperti ini'.",
+          "Buka aplikasinya sekarang. Langsung ke pertandingan apa saja akhir pekan ini. Lihat prediksinya. Lalu lihat tepat di bawahnya. Lihat persentase itu? Itu confidence score-mu. Dalam 30 detik, kamu berhenti menebak dan mulai tahu.",
+          "Ketuk tombolnya. Buka Predictify dan temukan confidence score untuk pertandingan berikutnya. Ini mengubah segalanya. P.S. Pengguna yang mengecek score ini di hari pertama punya kemungkinan 3x lebih besar menemukan peluang bagus di minggu pertama.",
+        ],
+      },
+      nl: {
+        subject: "De ene fout die 90% van nieuwe gebruikers meteen maakt",
+        cta_text: "Toon Mijn Confidence Score",
+        body_paragraphs: [
+          "Je hebt net Predictify gedownload. En je staat op het punt dezelfde fout te maken als iedereen. Je gaat naar een wedstrijd kijken, de voorspelling zien en denken 'misschien'. Maar je mist het enige dat onze AI slimmer maakt dan je onderbuikgevoel.",
+          "De waarheid: een voorspelling zonder vertrouwen is slechts een gok. Onze AI analyseert duizenden datapunten \u2014 xG, balbezit, defensieve vorm, onderlinge geschiedenis \u2014 maar de echte magie zit in de confidence score. Het verschil tussen 'Liverpool zou kunnen winnen' en 'Liverpool wint 78% van de tijd onder precies deze omstandigheden'.",
+          "Open de app. Nu meteen. Ga direct naar een Eredivisie-wedstrijd dit weekend. Kijk naar de voorspelling. Kijk dan er direct onder. Zie je dat percentage? Dat is je confidence score. In 30 seconden stop je met gokken en begin je te weten.",
+          "Druk op de knop. Open Predictify en vind de confidence score voor je volgende wedstrijd. Het verandert alles. P.S. Gebruikers die deze score op dag \u00e9\u00e9n checken, vinden 3x vaker een value bet in hun eerste week.",
+        ],
+      },
+      pl: {
+        subject: "Jeden b\u0142\u0105d, kt\u00f3ry 90% nowych u\u017cytkownik\u00f3w pope\u0142nia od razu",
+        cta_text: "Poka\u017c Mi Confidence Score",
+        body_paragraphs: [
+          "W\u0142a\u015bnie pobra\u0142e\u015b Predictify. I zamierzasz pope\u0142ni\u0107 ten sam b\u0142\u0105d co wszyscy. Spojrzysz na mecz, zobaczysz prognoz\u0119 i pomy\u015blisz 'mo\u017ce'. Ale umyka ci jedna rzecz, kt\u00f3ra sprawia, \u017ce nasza AI jest m\u0105drzejsza od twojego przeczucia.",
+          "Prawda jest taka: prognoza bez pewno\u015bci to tylko zgadywanie. Nasza AI analizuje tysi\u0105ce punkt\u00f3w danych \u2014 xG, posiadanie pi\u0142ki, form\u0119 defensywn\u0105, histori\u0119 bezpo\u015brednich spotka\u0144 \u2014 ale prawdziwa magia to confidence score. R\u00f3\u017cnica mi\u0119dzy 'Liverpool mo\u017ce wygra\u0107' a 'Liverpool wygrywa w 78% przypadk\u00f3w w dok\u0142adnie tych warunkach'.",
+          "Otw\u00f3rz aplikacj\u0119. Teraz. Id\u017a prosto do dowolnego meczu Ekstraklasy w ten weekend. Sp\u00f3jrz na prognoz\u0119. Potem sp\u00f3jrz tu\u017c pod ni\u0105. Widzisz ten procent? To tw\u00f3j confidence score. W 30 sekund przestajesz zgadywa\u0107 i zaczynasz wiedzie\u0107.",
+          "Kliknij przycisk. Otw\u00f3rz Predictify i znajd\u017a confidence score na nast\u0119pny mecz. To zmienia wszystko. P.S. U\u017cytkownicy, kt\u00f3rzy sprawdzaj\u0105 ten wynik pierwszego dnia, maj\u0105 3x wi\u0119ksze szanse na znalezienie warto\u015bciowego zak\u0142adu w pierwszym tygodniu.",
+        ],
+      },
+      ja: {
+        subject: "\u65b0\u898f\u30e6\u30fc\u30b6\u30fc\u306e90%\u304c\u3059\u3050\u306b\u72af\u3059\u305f\u3063\u305f\u4e00\u3064\u306e\u30df\u30b9",
+        cta_text: "Confidence Score\u3092\u898b\u308b",
+        body_paragraphs: [
+          "Predictify\u3092\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9\u3057\u305f\u3070\u304b\u308a\u3067\u3059\u306d\u3002\u305d\u3057\u3066\u4ed6\u306e\u307f\u3093\u306a\u3068\u540c\u3058\u30df\u30b9\u3092\u3057\u3088\u3046\u3068\u3057\u3066\u3044\u307e\u3059\u3002\u8a66\u5408\u3092\u898b\u3066\u3001\u4e88\u6e2c\u3092\u898b\u3066\u3001\u300c\u305f\u3076\u3093\u300d\u3068\u601d\u3046\u3067\u3057\u3087\u3046\u3002\u3067\u3082\u3001\u79c1\u305f\u3061\u306eAI\u3092\u3042\u306a\u305f\u306e\u52d8\u3088\u308a\u8ce2\u304f\u3059\u308b\u305f\u3063\u305f\u4e00\u3064\u306e\u3053\u3068\u3092\u898b\u843d\u3068\u3057\u3066\u3044\u307e\u3059\u3002",
+          "\u771f\u5b9f\uff1a\u78ba\u4fe1\u5ea6\u306e\u306a\u3044\u4e88\u6e2c\u306f\u305f\u3060\u306e\u63a8\u6e2c\u3067\u3059\u3002\u79c1\u305f\u3061\u306eAI\u306f\u6570\u5343\u306e\u30c7\u30fc\u30bf\u30dd\u30a4\u30f3\u30c8\u3092\u5206\u6790\u3057\u307e\u3059\u2014xG\u3001\u30dc\u30fc\u30eb\u4fdd\u6301\u7387\u3001\u5b88\u5099\u306e\u5f62\u3001\u76f4\u63a5\u5bfe\u6c7a\u306e\u6b74\u53f2\u2014\u3067\u3082\u672c\u5f53\u306e\u9b54\u6cd5\u306fconfidence score\u306b\u3042\u308a\u307e\u3059\u3002\u300c\u30ea\u30d0\u30d7\u30fc\u30eb\u304c\u52dd\u3064\u304b\u3082\u300d\u3068\u300c\u3053\u306e\u6761\u4ef6\u3067\u30ea\u30d0\u30d7\u30fc\u30eb\u304c78%\u306e\u78ba\u7387\u3067\u52dd\u3064\u300d\u306e\u9055\u3044\u3067\u3059\u3002",
+          "\u30a2\u30d7\u30ea\u3092\u958b\u3044\u3066\u304f\u3060\u3055\u3044\u3002\u4eca\u3059\u3050\u3002\u4eca\u9031\u672b\u306e\u8a66\u5408\u306b\u76f4\u63a5\u884c\u3063\u3066\u304f\u3060\u3055\u3044\u3002\u4e88\u6e2c\u3092\u898b\u3066\u304f\u3060\u3055\u3044\u3002\u305d\u3057\u3066\u305d\u306e\u771f\u4e0b\u3092\u898b\u3066\u304f\u3060\u3055\u3044\u3002\u305d\u306e\u30d1\u30fc\u30bb\u30f3\u30c6\u30fc\u30b8\u304c\u898b\u3048\u307e\u3059\u304b\uff1f\u305d\u308c\u304c\u3042\u306a\u305f\u306econfidence score\u3067\u3059\u300230\u79d2\u3067\u3001\u63a8\u6e2c\u3092\u3084\u3081\u3066\u78ba\u4fe1\u306b\u5909\u308f\u308a\u307e\u3059\u3002",
+          "\u30dc\u30bf\u30f3\u3092\u30bf\u30c3\u30d7\u3057\u3066\u304f\u3060\u3055\u3044\u3002Predictify\u3092\u958b\u3044\u3066\u6b21\u306e\u8a66\u5408\u306econfidence score\u3092\u898b\u3064\u3051\u3066\u304f\u3060\u3055\u3044\u3002\u3059\u3079\u3066\u304c\u5909\u308f\u308a\u307e\u3059\u3002P.S. \u521d\u65e5\u306b\u3053\u306e\u30b9\u30b3\u30a2\u3092\u30c1\u30a7\u30c3\u30af\u3057\u305f\u30e6\u30fc\u30b6\u30fc\u306f\u3001\u6700\u521d\u306e\u9031\u306b\u30d0\u30ea\u30e5\u30fc\u30d9\u30c3\u30c8\u3092\u898b\u3064\u3051\u308b\u53ef\u80fd\u6027\u304c3\u500d\u9ad8\u304f\u306a\u308a\u307e\u3059\u3002",
         ],
       },
     },
@@ -295,6 +395,14 @@ function buildHtml(
     hi: "\u0928\u092e\u0938\u094d\u0924\u0947,",
     pt: "Ol\u00e1,",
     ru: "\u041f\u0440\u0438\u0432\u0435\u0442,",
+    de: "Hallo,",
+    tr: "Merhaba,",
+    it: "Ciao,",
+    pp: "Ol\u00e1,",
+    id: "Halo,",
+    nl: "Hallo,",
+    pl: "Cze\u015b\u0107,",
+    ja: "\u3053\u3093\u306b\u3061\u306f\u3001",
   };
   const signoffs: Record<string, string> = {
     en: "Talk soon,",
@@ -305,6 +413,14 @@ function buildHtml(
     hi: "\u091c\u0932\u094d\u0926 \u092c\u093e\u0924 \u0915\u0930\u0924\u0947 \u0939\u0948\u0902,",
     pt: "At\u00e9 logo,",
     ru: "\u0414\u043e \u0441\u043a\u043e\u0440\u043e\u0433\u043e,",
+    de: "Bis bald,",
+    tr: "G\u00f6r\u00fc\u015f\u00fcrz,",
+    it: "A presto,",
+    pp: "At\u00e9 breve,",
+    id: "Sampai jumpa,",
+    nl: "Tot snel,",
+    pl: "Do zobaczenia,",
+    ja: "\u307e\u305f\u306d\u3001",
   };
   const footers: Record<string, string> = {
     en: `You're receiving this because you signed up for ${appConfig.name}.`,
@@ -315,6 +431,14 @@ function buildHtml(
     hi: `\u0906\u092a\u0915\u094b \u092f\u0939 \u0907\u0938\u0932\u093f\u090f \u092e\u093f\u0932 \u0930\u0939\u093e \u0939\u0948 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0906\u092a\u0928\u0947 ${appConfig.name} \u092e\u0947\u0902 \u0938\u093e\u0907\u0928 \u0905\u092a \u0915\u093f\u092f\u093e\u0964`,
     pt: `Voc\u00ea est\u00e1 recebendo isso porque se cadastrou no ${appConfig.name}.`,
     ru: `\u0412\u044b \u043f\u043e\u043b\u0443\u0447\u0438\u043b\u0438 \u044d\u0442\u043e \u043f\u0438\u0441\u044c\u043c\u043e, \u043f\u043e\u0442\u043e\u043c\u0443 \u0447\u0442\u043e \u0437\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043e\u0432\u0430\u043b\u0438\u0441\u044c \u0432 ${appConfig.name}.`,
+    de: `Du erh\u00e4ltst diese E-Mail, weil du dich bei ${appConfig.name} angemeldet hast.`,
+    tr: `Bu e-postay\u0131 ${appConfig.name} uygulamas\u0131na kay\u0131t oldu\u011funuz i\u00e7in al\u0131yorsunuz.`,
+    it: `Ricevi questa email perch\u00e9 ti sei registrato su ${appConfig.name}.`,
+    pp: `Recebe este email porque se registou no ${appConfig.name}.`,
+    id: `Anda menerima email ini karena mendaftar di ${appConfig.name}.`,
+    nl: `Je ontvangt dit bericht omdat je je hebt aangemeld voor ${appConfig.name}.`,
+    pl: `Otrzymujesz t\u0119 wiadomo\u015b\u0107, poniewa\u017c zarejestroawa\u0142e\u015b si\u0119 w ${appConfig.name}.`,
+    ja: `${appConfig.name}\u306b\u3054\u767b\u9332\u3044\u305f\u3060\u3044\u305f\u305f\u3081\u3001\u3053\u306e\u30e1\u30fc\u30eb\u3092\u304a\u9001\u308a\u3057\u3066\u3044\u307e\u3059\u3002`,
   };
 
   const greeting = greetings[language] || greetings.en;
