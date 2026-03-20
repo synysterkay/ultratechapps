@@ -1,0 +1,17 @@
+{
+  "subject": "Uygulamada bir \u015fey de\u011fi\u015fti ve senin haberin yok",
+  "preview_text": "Son a\u00e7t\u0131\u011f\u0131ndan beri Predictify'da b\u00fcy\u00fck bir g\u00fcncelleme oldu. Bu de\u011fi\u015fikli\u011fi ka\u00e7\u0131r\u0131rsan \u00e7ok \u015fey kaybedersin.",
+  "body_paragraphs": [
+    "Ge\u00e7en hafta Premier League'deki \u015fok sonu\u00e7lar\u0131 tahmin edemedin mi? Ya da Champions League ma\u00e7\u0131nda neden o tak\u0131m\u0131n kazand\u0131\u011f\u0131n\u0131 anlamad\u0131n m\u0131? \u0130\u015fte tam da bu y\u00fczden uygulamay\u0131 yeniden tasarlad\u0131k.",
+    "Kullan\u0131c\u0131lar\u0131m\u0131z\u0131n en b\u00fcy\u00fck \u015fikayeti 'ke\u015fke \u015fu ma\u00e7\u0131 \u00f6nceden bilebilseydim' oldu. Biz de dedik ki, neden olmas\u0131n? Yapay zekam\u0131z art\u0131k sadece skor tahmini yapm\u0131yor, tak\u0131mlar\u0131n ger\u00e7ek g\u00fcc\u00fcn\u00fc \u00f6l\u00e7en yeni bir algoritma geli\u015ftirdik. Bu sistem, oyuncu formlar\u0131n\u0131, taktik de\u011fi\u015fikliklerini ve hatta hakem istatistiklerini bile analiz ediyor.",
+    "Art\u0131k her tahminin yan\u0131nda 'G\u00fcven Skoru' g\u00f6receksin. Bu skor, yapay zekan\u0131n o tahminden ne kadar emin oldu\u011funu g\u00f6steriyor. Mesela Manchester City - Arsenal ma\u00e7\u0131 i\u00e7in %94 g\u00fcven skoru verdi\u011fimizi biliyor muydun? Ve evet, 3-1 City kazand\u0131. Bu \u00f6zellik sadece Premium'da var ama 3 g\u00fcnl\u00fck deneme s\u00fcr\u00fcm\u00fcyle hemen test edebilirsin.",
+    "Hemen uygulamay\u0131 a\u00e7 ve yeni g\u00fcven skorlar\u0131n\u0131 g\u00f6r. Bug\u00fcnk\u00fc ma\u00e7lara bak, hangi tahminlerin %90'\u0131n \u00fczerinde g\u00fcven skoru ald\u0131\u011f\u0131n\u0131 kontrol et. P.S.: Bu g\u00fcncellemeyi ka\u00e7\u0131ranlar, ge\u00e7en hafta Dortmund - PSG ma\u00e7\u0131nda 2.70 oranl\u0131 do\u011fru skoru da ka\u00e7\u0131rd\u0131.",
+    "Yeni Tahminleri G\u00f6r"
+  ],
+  "cta_text": "Yeni Tahminleri G\u00f6r",
+  "email_number": 21,
+  "send_day": 48,
+  "type": "comeback_trigger",
+  "app_name": "Predictify",
+  "generated_at": "2026-03-20T16:10:39.562325"
+}

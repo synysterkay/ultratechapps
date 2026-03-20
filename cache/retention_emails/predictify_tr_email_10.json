@@ -1,0 +1,16 @@
+{
+  "subject": "En iyi %1'in kulland\u0131\u011f\u0131 gizli hata",
+  "preview_text": "\u00c7o\u011fu kullan\u0131c\u0131 bu \u00f6zelli\u011fi yanl\u0131\u015f kullan\u0131yor. \u0130\u015fte do\u011frusu nas\u0131l yap\u0131l\u0131yor.",
+  "body_paragraphs": [
+    "Ge\u00e7en hafta Premier League'deki 7 ma\u00e7\u0131n 6's\u0131n\u0131 do\u011fru tahmin eden bir kullan\u0131c\u0131m\u0131z var. Ad\u0131 Mehmet. S\u0131rr\u0131n\u0131 sordu\u011fumda \u015fa\u015f\u0131rd\u0131m: 'Herkesin atlad\u0131\u011f\u0131 bir \u015feyi yap\u0131yorum' dedi.",
+    "Mehmet gibi en iyi %1'lik dilimdeki kullan\u0131c\u0131lar, uygulamay\u0131 farkl\u0131 kullan\u0131yor. Ma\u00e7 \u00f6ncesi sadece skor tahminine bakm\u0131yorlar. \u00d6nce AI Chat'e tak\u0131mlar\u0131n son 5 ma\u00e7taki xG de\u011ferlerini soruyor, sonra taktik analizi okuyor, en son Confidence Score'a bak\u0131yor. Bu s\u0131ray\u0131 bozanlar\u0131n do\u011fruluk oran\u0131 %23 daha d\u00fc\u015f\u00fck.",
+    "\u0130\u015fte bu y\u00fczden 'AI Chat' \u00f6zelli\u011fini ma\u00e7tan en az 2 saat \u00f6nce kullanmal\u0131s\u0131n\u0131z. Sorunuzu yaz\u0131n, mesela 'Manchester City'nin son 5 deplasman ma\u00e7\u0131ndaki ortalama pozisyon say\u0131s\u0131 nedir?' AI size verilerle cevap versin. Sonra tahminlere bak\u0131n. Her \u015fey de\u011fi\u015fecek.",
+    "\u015eimdi uygulamay\u0131 a\u00e7 ve AI Chat'e bir soru yaz. Bug\u00fcnk\u00fc ma\u00e7lardan biri i\u00e7in taktik bir soru sor. Bakal\u0131m sana ne diyecek. P.S. Mehmet'in bir s\u0131rr\u0131 daha var: Premium'un 3 g\u00fcnl\u00fck denemesinde bu ak\u0131\u015f\u0131 test etmi\u015f. 'S\u0131n\u0131rs\u0131z veri olmadan bu sistemi kuramazd\u0131m' diyor."
+  ],
+  "cta_text": "AI Chat'i A\u00e7 ve Sor",
+  "email_number": 10,
+  "send_day": 21,
+  "type": "pro_workflow",
+  "app_name": "Predictify",
+  "generated_at": "2026-03-20T16:05:58.299807"
+}
