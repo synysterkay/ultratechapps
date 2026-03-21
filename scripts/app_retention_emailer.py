@@ -280,6 +280,7 @@ class AppRetentionEmailer:
         'Fresh Start: Breakup Therapy',
         'SoulPlan: Plan Dates Together',
         'PupShape: Dog Weight Loss Plan',
+        'Predictify: Horse Racing AI',
     ]
 
     # ─── CAMPAIGN LOGIC ────────────────────────────────────

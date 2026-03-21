@@ -167,9 +167,70 @@ class FirestoreLanguageLoader:
 
         print(f"   ✅ Got languages for {len(user_languages)} {app_name} users")
 
-        # Cache locally
-        self._save_cache(user_languages, cache_file)
-        return user_languages
+        if user_languages:
+            # Cache locally (only if we got data — never overwrite good cache with empty)
+            self._save_cache(user_languages, cache_file)
+            return user_languages
+        else:
+            # Bulk fetch returned 0 — likely quota exhausted. Fall back to cache.
+            print(f"   ⚠️ Bulk fetch returned 0 results — using cached data")
+            return self._load_cache(cache_file)
+
+
+    def fetch_single_user_language(self, app_name, email):
+        """
+        Fetch language for a single user via Firestore structured query.
+        Costs only 1 Firestore read (vs thousands for bulk scan).
+        Returns normalized language code or 'en' on failure.
+        """
+        project_config = MULTILINGUAL_PROJECTS.get(app_name)
+        if not project_config:
+            return 'en'
+
+        project_id = project_config['project_id']
+        supported = project_config['supported_languages']
+
+        token = self._get_access_token()
+        if not token:
+            return 'en'
+
+        url = f"{FIRESTORE_BASE}/projects/{project_id}/databases/(default)/documents:runQuery"
+        try:
+            resp = requests.post(url, headers={
+                'Authorization': f'Bearer {token}',
+                'Content-Type': 'application/json',
+            }, json={
+                'structuredQuery': {
+                    'from': [{'collectionId': 'users'}],
+                    'where': {
+                        'fieldFilter': {
+                            'field': {'fieldPath': 'email'},
+                            'op': 'EQUAL',
+                            'value': {'stringValue': email},
+                        }
+                    },
+                    'limit': 1,
+                }
+            }, timeout=15)
+
+            if resp.status_code != 200:
+                return 'en'
+
+            results = resp.json()
+            if not results or not isinstance(results, list):
+                return 'en'
+
+            doc = results[0].get('document')
+            if not doc or not doc.get('fields'):
+                return 'en'
+
+            raw_lang = doc['fields'].get('language', {}).get('stringValue', 'en').lower().strip()
+            if '_' in raw_lang and raw_lang not in LANGUAGE_NORMALIZE:
+                raw_lang = raw_lang.split('_')[0]
+            lang = LANGUAGE_NORMALIZE.get(raw_lang, 'en')
+            return lang if lang in supported else 'en'
+        except Exception:
+            return 'en'
 
     def _save_cache(self, user_languages, cache_file):
         """Save language map to local cache file."""
