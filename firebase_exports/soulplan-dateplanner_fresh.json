@@ -644,6 +644,16 @@
   ]
 },
 {
+  "localId": "AefghL66zASsfAwNdlwb8IyR53h1",
+  "email": "james2005kirk@gmail.com",
+  "emailVerified": false,
+  "passwordHash": "UDrqJ9+9pkIqdsB4BhTOIWUIjeJ43NKCglsVv+TUrEDZV++yfYIieXsv8Vrz2vDWZ+YR7YxXrvQ1P7u/vyLKmg==",
+  "salt": "N8J8Ynr1q85tuw==",
+  "lastSignedInAt": "1774164732727",
+  "createdAt": "1774164732727",
+  "providerUserInfo": []
+},
+{
   "localId": "Azd1Os0QyeRlZwxSzxtTRRiCpkw1",
   "email": "geofrio8@gmail.com",
   "emailVerified": false,
