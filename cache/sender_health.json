@@ -1,5 +1,5 @@
 {
-  "active_sender_index": 2,
+  "active_sender_index": 0,
   "senders": {
     "apps@kaynel.pl": {
       "last_check": "2026-03-09T09:30:06.754009",
@@ -101,9 +101,9 @@
       ]
     },
     "apps@vitazelki.pl": {
-      "last_check": "2026-03-22T18:13:38.470242",
+      "last_check": "2026-03-23T09:32:41.180815",
       "status": "red",
-      "rotated_out_at": "2026-03-02T23:49:00.720369",
+      "rotated_out_at": "2026-03-23T09:32:41.182478",
       "metrics_history": [
         {
           "date": "2026-02-21",
@@ -580,6 +580,23 @@
           "bounce_rate": 5.0,
           "spam_rate": 0.0,
           "delivery_rate": 85.0
+        },
+        {
+          "date": "2026-03-23",
+          "sent": 4000,
+          "delivered": 3800,
+          "opened": 0,
+          "clicked": 0,
+          "bounced": 0,
+          "hard_bounces": 0,
+          "soft_bounces": 0,
+          "spam_complaints": 0,
+          "blocked": 0,
+          "invalid": 0,
+          "open_rate": 0.0,
+          "bounce_rate": 0.0,
+          "spam_rate": 0.0,
+          "delivery_rate": 95.0
         }
       ]
     },
@@ -937,6 +954,12 @@
       "date": "2026-03-17T09:27:17.853675",
       "from": "hello@passedai.io",
       "to": "apps@vitazelki.pl",
+      "reason": "\ud83d\udea8 CRITICAL: Open rate 0.0% suggests emails going to spam"
+    },
+    {
+      "date": "2026-03-23T09:32:41.182485",
+      "from": "apps@vitazelki.pl",
+      "to": "apps@kaynel.pl",
       "reason": "\ud83d\udea8 CRITICAL: Open rate 0.0% suggests emails going to spam"
     }
   ]
