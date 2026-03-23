@@ -1309,7 +1309,7 @@
   "emailVerified": true,
   "displayName": "Clayton Botha",
   "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocIFl_bbbn5Bj50fSpDAFxNh9pSl1WebK03DqZLjrfalsB4CTg=s96-c",
-  "lastSignedInAt": "1773506937920",
+  "lastSignedInAt": "1774283074092",
   "createdAt": "1773506937920",
   "providerUserInfo": [
     {
@@ -2870,6 +2870,24 @@
       "email": "swiftchief@gmail.com",
       "displayName": "stevie mn",
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJfPQsRDq9vqy3j3Qx0Tegc_9G451yAMo8qPV6guos-IDTfZoMMcg=s96-c"
+    }
+  ]
+},
+{
+  "localId": "xBEVy916h1NSI9L9bblbeVVcLy93",
+  "email": "mitikuyo70@gmail.com",
+  "emailVerified": true,
+  "displayName": "Mitiku Yo",
+  "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocLi5Y4ayYUSI2M9JznD5PiuEowCSPyN8nxAlrCarc23URhxCQ=s96-c",
+  "lastSignedInAt": "1774287899441",
+  "createdAt": "1774287899441",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "108818636939985368673",
+      "email": "mitikuyo70@gmail.com",
+      "displayName": "Mitiku Yo",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocLi5Y4ayYUSI2M9JznD5PiuEowCSPyN8nxAlrCarc23URhxCQ=s96-c"
     }
   ]
 },
