@@ -266,10 +266,10 @@
 {
   "localId": "4PqhfPPsDBWX4wAMfdGw0jZ6eAc2",
   "email": "leilanitaniamcdonald@gmail.com",
-  "emailVerified": false,
-  "passwordHash": "3gigiTs3ti1K3LPY5GQ97I/6L/DQ8lHsaLAFCI7Z1bLjxAswU28v49dPG7hdnWP6byI7Ly2yQyl9K3ELNL0g0Q==",
-  "salt": "J9R4fO1/X7JLiA==",
-  "lastSignedInAt": "1774423256910",
+  "emailVerified": true,
+  "passwordHash": "r06eny/FdOswC1g51VUiIp86mI4Rk/R37PccbY5b7xzL0+djzd4xGNBQWyg2AnU9vuD9tDVNZ1vsFpiszUyKzw==",
+  "salt": "XO6mPdBaYQc+DQ==",
+  "lastSignedInAt": "1774450005648",
   "createdAt": "1770106993883",
   "providerUserInfo": []
 },
