@@ -315,6 +315,24 @@
   ]
 },
 {
+  "localId": "1iyDLgc44lg2VHA5D7ArpCVffTJ3",
+  "email": "marthakweri60@gmail.com",
+  "emailVerified": true,
+  "displayName": "Martha Kweri",
+  "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJNqx8l0rV6ID9x3s8Pv0FeNSYQh2PH5HDP7tN0R9Rdph7rFA=s96-c",
+  "lastSignedInAt": "1774384220247",
+  "createdAt": "1774384220247",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "110622448057905641181",
+      "email": "marthakweri60@gmail.com",
+      "displayName": "Martha Kweri",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJNqx8l0rV6ID9x3s8Pv0FeNSYQh2PH5HDP7tN0R9Rdph7rFA=s96-c"
+    }
+  ]
+},
+{
   "localId": "1nDf41sYZ1Z07j5YFFNTUSOgsyU2",
   "email": "arishaqlawa0@gmail.com",
   "emailVerified": true,
@@ -1988,6 +2006,17 @@
   ]
 },
 {
+  "localId": "9sNIpUxN3Zbm4CJmUdXEl4GyVGp2",
+  "email": "kyarawill8@gmail.com",
+  "emailVerified": false,
+  "passwordHash": "BHZPinwFQ6tN/isJcX+7BKlA+xABMTLCIRG+LKYkfPOIgSovNQDXBBrORk/MOawJb0h2tGDM8fzVjpjn2V4a4A==",
+  "salt": "aAQfDkaMyLfOYg==",
+  "displayName": "Kyara Williams",
+  "lastSignedInAt": "1774376748701",
+  "createdAt": "1774376748701",
+  "providerUserInfo": []
+},
+{
   "localId": "9tWKv3R5kZUth2vG5vOl2ueaag12",
   "email": "meganelheureux3@gmail.com",
   "emailVerified": true,
@@ -2574,6 +2603,24 @@
   "lastSignedInAt": "1773434384705",
   "createdAt": "1773434384705",
   "providerUserInfo": []
+},
+{
+  "localId": "CQJ2r5fNspgzEMY7wPfc3H6UQkJ2",
+  "email": "rethabileannely04@gmail.com",
+  "emailVerified": true,
+  "displayName": "Rethabile Annely Ndaba",
+  "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocL4iS0eQ3vaXwlsvMlHX-qe-8negW-sEDttDY0KlA9L-ZmXow=s96-c",
+  "lastSignedInAt": "1774378963363",
+  "createdAt": "1774378963362",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "108545545332287983985",
+      "email": "rethabileannely04@gmail.com",
+      "displayName": "Rethabile Annely Ndaba",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocL4iS0eQ3vaXwlsvMlHX-qe-8negW-sEDttDY0KlA9L-ZmXow=s96-c"
+    }
+  ]
 },
 {
   "localId": "CRygXEIGpzdYkIM2MJPynLAaDMH2",

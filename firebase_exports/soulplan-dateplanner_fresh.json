@@ -269,7 +269,7 @@
   "emailVerified": false,
   "passwordHash": "3gigiTs3ti1K3LPY5GQ97I/6L/DQ8lHsaLAFCI7Z1bLjxAswU28v49dPG7hdnWP6byI7Ly2yQyl9K3ELNL0g0Q==",
   "salt": "J9R4fO1/X7JLiA==",
-  "lastSignedInAt": "1770106993883",
+  "lastSignedInAt": "1774423256910",
   "createdAt": "1770106993883",
   "providerUserInfo": []
 },
@@ -3484,6 +3484,24 @@
   "lastSignedInAt": "1766449119638",
   "createdAt": "1766449119638",
   "providerUserInfo": []
+},
+{
+  "localId": "uffzfSfTS6aI5lkqYixbEehSqlE3",
+  "email": "samoonson@gmail.com",
+  "emailVerified": true,
+  "displayName": "Alex Ros",
+  "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocIacjIax4C15bq192m9vMYd1E7ZWDbkgKlzeGSngXFsaEKDjw=s96-c",
+  "lastSignedInAt": "1774430312214",
+  "createdAt": "1774430312214",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "103427477312105434071",
+      "email": "samoonson@gmail.com",
+      "displayName": "Alex Ros",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocIacjIax4C15bq192m9vMYd1E7ZWDbkgKlzeGSngXFsaEKDjw=s96-c"
+    }
+  ]
 },
 {
   "localId": "vFTr3ccTmQZlryqQtAHeXcNz2073",
