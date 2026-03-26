@@ -717,7 +717,7 @@
       ]
     },
     "hello@thesisgenerator.io": {
-      "last_check": "2026-03-25T18:26:11.282688",
+      "last_check": "2026-03-26T18:28:34.166112",
       "status": "red",
       "rotated_out_at": "2026-03-10T18:57:18.927635",
       "metrics_history": [
@@ -754,6 +754,40 @@
           "bounce_rate": 0.0,
           "spam_rate": 0.0,
           "delivery_rate": 91.2
+        },
+        {
+          "date": "2026-03-26",
+          "sent": 4000,
+          "delivered": 3000,
+          "opened": 0,
+          "clicked": 0,
+          "bounced": 0,
+          "hard_bounces": 0,
+          "soft_bounces": 0,
+          "spam_complaints": 0,
+          "blocked": 0,
+          "invalid": 0,
+          "open_rate": 0.0,
+          "bounce_rate": 0.0,
+          "spam_rate": 0.0,
+          "delivery_rate": 75.0
+        },
+        {
+          "date": "2026-03-26",
+          "sent": 4000,
+          "delivered": 3800,
+          "opened": 0,
+          "clicked": 0,
+          "bounced": 0,
+          "hard_bounces": 0,
+          "soft_bounces": 0,
+          "spam_complaints": 0,
+          "blocked": 0,
+          "invalid": 0,
+          "open_rate": 0.0,
+          "bounce_rate": 0.0,
+          "spam_rate": 0.0,
+          "delivery_rate": 95.0
         }
       ]
     },
