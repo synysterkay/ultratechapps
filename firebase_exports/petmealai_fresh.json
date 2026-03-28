@@ -1229,6 +1229,17 @@
   "providerUserInfo": []
 },
 {
+  "localId": "Y6WGTC0HPueZ0EbEI92iYdoA3rt1",
+  "email": "mayacohen813@icloud.com",
+  "emailVerified": false,
+  "passwordHash": "UsfksC41J6l4VbfPx1LR7TYty7hI17CkIk1uh79+w2vlyPPeqBLoMSX+f8aIBaX3kFwnIGbPisHaY/hKYzqDHQ==",
+  "salt": "bMYfLCHwZMW97w==",
+  "displayName": "mayacohen813",
+  "lastSignedInAt": "1774661888375",
+  "createdAt": "1774661888375",
+  "providerUserInfo": []
+},
+{
   "localId": "Yam4UpdKJmNKL2Txj6BIlgOxpsK2",
   "email": "anaskay.13@gmail.com",
   "emailVerified": true,
