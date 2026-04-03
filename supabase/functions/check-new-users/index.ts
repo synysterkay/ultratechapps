@@ -1,10 +1,15 @@
-// Supabase Edge Function: check-new-users
-// Polls Firebase Auth across all 7 projects every 5 minutes.
-// Finds new users not yet in welcomed_users table → sends welcome email via welcome-email function.
-// Triggered by pg_cron via pg_net HTTP call.
+// Supabase Edge Function: check-new-users (v2)
+// Processes ONE Firebase project per invocation using time-based round-robin.
+// pg_cron fires every 5 minutes → each of 8 projects checked every ~40 minutes.
+// Caps at 60 welcome emails per invocation to stay within edge function timeout.
+// Accepts optional { "project": "project-id" } body to target a specific project.
 
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
+
+// ── Config ──────────────────────────────────────────────────
+const MAX_EMAILS_PER_RUN = 60;
+const DEADLINE_MS = 50_000; // Stop processing at 50 seconds
 
 // ── Firebase projects → app_id mapping ──────────────────────
 const FIREBASE_PROJECTS: Record<
@@ -60,6 +65,8 @@ const FIREBASE_PROJECTS: Record<
     supportedLanguages: ["en", "ar", "es", "fr"],
   },
 };
+
+const PROJECT_IDS = Object.keys(FIREBASE_PROJECTS);
 
 // Google OAuth2 client for Firebase CLI token exchange
 const GOOGLE_CLIENT_ID =
@@ -151,56 +158,54 @@ const LANG_NORMALIZE: Record<string, string> = {
   ja: "ja", japanese: "ja",
 };
 
-// ── Fetch user languages from Firestore for a project ───────
-async function fetchFirestoreLanguages(
+// ── Fetch user language from Firestore via query ────────────
+async function fetchUserLanguage(
   projectId: string,
   accessToken: string,
+  email: string,
   supportedLanguages: string[]
-): Promise<Map<string, string>> {
-  const emailToLang = new Map<string, string>();
-  const baseUrl = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/users`;
-  let pageToken: string | undefined;
-
-  do {
-    const url = new URL(baseUrl);
-    url.searchParams.set("pageSize", "300");
-    if (pageToken) url.searchParams.set("pageToken", pageToken);
-
-    const res = await fetch(url.toString(), {
-      headers: { Authorization: `Bearer ${accessToken}` },
+): Promise<string> {
+  try {
+    const url = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents:runQuery`;
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        structuredQuery: {
+          from: [{ collectionId: "users" }],
+          where: {
+            fieldFilter: {
+              field: { fieldPath: "email" },
+              op: "EQUAL",
+              value: { stringValue: email },
+            },
+          },
+          limit: 1,
+        },
+      }),
     });
 
-    if (!res.ok) {
-      console.error(`Firestore fetch failed for ${projectId}: ${res.status}`);
-      break;
-    }
+    if (!res.ok) return "en";
 
-    const data = await res.json();
-    const docs = data.documents || [];
+    const results = await res.json();
+    const doc = results?.[0]?.document;
+    if (!doc?.fields) return "en";
 
-    for (const doc of docs) {
-      const fields = doc.fields || {};
-      const email = fields.email?.stringValue?.toLowerCase().trim();
-      if (!email) continue;
+    const rawLang = doc.fields.language?.stringValue?.toLowerCase().trim();
+    if (!rawLang) return "en";
 
-      let lang = "en";
-      const rawLang = fields.language?.stringValue?.toLowerCase().trim();
-      if (rawLang) {
-        // Normalize: strip locale suffixes like en_US, zh-Hans
-        const base = rawLang.split(/[_-]/)[0];
-        lang = LANG_NORMALIZE[base] || LANG_NORMALIZE[rawLang] || "en";
-      }
-
-      // Only keep languages this app actually supports
-      if (!supportedLanguages.includes(lang)) lang = "en";
-      emailToLang.set(email, lang);
-    }
-
-    pageToken = data.nextPageToken;
-  } while (pageToken);
-
-  return emailToLang;
+    const base = rawLang.split(/[_-]/)[0];
+    const lang = LANG_NORMALIZE[base] || LANG_NORMALIZE[rawLang] || "en";
+    return supportedLanguages.includes(lang) ? lang : "en";
+  } catch {
+    return "en";
+  }
 }
+
+// (bulk fetchFirestoreLanguages removed — using per-user queries to stay within Firestore quota)
 
 // ── Main handler ────────────────────────────────────────────
 Deno.serve(async (req) => {
@@ -217,6 +222,7 @@ Deno.serve(async (req) => {
   }
 
   const startTime = Date.now();
+  const deadline = startTime + DEADLINE_MS;
   const results: string[] = [];
 
   try {
@@ -224,7 +230,6 @@ Deno.serve(async (req) => {
     const SUPABASE_URL = Deno.env.get("SUPABASE_URL") || "";
     const SUPABASE_SERVICE_ROLE_KEY =
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
-    // For function-to-function calls (SUPABASE_ prefix vars can't be overridden)
     const FUNCTION_AUTH_KEY = Deno.env.get("FUNCTION_AUTH_KEY") || SUPABASE_SERVICE_ROLE_KEY;
 
     if (!FIREBASE_REFRESH_TOKEN) {
@@ -234,13 +239,32 @@ Deno.serve(async (req) => {
       );
     }
 
+    // ── Determine which project to process ────────────────────
+    let targetProjectId: string | undefined;
+    try {
+      const body = await req.json();
+      if (body.project && FIREBASE_PROJECTS[body.project]) {
+        targetProjectId = body.project;
+      }
+    } catch { /* no body or invalid JSON — use round-robin */ }
+
+    if (!targetProjectId) {
+      // Time-based round-robin: each 5-minute slot picks a different project
+      const fiveMinSlot = Math.floor(Date.now() / (5 * 60 * 1000));
+      const projectIndex = fiveMinSlot % PROJECT_IDS.length;
+      targetProjectId = PROJECT_IDS[projectIndex];
+    }
+
+    const config = FIREBASE_PROJECTS[targetProjectId];
+    results.push(`🎯 Processing: ${config.appId} (${targetProjectId})`);
+
     const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
     // 1. Get Firebase access token
     const accessToken = await getAccessToken(FIREBASE_REFRESH_TOKEN);
     results.push("✅ Got Firebase access token");
 
-    // 2. Get all existing welcomed users from DB (paginate past the 1000 row limit)
+    // 2. Get existing welcomed users for THIS project only
     const welcomedSet = new Set<string>();
     let offset = 0;
     const pageSize = 1000;
@@ -248,7 +272,8 @@ Deno.serve(async (req) => {
     while (true) {
       const { data: page, error: dbError } = await supabase
         .from("welcomed_users")
-        .select("email, app_id")
+        .select("email")
+        .eq("app_id", config.appId)
         .range(offset, offset + pageSize - 1);
 
       if (dbError) {
@@ -256,174 +281,164 @@ Deno.serve(async (req) => {
       }
 
       for (const u of page || []) {
-        welcomedSet.add(`${u.email}|${u.app_id}`);
+        welcomedSet.add(u.email);
       }
 
       if (!page || page.length < pageSize) break;
       offset += pageSize;
     }
 
-    results.push(`📊 ${welcomedSet.size} users already welcomed`);
+    results.push(`📊 ${welcomedSet.size} already welcomed for ${config.appId}`);
 
-    // 3. Prefetch Firestore languages for multilingual projects
-    const languageMaps = new Map<string, Map<string, string>>();
-    for (const [projectId, config] of Object.entries(FIREBASE_PROJECTS)) {
-      if (config.multilingual) {
-        try {
-          const langMap = await fetchFirestoreLanguages(
-            projectId,
-            accessToken,
-            config.supportedLanguages
-          );
-          languageMaps.set(projectId, langMap);
-          results.push(`🌍 ${config.appId}: ${langMap.size} user languages loaded from Firestore`);
-        } catch (err) {
-          console.error(`Firestore language fetch failed for ${projectId}: ${err}`);
-          results.push(`⚠️ ${config.appId}: language fetch failed, defaulting to en`);
-        }
-      }
-    }
+    // 3. Language detection: per-user Firestore query (avoids bulk scan quota issues)
+    // Individual queries cost 1 read per new user vs thousands for a full collection scan.
 
-    // 4. Check each Firebase project
+    // 4. List Firebase users for this project
+    const users = await listFirebaseUsers(targetProjectId, accessToken);
+    results.push(`👥 ${users.length} total Firebase users`);
+
+    // 5. Process new users
     let totalNew = 0;
     let totalSent = 0;
     let totalSkipped = 0;
+    let hitCap = false;
+    let hitDeadline = false;
 
-    for (const [projectId, config] of Object.entries(FIREBASE_PROJECTS)) {
+    for (const user of users) {
+      // Check deadline
+      if (Date.now() > deadline) {
+        hitDeadline = true;
+        results.push(`⏰ Hit ${DEADLINE_MS / 1000}s deadline — stopping`);
+        break;
+      }
+
+      // Check email cap
+      if (totalSent >= MAX_EMAILS_PER_RUN) {
+        hitCap = true;
+        results.push(`📬 Hit email cap (${MAX_EMAILS_PER_RUN}) — stopping`);
+        break;
+      }
+
+      const email = user.email?.toLowerCase().trim();
+      if (!email) continue;
+
+      // Skip test accounts
+      if (
+        email.includes("cloudtestlabaccounts.com") ||
+        email.includes("example.com")
+      ) {
+        continue;
+      }
+
+      if (welcomedSet.has(email)) continue;
+
+      // New user found!
+      totalNew++;
+
+      // Rate limit: wait 600ms between emails (Resend allows 2/sec)
+      if (totalSent > 0) {
+        await new Promise((r) => setTimeout(r, 600));
+      }
+
+      // Look up language (per-user Firestore query — avoids daily quota exhaustion)
+      let language = config.defaultLang;
+      if (config.multilingual) {
+        language = await fetchUserLanguage(
+          targetProjectId,
+          accessToken,
+          email,
+          config.supportedLanguages
+        );
+      }
+
+      // Send welcome email
       try {
-        const users = await listFirebaseUsers(projectId, accessToken);
-        let projectNew = 0;
+        const welcomeUrl = `${SUPABASE_URL}/functions/v1/welcome-email`;
+        const welcomeRes = await fetch(welcomeUrl, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${FUNCTION_AUTH_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            app_id: config.appId,
+            language: language,
+          }),
+        });
 
-        for (const user of users) {
-          const email = user.email?.toLowerCase().trim();
-          if (!email) continue;
-
-          // Skip test accounts
-          if (
-            email.includes("cloudtestlabaccounts.com") ||
-            email.includes("example.com")
-          ) {
-            continue;
-          }
-
-          const key = `${email}|${config.appId}`;
-          if (welcomedSet.has(key)) continue;
-
-          // New user found!
-          projectNew++;
-          totalNew++;
-
-          // Rate limit: wait 600ms between emails (Resend allows 2/sec)
-          if (totalNew > 1) {
-            await new Promise((r) => setTimeout(r, 600));
-          }
-
-          // Look up language from Firestore for multilingual apps
-          let language = config.defaultLang;
-          if (config.multilingual) {
-            const langMap = languageMaps.get(projectId);
-            if (langMap) {
-              language = langMap.get(email) || config.defaultLang;
-            }
-          }
-
-          // Send welcome email via the welcome-email function
-          try {
-            const welcomeUrl = `${SUPABASE_URL}/functions/v1/welcome-email`;
-            const welcomeRes = await fetch(welcomeUrl, {
-                method: "POST",
-                headers: {
-                  Authorization: `Bearer ${FUNCTION_AUTH_KEY}`,
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  email: email,
-                  app_id: config.appId,
-                  language: language,
-                }),
-              }
-            );
-
-            let welcomeData: Record<string, unknown>;
-            try {
-              welcomeData = await welcomeRes.json();
-            } catch {
-              welcomeData = { raw: await welcomeRes.text() };
-            }
-
-            if (welcomeRes.ok && welcomeData.success) {
-              // Record in database
-              const { error: insertError } = await supabase
-                .from("welcomed_users")
-                .upsert(
-                  {
-                    email: email,
-                    app_id: config.appId,
-                    firebase_uid: user.localId,
-                    firebase_project: projectId,
-                    language: language,
-                    welcomed_at: new Date().toISOString(),
-                  },
-                  { onConflict: "email,app_id" }
-                );
-
-              if (insertError) {
-                console.error(
-                  `DB insert failed for ${email}: ${insertError.message}`
-                );
-              } else {
-                totalSent++;
-                // Add to set so we don't re-process within this run
-                welcomedSet.add(key);
-              }
-            } else if (welcomeData.bounced) {
-              // Bounced email — record it so we never try again
-              console.log(`BOUNCED: ${email} (${config.appId}) — marking in DB`);
-              await supabase
-                .from("welcomed_users")
-                .upsert(
-                  {
-                    email: email,
-                    app_id: config.appId,
-                    firebase_uid: user.localId,
-                    firebase_project: projectId,
-                    language: language,
-                    welcomed_at: new Date().toISOString(),
-                    bounced: true,
-                  },
-                  { onConflict: "email,app_id" }
-                );
-              welcomedSet.add(key);
-              totalSkipped++;
-            } else {
-              console.error(
-                `Welcome email failed for ${email} (${config.appId}): status=${welcomeRes.status} response=${JSON.stringify(welcomeData)}`
-              );
-              if (totalSkipped === 0) {
-                results.push(`❌ First failure: ${email} (${config.appId}) status=${welcomeRes.status} ${JSON.stringify(welcomeData).substring(0, 200)}`);
-              }
-              totalSkipped++;
-            }
-          } catch (sendErr) {
-            console.error(`Error sending to ${email}: ${sendErr}`);
-            totalSkipped++;
-          }
+        let welcomeData: Record<string, unknown>;
+        try {
+          welcomeData = await welcomeRes.json();
+        } catch {
+          welcomeData = { raw: await welcomeRes.text() };
         }
 
-        results.push(
-          `${config.appId}: ${users.length} total, ${projectNew} new`
-        );
-      } catch (projErr) {
-        results.push(`❌ ${config.appId}: ${projErr}`);
+        if (welcomeRes.ok && welcomeData.success) {
+          const { error: insertError } = await supabase
+            .from("welcomed_users")
+            .upsert(
+              {
+                email: email,
+                app_id: config.appId,
+                firebase_uid: user.localId,
+                firebase_project: targetProjectId,
+                language: language,
+                welcomed_at: new Date().toISOString(),
+              },
+              { onConflict: "email,app_id" }
+            );
+
+          if (insertError) {
+            console.error(`DB insert failed for ${email}: ${insertError.message}`);
+          } else {
+            totalSent++;
+            welcomedSet.add(email);
+          }
+        } else if (welcomeData.bounced) {
+          console.log(`BOUNCED: ${email} (${config.appId}) — marking in DB`);
+          await supabase
+            .from("welcomed_users")
+            .upsert(
+              {
+                email: email,
+                app_id: config.appId,
+                firebase_uid: user.localId,
+                firebase_project: targetProjectId,
+                language: language,
+                welcomed_at: new Date().toISOString(),
+                bounced: true,
+              },
+              { onConflict: "email,app_id" }
+            );
+          welcomedSet.add(email);
+          totalSkipped++;
+        } else {
+          console.error(
+            `Welcome email failed for ${email}: status=${welcomeRes.status} response=${JSON.stringify(welcomeData)}`
+          );
+          if (totalSkipped === 0) {
+            results.push(`❌ First failure: ${email} status=${welcomeRes.status} ${JSON.stringify(welcomeData).substring(0, 200)}`);
+          }
+          totalSkipped++;
+        }
+      } catch (sendErr) {
+        console.error(`Error sending to ${email}: ${sendErr}`);
+        totalSkipped++;
       }
     }
 
     const elapsed = Date.now() - startTime;
     const summary = {
       success: true,
+      project: targetProjectId,
+      app_id: config.appId,
       new_users_found: totalNew,
       welcome_emails_sent: totalSent,
       skipped: totalSkipped,
+      hit_cap: hitCap,
+      hit_deadline: hitDeadline,
+      remaining: hitCap || hitDeadline ? totalNew - totalSent - totalSkipped : 0,
       elapsed_ms: elapsed,
       details: results,
     };

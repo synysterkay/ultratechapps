@@ -415,10 +415,25 @@ class DeliverabilityMonitor:
                 status = 'yellow'
 
         # ── Open rate check (strong indicator of spam folder) ──
-        if open_rate < self.THRESHOLDS['open_rate_red']:
+        # NOTE: 0.0% open rate with high delivered count is likely a tracking issue,
+        # not actual spam placement. Only flag as RED if we've seen this pattern
+        # across multiple checks (not just one run).
+        if open_rate == 0.0 and sent >= self.THRESHOLDS['min_emails_for_eval']:
+            # Check if previous checks also showed 0% — could be Resend tracking bug
+            sender = sender_email or self.get_active_sender()['email']
+            prev_history = self.health_state.get('senders', {}).get(sender, {}).get('metrics_history', [])
+            consecutive_zero = sum(1 for h in prev_history[-3:] if h.get('open_rate', 0) == 0.0)
+            if consecutive_zero >= 2:
+                issues.append(f"🚨 CRITICAL: Open rate 0.0% for {consecutive_zero + 1} consecutive checks — likely going to spam")
+                status = 'red'
+            else:
+                issues.append(f"⚠️ WARNING: Open rate 0.0% — may be tracking issue, monitoring (check {consecutive_zero + 1}/3)")
+                if status != 'red':
+                    status = 'yellow'
+        elif open_rate > 0 and open_rate < self.THRESHOLDS['open_rate_red']:
             issues.append(f"🚨 CRITICAL: Open rate {open_rate:.1f}% suggests emails going to spam")
             status = 'red'
-        elif open_rate < self.THRESHOLDS['open_rate_yellow']:
+        elif open_rate > 0 and open_rate < self.THRESHOLDS['open_rate_yellow']:
             issues.append(f"⚠️ WARNING: Open rate {open_rate:.1f}% is below average")
             if status != 'red':
                 status = 'yellow'
@@ -533,6 +548,8 @@ class DeliverabilityMonitor:
     def check_and_rotate_if_needed(self):
         """
         Main entry point: check health, auto-rotate if RED.
+        Only rotates if sender has been active for at least 48 hours (to prevent
+        rapid-fire rotation that burns through all senders).
         Returns the sender to use (may be same or rotated).
         """
         print("\n📊 Checking email deliverability health...")
@@ -543,6 +560,17 @@ class DeliverabilityMonitor:
             print(f"   {issue}")
 
         if health['status'] == 'red':
+            # Check minimum hold time — don't rotate if sender was activated < 48 hours ago
+            last_rotation = None
+            if self.health_state.get('rotation_log'):
+                last_rotation = self.health_state['rotation_log'][-1].get('date')
+            if last_rotation:
+                last_rot_time = datetime.fromisoformat(last_rotation)
+                hours_since_rotation = (datetime.now() - last_rot_time).total_seconds() / 3600
+                if hours_since_rotation < 48:
+                    print(f"\n🚨 Sender {current['email']} is RED but only active for {hours_since_rotation:.0f}h — holding (min 48h before rotation)")
+                    return current
+
             print(f"\n🚨 Sender {current['email']} is in RED status — attempting rotation...")
             new_sender = self.rotate_sender(reason='; '.join(health['issues']))
             if new_sender:

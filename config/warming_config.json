@@ -1,0 +1,110 @@
+{
+  "warming_mode": "two_tier",
+  "notes": "Full warming = opens + replies (Cloudflare Email Routing). Open-only = sends from Resend, Gmail opens via IMAP, no replies.",
+  
+  "full_warming_domains": {
+    "bestaiapps.site": {
+      "cloudflare": true,
+      "warmer_addresses": ["team@bestaiapps.site", "info@bestaiapps.site"],
+      "forwarding": {
+        "team@bestaiapps.site": "anaskay.13@gmail.com",
+        "info@bestaiapps.site": "kayneltest@gmail.com"
+      }
+    },
+    "academicsatire.com": {
+      "cloudflare": true,
+      "warmer_addresses": ["hello@academicsatire.com", "team@academicsatire.com"],
+      "forwarding": {
+        "hello@academicsatire.com": "adammleniak@gmail.com",
+        "team@academicsatire.com": "kaynelpl@gmail.com"
+      }
+    }
+  },
+
+  "open_only_domains": {
+    "kaynel.pl": {
+      "sender_addresses": ["apps@kaynel.pl", "team@kaynel.pl", "support@kaynel.pl"],
+      "seed_gmail": "kaynelapps@gmail.com"
+    },
+    "vitazelki.pl": {
+      "sender_addresses": ["apps@vitazelki.pl", "hello@vitazelki.pl", "contact@vitazelki.pl"],
+      "seed_gmail": "adava9176@gmail.com"
+    },
+    "aibettips.io": {
+      "sender_addresses": ["hello@aibettips.io", "tips@aibettips.io", "support@aibettips.io"],
+      "seed_gmail": "anasblanew2@gmail.com"
+    },
+    "predictifyfootball.com": {
+      "sender_addresses": ["tips@predictifyfootball.com", "hello@predictifyfootball.com", "info@predictifyfootball.com"],
+      "seed_gmail": "passedai@gmail.com"
+    },
+    "thesisgenerator.io": {
+      "sender_addresses": ["hello@thesisgenerator.io", "support@thesisgenerator.io", "team@thesisgenerator.io"],
+      "seed_gmail": "testkaynel@gmail.com"
+    },
+    "passedai.io": {
+      "sender_addresses": ["hello@passedai.io", "info@passedai.io", "team@passedai.io"],
+      "seed_gmail": "testkaynel@gmail.com"
+    }
+  },
+
+  "gmail_accounts": [
+    "anaskay.13@gmail.com",
+    "kayneltest@gmail.com",
+    "testkaynel@gmail.com",
+    "kaynelpl@gmail.com",
+    "adammleniak@gmail.com",
+    "kaynelapps@gmail.com",
+    "adava9176@gmail.com",
+    "anasblanew2@gmail.com",
+    "passedai@gmail.com"
+  ],
+
+  "auto_scaling": {
+    "green": {
+      "description": "open_rate >= 15% AND bounce_rate < 2%",
+      "marketing_cap_per_domain": 250,
+      "warming_per_domain": 10
+    },
+    "yellow": {
+      "description": "open_rate 5-15% OR bounce_rate 2-3%",
+      "marketing_cap_per_domain": 150,
+      "warming_per_domain": 20
+    },
+    "red": {
+      "description": "open_rate < 5% OR bounce_rate > 3%",
+      "marketing_cap_per_domain": 50,
+      "warming_per_domain": 30
+    },
+    "unknown": {
+      "description": "No data or tracking issue",
+      "marketing_cap_per_domain": 100,
+      "warming_per_domain": 25
+    }
+  },
+
+  "ramp_schedule": {
+    "week_1": {"warm_per_sender": 5, "total_target": 35},
+    "week_2": {"warm_per_sender": 10, "total_target": 70},
+    "week_3": {"warm_per_sender": 15, "total_target": 105},
+    "week_4_plus": {"warm_per_sender": 20, "total_target": 140}
+  },
+
+  "timing": {
+    "cron_schedule_1": "0 10 * * *",
+    "cron_schedule_2": "0 15 * * *",
+    "delay_between_sends_min_sec": 600,
+    "delay_between_sends_max_sec": 2700,
+    "delay_before_open_min_sec": 300,
+    "delay_before_open_max_sec": 1800,
+    "delay_before_reply_min_sec": 600,
+    "delay_before_reply_max_sec": 3600
+  },
+
+  "reply_behavior": {
+    "open_only_pct": 30,
+    "open_and_reply_pct": 40,
+    "open_reply_thread_pct": 20,
+    "spam_rescue_pct": 10
+  }
+}

@@ -34,26 +34,16 @@ from deliverability_monitor import DeliverabilityMonitor
 from firestore_activity_loader import FirestoreActivityLoader
 
 
-# ─── BEHAVIORAL BRANCHING ──────────────────────────────
-# Re-engagement email indices (1-indexed) from EMAIL_SEQUENCE for churning users.
-# These are Phase 4 re-engagement emails that work well out-of-order for win-back.
-REENGAGEMENT_EMAILS = [21, 22, 24, 25, 26, 28]  # comeback_trigger, power_user_shortcut, user_spotlight, unexpected_use_case, referral_trigger, data_insight
+# ─── DAILY SEND CAP ─────────────────────────────────────
+# Limit total emails per day to protect domain reputation.
+# This cap is shared across all apps per run.
+DAILY_SEND_LIMIT = 1000
 
-# Map: when a churning user is at normal email position X, send them
-# a re-engagement email instead. Only applies to emails 4-13 (deepening phase).
-# After email 13 they rejoin normal sequence at email 14.
-CHURNING_REMAP = {
-    4: 21,   # behind_the_scenes → comeback_trigger
-    5: 22,   # common_mistake → power_user_shortcut  
-    6: 24,   # value_bomb → user_spotlight
-    7: 25,   # story_emotional → unexpected_use_case
-    8: 26,   # challenge → referral_trigger
-    9: 28,   # pro_workflow → data_insight
-    10: 21,  # myth_buster → comeback_trigger (repeat wins)
-    11: 22,  # feature_deep_dive → power_user_shortcut
-    12: 24,  # milestone_checkin → user_spotlight
-    13: 25,  # community_belonging → unexpected_use_case
-}
+# ─── BEHAVIORAL BRANCHING (DISABLED) ───────────────────
+# Churning acceleration removed to protect sender reputation.
+# All users now follow the normal email sequence and timing.
+# Re-engagement emails still exist in cache but are not force-sent.
+CHURNING_REMAP = {}  # Disabled — no remapping
 
 
 class AppRetentionEmailer:
@@ -425,17 +415,21 @@ class AppRetentionEmailer:
                     last_sent = datetime.fromisoformat(last_sent_str)
                     hours_since_last = (now - last_sent).total_seconds() / 3600
                     
-                    # Churning users get faster re-engagement (min 16 hours vs 20)
+                    # All users follow normal timing (no churning acceleration)
                     segment = self._classify_user(user, emails_sent)
-                    if segment == 'churning':
-                        hours_to_wait = max(days_to_wait * 24 * 0.6, 16)
-                    else:
-                        hours_to_wait = max(days_to_wait * 24, 20)
+                    hours_to_wait = max(days_to_wait * 24, 20)
+                    
+                    # Skip churning users who've received 3+ emails
+                    # They're not engaging — sending more hurts reputation
+                    if segment == 'churning' and emails_sent >= 3:
+                        continue
                     
                     if hours_since_last < hours_to_wait:
                         continue
                 else:
                     segment = self._classify_user(user, emails_sent)
+                    if segment == 'churning' and emails_sent >= 3:
+                        continue
                 
                 # Check activity data for subscription status
                 activity = self.user_activity.get(email, {})
@@ -567,6 +561,16 @@ class AppRetentionEmailer:
         today = datetime.now().strftime('%Y-%m-%d')
         if today not in self.state['daily_stats']:
             self.state['daily_stats'][today] = {'sent': 0, 'failed': 0}
+        
+        # Enforce daily send cap across all runs today
+        already_sent_today = self.state['daily_stats'][today].get('sent', 0)
+        remaining_cap = max(0, DAILY_SEND_LIMIT - already_sent_today)
+        if remaining_cap == 0:
+            print(f"   🛑 Daily send cap reached ({DAILY_SEND_LIMIT}). Skipping this run.")
+            return
+        if remaining_cap < len(eligible):
+            print(f"   ⚠️ Cap allows {remaining_cap} more emails today (limit: {DAILY_SEND_LIMIT}, already sent: {already_sent_today})")
+            eligible = eligible[:remaining_cap]
         
         sent = 0
         failed = 0

@@ -2,9 +2,8 @@ name: App Retention Emails
 
 on:
   schedule:
-    # Run twice daily: 9 AM and 6 PM UTC
+    # Run once daily at 9 AM UTC (reduced from 2x/day for domain reputation recovery)
     - cron: '0 9 * * *'
-    - cron: '0 18 * * *'
   
   workflow_dispatch:
     inputs:

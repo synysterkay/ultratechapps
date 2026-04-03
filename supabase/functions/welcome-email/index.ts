@@ -373,6 +373,55 @@ const APP_CONFIG: Record<string, AppConfig> = {
       },
     },
   },
+
+  horse_racing: {
+    name: "Horse Racing AI Predictor",
+    multilingual: true,
+    appStoreUrl: "",
+    googlePlayUrl: "https://play.google.com/store/apps/details?id=com.horse.racing.ai.predictor",
+    emails: {
+      en: {
+        subject: "Your first race prediction is ready — here's what to do",
+        cta_text: "See Today's Predictions",
+        body_paragraphs: [
+          "You just joined thousands of racing fans who stopped relying on gut feeling and started using data. Horse Racing AI Predictor analyzed today's card — form, track conditions, jockey stats, trainer patterns — and your first prediction is waiting inside the app.",
+          "Here's what makes this different: you don't just get a tip. You get a confidence score. It's the difference between 'this horse might place' and 'this horse wins 72% of the time under these exact conditions.' One number. Built from more data than any tipster could process in a week.",
+          "Open the app now. Tap today's race card on the home screen. Look at the AI prediction and the confidence score. It takes 10 seconds. Before the first race starts, you'll know something most punters don't.",
+          "Your first prediction is ready. Open the app and check today's top pick. P.S. Users who check predictions before the first race are 3x more likely to spot value early. Don't miss the opening odds.",
+        ],
+      },
+      ar: {
+        subject: "\u062a\u0648\u0642\u0639\u0643 \u0627\u0644\u0623\u0648\u0644 \u0644\u0633\u0628\u0627\u0642 \u0627\u0644\u064a\u0648\u0645 \u062c\u0627\u0647\u0632",
+        cta_text: "\u0634\u0627\u0647\u062f \u062a\u0648\u0642\u0639\u0627\u062a \u0627\u0644\u064a\u0648\u0645",
+        body_paragraphs: [
+          "\u0627\u0646\u0636\u0645\u0645\u062a \u0644\u0622\u0644\u0627\u0641 \u0645\u0634\u062c\u0639\u064a \u0633\u0628\u0627\u0642\u0627\u062a \u0627\u0644\u062e\u064a\u0644 \u0627\u0644\u0630\u064a\u0646 \u062a\u0648\u0642\u0641\u0648\u0627 \u0639\u0646 \u0627\u0644\u0627\u0639\u062a\u0645\u0627\u062f \u0639\u0644\u0649 \u0627\u0644\u062d\u062f\u0633 \u0648\u0628\u062f\u0623\u0648\u0627 \u064a\u0633\u062a\u062e\u062f\u0645\u0648\u0646 \u0627\u0644\u0628\u064a\u0627\u0646\u0627\u062a. \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064a \u062d\u0644\u0644 \u0633\u0628\u0627\u0642\u0627\u062a \u0627\u0644\u064a\u0648\u0645 \u0648\u062a\u0648\u0642\u0639\u0643 \u0627\u0644\u0623\u0648\u0644 \u062c\u0627\u0647\u0632.",
+          "\u0627\u0644\u0641\u0631\u0642 \u0647\u0646\u0627: \u0644\u0627 \u062a\u062d\u0635\u0644 \u0641\u0642\u0637 \u0639\u0644\u0649 \u0646\u0635\u064a\u062d\u0629\u060c \u0628\u0644 \u062a\u062d\u0635\u0644 \u0639\u0644\u0649 \u062f\u0631\u062c\u0629 \u062b\u0642\u0629. \u0627\u0644\u0641\u0631\u0642 \u0628\u064a\u0646 '\u0647\u0630\u0627 \u0627\u0644\u062d\u0635\u0627\u0646 \u0642\u062f \u064a\u0641\u0648\u0632' \u0648'\u0647\u0630\u0627 \u0627\u0644\u062d\u0635\u0627\u0646 \u064a\u0641\u0648\u0632 72% \u0641\u064a \u0647\u0630\u0647 \u0627\u0644\u0638\u0631\u0648\u0641'.",
+          "\u0627\u0641\u062a\u062d \u0627\u0644\u062a\u0637\u0628\u064a\u0642 \u0627\u0644\u0622\u0646. \u0627\u0636\u063a\u0637 \u0639\u0644\u0649 \u0633\u0628\u0627\u0642\u0627\u062a \u0627\u0644\u064a\u0648\u0645. \u0627\u0646\u0638\u0631 \u0625\u0644\u0649 \u0627\u0644\u062a\u0648\u0642\u0639 \u0648\u062f\u0631\u062c\u0629 \u0627\u0644\u062b\u0642\u0629. 10 \u062b\u0648\u0627\u0646\u064d \u0641\u0642\u0637.",
+          "\u062a\u0648\u0642\u0639\u0643 \u0627\u0644\u0623\u0648\u0644 \u062c\u0627\u0647\u0632. \u0627\u0641\u062a\u062d \u0627\u0644\u062a\u0637\u0628\u064a\u0642 \u0648\u0634\u0627\u0647\u062f \u0627\u062e\u062a\u064a\u0627\u0631 \u0627\u0644\u064a\u0648\u0645.",
+        ],
+      },
+      es: {
+        subject: "Tu primera predicci\u00f3n de carrera est\u00e1 lista",
+        cta_text: "Ver Predicciones de Hoy",
+        body_paragraphs: [
+          "Te uniste a miles de aficionados a las carreras que dejaron de confiar en la intuici\u00f3n y empezaron a usar datos. La IA analiz\u00f3 las carreras de hoy y tu primera predicci\u00f3n est\u00e1 esperando.",
+          "No solo recibes un pron\u00f3stico. Recibes un score de confianza. La diferencia entre 'este caballo podr\u00eda ganar' y 'este caballo gana el 72% de las veces en estas condiciones exactas'.",
+          "Abre la app ahora. Toca la cartelera de hoy. Mira la predicci\u00f3n y el score de confianza. Solo toma 10 segundos.",
+          "Tu primera predicci\u00f3n est\u00e1 lista. Abre la app y revisa el favorito de hoy. P.D. Los usuarios que revisan predicciones antes de la primera carrera tienen 3x m\u00e1s probabilidades de encontrar valor temprano.",
+        ],
+      },
+      fr: {
+        subject: "Ta premi\u00e8re pr\u00e9diction de course est pr\u00eate",
+        cta_text: "Voir les Pr\u00e9dictions du Jour",
+        body_paragraphs: [
+          "Tu viens de rejoindre des milliers de fans de courses hippiques qui ont arr\u00eat\u00e9 de se fier \u00e0 leur instinct et ont commenc\u00e9 \u00e0 utiliser les donn\u00e9es. L'IA a analys\u00e9 les courses d'aujourd'hui et ta premi\u00e8re pr\u00e9diction t'attend.",
+          "La diff\u00e9rence ici : tu ne re\u00e7ois pas juste un tuyau. Tu obtiens un score de confiance. La diff\u00e9rence entre 'ce cheval pourrait gagner' et 'ce cheval gagne 72% du temps dans ces conditions exactes'.",
+          "Ouvre l'appli maintenant. Regarde la carte du jour. V\u00e9rifie la pr\u00e9diction et le score de confiance. \u00c7a prend 10 secondes.",
+          "Ta premi\u00e8re pr\u00e9diction est pr\u00eate. Ouvre l'appli et d\u00e9couvre le favori du jour. P.S. Les utilisateurs qui v\u00e9rifient les pr\u00e9dictions avant la premi\u00e8re course ont 3x plus de chances de rep\u00e9rer de la valeur t\u00f4t.",
+        ],
+      },
+    },
+  },
 };
 
 // ── HTML BUILDER ────────────────────────────────────────────
@@ -516,14 +565,21 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
-    const { email, app_id, language } = await req.json();
+    const { email, app_id: rawAppId, language } = await req.json();
 
-    if (!email || !app_id) {
+    if (!email || !rawAppId) {
       return new Response(
         JSON.stringify({ error: "Missing required fields: email, app_id" }),
         { status: 400, headers: { "Content-Type": "application/json" } }
       );
     }
+
+    // Normalize app_id aliases (check-new-users may send legacy names)
+    const APP_ID_ALIASES: Record<string, string> = {
+      redflag_scanner: "red_flag_scanner",
+      fresh_start: "breakup_therapy",
+    };
+    const app_id = APP_ID_ALIASES[rawAppId] || rawAppId;
 
     const appConfig = APP_CONFIG[app_id];
     if (!appConfig) {
