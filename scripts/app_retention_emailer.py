@@ -34,10 +34,65 @@ from deliverability_monitor import DeliverabilityMonitor
 from firestore_activity_loader import FirestoreActivityLoader
 
 
-# ─── DAILY SEND CAP ─────────────────────────────────────
-# Limit total emails per day to protect domain reputation.
-# This cap is shared across all apps per run.
-DAILY_SEND_LIMIT = 1000
+# ─── DYNAMIC DAILY SEND CAP ──────────────────────────────
+# Cap auto-adjusts based on active sender's health status.
+# Reads from warming_config.json auto_scaling tiers.
+# Fallback to conservative defaults if config unavailable.
+HEALTH_CAPS = {
+    'green': 250,    # Healthy domain — can push volume
+    'yellow': 150,   # Caution — moderate volume
+    'red': 50,       # Damaged — minimal sends, let warming fix it
+    'unknown': 100,  # No data yet — conservative start
+}
+
+# Absolute ceiling (Resend plan: 100K/month ≈ 3,300/day)
+MAX_DAILY_LIMIT = 3000
+
+
+def get_dynamic_send_limit():
+    """
+    Calculate today's send limit based on active sender health
+    and warming config auto_scaling tiers.
+    """
+    try:
+        config_path = Path(__file__).parent.parent / 'config' / 'warming_config.json'
+        health_path = Path(__file__).parent.parent / 'cache' / 'sender_health.json'
+
+        # Load active sender's health status
+        if health_path.exists():
+            with open(health_path) as f:
+                health_data = json.load(f)
+            idx = health_data.get('active_sender_index', 0)
+            senders = health_data.get('senders', {})
+            sender_emails = list(senders.keys())
+            if sender_emails:
+                active_email = sender_emails[idx % len(sender_emails)]
+                status = senders[active_email].get('status', 'unknown')
+            else:
+                status = 'unknown'
+        else:
+            status = 'unknown'
+
+        # Load per-domain caps from warming config (if available)
+        if config_path.exists():
+            with open(config_path) as f:
+                config = json.load(f)
+            scaling = config.get('auto_scaling', {})
+            tier = scaling.get(status, {})
+            cap = tier.get('marketing_cap_per_domain', HEALTH_CAPS.get(status, 100))
+        else:
+            cap = HEALTH_CAPS.get(status, 100)
+
+        # Count how many non-red senders we have (future: spread across multiple)
+        # For now, single sender — cap applies to that domain
+        limit = min(cap, MAX_DAILY_LIMIT)
+        print(f"   📊 Dynamic cap: {limit}/day (sender health: {status})")
+        return limit
+
+    except Exception as e:
+        print(f"   ⚠️ Error reading health config, using fallback cap: {e}")
+        return 100  # Safe fallback
+
 
 # ─── BEHAVIORAL BRANCHING (DISABLED) ───────────────────
 # Churning acceleration removed to protect sender reputation.
@@ -562,14 +617,15 @@ class AppRetentionEmailer:
         if today not in self.state['daily_stats']:
             self.state['daily_stats'][today] = {'sent': 0, 'failed': 0}
         
-        # Enforce daily send cap across all runs today
+        # Enforce dynamic daily send cap based on sender health
+        daily_limit = get_dynamic_send_limit()
         already_sent_today = self.state['daily_stats'][today].get('sent', 0)
-        remaining_cap = max(0, DAILY_SEND_LIMIT - already_sent_today)
+        remaining_cap = max(0, daily_limit - already_sent_today)
         if remaining_cap == 0:
-            print(f"   🛑 Daily send cap reached ({DAILY_SEND_LIMIT}). Skipping this run.")
+            print(f"   🛑 Daily send cap reached ({daily_limit}). Skipping this run.")
             return
         if remaining_cap < len(eligible):
-            print(f"   ⚠️ Cap allows {remaining_cap} more emails today (limit: {DAILY_SEND_LIMIT}, already sent: {already_sent_today})")
+            print(f"   ⚠️ Cap allows {remaining_cap} more emails today (limit: {daily_limit}, already sent: {already_sent_today})")
             eligible = eligible[:remaining_cap]
         
         sent = 0
