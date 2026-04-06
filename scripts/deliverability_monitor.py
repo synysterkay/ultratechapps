@@ -84,6 +84,12 @@ class DeliverabilityMonitor:
             "domain": "passedai.io",
             "active": True,
         },
+        {
+            "email": "hello@academicsatire.com",
+            "name": "Riley",
+            "domain": "academicsatire.com",
+            "active": True,
+        },
     ]
 
     # ── THRESHOLDS ──────────────────────────────────────────

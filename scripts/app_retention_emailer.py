@@ -39,14 +39,14 @@ from firestore_activity_loader import FirestoreActivityLoader
 # During warming phase, bypasses broken Resend health check.
 # Volume spread across all 7 senders via round-robin.
 HEALTH_CAPS = {
-    'green': 250,    # Healthy domain — can push volume
+    'green': 420,    # Healthy domain — target 100K/month across 8 senders
     'yellow': 150,   # Caution — moderate volume
     'red': 50,       # Damaged — minimal sends, let warming fix it
     'unknown': 100,  # No data yet — conservative start
 }
 
-# Absolute ceiling (Resend plan: 100K/month ≈ 3,300/day)
-MAX_DAILY_LIMIT = 3000
+# Absolute ceiling (Resend plan: 100K/month ≈ 3,400/day)
+MAX_DAILY_LIMIT = 3400
 
 # Warming phase start date — bypass health checks during first 4 weeks
 WARMING_START_DATE = '2026-04-03'

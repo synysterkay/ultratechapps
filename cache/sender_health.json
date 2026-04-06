@@ -49,6 +49,13 @@
       "rotated_out_at": null,
       "metrics_history": [],
       "note": "Reset 2026-04-06"
+    },
+    "hello@academicsatire.com": {
+      "status": "unknown",
+      "last_check": null,
+      "rotated_out_at": null,
+      "metrics_history": [],
+      "note": "Added 2026-04-06 \u2014 Cloudflare domain, full warming active"
     }
   },
   "rotation_log": [],

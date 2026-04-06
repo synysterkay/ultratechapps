@@ -63,7 +63,7 @@
   "auto_scaling": {
     "green": {
       "description": "open_rate >= 15% AND bounce_rate < 2%",
-      "marketing_cap_per_domain": 250,
+      "marketing_cap_per_domain": 420,
       "warming_per_domain": 10
     },
     "yellow": {
