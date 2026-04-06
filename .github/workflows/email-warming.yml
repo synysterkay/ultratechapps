@@ -53,6 +53,12 @@ jobs:
           GMAIL_APP_PWD_ANASKAY_13: ${{ secrets.GMAIL_APP_PWD_ANASKAY_13 }}
           GMAIL_APP_PWD_ADAMMLENIAK: ${{ secrets.GMAIL_APP_PWD_ADAMMLENIAK }}
           GMAIL_APP_PWD_KAYNELTEST: ${{ secrets.GMAIL_APP_PWD_KAYNELTEST }}
+          GMAIL_APP_PWD_KAYNELAPPS: ${{ secrets.GMAIL_APP_PWD_KAYNELAPPS }}
+          GMAIL_APP_PWD_ADAVA9176: ${{ secrets.GMAIL_APP_PWD_ADAVA9176 }}
+          GMAIL_APP_PWD_ANASBLANEW2: ${{ secrets.GMAIL_APP_PWD_ANASBLANEW2 }}
+          GMAIL_APP_PWD_PASSEDAI: ${{ secrets.GMAIL_APP_PWD_PASSEDAI }}
+          GMAIL_APP_PWD_TESTKAYNEL: ${{ secrets.GMAIL_APP_PWD_TESTKAYNEL }}
+          GMAIL_APP_PWD_KAYNELPL: ${{ secrets.GMAIL_APP_PWD_KAYNELPL }}
         run: |
           MODE="${{ github.event.inputs.mode || 'send' }}"
           if [ "$MODE" = "dry-run" ]; then
