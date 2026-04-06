@@ -29,25 +29,29 @@ class GmailSender:
 
     def connect(self):
         """Verify Resend API key works."""
-        try:
-            # Quick check: list domains
-            resp = requests.get(
-                "https://api.resend.com/domains",
-                headers={"Authorization": f"Bearer {self.api_key}"},
-                timeout=10,
-            )
-            if resp.status_code == 200:
-                domains = resp.json().get('data', [])
-                domain_names = [d['name'] for d in domains] if domains else []
-                print(f"✅ Connected to Resend as {self.sender_email} (domains: {', '.join(domain_names) or 'none yet'})")
-                self.connected = True
-                return True
-            else:
-                print(f"❌ Resend auth failed: {resp.status_code} {resp.text[:200]}")
+        for attempt in range(2):
+            try:
+                resp = requests.get(
+                    "https://api.resend.com/domains",
+                    headers={"Authorization": f"Bearer {self.api_key}"},
+                    timeout=10,
+                )
+                if resp.status_code == 200:
+                    domains = resp.json().get('data', [])
+                    domain_names = [d['name'] for d in domains] if domains else []
+                    print(f"✅ Connected to Resend as {self.sender_email} (domains: {', '.join(domain_names) or 'none yet'})")
+                    self.connected = True
+                    return True
+                elif resp.status_code == 429 and attempt == 0:
+                    time.sleep(2)
+                    continue
+                else:
+                    print(f"❌ Resend auth failed: {resp.status_code} {resp.text[:200]}")
+                    return False
+            except Exception as e:
+                print(f"❌ Resend connection failed: {e}")
                 return False
-        except Exception as e:
-            print(f"❌ Resend connection failed: {e}")
-            return False
+        return False
 
     def disconnect(self):
         """No-op — REST API, no persistent connection."""

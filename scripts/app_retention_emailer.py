@@ -667,6 +667,7 @@ class AppRetentionEmailer:
                 senders.append({'gmail': gs, 'info': sender_info, 'cap': cap, 'sent': 0})
             else:
                 print(f"   ⚠️ Could not connect sender {sender_info['email']} — skipping")
+            time.sleep(0.5)  # Avoid Resend rate limit on connect
         
         if not senders:
             print("❌ Cannot connect to any Resend sender. Aborting.")
