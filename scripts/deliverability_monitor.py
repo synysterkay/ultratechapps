@@ -174,10 +174,16 @@ class DeliverabilityMonitor:
     def fetch_email_events(self, days=7, sender_email=None):
         """
         Fetch sending statistics from Resend API by scanning recent emails.
+        Filters by sender domain when sender_email is provided.
         Falls back to local health state history if API fails.
         """
         if not self.api_key:
             return None
+
+        # Extract domain to filter by (if sender specified)
+        filter_domain = None
+        if sender_email and '@' in sender_email:
+            filter_domain = sender_email.split('@')[1]
 
         try:
             # Try to get live stats from Resend API
@@ -230,6 +236,12 @@ class DeliverabilityMonitor:
                                 break
                         except (ValueError, TypeError):
                             pass
+
+                    # Filter by sender domain if specified
+                    if filter_domain:
+                        from_field = e.get('from', '')
+                        if filter_domain not in from_field:
+                            continue
 
                     event = e.get('last_event', '')
                     stats['sent'] += 1
@@ -368,7 +380,7 @@ class DeliverabilityMonitor:
         if not self.api_key:
             return {'status': 'unknown', 'metrics': {}, 'issues': ['No RESEND_API_KEY set']}
 
-        metrics = self.fetch_email_events(days=self.THRESHOLDS['lookback_days'])
+        metrics = self.fetch_email_events(days=self.THRESHOLDS['lookback_days'], sender_email=sender_email)
         if not metrics:
             return {'status': 'unknown', 'metrics': {}, 'issues': ['Could not fetch metrics from Resend']}
 

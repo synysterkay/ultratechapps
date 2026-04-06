@@ -35,9 +35,9 @@ from firestore_activity_loader import FirestoreActivityLoader
 
 
 # ─── DYNAMIC DAILY SEND CAP ──────────────────────────────
-# Cap auto-adjusts based on active sender's health status.
-# Reads from warming_config.json auto_scaling tiers.
-# Fallback to conservative defaults if config unavailable.
+# Cap auto-adjusts based on ALL senders' health status.
+# During warming phase, bypasses broken Resend health check.
+# Volume spread across all 7 senders via round-robin.
 HEALTH_CAPS = {
     'green': 250,    # Healthy domain — can push volume
     'yellow': 150,   # Caution — moderate volume
@@ -48,46 +48,85 @@ HEALTH_CAPS = {
 # Absolute ceiling (Resend plan: 100K/month ≈ 3,300/day)
 MAX_DAILY_LIMIT = 3000
 
+# Warming phase start date — bypass health checks during first 4 weeks
+WARMING_START_DATE = '2026-04-03'
+WARMING_PHASE_WEEKS = 4
+
+
+def is_warming_phase():
+    """Check if we're still in the warming phase (first 4 weeks)."""
+    try:
+        from datetime import timedelta
+        start = datetime.strptime(WARMING_START_DATE, '%Y-%m-%d')
+        end = start + timedelta(weeks=WARMING_PHASE_WEEKS)
+        return datetime.now() < end
+    except Exception:
+        return True  # Safe default: assume still warming
+
+
+def get_all_sender_caps():
+    """
+    Get per-sender caps for ALL senders in the pool.
+    During warming phase: force 'unknown' status (100/sender) to bypass broken health check.
+    After warming: use actual health status per sender.
+    Returns: list of (sender_dict, cap) tuples and total limit.
+    """
+    from deliverability_monitor import DeliverabilityMonitor
+    pool = DeliverabilityMonitor.SENDER_POOL
+    warming = is_warming_phase()
+
+    health_path = Path(__file__).parent.parent / 'cache' / 'sender_health.json'
+    config_path = Path(__file__).parent.parent / 'config' / 'warming_config.json'
+
+    # Load health data
+    health_data = {}
+    if health_path.exists():
+        try:
+            with open(health_path) as f:
+                health_data = json.load(f).get('senders', {})
+        except Exception:
+            pass
+
+    # Load scaling config
+    scaling = {}
+    if config_path.exists():
+        try:
+            with open(config_path) as f:
+                scaling = json.load(f).get('auto_scaling', {})
+        except Exception:
+            pass
+
+    sender_caps = []
+    total = 0
+    for sender in pool:
+        if not sender.get('active', True):
+            continue
+        if warming:
+            status = 'unknown'  # Force unknown during warming — bypass broken health check
+        else:
+            status = health_data.get(sender['email'], {}).get('status', 'unknown')
+
+        # Get cap from config or fallback
+        tier = scaling.get(status, {})
+        cap = tier.get('marketing_cap_per_domain', HEALTH_CAPS.get(status, 100))
+        sender_caps.append((sender, cap))
+        total += cap
+
+    total = min(total, MAX_DAILY_LIMIT)
+    return sender_caps, total
+
 
 def get_dynamic_send_limit():
     """
-    Calculate today's send limit based on active sender health
-    and warming config auto_scaling tiers.
+    Calculate today's total send limit across ALL senders.
     """
     try:
-        config_path = Path(__file__).parent.parent / 'config' / 'warming_config.json'
-        health_path = Path(__file__).parent.parent / 'cache' / 'sender_health.json'
-
-        # Load active sender's health status
-        if health_path.exists():
-            with open(health_path) as f:
-                health_data = json.load(f)
-            idx = health_data.get('active_sender_index', 0)
-            senders = health_data.get('senders', {})
-            sender_emails = list(senders.keys())
-            if sender_emails:
-                active_email = sender_emails[idx % len(sender_emails)]
-                status = senders[active_email].get('status', 'unknown')
-            else:
-                status = 'unknown'
-        else:
-            status = 'unknown'
-
-        # Load per-domain caps from warming config (if available)
-        if config_path.exists():
-            with open(config_path) as f:
-                config = json.load(f)
-            scaling = config.get('auto_scaling', {})
-            tier = scaling.get(status, {})
-            cap = tier.get('marketing_cap_per_domain', HEALTH_CAPS.get(status, 100))
-        else:
-            cap = HEALTH_CAPS.get(status, 100)
-
-        # Count how many non-red senders we have (future: spread across multiple)
-        # For now, single sender — cap applies to that domain
-        limit = min(cap, MAX_DAILY_LIMIT)
-        print(f"   📊 Dynamic cap: {limit}/day (sender health: {status})")
-        return limit
+        sender_caps, total = get_all_sender_caps()
+        warming_label = " [WARMING PHASE — health check bypassed]" if is_warming_phase() else ""
+        print(f"   📊 Dynamic cap: {total}/day across {len(sender_caps)} senders{warming_label}")
+        for sender, cap in sender_caps:
+            print(f"      {sender['email']}: {cap}/day")
+        return total
 
     except Exception as e:
         print(f"   ⚠️ Error reading health config, using fallback cap: {e}")
@@ -164,12 +203,21 @@ class AppRetentionEmailer:
         
         self._welcomed_emails = set()
         try:
-            config_path = self.base_dir / 'config' / 'supabase_config.json'
-            with open(config_path, 'r') as f:
-                config = json.load(f)
+            # Try env vars first (GitHub Actions), then config file fallback
+            url = os.environ.get('SUPABASE_URL', '')
+            key = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
             
-            url = config['project']['url']
-            key = config['project']['service_role_key']
+            if not url or not key:
+                config_path = self.base_dir / 'config' / 'supabase_config.json'
+                if config_path.exists():
+                    with open(config_path, 'r') as f:
+                        config = json.load(f)
+                    url = config['project']['url']
+                    key = config['project']['service_role_key']
+                else:
+                    print("   ⚠️ No Supabase credentials — skipping welcomed_users check")
+                    return self._welcomed_emails
+            
             headers = {'apikey': key, 'Authorization': f'Bearer {key}'}
             
             # Paginate through all welcomed users (1000 per page)
@@ -548,9 +596,12 @@ class AppRetentionEmailer:
                 activity = self.activity_loader.fetch_user_activity(app_name)
                 self.user_activity.update(activity)
         
-        # 1c. Check sender health & auto-rotate if needed
-        print("\n🏥 Checking sender health...")
-        active_sender = self.deliverability.check_and_rotate_if_needed()
+        # 1c. Get all senders for multi-sender distribution
+        print("\n🏥 Setting up multi-sender distribution...")
+        sender_caps, total_cap = get_all_sender_caps()
+        print(f"   📨 Using {len(sender_caps)} senders, total cap: {total_cap}/day")
+        for s, cap in sender_caps:
+            print(f"      {s['email']} ({s['name']}): {cap}/day")
         
         # 1d. Clean bad recipients (spam reporters + hard bounces)
         self.deliverability.clean_bad_recipients(self.state)
@@ -602,22 +653,32 @@ class AppRetentionEmailer:
             else:
                 print(f"   ❌ Not cached: {app_name} #{email_num} ({lang}) — run --generate first")
         
-        # 4. Send emails via Resend (using active sender from health check)
-        print(f"\n📧 Sending {len(eligible)} emails via Resend...")
-        gmail = GmailSender(
-            sender_email=active_sender['email'],
-            sender_name=active_sender['name'],
-        )
+        # 4. Send emails via Resend — MULTI-SENDER round-robin
+        print(f"\n📧 Sending {len(eligible)} emails via Resend (multi-sender)...")
         
-        if not gmail.connect():
-            print("❌ Cannot connect to Resend. Aborting.")
+        # Create a GmailSender instance per sender
+        senders = []
+        for sender_info, cap in sender_caps:
+            gs = GmailSender(
+                sender_email=sender_info['email'],
+                sender_name=sender_info['name'],
+            )
+            if gs.connect():
+                senders.append({'gmail': gs, 'info': sender_info, 'cap': cap, 'sent': 0})
+            else:
+                print(f"   ⚠️ Could not connect sender {sender_info['email']} — skipping")
+        
+        if not senders:
+            print("❌ Cannot connect to any Resend sender. Aborting.")
             return
+        
+        print(f"   ✅ {len(senders)} senders ready")
         
         today = datetime.now().strftime('%Y-%m-%d')
         if today not in self.state['daily_stats']:
             self.state['daily_stats'][today] = {'sent': 0, 'failed': 0}
         
-        # Enforce dynamic daily send cap based on sender health
+        # Enforce dynamic daily send cap
         daily_limit = get_dynamic_send_limit()
         already_sent_today = self.state['daily_stats'][today].get('sent', 0)
         remaining_cap = max(0, daily_limit - already_sent_today)
@@ -645,11 +706,20 @@ class AppRetentionEmailer:
                 failed += 1
                 continue
             
-            # Build HTML
-            html = self._build_html(email_data, app_info, lang, sender_name=active_sender['name'])
+            # Round-robin sender selection — pick sender with lowest sent count
+            # that hasn't hit its per-domain cap
+            available = [s for s in senders if s['sent'] < s['cap']]
+            if not available:
+                print(f"   🛑 All sender caps exhausted after {sent} emails")
+                break
+            sender_slot = min(available, key=lambda s: s['sent'])
+            sender_info = sender_slot['info']
             
-            # Send
-            result = gmail.send_email(
+            # Build HTML
+            html = self._build_html(email_data, app_info, lang, sender_name=sender_info['name'])
+            
+            # Send via this sender's connection
+            result = sender_slot['gmail'].send_email(
                 to_email=email_addr,
                 subject=email_data['subject'],
                 html_body=html,
@@ -658,6 +728,7 @@ class AppRetentionEmailer:
             
             if result == 'sent':
                 sent += 1
+                sender_slot['sent'] += 1
                 # Update user state
                 now_str = datetime.now().isoformat()
                 if email_addr not in self.state['users']:
@@ -674,10 +745,12 @@ class AppRetentionEmailer:
                 self.state['users'][email_addr]['emails_sent'] = email_num
                 self.state['users'][email_addr]['last_email_sent'] = now_str
                 self.state['users'][email_addr]['segment'] = segment
+                self.state['users'][email_addr]['sender'] = sender_info['email']
                 self.state['daily_stats'][today]['sent'] += 1
                 
                 remap_note = f" (re-engage #{actual_num})" if entry.get('remapped') else ""
-                print(f"   ✅ [{sent}/{len(eligible)}] {email_addr} ← {app_name} #{email_num}{remap_note} [{segment}]")
+                sender_tag = sender_info['email'].split('@')[1]
+                print(f"   ✅ [{sent}/{len(eligible)}] {email_addr} ← {app_name} #{email_num} via {sender_tag}{remap_note} [{segment}]")
             elif result == 'bounced':
                 # Auto-remove bounced email from the system
                 failed += 1
@@ -696,11 +769,18 @@ class AppRetentionEmailer:
             if (sent + failed) % 25 == 0:
                 self._save_state()
             
-            # Rate limit (1s for Brevo REST API)
+            # Rate limit
             if i < len(eligible) - 1:
                 time.sleep(1)
         
-        gmail.disconnect()
+        # Disconnect all senders
+        for s in senders:
+            s['gmail'].disconnect()
+        
+        # Print per-sender breakdown
+        print(f"\n   📨 Per-sender breakdown:")
+        for s in senders:
+            print(f"      {s['info']['email']}: {s['sent']}/{s['cap']} sent")
         
         # Final state save
         self._save_state()
@@ -757,14 +837,16 @@ class AppRetentionEmailer:
                     print(f"   Would send: {u['email']} (streak: {u['streak']})")
             return
         
-        # Get sender
-        active_sender = self.deliverability.check_and_rotate_if_needed()
-        gmail = GmailSender(
-            sender_email=active_sender['email'],
-            sender_name=active_sender['name'],
-        )
-        if not gmail.connect():
-            print("❌ Cannot connect to Resend. Aborting.")
+        # Set up multi-sender
+        sender_caps, _ = get_all_sender_caps()
+        senders = []
+        for sender_info, cap in sender_caps:
+            gs = GmailSender(sender_email=sender_info['email'], sender_name=sender_info['name'])
+            if gs.connect():
+                senders.append({'gmail': gs, 'info': sender_info, 'sent': 0})
+        
+        if not senders:
+            print("❌ Cannot connect to any Resend sender. Aborting.")
             return
         
         # Get user languages
@@ -777,11 +859,15 @@ class AppRetentionEmailer:
             streak = user['streak']
             lang = languages.get(email_addr, 'en')
             
+            # Round-robin sender
+            sender_slot = min(senders, key=lambda s: s['sent'])
+            sender_info = sender_slot['info']
+            
             # Build streak email
-            html = self._build_streak_html(streak, lang, app_info, active_sender['name'])
+            html = self._build_streak_html(streak, lang, app_info, sender_info['name'])
             subject = self._get_streak_subject(streak, lang)
             
-            result = gmail.send_email(
+            result = sender_slot['gmail'].send_email(
                 to_email=email_addr,
                 subject=subject,
                 html_body=html,
@@ -790,14 +876,16 @@ class AppRetentionEmailer:
             
             if result == 'sent':
                 sent += 1
+                sender_slot['sent'] += 1
                 if email_addr not in self.state['users']:
                     self.state['users'][email_addr] = {'app': 'Predictify', 'emails_sent': 0}
                 self.state['users'][email_addr]['last_streak_email'] = now.isoformat()
-                print(f"   🔥 {email_addr} (streak: {streak})")
+                print(f"   🔥 {email_addr} (streak: {streak}) via {sender_info['email'].split('@')[1]}")
             
             time.sleep(1)
         
-        gmail.disconnect()
+        for s in senders:
+            s['gmail'].disconnect()
         self._save_state()
         print(f"\n📊 Streak emails sent: {sent}/{len(streak_users)}")
     
@@ -943,14 +1031,16 @@ class AppRetentionEmailer:
                 print(f"   {league}: {len(emails)} users")
             return
         
-        # Get sender and languages
-        active_sender = self.deliverability.check_and_rotate_if_needed()
-        gmail = GmailSender(
-            sender_email=active_sender['email'],
-            sender_name=active_sender['name'],
-        )
-        if not gmail.connect():
-            print("❌ Cannot connect to Resend. Aborting.")
+        # Set up multi-sender
+        sender_caps, _ = get_all_sender_caps()
+        senders = []
+        for sender_info, cap in sender_caps:
+            gs = GmailSender(sender_email=sender_info['email'], sender_name=sender_info['name'])
+            if gs.connect():
+                senders.append({'gmail': gs, 'info': sender_info, 'sent': 0})
+        
+        if not senders:
+            print("❌ Cannot connect to any Resend sender. Aborting.")
             return
         
         languages = self.language_loader.fetch_user_languages('Predictify')
@@ -960,10 +1050,14 @@ class AppRetentionEmailer:
         for league, user_emails in users_by_league.items():
             for email_addr in user_emails:
                 lang = languages.get(email_addr, 'en')
-                html = self._build_matchday_html(league, lang, app_info, active_sender['name'])
+                # Round-robin sender
+                sender_slot = min(senders, key=lambda s: s['sent'])
+                sender_info = sender_slot['info']
+                
+                html = self._build_matchday_html(league, lang, app_info, sender_info['name'])
                 subject = self._get_matchday_subject(league, lang)
                 
-                result = gmail.send_email(
+                result = sender_slot['gmail'].send_email(
                     to_email=email_addr,
                     subject=subject,
                     html_body=html,
@@ -972,16 +1066,18 @@ class AppRetentionEmailer:
                 
                 if result == 'sent':
                     sent += 1
+                    sender_slot['sent'] += 1
                     if email_addr not in self.state['users']:
                         self.state['users'][email_addr] = {'app': 'Predictify', 'emails_sent': 0}
                     self.state['users'][email_addr]['last_matchday_email'] = now.isoformat()
                     prev_count = self.state['users'][email_addr].get('matchday_emails_this_week', 0)
                     self.state['users'][email_addr]['matchday_emails_this_week'] = prev_count + 1
-                    print(f"   ⚽ {email_addr} ← {league}")
+                    print(f"   ⚽ {email_addr} ← {league} via {sender_info['email'].split('@')[1]}")
                 
                 time.sleep(1)
         
-        gmail.disconnect()
+        for s in senders:
+            s['gmail'].disconnect()
         self._save_state()
         print(f"\n📊 Match-day emails sent: {sent}/{total_eligible}")
     
