@@ -2794,6 +2794,16 @@
   ]
 },
 {
+  "localId": "hP1SVrZYm3PvmOir1Vj3dGYstCu2",
+  "email": "yogeshsharmagu@gmail.com",
+  "emailVerified": false,
+  "passwordHash": "ncrhAxpgqbaJmrdHJnE+PEF4GX/ra7o+SXtN0hswgJ6vA7CjuQL0bI/futPmfZkfE2wfQKQQagGsMcNY8CK4IA==",
+  "salt": "nX/hTAIKphfv/g==",
+  "lastSignedInAt": "1775563115032",
+  "createdAt": "1775563115032",
+  "providerUserInfo": []
+},
+{
   "localId": "hr6jn2spABbt0DFbapPtEulq8NN2",
   "email": "psajous89@gmail.com",
   "emailVerified": false,
@@ -3454,12 +3464,20 @@
 {
   "localId": "pAKXr0MByLYra0OVbomEVqD69JK2",
   "email": "clement.mouraret@gmail.com",
-  "emailVerified": false,
-  "passwordHash": "NhP2cqe344oo1zZlwfFsw96fB8CfT9k6TE9ygda+3IgTympLwf5OgKY8CEz0dDJHaZ+OqLWoHtKWSuCDD0bIoA==",
-  "salt": "lyRiyd/WAFKKFA==",
-  "lastSignedInAt": "1774244382113",
+  "emailVerified": true,
+  "displayName": "Clément Mouraret (MgntcSl)",
+  "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocI5NySGz4FfQHFtVygEGCeuWc_wuU2kbr-YHhuO35RmUSegRQ=s96-c",
+  "lastSignedInAt": "1775572168376",
   "createdAt": "1774244382113",
-  "providerUserInfo": []
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "111190891212046753775",
+      "email": "clement.mouraret@gmail.com",
+      "displayName": "Clément Mouraret (MgntcSl)",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocI5NySGz4FfQHFtVygEGCeuWc_wuU2kbr-YHhuO35RmUSegRQ=s96-c"
+    }
+  ]
 },
 {
   "localId": "pRHeUyOJZdadRuX7wkB5KzSA8ez2",
