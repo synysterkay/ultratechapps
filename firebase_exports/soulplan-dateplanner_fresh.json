@@ -1778,6 +1778,24 @@
   "providerUserInfo": []
 },
 {
+  "localId": "PzSNV59Uz0blndaWfdmye2PEjn52",
+  "email": "pruett.elisha@gmail.com",
+  "emailVerified": true,
+  "displayName": "Echo Pruett",
+  "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocI3QQ6LumxZUeLyKRJQHIyun2PihVvzN0vfDx-GhHS13dxt-3Ys=s96-c",
+  "lastSignedInAt": "1775941762571",
+  "createdAt": "1775941762571",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "102799894893768803830",
+      "email": "pruett.elisha@gmail.com",
+      "displayName": "Echo Pruett",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocI3QQ6LumxZUeLyKRJQHIyun2PihVvzN0vfDx-GhHS13dxt-3Ys=s96-c"
+    }
+  ]
+},
+{
   "localId": "Q4ZDaRxlCWgMLz6RyMTDn54RuK83",
   "email": "bokamosophiri108@gmail.com",
   "emailVerified": false,
