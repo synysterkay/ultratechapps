@@ -2454,6 +2454,16 @@
   ]
 },
 {
+  "localId": "YOPx8tNkWXZI6ieNWP9AWeP2osv2",
+  "email": "shawnaebanks@gmail.com",
+  "emailVerified": false,
+  "passwordHash": "kmtKffWhCUxVrQCcsLrotlmAbjKXBzork1Ln+loDlLDBDTrbLNmqaPqx97nB0wCEyTj6k8Y1/OFPs7gQMBGVQA==",
+  "salt": "0fb423hIz4/lPQ==",
+  "lastSignedInAt": "1776469354228",
+  "createdAt": "1776469354228",
+  "providerUserInfo": []
+},
+{
   "localId": "YaSILxMNBxP4YZVSRcPyU0swPnE3",
   "email": "nicholas.kobakhidze@gmail.com",
   "emailVerified": true,
