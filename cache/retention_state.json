@@ -156682,7 +156682,9 @@
       "first_email_at": "2026-04-12T09:48:08.301687",
       "last_email_sent": "2026-04-17T10:05:15.088327",
       "segment": "normal",
-      "sender": "hello@academicsatire.com"
+      "sender": "hello@academicsatire.com",
+      "suppressed": true,
+      "suppressed_reason": "hard_bounce"
     },
     "katabalajames2@gmail.com": {
       "app": "Predictify",
@@ -173101,6 +173103,744 @@
       "emails_sent": 1,
       "first_email_at": "2026-04-19T09:47:27.375277",
       "last_email_sent": "2026-04-19T09:47:27.375277"
+    },
+    "kkoffiarsene347@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "nyangaresid53@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "reysamu7898@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "kiwkev2@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "anawiak.wael15@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "houdoumoussaabdoulaye@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "muwerezarobert41@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "nwaforg49@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "bmtsm0789@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "sahroni4416@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "otienosilas000@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "i19469379@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "asgredefb28@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "nunopinto62@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "mmichal.beben@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "fuyaslashuyakhi@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "texnocamon30vlad@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "karem.karem01150801177@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "mohamed85888375@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "niteshmaneka@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "karouitmohammed79@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "martinlouismuller@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "vassasstephane17@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "latifouedraogo026@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "rashidzadetural@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "ladjisekouk@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "sofianbelha0@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "llazaniaina@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "cn759756@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "kayratsalis@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "christmaobambela2@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "chriskevin24@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "rgseduxion@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "978572ofjbvfllmdp@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "j4ds2n76bj@privaterelay.appleid.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "btrskwkwabrahym@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "abubakadiri40@icloud.com": {
+      "app": "Predictify",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "ndabamabura@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "ibrahim.zombra85@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "rebelcfa3@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "geoffroyedgardo@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "mbaobiangtomas@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "cesaraparicioalcantara@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "zamazing012@hotmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "joraaltyyew4@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "christianratolojanahary18@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "rdmanzym3@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "bannasaliou703@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "bo7417490@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "enderlantz2@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "hmw7082@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "chasedna123@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "koffikrohaseverin@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "youkniang@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "arty83713@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "goladynenmuno@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "rosadodiego1990@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "jerrymichaelhill6@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "radhellkabuya19@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "leonardnyangule722@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "dccmd8t2zv@privaterelay.appleid.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "gjamsko99@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "joaquim02daniel@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "ebraheeemoo123@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "melodierayssa@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "gh1996eros@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "aboailmohamed871@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "muchirilydia515@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "moussadioufuvs@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "enockhenokh@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "kargboalie810@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "bigleo511@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "salimbulgur26@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "movchik30@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "chikago454hht@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "edwardstann18@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "adrysbshyrsalh25@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "qgm4rxstn2@privaterelay.appleid.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "malkmnaf6@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "adsad.33y@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "ngampiososthene@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "milmor24@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "elizabethevira@gmail.com": {
+      "app": "Predictify",
+      "emails_sent": 0,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": null
+    },
+    "s38837200@gmail.com": {
+      "app": "Volume Booster - Sound Booster",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "aygul.129392@gmail.com": {
+      "app": "Volume Booster - Sound Booster",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "mirandagriffis0317@gmail.com": {
+      "app": "Volume Booster - Sound Booster",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "psp106726@gmail.com": {
+      "app": "Volume Booster - Sound Booster",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "gallegosbrayan185@gmail.com": {
+      "app": "Volume Booster - Sound Booster",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "sandeepboodhi1@gmail.com": {
+      "app": "Volume Booster - Sound Booster",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "nykvero74@gmail.com": {
+      "app": "Volume Booster - Sound Booster",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "fede99013@gmail.com": {
+      "app": "Volume Booster - Sound Booster",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "subbaiahsappidi2@gmail.com": {
+      "app": "Volume Booster - Sound Booster",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "emouzakiti77@gmail.com": {
+      "app": "Thesis Generator",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "thatomakhala@gmail.com": {
+      "app": "Thesis Generator",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "alondra.amaes@gmail.com": {
+      "app": "Thesis Generator",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "israabdullah2003@gmail.com": {
+      "app": "Thesis Generator",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "nahomgem.ethio@gmail.com": {
+      "app": "Thesis Generator",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "5555ricardomga@gmail.com": {
+      "app": "Thesis Generator",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "anayeirisc@gmail.com": {
+      "app": "Thesis Generator",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "shamshiev.education@gmail.com": {
+      "app": "Thesis Generator",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "nuhuib2010@uds.edu.gh": {
+      "app": "Thesis Generator",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "ngalohlumisa891@gmail.com": {
+      "app": "Thesis Generator",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "telli2206@icloud.com": {
+      "app": "Thesis Generator",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "irfan.maulana.yusuf@gmail.com": {
+      "app": "Thesis Generator",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "santiagoapolinarioyandel@gmail.com": {
+      "app": "Thesis Generator",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "samitaadamu@gmail.com": {
+      "app": "Thesis Generator",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "nuhuib060@gmail.com": {
+      "app": "Thesis Generator",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "roudymahamod@gmail.com": {
+      "app": "Red Flag Scanner AI",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "rashahasasneh@gmail.com": {
+      "app": "Red Flag Scanner AI",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "hamadafarrag194@gmail.com": {
+      "app": "Red Flag Scanner AI",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "banunutchika@gmail.com": {
+      "app": "Red Flag Scanner AI",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "danielzarefa90@gmail.com": {
+      "app": "Red Flag Scanner AI",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "nathancrampton61@gmail.com": {
+      "app": "Red Flag Scanner AI",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "achal.aabb@gmail.com": {
+      "app": "Red Flag Scanner AI",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "71264@live.it": {
+      "app": "Red Flag Scanner AI",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "arshaghafari138686@gmail.com": {
+      "app": "SoulPlan: Plan Dates Together",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "neudergaultier0@gmail.com": {
+      "app": "SoulPlan: Plan Dates Together",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "policeneuder56@gmail.com": {
+      "app": "SoulPlan: Plan Dates Together",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "gaultierneuder56@gmail.com": {
+      "app": "SoulPlan: Plan Dates Together",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "bouazzazahidi82@gmail.com": {
+      "app": "Predictify: Horse Racing AI",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "djflossy2019@gmail.com": {
+      "app": "Predictify: Horse Racing AI",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "fuufyy836@gmail.com": {
+      "app": "Predictify: Horse Racing AI",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
+    },
+    "barbaramichael30@gmail.com": {
+      "app": "Predictify: Horse Racing AI",
+      "emails_sent": 1,
+      "first_email_at": "2026-04-19T17:32:21.247273",
+      "last_email_sent": "2026-04-19T17:32:21.247273"
     }
   },
   "daily_stats": {
