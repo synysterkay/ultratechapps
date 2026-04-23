@@ -147,6 +147,9 @@ CHURNING_REMAP = {}  # Disabled — no remapping
 RESTART_COOLDOWN_DAYS = 30
 MAX_CYCLES = 3  # Lifetime cap — ~90 emails max before we retire the user.
 RESTART_MIN_HOURS_BETWEEN = 7 * 24  # 7 days between emails on cycle 2+.
+# Users frozen mid-sequence (classified churning, blocked at emails_sent >= 3)
+# get a fresh restart cycle once they've been silent this long.
+CHURNING_RESET_DAYS = 30
 
 # Identity-shift emails don't fit on a restart — remap them to re-engagement
 # emails that already live in the cache.
@@ -550,6 +553,24 @@ class AppRetentionEmailer:
                     user_state['last_email_sent'] = None
                     user_state.pop('cycle_completed_at', None)
                     emails_sent = 0
+
+                # Stuck mid-sequence (churning-frozen at emails_sent >= 3 and
+                # silent for CHURNING_RESET_DAYS) — treat like cycle completion
+                # and restart into the cycle-2+ rails (7-day cadence, prefix).
+                elif emails_sent >= 3 and cycle < MAX_CYCLES:
+                    last_sent_str = user_state.get('last_email_sent')
+                    if last_sent_str:
+                        try:
+                            last_sent_dt = datetime.fromisoformat(last_sent_str)
+                        except ValueError:
+                            last_sent_dt = None
+                        if last_sent_dt and (now - last_sent_dt).days >= CHURNING_RESET_DAYS:
+                            cycle += 1
+                            user_state['cycle'] = cycle
+                            user_state['emails_sent'] = 0
+                            user_state['last_email_sent'] = None
+                            user_state.pop('cycle_completed_at', None)
+                            emails_sent = 0
 
                 # Check timing
                 from retention_email_generator import EMAIL_SEQUENCE
