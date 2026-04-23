@@ -140,6 +140,42 @@ def get_dynamic_send_limit():
 CHURNING_REMAP = {}  # Disabled — no remapping
 
 
+# ─── RESTART LOOP (POST-30 RE-ENGAGEMENT) ──────────────
+# When a user finishes all 30 emails, wait RESTART_COOLDOWN_DAYS then loop
+# back to email #1. Restart cycles use a stretched cadence and a localized
+# subject prefix so the inbox experience differs from cycle 1.
+RESTART_COOLDOWN_DAYS = 30
+MAX_CYCLES = 3  # Lifetime cap — ~90 emails max before we retire the user.
+RESTART_MIN_HOURS_BETWEEN = 7 * 24  # 7 days between emails on cycle 2+.
+
+# Identity-shift emails don't fit on a restart — remap them to re-engagement
+# emails that already live in the cache.
+CYCLE_RESTART_REMAP = {
+    13: 22,  # milestone_checkin → comeback_trigger
+    21: 26,  # loyalty_farewell → referral_trigger
+    30: 29,  # legacy_mission → gratitude_exclusive
+}
+
+CYCLE_SUBJECT_PREFIX = {
+    'en': 'Checking back in — ',
+    'es': 'Volvemos a conectar — ',
+    'fr': 'On se reconnecte — ',
+    'pt': 'Voltando a falar — ',
+    'pp': 'Voltando a falar — ',
+    'de': 'Wir melden uns zurück — ',
+    'ar': 'نتواصل معك مجددًا — ',
+    'tr': 'Tekrar merhaba — ',
+    'it': 'Ci risentiamo — ',
+    'hi': 'फिर से जुड़ते हैं — ',
+    'id': 'Kami kembali — ',
+    'nl': 'We zijn er weer — ',
+    'pl': 'Wracamy — ',
+    'ja': 'またこんにちは — ',
+    'zh': '再次联系 — ',
+    'ru': 'Снова на связи — ',
+}
+
+
 class AppRetentionEmailer:
     
     def __init__(self):
@@ -408,13 +444,17 @@ class AppRetentionEmailer:
             return 'churning'
         return 'normal'
     
-    def _get_email_for_segment(self, next_email_num, segment, is_subscribed=False):
+    def _get_email_for_segment(self, next_email_num, segment, is_subscribed=False, cycle=1):
         """
         Get the actual email number to send based on user segment.
         Churning users get re-engagement emails instead of deepening emails.
         Subscribed users skip heavy upsell emails.
+        On restart cycles (cycle > 1), identity-shift emails are remapped to
+        re-engagement emails.
         Returns: (actual_email_num, remapped: bool)
         """
+        if cycle > 1 and next_email_num in CYCLE_RESTART_REMAP:
+            return CYCLE_RESTART_REMAP[next_email_num], True
         if segment == 'churning' and next_email_num in CHURNING_REMAP:
             return CHURNING_REMAP[next_email_num], True
         return next_email_num, False
@@ -483,18 +523,41 @@ class AppRetentionEmailer:
             
             if user_state:
                 emails_sent = user_state.get('emails_sent', 0)
-                
-                # Already completed all 30 emails
+                cycle = user_state.get('cycle', 1)
+
+                # Finished all 30 — restart after cooldown, up to MAX_CYCLES
                 if emails_sent >= 30:
-                    continue
-                
+                    if cycle >= MAX_CYCLES:
+                        continue
+                    completed_at_str = (
+                        user_state.get('cycle_completed_at')
+                        or user_state.get('last_email_sent')
+                    )
+                    if not completed_at_str:
+                        # Backfill so the cooldown window starts now
+                        user_state['cycle_completed_at'] = now.isoformat()
+                        continue
+                    try:
+                        completed_at = datetime.fromisoformat(completed_at_str)
+                    except ValueError:
+                        continue
+                    if (now - completed_at).days < RESTART_COOLDOWN_DAYS:
+                        continue
+                    # Kick off the next cycle — reset progression, bump counter
+                    cycle += 1
+                    user_state['cycle'] = cycle
+                    user_state['emails_sent'] = 0
+                    user_state['last_email_sent'] = None
+                    user_state.pop('cycle_completed_at', None)
+                    emails_sent = 0
+
                 # Check timing
                 from retention_email_generator import EMAIL_SEQUENCE
                 next_email_num = emails_sent + 1
-                
+
                 if next_email_num > 30:
                     continue
-                
+
                 # Email #1 (welcome): send immediately, no waiting
                 if emails_sent == 0:
                     eligible.append({
@@ -505,44 +568,48 @@ class AppRetentionEmailer:
                         'actual_email': 1,
                         'language': user.get('language', 'en'),
                         'segment': 'new',
+                        'cycle': cycle,
                     })
                     continue
-                
+
                 target_day = EMAIL_SEQUENCE[next_email_num - 1]['day']
                 prev_day = EMAIL_SEQUENCE[emails_sent - 1]['day'] if emails_sent > 0 else 0
                 days_to_wait = target_day - prev_day
-                
+
                 # Check if enough time has passed
                 last_sent_str = user_state.get('last_email_sent')
                 if last_sent_str:
                     last_sent = datetime.fromisoformat(last_sent_str)
                     hours_since_last = (now - last_sent).total_seconds() / 3600
-                    
+
                     # All users follow normal timing (no churning acceleration)
                     segment = self._classify_user(user, emails_sent)
-                    hours_to_wait = max(days_to_wait * 24, 20)
-                    
+                    if cycle > 1:
+                        hours_to_wait = max(RESTART_MIN_HOURS_BETWEEN, days_to_wait * 24)
+                    else:
+                        hours_to_wait = max(days_to_wait * 24, 20)
+
                     # Skip churning users who've received 3+ emails
                     # They're not engaging — sending more hurts reputation
                     if segment == 'churning' and emails_sent >= 3:
                         continue
-                    
+
                     if hours_since_last < hours_to_wait:
                         continue
                 else:
                     segment = self._classify_user(user, emails_sent)
                     if segment == 'churning' and emails_sent >= 3:
                         continue
-                
+
                 # Check activity data for subscription status
                 activity = self.user_activity.get(email, {})
                 is_subscribed = activity.get('isSubscribed') or activity.get('isPremium', False)
-                
-                # Get actual email to send (may be remapped for churning)
+
+                # Get actual email to send (may be remapped for churning / restart cycle)
                 actual_email, remapped = self._get_email_for_segment(
-                    next_email_num, segment, is_subscribed
+                    next_email_num, segment, is_subscribed, cycle=cycle
                 )
-                
+
                 eligible.append({
                     'email': email,
                     'app_name': app_name,
@@ -552,6 +619,7 @@ class AppRetentionEmailer:
                     'language': user.get('language', 'en'),
                     'segment': segment,
                     'remapped': remapped,
+                    'cycle': cycle,
                 })
             
         return eligible
@@ -701,12 +769,13 @@ class AppRetentionEmailer:
             app_info = entry['app_info']
             lang = entry.get('language', 'en')
             segment = entry.get('segment', 'normal')
-            
+            cycle = entry.get('cycle', 1)
+
             email_data = email_content.get((app_name, actual_num, lang))
             if not email_data:
                 failed += 1
                 continue
-            
+
             # Round-robin sender selection — pick sender with lowest sent count
             # that hasn't hit its per-domain cap
             available = [s for s in senders if s['sent'] < s['cap']]
@@ -715,14 +784,21 @@ class AppRetentionEmailer:
                 break
             sender_slot = min(available, key=lambda s: s['sent'])
             sender_info = sender_slot['info']
-            
+
             # Build HTML
             html = self._build_html(email_data, app_info, lang, sender_name=sender_info['name'])
-            
+
+            # On restart cycles, prefix the subject so the inbox reads differently
+            subject = email_data['subject']
+            if cycle > 1:
+                prefix = CYCLE_SUBJECT_PREFIX.get(lang, CYCLE_SUBJECT_PREFIX['en'])
+                if not subject.startswith(prefix):
+                    subject = prefix + subject
+
             # Send via this sender's connection
             result = sender_slot['gmail'].send_email(
                 to_email=email_addr,
-                subject=email_data['subject'],
+                subject=subject,
                 html_body=html,
                 from_name=app_name
             )
@@ -747,11 +823,15 @@ class AppRetentionEmailer:
                 self.state['users'][email_addr]['last_email_sent'] = now_str
                 self.state['users'][email_addr]['segment'] = segment
                 self.state['users'][email_addr]['sender'] = sender_info['email']
+                self.state['users'][email_addr]['cycle'] = cycle
+                if email_num >= 30:
+                    self.state['users'][email_addr]['cycle_completed_at'] = now_str
                 self.state['daily_stats'][today]['sent'] += 1
-                
+
                 remap_note = f" (re-engage #{actual_num})" if entry.get('remapped') else ""
+                cycle_note = f" c{cycle}" if cycle > 1 else ""
                 sender_tag = sender_info['email'].split('@')[1]
-                print(f"   ✅ [{sent}/{len(eligible)}] {email_addr} ← {app_name} #{email_num} via {sender_tag}{remap_note} [{segment}]")
+                print(f"   ✅ [{sent}/{len(eligible)}] {email_addr} ← {app_name} #{email_num}{cycle_note} via {sender_tag}{remap_note} [{segment}]")
             elif result == 'bounced':
                 # Auto-remove bounced email from the system
                 failed += 1
