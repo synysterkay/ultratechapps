@@ -505,16 +505,19 @@ class AppRetentionEmailer:
         return html
     
     # ─── ACTIVE APPS (only these receive emails) ─────────
-    # Priority order: first = highest priority for daily cap allocation.
+    # Priority order: first = highest tie-breaker priority for daily cap
+    # allocation WITHIN a user-priority tier. App priority does NOT trump
+    # user priority — a new user of any active app still beats a cycle-2
+    # user of Predictify.
     ACTIVE_APPS = [
         'Predictify',
-        'Volume Booster - Sound Booster',
         'Thesis Generator',
+        'Predictify: Horse Racing AI',
+        'Volume Booster - Sound Booster',
         'Red Flag Scanner AI',
         'Fresh Start: Breakup Therapy',
         'SoulPlan: Plan Dates Together',
         'PupShape: Dog Weight Loss Plan',
-        'Predictify: Horse Racing AI',
     ]
 
     # ─── CAMPAIGN LOGIC ────────────────────────────────────
@@ -574,27 +577,40 @@ class AppRetentionEmailer:
         eligible = []
         now = datetime.now()
         
-        # Build priority-ordered list: new users first, then existing, per app
-        ordered_entries = []  # (priority, app_name, user)
-        
+        # Build priority-ordered list using a 3-tier user priority, with
+        # app order as the tie-breaker WITHIN a tier.
+        #
+        # Tier 0 — never seen before (about to get email #1)
+        # Tier 1 — cycle 1 mid-sequence (active 30-email funnel)
+        # Tier 2 — cycle 2+ (restart loop / churning rescue) — lowest priority
+        #
+        # Welcome emails for brand-new Firebase users are handled separately
+        # by the Supabase pg_cron path, so tier 0 here is purely about the
+        # retention funnel claiming the new user's slot for email #1.
+        ordered_entries = []  # ((user_tier, app_priority), app_name, user)
+
         for app_name, users in users_by_app.items():
-            # Only process active apps
             if app_name not in self.ACTIVE_APPS:
                 continue
-            
-            # App priority: Predictify=0, Thesis Generator=1
-            app_priority = self.ACTIVE_APPS.index(app_name) if app_name in self.ACTIVE_APPS else 99
-            
+
+            app_priority = self.ACTIVE_APPS.index(app_name)
+
             for user in users:
                 email = user['email']
-                is_new = email not in self.state.get('users', {})
-                # New users get priority 0 (first), existing get 1 (second)
-                user_priority = 0 if is_new else 1
-                # Combined: (app_priority * 10 + user_priority) → Predictify new=0, Predictify old=1, Thesis new=10, Thesis old=11
-                combined = app_priority * 10 + user_priority
-                ordered_entries.append((combined, app_name, user))
-        
-        # Sort by priority
+                user_state = self.state.get('users', {}).get(email)
+                if user_state is None:
+                    user_tier = 0  # not in state yet
+                else:
+                    cycle = user_state.get('cycle', 1)
+                    emails_sent = user_state.get('emails_sent', 0)
+                    if cycle >= 2 or emails_sent >= 30:
+                        user_tier = 2  # restart loop / churning rescue
+                    else:
+                        user_tier = 1  # cycle 1 mid-sequence
+
+                ordered_entries.append(((user_tier, app_priority), app_name, user))
+
+        # Sort by (user_tier, app_priority) — tier dominates, app breaks ties.
         ordered_entries.sort(key=lambda x: x[0])
         
         for _, app_name, user in ordered_entries:
