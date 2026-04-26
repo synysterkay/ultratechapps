@@ -144,6 +144,8 @@ def send_warming_email(from_email, from_name, to_email, subject, body, dry_run=F
                 "subject": subject,
                 "html": html_body,
                 "reply_to": from_email,
+                # Tag as warming so it's filtered out of marketing health metrics.
+                "tags": [{"name": "kind", "value": "warming"}],
             },
             timeout=15,
         )

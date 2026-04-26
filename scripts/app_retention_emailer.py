@@ -19,9 +19,11 @@ import sys
 import json
 import re
 import time
+import hashlib
 import requests
 from pathlib import Path
 from datetime import datetime
+from urllib.parse import urlparse, urlencode, parse_qsl, urlunparse
 
 # Add scripts dir to path
 sys.path.insert(0, str(Path(__file__).parent))
@@ -101,10 +103,16 @@ def get_all_sender_caps():
     for sender in pool:
         if not sender.get('active', True):
             continue
-        if warming:
-            status = 'unknown'  # Force unknown during warming — bypass broken health check
+        sender_health = health_data.get(sender['email'], {})
+        has_metrics = bool(sender_health.get('metrics_history'))
+        if warming and not has_metrics:
+            # Warming window with no webhook data yet — keep the bypass.
+            # Once update_sender_health.py starts populating metrics_history
+            # from Resend webhooks, this branch is no longer taken and the
+            # real status drives the cap.
+            status = 'unknown'
         else:
-            status = health_data.get(sender['email'], {}).get('status', 'unknown')
+            status = sender_health.get('status', 'unknown')
 
         # Get cap from config or fallback
         tier = scaling.get(status, {})
@@ -158,6 +166,71 @@ CYCLE_RESTART_REMAP = {
     21: 26,  # loyalty_farewell → referral_trigger
     30: 29,  # legacy_mission → gratitude_exclusive
 }
+
+# ─── ATTRIBUTION HELPERS ───────────────────────────────
+# Salt for hashing email addresses into opaque ref_ids that ride on Resend
+# webhooks (X-Entity-Ref-ID). Lets us join click/open events back to users
+# without putting raw addresses in tag values.
+_REF_SALT = os.getenv('EMAIL_REF_SALT', 'marketing-tool-v1')
+
+# Slug map for app names — Resend tag values are restricted to [A-Za-z0-9_-]
+# and we want short stable identifiers in analytics.
+_APP_SLUGS = {
+    'Predictify': 'predictify',
+    'Thesis Generator': 'thesis',
+    'Red Flag Scanner AI': 'redflag',
+    'Volume Booster - Sound Booster': 'volume_booster',
+    'Fresh Start: Breakup Therapy': 'fresh_start',
+    'SoulPlan: Plan Dates Together': 'soulplan',
+    'PupShape: Dog Weight Loss Plan': 'pupshape',
+    'Predictify: Horse Racing AI': 'horse_racing',
+    'Smart Notes - AI Meeting Summary': 'smart_notes',
+}
+
+
+def app_slug(app_name: str) -> str:
+    if app_name in _APP_SLUGS:
+        return _APP_SLUGS[app_name]
+    return re.sub(r'[^a-z0-9_]', '_', app_name.lower())[:32]
+
+
+def user_ref(email: str) -> str:
+    """Stable opaque user identifier for webhook correlation."""
+    h = hashlib.sha256(f"{_REF_SALT}:{email.lower().strip()}".encode()).hexdigest()
+    return h[:16]
+
+
+def with_utm(url: str, *, app: str, email_num, cycle, language: str, ref: str, kind: str = 'retention') -> str:
+    """Append UTM + ref params to a CTA URL, preserving any existing query."""
+    if not url:
+        return url
+    try:
+        parts = urlparse(url)
+    except ValueError:
+        return url
+    existing = dict(parse_qsl(parts.query, keep_blank_values=True))
+    existing.update({
+        'utm_source': 'resend',
+        'utm_medium': 'email',
+        'utm_campaign': f'{kind}_e{email_num}',
+        'utm_content': f'cycle{cycle}_{language}',
+        'utm_term': app,
+        'ref': ref,
+    })
+    return urlunparse(parts._replace(query=urlencode(existing)))
+
+
+def build_tags(*, app: str, email_num, cycle, language: str, segment: str, kind: str = 'retention') -> list:
+    """Build Resend tag list for analytics slicing on every webhook event."""
+    return [
+        {'name': 'app', 'value': app},
+        {'name': 'kind', 'value': kind},
+        {'name': 'email_num', 'value': str(email_num)},
+        {'name': 'cycle', 'value': str(cycle)},
+        {'name': 'language', 'value': language or 'en'},
+        {'name': 'segment', 'value': segment or 'normal'},
+    ]
+
 
 CYCLE_SUBJECT_PREFIX = {
     'en': 'Checking back in — ',
@@ -287,11 +360,15 @@ class AppRetentionEmailer:
     
     # ─── EMAIL HTML TEMPLATE ───────────────────────────────
     
-    def _build_html(self, email_data, app_info, language='en', sender_name='Ana'):
-        """Build beautiful HTML email from generated content, with language support"""
-        
+    def _build_html(self, email_data, app_info, language='en', sender_name='Ana',
+                     *, email_num=1, cycle=1, ref_id='', kind='retention'):
+        """Build beautiful HTML email from generated content, with language support.
+        UTM-tags every CTA so clicks attribute back to (app, email_num, cycle, language)
+        and to the user (via ref_id)."""
+
         app_name = email_data.get('app_name', app_info['name'])
         cta_text = email_data.get('cta_text', f'Open {app_name}')
+        slug = app_slug(app_name)
         
         # Language-specific settings
         is_rtl = language == 'ar'
@@ -335,10 +412,14 @@ class AppRetentionEmailer:
             else:
                 body_html += f'<p style="margin:0 0 20px;font-size:17px;color:#374151;line-height:1.8;text-align:{text_align};">{p_html}</p>'
         
-        # CTA button - link to app store
-        app_store_url = app_info.get('app_store_url', '')
-        google_play_url = app_info.get('google_play_url', '')
-        is_web_app = app_store_url and not any(x in app_store_url for x in ['apps.apple.com', 'play.google.com'])
+        # CTA button - link to app store, UTM-tagged for click attribution
+        raw_app_store = app_info.get('app_store_url', '')
+        raw_google_play = app_info.get('google_play_url', '')
+        app_store_url = with_utm(raw_app_store, app=slug, email_num=email_num,
+                                  cycle=cycle, language=language, ref=ref_id, kind=kind) if raw_app_store else ''
+        google_play_url = with_utm(raw_google_play, app=slug, email_num=email_num,
+                                    cycle=cycle, language=language, ref=ref_id, kind=kind) if raw_google_play else ''
+        is_web_app = raw_app_store and not any(x in raw_app_store for x in ['apps.apple.com', 'play.google.com'])
         
         cta_html = ""
         if is_web_app:
@@ -806,8 +887,17 @@ class AppRetentionEmailer:
             sender_slot = min(available, key=lambda s: s['sent'])
             sender_info = sender_slot['info']
 
-            # Build HTML
-            html = self._build_html(email_data, app_info, lang, sender_name=sender_info['name'])
+            # Per-send attribution context
+            ref_id = user_ref(email_addr)
+            slug = app_slug(app_name)
+            tags = build_tags(app=slug, email_num=email_num, cycle=cycle,
+                               language=lang, segment=segment, kind='retention')
+
+            # Build HTML (CTAs UTM-tagged with the same context)
+            html = self._build_html(email_data, app_info, lang,
+                                     sender_name=sender_info['name'],
+                                     email_num=email_num, cycle=cycle,
+                                     ref_id=ref_id, kind='retention')
 
             # On restart cycles, prefix the subject so the inbox reads differently
             subject = email_data['subject']
@@ -821,7 +911,9 @@ class AppRetentionEmailer:
                 to_email=email_addr,
                 subject=subject,
                 html_body=html,
-                from_name=app_name
+                from_name=app_name,
+                tags=tags,
+                ref_id=ref_id,
             )
             
             if result == 'sent':
@@ -965,15 +1057,21 @@ class AppRetentionEmailer:
             sender_slot = min(senders, key=lambda s: s['sent'])
             sender_info = sender_slot['info']
             
-            # Build streak email
-            html = self._build_streak_html(streak, lang, app_info, sender_info['name'])
+            # Build streak email (UTM-tag CTAs, attribute via tags + ref)
+            ref_id = user_ref(email_addr)
+            tags = build_tags(app='predictify', email_num=streak, cycle=1,
+                               language=lang, segment='streak', kind='streak')
+            html = self._build_streak_html(streak, lang, app_info, sender_info['name'],
+                                            ref_id=ref_id)
             subject = self._get_streak_subject(streak, lang)
-            
+
             result = sender_slot['gmail'].send_email(
                 to_email=email_addr,
                 subject=subject,
                 html_body=html,
-                from_name='Predictify'
+                from_name='Predictify',
+                tags=tags,
+                ref_id=ref_id,
             )
             
             if result == 'sent':
@@ -1011,7 +1109,7 @@ class AppRetentionEmailer:
         }
         return subjects.get(lang, subjects['en'])
     
-    def _build_streak_html(self, streak, lang, app_info, sender_name):
+    def _build_streak_html(self, streak, lang, app_info, sender_name, *, ref_id=''):
         """Build streak reminder email HTML."""
         is_rtl = lang == 'ar'
         dir_attr = ' dir="rtl"' if is_rtl else ''
@@ -1029,10 +1127,14 @@ class AppRetentionEmailer:
         greeting = greetings.get(lang, greetings['en'])
         body = bodies.get(lang, bodies['en'])
         
-        # Build CTA
-        app_store_url = app_info.get('app_store_url', '')
-        google_play_url = app_info.get('google_play_url', '')
-        
+        # Build CTA (UTM-tagged for click attribution)
+        raw_app_store = app_info.get('app_store_url', '')
+        raw_google_play = app_info.get('google_play_url', '')
+        app_store_url = with_utm(raw_app_store, app='predictify', email_num=streak,
+                                  cycle=1, language=lang, ref=ref_id, kind='streak') if raw_app_store else ''
+        google_play_url = with_utm(raw_google_play, app='predictify', email_num=streak,
+                                    cycle=1, language=lang, ref=ref_id, kind='streak') if raw_google_play else ''
+
         cta_html = ""
         if app_store_url and google_play_url:
             cta_html = f'''
@@ -1156,14 +1258,21 @@ class AppRetentionEmailer:
                 sender_slot = min(senders, key=lambda s: s['sent'])
                 sender_info = sender_slot['info']
                 
-                html = self._build_matchday_html(league, lang, app_info, sender_info['name'])
+                ref_id = user_ref(email_addr)
+                league_slug = re.sub(r'[^A-Za-z0-9_-]', '_', league)[:32] or 'league'
+                tags = build_tags(app='predictify', email_num=league_slug, cycle=1,
+                                   language=lang, segment='matchday', kind='matchday')
+                html = self._build_matchday_html(league, lang, app_info, sender_info['name'],
+                                                  ref_id=ref_id)
                 subject = self._get_matchday_subject(league, lang)
-                
+
                 result = sender_slot['gmail'].send_email(
                     to_email=email_addr,
                     subject=subject,
                     html_body=html,
-                    from_name='Predictify'
+                    from_name='Predictify',
+                    tags=tags,
+                    ref_id=ref_id,
                 )
                 
                 if result == 'sent':
@@ -1203,7 +1312,7 @@ class AppRetentionEmailer:
         }
         return subjects.get(lang, subjects['en'])
     
-    def _build_matchday_html(self, league, lang, app_info, sender_name):
+    def _build_matchday_html(self, league, lang, app_info, sender_name, *, ref_id=''):
         """Build match-day trigger email HTML."""
         is_rtl = lang == 'ar'
         dir_attr = ' dir="rtl"' if is_rtl else ''
@@ -1221,9 +1330,14 @@ class AppRetentionEmailer:
         greeting = greetings.get(lang, greetings['en'])
         body = bodies.get(lang, bodies['en'])
         
-        app_store_url = app_info.get('app_store_url', '')
-        google_play_url = app_info.get('google_play_url', '')
-        
+        league_slug = re.sub(r'[^A-Za-z0-9_-]', '_', league)[:32] or 'league'
+        raw_app_store = app_info.get('app_store_url', '')
+        raw_google_play = app_info.get('google_play_url', '')
+        app_store_url = with_utm(raw_app_store, app='predictify', email_num=league_slug,
+                                  cycle=1, language=lang, ref=ref_id, kind='matchday') if raw_app_store else ''
+        google_play_url = with_utm(raw_google_play, app='predictify', email_num=league_slug,
+                                    cycle=1, language=lang, ref=ref_id, kind='matchday') if raw_google_play else ''
+
         cta_html = ""
         if app_store_url and google_play_url:
             cta_html = f'''

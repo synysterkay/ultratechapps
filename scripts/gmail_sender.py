@@ -8,7 +8,16 @@ Drop-in replacement — same interface: connect(), send_email(), send_batch(), d
 """
 import time
 import os
+import re
 import requests
+
+
+_TAG_VALUE_RE = re.compile(r'[^A-Za-z0-9_-]')
+
+
+def _sanitize_tag(value: str) -> str:
+    """Resend tag values only allow [A-Za-z0-9_-]; replace anything else with '_'."""
+    return _TAG_VALUE_RE.sub('_', value)
 
 
 # Keep class name GmailSender so nothing else needs to change
@@ -73,9 +82,14 @@ class GmailSender:
             return any(ind in text_lower for ind in self.BOUNCE_INDICATORS)
         return False
 
-    def send_email(self, to_email, subject, html_body, from_name=None):
+    def send_email(self, to_email, subject, html_body, from_name=None, tags=None, ref_id=None):
         """
         Send a single HTML email via Resend.
+        tags: list of {"name": str, "value": str} — appears on every webhook event
+              for per-app / per-email-number / per-language slicing.
+        ref_id: opaque correlator (e.g. hashed user id) sent as X-Entity-Ref-ID.
+                Resend echoes it on webhooks so we can join events to users without
+                exposing the raw email address in tag values.
         Returns: 'sent' on success, 'bounced' if address is invalid, 'failed' otherwise.
         """
         if not self.connected:
@@ -84,6 +98,23 @@ class GmailSender:
 
         sender = f"{from_name or self.sender_name} <{self.sender_email}>"
 
+        payload = {
+            "from": sender,
+            "to": [to_email],
+            "subject": subject,
+            "html": html_body,
+            "reply_to": self.sender_email,
+        }
+        if tags:
+            # Resend tag values must match ^[A-Za-z0-9_-]+$; sanitize to be safe.
+            payload["tags"] = [
+                {"name": str(t["name"])[:256],
+                 "value": _sanitize_tag(str(t["value"]))[:256]}
+                for t in tags if t.get("name") and t.get("value") is not None
+            ]
+        if ref_id:
+            payload["headers"] = {"X-Entity-Ref-ID": str(ref_id)[:256]}
+
         try:
             resp = requests.post(
                 self.API_URL,
@@ -91,13 +122,7 @@ class GmailSender:
                     "Authorization": f"Bearer {self.api_key}",
                     "Content-Type": "application/json",
                 },
-                json={
-                    "from": sender,
-                    "to": [to_email],
-                    "subject": subject,
-                    "html": html_body,
-                    "reply_to": self.sender_email,
-                },
+                json=payload,
                 timeout=15,
             )
 
@@ -114,13 +139,7 @@ class GmailSender:
                         "Authorization": f"Bearer {self.api_key}",
                         "Content-Type": "application/json",
                     },
-                    json={
-                        "from": sender,
-                        "to": [to_email],
-                        "subject": subject,
-                        "html": html_body,
-                        "reply_to": self.sender_email,
-                    },
+                    json=payload,
                     timeout=15,
                 )
                 if retry.status_code in (200, 201):
@@ -154,6 +173,8 @@ class GmailSender:
                 subject=email['subject'],
                 html_body=email['html_body'],
                 from_name=email.get('from_name', self.sender_name),
+                tags=email.get('tags'),
+                ref_id=email.get('ref_id'),
             )
 
             if result == 'sent':

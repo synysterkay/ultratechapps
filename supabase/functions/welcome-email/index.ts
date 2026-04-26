@@ -9,6 +9,40 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") || "";
+const REF_SALT = Deno.env.get("EMAIL_REF_SALT") || "marketing-tool-v1";
+
+// ── ATTRIBUTION HELPERS ─────────────────────────────────────
+async function userRef(email: string): Promise<string> {
+  const data = new TextEncoder().encode(`${REF_SALT}:${email.toLowerCase().trim()}`);
+  const buf = await crypto.subtle.digest("SHA-256", data);
+  const hex = Array.from(new Uint8Array(buf))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+  return hex.slice(0, 16);
+}
+
+function sanitizeTagValue(v: string): string {
+  return v.replace(/[^A-Za-z0-9_-]/g, "_").slice(0, 256);
+}
+
+function withUtm(
+  url: string,
+  ctx: { app: string; emailNum: string | number; cycle: number; language: string; ref: string; kind: string }
+): string {
+  if (!url) return url;
+  try {
+    const u = new URL(url);
+    u.searchParams.set("utm_source", "resend");
+    u.searchParams.set("utm_medium", "email");
+    u.searchParams.set("utm_campaign", `${ctx.kind}_e${ctx.emailNum}`);
+    u.searchParams.set("utm_content", `cycle${ctx.cycle}_${ctx.language}`);
+    u.searchParams.set("utm_term", ctx.app);
+    u.searchParams.set("ref", ctx.ref);
+    return u.toString();
+  } catch {
+    return url;
+  }
+}
 
 // ── SENDER POOL (same 7 domains as main system) ────────────
 const SENDER_POOL = [
@@ -429,7 +463,8 @@ function buildHtml(
   emailData: EmailTemplate,
   appConfig: AppConfig,
   language: string,
-  senderName: string
+  senderName: string,
+  utmCtx?: { app: string; emailNum: string | number; cycle: number; language: string; ref: string; kind: string }
 ): string {
   const isRtl = language === "ar";
   const dirAttr = isRtl ? ' dir="rtl"' : "";
@@ -512,12 +547,14 @@ function buildHtml(
     }
   });
 
+  const appStoreHref = utmCtx ? withUtm(appConfig.appStoreUrl, utmCtx) : appConfig.appStoreUrl;
+  const googlePlayHref = utmCtx ? withUtm(appConfig.googlePlayUrl, utmCtx) : appConfig.googlePlayUrl;
   const ctaHtml = `
     <div style="text-align:center;margin:36px 0;">
-      <a href="${appConfig.appStoreUrl}" style="display:inline-block;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:700;font-size:16px;margin:0 6px;">
+      <a href="${appStoreHref}" style="display:inline-block;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:700;font-size:16px;margin:0 6px;">
         \ud83d\udcf1 ${ctaText} (iOS)
       </a>
-      <a href="${appConfig.googlePlayUrl}" style="display:inline-block;background:linear-gradient(135deg,#34d399 0%,#10b981 100%);color:#fff;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:700;font-size:16px;margin:0 6px;">
+      <a href="${googlePlayHref}" style="display:inline-block;background:linear-gradient(135deg,#34d399 0%,#10b981 100%);color:#fff;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:700;font-size:16px;margin:0 6px;">
         \ud83e\udd16 ${ctaText} (Android)
       </a>
     </div>`;
@@ -607,7 +644,27 @@ Deno.serve(async (req: Request) => {
 
     const emailData = appConfig.emails[lang];
     const sender = getRandomSender();
-    const html = buildHtml(emailData, appConfig, lang, sender.name);
+
+    // Attribution context — same shape as retention/streak/matchday sends
+    const ref = await userRef(email);
+    const utmCtx = {
+      app: app_id,
+      emailNum: 1, // welcome is always email #1, cycle 1
+      cycle: 1,
+      language: lang,
+      ref,
+      kind: "welcome",
+    };
+    const html = buildHtml(emailData, appConfig, lang, sender.name, utmCtx);
+
+    const tags = [
+      { name: "app", value: sanitizeTagValue(app_id) },
+      { name: "kind", value: "welcome" },
+      { name: "email_num", value: "1" },
+      { name: "cycle", value: "1" },
+      { name: "language", value: sanitizeTagValue(lang) },
+      { name: "segment", value: "new" },
+    ];
 
     // Send via Resend
     const resendRes = await fetch("https://api.resend.com/emails", {
@@ -622,6 +679,8 @@ Deno.serve(async (req: Request) => {
         subject: emailData.subject,
         html: html,
         reply_to: sender.email,
+        tags,
+        headers: { "X-Entity-Ref-ID": ref },
       }),
     });
 

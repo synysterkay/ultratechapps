@@ -1,0 +1,38 @@
+name: Update Sender Health
+
+on:
+  schedule:
+    # Nightly at 03:00 UTC — well separated from retention sends so the
+    # auto-scaler reads fresh status by the next morning campaign.
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-health:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Update sender_health.json from email_events
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: python3 scripts/update_sender_health.py
+
+      - name: Commit if changed
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cache/sender_health.json
+          git diff --staged --quiet || git commit -m "Update sender health from email_events [skip ci]"
+          git push || true
