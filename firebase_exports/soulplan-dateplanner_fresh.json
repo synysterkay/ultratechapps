@@ -406,6 +406,16 @@
   "providerUserInfo": []
 },
 {
+  "localId": "5MeLRMEfFCTKdD63XG05ET58jOs1",
+  "email": "azw.wallace@gmail.com",
+  "emailVerified": false,
+  "passwordHash": "odAc94DWLgpP8PZJj6pYS7cR8LOcykcDr+BrQnrdEJ+bf4iDHJPBoPQM7K9JbV+da3tOBcAx7ihloyhKaFNRiQ==",
+  "salt": "NfuY9Chm8OkmnA==",
+  "lastSignedInAt": "1777144350842",
+  "createdAt": "1777144350842",
+  "providerUserInfo": []
+},
+{
   "localId": "5UtjFgBqLXPStEwKF6vpvXmb8Yk1",
   "email": "nickfreak18@gmail.com",
   "emailVerified": true,
