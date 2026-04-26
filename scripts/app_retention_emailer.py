@@ -44,7 +44,7 @@ HEALTH_CAPS = {
     'green': 420,    # Healthy domain — target 100K/month across 8 senders
     'yellow': 150,   # Caution — moderate volume
     'red': 50,       # Damaged — minimal sends, let warming fix it
-    'unknown': 100,  # No data yet — conservative start
+    'unknown': 250,  # Post-warming default — 8 senders × 250 = 2000/day
 }
 
 # Absolute ceiling (Resend plan: 100K/month ≈ 3,400/day)
@@ -53,6 +53,26 @@ MAX_DAILY_LIMIT = 3400
 # Warming phase start date — bypass health checks during first 4 weeks
 WARMING_START_DATE = '2026-04-03'
 WARMING_PHASE_WEEKS = 4
+
+
+def _has_recent_metrics(sender_health, max_age_days=7):
+    """True if the sender's metrics_history has at least one entry within
+    max_age_days. Stale entries (e.g. legacy false-negative red markings)
+    return False so the warming bypass can override them."""
+    hist = sender_health.get('metrics_history') or []
+    if not hist:
+        return False
+    last = hist[-1]
+    raw = last.get('at') or last.get('date') or last.get('timestamp')
+    if not raw:
+        return False
+    try:
+        # Accept ISO 8601 with optional 'Z' or just 'YYYY-MM-DD'
+        s = raw.rstrip('Z')
+        last_dt = datetime.fromisoformat(s) if 'T' in s else datetime.strptime(s, '%Y-%m-%d')
+    except (ValueError, TypeError):
+        return False
+    return (datetime.now() - last_dt).days < max_age_days
 
 
 def is_warming_phase():
@@ -104,12 +124,13 @@ def get_all_sender_caps():
         if not sender.get('active', True):
             continue
         sender_health = health_data.get(sender['email'], {})
-        has_metrics = bool(sender_health.get('metrics_history'))
-        if warming and not has_metrics:
-            # Warming window with no webhook data yet — keep the bypass.
-            # Once update_sender_health.py starts populating metrics_history
-            # from Resend webhooks, this branch is no longer taken and the
-            # real status drives the cap.
+        if warming and not _has_recent_metrics(sender_health):
+            # Warming window with no FRESH webhook data — keep the bypass.
+            # Stale entries (e.g. legacy monitor that recorded opened:0
+            # because no tracking pixel existed) don't count. Once
+            # update_sender_health.py populates entries from real Resend
+            # webhooks, this branch is no longer taken and the real
+            # status drives the cap.
             status = 'unknown'
         else:
             status = sender_health.get('status', 'unknown')

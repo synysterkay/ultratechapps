@@ -77,8 +77,8 @@
       "warming_per_domain": 30
     },
     "unknown": {
-      "description": "No data or tracking issue",
-      "marketing_cap_per_domain": 100,
+      "description": "No data or tracking issue. Bumped to 250 on 2026-04-26 after 2 weeks of warming — total 8 senders × 250 = 2000/day. Will drop back to a lower number if/when we add a brand-new sender domain to the pool.",
+      "marketing_cap_per_domain": 250,
       "warming_per_domain": 25
     }
   },
