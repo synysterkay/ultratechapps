@@ -487,7 +487,7 @@
   "emailVerified": false,
   "passwordHash": "urlIhYTnwYiD5QdFbhi9EM28WcHcVcHF6Th/hWTHVuCudDGLLfOudNVcQYPiAx+WjClbYUiyKIyO2KwdPJs6zQ==",
   "salt": "tQrclrnuM5BtXA==",
-  "lastSignedInAt": "1776778738324",
+  "lastSignedInAt": "1777268076877",
   "createdAt": "1776778738324",
   "providerUserInfo": []
 },
@@ -3360,6 +3360,24 @@
   "lastSignedInAt": "1764218871644",
   "createdAt": "1732111955805",
   "providerUserInfo": []
+},
+{
+  "localId": "k0QQWOANnWVpVS9akma6xc9xNto1",
+  "email": "dejefeseljefe78@gmail.com",
+  "emailVerified": true,
+  "displayName": "El jefe De jefes",
+  "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocL0k67JDKNHX8hT2E5kIMvmO2kFmsfolKvZC1xnvknk9OPiFw=s96-c",
+  "lastSignedInAt": "1777276281411",
+  "createdAt": "1777276281411",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "117868956151902009266",
+      "email": "dejefeseljefe78@gmail.com",
+      "displayName": "El jefe De jefes",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocL0k67JDKNHX8hT2E5kIMvmO2kFmsfolKvZC1xnvknk9OPiFw=s96-c"
+    }
+  ]
 },
 {
   "localId": "k4uh8VgmcNUQVz1UzZHzcQkQSUM2",
