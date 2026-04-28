@@ -18,9 +18,9 @@ const FIREBASE_PROJECTS: Record<
 > = {
   "thesis-generator-web": {
     appId: "thesis_generator",
-    multilingual: false,
+    multilingual: true,
     defaultLang: "en",
-    supportedLanguages: ["en"],
+    supportedLanguages: ["en", "ar", "fr", "es", "hi", "zh"],
   },
   redflagscanner: {
     appId: "redflag_scanner",

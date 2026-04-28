@@ -610,14 +610,24 @@ Generate the email now. Make it impossible to ignore."""
             return None
         
         cache_path = self._get_cache_path(app_name, email_number, language)
-        
+
         # Check cache
         if cache_path.exists():
             with open(cache_path, 'r') as f:
                 return json.load(f)
-        
+
         # Cache-only mode: don't call DeepSeek API
         if cache_only:
+            # Fall back to English if a non-English translation isn't cached yet —
+            # better to send English than to skip the user entirely. This makes
+            # adding new languages safe: enable the language config, users still
+            # receive emails in English until the per-language cache is generated.
+            if language != 'en':
+                en_path = self._get_cache_path(app_name, email_number, 'en')
+                if en_path.exists():
+                    print(f"   ↪️ Email #{email_number} ({language}) not cached for {app_name}, using English fallback")
+                    with open(en_path, 'r') as f:
+                        return json.load(f)
             print(f"   ⚠️ Email #{email_number} ({language}) not cached for {app_name}, skipping (cache-only mode)")
             return None
         
@@ -664,6 +674,8 @@ Generate the email now. Make it impossible to ignore."""
                 app_languages = ['en', 'ar', 'es', 'fr', 'zh', 'hi', 'pt', 'ru']
             elif app_name == 'Predictify: Horse Racing AI':
                 app_languages = ['en', 'ar', 'es', 'fr']
+            elif app_name == 'Thesis Generator':
+                app_languages = ['en', 'ar', 'es', 'fr', 'hi', 'zh']
             else:
                 app_languages = ['en']
             

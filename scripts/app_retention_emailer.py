@@ -786,6 +786,7 @@ class AppRetentionEmailer:
             'Predictify': 'Predictify',
             'Volume Booster - Sound Booster': 'Volume Booster - Sound Booster',
             'Predictify: Horse Racing AI': 'Predictify: Horse Racing AI',
+            'Thesis Generator': 'Thesis Generator',
         }
         for app_name, loader_key in multilingual_apps.items():
             if app_name in users_by_app:

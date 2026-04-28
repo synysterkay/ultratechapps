@@ -33,6 +33,11 @@ MULTILINGUAL_PROJECTS = {
         'supported_languages': ['en', 'ar', 'es', 'fr'],
         'cache_file': 'horse_racing_languages.json',
     },
+    'Thesis Generator': {
+        'project_id': 'thesis-generator-web',
+        'supported_languages': ['en', 'ar', 'es', 'fr', 'hi', 'zh'],
+        'cache_file': 'thesis_generator_languages.json',
+    },
 }
 
 # Language code normalization map
