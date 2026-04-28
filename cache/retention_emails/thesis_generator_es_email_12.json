@@ -1,0 +1,16 @@
+{
+  "subject": "El error que casi me cuesta la nota",
+  "preview_text": "Descubr\u00ed algo que 9 de cada 10 usuarios ignoran y cambi\u00f3 mi forma de escribir ensayos para siempre.",
+  "body_paragraphs": [
+    "La semana pasada, casi entrego un ensayo que me tom\u00f3 3 d\u00edas. Lo ten\u00eda listo, bien citado, con gr\u00e1ficos impecables. Pero algo no cuadraba. Revis\u00e9 una \u00faltima vez y me di cuenta: hab\u00eda usado solo la mitad de las herramientas de la app. Una estupidez.",
+    "Resulta que un amigo, tambi\u00e9n estudiante, me dijo: 'Oye, \u00bfhas probado la funci\u00f3n de humanizar texto?' Le pregunt\u00e9 para qu\u00e9 serv\u00eda si ya sonaba bien. \u00c9l me explic\u00f3 que no era solo para sonar natural, sino para evitar que Turnitin o GPTZero te marquen como IA. En 10 segundos, transform\u00f3 mi p\u00e1rrafo m\u00e1s rob\u00f3tico en algo que parec\u00eda escrito por m\u00ed, con mi estilo. La nota final subi\u00f3 de B+ a A-.",
+    "Esa funci\u00f3n est\u00e1 enterrada en el men\u00fa de 'Herramientas Avanzadas' dentro de Thesis Generator. La llaman 'Humanizador de Texto'. No la hab\u00eda visto porque siempre usaba solo el generador de tesis y el exportador. Pero ahora es mi secreto para entregar trabajos que suenan aut\u00e9nticos, sin perder horas reescribiendo.",
+    "Abre la app ahora, ve a 'Herramientas Avanzadas' y prueba el Humanizador con el \u00faltimo p\u00e1rrafo que escribiste. Te sorprender\u00e1 lo r\u00e1pido que cambia el tono. P.D. Esto funciona incluso si ya tienes el texto en PDF; solo p\u00e9galo y ajusta el nivel. No dejes que tus competidores tengan esta ventaja."
+  ],
+  "cta_text": "Abrir Thesis Generator y probar el Humanizador",
+  "email_number": 12,
+  "send_day": 25,
+  "type": "feature_deep_dive",
+  "app_name": "Thesis Generator",
+  "generated_at": "2026-04-28T09:50:57.352754"
+}

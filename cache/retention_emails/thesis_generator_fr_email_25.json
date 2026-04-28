@@ -1,0 +1,16 @@
+{
+  "subject": "Le secret que personne ne t'a dit sur cette app",
+  "preview_text": "Un \u00e9tudiant a d\u00e9couvert une utilisation compl\u00e8tement inattendue de Thesis Generator. Tu vas halluciner.",
+  "body_paragraphs": [
+    "Je ne pensais pas \u00e9crire cet email, mais un \u00e9tudiant m'a envoy\u00e9 un message qui m'a fait halluciner. Il utilisait Thesis Generator pour g\u00e9n\u00e9rer des commentaires de code dans ses projets de programmation. Oui, tu as bien lu. Il prenait ses algorithmes et les transformait en explications claires pour ses profs d'informatique.",
+    "Je n'avais jamais imagin\u00e9 que quelqu'un utiliserait l'app pour \u00e7a. Mais \u00e7a m'a fait r\u00e9aliser que notre outil d'humanisation de texte, celui qui rend ton travail ind\u00e9tectable par Turnitin, peut aussi servir \u00e0 expliquer des concepts techniques complexes. Imagine : tu bosses sur un projet de machine learning, tu colles ton code dans l'app, et en 10 minutes, t'as un paragraphe qui explique chaque \u00e9tape. Tes profs pensent que t'es un g\u00e9nie, et toi tu passes de la panique \u00e0 la confiance.",
+    "La fonctionnalit\u00e9 cl\u00e9 ici, c'est l'humanisation automatique. Tu tapes ton contenu brut, elle le transforme en texte naturel, bien structur\u00e9, pr\u00eat \u00e0 \u00eatre soumis. Que ce soit pour une th\u00e8se ou un commentaire de code, \u00e7a marche pareil. Et avec les citations automatiques en APA, MLA ou Chicago, t'as m\u00eame pas \u00e0 te prendre la t\u00eate.",
+    "Ouvre l'app maintenant, colle un truc que t'as \u00e9crit vite fait, et laisse la magie op\u00e9rer. Tu verras, \u00e7a change tout. P.S. Si tu trouves une autre utilisation improbable, \u00e9cris-moi. Je parie que tu vas me surprendre."
+  ],
+  "cta_text": "Ouvrir Thesis Generator maintenant",
+  "email_number": 25,
+  "send_day": 58,
+  "type": "unexpected_use_case",
+  "app_name": "Thesis Generator",
+  "generated_at": "2026-04-28T09:56:41.789629"
+}
