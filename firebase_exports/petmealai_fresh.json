@@ -2475,6 +2475,17 @@
   ]
 },
 {
+  "localId": "xGN07e9lSINZBI0qyqg3m4DuKYn2",
+  "email": "lilyfinch982@gmail.com",
+  "emailVerified": false,
+  "passwordHash": "nHbLL8X5sDZMSTdcle9n/7RJhw4gxWhIuSJPMuk4qqpvr6Qtu1TKG8JjlXfWcAAHdrDZC2dw1uzb+OcwLGBr/Q==",
+  "salt": "BXrtLXKbr/FNDw==",
+  "displayName": "lilyfinch982",
+  "lastSignedInAt": "1777327115133",
+  "createdAt": "1777327115133",
+  "providerUserInfo": []
+},
+{
   "localId": "xLieBLyhXLRddSqeasO0bbXXYOb2",
   "email": "ziondetmer814@gmail.com",
   "emailVerified": true,
