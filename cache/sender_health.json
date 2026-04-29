@@ -2,7 +2,7 @@
   "active_sender_index": 2,
   "senders": {
     "apps@kaynel.pl": {
-      "last_check": "2026-03-23T18:23:03.107596",
+      "last_check": "2026-04-29T06:05:58.635599Z",
       "status": "red",
       "rotated_out_at": "2026-03-23T18:23:03.109197",
       "metrics_history": [
@@ -77,7 +77,7 @@
       ]
     },
     "hello@bestaiapps.site": {
-      "last_check": "2026-03-24T18:26:33.605301",
+      "last_check": "2026-04-29T06:05:58.635599Z",
       "status": "red",
       "rotated_out_at": "2026-03-24T18:26:33.606857",
       "metrics_history": [
@@ -135,7 +135,7 @@
       ]
     },
     "apps@vitazelki.pl": {
-      "last_check": "2026-03-23T09:32:41.180815",
+      "last_check": "2026-04-29T06:05:58.635599Z",
       "status": "red",
       "rotated_out_at": "2026-03-23T09:32:41.182478",
       "metrics_history": [
@@ -635,7 +635,7 @@
       ]
     },
     "hello@aibettips.io": {
-      "last_check": "2026-03-24T09:27:52.741908",
+      "last_check": "2026-04-29T06:05:58.635599Z",
       "status": "red",
       "rotated_out_at": "2026-03-24T09:27:52.743454",
       "metrics_history": [
@@ -676,7 +676,7 @@
       ]
     },
     "tips@predictifyfootball.com": {
-      "last_check": "2026-03-25T09:26:23.542489",
+      "last_check": "2026-04-29T06:05:58.635599Z",
       "status": "red",
       "rotated_out_at": "2026-03-25T09:26:23.544012",
       "metrics_history": [
@@ -717,7 +717,7 @@
       ]
     },
     "hello@thesisgenerator.io": {
-      "last_check": "2026-03-31T09:33:34.811279",
+      "last_check": "2026-04-29T06:05:58.635599Z",
       "status": "red",
       "rotated_out_at": "2026-03-31T09:33:34.813174",
       "metrics_history": [
@@ -945,7 +945,7 @@
       ]
     },
     "hello@passedai.io": {
-      "last_check": "2026-04-06T09:39:15.514079",
+      "last_check": "2026-04-29T06:05:58.635599Z",
       "status": "red",
       "rotated_out_at": "2026-04-06T09:39:15.515973",
       "metrics_history": [
