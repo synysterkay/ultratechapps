@@ -3757,7 +3757,7 @@
   "emailVerified": true,
   "displayName": "Kevin Mendoza",
   "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJCT7sAeoKoRVdZLhVLG0piIxccw85QTOHnioQePIOtMLK2dHxUcw=s96-c",
-  "lastSignedInAt": "1776811031573",
+  "lastSignedInAt": "1777405580160",
   "createdAt": "1776811031572",
   "providerUserInfo": [
     {
@@ -4472,6 +4472,24 @@
       "email": "okeric911@gmail.com",
       "displayName": "Oke Richard",
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKihDWGGX9f1h-VYVNyLfOe9dcKbLjpIh16FXhCznLHKnYDJw=s96-c"
+    }
+  ]
+},
+{
+  "localId": "ImW4b3KD6hWkGQ8HnLtYaVEoIAZ2",
+  "email": "dakulae@gmail.com",
+  "emailVerified": true,
+  "displayName": "Ellyza Shane Dakula",
+  "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJOlToA4tDl6w9zO2rrR8T9m3ltPDb-yUp4QdbAAPvHPi24KT2tjQ=s96-c",
+  "lastSignedInAt": "1777414080491",
+  "createdAt": "1777414080490",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "104585628568897544662",
+      "email": "dakulae@gmail.com",
+      "displayName": "Ellyza Shane Dakula",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJOlToA4tDl6w9zO2rrR8T9m3ltPDb-yUp4QdbAAPvHPi24KT2tjQ=s96-c"
     }
   ]
 },
