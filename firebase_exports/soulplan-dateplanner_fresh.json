@@ -1246,10 +1246,10 @@
 {
   "localId": "GC1cMDLPnTfqnZTESFi0gDWxSQa2",
   "email": "econ.cyhuang@gmail.com",
-  "emailVerified": false,
+  "emailVerified": true,
   "passwordHash": "fbCyIoNNiwrd0gyqwJxxH38uwdpwSoy0OkJo6aPyQutcxlzX0iLRxYC2+qM/ysa15pdJv3oPuYaSkf0CIEP2Cw==",
   "salt": "68gykTtFIxhYXg==",
-  "lastSignedInAt": "1777452523805",
+  "lastSignedInAt": "1777489379618",
   "createdAt": "1777452523805",
   "providerUserInfo": []
 },
@@ -4005,6 +4005,16 @@
   "salt": "/Z3ZUD2FtdG2/w==",
   "lastSignedInAt": "1765595699648",
   "createdAt": "1765595699648",
+  "providerUserInfo": []
+},
+{
+  "localId": "pno7BRKPCecVu6H3BR5u0VyK7SA3",
+  "email": "jariancampbell@gmail.com",
+  "emailVerified": false,
+  "passwordHash": "zAhLvEQKq2cPpkPcNBIOhoTVrDOpxzb47EJn5gROp2JtpmIKdIbL05M08sBYVWBgTxWRs/51lofXAPFBW/ZWHw==",
+  "salt": "RQUFAS31K4WB5Q==",
+  "lastSignedInAt": "1777502596105",
+  "createdAt": "1777502596105",
   "providerUserInfo": []
 },
 {
