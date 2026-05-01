@@ -1099,6 +1099,24 @@
   ]
 },
 {
+  "localId": "4lh9Ifv9FFRSwpMBI1hn5oIIcQD3",
+  "email": "andrewdrexlayne@gmail.com",
+  "emailVerified": true,
+  "displayName": "Andrew Mweemba",
+  "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocIFfCh10tt1pGUEcgFgk_XR3vMU_XevStukypeg1NBhI_QeaGWp=s96-c",
+  "lastSignedInAt": "1777574544097",
+  "createdAt": "1777574544097",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "110128308907871721633",
+      "email": "andrewdrexlayne@gmail.com",
+      "displayName": "Andrew Mweemba",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocIFfCh10tt1pGUEcgFgk_XR3vMU_XevStukypeg1NBhI_QeaGWp=s96-c"
+    }
+  ]
+},
+{
   "localId": "4nHvZ1aqArVbHlOsBjz8yF1Zsch2",
   "email": "mabelokojie8@gmail.com",
   "emailVerified": true,
@@ -7367,6 +7385,24 @@
   ]
 },
 {
+  "localId": "Z5VIPHX29STUaTp84FGFny0cxT33",
+  "email": "ipelengmphahlele2@gmail.com",
+  "emailVerified": true,
+  "displayName": "Ipeleng Mphahlele",
+  "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJeo44-z_vKFkG3L3xzR9t9bynJkKbTkIHhhCrLKC7m5iZabA=s96-c",
+  "lastSignedInAt": "1777602586056",
+  "createdAt": "1777602586056",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "117331771782692884815",
+      "email": "ipelengmphahlele2@gmail.com",
+      "displayName": "Ipeleng Mphahlele",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJeo44-z_vKFkG3L3xzR9t9bynJkKbTkIHhhCrLKC7m5iZabA=s96-c"
+    }
+  ]
+},
+{
   "localId": "Z5Zy2DXyo9ODsxc2oWGuCeU2aCk1",
   "email": "roseronedeguzman@gmail.com",
   "emailVerified": true,
@@ -12758,6 +12794,17 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJEbHk_Kt9CUvJE_sUnWekwnXXn968-eey4uJlHy4P5l5jr=s96-c"
     }
   ]
+},
+{
+  "localId": "uoJVczjObYMiNChkz0df8m2wRlo1",
+  "email": "avelaine@live.fr",
+  "emailVerified": true,
+  "passwordHash": "Tq4nkhblhQ+DBBLAw2e795XI8Tqj1Kup+eG5UalLMUux5UaeH2B9ZZKm2Nj3MWIGhMR5UFVRqycNkMmPchS7cA==",
+  "salt": "XKEwA2iKH2Sb0Q==",
+  "displayName": "Avy",
+  "lastSignedInAt": "1777628313350",
+  "createdAt": "1777628313350",
+  "providerUserInfo": []
 },
 {
   "localId": "upzbi8z3rdW8fui9amGHGPoe33E3",
