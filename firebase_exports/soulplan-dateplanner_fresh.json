@@ -1264,6 +1264,16 @@
   "providerUserInfo": []
 },
 {
+  "localId": "GNPM3xroaIVTvknfAiKNTA3TEK23",
+  "email": "fortunojnnyrose@gmail.com",
+  "emailVerified": true,
+  "passwordHash": "6Hpkfydkg1tcN00detk3G/g4uWYVfFBRukVeKJ4H/GAWBeL6A2SDfzUwdtsahaL+alMTIMJfliBqxtm+xDmlfw==",
+  "salt": "UGTFyNtm1EZvgA==",
+  "lastSignedInAt": "1777734387657",
+  "createdAt": "1777717332808",
+  "providerUserInfo": []
+},
+{
   "localId": "GNS4qkAXITO8TKkIRD9nmPX0xSB2",
   "email": "naara.cloud@gmail.com",
   "emailVerified": false,
@@ -3008,6 +3018,16 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocKl5UMHL9SZkedbjW32Zk0_bdD19Fp_qz4BEZftOjlQsFxD3g=s96-c"
     }
   ]
+},
+{
+  "localId": "e8N6xWm4byQzZnBTNYYinrdA0nN2",
+  "email": "jennyfortuno18@icloud.com",
+  "emailVerified": false,
+  "passwordHash": "SwybpHQVPki6L+l3/sbffbbKLU9t1gQ6HLZcADwHWlvtQ/36uRhMBMi28FoX6Jl0naNk9lazJh+a8T7d0c/LIA==",
+  "salt": "ovKjNZSUMoRIQw==",
+  "lastSignedInAt": "1777717486051",
+  "createdAt": "1777717486051",
+  "providerUserInfo": []
 },
 {
   "localId": "fJNOj5cgmhWnuxZ8algCa8lyTDC3",
