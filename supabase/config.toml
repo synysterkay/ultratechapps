@@ -393,3 +393,14 @@ entrypoint = "./functions/welcome-email/index.ts"
 # Specifies static files to be bundled with the function. Supports glob patterns.
 # For example, if you want to serve static HTML pages in your function:
 # static_files = [ "./functions/welcome-email/*.html" ]
+
+[functions.resend-webhook]
+enabled = true
+# Resend doesn't send a Supabase JWT — the function authenticates incoming
+# requests itself via the Svix signature header (see verifySvixSignature in
+# index.ts). Without verify_jwt = false, Supabase auth rejected every Resend
+# call with UNAUTHORIZED_INVALID_JWT_FORMAT before our code ran. That's why
+# email_events stayed empty for 8 days after the webhook was registered.
+verify_jwt = false
+import_map = "./functions/resend-webhook/deno.json"
+entrypoint = "./functions/resend-webhook/index.ts"
