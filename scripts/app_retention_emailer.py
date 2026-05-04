@@ -1450,10 +1450,18 @@ class AppRetentionEmailer:
         # 1. Refresh Firebase exports to pick up new signups + load activity
         self.firebase_loader.refresh_exports()
         users_by_app = self.firebase_loader.load_users_by_app()
+        # Track which apps have usable subscription data — without it we can't
+        # filter out paid users and would pitch them by mistake. Apps with
+        # empty activity get skipped entirely (safer than sending to subscribers).
+        apps_with_activity = set()
         for app_name in self.UPSELL_APPS:
             if app_name in users_by_app:
                 activity = self.activity_loader.fetch_user_activity(app_name)
-                self.user_activity.update(activity)
+                if activity:
+                    self.user_activity.update(activity)
+                    apps_with_activity.add(app_name)
+                else:
+                    print(f"   ⚠️ {app_name}: no activity data — skipping upsell to avoid pitching paid users")
 
         # Languages (so non-English users get the right cache file or English fallback)
         for app_name in self.UPSELL_APPS:
@@ -1467,6 +1475,8 @@ class AppRetentionEmailer:
         now = datetime.now()
         eligible = []
         for app_name in self.UPSELL_APPS:
+            if app_name not in apps_with_activity:
+                continue  # Safety guard — no subscription data, don't risk it
             for user in users_by_app.get(app_name, []):
                 email = user['email']
                 user_state = self.state['users'].get(email)
