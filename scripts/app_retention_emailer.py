@@ -124,16 +124,16 @@ def get_all_sender_caps():
         if not sender.get('active', True):
             continue
         sender_health = health_data.get(sender['email'], {})
-        if warming and not _has_recent_metrics(sender_health):
-            # Warming window with no FRESH webhook data — keep the bypass.
-            # Stale entries (e.g. legacy monitor that recorded opened:0
-            # because no tracking pixel existed) don't count. Once
-            # update_sender_health.py populates entries from real Resend
-            # webhooks, this branch is no longer taken and the real
-            # status drives the cap.
-            status = 'unknown'
-        else:
+        # Trust the recorded status only if we have FRESH metrics (last 7 days).
+        # Stale entries — e.g. the March legacy monitor that recorded
+        # opened:0 across the board because no tracking pixel existed —
+        # would clamp the cap at 50/sender (red) forever. Falling back to
+        # 'unknown' (250/sender) is the right call until update_sender_health.py
+        # writes fresh entries from real Resend webhooks.
+        if _has_recent_metrics(sender_health):
             status = sender_health.get('status', 'unknown')
+        else:
+            status = 'unknown'
 
         # Get cap from config or fallback
         tier = scaling.get(status, {})
