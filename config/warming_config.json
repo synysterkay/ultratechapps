@@ -77,8 +77,8 @@
       "warming_per_domain": 30
     },
     "unknown": {
-      "description": "No data or tracking issue. Bumped to 250 on 2026-04-26 after 2 weeks of warming — total 8 senders × 250 = 2000/day. Will drop back to a lower number if/when we add a brand-new sender domain to the pool.",
-      "marketing_cap_per_domain": 250,
+      "description": "No data or tracking issue. Bumped to 313 on 2026-05-04 (after 3 weeks of warming + bounce rate sub-0.2% all week) — total 8 senders × 313 = 2504/day. Next +25% step up to 391/sender (3128/day) after 7 days of webhook engagement data confirms healthy open/click rates. Will drop back to a lower number if/when we add a brand-new sender domain to the pool.",
+      "marketing_cap_per_domain": 313,
       "warming_per_domain": 25
     }
   },

@@ -44,7 +44,7 @@ HEALTH_CAPS = {
     'green': 420,    # Healthy domain — target 100K/month across 8 senders
     'yellow': 150,   # Caution — moderate volume
     'red': 50,       # Damaged — minimal sends, let warming fix it
-    'unknown': 250,  # Post-warming default — 8 senders × 250 = 2000/day
+    'unknown': 313,  # Post-warming default — 8 senders × 313 = ~2500/day
 }
 
 # Absolute ceiling (Resend plan: 100K/month ≈ 3,400/day)
@@ -1418,6 +1418,221 @@ class AppRetentionEmailer:
 </body>
 </html>'''
     
+    # ─── UPSELL TRIGGER ────────────────────────────────────
+    # Constants for paid-conversion email triggers (separate from the 30-email
+    # rapport sequence). Sent on schedule when a user is past the activation
+    # phase but hasn't subscribed yet.
+    UPSELL_APPS = ['Predictify', 'Thesis Generator', 'Predictify: Horse Racing AI']
+    MIN_RETENTION_BEFORE_UPSELL = 5    # Need rapport before pitching
+    UPSELL_COOLDOWN_DAYS = 14          # Min days between upsells per user
+    MAX_UPSELLS_PER_USER = 3           # Lifetime cap (we have 3 variants)
+
+    def run_upsell_triggers(self, dry_run=False):
+        """
+        Send paid-conversion upsell emails to free users on revenue-eligible
+        apps (Predictify, Thesis Generator, Predictify Horse Racing).
+
+        Eligibility:
+          - On an UPSELL_APP
+          - Has received >= MIN_RETENTION_BEFORE_UPSELL retention emails (rapport built)
+          - Not currently subscribed (isSubscribed=False from Firestore activity)
+          - Not received an upsell in the last UPSELL_COOLDOWN_DAYS
+          - Hasn't hit MAX_UPSELLS_PER_USER lifetime
+          - Not suppressed
+
+        Each user receives variants 1, 2, 3 in order across their lifetime.
+        """
+        print("=" * 60)
+        print("💰 UPSELL TRIGGER EMAILS (paid-conversion)")
+        print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+        print("=" * 60)
+
+        # 1. Refresh Firebase exports to pick up new signups + load activity
+        self.firebase_loader.refresh_exports()
+        users_by_app = self.firebase_loader.load_users_by_app()
+        for app_name in self.UPSELL_APPS:
+            if app_name in users_by_app:
+                activity = self.activity_loader.fetch_user_activity(app_name)
+                self.user_activity.update(activity)
+
+        # Languages (so non-English users get the right cache file or English fallback)
+        for app_name in self.UPSELL_APPS:
+            if app_name in users_by_app:
+                langs = self.language_loader.fetch_user_languages(app_name)
+                self.user_languages.update(langs)
+                for u in users_by_app.get(app_name, []):
+                    u['language'] = self.user_languages.get(u['email'], 'en')
+
+        # 2. Find eligible users
+        now = datetime.now()
+        eligible = []
+        for app_name in self.UPSELL_APPS:
+            for user in users_by_app.get(app_name, []):
+                email = user['email']
+                user_state = self.state['users'].get(email)
+                if not user_state or user_state.get('suppressed'):
+                    continue
+                if user_state.get('emails_sent', 0) < self.MIN_RETENTION_BEFORE_UPSELL:
+                    continue
+
+                upsell_count = user_state.get('upsell_count', 0)
+                if upsell_count >= self.MAX_UPSELLS_PER_USER:
+                    continue
+
+                # Cooldown check
+                last_upsell = user_state.get('last_upsell_email')
+                if last_upsell:
+                    try:
+                        last_dt = datetime.fromisoformat(last_upsell)
+                        if (now - last_dt).days < self.UPSELL_COOLDOWN_DAYS:
+                            continue
+                    except ValueError:
+                        pass
+
+                # Skip already-subscribed users — pitching them is wasted
+                activity = self.user_activity.get(email, {})
+                if activity.get('isSubscribed') or activity.get('isPremium'):
+                    continue
+
+                variant = upsell_count + 1  # 1, 2, or 3
+                eligible.append({
+                    'email': email,
+                    'app_name': app_name,
+                    'variant': variant,
+                    'language': user.get('language', 'en'),
+                })
+
+        # 3. Group + report
+        by_app = {}
+        for e in eligible:
+            by_app.setdefault(e['app_name'], []).append(e)
+        print(f"\n💰 {len(eligible)} users eligible for upsell:")
+        for app, users in sorted(by_app.items(), key=lambda x: -len(x[1])):
+            variants = {}
+            for u in users:
+                variants[u['variant']] = variants.get(u['variant'], 0) + 1
+            v_str = ', '.join(f"v{k}:{v}" for k, v in sorted(variants.items()))
+            print(f"   {app}: {len(users)} ({v_str})")
+
+        if dry_run or not eligible:
+            print("\n🏁 DRY RUN — no emails sent" if dry_run else "\n✅ Nobody eligible right now.")
+            return
+
+        # 4. Set up multi-sender + load templates
+        sender_caps, _ = get_all_sender_caps()
+        senders = []
+        for sender_info, cap in sender_caps:
+            gs = GmailSender(sender_email=sender_info['email'], sender_name=sender_info['name'])
+            if gs.connect():
+                senders.append({'gmail': gs, 'info': sender_info, 'cap': cap, 'sent': 0})
+            time.sleep(0.5)
+        if not senders:
+            print("❌ No senders connectable")
+            return
+
+        # Load upsell templates per (app, variant, language)
+        templates = {}
+        needed = set((e['app_name'], e['variant'], e.get('language', 'en')) for e in eligible)
+        for app_name, variant, lang in needed:
+            t = self._load_upsell_template(app_name, variant, lang)
+            if t:
+                templates[(app_name, variant, lang)] = t
+            else:
+                print(f"   ⚠️ No template for {app_name} upsell #{variant} ({lang})")
+
+        # 5. Send + update state
+        today = datetime.now().strftime('%Y-%m-%d')
+        if today not in self.state['daily_stats']:
+            self.state['daily_stats'][today] = {'sent': 0, 'failed': 0}
+
+        sent = 0
+        failed = 0
+        for entry in eligible:
+            email_addr = entry['email']
+            app_name = entry['app_name']
+            variant = entry['variant']
+            lang = entry.get('language', 'en')
+
+            template = templates.get((app_name, variant, lang))
+            if not template:
+                failed += 1
+                continue
+
+            # Round-robin sender (within their daily cap)
+            available = [s for s in senders if s['sent'] < s['cap']]
+            if not available:
+                print(f"   🛑 All sender caps exhausted after {sent} upsells")
+                break
+            sender_slot = min(available, key=lambda s: s['sent'])
+            sender_info = sender_slot['info']
+
+            ref_id = user_ref(email_addr)
+            slug = app_slug(app_name)
+            tags = build_tags(app=slug, email_num=f'upsell{variant}', cycle=1,
+                               language=lang, segment='upsell', kind='upsell')
+            app_info = self.firebase_loader.get_app_info(app_name)
+            html = self._build_html(template, app_info, lang,
+                                     sender_name=sender_info['name'],
+                                     email_num=f'upsell{variant}', cycle=1,
+                                     ref_id=ref_id, kind='upsell')
+            result = sender_slot['gmail'].send_email(
+                to_email=email_addr,
+                subject=template['subject'],
+                html_body=html,
+                from_name=app_name,
+                tags=tags,
+                ref_id=ref_id,
+            )
+
+            if result == 'sent':
+                sent += 1
+                sender_slot['sent'] += 1
+                now_str = datetime.now().isoformat()
+                self.state['users'][email_addr]['upsell_count'] = variant
+                self.state['users'][email_addr]['last_upsell_email'] = now_str
+                self.state['daily_stats'][today]['sent'] += 1
+                print(f"   💰 [{sent}/{len(eligible)}] {email_addr} ← {app_name} upsell #{variant} ({lang})")
+            elif result == 'bounced':
+                failed += 1
+                if email_addr in self.state['users']:
+                    del self.state['users'][email_addr]
+                self.state['daily_stats'][today]['failed'] += 1
+            else:
+                failed += 1
+                self.state['daily_stats'][today]['failed'] += 1
+
+            if (sent + failed) % 25 == 0:
+                self._save_state()
+            time.sleep(1)
+
+        for s in senders:
+            s['gmail'].disconnect()
+        self._save_state()
+        print(f"\n📊 Upsells sent: {sent} | failed: {failed}")
+
+    def _load_upsell_template(self, app_name, variant, language='en'):
+        """Load upsell email template from cache. Falls back to English if
+        a language-specific variant isn't cached yet."""
+        slug_map = {
+            'Predictify': 'predictify',
+            'Thesis Generator': 'thesis_generator',
+            'Predictify: Horse Racing AI': 'horse_racing',
+        }
+        slug = slug_map.get(app_name)
+        if not slug:
+            return None
+        base = self.base_dir / 'cache' / 'retention_emails'
+        # Try language-specific first, then English fallback
+        for lang_try in ([language] if language == 'en' else [language, 'en']):
+            if lang_try == 'en':
+                path = base / f'{slug}_upsell_{variant}.json'
+            else:
+                path = base / f'{slug}_{lang_try}_upsell_{variant}.json'
+            if path.exists():
+                with open(path) as f:
+                    return json.load(f)
+        return None
+
     def show_status(self):
         """Show current campaign status"""
         print("=" * 60)
@@ -1482,18 +1697,23 @@ if __name__ == '__main__':
         loader = FirebaseUserLoader()
         loader.refresh_exports()
     
-    elif '--dry-run' in sys.argv:
-        emailer.run_campaign(dry_run=True)
-    
     elif '--streak' in sys.argv:
         # Streak trigger emails
         dry_run = '--dry-run' in sys.argv or '--streak-dry' in sys.argv
         emailer.run_streak_triggers(dry_run=dry_run)
-    
+
     elif '--matchday' in sys.argv:
         # Match-day trigger emails
         dry_run = '--dry-run' in sys.argv or '--matchday-dry' in sys.argv
         emailer.run_matchday_triggers(dry_run=dry_run)
-    
+
+    elif '--upsell' in sys.argv:
+        # Paid-conversion upsell emails (Predictify + Thesis + Horse Racing)
+        dry_run = '--dry-run' in sys.argv or '--upsell-dry' in sys.argv
+        emailer.run_upsell_triggers(dry_run=dry_run)
+
+    elif '--dry-run' in sys.argv:
+        emailer.run_campaign(dry_run=True)
+
     else:
         emailer.run_campaign()

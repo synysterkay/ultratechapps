@@ -22,6 +22,7 @@ on:
           - health-check
           - streak
           - matchday
+          - upsell
 
 permissions:
   contents: write
@@ -86,13 +87,18 @@ jobs:
             python scripts/app_retention_emailer.py --streak
           elif [ "$MODE" = "matchday" ]; then
             python scripts/app_retention_emailer.py --matchday
+          elif [ "$MODE" = "upsell" ]; then
+            python scripts/app_retention_emailer.py --upsell
           else
             python scripts/app_retention_emailer.py
-            # Also run streak + matchday triggers during normal campaign runs
+            # Also run streak + matchday + upsell triggers during normal campaign runs.
+            # Upsell only fires for users with cooldown elapsed, so daily is safe.
             echo "--- Running streak triggers ---"
             python scripts/app_retention_emailer.py --streak || true
             echo "--- Running matchday triggers ---"
             python scripts/app_retention_emailer.py --matchday || true
+            echo "--- Running upsell triggers ---"
+            python scripts/app_retention_emailer.py --upsell || true
           fi
       
       - name: Save retention state
