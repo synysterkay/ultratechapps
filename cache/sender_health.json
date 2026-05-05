@@ -2,8 +2,8 @@
   "active_sender_index": 2,
   "senders": {
     "apps@kaynel.pl": {
-      "last_check": "2026-05-05T05:48:22.343631Z",
-      "status": "unknown",
+      "last_check": "2026-03-23T18:23:03.107596",
+      "status": "red",
       "rotated_out_at": "2026-03-23T18:23:03.109197",
       "metrics_history": [
         {
@@ -73,22 +73,11 @@
           "bounce_rate": 0.0,
           "spam_rate": 0.0,
           "delivery_rate": 85.0
-        },
-        {
-          "at": "2026-05-05T05:48:22.343631Z",
-          "status": "unknown",
-          "delivered": 1,
-          "opens": 1,
-          "bounces": 0,
-          "complaints": 0,
-          "open_rate": 1.0,
-          "bounce_rate": 0.0,
-          "complaint_rate": 0.0
         }
       ]
     },
     "hello@bestaiapps.site": {
-      "last_check": "2026-05-05T05:48:22.343631Z",
+      "last_check": "2026-03-24T18:26:33.605301",
       "status": "red",
       "rotated_out_at": "2026-03-24T18:26:33.606857",
       "metrics_history": [
@@ -146,7 +135,7 @@
       ]
     },
     "apps@vitazelki.pl": {
-      "last_check": "2026-05-05T05:48:22.343631Z",
+      "last_check": "2026-03-23T09:32:41.180815",
       "status": "red",
       "rotated_out_at": "2026-03-23T09:32:41.182478",
       "metrics_history": [
@@ -646,7 +635,7 @@
       ]
     },
     "hello@aibettips.io": {
-      "last_check": "2026-05-05T05:48:22.343631Z",
+      "last_check": "2026-03-24T09:27:52.741908",
       "status": "red",
       "rotated_out_at": "2026-03-24T09:27:52.743454",
       "metrics_history": [
@@ -687,7 +676,7 @@
       ]
     },
     "tips@predictifyfootball.com": {
-      "last_check": "2026-05-05T05:48:22.343631Z",
+      "last_check": "2026-03-25T09:26:23.542489",
       "status": "red",
       "rotated_out_at": "2026-03-25T09:26:23.544012",
       "metrics_history": [
@@ -728,7 +717,7 @@
       ]
     },
     "hello@thesisgenerator.io": {
-      "last_check": "2026-05-05T05:48:22.343631Z",
+      "last_check": "2026-03-31T09:33:34.811279",
       "status": "red",
       "rotated_out_at": "2026-03-31T09:33:34.813174",
       "metrics_history": [
@@ -956,7 +945,7 @@
       ]
     },
     "hello@passedai.io": {
-      "last_check": "2026-05-05T05:48:22.343631Z",
+      "last_check": "2026-04-06T09:39:15.514079",
       "status": "red",
       "rotated_out_at": "2026-04-06T09:39:15.515973",
       "metrics_history": [
