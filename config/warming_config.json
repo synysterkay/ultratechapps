@@ -87,7 +87,8 @@
     "week_1": {"warm_per_sender": 5, "total_target": 35},
     "week_2": {"warm_per_sender": 10, "total_target": 70},
     "week_3": {"warm_per_sender": 15, "total_target": 105},
-    "week_4_plus": {"warm_per_sender": 20, "total_target": 140}
+    "_comment_week_4_plus": "Reduced 2026-05-05 from 20 → 18 per sender (160→144/day total, ~72 per cycle) per user request — keeps warming-to-marketing ratio at ~5.7% of the 2504/day Resend volume, still within the healthy 5-15% range. Bump back up if open rate on warming traffic drops or marketing reputation degrades.",
+    "week_4_plus": {"warm_per_sender": 18, "total_target": 144}
   },
 
   "timing": {
