@@ -370,6 +370,17 @@
   ]
 },
 {
+  "localId": "72emu3fVqZTM8sNbxX86R82l5Dw1",
+  "email": "clandaverde@msn.com",
+  "emailVerified": false,
+  "passwordHash": "Een3z5LByd3HHt+390bLj5nWDPovrNM2OqZMkAKHEHING3WCAOdOXSrZukxLslRQ66htmC61Q0knG4koU593aA==",
+  "salt": "zEhyDLg8mvdYLg==",
+  "displayName": "clandaverde",
+  "lastSignedInAt": "1777984283890",
+  "createdAt": "1777984283890",
+  "providerUserInfo": []
+},
+{
   "localId": "74vgfJLoQLciPIEFFufP9nKEToC2",
   "email": "jasminetourangeau33@gmail.com",
   "emailVerified": true,
