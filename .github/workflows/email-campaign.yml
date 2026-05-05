@@ -1,11 +1,13 @@
 name: Daily Email Campaign
 
+# DISABLED 2026-05-05 — the Mailgun newsletter blast to subscribers@bestaiapps.site
+# is no longer used. Strategy is now app-focused only: welcome + retention via
+# Resend for mobile app users. Re-enable by uncommenting the cron block below
+# and removing this comment. Manual trigger (workflow_dispatch) still available
+# in case a one-off newsletter needs to go out.
 on:
-  schedule:
-    # Send emails every hour (50 emails per hour for gradual domain warm-up)
-    - cron: '0 * * * *'
-  
-  # Allow manual trigger for testing
+  # schedule:
+  #   - cron: '0 * * * *'
   workflow_dispatch:
 
 permissions:
