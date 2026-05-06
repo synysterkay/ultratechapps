@@ -1188,6 +1188,16 @@
   "providerUserInfo": []
 },
 {
+  "localId": "FOnT3VVeFIT5KhxWHnnt0GSRQhb2",
+  "email": "benediktjan20284@gmail.com",
+  "emailVerified": false,
+  "passwordHash": "+oEqeH3ycuvmGVeXiHOdbMNYNPA7tUmhzjpsmohCHiuCRDs23+u4o+eed8UeGfPoEVlr4EYYc3YCC7h8mGGGQg==",
+  "salt": "jajt1gypI9JpVw==",
+  "lastSignedInAt": "1778059134384",
+  "createdAt": "1778059134384",
+  "providerUserInfo": []
+},
+{
   "localId": "FQvwF6TKAihbYiA0mlzxFlApRG33",
   "email": "jessikeo7@gmail.com",
   "emailVerified": true,
