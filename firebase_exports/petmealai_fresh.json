@@ -1,5 +1,10 @@
 {"users": [
 {
+  "localId": "0ETcV2UpOQewVCJZOZUMbZ2PCJh1",
+  "lastSignedInAt": "1778253664302",
+  "createdAt": "1778253664302"
+},
+{
   "localId": "0WTd7XfFIzOHDLkig1LloyzUPX22",
   "email": "christian@skyfire.nl",
   "emailVerified": false,

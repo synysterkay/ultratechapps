@@ -5663,6 +5663,24 @@
   ]
 },
 {
+  "localId": "O6ax9JeCA0dyjdCRQA2UhKQMqZ52",
+  "email": "darkenedjewel@gmail.com",
+  "emailVerified": true,
+  "displayName": "Gemma",
+  "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocK98ud9XiXFt9iMuxATk64KVdS7Kv4pGhCzDIhwEXis5gCAwFIEdw=s96-c",
+  "lastSignedInAt": "1778237665250",
+  "createdAt": "1778237665250",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "111755376117031596693",
+      "email": "darkenedjewel@gmail.com",
+      "displayName": "Gemma",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocK98ud9XiXFt9iMuxATk64KVdS7Kv4pGhCzDIhwEXis5gCAwFIEdw=s96-c"
+    }
+  ]
+},
+{
   "localId": "O7bfRK0eU8hLBJUrzoLOsd9Z0ZZ2",
   "email": "jcjonathanchambers@gmail.com",
   "emailVerified": true,
@@ -6008,6 +6026,24 @@
       "email": "chipetajessy2@gmail.com",
       "displayName": "Jessy Chipeta",
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJ7-4yaiN6N0LVYddAmCt7pKY4i_D5uHz5e5hxQeAb8IjyS-g=s96-c"
+    }
+  ]
+},
+{
+  "localId": "PME2bdV6KSYcDInyQ5VS4HpMZvG3",
+  "email": "samuelharris20066@gmail.com",
+  "emailVerified": true,
+  "displayName": "Sam",
+  "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocLumEub7aC1_YCsTrvEnvC7X_d-LcxMWDKrCt8nKynXK5GEBA=s96-c",
+  "lastSignedInAt": "1778255695984",
+  "createdAt": "1778255695983",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "105360611371355572253",
+      "email": "samuelharris20066@gmail.com",
+      "displayName": "Sam",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocLumEub7aC1_YCsTrvEnvC7X_d-LcxMWDKrCt8nKynXK5GEBA=s96-c"
     }
   ]
 },
@@ -9154,6 +9190,24 @@
       "email": "juliasteinhauer73@gmail.com",
       "displayName": "Julia Steinhauer",
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJxzH3IJm3YrT7zbPJ9hp-2vTn_W-SG1NZ0Tmd6vc0VZZqxqQ=s96-c"
+    }
+  ]
+},
+{
+  "localId": "dkT0BrXuHqdjeLSsYsAYclMUBC82",
+  "email": "shyrabruce@gmail.com",
+  "emailVerified": true,
+  "displayName": "Shywahhh",
+  "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJgs7L2OKpfSfNib6FhAeJ3FTDYGFRtjhpq7O1T0YEYRNLSq1Jj=s96-c",
+  "lastSignedInAt": "1778253706352",
+  "createdAt": "1778253706352",
+  "providerUserInfo": [
+    {
+      "providerId": "google.com",
+      "rawId": "111304174986867964780",
+      "email": "shyrabruce@gmail.com",
+      "displayName": "Shywahhh",
+      "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocJgs7L2OKpfSfNib6FhAeJ3FTDYGFRtjhpq7O1T0YEYRNLSq1Jj=s96-c"
     }
   ]
 },
@@ -13889,6 +13943,17 @@
       "photoUrl": "https://lh3.googleusercontent.com/a/ACg8ocK0SaPPghq_xnfMdvPRk2F7FHqgyE3j5Swdsn5bBakD4dVG3g=s96-c"
     }
   ]
+},
+{
+  "localId": "wnjITPrIcSSoxZqeiX9VwMoo6GR2",
+  "email": "mariaceciliasg@outlook.com",
+  "emailVerified": false,
+  "passwordHash": "WVScJ1PXtAXhilc8uK3Ga7qqsLsfkPXJ0WbysGH49wITEUAEFvbEboAa0ii0RAPX5RtodQB3TGrWnk7nJd3/SA==",
+  "salt": "xPa4zgyeR8isOw==",
+  "displayName": "Maria Cecília",
+  "lastSignedInAt": "1778248054899",
+  "createdAt": "1778248054899",
+  "providerUserInfo": []
 },
 {
   "localId": "wnnhPlN2XYcV5x0FIZaslqZUtLr1",
