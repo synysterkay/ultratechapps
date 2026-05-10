@@ -36,9 +36,13 @@ const FIREBASE_PROJECTS: Record<
   },
   "soulplan-dateplanner": {
     appId: "soulplan",
-    multilingual: false,
+    multilingual: true,
     defaultLang: "en",
-    supportedLanguages: ["en"],
+    // Mirrors lib/services/locale_provider.dart in the SoulPlan Flutter app.
+    // Language tags follow BCP 47 (Apple/Google/Superwall). The app writes
+    // these tags directly to users/{uid}.language so this list must stay
+    // in sync — add a language here when adding it to the Flutter app.
+    supportedLanguages: ["en", "es", "fr", "pt", "de", "it", "pl", "tr", "ar", "ru", "hi", "id", "ja", "ko", "zh"],
   },
   petmealai: {
     appId: "pupshape",
@@ -139,11 +143,14 @@ async function listFirebaseUsers(
 }
 
 // ── Language normalization map ──────────────────────────────
+// The SoulPlan Flutter app uses BCP 47 tags (`pt-BR`, `zh-Hans`, etc.).
+// We strip the variant after the dash/underscore and accept the base
+// language since email templates are keyed by base language.
 const LANG_NORMALIZE: Record<string, string> = {
   ar: "ar", arabic: "ar",
   es: "es", spanish: "es",
   fr: "fr", french: "fr",
-  zh: "zh", chinese: "zh", zh_cn: "zh", zh_tw: "zh",
+  zh: "zh", chinese: "zh", zh_cn: "zh", zh_tw: "zh", zh_hans: "zh", zh_hant: "zh",
   hi: "hi", hindi: "hi",
   pt: "pt", portuguese: "pt", pt_br: "pt",
   ru: "ru", russian: "ru",
@@ -156,6 +163,7 @@ const LANG_NORMALIZE: Record<string, string> = {
   nl: "nl", dutch: "nl", nederlands: "nl",
   pl: "pl", polish: "pl", polski: "pl",
   ja: "ja", japanese: "ja",
+  ko: "ko", korean: "ko",
 };
 
 // ── Fetch user language from Firestore via query ────────────

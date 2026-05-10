@@ -286,18 +286,27 @@ APP_CONTEXT = {
     },
     "SoulPlan: Plan Dates Together": {
         "target_audience": "Couples looking for date ideas and wanting to keep the spark alive",
-        "core_pain": "Running out of date ideas, routine killing romance, partner feels neglected",
+        "core_pain": "Running out of date ideas, routine killing romance, planning fatigue, partner feels invisible",
         "killer_features": [
-            "AI generates personalized date ideas based on your interests",
-            "Budget-friendly to luxury options",
-            "Surprise date planner - one partner plans, the other is surprised",
-            "Local venue and activity discovery",
-            "Date history tracking - never repeat a boring date",
-            "Shared wishlist for future date dreams",
+            "Tonight's Date — a single AI-picked card on the home screen, one tap on a mood (cozy, adventurous, playful, healing) and tonight is planned in 30 seconds",
+            "Partner proposal celebration — when one partner sends a date the other gets a beautiful 'thought of you tonight' full-screen moment, not a bare notification",
+            "Memory Timeline — a private scrapbook of every date with photos and notes that grows month after month",
+            "Couple identity — the home screen shows both avatars and 'You & [partner]', not just your name",
+            "Streak counter with no-shame freeze — couples can pause a week without losing momentum",
+            "Anniversaries jar — fires gentle reminders at the right time so important dates never get forgotten",
+            "Community of couples — share a moment, like and comment on others, fully moderated and language-aware",
+            "Surprise / Anniversary / Weekend planning modes — Pro feature for the special nights",
+            "Wishlist of saved date ideas the AI draws from for surprise nights",
         ],
-        "social_proof": "230+ couples planning better dates, 92% say it improved their relationship",
-        "emotional_hooks": ["keeping the spark alive", "making memories", "showing you care", "avoiding the routine trap"],
-        "tone": "Like a fun, slightly romantic friend who always has the best date ideas",
+        "social_proof": "Couples using Tonight's Date in their first 24 hours plan 4x more dates over the next month",
+        "emotional_hooks": [
+            "you & your partner",
+            "tonight without the planning",
+            "the spark on the to-do list",
+            "the memory you almost forgot",
+            "the gesture that costs nothing but means everything",
+        ],
+        "tone": "Like a warm, slightly romantic friend who knows tonight matters more than someday",
     },
     "PupShape: Dog Weight Loss Plan": {
         "target_audience": "Dog owners concerned about their pet's weight and health",
@@ -676,6 +685,15 @@ Generate the email now. Make it impossible to ignore."""
                 app_languages = ['en', 'ar', 'es', 'fr']
             elif app_name == 'Thesis Generator':
                 app_languages = ['en', 'ar', 'es', 'fr', 'hi', 'zh']
+            elif app_name == 'SoulPlan: Plan Dates Together':
+                # SoulPlan ships in 15 BCP-47 locales in the Flutter app.
+                # We collapse `pt-BR` → `pt` and `zh-Hans` → `zh` since the
+                # email cache is keyed by base language. `nl` is included
+                # because LANG_NORMALIZE accepts it from device locale.
+                app_languages = [
+                    'en', 'ar', 'es', 'fr', 'pt', 'de', 'it', 'pl',
+                    'tr', 'ru', 'hi', 'id', 'ja', 'ko', 'zh', 'nl',
+                ]
             else:
                 app_languages = ['en']
             

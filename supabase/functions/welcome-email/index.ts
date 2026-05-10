@@ -333,18 +333,178 @@ const APP_CONFIG: Record<string, AppConfig> = {
 
   soulplan: {
     name: "SoulPlan: Plan Dates Together",
-    multilingual: false,
+    multilingual: true,
     appStoreUrl: "https://apps.apple.com/app/soulplan-plan-dates-together/id6702018988",
     googlePlayUrl: "https://play.google.com/store/apps/details?id=com.aifun.dateideas.planadate",
     emails: {
       en: {
-        subject: "The secret mistake 90% of couples make on day one",
-        cta_text: "Generate Your Surprise Date Now",
+        subject: "Tonight's date is already waiting for you",
+        cta_text: "Open Tonight's Date",
         body_paragraphs: [
-          "Most couples download SoulPlan, browse a few ideas, and close it. They think it's just another list. That's the mistake. The magic isn't in browsing. It's in the 30-second surprise you can create right now.",
-          "The routine trap is real. You start with good intentions, but life gets busy. The spark feels like a chore to plan. That's why I built one feature to cut through all the noise and deliver a perfect, personalized date idea instantly.",
-          "Open the app. Don't browse. Tap the 'Surprise Date' button. In 30 seconds, our AI will generate a complete date plan\u2014from a cozy budget-friendly evening to a local adventure\u2014tailored just for you two. No overthinking. Just a ready-to-go spark.",
-          "Your first surprise date is waiting. Tap the button below, hit 'Surprise Date', and watch your partner's face light up tonight. P.S. The 8% who don't use this feature in the first 24 hours are 3x more likely to let the app collect dust. Don't be them.",
+          "You just downloaded SoulPlan, and the trap is the same for almost everyone: open the app, browse a few ideas, close it, mean to come back later. Three weeks pass and the spark is still on the to-do list. The trick to avoid that is also the simplest thing in the app — and it takes 30 seconds tonight.",
+          "On the home screen, there's a single card that already has tonight's date pre-picked for the two of you. No questionnaire. No scrolling. Just one tap on a mood (cozy, adventurous, playful or healing) and the AI builds a date you can actually use this evening. The whole point is to remove the planning, not add another inbox.",
+          "Open the app right now. Tap the mood that fits tonight. Read the card. If it doesn't quite land, hit \"Show another\" — the AI rotates through different vibes so the second one usually does. When you find the one you love, tap \"Send to partner\" and they get a beautiful celebration screen waiting for them. That's the whole loop.",
+          "Don't save this for the weekend. Tonight is the perfect first date because the bar is low and the surprise is high. Tap below, pick a mood, and watch your partner light up. P.S. The couples who use Tonight's Date in their first 24 hours plan 4x more dates over the next month than the ones who wait. Don't be the ones who wait.",
+        ],
+      },
+      ar: {
+        subject: "موعد الليلة بانتظارك بالفعل",
+        cta_text: "افتح موعد الليلة",
+        body_paragraphs: [
+          "لقد حمّلت تطبيق SoulPlan للتو، والفخ نفسه للجميع تقريبًا: تفتح التطبيق، تتصفح بعض الأفكار، تغلقه، وتنوي العودة لاحقًا. تمر ثلاثة أسابيع ولا تزال الشرارة على قائمة المهام. الحيلة لتجنب ذلك هي أيضًا أبسط شيء في التطبيق — وتستغرق 30 ثانية الليلة.",
+          "على الشاشة الرئيسية، هناك بطاقة واحدة تحتوي بالفعل على موعد الليلة المختار مسبقًا لكما. لا استبيانات. لا تمرير. مجرد نقرة واحدة على مزاج (دافئ، مغامر، مرح، أو شافي) ويبني الذكاء الاصطناعي موعدًا يمكنك استخدامه هذا المساء. الهدف الأساسي هو إزالة التخطيط، لا إضافة صندوق وارد آخر.",
+          "افتح التطبيق الآن. انقر على المزاج الذي يناسب الليلة. اقرأ البطاقة. إذا لم تكن مناسبة تمامًا، اضغط \"Show another\" — يبدل الذكاء الاصطناعي بين الأجواء المختلفة، وعادةً ما تكون الثانية مناسبة. عندما تجد الموعد الذي يعجبك، انقر \"إرسال إلى الشريك\" وستظهر لهم شاشة احتفال جميلة بانتظارهم. هذه هي الدائرة كاملة.",
+          "لا تؤجل هذا لعطلة نهاية الأسبوع. الليلة هي الموعد الأول المثالي لأن التوقعات منخفضة والمفاجأة عالية. انقر أدناه، اختر مزاجًا، وشاهد شريكك يضيء. ملاحظة: الأزواج الذين يستخدمون Tonight's Date في أول 24 ساعة يخططون لمواعيد أكثر بأربع مرات خلال الشهر التالي مقارنة بمن ينتظرون. لا تكن ممن ينتظرون.",
+        ],
+      },
+      es: {
+        subject: "Tu cita de esta noche ya te espera",
+        cta_text: "Abrir Tonight's Date",
+        body_paragraphs: [
+          "Acabas de descargar SoulPlan, y la trampa es la misma para casi todos: abres la app, echas un vistazo a algunas ideas, la cierras, y piensas volver más tarde. Pasan tres semanas y la chispa sigue en la lista de pendientes. El truco para evitarlo es también lo más sencillo de la app, y te llevará solo 30 segundos esta noche.",
+          "En la pantalla de inicio hay una sola tarjeta que ya tiene preparada la cita de esta noche para vosotros dos. Sin cuestionarios. Sin desplazarte. Solo un toque en un estado de ánimo (acogedor, aventurero, divertido o sanador) y la IA construye una cita que podéis disfrutar esta misma noche. La idea es eliminar la planificación, no añadir otra bandeja de entrada.",
+          "Abre la app ahora mismo. Toca el estado de ánimo que encaje con esta noche. Lee la tarjeta. Si no termina de convencerte, pulsa \"Show another\" — la IA cambia de vibra para que la segunda opción suela acertar. Cuando encuentres la que te encanta, toca \"Send to partner\" y tu pareja recibirá una preciosa pantalla de celebración. Ese es todo el proceso.",
+          "No lo guardes para el fin de semana. Esta noche es la cita perfecta porque las expectativas son bajas y la sorpresa, alta. Toca abajo, elige un estado de ánimo y mira cómo se ilumina tu pareja. PD: Las parejas que usan Tonight's Date en sus primeras 24 horas planean 4 veces más citas durante el próximo mes que las que esperan. No seáis los que esperan.",
+        ],
+      },
+      fr: {
+        subject: "Ce soir, votre date est déjà prête",
+        cta_text: "Ouvrir Tonight's Date",
+        body_paragraphs: [
+          "Tu viens de télécharger SoulPlan, et le piège est le même pour presque tout le monde : ouvrir l'app, parcourir quelques idées, la fermer, se promettre de revenir plus tard. Trois semaines passent et l'étincelle est toujours sur la liste des choses à faire. L'astuce pour éviter ça est aussi la chose la plus simple dans l'app — et ça prend 30 secondes ce soir.",
+          "Sur l'écran d'accueil, il y a une seule carte qui a déjà choisi votre date de ce soir pour vous deux. Pas de questionnaire. Pas de défilement. Un simple tap sur une humeur (cosy, aventureuse, joueuse ou réconfortante) et l'IA construit une date que vous pouvez vraiment vivre ce soir. Tout l'intérêt est de supprimer la planification, pas d'ajouter une autre boîte de réception.",
+          "Ouvre l'app maintenant. Tape sur l'humeur qui correspond à ce soir. Lis la carte. Si elle ne te convient pas tout à fait, clique sur \"Show another\" — l'IA alterne entre différentes ambiances, donc la deuxième fonctionne généralement. Quand tu trouves celle que tu aimes, tape \"Send to partner\" et ton ou ta partenaire reçoit une magnifique écran de célébration qui les attend. C'est tout le processus.",
+          "Ne garde pas ça pour le week-end. Ce soir est la date parfaite pour commencer, car la barre est basse et la surprise est grande. Tape ci-dessous, choisis une humeur, et regarde ton ou ta partenaire s'illuminer. P.S. Les couples qui utilisent Tonight's Date dans leurs premières 24 heures planifient 4 fois plus de dates le mois suivant que ceux qui attendent. Ne soyez pas ceux qui attendent.",
+        ],
+      },
+      pt: {
+        subject: "O encontro de hoje já está esperando por você",
+        cta_text: "Abrir Tonight's Date",
+        body_paragraphs: [
+          "Você acabou de baixar o SoulPlan, e a armadilha é a mesma para quase todo mundo: abrir o app, ver algumas ideias, fechar, e prometer voltar depois. Três semanas passam e a faísca ainda está na lista de afazeres. O truque para evitar isso é também a coisa mais simples do app — e leva só 30 segundos hoje à noite.",
+          "Na tela inicial, tem um único card que já traz o encontro de hoje pré-selecionado para vocês dois. Sem questionário. Sem rolagem infinita. É só um toque num mood (aconchegante, aventureiro, divertido ou curador) e a IA monta um encontro que vocês podem viver ainda esta noite. A ideia é eliminar o planejamento, não adicionar mais uma caixa de entrada.",
+          "Abra o app agora. Toque no mood que combina com hoje. Leia o card. Se não for bem a cara de vocês, clique em \"Show another\" — a IA alterna entre diferentes vibes, então a segunda opção geralmente acerta. Quando encontrarem o encontro ideal, toquem em \"Send to partner\" e o parceiro ou parceira recebe uma linda tela de celebração. Esse é o ciclo completo.",
+          "Não guarde isso para o fim de semana. Hoje é o primeiro encontro perfeito porque a expectativa é baixa e a surpresa é grande. Toque abaixo, escolha um mood e veja seu parceiro(a) se iluminar. P.S.: Os casais que usam o Tonight's Date nas primeiras 24 horas planejam 4x mais encontros no mês seguinte do que aqueles que esperam. Não seja um dos que esperam.",
+        ],
+      },
+      pp: {
+        subject: "O vosso date de hoje já está à vossa espera",
+        cta_text: "Abrir Tonight's Date",
+        body_paragraphs: [
+          "Acabaste de descarregar o SoulPlan, e a armadilha é a mesma para quase toda a gente: abres a app, vês umas ideias, fechas, e dizes que voltas mais tarde. Passam três semanas e a faísca continua na lista de tarefas. O truque para evitar isso é também a coisa mais simples da app — e leva 30 segundos esta noite.",
+          "No ecrã inicial, há um único cartão que já tem o date de hoje pré-selecionado para vocês os dois. Sem questionários. Sem scroll. Basta um toque num estado de espírito (acolhedor, aventureiro, divertido ou curativo) e a IA constrói um date que podem usar esta noite. O objetivo é mesmo eliminar o planeamento, não acrescentar mais uma caixa de entrada.",
+          "Abre a app agora mesmo. Toca no estado de espírito que combina com esta noite. Lê o cartão. Se não for bem o que esperavas, carrega em \"Show another\" — a IA roda por diferentes vibes, por isso a segunda opção costuma acertar. Quando encontrarem o que adoram, toquem em \"Send to partner\" e o vosso parceiro recebe um ecrã de celebração lindo à vossa espera. Este é o ciclo completo.",
+          "Não guardes isto para o fim de semana. Esta noite é o date perfeito para começar porque a barreira é baixa e a surpresa é grande. Toca abaixo, escolhe um estado de espírito e vê o teu parceiro iluminar-se. P.S. Os casais que usam o Tonight's Date nas primeiras 24 horas planeiam 4x mais dates no mês seguinte do que os que esperam. Não sejas dos que esperam.",
+        ],
+      },
+      de: {
+        subject: "Dein Date für heute Abend wartet schon",
+        cta_text: "Heute Abend öffnen",
+        body_paragraphs: [
+          "Du hast SoulPlan gerade heruntergeladen – und die Falle ist für fast alle gleich: App öffnen, ein paar Ideen anschauen, wieder schließen, später zurückkommen wollen. Drei Wochen vergehen und der Funke steht immer noch auf der To-do-Liste. Der Trick, das zu vermeiden, ist gleichzeitig das Einfachste in der App – und dauert heute Abend nur 30 Sekunden.",
+          "Auf dem Startbildschirm siehst du eine einzige Karte, die für euch beide schon ein Date für heute Abend bereithält. Kein Fragebogen. Kein Scrollen. Einfach auf eine Stimmung tippen (gemütlich, abenteuerlich, verspielt oder heilend) und die KI baut ein Date, das ihr heute Abend wirklich machen könnt. Der ganze Sinn ist, die Planung wegzulassen – nicht noch ein Postfach hinzuzufügen.",
+          "Öffne jetzt die App. Tipp auf die Stimmung, die zu heute Abend passt. Lies die Karte. Wenn sie nicht ganz passt, tipp auf „Show another“ – die KI wechselt durch verschiedene Vibes, sodass die zweite meistens sitzt. Wenn du die gefunden hast, die ihr liebt, tipp auf „Send to partner“ und dein Partner bekommt einen wunderschönen Feierbildschirm. Das ist der ganze Kreislauf.",
+          "Heb das nicht fürs Wochenende auf. Heute Abend ist das perfekte erste Date, weil die Hürde niedrig und die Überraschung groß ist. Tipp unten, wähl eine Stimmung und sieh zu, wie dein Partner aufleuchtet. P.S.: Paare, die Tonight's Date in den ersten 24 Stunden nutzen, planen im nächsten Monat 4x mehr Dates als die, die warten. Seid nicht die, die warten.",
+        ],
+      },
+      it: {
+        subject: "L'appuntamento di stasera ti aspetta già",
+        cta_text: "Apri Tonight's Date",
+        body_paragraphs: [
+          "Hai appena scaricato SoulPlan, e la trappola è la stessa per quasi tutti: apri l'app, dai un'occhiata a qualche idea, la chiudi, pensi di tornare dopo. Passano tre settimane e la scintilla è ancora nella lista delle cose da fare. Il trucco per evitarlo è anche la cosa più semplice dell'app — e ti bastano 30 secondi stasera.",
+          "Nella schermata principale c'è una singola card che ha già pronto l'appuntamento di stasera per voi due. Niente questionari. Niente scroll. Basta un tap su un mood (accogliente, avventuroso, giocoso o rigenerante) e l'AI costruisce una serata che potete vivere davvero questa sera. Il punto è eliminare la pianificazione, non aggiungere un'altra lista di cose da fare.",
+          "Apri l'app adesso. Tocca il mood che fa per stasera. Leggi la card. Se non ti convince del tutto, premi \"Show another\" — l'AI cambia atmosfera, quindi di solito la seconda va bene. Quando trovi quella che ami, tocca \"Send to partner\" e loro riceveranno una bellissima schermata di festa che li aspetta. Questo è tutto il meccanismo.",
+          "Non rimandare al weekend. Stasera è l'appuntamento perfetto perché l'asticella è bassa e la sorpresa è alta. Tocca qui sotto, scegli un mood e guarda il tuo partner illuminarsi. P.S. Le coppie che usano Tonight's Date nelle prime 24 ore organizzano 4 volte più appuntamenti nel mese successivo rispetto a chi aspetta. Non essere tra quelli che aspettano.",
+        ],
+      },
+      pl: {
+        subject: "Dzisiejsza randka już na Ciebie czeka",
+        cta_text: "Otwórz Tonight's Date",
+        body_paragraphs: [
+          "Właśnie pobrałeś SoulPlan i pułapka jest dla prawie wszystkich taka sama: otwierasz aplikację, przeglądasz kilka pomysłów, zamykasz ją, myśląc, że wrócisz później. Mijają trzy tygodnie, a iskra wciąż jest na liście rzeczy do zrobienia. Sposób, by tego uniknąć, jest też najprostszą rzeczą w aplikacji — i zajmie Ci dziś wieczorem 30 sekund.",
+          "Na ekranie głównym jest jedna karta, która już ma dla Was przygotowaną dzisiejszą randkę. Żadnych ankiet. Żadnego przewijania. Wystarczy jeden dotknięcie nastroju (przytulny, przygodowy, zabawny lub uzdrawiający), a AI tworzy randkę, którą możecie wykorzystać jeszcze dziś wieczorem. Cały sens polega na wyeliminowaniu planowania, a nie dodawaniu kolejnej skrzynki odbiorczej.",
+          "Otwórz aplikację teraz. Dotknij nastroju, który pasuje na dziś. Przeczytaj kartę. Jeśli nie do końca trafia, kliknij „Show another” — AI zmienia klimaty, więc druga zwykle już trafia. Gdy znajdziesz tę jedyną, dotknij „Wyślij do partnera”, a on zobaczy piękny ekran powitalny. To cała pętla.",
+          "Nie odkładaj tego na weekend. Dziś wieczór jest idealny na pierwszą randkę, bo poprzeczka jest nisko, a niespodzianka wysoka. Kliknij poniżej, wybierz nastrój i patrz, jak Twój partner promienieje. PS. Pary, które używają Tonight's Date w ciągu pierwszych 24 godzin, planują 4 razy więcej randek w następnym miesiącu niż te, które czekają. Nie bądźcie tymi, którzy czekają.",
+        ],
+      },
+      tr: {
+        subject: "Bu akşamın randevusu seni bekliyor",
+        cta_text: "Tonight's Date'i Aç",
+        body_paragraphs: [
+          "SoulPlan'i yeni indirdin ve neredeyse herkesin düştüğü tuzak aynı: uygulamayı aç, birkaç fikre göz at, kapat, sonra geri dönmeyi düşün. Üç hafta geçer ve o kıvılcım hâlâ yapılacaklar listesinde. Bunu aşmanın yoluysa uygulamadaki en basit şey — ve bu akşam sadece 30 saniyenizi alır.",
+          "Ana ekranda, ikiniz için önceden seçilmiş bu akşamın randevusunu içeren tek bir kart var. Anket yok. Kaydırma yok. Sadece bir ruh haline dokun (samimi, maceralı, eğlenceli veya şifalandırıcı) ve AI bu akşam kullanabileceğin bir randevu oluştursun. Tüm amaç planlamayı ortadan kaldırmak, bir gelen kutusu daha eklemek değil.",
+          "Hemen uygulamayı aç. Bu akşama uyan ruh haline dokun. Kartı oku. Tam oturmazsa, \"Show another\"a bas — AI farklı havalar arasında geçiş yapar, genelde ikincisi tutar. Sevdiğin birini bulduğunda \"Send to partner\"a dokun ve partnerini bekleyen harika bir kutlama ekranı görsün. Döngü bu kadar.",
+          "Bunu haftasonuna saklama. Bu akşam mükemmel bir ilk randevu çünkü beklenti düşük, sürpriz yüksek. Aşağıya dokun, bir ruh hali seç ve partnerinin yüzünün aydınlandığını izle. Not: Tonight's Date'i ilk 24 saat içinde kullanan çiftler, bekleyenlere kıyasla önümüzdeki ay 4 kat daha fazla randevu planlıyor. Bekleyenlerden olmayın.",
+        ],
+      },
+      ru: {
+        subject: "Свидание на сегодня уже ждёт тебя",
+        cta_text: "Открыть Tonight's Date",
+        body_paragraphs: [
+          "Ты только что скачал SoulPlan, и ловушка знакома почти всем: открываешь приложение, листаешь пару идей, закрываешь, собираешься вернуться позже. Проходит три недели, а искра всё ещё висит в списке дел. Трюк, чтобы этого избежать, — самое простое в приложении, и займёт всего 30 секунд сегодня вечером.",
+          "На главном экране есть одна карточка, где уже готово свидание на сегодня для вас двоих. Никаких опросников. Никакого скроллинга. Просто один тап по настроению (уютное, авантюрное, игривое или исцеляющее) — и AI собирает свидание, которое можно провести уже этим вечером. Смысл в том, чтобы убрать планирование, а не добавить ещё одну задачу.",
+          "Открой приложение прямо сейчас. Выбери настроение, которое подходит вечеру. Прочитай карточку. Если не зашло — нажми «Show another»: AI переключает разные вайбы, так что второй вариант обычно попадает в точку. Когда найдёшь тот самый, нажми «Send to partner» — и партнёра встретит красивый экран с поздравлением. Вот и весь цикл.",
+          "Не откладывай на выходные. Сегодняшний вечер — идеальное первое свидание, потому что планка низкая, а сюрприз — высокий. Жми ниже, выбирай настроение и смотри, как загорятся глаза твоего партнёра. P.S. Пары, которые используют Tonight's Date в первые 24 часа, планируют в 4 раза больше свиданий в ближайший месяц, чем те, кто ждёт. Не будьте теми, кто ждёт.",
+        ],
+      },
+      hi: {
+        subject: "आज रात की डेट पहले से आपका इंतज़ार कर रही है",
+        cta_text: "Tonight's Date खोलें",
+        body_paragraphs: [
+          "आपने अभी SoulPlan डाउनलोड किया है, और लगभग सभी के साथ यही होता है: ऐप खोलें, कुछ आइडियाज़ देखें, बंद करें, और बाद में वापस आने का इरादा रखें। तीन हफ़्ते बीत जाते हैं और वह चिंगारी अभी भी आपकी टू-डू लिस्ट में होती है। इससे बचने का तरीका भी ऐप की सबसे आसान चीज़ है — और इसमें आज रात सिर्फ 30 सेकंड लगेंगे।",
+          "होम स्क्रीन पर एक सिंगल कार्ड है जिसमें पहले से आप दोनों के लिए आज रात की डेट तैयार है। कोई सवाल नहीं। कोई स्क्रॉलिंग नहीं। बस एक मूड (आरामदायक, साहसिक, मज़ेदार या उपचारात्मक) पर टैप करें और AI एक ऐसी डेट बनाता है जिसे आप आज शाम वास्तव में इस्तेमाल कर सकते हैं। पूरा मकसद प्लानिंग को खत्म करना है, न कि एक और इनबॉक्स जोड़ना।",
+          "अभी ऐप खोलें। आज रात के मूड पर टैप करें। कार्ड पढ़ें। अगर यह बिल्कुल फिट नहीं बैठता, तो \"Show another\" पर टैप करें — AI अलग-अलग वाइब्स घुमाता है, तो दूसरा आमतौर पर सही लगता है। जब आपको वह मिल जाए जो आपको पसंद है, तो \"Send to partner\" पर टैप करें और उनके लिए एक खूबसूरत सेलिब्रेशन स्क्रीन इंतज़ार कर रही होगी। बस इतना ही लूप है।",
+          "इसे वीकेंड के लिए मत बचाकर रखें। आज रात पहली डेट के लिए परफेक्ट है क्योंकि बार कम है और सरप्राइज़ ज़्यादा है। नीचे टैप करें, एक मूड चुनें, और अपने पार्टनर को खिलखिलाते देखें। P.S. जो कपल्स अपने पहले 24 घंटों में Tonight's Date का इस्तेमाल करते हैं, वे अगले महीने में उन लोगों की तुलना में 4 गुना ज़्यादा डेट्स प्लान करते हैं जो इंतज़ार करते हैं। वो मत बनो जो इंतज़ार करते हैं।",
+        ],
+      },
+      id: {
+        subject: "Kencan malam ini sudah menunggumu",
+        cta_text: "Buka Tonight's Date",
+        body_paragraphs: [
+          "Kamu baru saja mengunduh SoulPlan, dan jebakannya hampir sama untuk semua orang: buka aplikasi, lihat-lihat beberapa ide, tutup, berniat kembali lagi nanti. Tiga minggu berlalu dan percikan api masih ada di daftar tugas. Trik untuk menghindarinya juga hal paling sederhana di aplikasi ini — dan hanya butuh 30 detik malam ini.",
+          "Di layar utama, ada satu kartu yang sudah berisi kencan malam ini yang dipilihkan untuk kalian berdua. Tidak perlu kuesioner. Tidak perlu scroll. Cukup satu ketukan pada suasana hati (nyaman, petualang, ceria, atau penyembuhan) dan AI akan membuatkan kencan yang benar-benar bisa kalian nikmati malam ini. Intinya adalah menghilangkan proses perencanaan, bukan menambah kotak masuk lain.",
+          "Buka aplikasinya sekarang. Ketuk suasana hati yang cocok untuk malam ini. Baca kartunya. Jika kurang pas, tekan \"Show another\" — AI akan memutar berbagai nuansa berbeda sehingga yang kedua biasanya lebih cocok. Saat kamu menemukan yang kamu suka, ketuk \"Send to partner\" dan mereka akan mendapatkan layar perayaan indah yang menunggu. Itulah seluruh rangkaiannya.",
+          "Jangan simpan ini untuk akhir pekan. Malam ini adalah kencan pertama yang sempurna karena ekspektasinya rendah dan kejutannya tinggi. Ketuk di bawah, pilih suasana hati, dan lihat pasanganmu berseri-seri. P.S. Pasangan yang menggunakan Tonight's Date dalam 24 jam pertama merencanakan 4x lebih banyak kencan di bulan berikutnya dibandingkan yang menunggu. Jangan jadi pasangan yang menunggu.",
+        ],
+      },
+      ja: {
+        subject: "今夜のデートがもう待っています",
+        cta_text: "Tonight's Dateを開く",
+        body_paragraphs: [
+          "SoulPlanをダウンロードしたばかりの方、ほとんどのカップルが同じ罠にはまります。アプリを開いて、いくつかアイデアを眺めて、閉じて、また後で来ようと思う。3週間が過ぎても、ときめきはまだやることリストのまま。それを避けるコツは、アプリの中で一番シンプルな機能にあります。今夜、たった30秒でできることです。",
+          "ホーム画面には、今夜のデートがすでに2人のために用意されたカードが1枚あります。アンケートもスクロールも不要。ムード（居心地の良い、冒険的、遊び心、癒し）を1つタップするだけで、AIが今夜すぐ使えるデートを組み立ててくれます。目的は計画をなくすことであって、受信箱を増やすことではありません。",
+          "今すぐアプリを開いて、今夜に合うムードをタップし、カードを読んでみてください。もしピンとこなければ「Show another」をタップ。AIが違う雰囲気を次々と提案してくれるので、2回目でだいたいしっくりきます。気に入ったものを見つけたら「Send to partner」をタップ。するとパートナーに美しいお祝い画面が届きます。これがすべての流れです。",
+          "週末まで取っておかないでください。今夜が完璧な初デートになる理由は、ハードルが低くてサプライズが大きいから。下をタップしてムードを選び、パートナーが笑顔になるのを見てください。P.S. 最初の24時間でTonight's Dateを使ったカップルは、待ったカップルより次の1ヶ月で4倍多くのデートを計画しています。待つ側にならないでくださいね。",
+        ],
+      },
+      ko: {
+        subject: "오늘 밤의 데이트가 벌써 기다리고 있어요",
+        cta_text: "Tonight's Date 열기",
+        body_paragraphs: [
+          "방금 SoulPlan을 다운로드하셨죠. 대부분의 사람들이 똑같은 함정에 빠집니다. 앱을 열고, 아이디어 몇 개를 둘러보고, 닫고, 나중에 다시 오려고 마음먹죠. 그러다 3주가 지나도 불꽃은 여전히 할 일 목록에 남아 있어요. 이를 피하는 방법은 앱에서 가장 간단한 것인데, 오늘 밤 30초면 충분합니다.",
+          "홈 화면에 보면, 이미 오늘 밤의 데이트가 준비된 하나의 카드가 있어요. 질문도 없고, 스크롤할 필요도 없습니다. 분위기(아늑한, 모험적인, 장난기 가득한, 힐링)를 한 번만 탭하면 AI가 오늘 저녁에 실제로 즐길 수 있는 데이트를 만들어 드려요. 핵심은 계획을 없애는 것이지, 또 다른 할 일을 추가하는 게 아니에요.",
+          "지금 바로 앱을 열어보세요. 오늘 밤에 맞는 분위기를 탭하고, 카드를 읽어보세요. 마음에 딱 맞지 않는다면 \"Show another\"를 누르세요. AI가 다른 분위기로 바꿔주니 두 번째는 보통 잘 맞을 거예요. 마음에 드는 것을 찾으면 \"Send to partner\"를 탭하세요. 그러면 상대방에게 아름다운 축하 화면이 기다리고 있어요. 이것이 전부입니다.",
+          "주말까지 아끼지 마세요. 오늘 밤이 완벽한 첫 데이트인 이유는 진입 장벽은 낮고, 놀라움은 크기 때문이에요. 아래를 탭하고, 분위기를 고르고, 파트너가 환해지는 모습을 지켜보세요. P.S. Tonight's Date를 처음 24시간 안에 사용한 커플들은 기다린 커플들보다 다음 달에 4배 더 많은 데이트를 계획합니다. 기다리는 쪽이 되지 마세요.",
+        ],
+      },
+      zh: {
+        subject: "今晚的约会已经在等你啦",
+        cta_text: "打开今晚约会",
+        body_paragraphs: [
+          "你刚下载了SoulPlan，而大多数人都会掉进同一个陷阱：打开App，随便看看，关掉，想着“等会儿再来”。三周过去，火花还躺在待办清单里。避免这个陷阱的方法，恰恰是App里最简单的事——而且今晚只需30秒。",
+          "主屏幕上有一张卡片，已经为你们俩预选好了今晚的约会。没有问卷，不用滑动。只需点一下心情（温馨、冒险、有趣或治愈），AI就会生成一个今晚就能用的约会方案。核心就是帮你省去规划，而不是增加又一个待办事项。",
+          "现在就打开App，点一下符合今晚心情的选项，看看卡片内容。如果不合心意，就点“Show another”——AI会切换不同风格，通常第二次就能对上。找到喜欢的那张后，点“Send to partner”，对方就会收到一个漂亮的庆祝界面。整个过程就这么简单。",
+          "别留到周末。今晚就是完美的第一次约会，因为门槛低，惊喜大。点下面，选个心情，看你的伴侣眼前一亮。P.S. 在最初24小时内使用Tonight's Date的伴侣，接下来一个月安排的约会次数是那些等待者的4倍。别做等待的那一对。",
+        ],
+      },
+      nl: {
+        subject: "Vanavond staat jullie date al klaar",
+        cta_text: "Open Tonight's Date",
+        body_paragraphs: [
+          "Je hebt SoulPlan net gedownload, en de valkuil is voor bijna iedereen hetzelfde: open de app, blader door wat ideeën, sluit hem weer, en denkt er later wel aan terug te komen. Drie weken later staat de vonk nog steeds op het to-do-lijstje. De truc om dat te voorkomen is ook het allersimpelste in de app — en het kost je vanavond maar 30 seconden.",
+          "Op het startscherm staat één enkele kaart met een date die al voor jullie is klaargezet. Geen vragenlijst. Geen scrollen. Gewoon één tik op een stemming (gezellig, avontuurlijk, speels of helend) en de AI bouwt een date die jullie vanavond echt kunnen doen. Het hele punt is om het plannen weg te nemen, niet om er een extra inbox bij te maken.",
+          "Open de app nu. Tik op de stemming die bij vanavond past. Lees de kaart. Als het niet helemaal klikt, tik dan op \"Show another\" — de AI draait door verschillende sferen, dus de tweede past meestal wel. Zodra je de perfecte hebt gevonden, tik je op \"Send to partner\" en zij krijgen een prachtig feestelijk scherm te zien. Dat is de hele cyclus.",
+          "Bewaar dit niet voor het weekend. Vanavond is de perfecte eerste date, omdat de drempel laag is en de verrassing groot. Tik hieronder, kies een stemming, en kijk hoe je partner oplicht. P.S. De stellen die Tonight's Date binnen de eerste 24 uur gebruiken, plannen de maand erop 4x vaker een date dan degenen die wachten. Wees niet degenen die wachten.",
         ],
       },
     },
