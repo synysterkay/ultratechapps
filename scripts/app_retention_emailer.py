@@ -624,7 +624,11 @@ class AppRetentionEmailer:
             
             email = user['email']
             user_state = self.state['users'].get(email)
-            
+
+            # Skip if v2 already sent a behavioral email today.
+            if email in getattr(self, '_v2_handled_emails', set()):
+                continue
+
             # Skip suppressed users (spam reporters / hard bounces)
             if user_state and user_state.get('suppressed'):
                 continue
@@ -771,7 +775,21 @@ class AppRetentionEmailer:
         print(f"🚀 APP RETENTION EMAIL CAMPAIGN")
         print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M')}")
         print("=" * 60)
-        
+
+        # 0. v2 trigger pass first (Predictify only). Personalized,
+        # behavior-driven emails fire before the static v1 sequence so
+        # high-priority sends (streak savers, match-day) land at the right
+        # moment. Users handled by v2 are recorded in cache/predictify_v2_state.json
+        # and skipped by the v1 loop below for the rest of today.
+        try:
+            from predictify_v2.orchestrator import run as run_v2
+            v2_sent = run_v2(dry_run=dry_run)
+            self._v2_handled_emails = {e for e, _kind in v2_sent}
+            print(f"   v2 handled {len(self._v2_handled_emails)} users")
+        except Exception as e:
+            print(f"   ⚠️ v2 pass failed (continuing with v1): {e}")
+            self._v2_handled_emails = set()
+
         # 1. Auto-refresh Firebase exports to pick up new signups
         print("\n🔄 Refreshing Firebase user exports...")
         self.firebase_loader.refresh_exports()

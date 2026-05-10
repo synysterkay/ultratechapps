@@ -1,0 +1,14 @@
+{
+  "kind": "welcome",
+  "language": "en",
+  "subject": "Your first prediction starts here, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Welcome to Predictify. Quick orientation: every match in the app comes with a calibrated AI confidence score that tells you exactly how reliable the prediction is. Numbers, not vibes.",
+    "Try it now: {top_match_line}. Tap the match, see the full breakdown, lock in your call.",
+    "Pro tip: pick once a day for 5 days and you build a streak. Streak users are 3x more likely to spot value calls."
+  ],
+  "cta_text": "Make my first pick",
+  "cta_deeplink": "predictify://prediction/{fixture_id}"
+}

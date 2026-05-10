@@ -72,7 +72,12 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: |
           MODE="${{ github.event.inputs.mode || 'send' }}"
-          
+
+          # Auto-localize any v2 templates that are still missing per-language
+          # files. Uses the production DEEPSEEK key (free for the language
+          # buckets we cover). Idempotent: skips files that already exist.
+          python scripts/predictify_v2/localize_templates.py || true
+
           if [ "$MODE" = "generate" ]; then
             python scripts/app_retention_emailer.py --generate
           elif [ "$MODE" = "status" ]; then
@@ -107,7 +112,7 @@ jobs:
           if [ -f cache/retention_state.json ]; then
             git config user.name "GitHub Actions"
             git config user.email "actions@github.com"
-            git add cache/retention_state.json cache/sender_health.json cache/retention_emails/ firebase_exports/ -f 2>/dev/null || true
+            git add cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json firebase_exports/ -f 2>/dev/null || true
             git diff --staged --quiet || git commit -m "Update retention email state [skip ci]" && git push || true
           fi
       

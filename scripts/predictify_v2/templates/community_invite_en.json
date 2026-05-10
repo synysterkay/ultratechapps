@@ -1,0 +1,14 @@
+{
+  "kind": "community_invite",
+  "language": "en",
+  "subject": "Predict together — {recommended_community_name} is for fans like you",
+  "preview_text": "{member_count} members. {league_short}. Free to join.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Picking matches alone is fine. Picking with people who care about the same teams? Way better.",
+    "{recommended_community_name} is a Predictify community for {league_short} fans. {member_count} members, owned by {owner_name}, daily AI-assisted picks. You'll see what others are calling and how the room reacts.",
+    "Join free. You don't pay a thing — just show up and predict."
+  ],
+  "cta_text": "Join {recommended_community_name}",
+  "cta_deeplink": "predictify://community/{community_id}"
+}

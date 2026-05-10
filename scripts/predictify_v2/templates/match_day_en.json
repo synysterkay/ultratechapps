@@ -1,0 +1,14 @@
+{
+  "kind": "match_day",
+  "language": "en",
+  "subject": "{home_team} vs {away_team} — {confidence_pct}% confidence call",
+  "preview_text": "{league_name} kicks off in {hours_to_kickoff}h. Your AI's pick is ready.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "{home_team} vs {away_team} kicks off in about {hours_to_kickoff} hours. Your AI has analyzed every signal — form, xG, head-to-head, lineups — and locked in a call.",
+    "📊 The pick: {pick_label}\n🎯 Calibrated confidence: {confidence_pct}%\n🏆 Tier: {tier_label}",
+    "This is the kind of pick we built Predictify for. Open the app, see the full reasoning, and lock in your prediction before kickoff."
+  ],
+  "cta_text": "See the full prediction",
+  "cta_deeplink": "predictify://prediction/{fixture_id}"
+}

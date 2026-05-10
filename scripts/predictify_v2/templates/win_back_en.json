@@ -1,0 +1,14 @@
+{
+  "kind": "win_back",
+  "language": "en",
+  "subject": "Predictify nailed {recent_correct} of last {recent_total} picks — without you",
+  "preview_text": "You've been quiet. Here's what your AI has been calling.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Quick update: while you've been away, Predictify has been doing what it does best. Last {recent_total} predictions: {recent_correct} correct. That's {recent_accuracy_pct}% — not bad for a model running on autopilot.",
+    "Here's the kicker: today's top call is {top_match_line}",
+    "Open the app, take 30 seconds to see the full reasoning, and decide if your AI deserves a second look."
+  ],
+  "cta_text": "See today's strongest pick",
+  "cta_deeplink": "predictify://prediction/{fixture_id}"
+}

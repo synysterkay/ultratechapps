@@ -1,0 +1,14 @@
+{
+  "kind": "weekly_recap",
+  "language": "en",
+  "subject": "Your week: {recent_correct}/{recent_total} predictions correct",
+  "preview_text": "{accuracy_pct}% accuracy. Top pick lined up for next week.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Quick recap of your week on Predictify:",
+    "✅ {recent_correct} of {recent_total} predictions hit\n📊 {accuracy_pct}% accuracy over the last 30 days\n🔥 {streak_days}-day streak (your record so far)",
+    "Looking ahead: the model's strongest call this week is {top_match_line}. Worth a look — open the app and we'll show you exactly why."
+  ],
+  "cta_text": "See next week's top pick",
+  "cta_deeplink": "predictify://prediction/{fixture_id}"
+}

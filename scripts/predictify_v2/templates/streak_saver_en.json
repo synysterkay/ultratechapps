@@ -1,0 +1,14 @@
+{
+  "kind": "streak_saver",
+  "language": "en",
+  "subject": "Your {streak_days}-day streak ends in {hours_to_break} hours",
+  "preview_text": "One pick keeps it alive. Your AI's call is ready.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "You're on a {streak_days}-day prediction streak. Most users never get past 5. You're doing something rare.",
+    "But your streak ends in about {hours_to_break} hours if you don't lock in a pick today. One tap. That's all it takes.",
+    "Your AI has already done the work. {top_match_line}"
+  ],
+  "cta_text": "Save my {streak_days}-day streak",
+  "cta_deeplink": "predictify://prediction/{fixture_id}"
+}
