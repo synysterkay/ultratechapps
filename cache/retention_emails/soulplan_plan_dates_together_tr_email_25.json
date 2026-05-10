@@ -1,0 +1,16 @@
+{
+  "subject": "Bu app'i kullanma \u015fekliniz beni \u015fa\u015f\u0131rtt\u0131",
+  "preview_text": "Bir kullan\u0131c\u0131m\u0131z SoulPlan'i \u00f6yle bir kulland\u0131 ki ben bile d\u00fc\u015f\u00fcnmemi\u015ftim. Siz de deneyin.",
+  "body_paragraphs": [
+    "Bir hafta \u00f6nce bir kullan\u0131c\u0131m\u0131zdan mesaj ald\u0131m: 'E\u015fimle kavga ettik, bar\u0131\u015fmak i\u00e7in app'i kulland\u0131m.' \u0130lk ba\u015fta \u015fa\u015f\u0131rd\u0131m, sonra g\u00fcld\u00fcm. Me\u011fer bu app sadece randevu planlamak i\u00e7in de\u011fil, ayn\u0131 zamanda ili\u015fkideki k\u00fc\u00e7\u00fck krizleri \u00e7\u00f6zmek i\u00e7in de kullan\u0131l\u0131yormu\u015f.",
+    "Kimse bana 'SoulPlan bar\u0131\u015fma arac\u0131' oldu\u011funu s\u00f6ylememi\u015fti. Ama bu kullan\u0131c\u0131, S\u00fcrpriz Planla \u00f6zelli\u011fini a\u00e7m\u0131\u015f, partnerine \u00f6zel bir ak\u015fam yeme\u011fi ve sinema bileti ayarlam\u0131\u015f. Kavga unutulmu\u015f, yerine kahkaha gelmi\u015f. Ben de d\u00fc\u015f\u00fcnd\u00fcm: Bu app'i ba\u015fka hangi beklenmedik \u015fekillerde kullanabiliriz?",
+    "\u0130\u015fte size bir fikir: Bir sonraki tart\u0131\u015fman\u0131zda ya da rutin hissetti\u011finizde, app'teki 'Tarih\u00e7e' b\u00f6l\u00fcm\u00fcne gidin. Ge\u00e7mi\u015fte en \u00e7ok e\u011flendi\u011finiz randevuyu bulun, ayn\u0131 plan\u0131 tekrar yap\u0131n ama bu sefer bir s\u00fcrpriz ekleyin. Ya da Payla\u015f\u0131ml\u0131 Dilek Listesi'ne birlikte bir hayal yaz\u0131n: 'Hi\u00e7 gitmedi\u011fimiz bir \u015fehirde hafta sonu ka\u00e7ama\u011f\u0131.' App bunu size hat\u0131rlat\u0131r, plan yapmay\u0131 kolayla\u015ft\u0131r\u0131r.",
+    "Bug\u00fcn app'i a\u00e7\u0131n, 'Tarih\u00e7e'ye gidin ve en sevdi\u011finiz randevuyu bir kez daha ya\u015fay\u0131n. Ama bu sefer k\u00fc\u00e7\u00fck bir s\u00fcrpriz ekleyin. P.S. Belki de en iyi randevular, en k\u00f6t\u00fc g\u00fcnlerde ba\u015flar. Sizce de \u00f6yle de\u011fil mi?"
+  ],
+  "cta_text": "SoulPlan'i a\u00e7 ve Tarih\u00e7e'ye g\u00f6z at",
+  "email_number": 25,
+  "send_day": 58,
+  "type": "unexpected_use_case",
+  "app_name": "SoulPlan: Plan Dates Together",
+  "generated_at": "2026-05-10T23:29:58.661485"
+}
