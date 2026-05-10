@@ -90,6 +90,12 @@ class DeliverabilityMonitor:
             "domain": "academicsatire.com",
             "active": True,
         },
+        {
+            "email": "tips@predictify.fun",
+            "name": "Drew",
+            "domain": "predictify.fun",
+            "active": True,
+        },
     ]
 
     # ── THRESHOLDS ──────────────────────────────────────────
