@@ -1256,6 +1256,14 @@
           "delivery_rate": 100.0
         }
       ]
+    },
+    "tips@predictify.fun": {
+      "status": "unknown",
+      "last_check": null,
+      "rotated_out_at": null,
+      "metrics_history": [],
+      "note": "Added 2026-05-05 \u2014 predictify.fun verified (DKIM+SPF), tracking enabled. New domain, ramping up via warming alongside existing 8 senders.",
+      "reset_at": "2026-05-10T17:13:43.374285+00:00Z"
     }
   },
   "rotation_log": [
