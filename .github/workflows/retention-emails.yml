@@ -101,14 +101,21 @@ jobs:
             python scripts/app_retention_emailer.py --upsell
           else
             python scripts/app_retention_emailer.py
-            # Also run streak + matchday + upsell triggers during normal campaign runs.
-            # Upsell only fires for users with cooldown elapsed, so daily is safe.
+            # Also run trigger-based senders during normal campaign runs.
+            # Each has its own cooldown / state file, so daily is safe.
             echo "--- Running streak triggers ---"
             python scripts/app_retention_emailer.py --streak || true
             echo "--- Running matchday triggers ---"
             python scripts/app_retention_emailer.py --matchday || true
             echo "--- Running upsell triggers ---"
             python scripts/app_retention_emailer.py --upsell || true
+            # ── Thesis Generator v2 trigger senders ──
+            echo "--- Running deadline countdown sender ---"
+            python scripts/deadline_countdown_sender.py || true
+            echo "--- Running first-thesis-complete sender ---"
+            python scripts/first_thesis_complete_sender.py || true
+            echo "--- Running streak-at-risk sender ---"
+            python scripts/streak_at_risk_sender.py || true
           fi
       
       - name: Save retention state
@@ -117,7 +124,7 @@ jobs:
           if [ -f cache/retention_state.json ]; then
             git config user.name "GitHub Actions"
             git config user.email "actions@github.com"
-            git add cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json firebase_exports/ -f 2>/dev/null || true
+            git add cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json firebase_exports/ -f 2>/dev/null || true
             git diff --staged --quiet || git commit -m "Update retention email state [skip ci]" && git push || true
           fi
       

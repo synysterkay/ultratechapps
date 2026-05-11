@@ -34,6 +34,8 @@ from gmail_sender import GmailSender
 from firestore_language_loader import FirestoreLanguageLoader
 from deliverability_monitor import DeliverabilityMonitor
 from firestore_activity_loader import FirestoreActivityLoader
+from firestore_plan_loader import FirestorePlanLoader
+import localize_phrase
 
 
 # ─── DYNAMIC DAILY SEND CAP ──────────────────────────────
@@ -285,8 +287,13 @@ class AppRetentionEmailer:
         self.language_loader = FirestoreLanguageLoader()
         self.deliverability = DeliverabilityMonitor()
         self.activity_loader = FirestoreActivityLoader()
+        self.plan_loader = FirestorePlanLoader()
         self.user_languages = {}   # email -> language code
         self.user_activity = {}    # email -> {streak, favoriteLeague, isSubscribed, ...}
+        # email -> dict from FirestorePlanLoader (first_name, topic, days_left,
+        # work_type, pain, ...). Populated for apps that write a `plan` map
+        # to their Firestore users collection (currently Thesis Generator).
+        self.user_plans = {}
         
         # Load tracking state
         self.state = self._load_state()
@@ -494,8 +501,11 @@ class AppRetentionEmailer:
     
     <div style="margin-top:48px;padding-top:24px;border-top:1px solid #e5e7eb;text-align:center;">
         <p style="margin:0 0 8px;font-size:13px;color:#d1d5db;">San Francisco, CA 94117, United States</p>
-        <p style="margin:0;font-size:12px;color:#d1d5db;">
+        <p style="margin:0 0 8px;font-size:12px;color:#d1d5db;">
             {footer_text}
+        </p>
+        <p style="margin:0;font-size:12px;color:#9ca3af;">
+            <a href="%mailing_list_unsubscribe_url%" style="color:#6b7280;text-decoration:underline;">Unsubscribe</a>
         </p>
     </div>
     
@@ -503,7 +513,96 @@ class AppRetentionEmailer:
 </html>'''
         
         return html
-    
+
+    # ─── PERSONALIZATION ───────────────────────────────────
+
+    def _personalize_email(self, email_data, user_plan, language):
+        """Return a copy of email_data with {{placeholder}} tokens replaced
+        using the user's plan (first name, topic, deadline, work type, pain).
+
+        Cached templates can include any of:
+            {{first_name}}  {{topic}}  {{days_left}}  {{streak}}
+            {{progress}}    {{work_type}}             {{pain_hook}}
+
+        Empty values collapse cleanly so the email never reads "Hi , ..." for
+        a user without a first name.
+        """
+        if not email_data:
+            return email_data
+        if not user_plan:
+            # No plan data → nothing to interpolate. Return as-is to avoid
+            # the overhead of copying.
+            return email_data
+
+        result = dict(email_data)
+        for key in ('subject', 'preview_text', 'cta_text'):
+            if key in result and isinstance(result[key], str):
+                result[key] = localize_phrase.interpolate(language, result[key], user_plan)
+
+        paragraphs = result.get('body_paragraphs')
+        if isinstance(paragraphs, list):
+            result['body_paragraphs'] = [
+                localize_phrase.interpolate(language, p, user_plan) if isinstance(p, str) else p
+                for p in paragraphs
+            ]
+        return result
+
+    def _load_cached_email(self, app_name, email_num, language, cycle):
+        """Load the cached email body, preferring a fresh cycle-2 template
+        for apps that have generated them. Falls back to the cycle-1 cache
+        (with the existing CYCLE_RESTART_REMAP behaviour) otherwise.
+
+        Cycle-2 cache files use the convention:
+            thesis_generator_cycle2_email_{N}.json           (en)
+            thesis_generator_{lang}_cycle2_email_{N}.json    (other langs)
+        and exist for N in 1..5. Anything beyond that falls back to the
+        remap path.
+        """
+        if cycle >= 2:
+            slug = re.sub(r'[^a-z0-9]+', '_', app_name.lower()).strip('_')
+            cache_dir = Path(__file__).parent.parent / 'cache' / 'retention_emails'
+            # Map the first 5 emails of the restart cycle to cycle-2 fresh
+            # templates if they exist. Higher email numbers fall back below.
+            if 1 <= email_num <= 5:
+                if language and language != 'en':
+                    path = cache_dir / f'{slug}_{language}_cycle2_email_{email_num}.json'
+                else:
+                    path = cache_dir / f'{slug}_cycle2_email_{email_num}.json'
+                if path.exists():
+                    try:
+                        with open(path, 'r', encoding='utf-8') as f:
+                            return json.load(f)
+                    except Exception as e:
+                        print(f"   ⚠️ Cycle-2 cache read failed for {path.name}: {e}")
+        # Fall back to standard generator cache (already has English fallback).
+        return self.email_generator.get_email(app_name, email_num, language=language, cache_only=True)
+
+    # Sequence positions that get the pain-mirror empathy prefix. These
+    # land roughly on days 2 / 4 / 7 in the cadence — early enough to
+    # establish "this app gets me" without overusing the device.
+    _PAIN_MIRROR_EMAIL_NUMS = {2, 3, 4}
+
+    def _apply_pain_mirror(self, email_data, user_plan, email_num):
+        """Prepend a localized empathy sentence ({{pain_hook}}) to the first
+        body paragraph when this email is one of the pain-mirror slots and
+        the user has a pain set. The hook itself is resolved later in
+        _personalize_email's interpolation step."""
+        if email_num not in self._PAIN_MIRROR_EMAIL_NUMS:
+            return email_data
+        if not user_plan or not user_plan.get('pain'):
+            return email_data
+        paragraphs = email_data.get('body_paragraphs')
+        if not isinstance(paragraphs, list) or not paragraphs:
+            return email_data
+        first = paragraphs[0]
+        if not isinstance(first, str) or '{{pain_hook}}' in first:
+            return email_data
+        new_paragraphs = list(paragraphs)
+        new_paragraphs[0] = '{{pain_hook}} ' + first
+        result = dict(email_data)
+        result['body_paragraphs'] = new_paragraphs
+        return result
+
     # ─── ACTIVE APPS (only these receive emails) ─────────
     # Priority order: first = highest tie-breaker priority for daily cap
     # allocation WITHIN a user-priority tier. App priority does NOT trump
@@ -821,6 +920,13 @@ class AppRetentionEmailer:
             if app_name in users_by_app:
                 activity = self.activity_loader.fetch_user_activity(app_name)
                 self.user_activity.update(activity)
+
+        # 1b3. Load per-user plan data for Thesis Generator personalization
+        # (first name, topic, deadline, work type, pain). Drives the
+        # {{placeholder}} interpolation done at send time.
+        if 'Thesis Generator' in users_by_app:
+            print("\n📋 Loading Thesis Generator user plans from Firestore...")
+            self.user_plans.update(self.plan_loader.fetch_user_plans('Thesis Generator'))
         
         # 1c. Get all senders for multi-sender distribution
         print("\n🏥 Setting up multi-sender distribution...")
@@ -863,19 +969,23 @@ class AppRetentionEmailer:
         
         # 3. Load pre-generated emails from cache (never call DeepSeek API during campaigns)
         print("\n📝 Loading email content from cache...")
+        # Track (app_name, email_num, language, cycle). Cycle 2+ users may
+        # be served fresh cycle-2 templates if available (Thesis Generator).
         needed_emails = set()
         for e in eligible:
             lang = e.get('language', 'en')
             actual = e.get('actual_email', e['next_email'])
-            needed_emails.add((e['app_name'], actual, lang))
-        
+            cycle = e.get('cycle', 1)
+            needed_emails.add((e['app_name'], actual, lang, cycle))
+
         email_content = {}
-        for app_name, email_num, lang in needed_emails:
-            email_data = self.email_generator.get_email(app_name, email_num, language=lang, cache_only=True)
+        for app_name, email_num, lang, cycle in needed_emails:
+            email_data = self._load_cached_email(app_name, email_num, lang, cycle)
             if email_data:
-                email_content[(app_name, email_num, lang)] = email_data
+                email_content[(app_name, email_num, lang, cycle)] = email_data
                 lang_label = f" ({lang})" if lang != 'en' else ''
-                print(f"   ✅ {app_name} #{email_num}{lang_label}: {email_data['subject'][:50]}...")
+                cycle_label = f" c{cycle}" if cycle > 1 else ''
+                print(f"   ✅ {app_name} #{email_num}{lang_label}{cycle_label}: {email_data['subject'][:50]}...")
             else:
                 print(f"   ❌ Not cached: {app_name} #{email_num} ({lang}) — run --generate first")
         
@@ -929,7 +1039,7 @@ class AppRetentionEmailer:
             segment = entry.get('segment', 'normal')
             cycle = entry.get('cycle', 1)
 
-            email_data = email_content.get((app_name, actual_num, lang))
+            email_data = email_content.get((app_name, actual_num, lang, cycle))
             if not email_data:
                 failed += 1
                 continue
@@ -949,14 +1059,26 @@ class AppRetentionEmailer:
             tags = build_tags(app=slug, email_num=email_num, cycle=cycle,
                                language=lang, segment=segment, kind='retention')
 
+            # Personalize at send time. Each cached email body can contain
+            # tokens like {{first_name}}, {{topic}}, {{days_left}},
+            # {{work_type}}, {{pain_hook}} — interpolate them now using the
+            # user's plan (if available). Apps without a plan loader return
+            # an empty dict and the tokens collapse cleanly.
+            user_plan = self.user_plans.get(email_addr) or {}
+            # Pain-mirror routing: for the early-sequence emails (#2, #3, #4)
+            # the first paragraph is prefixed with an empathy sentence based
+            # on the user's selected pain. Localized in localize_phrase.
+            pain_email_data = self._apply_pain_mirror(email_data, user_plan, email_num)
+            personalized_email_data = self._personalize_email(pain_email_data, user_plan, lang)
+
             # Build HTML (CTAs UTM-tagged with the same context)
-            html = self._build_html(email_data, app_info, lang,
+            html = self._build_html(personalized_email_data, app_info, lang,
                                      sender_name=sender_info['name'],
                                      email_num=email_num, cycle=cycle,
                                      ref_id=ref_id, kind='retention')
 
             # On restart cycles, prefix the subject so the inbox reads differently
-            subject = email_data['subject']
+            subject = personalized_email_data['subject']
             if cycle > 1:
                 prefix = CYCLE_SUBJECT_PREFIX.get(lang, CYCLE_SUBJECT_PREFIX['en'])
                 if not subject.startswith(prefix):
