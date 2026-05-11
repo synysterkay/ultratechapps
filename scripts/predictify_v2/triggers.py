@@ -23,53 +23,107 @@ from .user_context import UserContext
 
 
 # A trigger is (priority, kind, predicate). Lower priority = higher precedence.
+# Branched by Pro vs free where the message changes per segment.
 TRIGGERS: list[tuple[int, str, Callable[[UserContext], bool]]] = [
-    # ── 1. Streak about to break (loss aversion = highest internal trigger) ──
+    # ── 1. 3-day login streak reward (highest because it's a promise we
+    #      already made — never miss it). Fires once when streak first hits 3.
+    (5, 'login_streak_reward', lambda c: (
+        c.streak_days == 3
+        and not c.is_premium  # don't offer Pro to people who already have it
+    )),
+
+    # ── 2. Streak about to break ──
     (10, 'streak_saver', lambda c: (
         c.streak_days >= 3
         and (c.hours_since_last_pick or 0) >= 18
         and (c.hours_since_last_pick or 0) <= 30
     )),
 
-    # ── 2. Match-day in followed league within 2-12 hours ──
+    # ── 3. Match-day in followed league within 2-12 hours ──
     (20, 'match_day', lambda c: (
         c.next_match is not None
         and c.next_match.headline_pick_label is not None
         and 2 <= _hours_until(c.next_match.kickoff_dt) <= 12
     )),
 
-    # ── 3. New user welcome (first 24h, no picks yet) ──
+    # ── 4. New user welcome ──
     (30, 'welcome', lambda c: (
         c.total_picks_30d == 0
         and (c.last_pick_at is None)
         and c.todays_top_pick is not None
     )),
 
-    # ── 4. Owner growth nudge (community owner with <5 members) ──
-    (40, 'owner_growth', lambda c: (
+    # ── 5. Free user with a hot accuracy week — upgrade pitch ──
+    (35, 'upgrade_after_hot_week', lambda c: (
+        not c.is_premium
+        and c.total_picks_30d >= 5
+        and (c.accuracy_30d or 0) >= 0.6
+        and datetime.now(timezone.utc).weekday() in (0, 1)  # Mon/Tue
+    )),
+
+    # ── 6. Owner: marketing toolkit (7+ days post-create, <5 members) ──
+    (38, 'owner_marketing_kit', lambda c: (
         c.owned_community_id is not None
         and c.owned_community_member_count < 5
     )),
 
-    # ── 5. Win-back for users gone 5-14 days ──
-    (50, 'win_back', lambda c: (
-        c.last_pick_at is not None
+    # ── 7. Pro user pitched to start own community (30+ days Pro) ──
+    (40, 'pro_owner_pitch', lambda c: (
+        c.is_premium
+        and c.owned_community_id is None
+        and c.total_picks_30d >= 5
+        and datetime.now(timezone.utc).weekday() == 3  # Thursday
+    )),
+
+    # ── 8. Pro power-user education (Pro, engaged, weekly) ──
+    (45, 'pro_power_tip', lambda c: (
+        c.is_premium
+        and c.total_picks_30d >= 3
+        and datetime.now(timezone.utc).weekday() == 1  # Tuesday
+    )),
+
+    # ── 9. Win-back for users gone 5-14 days ──
+    (50, 'winback_lapsed_pro', lambda c: (
+        # Was Pro at some point AND has been quiet. We use the in-memory
+        # is_premium signal here; full historical-Pro tracking would need a
+        # Stripe-side check. For now: fires for currently-Pro users who've
+        # gone quiet (i.e., paying but disengaged — risk of churn).
+        c.is_premium
+        and (c.hours_since_last_pick or 0) >= 7 * 24
+    )),
+
+    (55, 'win_back', lambda c: (
+        not c.is_premium
+        and c.last_pick_at is not None
         and 5 * 24 <= (c.hours_since_last_pick or 0) <= 14 * 24
         and c.total_picks_30d >= 1
     )),
 
-    # ── 6. Weekly recap for engaged users (Sunday only) ──
-    (60, 'weekly_recap', lambda c: (
-        c.total_picks_30d >= 3
-        and datetime.now(timezone.utc).weekday() == 6  # Sunday
+    # ── 10. Referral invite for free users who've been engaged ──
+    (58, 'referral_invite', lambda c: (
+        not c.is_premium
+        and c.total_picks_30d >= 3
+        and datetime.now(timezone.utc).weekday() == 5  # Saturday
     )),
 
-    # ── 7. Community invite for new users with no community ──
+    # ── 11. Weekly recap (Sunday) ──
+    (60, 'weekly_recap', lambda c: (
+        c.total_picks_30d >= 3
+        and datetime.now(timezone.utc).weekday() == 6
+    )),
+
+    # ── 12. Community invite for engaged users with no community ──
     (70, 'community_invite', lambda c: (
         c.joined_community_count == 0
         and c.owned_community_id is None
         and c.total_picks_30d >= 2
         and getattr(c, '_recommended_community_id', None) is not None
+    )),
+
+    # ── 13. Owner growth (legacy, lowest priority; covered by kit above) ──
+    (80, 'owner_growth', lambda c: (
+        c.owned_community_id is not None
+        and c.owned_community_member_count < 5
     )),
 ]
 

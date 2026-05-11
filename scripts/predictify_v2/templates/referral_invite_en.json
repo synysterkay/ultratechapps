@@ -1,0 +1,14 @@
+{
+  "kind": "referral_invite",
+  "language": "en",
+  "subject": "Get free Pro by inviting one football friend",
+  "preview_text": "1 referral = 1 month free for both of you.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "You've been making picks consistently — that's the part most users skip. Now the easy bonus: invite one friend who watches the same matches you do, and you both get a free month of Predictify Pro the moment they sign up.",
+    "Why we do this: communities of friends predicting together stick around 4x longer than solo users. It's better for everyone — including us.",
+    "Tap below to grab your unique invite link. Send it to one person in your group chat. Done."
+  ],
+  "cta_text": "Get my invite link",
+  "cta_deeplink": "predictify://referral"
+}

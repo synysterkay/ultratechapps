@@ -71,19 +71,38 @@ def _today() -> str:
 
 
 # ─────────────────────────────────────────────────────────
-#  Resend sender — minimal, mirrors v1 send shape
+#  Resend sender — rotates through the v1 sender pool so v2 inherits the
+#  same warmup curve + deliverability monitoring. Hashing on UID keeps each
+#  user assigned to the same sender across days (lower spam-folder risk).
 # ─────────────────────────────────────────────────────────
 RESEND_KEY = os.environ.get('RESEND_API_KEY', '')
-FROM_EMAIL = 'Predictify <noreply@predictifyfootball.com>'
+
+try:
+    from deliverability_monitor import DeliverabilityMonitor
+    _SENDER_POOL = [s for s in DeliverabilityMonitor.SENDER_POOL if s.get('active', True)]
+except Exception:
+    _SENDER_POOL = [{'email': 'apps@kaynel.pl', 'name': 'Ana'}]
 
 
-def _send(to: str, email: RenderedEmail, dry_run: bool = False) -> bool:
+def _pick_sender(uid: str) -> dict:
+    """Sticky-by-uid sender selection: a given user keeps the same 'from'
+    across sends. Keeps thread-grouping in Gmail consistent and avoids the
+    'why does Predictify email me from 5 different domains?' impression."""
+    if not _SENDER_POOL:
+        return {'email': 'apps@kaynel.pl', 'name': 'Ana'}
+    h = sum(ord(c) for c in uid) if uid else 0
+    return _SENDER_POOL[h % len(_SENDER_POOL)]
+
+
+def _send(to: str, uid: str, email: RenderedEmail, dry_run: bool = False) -> bool:
     if not RESEND_KEY:
         print('⚠️ RESEND_API_KEY missing')
         return False
+    sender = _pick_sender(uid)
+    from_header = f"{sender['name']} <{sender['email']}>"
     html = _build_html(email)
     if dry_run:
-        print(f'   [DRY] would send to {to}: {email.subject!r}')
+        print(f'   [DRY] would send to {to} from {sender["email"]}: {email.subject!r}')
         return True
     try:
         r = requests.post(
@@ -93,7 +112,7 @@ def _send(to: str, email: RenderedEmail, dry_run: bool = False) -> bool:
                 'Content-Type': 'application/json',
             },
             json={
-                'from': FROM_EMAIL,
+                'from': from_header,
                 'to': to,
                 'subject': email.subject,
                 'html': html,
@@ -210,7 +229,7 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
             skipped_no_trigger += 1
             continue
 
-        ok = _send(email, rendered, dry_run=dry_run)
+        ok = _send(email, uid, rendered, dry_run=dry_run)
         if ok:
             today_state[uid] = {'kind': kind, 'lang': lang}
             sent.append((email, kind))

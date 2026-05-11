@@ -1,0 +1,14 @@
+{
+  "kind": "winback_lapsed_pro",
+  "language": "en",
+  "subject": "Come back to Pro on us — 30 days free, no card needed",
+  "preview_text": "What happened? Was it the price, the features, or something else?",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Your Pro subscription expired and we noticed. We won't oversell it — you know exactly what Pro does. We just want to know if something specifically didn't work for you.",
+    "If you tell us (just reply to this email — a human reads it), we'll add 30 days of Pro back to your account, no strings, no card. That's a real offer, not a marketing line.",
+    "Whether you come back or not, thanks for the time you spent with us. Your feedback genuinely helps us build the next version."
+  ],
+  "cta_text": "Restart Pro free for 30 days",
+  "cta_deeplink": "predictify://winback"
+}

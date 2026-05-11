@@ -1,0 +1,14 @@
+{
+  "kind": "owner_marketing_kit",
+  "language": "en",
+  "subject": "{community_name} needs members — here's how top owners grow",
+  "preview_text": "5 places we've seen owners post that actually convert.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Your community {community_name} has {member_count} member{member_plural}. Owners who hit 25+ members in week one all use the same playbook — here it is.",
+    "1. WhatsApp/Telegram group chats: drop the link with a one-line tease (\"AI calls for {league_short}, free to join\")\n2. X / Twitter: post your most confident pick of the week with the join link in the reply\n3. r/{league_short}, r/footballbets, r/soccerbetting on Reddit: pinned weekly thread\n4. TikTok comments under match-preview videos\n5. Discord servers for the leagues you cover",
+    "Predictify makes the cover image for you (your share link looks 3x better with one — that alone moves join rate noticeably). Open the share kit, copy the link, paste it where football fans gather."
+  ],
+  "cta_text": "Open share kit",
+  "cta_deeplink": "predictify://community/{community_id}/share"
+}

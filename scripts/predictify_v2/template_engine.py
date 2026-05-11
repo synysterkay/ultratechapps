@@ -160,6 +160,46 @@ def _build_merge_fields(kind: str, ctx: UserContext) -> dict[str, str] | None:
         if m:
             base['fixture_id'] = str(m.fixture_id)
         return base
+    if kind == 'login_streak_reward':
+        # Only fires for free users (gated by trigger). Reward is the
+        # short Pro flag toggled by the in-app reward screen.
+        return base
+    if kind == 'upgrade_after_hot_week':
+        if ctx.total_picks_30d < 5 or (ctx.accuracy_30d or 0) < 0.6:
+            return None
+        base['recent_total'] = str(ctx.total_picks_30d)
+        base['accuracy_pct'] = str(int(round((ctx.accuracy_30d or 0) * 100)))
+        # Pro accuracy target shown comparatively. Conservative: 72%.
+        base['pro_target_pct'] = '72'
+        return base
+    if kind == 'pro_power_tip':
+        m = ctx.todays_top_pick or ctx.next_match
+        if not m:
+            return None
+        base['top_match_line'] = _format_top_match_line(m)
+        base['fixture_id'] = str(m.fixture_id)
+        return base
+    if kind == 'pro_owner_pitch':
+        return base
+    if kind == 'owner_marketing_kit':
+        if not ctx.owned_community_id or not ctx.owned_community_name:
+            return None
+        base['community_name'] = ctx.owned_community_name
+        base['community_id'] = ctx.owned_community_id
+        base['member_count'] = str(ctx.owned_community_member_count)
+        base['member_plural'] = '' if ctx.owned_community_member_count == 1 else 's'
+        # Pick the first followed-league name for the share-tease line.
+        base['league_short'] = (ctx.followed_league_names[0]
+                                if ctx.followed_league_names else 'football')
+        return base
+    if kind == 'winback_lapsed_pro':
+        # Fires for premium-but-inactive users. The "free 30 days" is an
+        # admin-applied bonusProUntil window (no Stripe roundtrip needed).
+        return base
+    if kind == 'referral_invite':
+        if ctx.total_picks_30d < 3:
+            return None
+        return base
     return None
 
 
