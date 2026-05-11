@@ -70,6 +70,11 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          # Predictify-app Supabase (different project from marketing-tool's
+          # Supabase) — holds predictions, user_leagues, user_picks. Used by
+          # predictify_v2/* for behavioral trigger evaluation.
+          PREDICTIFY_SUPABASE_URL: ${{ secrets.PREDICTIFY_SUPABASE_URL }}
+          PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY }}
         run: |
           MODE="${{ github.event.inputs.mode || 'send' }}"
 

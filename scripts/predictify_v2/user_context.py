@@ -21,8 +21,17 @@ from pathlib import Path
 import requests
 
 
-SUPABASE_URL = os.environ.get('SUPABASE_URL', '').rstrip('/')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+# Predictify-app Supabase (predictions, user_leagues, user_picks) is a
+# SEPARATE project from the marketing-tool's Supabase. Prefer the dedicated
+# env vars; fall back to generic ones for local-dev convenience.
+SUPABASE_URL = (
+    os.environ.get('PREDICTIFY_SUPABASE_URL')
+    or os.environ.get('SUPABASE_URL', '')
+).rstrip('/')
+SUPABASE_KEY = (
+    os.environ.get('PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY')
+    or os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+)
 FIREBASE_PROJECT_ID = 'predictify-3f30d'
 FIRESTORE_BASE = (
     f'https://firestore.googleapis.com/v1/projects/'
@@ -179,7 +188,7 @@ def _fetch_followed_leagues(uid: str, url: str, headers: dict) -> set[int]:
     try:
         r = requests.get(
             f'{url}/rest/v1/user_leagues',
-            params={'select': 'league_id', 'uid': f'eq.{uid}', 'is_favorite': 'eq.true'},
+            params={'select': 'league_id', 'firebase_uid': f'eq.{uid}', 'is_favorite': 'eq.true'},
             headers=headers, timeout=8,
         )
         if r.status_code == 200:
@@ -226,7 +235,7 @@ def _fetch_accuracy(uid: str, url: str, headers: dict) -> dict | None:
             f'{url}/rest/v1/user_picks',
             params={
                 'select': 'is_correct',
-                'uid': f'eq.{uid}',
+                'user_id': f'eq.{uid}',
                 'created_at': f'gte.{since}',
                 'is_correct': 'not.is.null',
                 'limit': 200,
