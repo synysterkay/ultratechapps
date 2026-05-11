@@ -1,0 +1,14 @@
+{
+  "subject": "Un petit truc pour vos citations",
+  "preview_text": "Saviez-vous que vous pouvez rendre votre style plus naturel avec un seul clic ?",
+  "body_paragraphs": [
+    "Bonjour {{first_name}}, vous utilisez peut-être déjà notre générateur de thèse, mais saviez-vous que la fonction \"améliorer\" peut aussi dé-AI-isiser votre texte ? En un clic, elle transforme un paragraphe mécanique en prose fluide qui sonne comme si vous l'aviez écrit vous-même.",
+    "Mieux encore, vous pouvez injecter un style de référence spécifique en cours de rédaction : tapez \"comme [auteur]\" dans la boîte de dialogue, et l'outil ajuste le ton sur-le-champ. Essayez avec \"comme George Orwell\" pour un essai percutant.",
+    "Ce petit détour vous fera gagner des heures de réécriture tout en gardant votre voix intacte. Parfait pour un rendu naturel avant la date limite."
+  ],
+  "cta_text": "Essayer l'amélioration maintenant",
+  "email_number": 2,
+  "send_day": null,
+  "type": "cycle2_unexpected_tip",
+  "cycle": 2
+}

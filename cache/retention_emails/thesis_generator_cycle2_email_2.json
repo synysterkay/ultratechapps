@@ -1,0 +1,14 @@
+{
+  "subject": "A trick for your {{topic}}",
+  "preview_text": "Make your thesis sound less like AI with this one weird action.",
+  "body_paragraphs": [
+    "Hey {{first_name}}, remember how you used Thesis Generator to build your outline and draft? Here's a power move you might have missed: the \"enhance\" action can make your AI-generated text sound less like a robot and more like you.",
+    "Next time you're working on your {{work_type}}, try selecting a section and hitting \"enhance\" with a note like \"rewrite this in my voice\" or \"add a citation to Smith 2020.\" It injects a specific reference style or tone mid-generation, breaking the generic AI feel.",
+    "Give it a shot—it's a game changer for making your {{work_type}} feel original and polished."
+  ],
+  "cta_text": "Try Enhance Now",
+  "email_number": 2,
+  "send_day": null,
+  "type": "cycle2_unexpected_tip",
+  "cycle": 2
+}

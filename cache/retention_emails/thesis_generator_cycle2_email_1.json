@@ -1,0 +1,14 @@
+{
+  "subject": "It's been a while, {{first_name}}",
+  "preview_text": "We noticed you were making progress on {{topic}}. Just checking in, no pressure.",
+  "body_paragraphs": [
+    "Hey {{first_name}}, we saw you haven't logged in for a bit, and that's okay. The fact that you used Thesis Generator before tells us you're serious about your {{work_type}}. We're not here to sell you on something new — we just wanted to let you know we still have your back.",
+    "Your last work on {{topic}} isn't forgotten. Sometimes the hardest part is picking up where you left off, especially when deadlines like {{days_left}} are looming. That's why we're reaching out: not to overwhelm you, but to remind you that the tools you already know are still here, ready when you are.",
+    "No pitch, no pressure — just a genuine check-in from your writing partner. Whether you need to refine your thesis or start fresh, we're one click away."
+  ],
+  "cta_text": "Jump back into your thesis",
+  "email_number": 1,
+  "send_day": null,
+  "type": "cycle2_welcome_back",
+  "cycle": 2
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "Heureux de te revoir, {{first_name}}",
+  "preview_text": "On ne te recontacte pas pour te vendre quelque chose, mais parce qu'on est toujours là pour t'accompagner.",
+  "body_paragraphs": [
+    "Bonjour {{first_name}}, cela faisait un moment. On sait que tu es passé·e par ici pour travailler sur ton {{work_type}}, et on espère que tout avance bien de ton côté. Si tu es en pleine rédaction ou en pleine réflexion, sache qu'on n'a pas oublié ton projet.",
+    "On ne t'écrit pas pour te refaire le même discours. Tu connais déjà l'outil et tu sais ce qu'il peut faire. Cette fois, c'est juste pour te dire qu'on pense à toi et qu'on reste disponibles si jamais tu as besoin d'un coup de main. Parfois, un simple rappel suffit à relancer une idée ou à débloquer une page blanche.",
+    "Alors voilà : si tu es toujours sur ton {{work_type}} ou si un nouveau sujet commence à germer, on est là. Pas de pression, juste une main tendue. Tu n'as qu'à faire le premier pas."
+  ],
+  "cta_text": "Reprendre mon {{work_type}}",
+  "email_number": 1,
+  "send_day": null,
+  "type": "cycle2_welcome_back",
+  "cycle": 2
+}

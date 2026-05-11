@@ -1,0 +1,15 @@
+{
+  "subject": "Tu tesis te espera",
+  "preview_text": "Sabemos que no siempre necesitas la app, pero aquí estaremos cuando llegue el próximo trabajo.",
+  "body_paragraphs": [
+    "Hola {{first_name}}, esperamos que estés bien. Han pasado algunos meses desde nuestra última conversación, y queríamos agradecerte por haber formado parte de este ciclo. Entendemos que no todos los días necesitas una herramienta para tu tesis o ensayo, y eso está perfecto.",
+    "La vida académica tiene sus ritmos, y cuando llegue el momento de enfrentar un nuevo {{work_type}} o retomar aquel proyecto sobre {{topic}}, aquí estaremos. Nuestra app está diseñada para acompañarte en esos momentos clave, sin presiones ni recordatorios constantes.",
+    "Este es nuestro último mensaje de esta serie, pero no una despedida. Si en algún momento necesitas ayuda para estructurar tus ideas, generar un argumento sólido o simplemente dar el primer paso, solo abre la app. Estará lista para ti, sin compromisos.",
+    "Gracias por confiar en nosotros. Nos vemos cuando tú quieras."
+  ],
+  "cta_text": "Volver a la app",
+  "email_number": 5,
+  "send_day": null,
+  "type": "cycle2_legacy",
+  "cycle": 2
+}

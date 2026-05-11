@@ -1,0 +1,14 @@
+{
+  "subject": "Your thesis isn't going anywhere",
+  "preview_text": "Reflecting on your journey and leaving the door open for when you need us.",
+  "body_paragraphs": [
+    "Hey {{first_name}}, it's been a while since we last checked in. We've sent a few emails over the past weeks, and we hope they've been helpful in their own small way. But the truth is, Thesis Generator isn't something you need to use every day. It's a tool for those moments when a big paper lands on your desk, and you need a clear path forward.",
+    "Maybe you've already finished that {{work_type}} on {{topic}}, or maybe you've set it aside for now. Either way, that's perfectly okay. Our goal was never to make you dependent on us, but to be here when you need a hand turning a broad topic into a sharp, focused thesis statement. The app will always be ready, with your saved work right where you left it.",
+    "So consider this a warm closing of this chapter. If another {{work_type}} comes your way, or if you want to revisit your {{topic}} and refine it further, we're just a click away. No pressure, no guilt, just a friendly reminder that you have a reliable tool in your corner."
+  ],
+  "cta_text": "Return to your thesis",
+  "email_number": 5,
+  "send_day": null,
+  "type": "cycle2_legacy",
+  "cycle": 2
+}
