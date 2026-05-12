@@ -125,7 +125,24 @@ jobs:
             git config user.name "GitHub Actions"
             git config user.email "actions@github.com"
             git add cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json firebase_exports/ -f 2>/dev/null || true
-            git diff --staged --quiet || git commit -m "Update retention email state [skip ci]" && git push || true
+            if ! git diff --staged --quiet; then
+              git commit -m "Update retention email state [skip ci]"
+              # Push with pull-rebase retries — the run takes ~2.5h and the
+              # remote often moves (sender_health updater, manual commits,
+              # blog automation). Without retry the push fails silently
+              # via `|| true` and state gets lost between runs, which in
+              # turn causes the v2 trigger pass to re-fire welcome emails
+              # against the entire user base every day.
+              for attempt in 1 2 3 4 5; do
+                if git push origin HEAD:main; then
+                  echo "✅ pushed state on attempt $attempt"
+                  break
+                fi
+                echo "⚠️ push rejected on attempt $attempt — pulling + retrying"
+                git pull --rebase --autostash origin main || true
+                sleep $((attempt * 5))
+              done
+            fi
           fi
       
       - name: Log completion

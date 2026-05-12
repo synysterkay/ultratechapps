@@ -246,25 +246,17 @@ def _html_escape(s: str) -> str:
 # ─────────────────────────────────────────────────────────
 #  Main loop
 # ─────────────────────────────────────────────────────────
-def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, str]]:
-    # ── EMERGENCY KILL-SWITCH 2026-05-12 ────────────────────────────────
-    # v2 fired 14,006 emails at 10:22 UTC and 11,667 at 17:43 UTC on
-    # 2026-05-11 — 25,673 total in one day, bypassing the daily cap.
-    # Root cause: the `welcome` trigger predicate is
-    #   total_picks_30d == 0 AND last_pick_at is None AND todays_top_pick != None
-    # which matches ~every Predictify user every day. State cache only
-    # de-dupes within a single day, not across days, so the same user
-    # gets a welcome email every cron run forever.
-    # Re-enable after:
-    #   • welcome predicate adds a permanent "ever received v2 welcome"
-    #     check (cache/predictify_v2_state.json scanned across days)
-    #   • run() honors a daily cap (e.g., respects retention_state's
-    #     remaining budget for the day)
-    print('🛑 Predictify v2 KILL-SWITCH active — see orchestrator.run() comment')
-    return []
-    # ── normal flow disabled below ───────────────────────────────────────
+#  Hard upper bound per single invocation. v2 cross-day cooldown already
+#  prevents repeat sends per user once state persists, but this cap is
+#  the second-tier safety net: even if state.json gets corrupted/lost,
+#  no more than V2_DAILY_SEND_CAP emails go out in one run. With two
+#  daily crons (09:00 + 17:00 UTC) the realistic worst case is
+#  2 × V2_DAILY_SEND_CAP = 1000 emails/day.
+V2_DAILY_SEND_CAP = 500
 
-    print(f'🚀 Predictify v2 trigger pass (dry_run={dry_run})')
+
+def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, str]]:
+    print(f'🚀 Predictify v2 trigger pass (dry_run={dry_run}, cap={V2_DAILY_SEND_CAP})')
     _log_env_presence()
 
     fb = FirebaseUserLoader()
@@ -303,8 +295,12 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
     skipped_dup_today = 0
     skipped_cooldown = 0
 
+    cap_hit = False
     for i, u in enumerate(users):
         if max_users and i >= max_users:
+            break
+        if len(sent) >= V2_DAILY_SEND_CAP:
+            cap_hit = True
             break
         uid = u.get('localId') or u.get('uid')
         email = u.get('email')
@@ -384,8 +380,9 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
         # Be gentle with downstream APIs
         time.sleep(0.05)
 
-    print(f'📊 Summary: sent={len(sent)} skipped_dup_today={skipped_dup_today} '
-          f'skipped_cooldown={skipped_cooldown} skipped_no_trigger={skipped_no_trigger}')
+    cap_note = ' 🛑 CAP HIT' if cap_hit else ''
+    print(f'📊 Summary: sent={len(sent)}/{V2_DAILY_SEND_CAP} skipped_dup_today={skipped_dup_today} '
+          f'skipped_cooldown={skipped_cooldown} skipped_no_trigger={skipped_no_trigger}{cap_note}')
     return sent
 
 
