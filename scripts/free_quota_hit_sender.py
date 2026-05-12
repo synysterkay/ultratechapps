@@ -28,6 +28,7 @@ from thesis_users_loader import get_access_token, load_all_users, is_paid
 from thesis_template_translator import get_localized
 from thesis_email_chrome import render as render_email
 import localize_phrase
+import instant_dedup
 
 
 APP_NAME = 'Thesis Generator'
@@ -115,9 +116,20 @@ def main(dry_run=False):
         print('⚠️ FIREBASE_TOKEN not set')
         return
 
+    # Instant Edge Function (free-quota-hit-email) may have already
+    # fired for this user when they hit the paywall in-app. If so,
+    # skip all 3 batch stages — the instant email is timed perfectly
+    # and follow-ups would over-pitch.
+    handled_by_instant = instant_dedup.fetch_handled_uids('free_quota_hit')
+    if handled_by_instant:
+        print(f'   📌 {len(handled_by_instant)} users already handled by instant Edge Function — skipping')
+
     candidates = []
     for u in load_all_users(token):
         if is_paid(u):
+            continue
+        uid = u.get('uid') or u.get('id') or ''
+        if uid and uid in handled_by_instant:
             continue
         usage = u.get('usage') or {}
         if not usage.get('freeChapterUsed'):
@@ -185,6 +197,18 @@ def main(dry_run=False):
             record['stages'] = sorted(set(record.get('stages', []) + [stage]))
             record['last_sent_at'] = datetime.now().isoformat()
             record['language'] = lang
+            # Mirror to Supabase dedup so instant Edge Function returns
+            # duplicate=true if it fires later. One row per user — even
+            # if the batch sends multiple stages, only the first insert
+            # lands due to the (uid, event_kind) unique constraint.
+            instant_dedup.record_sent(
+                'free_quota_hit',
+                uid=u.get('uid') or u.get('id') or '',
+                app_id='thesis_generator',
+                recipient=email,
+                language=lang,
+                metadata={'stage': stage, 'source': 'batch'},
+            )
             if sent_n % 10 == 0:
                 _save_state(state)
             print(f'   ✅ [{sent_n}] {email}  {stage}  {lang}')

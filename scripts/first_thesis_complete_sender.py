@@ -41,6 +41,7 @@ from thesis_users_loader import (
 from thesis_template_translator import get_localized
 from thesis_email_chrome import render as render_email
 import localize_phrase
+import instant_dedup
 
 APP_NAME = 'Thesis Generator'
 APP_SLUG = 'thesis'
@@ -88,6 +89,13 @@ def main(dry_run=False):
         print('⚠️ FIREBASE_TOKEN not set — cannot query thesis completions')
         return
 
+    # Instant Edge Function (thesis-complete-email) may have already
+    # handled some users — load their UIDs once and skip them here.
+    # Falls through silently if the Supabase table isn't reachable.
+    handled_by_instant = instant_dedup.fetch_handled_uids('thesis_complete')
+    if handled_by_instant:
+        print(f'   📌 {len(handled_by_instant)} users already handled by instant Edge Function — skipping')
+
     print('🔎 Fetching completed theses + users...')
     by_email, by_uid = load_users_dict(token)
     completers = []  # list of (user_record, thesis_record)
@@ -97,6 +105,8 @@ def main(dry_run=False):
         if not uid or uid in seen_uids:
             continue
         seen_uids.add(uid)
+        if uid in handled_by_instant:
+            continue
         user = by_uid.get(uid)
         if not user or not user.get('email'):
             continue
@@ -158,6 +168,18 @@ def main(dry_run=False):
                 'language': lang,
                 'thesis_id': t.get('thesis_id'),
             }
+            # Mirror into Supabase dedup table so the instant Edge
+            # Function returns duplicate=true if it fires later for
+            # this user. Failure is non-fatal — local state file
+            # already covers the next batch run.
+            instant_dedup.record_sent(
+                'thesis_complete',
+                uid=user.get('uid') or user.get('id') or '',
+                app_id='thesis_generator',
+                recipient=email,
+                language=lang,
+                metadata={'thesis_id': t.get('thesis_id'), 'source': 'batch'},
+            )
             if sent % 10 == 0:
                 _save_state(state)
             print(f'   ✅ [{sent}] {email}  {lang}')

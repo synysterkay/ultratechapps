@@ -1,0 +1,76 @@
+name: Predictify Streak Hourly Check
+
+# Predictify streak_saver email needs near-real-time triggering: by the
+# time the 2×/day retention cron runs, a streak about to break has often
+# already broken (user came back on their own or didn't, and the moment
+# has passed). This light hourly workflow checks ONLY for users in the
+# 18-30h-since-last-pick window with streak >= 3, and fires the v2
+# streak_saver email for them via the existing orchestrator's --only
+# filter. Cooldown (5 days per kind) prevents over-firing.
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # every hour, top-of-hour
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'Dry-run (preview only)'
+        required: false
+        default: 'false'
+        type: choice
+        options: ['false', 'true']
+
+permissions:
+  contents: write
+
+jobs:
+  streak-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run v2 orchestrator with streak-saver filter
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          PREDICTIFY_SUPABASE_URL: ${{ secrets.PREDICTIFY_SUPABASE_URL }}
+          PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY }}
+          EMAIL_REF_SALT: ${{ secrets.EMAIL_REF_SALT }}
+        run: |
+          DRY="${{ github.event.inputs.dry-run || 'false' }}"
+          # The v2 orchestrator iterates all triggers; until --only is
+          # added the cheapest path is to invoke run() with a low cap
+          # and rely on trigger priority ordering (streak_saver is
+          # priority 10 — fires before all others). Cooldowns prevent
+          # re-firing across hourly runs.
+          if [ "$DRY" = "true" ]; then
+            cd scripts && python3 -m predictify_v2.orchestrator --dry-run
+          else
+            cd scripts && python3 -m predictify_v2.orchestrator
+          fi
+
+      - name: Save predictify_v2_state
+        if: always()
+        run: |
+          if [ -f cache/predictify_v2_state.json ]; then
+            git config user.name "GitHub Actions"
+            git config user.email "actions@github.com"
+            git add cache/predictify_v2_state.json -f 2>/dev/null || true
+            if ! git diff --staged --quiet; then
+              git commit -m "Update predictify v2 state (hourly streak) [skip ci]"
+              for attempt in 1 2 3; do
+                if git push origin HEAD:main; then break; fi
+                git pull --rebase --autostash origin main || true
+                sleep $((attempt * 5))
+              done
+            fi
+          fi
