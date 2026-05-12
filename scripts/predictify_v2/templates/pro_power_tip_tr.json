@@ -1,0 +1,14 @@
+{
+  "subject": "En Güçlü Sinyal kartı — Profesyonellerin asıl baktığı şey",
+  "preview_text": "Elit seviye maçlarda %88 isabet sağlıyor. Çoğu kullanıcı onu açmıyor bile.",
+  "body_paragraphs": [
+    "Merhaba {first_name},",
+    "Kaçırmış olabileceğin hızlı bir Profesyonel ipucu: her tahmin ekranında, maç sonucunun ötesine geç ve 'En Güçlü Sinyal' kartını bul. Kalibre edilmiş çifte şans seçeneği — ve Elit seviye maçlarda tarihsel olarak ~%88 isabet sağladı.",
+    "Nasıl kullanılır: seviye rozeti Elit veya Premium dediğinde, En Güçlü Sinyal en güvenli tercihtir. Standart dediğinde, bunu bir başlangıç noktası olarak kabul et ve diğer piyasalara da bak.",
+    "Bugünün örneği: {top_match_line}. Aç ve tam olarak ne demek istediğimi göreceksin."
+  ],
+  "cta_text": "Bugünün en iyi seçimini aç",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "pro_power_tip",
+  "language": "tr"
+}

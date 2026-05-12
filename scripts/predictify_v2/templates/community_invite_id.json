@@ -1,0 +1,14 @@
+{
+  "subject": "Prediksi bareng — {recommended_community_name} untuk penggemar sepertimu",
+  "preview_text": "{member_count} anggota. {league_short}. Gratis gabung.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Memilih pertandingan sendirian itu biasa. Memilih bareng orang yang peduli dengan tim yang sama? Jauh lebih seru.",
+    "{recommended_community_name} adalah komunitas Predictify untuk penggemar {league_short}. {member_count} anggota, dimiliki oleh {owner_name}, dengan bantuan AI setiap hari. Kamu bisa lihat apa yang diprediksi orang lain dan bagaimana reaksi grup.",
+    "Gabung gratis. Tidak perlu bayar — cukup datang dan prediksi."
+  ],
+  "cta_text": "Gabung {recommended_community_name}",
+  "cta_deeplink": "predictify://community/{community_id}",
+  "kind": "community_invite",
+  "language": "id"
+}

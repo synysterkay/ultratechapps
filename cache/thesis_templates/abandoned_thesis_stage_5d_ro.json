@@ -1,0 +1,8 @@
+{
+  "subject": "5 zile liniște — încă vrei să termini {{topic}}?",
+  "body": [
+    "Au trecut cinci zile de când nu ai mai atins {{work_type}} despre {{topic}}. {{pain_hook}}",
+    "Dacă subiectul încă contează, următoarele 60 de secunde în aplicație fac diferența. Dacă nu, fără judecată — doar dă unsubscribe și nu voi mai verifica."
+  ],
+  "cta": "Continuă de unde am rămas"
+}

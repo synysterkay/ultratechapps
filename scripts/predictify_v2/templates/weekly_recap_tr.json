@@ -1,0 +1,14 @@
+{
+  "subject": "Haftanız: {recent_correct}/{recent_total} tahmin doğru",
+  "preview_text": "%{accuracy_pct} doğruluk. Gelecek hafta için en iyi seçim sıralandı.",
+  "body_paragraphs": [
+    "Merhaba {first_name},",
+    "Predictify'deki haftanızın kısa bir özeti:",
+    "✅ {recent_correct} / {recent_total} tahmin tuttu\n📊 Son 30 günde %{accuracy_pct} doğruluk\n🔥 {streak_days} günlük seri (şimdiye kadarki rekorunuz)",
+    "Geleceğe bakarken: modelin bu haftaki en güçlü çağrısı {top_match_line}. Bir göz atmaya değer — uygulamayı açın, size nedenini tam olarak gösterelim."
+  ],
+  "cta_text": "Gelecek haftanın en iyi seçimini gör",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "tr"
+}

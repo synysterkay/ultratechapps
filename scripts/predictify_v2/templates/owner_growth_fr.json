@@ -1,0 +1,14 @@
+{
+  "subject": "Votre communauté {community_name} a besoin de membres",
+  "preview_text": "Voici une action de 30 secondes qui triple votre taux d'adhésion.",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "{community_name} est en ligne depuis un moment et vous avez déjà {member_count} membre{member_plural} jusqu'à présent. Les communautés ne se développent pas toutes seules — mais les prochaines 24 heures peuvent changer la donne.",
+    "Votre levier le plus rapide : partagez votre lien d'invitation dans vos groupes de discussion. Les communautés avec une image de couverture et 5 membres ou plus grandissent 3 fois plus vite — votre lien a fière allure quand vous avez ça.",
+    "Nous avons créé l'image de partage pour vous. Un seul tap et elle est prête à être envoyée sur WhatsApp, Discord, ou partout où vos passionnés de foot traînent."
+  ],
+  "cta_text": "Ouvrir le kit de partage",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_growth",
+  "language": "fr"
+}

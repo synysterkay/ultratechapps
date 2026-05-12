@@ -1,0 +1,8 @@
+{
+  "subject": "🔥 3-dagars streak, {{first_name}}",
+  "body": [
+    "Du har en {{streak}}. Tre är vändpunkten — efter detta bryter de flesta inte.",
+    "Håll den varm med en minut i appen idag."
+  ],
+  "cta": "Öppna appen"
+}

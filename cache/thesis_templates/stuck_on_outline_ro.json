@@ -1,0 +1,9 @@
+{
+  "subject": "Conturul tău e gata — alege capitolul 1, {{first_name}}",
+  "body": [
+    "Ai un contur pentru {{topic}}. Partea cea mai grea a scrierii academice s-a terminat — știi ce spune fiecare capitol.",
+    "Atinge un capitol, apasă generează și ai o schiță în 60 de secunde. Majoritatea utilizatorilor fac capitolul 1 în aceeași zi în care îl aleg.",
+    "P.S. Nu trebuie să alegi capitolul 1 — alege-l pe cel care ți se pare cel mai ușor. AI-ului nu îi pasă de ordine."
+  ],
+  "cta": "Generează capitolul 1"
+}

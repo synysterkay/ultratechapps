@@ -1,0 +1,9 @@
+{
+  "subject": "Sista påminnelsen om {{topic}}, {{first_name}}",
+  "body": [
+    "Sista gången jag nämner detta. Din {{work_type}} om {{topic}} finns fortfarande på ditt konto, precis där du lämnade den.",
+    "Om du vill komma tillbaka, tryck nedan – dina framsteg är intakta. Om livet gick vidare är det okej också.",
+    "P.S. Ännu ett kapitel förändrar svårighetskurvan för resten. Det svåraste är att öppna appen igen."
+  ],
+  "cta": "Öppna mitt utkast"
+}

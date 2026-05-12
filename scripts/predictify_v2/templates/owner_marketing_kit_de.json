@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} braucht Mitglieder — so machen es die Top-Owner",
+  "preview_text": "5 Orte, an denen wir gesehen haben, dass Owner posten, die tatsächlich konvertieren.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Deine Community {community_name} hat {member_count} Mitglied{member_plural}. Owner, die in der ersten Woche 25+ Mitglieder erreicht haben, nutzen alle dasselbe Playbook — hier ist es.",
+    "1. WhatsApp/Telegram-Gruppenchats: Teile den Link mit einem einzeiligen Teaser („AI-Tipps für {league_short}, kostenlos beitreten“)\n2. X / Twitter: Poste deinen sichersten Tipp der Woche mit dem Beitrittslink in der Antwort\n3. r/{league_short}, r/footballbets, r/soccerbetting auf Reddit: wöchentlicher angepinnten Thread\n4. TikTok-Kommentare unter Spielvorschau-Videos\n5. Discord-Server für die Ligen, die du abdeckst",
+    "Predictify erstellt das Cover-Bild für dich (dein Share-Link sieht damit 3x besser aus — das allein erhöht die Beitrittsrate spürbar). Öffne das Share-Kit, kopiere den Link, füge ihn dort ein, wo Fußballfans sich treffen."
+  ],
+  "cta_text": "Share-Kit öffnen",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "de"
+}

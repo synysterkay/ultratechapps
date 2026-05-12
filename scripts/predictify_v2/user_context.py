@@ -105,6 +105,15 @@ class UserContext:
     owned_community_member_count: int = 0
     joined_community_count: int = 0
 
+    # ── community recommendation (populated by orchestrator when the
+    #    CommunityRecommender pool is available; community_invite trigger
+    #    + template both read these via _recommended_* attr names). ──
+    _recommended_community_id: str | None = None
+    _recommended_community_name: str | None = None
+    _recommended_community_owner: str | None = None
+    _recommended_community_member_count: int = 0
+    _recommended_community_league: str | None = None
+
     # ── upcoming ──
     next_match: UpcomingMatch | None = None  # next followed-league match
     todays_top_pick: UpcomingMatch | None = None  # any league, highest tier

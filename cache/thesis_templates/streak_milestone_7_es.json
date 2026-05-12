@@ -1,0 +1,8 @@
+{
+  "subject": "¡Semana completa, {{first_name}}! 🔥",
+  "body": [
+    "Siete días seguidos trabajando en tu {{work_type}}. Eso no es algo que la mayoría de la gente logre.",
+    "El grupo de la racha de una semana también es el grupo que termina sus borradores a tiempo. Sigue así."
+  ],
+  "cta": "Genera el capítulo de hoy"
+}

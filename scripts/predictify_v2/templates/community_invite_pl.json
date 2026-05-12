@@ -1,0 +1,14 @@
+{
+  "subject": "Przewiduj razem — {recommended_community_name} jest dla fanów takich jak Ty",
+  "preview_text": "{member_count} członków. {league_short}. Dołączenie za darmo.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Typowanie meczów w pojedynkę jest spoko. Typowanie z ludźmi, którzy kibicują tym samym drużynom? O wiele lepsze.",
+    "{recommended_community_name} to społeczność Predictify dla fanów {league_short}. {member_count} członków, prowadzona przez {owner_name}, codzienne typy wspomagane AI. Zobaczysz, co obstawiają inni i jak reaguje grupa.",
+    "Dołącz za darmo. Nie płacisz nic — po prostu wpadaj i typuj."
+  ],
+  "cta_text": "Dołącz do {recommended_community_name}",
+  "cta_deeplink": "predictify://community/{community_id}",
+  "kind": "community_invite",
+  "language": "pl"
+}

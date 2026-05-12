@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} butuh anggota — ini cara pemilik top berkembang",
+  "preview_text": "5 tempat di mana kami lihat pemilik posting yang benar-benar menghasilkan konversi.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Komunitas Anda {community_name} memiliki {member_count} anggota{member_plural}. Pemilik yang mencapai 25+ anggota dalam minggu pertama semuanya menggunakan playbook yang sama — ini dia.",
+    "1. Grup WhatsApp/Telegram: bagikan tautan dengan satu baris teaser (\"Panggilan AI untuk {league_short}, gratis bergabung\")\n2. X / Twitter: posting pilihan paling yakin Anda minggu ini dengan tautan gabung di balasan\n3. r/{league_short}, r/footballbets, r/soccerbetting di Reddit: thread mingguan yang disematkan\n4. Komentar TikTok di bawah video pratinjau pertandingan\n5. Server Discord untuk liga yang Anda liput",
+    "Predictify membuat gambar sampul untuk Anda (tautan bagikan Anda terlihat 3x lebih baik dengan gambar itu — itu saja sudah meningkatkan tingkat gabung secara signifikan). Buka kit bagikan, salin tautan, tempelkan di tempat para penggemar sepak bola berkumpul."
+  ],
+  "cta_text": "Buka kit bagikan",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "id"
+}

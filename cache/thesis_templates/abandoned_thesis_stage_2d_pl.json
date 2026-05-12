@@ -1,0 +1,8 @@
+{
+  "subject": "Twoja {{work_type}} na temat {{topic}} czeka",
+  "body": [
+    "Szybkie sprawdzenie, {{first_name}} — twoja {{work_type}} na temat {{topic}} jest na poziomie {{progress}}.",
+    "Wygenerowanie następnego rozdziału zajmuje około 60 sekund. Pierwsze zdanie jest zawsze najtrudniejsze, a ty już je napisałeś."
+  ],
+  "cta": "Kontynuuj moją {{work_type}}"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "Komm kostenlos zu Pro zurück – 30 Tage gratis, keine Karte nötig",
+  "preview_text": "Was ist passiert? War es der Preis, die Funktionen oder etwas anderes?",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Dein Pro-Abo ist abgelaufen und wir haben es bemerkt. Wir wollen es nicht überverkaufen – du weißt genau, was Pro kann. Wir möchten nur wissen, ob etwas speziell nicht für dich funktioniert hat.",
+    "Wenn du es uns sagst (einfach auf diese E-Mail antworten – ein Mensch liest sie), fügen wir 30 Tage Pro wieder zu deinem Konto hinzu, ohne Bedingungen, ohne Karte. Das ist ein echtes Angebot, keine Marketing-Phrase.",
+    "Egal, ob du zurückkommst oder nicht, danke für die Zeit, die du bei uns verbracht hast. Dein Feedback hilft uns wirklich, die nächste Version zu verbessern."
+  ],
+  "cta_text": "Pro 30 Tage kostenlos neu starten",
+  "cta_deeplink": "predictify://winback",
+  "kind": "winback_lapsed_pro",
+  "language": "de"
+}

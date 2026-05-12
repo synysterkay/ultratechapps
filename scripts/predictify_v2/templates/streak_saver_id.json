@@ -1,0 +1,14 @@
+{
+  "subject": "Streak {streak_days} harimu akan berakhir dalam {hours_to_break} jam",
+  "preview_text": "Satu prediksi bisa menyelamatkannya. Panggilan AI-mu sudah siap.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Kamu sedang dalam streak prediksi {streak_days} hari. Kebanyakan pengguna tidak pernah melewati 5. Kamu melakukan sesuatu yang langka.",
+    "Tapi streakmu akan berakhir dalam sekitar {hours_to_break} jam jika kamu tidak mengunci prediksi hari ini. Satu ketukan. Itu saja yang diperlukan.",
+    "AI-mu sudah bekerja. {top_match_line}"
+  ],
+  "cta_text": "Selamatkan streak {streak_days} hariku",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "id"
+}

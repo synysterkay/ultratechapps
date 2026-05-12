@@ -1,0 +1,14 @@
+{
+  "subject": "Hol dir kostenloses Pro, indem du einen Fußball-Freund einlädst",
+  "preview_text": "1 Empfehlung = 1 Monat kostenlos für euch beide.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Du machst konsequent deine Tipps – das ist der Teil, den die meisten Nutzer auslassen. Jetzt der einfache Bonus: Lade einen Freund ein, der die gleichen Spiele verfolgt wie du, und ihr bekommt beide einen kostenlosen Monat Predictify Pro, sobald er sich anmeldet.",
+    "Warum wir das machen: Gemeinschaften von Freunden, die gemeinsam tippen, bleiben 4x länger aktiv als Einzelnutzer. Das ist besser für alle – auch für uns.",
+    "Tippe unten, um deinen persönlichen Einladungslink zu erhalten. Schick ihn an eine Person in deinem Gruppenchat. Fertig."
+  ],
+  "cta_text": "Hol dir meinen Einladungslink",
+  "cta_deeplink": "predictify://referral",
+  "kind": "referral_invite",
+  "language": "de"
+}

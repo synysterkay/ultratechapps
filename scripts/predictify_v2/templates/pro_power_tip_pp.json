@@ -1,0 +1,14 @@
+{
+  "subject": "O cartão Strongest Signal — o que os Profissionais realmente olham",
+  "preview_text": "Acerta 88% em partidas Elite. A maioria dos usuários nem abre.",
+  "body_paragraphs": [
+    "Ei {first_name},",
+    "Dica rápida de Pro que você pode ter perdido: em cada tela de previsão, role além do resultado da partida e encontre o cartão 'Strongest Signal'. É a escolha calibrada de dupla chance — e em partidas Elite, acertou ~88% historicamente.",
+    "Como usar: quando o selo de nível disser Elite ou Premium, o Strongest Signal é a aposta mais segura. Quando disser Standard, trate como um ponto de partida e veja também os outros mercados.",
+    "Exemplo de hoje: {top_match_line}. Abra e você verá exatamente o que quero dizer."
+  ],
+  "cta_text": "Abrir a melhor escolha de hoje",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "pro_power_tip",
+  "language": "pp"
+}

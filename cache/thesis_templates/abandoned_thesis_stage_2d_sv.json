@@ -1,0 +1,8 @@
+{
+  "subject": "Din {{work_type}} om {{topic}} väntar",
+  "body": [
+    "Snabb avstämning, {{first_name}} — din {{work_type}} om {{topic}} ligger på {{progress}}.",
+    "Att generera nästa kapitel tar ungefär 60 sekunder. Den första meningen är alltid svårast, och du har redan klarat den."
+  ],
+  "cta": "Fortsätt min {{work_type}}"
+}

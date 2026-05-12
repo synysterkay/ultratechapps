@@ -1,0 +1,9 @@
+{
+  "subject": "🎓 Başardın, {{first_name}} — {{work_type}}'nı dışa aktar",
+  "body": [
+    "{{first_name}}, {{topic}} konulu {{work_type}}'n tamamlandı. Bu gerçek bir başarı.",
+    "Şimdi asıl önemli kısım: PDF olarak dışa aktar ve teslim et. Aşağıya dokunarak dışa aktarma ekranını aç.",
+    "Not: Dosyayı uygulama dışında da bir yere kaydet — gelecekteki sana teşekkür edecek."
+  ],
+  "cta": "PDF'imi dışa aktar"
+}

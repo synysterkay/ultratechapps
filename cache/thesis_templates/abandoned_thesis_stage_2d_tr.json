@@ -1,0 +1,8 @@
+{
+  "subject": "{{work_type}} konulu {{topic}} sizi bekliyor",
+  "body": [
+    "Kısa bir kontrol, {{first_name}} — {{topic}} konulu {{work_type}}'iniz {{progress}} seviyesinde.",
+    "Bir sonraki bölümü oluşturmak yaklaşık 60 saniye sürer. İlk cümle her zaman en zorudur ve siz bunu çoktan aştınız."
+  ],
+  "cta": "{{work_type}}'ime devam et"
+}

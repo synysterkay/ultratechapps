@@ -1,0 +1,9 @@
+{
+  "subject": "Twój zarys jest gotowy — wybierz rozdział 1, {{first_name}}",
+  "body": [
+    "Masz już zarys dla {{topic}}. Najtrudniejsza część pisania akademickiego za Tobą — wiesz, co mówi każdy rozdział.",
+    "Kliknij rozdział, naciśnij generuj i masz szkic w 60 sekund. Większość użytkowników robi rozdział 1 tego samego dnia, w którym go wybierze.",
+    "PS. Nie musisz wybierać rozdziału 1 — wybierz ten, który wydaje Ci się najłatwiejszy. AI nie przejmuje się kolejnością."
+  ],
+  "cta": "Wygeneruj rozdział 1"
+}

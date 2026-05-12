@@ -1,0 +1,14 @@
+{
+  "subject": "Prediksi pertamamu dimulai di sini, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Selamat datang di Predictify. Orientasi singkat: setiap pertandingan di aplikasi dilengkapi dengan skor kepercayaan AI yang terkalibrasi, yang memberi tahu seberapa andal prediksi tersebut. Angka, bukan perasaan.",
+    "Coba sekarang: {top_match_line}. Ketuk pertandingannya, lihat rincian lengkapnya, dan kunci pilihanmu.",
+    "Tips pro: pilih sekali sehari selama 5 hari dan kamu akan membangun streak. Pengguna streak 3x lebih mungkin menemukan pilihan bernilai."
+  ],
+  "cta_text": "Buat pilihan pertamaku",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "id"
+}

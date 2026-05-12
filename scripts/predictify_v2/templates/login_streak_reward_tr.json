@@ -1,0 +1,14 @@
+{
+  "subject": "🎁 3 gün üst üste — 1 haftalık Pro'yu açtın!",
+  "preview_text": "Uygulamayı aç ve talep et. Kart gerekmez, otomatik yenileme yok.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Predictify'i üç gün üst üste açtın. Bu aslında nadir görülen bir şey — çoğu kullanıcı iki günü geçemiyor.",
+    "Ödülün: 7 günlük Predictify Pro, tamamen açık, ödeme gerektirmez. Her maçta En Güçlü Sinyal'i, tüm piyasalarda kalibre edilmiş güveni ve tam tahmin geçmişini göreceksin.",
+    "Aşağıya dokunarak talep et. Anında aktif olur ve bir hafta sonra sona erer — uygulamayı her gün kullanmaya devam edersen, seri büyüdükçe daha fazla ödül kazanabilirsin."
+  ],
+  "cta_text": "7 Günlük Pro'yu Talep Et",
+  "cta_deeplink": "predictify://reward/streak3",
+  "kind": "login_streak_reward",
+  "language": "tr"
+}

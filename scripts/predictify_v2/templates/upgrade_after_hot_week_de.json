@@ -1,0 +1,14 @@
+{
+  "subject": "{accuracy_pct}% Genauigkeit diese Woche – Pro-Nutzer erzielen im Durchschnitt {pro_target_pct}%",
+  "preview_text": "Hier ist, was das Modell vor deinem kostenlosen Tarif verbirgt.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Deine letzten {recent_total} Tipps hatten eine Trefferquote von {accuracy_pct}% – damit liegst du deutlich über dem Durchschnitt des kostenlosen Tarifs. Du liest das Modell besser als die meisten.",
+    "Pro-Nutzer sehen das *stärkste Signal* für jedes Spiel – die eine Karte, die konstant {pro_target_pct}%+ erreicht. Dazu kalibrierte Konfidenz für jeden Markt, nicht nur für das Spielergebnis. So bleiben die besten Genauigkeitsstufen an der Spitze.",
+    "Möchtest du es 7 Tage lang kostenlos testen? Keine Karte erforderlich, keine automatische Verlängerung. Wenn es deine Zahlen nicht verbessert, gehst du einfach."
+  ],
+  "cta_text": "7-tägige Pro-Testversion starten",
+  "cta_deeplink": "predictify://upgrade?ref=hot_week",
+  "kind": "upgrade_after_hot_week",
+  "language": "de"
+}

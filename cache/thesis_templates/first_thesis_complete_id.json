@@ -1,0 +1,9 @@
+{
+  "subject": "🎓 Kamu berhasil, {{first_name}} — ekspor {{work_type}} kamu",
+  "body": [
+    "{{first_name}}, {{work_type}} kamu tentang {{topic}} sudah selesai. Itu pencapaian yang nyata.",
+    "Sekarang bagian yang benar-benar penting: ekspor sebagai PDF dan serahkan. Ketuk di bawah untuk membuka layar ekspor.",
+    "P.S. Simpan file di luar aplikasi juga — dirimu di masa depan akan berterima kasih."
+  ],
+  "cta": "Ekspor PDF saya"
+}

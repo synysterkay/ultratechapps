@@ -1,0 +1,9 @@
+{
+  "subject": "🎓 Du hast es geschafft, {{first_name}} — exportiere deine {{work_type}}",
+  "body": [
+    "{{first_name}}, deine {{work_type}} über {{topic}} ist fertig. Das ist eine echte Leistung.",
+    "Jetzt kommt der Teil, der wirklich zählt: Exportiere sie als PDF und reiche sie ein. Tippe unten, um den Export-Bildschirm zu öffnen.",
+    "P.S. Speichere die Datei auch außerhalb der App ab — das zukünftige Ich wird es dir danken."
+  ],
+  "cta": "Mein PDF exportieren"
+}

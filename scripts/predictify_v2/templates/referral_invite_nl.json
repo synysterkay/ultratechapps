@@ -1,0 +1,14 @@
+{
+  "subject": "Krijg gratis Pro door één voetbalvriend uit te nodigen",
+  "preview_text": "1 verwijzing = 1 maand gratis voor jullie beiden.",
+  "body_paragraphs": [
+    "Hoi {first_name},",
+    "Je plaatst consistent je voorspellingen — dat is het deel dat de meeste gebruikers overslaan. Nu de makkelijke bonus: nodig één vriend uit die dezelfde wedstrijden kijkt als jij, en jullie krijgen allebei een gratis maand Predictify Pro zodra hij of zij zich aanmeldt.",
+    "Waarom we dit doen: communities van vrienden die samen voorspellen blijven 4x langer actief dan solo-gebruikers. Het is beter voor iedereen — inclusief ons.",
+    "Tik hieronder om jouw unieke uitnodigingslink te krijgen. Stuur hem naar één persoon in je groepsapp. Klaar."
+  ],
+  "cta_text": "Mijn uitnodigingslink",
+  "cta_deeplink": "predictify://referral",
+  "kind": "referral_invite",
+  "language": "nl"
+}

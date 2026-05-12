@@ -1,0 +1,14 @@
+{
+  "subject": "Los usuarios Pro pueden ganar con comunidades — quédate con el 70%",
+  "preview_text": "Algunos dueños ya ganan lo suficiente para cubrir su suscripción Pro varias veces.",
+  "body_paragraphs": [
+    "Hola {first_name},",
+    "Llevas un tiempo siendo Pro y tus picks son consistentes. Es hora de darle la vuelta al modelo: abre tu propia comunidad en Predictify, fija un precio mensual pequeño y quédate con el 70% de cada suscripción.",
+    "Los mejores dueños de comunidades están convirtiendo sus picks en ingresos recurrentes — y Predictify se encarga de todo: pagos, hosting y gestión de miembros. Tú solo sigue prediciendo como ya lo haces.",
+    "La configuración toma 90 segundos. Elige un nombre, elige una liga, elige un precio (o déjala gratis). Los dueños con imagen de portada crecen 3 veces más rápido — hemos creado un generador que te hace una en un solo toque."
+  ],
+  "cta_text": "Crear mi comunidad",
+  "cta_deeplink": "predictify://community/create",
+  "kind": "pro_owner_pitch",
+  "language": "es"
+}

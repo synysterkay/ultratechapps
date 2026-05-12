@@ -1,0 +1,14 @@
+{
+  "subject": "Deiner Community {community_name} fehlen Mitglieder",
+  "preview_text": "Hier ist eine 30-Sekunden-Aktion, die deine Beitrittsrate verdreifacht.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "{community_name} ist jetzt eine Weile live und du hast bisher {member_count} Mitglied{member_plural}. Communities wachsen nicht von allein – aber die nächsten 24 Stunden können das ändern.",
+    "Dein schnellster Hebel: Teile deinen Einladungslink in deinen Gruppenchats. Communities mit Titelbild und 5+ Mitgliedern wachsen 3x schneller – dein Link sieht super aus, wenn du diese hast.",
+    "Wir haben das Teilen-Bild für dich erstellt. Ein Tippen und es ist bereit für WhatsApp, Discord oder wo auch immer deine Fußball-Leute abhängen."
+  ],
+  "cta_text": "Teilen-Kit öffnen",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_growth",
+  "language": "de"
+}

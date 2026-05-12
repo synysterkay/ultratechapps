@@ -1,0 +1,8 @@
+{
+  "subject": "Tu {{work_type}} sobre {{topic}} te está esperando",
+  "body": [
+    "Un pequeño control, {{first_name}} — tu {{work_type}} sobre {{topic}} está en {{progress}}.",
+    "Generar el siguiente capítulo toma unos 60 segundos. La primera frase siempre es la más difícil, y ya la has superado."
+  ],
+  "cta": "Continuar mi {{work_type}}"
+}

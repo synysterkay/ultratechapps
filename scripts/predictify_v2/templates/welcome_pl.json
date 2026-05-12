@@ -1,0 +1,14 @@
+{
+  "subject": "Twoja pierwsza prognoza zaczyna się tutaj, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Witaj w Predictify. Krótka orientacja: każdy mecz w aplikacji ma skalibrowany wynik pewności AI, który dokładnie mówi Ci, jak wiarygodna jest prognoza. Liczby, a nie przeczucia.",
+    "Wypróbuj teraz: {top_match_line}. Kliknij mecz, zobacz pełne zestawienie, zatwierdź swój typ.",
+    "Pro tip: typuj raz dziennie przez 5 dni, a zbudujesz passę. Użytkownicy z passą są 3 razy bardziej skłonni do znajdowania wartościowych typów."
+  ],
+  "cta_text": "Postaw pierwszy typ",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "pl"
+}

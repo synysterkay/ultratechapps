@@ -1,0 +1,8 @@
+{
+  "subject": "Nu-ți pierde {{streak}}-ul, {{first_name}}",
+  "body": [
+    "Ești pe un {{streak}} 🔥 — și ești la o zi inactivă distanță de a-l pierde.",
+    "Două minute în aplicație îl mențin în viață. Deschide-o acum și contorul va crește mâine."
+  ],
+  "cta": "Păstrează-mi șirul activ"
+}

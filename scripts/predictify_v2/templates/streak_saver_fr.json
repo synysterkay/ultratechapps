@@ -1,0 +1,14 @@
+{
+  "subject": "Votre série de {streak_days} jours se termine dans {hours_to_break} heures",
+  "preview_text": "Un seul pronostic la maintient en vie. L'IA a déjà fait son choix.",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "Vous êtes sur une série de {streak_days} jours de pronostics. La plupart des utilisateurs ne dépassent jamais 5 jours. Vous faites quelque chose de rare.",
+    "Mais votre série se termine dans environ {hours_to_break} heures si vous ne validez pas un pronostic aujourd'hui. Un seul tap. C'est tout ce qu'il faut.",
+    "Votre IA a déjà fait le travail. {top_match_line}"
+  ],
+  "cta_text": "Sauvegarder ma série de {streak_days} jours",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "fr"
+}

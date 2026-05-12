@@ -1,0 +1,9 @@
+{
+  "subject": "🎓 Du klarade det, {{first_name}} — exportera din {{work_type}}",
+  "body": [
+    "{{first_name}}, din {{work_type}} om {{topic}} är klar. Det är en riktig prestation.",
+    "Nu kommer delen som verkligen räknas: exportera den som PDF och lämna in den. Tryck nedan för att öppna exportskärmen.",
+    "P.S. Spara filen även utanför appen — framtida du kommer att tacka dig."
+  ],
+  "cta": "Exportera min PDF"
+}

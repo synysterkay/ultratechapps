@@ -1,0 +1,9 @@
+{
+  "subject": "Il tuo schema è pronto — scegli il capitolo 1, {{first_name}}",
+  "body": [
+    "Hai uno schema per {{topic}}. La parte più difficile della scrittura accademica è finita — sai cosa dice ogni capitolo.",
+    "Tocca un capitolo, premi genera e avrai una bozza in 60 secondi. La maggior parte degli utenti fa il capitolo 1 lo stesso giorno in cui lo sceglie.",
+    "P.S. Non devi scegliere per forza il capitolo 1 — scegli quello che ti sembra più facile. All'IA non importa l'ordine."
+  ],
+  "cta": "Genera capitolo 1"
+}

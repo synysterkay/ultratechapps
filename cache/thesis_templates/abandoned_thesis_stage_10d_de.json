@@ -1,0 +1,9 @@
+{
+  "subject": "Letzter Hinweis zu {{topic}}, {{first_name}}",
+  "body": [
+    "Das ist das letzte Mal, dass ich es erwähne. Deine {{work_type}} zu {{topic}} ist noch in deinem Konto, genau dort, wo du sie verlassen hast.",
+    "Wenn du zurückkommen möchtest, tippe unten – dein Fortschritt ist erhalten. Wenn das Leben weiterging, ist das auch in Ordnung.",
+    "P.S. Selbst ein weiteres Kapitel verändert die Schwierigkeitskurve für den Rest. Der schwerste Teil ist, die App wieder zu öffnen."
+  ],
+  "cta": "Meinen Entwurf öffnen"
+}

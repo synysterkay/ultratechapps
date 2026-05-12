@@ -1,0 +1,8 @@
+{
+  "subject": "5 ngày im lặng — bạn vẫn muốn hoàn thành {{topic}}?",
+  "body": [
+    "Đã năm ngày kể từ khi bạn chạm vào {{work_type}} về {{topic}}. {{pain_hook}}",
+    "Nếu chủ đề vẫn còn quan trọng, 60 giây tiếp theo trong ứng dụng sẽ tạo nên sự khác biệt. Nếu không, không phán xét — chỉ cần nhấn hủy đăng ký và tôi sẽ ngừng kiểm tra."
+  ],
+  "cta": "Tiếp tục từ nơi tôi đã dừng lại"
+}

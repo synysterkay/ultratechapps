@@ -1,0 +1,14 @@
+{
+  "subject": "La carte Signal le plus fort — ce que les Pros regardent vraiment",
+  "preview_text": "Elle atteint 88% sur les matchs Elite. La plupart des utilisateurs ne l'ouvrent même pas.",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "Un petit conseil Pro que tu as peut-être manqué : sur chaque écran de prédiction, fais défiler après le résultat du match et trouve la carte 'Signal le plus fort'. C'est le pari à double chance calibré — et sur les matchs Elite, il a historiquement atteint ~88%.",
+    "Comment l'utiliser : quand le badge de niveau indique Elite ou Premium, le Signal le plus fort est le choix le plus sûr. Quand il indique Standard, considère-le comme un point de départ et regarde aussi les autres marchés.",
+    "Exemple du jour : {top_match_line}. Ouvre-le et tu verras exactement ce que je veux dire."
+  ],
+  "cta_text": "Ouvrir le top pick du jour",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "pro_power_tip",
+  "language": "fr"
+}

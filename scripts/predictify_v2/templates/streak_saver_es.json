@@ -1,0 +1,14 @@
+{
+  "subject": "Tu racha de {streak_days} días termina en {hours_to_break} horas",
+  "preview_text": "Un pick la mantiene viva. La llamada de tu IA está lista.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Estás en una racha de predicciones de {streak_days} días. La mayoría de los usuarios nunca pasan de 5. Estás haciendo algo raro.",
+    "Pero tu racha termina en aproximadamente {hours_to_break} horas si no aseguras un pick hoy. Un toque. Eso es todo lo que se necesita.",
+    "Tu IA ya ha hecho el trabajo. {top_match_line}"
+  ],
+  "cta_text": "Salva mi racha de {streak_days} días",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "es"
+}

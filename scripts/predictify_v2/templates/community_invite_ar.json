@@ -1,0 +1,14 @@
+{
+  "subject": "تنبأ معًا — {recommended_community_name} لعشاق مثلك",
+  "preview_text": "{member_count} عضوًا. {league_short}. مجاني للانضمام.",
+  "body_paragraphs": [
+    "مرحبًا {first_name}،",
+    "اختيار المباريات بمفردك أمر جيد. لكن الاختيار مع أشخاص يهتمون بنفس الفرق؟ أفضل بكثير.",
+    "{recommended_community_name} هو مجتمع Predictify لعشاق {league_short}. {member_count} عضوًا، مملوك لـ {owner_name}، مع توقعات يومية مدعومة بالذكاء الاصطناعي. سترى ما يتوقعه الآخرون وكيف يتفاعل الجميع.",
+    "انضم مجانًا. لا تدفع شيئًا — فقط احضر وتنبأ."
+  ],
+  "cta_text": "انضم إلى {recommended_community_name}",
+  "cta_deeplink": "predictify://community/{community_id}",
+  "kind": "community_invite",
+  "language": "ar"
+}

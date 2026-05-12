@@ -1,0 +1,14 @@
+{
+  "subject": "🎁 3 días seguidos — acabas de desbloquear 1 semana de Pro",
+  "preview_text": "Abre la app para reclamarlo. Sin tarjeta, sin renovación automática.",
+  "body_paragraphs": [
+    "Hola {first_name},",
+    "Has abierto Predictify tres días seguidos. Eso es bastante raro — la mayoría de los usuarios no llega a los dos.",
+    "Tu recompensa: 7 días de Predictify Pro, completamente desbloqueado, sin necesidad de pago. Verás Strongest Signal en cada partido, confianza calibrada en todos los mercados y el historial completo de predicciones.",
+    "Toca abajo para reclamarlo. Se activa al instante y caduca después de una semana — sigue usando la app a diario y podrás ganar más recompensas a medida que crezca tu racha."
+  ],
+  "cta_text": "Reclamar 7 días de Pro",
+  "cta_deeplink": "predictify://reward/streak3",
+  "kind": "login_streak_reward",
+  "language": "es"
+}

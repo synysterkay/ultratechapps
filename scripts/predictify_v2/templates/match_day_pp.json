@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} vs {away_team} — {confidence_pct}% de confiança",
+  "preview_text": "{league_name} começa em {hours_to_kickoff}h. A escolha da sua IA está pronta.",
+  "body_paragraphs": [
+    "Ei {first_name},",
+    "{home_team} vs {away_team} começa em cerca de {hours_to_kickoff} horas. Sua IA analisou todos os sinais — forma, xG, histórico, escalações — e definiu a aposta.",
+    "📊 A aposta: {pick_label}\n🎯 Confiança calibrada: {confidence_pct}%\n🏆 Nível: {tier_label}",
+    "Esse é o tipo de aposta que criamos o Predictify para fazer. Abra o app, veja a análise completa e trave sua previsão antes do início."
+  ],
+  "cta_text": "Ver a previsão completa",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "pp"
+}

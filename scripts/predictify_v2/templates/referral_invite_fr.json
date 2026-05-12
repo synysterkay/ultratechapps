@@ -1,0 +1,14 @@
+{
+  "subject": "Obtenez Pro gratuitement en invitant un ami footballeur",
+  "preview_text": "1 parrainage = 1 mois gratuit pour vous deux.",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "Tu fais tes pronostics régulièrement — c'est la partie que la plupart des utilisateurs négligent. Maintenant, le bonus facile : invite un ami qui regarde les mêmes matchs que toi, et vous obtenez tous les deux un mois gratuit de Predictify Pro dès qu'il s'inscrit.",
+    "Pourquoi on fait ça : les communautés d'amis qui prédisent ensemble restent 4 fois plus longtemps que les utilisateurs solitaires. C'est mieux pour tout le monde — y compris pour nous.",
+    "Tape ci-dessous pour obtenir ton lien d'invitation unique. Envoie-le à une personne dans ton groupe de discussion. C'est fait."
+  ],
+  "cta_text": "Obtenir mon lien d'invitation",
+  "cta_deeplink": "predictify://referral",
+  "kind": "referral_invite",
+  "language": "fr"
+}

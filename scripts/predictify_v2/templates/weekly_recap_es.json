@@ -1,0 +1,14 @@
+{
+  "subject": "Tu semana: {recent_correct}/{recent_total} predicciones acertadas",
+  "preview_text": "{accuracy_pct}% de precisión. Mejor selección alineada para la próxima semana.",
+  "body_paragraphs": [
+    "Hola {first_name},",
+    "Un resumen rápido de tu semana en Predictify:",
+    "✅ {recent_correct} de {recent_total} predicciones acertadas\n📊 {accuracy_pct}% de precisión en los últimos 30 días\n🔥 Racha de {streak_days} días (tu récord hasta ahora)",
+    "Mirando hacia adelante: la jugada más fuerte del modelo esta semana es {top_match_line}. Vale la pena echarle un vistazo: abre la app y te mostraremos exactamente por qué."
+  ],
+  "cta_text": "Ver la mejor selección de la próxima semana",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "es"
+}

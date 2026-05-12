@@ -1,0 +1,8 @@
+{
+  "subject": "5 dagen stil — wil je {{topic}} nog afmaken?",
+  "body": [
+    "Het is vijf dagen geleden dat je aan je {{work_type}} over {{topic}} hebt gewerkt. {{pain_hook}}",
+    "Als het onderwerp er nog toe doet, dan zet de volgende 60 seconden in de app de boel in beweging. Zo niet, geen oordeel — klik gewoon op uitschrijven en ik stop met inchecken."
+  ],
+  "cta": "Ga verder waar ik gebleven was"
+}

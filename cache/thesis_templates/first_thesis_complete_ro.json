@@ -1,0 +1,9 @@
+{
+  "subject": "🎓 Ai reușit, {{first_name}} — exportă-ți {{work_type}}",
+  "body": [
+    "{{first_name}}, {{work_type}} tău pe tema {{topic}} este complet. Este o adevărată realizare.",
+    "Acum partea care contează cu adevărat: exportă-l ca PDF și predă-l. Atinge mai jos pentru a deschide ecranul de export.",
+    "P.S. Salvează fișierul și în afara aplicației — viitorul tău îți va mulțumi."
+  ],
+  "cta": "Exportă PDF-ul meu"
+}

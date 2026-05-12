@@ -1,0 +1,8 @@
+{
+  "subject": "🔥 3 günlük seri, {{first_name}}",
+  "body": [
+    "{{streak}} serisindesin. Üç, dönüm noktasıdır — bunu geçtikten sonra çoğu insan kopmaz.",
+    "Bugün uygulamada bir dakika geçirerek sıcak tut."
+  ],
+  "cta": "Uygulamayı aç"
+}

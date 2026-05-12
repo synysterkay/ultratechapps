@@ -1,0 +1,14 @@
+{
+  "subject": "Sua primeira previsão começa aqui, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Ei {first_name},",
+    "Bem-vindo ao Predictify. Orientação rápida: cada partida no aplicativo vem com uma pontuação de confiança de IA calibrada que mostra exatamente o quão confiável é a previsão. Números, não achismos.",
+    "Experimente agora: {top_match_line}. Toque na partida, veja a análise completa e faça sua escolha.",
+    "Dica de profissional: escolha uma vez por dia durante 5 dias e você cria uma sequência. Usuários com sequência têm 3x mais chances de identificar previsões de valor."
+  ],
+  "cta_text": "Fazer minha primeira escolha",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "pp"
+}

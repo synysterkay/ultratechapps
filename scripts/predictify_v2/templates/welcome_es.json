@@ -1,0 +1,14 @@
+{
+  "subject": "Tu primera predicción comienza aquí, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Hola {first_name},",
+    "Bienvenido a Predictify. Orientación rápida: cada partido en la app viene con un puntaje de confianza de IA calibrado que te dice exactamente qué tan confiable es la predicción. Números, no corazonadas.",
+    "Pruébalo ahora: {top_match_line}. Toca el partido, ve el desglose completo, y asegura tu elección.",
+    "Consejo profesional: elige una vez al día durante 5 días y formarás una racha. Los usuarios con racha tienen 3 veces más probabilidades de detectar apuestas de valor."
+  ],
+  "cta_text": "Hacer mi primera elección",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "es"
+}

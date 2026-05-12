@@ -1,0 +1,8 @@
+{
+  "subject": "🔥 Racha de 3 días, {{first_name}}",
+  "body": [
+    "Tienes una racha de {{streak}}. Tres es el punto de inflexión: después de esto, la mayoría no la rompe.",
+    "Mantén el ritmo con un minuto en la aplicación hoy."
+  ],
+  "cta": "Abrir la aplicación"
+}

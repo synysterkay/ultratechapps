@@ -1,0 +1,9 @@
+{
+  "subject": "Tu esquema está listo — elige el capítulo 1, {{first_name}}",
+  "body": [
+    "Tienes un esquema para {{topic}}. La parte más difícil de la escritura académica ha terminado — sabes lo que dice cada capítulo.",
+    "Toca un capítulo, pulsa generar y tendrás un borrador en 60 segundos. La mayoría de los usuarios hacen el capítulo 1 el mismo día que lo eligen.",
+    "P.D. No tienes que elegir el capítulo 1 — elige el que te parezca más fácil. A la IA no le importa el orden."
+  ],
+  "cta": "Generar capítulo 1"
+}

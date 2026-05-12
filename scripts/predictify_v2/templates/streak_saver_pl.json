@@ -1,0 +1,14 @@
+{
+  "subject": "Twoja {streak_days}-dniowa passa kończy się za {hours_to_break} godzin",
+  "preview_text": "Jeden typ utrzymuje ją przy życiu. Twój AI ma gotową rekomendację.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Masz {streak_days}-dniową passę typowań. Większość użytkowników nigdy nie przekracza 5. Robisz coś rzadkiego.",
+    "Ale twoja passa kończy się za około {hours_to_break} godzin, jeśli dzisiaj nie zatwierdzisz typowania. Jeden tap. Tylko tyle potrzeba.",
+    "Twój AI już wykonał pracę. {top_match_line}"
+  ],
+  "cta_text": "Uratuj moją {streak_days}-dniową passę",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "pl"
+}

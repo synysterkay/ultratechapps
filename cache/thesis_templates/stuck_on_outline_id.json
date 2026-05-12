@@ -1,0 +1,9 @@
+{
+  "subject": "Garis besar Anda sudah selesai — pilih bab 1, {{first_name}}",
+  "body": [
+    "Anda sudah memiliki garis besar untuk {{topic}}. Bagian tersulit dari penulisan akademis sudah selesai — Anda tahu apa yang dikatakan setiap bab.",
+    "Ketuk sebuah bab, tekan generate, dan Anda akan memiliki draf dalam 60 detik. Sebagian besar pengguna mengerjakan bab 1 pada hari yang sama saat mereka memilihnya.",
+    "P.S. Anda tidak harus memilih bab 1 — pilihlah yang terasa paling mudah. AI tidak peduli dengan urutan."
+  ],
+  "cta": "Hasilkan bab 1"
+}

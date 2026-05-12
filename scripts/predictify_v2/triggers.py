@@ -112,10 +112,13 @@ TRIGGERS: list[tuple[int, str, Callable[[UserContext], bool]]] = [
         and datetime.now(timezone.utc).weekday() == 6
     )),
 
-    # ── 12. Community invite for engaged users with no community ──
+    # ── 12. Community invite. The orchestrator attaches a recommended
+    #     community via CommunityRecommender before this predicate runs,
+    #     and the recommender already filters out communities the user
+    #     owns or is a member of — so the predicate doesn't need its own
+    #     join-count check.
     (70, 'community_invite', lambda c: (
-        c.joined_community_count == 0
-        and c.owned_community_id is None
+        c.owned_community_id is None
         and c.total_picks_30d >= 2
         and getattr(c, '_recommended_community_id', None) is not None
     )),

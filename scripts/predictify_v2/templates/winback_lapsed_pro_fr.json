@@ -1,0 +1,14 @@
+{
+  "subject": "Reviens chez Pro à nos frais — 30 jours gratuits, sans carte nécessaire",
+  "preview_text": "Que s'est-il passé ? Était-ce le prix, les fonctionnalités, ou autre chose ?",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "Ton abonnement Pro a expiré et on l'a remarqué. On ne va pas te faire de baratin — tu sais exactement ce que Pro apporte. On veut juste savoir si quelque chose en particulier n'a pas fonctionné pour toi.",
+    "Si tu nous le dis (réponds simplement à cet email — un humain le lit), on rajoutera 30 jours de Pro à ton compte, sans conditions, sans carte. C'est une vraie offre, pas un argument marketing.",
+    "Que tu reviennes ou non, merci pour le temps passé avec nous. Tes retours nous aident sincèrement à construire la prochaine version."
+  ],
+  "cta_text": "Relance Pro gratuitement pendant 30 jours",
+  "cta_deeplink": "predictify://winback",
+  "kind": "winback_lapsed_pro",
+  "language": "fr"
+}

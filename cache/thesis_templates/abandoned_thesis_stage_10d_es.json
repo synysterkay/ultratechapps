@@ -1,0 +1,9 @@
+{
+  "subject": "Último recordatorio sobre {{topic}}, {{first_name}}",
+  "body": [
+    "Última vez que lo menciono. Tu {{work_type}} sobre {{topic}} sigue en tu cuenta, exactamente donde lo dejaste.",
+    "Si quieres volver, toca abajo — tu progreso está intacto. Si la vida siguió adelante, también está bien.",
+    "P.D. Incluso un capítulo más cambia la curva de dificultad para el resto. La parte más difícil es volver a abrir la aplicación."
+  ],
+  "cta": "Abrir mi borrador"
+}

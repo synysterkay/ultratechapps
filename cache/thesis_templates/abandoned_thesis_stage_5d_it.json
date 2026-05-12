@@ -1,0 +1,8 @@
+{
+  "subject": "5 giorni di silenzio — vuoi ancora finire {{topic}}?",
+  "body": [
+    "Sono passati cinque giorni dall'ultima volta che hai toccato il tuo {{work_type}} su {{topic}}. {{pain_hook}}",
+    "Se l'argomento è ancora importante, i prossimi 60 secondi nell'app fanno la differenza. Se non lo è, nessun giudizio — basta cliccare su annulla iscrizione e smetterò di controllare."
+  ],
+  "cta": "Riprendi da dove ho lasciato"
+}

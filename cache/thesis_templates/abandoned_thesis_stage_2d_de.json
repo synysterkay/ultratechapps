@@ -1,0 +1,8 @@
+{
+  "subject": "Ihre {{work_type}} zum Thema {{topic}} wartet",
+  "body": [
+    "Kurzer Check-in, {{first_name}} — Ihre {{work_type}} zum Thema {{topic}} ist bei {{progress}}.",
+    "Das nächste Kapitel zu generieren dauert etwa 60 Sekunden. Der erste Satz ist immer der schwerste, und Sie haben ihn bereits geschafft."
+  ],
+  "cta": "Meine {{work_type}} fortsetzen"
+}

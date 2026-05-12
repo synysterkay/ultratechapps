@@ -1,0 +1,9 @@
+{
+  "subject": "Votre plan est prêt — choisissez le chapitre 1, {{first_name}}",
+  "body": [
+    "Vous avez un plan pour {{topic}}. La partie la plus difficile de la rédaction académique est terminée — vous savez ce que chaque chapitre contient.",
+    "Appuyez sur un chapitre, cliquez sur générer, et vous obtenez un brouillon en 60 secondes. La plupart des utilisateurs rédigent le chapitre 1 le jour même où ils le choisissent.",
+    "P.S. Vous n'êtes pas obligé de choisir le chapitre 1 — choisissez celui qui vous semble le plus facile. L'IA ne se soucie pas de l'ordre."
+  ],
+  "cta": "Générer le chapitre 1"
+}

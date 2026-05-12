@@ -1,0 +1,8 @@
+{
+  "subject": "Une semaine complète, {{first_name}} 🔥",
+  "body": [
+    "Sept jours d'affilée à travailler sur votre {{work_type}}. Ce n'est pas le genre de chose que la plupart des gens réussissent.",
+    "Les personnes qui tiennent une semaine d'affilée sont aussi celles qui terminent leurs brouillons à temps. Continuez comme ça."
+  ],
+  "cta": "Générer le chapitre d'aujourd'hui"
+}

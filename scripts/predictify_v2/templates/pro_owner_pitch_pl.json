@@ -1,0 +1,14 @@
+{
+  "subject": "Użytkownicy Pro mogą zarabiać na społecznościach — zatrzymaj 70%",
+  "preview_text": "Niektórzy właściciele zarabiają już tyle, że kilkukrotnie pokrywają koszt Pro.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Jesteś Pro już od jakiegoś czasu, a Twoje typy są stabilne. Czas odwrócić model: załóż własną społeczność na Predictify, ustaw niską miesięczną cenę i zatrzymaj 70% z każdej subskrypcji.",
+    "Najlepsi właściciele społeczności zamieniają swoje typy w powtarzalny dochód — a Predictify zajmuje się całą płatnością, hostingiem i zarządzaniem członkami. Ty po prostu dalej typujesz, jak do tej pory.",
+    "Konfiguracja zajmuje 90 sekund. Wybierz nazwę, wybierz ligę, wybierz cenę (lub zostaw za darmo). Właściciele ze zdjęciem w tle rozwijają się 3 razy szybciej — stworzyliśmy generator, który zrobi je dla Ciebie jednym kliknięciem."
+  ],
+  "cta_text": "Utwórz moją społeczność",
+  "cta_deeplink": "predictify://community/create",
+  "kind": "pro_owner_pitch",
+  "language": "pl"
+}

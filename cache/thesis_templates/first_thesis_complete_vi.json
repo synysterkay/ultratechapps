@@ -1,0 +1,9 @@
+{
+  "subject": "🎓 Bạn đã làm được, {{first_name}} — hãy xuất {{work_type}} của bạn",
+  "body": [
+    "{{first_name}}, {{work_type}} của bạn về chủ đề {{topic}} đã hoàn thành. Đó là một thành tích thực sự.",
+    "Bây giờ là phần thực sự quan trọng: xuất nó dưới dạng PDF và nộp. Nhấn vào bên dưới để mở màn hình xuất.",
+    "P.S. Hãy lưu tệp ở đâu đó bên ngoài ứng dụng nữa — bạn trong tương lai sẽ cảm ơn bạn."
+  ],
+  "cta": "Xuất PDF của tôi"
+}

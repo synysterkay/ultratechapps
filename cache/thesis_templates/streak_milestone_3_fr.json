@@ -1,0 +1,8 @@
+{
+  "subject": "🔥 3 jours d'affilée, {{first_name}}",
+  "body": [
+    "Vous êtes sur une série de {{streak}}. Trois est le point d'inflexion — passé ce cap, la plupart des gens ne craquent pas.",
+    "Gardez la flamme avec une minute dans l'application aujourd'hui."
+  ],
+  "cta": "Ouvrir l'application"
+}

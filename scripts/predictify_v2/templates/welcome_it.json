@@ -1,0 +1,14 @@
+{
+  "subject": "La tua prima previsione inizia qui, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Benvenuto su Predictify. Breve orientamento: ogni partita nell'app ha un punteggio di confidenza AI calibrato che ti dice esattamente quanto è affidabile la previsione. Numeri, non sensazioni.",
+    "Prova ora: {top_match_line}. Tocca la partita, vedi il dettaglio completo, blocca la tua scelta.",
+    "Consiglio da pro: scegli una volta al giorno per 5 giorni e costruisci una streak. Gli utenti con streak hanno 3x più probabilità di individuare le value call."
+  ],
+  "cta_text": "Fai la mia prima scelta",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "it"
+}

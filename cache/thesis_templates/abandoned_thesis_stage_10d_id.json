@@ -1,0 +1,9 @@
+{
+  "subject": "Pengingat terakhir tentang {{topic}}, {{first_name}}",
+  "body": [
+    "Terakhir kali saya akan menyebut ini. {{work_type}} Anda tentang {{topic}} masih ada di akun Anda, persis di tempat Anda tinggalkan.",
+    "Jika Anda ingin kembali, ketuk di bawah — progres Anda masih utuh. Jika hidup berlanjut, itu juga tidak apa-apa.",
+    "P.S. Bahkan satu bab lagi mengubah kurva kesulitan untuk sisanya. Bagian tersulit adalah membuka aplikasi lagi."
+  ],
+  "cta": "Buka draf saya"
+}

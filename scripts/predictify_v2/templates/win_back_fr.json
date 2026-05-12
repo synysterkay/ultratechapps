@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify a réussi {recent_correct} de ses {recent_total} derniers pronostics — sans vous",
+  "preview_text": "Vous avez été discret. Voici ce que votre IA a prédit.",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "Petite mise à jour : pendant votre absence, Predictify a continué à faire ce qu'il fait de mieux. Sur les {recent_total} derniers pronostics : {recent_correct} corrects. Soit {recent_accuracy_pct}% — pas mal pour un modèle qui tourne en pilote automatique.",
+    "Le plus intéressant : le meilleur pronostic du jour est {top_match_line}",
+    "Ouvrez l'appli, prenez 30 secondes pour voir le raisonnement complet, et décidez si votre IA mérite un second regard."
+  ],
+  "cta_text": "Voir le pronostic le plus fort du jour",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "fr"
+}

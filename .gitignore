@@ -36,6 +36,7 @@ env/
 # Cache (ignore all except pre-generated retention emails)
 cache/*
 !cache/retention_emails/
+!cache/thesis_templates/
 cache/retention_emails/.gitkeep
 *.cache
 .cache/

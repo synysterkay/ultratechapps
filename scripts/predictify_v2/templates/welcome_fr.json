@@ -1,0 +1,14 @@
+{
+  "subject": "Votre première prédiction commence ici, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "Bienvenue sur Predictify. Petite orientation : chaque match dans l'app est accompagné d'un score de confiance IA calibré qui vous indique exactement à quel point la prédiction est fiable. Des chiffres, pas des intuitions.",
+    "Essayez maintenant : {top_match_line}. Tapez sur le match, voyez l'analyse complète, verrouillez votre choix.",
+    "Conseil de pro : faites un pick par jour pendant 5 jours et vous construisez une série. Les utilisateurs avec une série sont 3 fois plus susceptibles de repérer les bons coups."
+  ],
+  "cta_text": "Faire mon premier pick",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "fr"
+}

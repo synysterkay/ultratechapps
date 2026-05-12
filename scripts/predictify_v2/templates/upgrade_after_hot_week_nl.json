@@ -1,0 +1,14 @@
+{
+  "subject": "{accuracy_pct}% nauwkeurigheid deze week — Pro-gebruikers scoren gemiddeld {pro_target_pct}%",
+  "preview_text": "Dit is wat het model verbergt voor jouw gratis versie.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Je laatste {recent_total} voorspellingen hadden {accuracy_pct}% raak — dat ligt ruim boven het gemiddelde van de gratis gebruikers. Je leest het model beter dan de meesten.",
+    "Pro-gebruikers zien het *sterkste signaal* voor elke wedstrijd — de enige kaart die consistent {pro_target_pct}%+ scoort. Plus gekalibreerd vertrouwen voor elke markt, niet alleen de uitslag. Zo blijven de beste nauwkeurigheidsniveaus aan de top.",
+    "Wil je het 7 dagen gratis proberen? Geen kaart nodig, geen automatische verlenging. Als het je cijfers niet verbetert, loop je weg."
+  ],
+  "cta_text": "Start 7-daagse Pro-proef",
+  "cta_deeplink": "predictify://upgrade?ref=hot_week",
+  "kind": "upgrade_after_hot_week",
+  "language": "nl"
+}

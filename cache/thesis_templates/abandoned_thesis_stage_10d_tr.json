@@ -1,0 +1,9 @@
+{
+  "subject": "{{topic}} hakkında son hatırlatma, {{first_name}}",
+  "body": [
+    "Bundan sonra bir daha bahsetmeyeceğim. {{topic}} konulu {{work_type}}'iniz hesabınızda, tam olarak bıraktığınız yerde duruyor.",
+    "Geri dönmek isterseniz aşağıya dokunun — ilerlemeniz kaydedildi. Hayat devam ettiyse, bu da sorun değil.",
+    "Not: Bir bölüm daha eklemek bile geri kalanın zorluk eğrisini değiştirir. En zor kısım uygulamayı yeniden açmaktır."
+  ],
+  "cta": "Taslağımı aç"
+}

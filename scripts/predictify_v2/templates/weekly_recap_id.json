@@ -1,0 +1,14 @@
+{
+  "subject": "Minggu Anda: {recent_correct}/{recent_total} prediksi benar",
+  "preview_text": "Akurasi {accuracy_pct}%. Pilihan teratas sudah siap untuk minggu depan.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Rekap singkat minggu Anda di Predictify:",
+    "✅ {recent_correct} dari {recent_total} prediksi tepat\n📊 Akurasi {accuracy_pct}% selama 30 hari terakhir\n🔥 Streak {streak_days} hari (rekor Anda sejauh ini)",
+    "Ke depannya: panggilan terkuat model minggu ini adalah {top_match_line}. Layak dilihat — buka aplikasi dan kami akan tunjukkan alasannya."
+  ],
+  "cta_text": "Lihat pilihan teratas minggu depan",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "id"
+}

@@ -1,0 +1,8 @@
+{
+  "subject": "{{work_type}} tău despre {{topic}} te așteaptă",
+  "body": [
+    "O scurtă verificare, {{first_name}} — {{work_type}} tău despre {{topic}} este la {{progress}}.",
+    "Generarea următorului capitol durează aproximativ 60 de secunde. Prima propoziție este întotdeauna cea mai grea, iar tu ai trecut deja peste ea."
+  ],
+  "cta": "Continuă {{work_type}} meu"
+}

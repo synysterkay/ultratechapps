@@ -1,0 +1,8 @@
+{
+  "subject": "🔥 Sequência de 3 dias, {{first_name}}",
+  "body": [
+    "Você está em uma {{streak}}. Três é o ponto de inflexão — depois disso, a maioria das pessoas não quebra.",
+    "Mantenha-a aquecida com um minuto no aplicativo hoje."
+  ],
+  "cta": "Abrir o aplicativo"
+}

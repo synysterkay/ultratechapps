@@ -1,0 +1,14 @@
+{
+  "subject": "Usuários Pro podem ganhar com comunidades — fique com 70%",
+  "preview_text": "Alguns proprietários já ganham o suficiente para cobrir o Pro várias vezes.",
+  "body_paragraphs": [
+    "Olá {first_name},",
+    "Você é Pro há um tempo e seus palpites são consistentes. Hora de virar o jogo: crie sua própria comunidade no Predictify, defina um preço mensal pequeno e fique com 70% de cada assinatura.",
+    "Os principais proprietários de comunidades estão transformando seus palpites em renda recorrente — e o Predictify cuida de todo o pagamento, hospedagem e gerenciamento de membros. Você só continua prevendo como já faz.",
+    "A configuração leva 90 segundos. Escolha um nome, escolha uma liga, escolha um preço (ou mantenha gratuito). Proprietários com imagem de capa crescem 3x mais rápido — criamos um gerador que cria uma para você com um toque."
+  ],
+  "cta_text": "Criar minha comunidade",
+  "cta_deeplink": "predictify://community/create",
+  "kind": "pro_owner_pitch",
+  "language": "pt"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "あなたの最初の予想はここから始まります、{first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "やあ {first_name}、",
+    "Predictifyへようこそ。簡単な説明です：アプリ内のすべての試合には、予測の信頼性を正確に示すAI調整済みの信頼度スコアが付いています。感覚ではなく、数字です。",
+    "今すぐ試してみてください：{top_match_line}。試合をタップして、詳細な内訳を確認し、あなたの予想を確定しましょう。",
+    "プロのヒント：5日間、1日1回予想すると、連続記録（ストリーク）が作れます。ストリークを続けているユーザーは、価値のある予想を見つける可能性が3倍高くなります。"
+  ],
+  "cta_text": "最初の予想をする",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "ja"
+}

@@ -1,0 +1,9 @@
+{
+  "subject": "Seu esboço está pronto — escolha o capítulo 1, {{first_name}}",
+  "body": [
+    "Você tem um esboço para {{topic}}. A parte mais difícil da escrita acadêmica acabou — você sabe o que cada capítulo diz.",
+    "Toque em um capítulo, clique em gerar e você terá um rascunho em 60 segundos. A maioria dos usuários faz o capítulo 1 no mesmo dia em que o escolhe.",
+    "P.S. Você não precisa escolher o capítulo 1 — escolha o que parecer mais fácil. A IA não se importa com a ordem."
+  ],
+  "cta": "Gerar capítulo 1"
+}

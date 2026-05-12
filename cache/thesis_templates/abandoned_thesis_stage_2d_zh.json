@@ -1,0 +1,8 @@
+{
+  "subject": "您的关于{{topic}}的{{work_type}}正在等待",
+  "body": [
+    "快速提醒一下，{{first_name}} — 您关于{{topic}}的{{work_type}}目前进度为{{progress}}。",
+    "生成下一章大约需要60秒。第一句话总是最难的，而您已经跨过了这个坎。"
+  ],
+  "cta": "继续我的{{work_type}}"
+}

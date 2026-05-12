@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} vs {away_team} — {confidence_pct}% vertrouwenscall",
+  "preview_text": "{league_name} trapt af over {hours_to_kickoff}u. Je AI-pick is klaar.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "{home_team} vs {away_team} trapt over ongeveer {hours_to_kickoff} uur af. Je AI heeft elk signaal geanalyseerd — vorm, xG, onderlinge duels, opstellingen — en een call vastgezet.",
+    "📊 De pick: {pick_label}\n🎯 Gekalibreerd vertrouwen: {confidence_pct}%\n🏆 Tier: {tier_label}",
+    "Dit is het soort pick waar we Predictify voor hebben gebouwd. Open de app, bekijk de volledige onderbouwing en leg je voorspelling vast voor de aftrap."
+  ],
+  "cta_text": "Bekijk de volledige voorspelling",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "nl"
+}

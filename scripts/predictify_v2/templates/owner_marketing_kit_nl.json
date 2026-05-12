@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} heeft leden nodig — zo groeien top-eigenaren",
+  "preview_text": "5 plekken waar we eigenaren hebben zien posten die echt converteren.",
+  "body_paragraphs": [
+    "Hoi {first_name},",
+    "Jouw community {community_name} heeft {member_count} lid{member_plural}. Eigenaren die in week één 25+ leden haalden, gebruiken allemaal hetzelfde stappenplan — hier is het.",
+    "1. WhatsApp/Telegram-groepschats: deel de link met een korte teaser (\"AI-voorspellingen voor {league_short}, gratis om lid te worden\")\n2. X / Twitter: post je meest zelfverzekerde pick van de week met de join-link in het antwoord\n3. r/{league_short}, r/footballbets, r/soccerbetting op Reddit: vastgezette wekelijkse draad\n4. TikTok-reacties onder wedstrijdpreview-video's\n5. Discord-servers voor de competities die je dekt",
+    "Predictify maakt de coverafbeelding voor je (je deellink ziet er 3x beter uit met één — dat alleen al verhoogt het join-percentage merkbaar). Open de deelkit, kopieer de link, plak hem waar voetbalfans samenkomen."
+  ],
+  "cta_text": "Open deelkit",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "nl"
+}

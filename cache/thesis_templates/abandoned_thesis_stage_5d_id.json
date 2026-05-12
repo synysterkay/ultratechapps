@@ -1,0 +1,8 @@
+{
+  "subject": "5 hari sepi — masih ingin menyelesaikan {{topic}}?",
+  "body": [
+    "Sudah lima hari sejak Anda menyentuh {{work_type}} tentang {{topic}}. {{pain_hook}}",
+    "Jika topik ini masih penting, 60 detik berikutnya di aplikasi akan membuat kemajuan. Jika tidak, tidak masalah — cukup klik berhenti berlangganan dan saya akan berhenti mengecek."
+  ],
+  "cta": "Lanjutkan dari tempat saya berhenti"
+}

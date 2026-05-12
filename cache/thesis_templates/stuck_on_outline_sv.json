@@ -1,0 +1,9 @@
+{
+  "subject": "Din disposition är klar — välj kapitel 1, {{first_name}}",
+  "body": [
+    "Du har en disposition för {{topic}}. Den svåraste delen av akademiskt skrivande är över — du vet vad varje kapitel handlar om.",
+    "Tryck på ett kapitel, tryck på generera, och du har ett utkast på 60 sekunder. De flesta användare gör kapitel 1 samma dag som de väljer det.",
+    "PS. Du behöver inte välja kapitel 1 — välj det som känns enklast. AI:n bryr sig inte om ordningen."
+  ],
+  "cta": "Generera kapitel 1"
+}

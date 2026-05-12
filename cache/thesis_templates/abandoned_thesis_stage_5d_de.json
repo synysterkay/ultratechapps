@@ -1,0 +1,8 @@
+{
+  "subject": "5 Tage Stille — willst du {{topic}} immer noch beenden?",
+  "body": [
+    "Es ist fünf Tage her, seit du dein {{work_type}} zu {{topic}} angerührt hast. {{pain_hook}}",
+    "Wenn das Thema dir noch wichtig ist, bringt dich die nächste Minute in der App voran. Wenn nicht, kein Urteil — klick einfach auf Abmelden, und ich höre auf, nachzufragen."
+  ],
+  "cta": "Weitermachen, wo ich aufgehört habe"
+}

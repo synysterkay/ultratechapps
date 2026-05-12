@@ -1,0 +1,8 @@
+{
+  "subject": "5 jours de silence — toujours envie de finir {{topic}} ?",
+  "body": [
+    "Cela fait cinq jours que vous n'avez pas touché à votre {{work_type}} sur {{topic}}. {{pain_hook}}",
+    "Si le sujet compte toujours, les 60 prochaines secondes dans l'application feront avancer les choses. Sinon, aucun jugement — cliquez simplement sur \"se désabonner\" et j'arrêterai de prendre des nouvelles."
+  ],
+  "cta": "Reprendre là où je me suis arrêté"
+}

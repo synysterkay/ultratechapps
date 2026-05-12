@@ -1,0 +1,8 @@
+{
+  "subject": "{{work_type}} Anda tentang {{topic}} menunggu",
+  "body": [
+    "Pengecekan singkat, {{first_name}} — {{work_type}} Anda tentang {{topic}} berada di {{progress}}.",
+    "Menghasilkan bab berikutnya membutuhkan waktu sekitar 60 detik. Kalimat pertama selalu yang tersulit, dan Anda sudah melewatinya."
+  ],
+  "cta": "Lanjutkan {{work_type}} saya"
+}

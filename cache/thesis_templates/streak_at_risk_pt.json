@@ -1,0 +1,8 @@
+{
+  "subject": "Não perca sua {{streak}}, {{first_name}}",
+  "body": [
+    "Você está em uma {{streak}} 🔥 — e está a um dia inativo de perdê-la.",
+    "Dois minutos no app mantêm ela viva. Abra agora e o contador sobe amanhã."
+  ],
+  "cta": "Manter minha sequência viva"
+}

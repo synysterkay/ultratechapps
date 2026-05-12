@@ -1,0 +1,14 @@
+{
+  "subject": "Deine erste Vorhersage beginnt hier, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Willkommen bei Predictify. Kurze Einführung: Jedes Spiel in der App hat einen kalibrierten KI-Konfidenzwert, der dir genau zeigt, wie zuverlässig die Vorhersage ist. Zahlen, nicht Bauchgefühl.",
+    "Probier es jetzt aus: {top_match_line}. Tippe auf das Spiel, sieh die vollständige Aufschlüsselung und gib deine Prognose ab.",
+    "Profi-Tipp: Tippe 5 Tage lang einmal täglich und baue eine Serie auf. Nutzer mit Serien erkennen Werttipps 3x häufiger."
+  ],
+  "cta_text": "Meine erste Vorhersage abgeben",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "de"
+}

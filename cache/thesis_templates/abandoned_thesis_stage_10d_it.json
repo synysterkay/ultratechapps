@@ -1,0 +1,9 @@
+{
+  "subject": "Ultimo promemoria su {{topic}}, {{first_name}}",
+  "body": [
+    "Ultima volta che lo menziono. Il tuo {{work_type}} su {{topic}} è ancora nel tuo account, esattamente dove lo hai lasciato.",
+    "Se vuoi tornare, tocca qui sotto — i tuoi progressi sono intatti. Se la vita è andata avanti, va bene lo stesso.",
+    "P.S. Anche un solo capitolo in più cambia la curva di difficoltà per il resto. La parte più difficile è riaprire l'app."
+  ],
+  "cta": "Apri la mia bozza"
+}

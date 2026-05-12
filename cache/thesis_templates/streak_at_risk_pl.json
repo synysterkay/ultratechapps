@@ -1,0 +1,8 @@
+{
+  "subject": "Nie trać swojego {{streak}}, {{first_name}}",
+  "body": [
+    "Masz {{streak}} 🔥 — i jesteś jeden dzień bez aktywności od jej utraty.",
+    "Dwie minuty w aplikacji utrzymują ją przy życiu. Otwórz ją teraz, a licznik wzrośnie jutro."
+  ],
+  "cta": "Utrzymaj mój streak"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "Gli utenti Pro possono guadagnare dalle community — tieniti il 70%",
+  "preview_text": "Alcuni proprietari ora guadagnano abbastanza da coprire il loro abbonamento Pro più volte.",
+  "body_paragraphs": [
+    "Ciao {first_name},",
+    "Sei Pro da un po' e i tuoi pronostici sono costanti. È ora di ribaltare il modello: apri la tua community su Predictify, imposta un piccolo prezzo mensile e tieniti il 70% di ogni abbonamento.",
+    "I migliori proprietari di community stanno trasformando i loro pronostici in entrate ricorrenti — e Predictify gestisce pagamenti, hosting e gestione dei membri. Tu continua solo a fare pronostici come già fai.",
+    "La configurazione richiede 90 secondi. Scegli un nome, scegli una lega, scegli un prezzo (o lasciala gratuita). I proprietari con un'immagine di copertina crescono 3 volte più velocemente — abbiamo creato un generatore che te ne crea una con un tocco."
+  ],
+  "cta_text": "Crea la mia community",
+  "cta_deeplink": "predictify://community/create",
+  "kind": "pro_owner_pitch",
+  "language": "it"
+}

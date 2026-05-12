@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} vs {away_team} — %{confidence_pct} güven seviyesinde tahmin",
+  "preview_text": "{league_name} {hours_to_kickoff} saat sonra başlıyor. Yapay zekanın tahmini hazır.",
+  "body_paragraphs": [
+    "Merhaba {first_name},",
+    "{home_team} - {away_team} maçı yaklaşık {hours_to_kickoff} saat sonra başlıyor. Yapay zekan tüm sinyalleri analiz etti — form, xG, karşılıklı maçlar, kadrolar — ve bir tahmin belirledi.",
+    "📊 Tahmin: {pick_label}\n🎯 Kalibre edilmiş güven: %{confidence_pct}\n🏆 Seviye: {tier_label}",
+    "Bu, Predictify'i kurduğumuz türden bir tahmin. Uygulamayı aç, tüm gerekçeleri gör ve maç başlamadan tahminini kilitle."
+  ],
+  "cta_text": "Tam tahmini gör",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "tr"
+}

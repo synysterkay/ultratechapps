@@ -1,0 +1,14 @@
+{
+  "subject": "İlk tahminin burada başlıyor, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Merhaba {first_name},",
+    "Predictify'e hoş geldin. Kısa bir oryantasyon: uygulamadaki her maç, tahminin ne kadar güvenilir olduğunu sana söyleyen kalibre edilmiş bir AI güven skoruyla gelir. Rakamlar, hisler değil.",
+    "Şimdi dene: {top_match_line}. Maça dokun, detaylı dökümü gör, tahminini kilitle.",
+    "Profesyonel ipucu: 5 gün boyunca günde bir kez tahmin yap ve bir seri oluştur. Seri kullananlar, değerli tahminleri görmede 3 kat daha başarılı."
+  ],
+  "cta_text": "İlk tahminimi yap",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "tr"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "Ganhe Pro grátis convidando um amigo do futebol",
+  "preview_text": "1 indicação = 1 mês grátis para vocês dois.",
+  "body_paragraphs": [
+    "Ei {first_name},",
+    "Você tem feito palpites consistentemente — essa é a parte que a maioria dos usuários pula. Agora o bônus fácil: convide um amigo que assiste aos mesmos jogos que você, e vocês dois ganham um mês grátis do Predictify Pro no momento em que ele se inscrever.",
+    "Por que fazemos isso: comunidades de amigos que palpam juntos permanecem 4x mais tempo do que usuários solitários. É melhor para todos — inclusive para nós.",
+    "Toque abaixo para pegar seu link de convite exclusivo. Envie para uma pessoa no seu grupo. Pronto."
+  ],
+  "cta_text": "Pegar meu link de convite",
+  "cta_deeplink": "predictify://referral",
+  "kind": "referral_invite",
+  "language": "pp"
+}

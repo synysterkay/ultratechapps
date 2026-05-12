@@ -1,0 +1,14 @@
+{
+  "subject": "أسبوعك: {recent_correct}/{recent_total} توقعات صحيحة",
+  "preview_text": "دقة {accuracy_pct}%. أفضل اختيار مرتب للأسبوع القادم.",
+  "body_paragraphs": [
+    "مرحبًا {first_name}،",
+    "ملخص سريع لأسبوعك على Predictify:",
+    "✅ {recent_correct} من {recent_total} توقعات صحيحة\n📊 دقة {accuracy_pct}% خلال آخر 30 يومًا\n🔥 سلسلة {streak_days} أيام (رقمك القياسي حتى الآن)",
+    "بالنظر إلى الأمام: أقوى توصية للنموذج هذا الأسبوع هي {top_match_line}. تستحق نظرة — افتح التطبيق وسنوضح لك السبب بالضبط."
+  ],
+  "cta_text": "شاهد أفضل اختيار للأسبوع القادم",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "ar"
+}

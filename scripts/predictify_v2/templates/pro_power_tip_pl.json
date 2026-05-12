@@ -1,0 +1,14 @@
+{
+  "subject": "Karta Najsilniejszego Sygnału – na co tak naprawdę patrzą Pro",
+  "preview_text": "Trafia w 88% w meczach Elite. Większość użytkowników nawet jej nie otwiera.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Szybka porada Pro, którą mogłeś przegapić: na każdym ekranie przewidywania przewiń w dół po wyniku meczu i znajdź kartę 'Najsilniejszy Sygnał'. To skalibrowany typ podwójnej szansy – w meczach Elite trafiał historycznie w ~88% przypadków.",
+    "Jak z tego korzystać: gdy odznaka poziomu mówi Elite lub Premium, Najsilniejszy Sygnał to najbezpieczniejszy wybór. Gdy mówi Standard, traktuj go jako punkt wyjścia i spójrz też na inne rynki.",
+    "Dzisiejszy przykład: {top_match_line}. Otwórz go i zobaczysz dokładnie, o co mi chodzi."
+  ],
+  "cta_text": "Otwórz dzisiejszy top typ",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "pro_power_tip",
+  "language": "pl"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "{accuracy_pct}% celności w tym tygodniu — użytkownicy Pro osiągają średnio {pro_target_pct}%",
+  "preview_text": "Oto, co model ukrywa przed Twoim darmowym kontem.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Twoje ostatnie {recent_total} typów trafiło z celnością {accuracy_pct}% — to znacznie powyżej średniej darmowego konta. Czytasz model lepiej niż większość.",
+    "Użytkownicy Pro widzą *najsilniejszy sygnał* dla każdego meczu — tę jedną kartę, która regularnie trafia z wynikiem {pro_target_pct}%+. Dodatkowo skalibrowane zaufanie dla każdego rynku, nie tylko wyniku meczu. To dlatego najlepsze poziomy celności utrzymują się na szczycie.",
+    "Chcesz wypróbować przez 7 dni za darmo? Bez karty, bez automatycznego odnawiania. Jeśli nie poprawi Twoich wyników, po prostu rezygnujesz."
+  ],
+  "cta_text": "Rozpocznij 7-dniowy okres próbny Pro",
+  "cta_deeplink": "predictify://upgrade?ref=hot_week",
+  "kind": "upgrade_after_hot_week",
+  "language": "pl"
+}

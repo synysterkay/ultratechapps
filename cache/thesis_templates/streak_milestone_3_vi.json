@@ -1,0 +1,8 @@
+{
+  "subject": "🔥 Chuỗi 3 ngày, {{first_name}}",
+  "body": [
+    "Bạn đang có chuỗi {{streak}}. Ba là điểm bước ngoặt — vượt qua mốc này, hầu hết mọi người không bỏ cuộc.",
+    "Hãy giữ lửa bằng cách dành một phút trong ứng dụng hôm nay."
+  ],
+  "cta": "Mở ứng dụng"
+}

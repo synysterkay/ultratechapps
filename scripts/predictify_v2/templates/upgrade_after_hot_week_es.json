@@ -1,0 +1,14 @@
+{
+  "subject": "{accuracy_pct}% de precisión esta semana — los usuarios Pro promedian {pro_target_pct}%",
+  "preview_text": "Esto es lo que el modelo te oculta en tu nivel gratuito.",
+  "body_paragraphs": [
+    "Hola {first_name},",
+    "Tus últimos {recent_total} pronósticos acertaron un {accuracy_pct}% — eso te coloca muy por encima del promedio del nivel gratuito. Estás leyendo el modelo mejor que la mayoría.",
+    "Los usuarios Pro ven la *señal más fuerte* para cada partido — la única carta que acierta consistentemente un {pro_target_pct}%+. Además, confianza calibrada en cada mercado, no solo en el resultado del partido. Así es como los mejores niveles de precisión se mantienen en la cima.",
+    "¿Quieres probarlo gratis por 7 días? Sin tarjeta requerida, sin renovación automática. Si no mejora tus números, te retiras."
+  ],
+  "cta_text": "Iniciar prueba Pro de 7 días",
+  "cta_deeplink": "predictify://upgrade?ref=hot_week",
+  "kind": "upgrade_after_hot_week",
+  "language": "es"
+}

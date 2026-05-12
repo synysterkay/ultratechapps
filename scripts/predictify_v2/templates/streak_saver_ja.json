@@ -1,0 +1,14 @@
+{
+  "subject": "あなたの{streak_days}日連続予想、あと{hours_to_break}時間で終了",
+  "preview_text": "1回の予想で継続できます。AIの予想は準備完了。",
+  "body_paragraphs": [
+    "やあ {first_name}、",
+    "あなたは現在{streak_days}日連続予想中です。ほとんどのユーザーは5日を超えられません。あなたは特別なことを成し遂げています。",
+    "しかし、今日中に予想を確定しないと、約{hours_to_break}時間後に連続記録が終了します。タップ1つで済みます。",
+    "あなたのAIはすでに準備完了です。{top_match_line}"
+  ],
+  "cta_text": "{streak_days}日連続記録を守る",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "ja"
+}

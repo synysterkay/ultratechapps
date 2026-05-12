@@ -1,0 +1,9 @@
+{
+  "subject": "Último lembrete sobre {{topic}}, {{first_name}}",
+  "body": [
+    "Última vez que vou mencionar isso. Seu {{work_type}} sobre {{topic}} ainda está na sua conta, exatamente onde você parou.",
+    "Se quiser voltar, toque abaixo — seu progresso está intacto. Se a vida seguiu em frente, tudo bem também.",
+    "P.S. Mesmo mais um capítulo muda a curva de dificuldade para o resto. A parte mais difícil é reabrir o aplicativo."
+  ],
+  "cta": "Abrir meu rascunho"
+}

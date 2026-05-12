@@ -1,0 +1,8 @@
+{
+  "subject": "🔥 3-dniowa passa, {{first_name}}",
+  "body": [
+    "Masz {{streak}}. Trzy to punkt zwrotny — po tym większość ludzi nie przerywa.",
+    "Podtrzymaj ją minutą w aplikacji dzisiaj."
+  ],
+  "cta": "Otwórz aplikację"
+}

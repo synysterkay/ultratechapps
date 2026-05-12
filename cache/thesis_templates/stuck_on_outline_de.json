@@ -1,0 +1,9 @@
+{
+  "subject": "Deine Gliederung ist fertig — wähle Kapitel 1, {{first_name}}",
+  "body": [
+    "Du hast eine Gliederung für {{topic}}. Der schwierigste Teil des akademischen Schreibens ist vorbei — du weißt, was jedes Kapitel aussagt.",
+    "Tippe auf ein Kapitel, drücke auf Generieren und du hast in 60 Sekunden einen Entwurf. Die meisten Nutzer schreiben Kapitel 1 noch am selben Tag, an dem sie es auswählen.",
+    "P.S. Du musst nicht Kapitel 1 wählen — wähle das, was dir am einfachsten erscheint. Der KI ist die Reihenfolge egal."
+  ],
+  "cta": "Kapitel 1 generieren"
+}

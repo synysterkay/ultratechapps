@@ -1,0 +1,9 @@
+{
+  "subject": "Ostatnie przypomnienie o {{topic}}, {{first_name}}",
+  "body": [
+    "Ostatni raz o tym wspominam. Twoja {{work_type}} na temat {{topic}} wciąż jest na Twoim koncie, dokładnie tam, gdzie ją zostawiłeś.",
+    "Jeśli chcesz wrócić, kliknij poniżej — Twój postęp jest nienaruszony. Jeśli życie potoczyło się dalej, też jest w porządku.",
+    "P.S. Nawet jeden dodatkowy rozdział zmienia krzywą trudności dla reszty. Najtrudniejsze jest ponowne otwarcie aplikacji."
+  ],
+  "cta": "Otwórz mój szkic"
+}

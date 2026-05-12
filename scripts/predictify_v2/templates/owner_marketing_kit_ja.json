@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} はメンバーを必要としています — トップオーナーがどう成長させるか",
+  "preview_text": "実際にコンバージョンにつながる、オーナーが投稿する5つの場所。",
+  "body_paragraphs": [
+    "やあ {first_name}、",
+    "あなたのコミュニティ {community_name} のメンバー数は {member_count} 人{member_plural}です。1週間で25人以上のメンバーを獲得したオーナーは、みんな同じプレイブックを使っています — それがこれです。",
+    "1. WhatsApp/Telegram グループチャット: リンクを1行のティーザーと一緒に貼る（「{league_short}のAI予想、無料で参加」）\n2. X / Twitter: 今週の最も自信のあるピックを投稿し、返信に参加リンクを載せる\n3. Redditの r/{league_short}、r/footballbets、r/soccerbetting: 固定の週次スレッド\n4. 試合プレビュー動画の下のTikTokコメント\n5. カバーしているリーグのDiscordサーバー",
+    "Predictify がカバー画像を自動生成します（画像があると共有リンクの見栄えが3倍良くなり、それだけで参加率が明らかに上がります）。シェアキットを開き、リンクをコピーして、サッカーファンが集まる場所に貼り付けてください。"
+  ],
+  "cta_text": "シェアキットを開く",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "ja"
+}

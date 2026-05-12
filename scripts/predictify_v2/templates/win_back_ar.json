@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify أصاب {recent_correct} من آخر {recent_total} توقعات — بدونك",
+  "preview_text": "كنت هادئًا. إليك ما كان يخبرك به ذكاؤك الاصطناعي.",
+  "body_paragraphs": [
+    "مرحبًا {first_name}،",
+    "تحديث سريع: بينما كنت بعيدًا، كان Predictify يفعل ما يجيده. آخر {recent_total} توقعات: {recent_correct} صحيحة. هذه {recent_accuracy_pct}% — ليس سيئًا لنموذج يعمل على الطيار الآلي.",
+    "وإليك المفاجأة: أفضل توقع اليوم هو {top_match_line}",
+    "افتح التطبيق، خذ 30 ثانية لترى التحليل الكامل، وقرر ما إذا كان ذكاؤك الاصطناعي يستحق نظرة ثانية."
+  ],
+  "cta_text": "شاهد أقوى توقع اليوم",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "ar"
+}

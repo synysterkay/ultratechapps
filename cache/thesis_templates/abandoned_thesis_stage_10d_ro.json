@@ -1,0 +1,9 @@
+{
+  "subject": "Ultimul impuls pe tema {{topic}}, {{first_name}}",
+  "body": [
+    "Ultima dată când menționez asta. {{work_type}} tău pe {{topic}} este încă în contul tău, exact acolo unde l-ai lăsat.",
+    "Dacă vrei să revii, atinge mai jos — progresul tău este intact. Dacă viața a mers mai departe, e în regulă și așa.",
+    "P.S. Chiar și un singur capitol în plus schimbă curba de dificultate pentru restul. Cea mai grea parte este să redeschizi aplicația."
+  ],
+  "cta": "Deschide schița mea"
+}

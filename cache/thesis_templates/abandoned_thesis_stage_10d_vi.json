@@ -1,0 +1,9 @@
+{
+  "subject": "Lời nhắc cuối về {{topic}}, {{first_name}}",
+  "body": [
+    "Lần cuối tôi nhắc đến điều này. {{work_type}} của bạn về {{topic}} vẫn còn trong tài khoản, chính xác ở nơi bạn đã dừng lại.",
+    "Nếu bạn muốn quay lại, hãy nhấn vào bên dưới — tiến trình của bạn vẫn còn nguyên. Nếu cuộc sống đã thay đổi, điều đó cũng ổn thôi.",
+    "P.S. Chỉ cần thêm một chương nữa thôi cũng sẽ thay đổi độ khó cho phần còn lại. Phần khó nhất là mở lại ứng dụng."
+  ],
+  "cta": "Mở bản nháp của tôi"
+}

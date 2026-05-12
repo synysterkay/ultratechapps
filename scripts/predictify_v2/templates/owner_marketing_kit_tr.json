@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} üye arıyor — işte en iyi sahiplerin büyüme taktikleri",
+  "preview_text": "Sahiplerin gerçekten dönüşüm sağladığı 5 yer.",
+  "body_paragraphs": [
+    "Merhaba {first_name},",
+    "Topluluğun {community_name} şu anda {member_count} üyeye sahip{member_plural}. İlk haftada 25+ üyeye ulaşan sahiplerin hepsi aynı oyun kitabını kullanıyor — işte burada.",
+    "1. WhatsApp/Telegram grup sohbetleri: bağlantıyı tek satırlık bir merak uyandırmayla paylaş (\"{league_short} için AI tahminleri, katılmak ücretsiz\")\n2. X / Twitter: haftanın en güvendiğin tahminini yanıt olarak katılım bağlantısıyla paylaş\n3. Reddit'te r/{league_short}, r/footballbets, r/soccerbetting: haftalık sabit konular\n4. TikTok'ta maç ön izleme videolarının altına yorum yap\n5. Kapsadığın liglerin Discord sunucuları",
+    "Predictify senin için kapak görselini hazırlar (paylaşım bağlantın onunla 3 kat daha iyi görünür — bu tek başına katılım oranını belirgin şekilde artırır). Paylaşım setini aç, bağlantıyı kopyala, futbolseverlerin toplandığı yerlere yapıştır."
+  ],
+  "cta_text": "Paylaşım setini aç",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "tr"
+}

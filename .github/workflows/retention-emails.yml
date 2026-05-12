@@ -110,12 +110,11 @@ jobs:
             echo "--- Running upsell triggers ---"
             python scripts/app_retention_emailer.py --upsell || true
             # ── Thesis Generator v2 trigger senders ──
-            echo "--- Running deadline countdown sender ---"
-            python scripts/deadline_countdown_sender.py || true
-            echo "--- Running first-thesis-complete sender ---"
-            python scripts/first_thesis_complete_sender.py || true
-            echo "--- Running streak-at-risk sender ---"
-            python scripts/streak_at_risk_sender.py || true
+            # Single entry point now — the orchestrator fires each sender
+            # in the right order (celebratory → re-engagement → urgency →
+            # monetization → winback → recap). Per-sender state files dedupe.
+            echo "--- Running thesis orchestrator (all thesis senders) ---"
+            python scripts/thesis_orchestrator.py || true
           fi
       
       - name: Save retention state
@@ -124,7 +123,7 @@ jobs:
           if [ -f cache/retention_state.json ]; then
             git config user.name "GitHub Actions"
             git config user.email "actions@github.com"
-            git add cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json firebase_exports/ -f 2>/dev/null || true
+            git add cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json cache/abandoned_thesis_state.json cache/free_quota_hit_state.json cache/trial_ending_state.json cache/winback_state.json cache/streak_milestone_state.json cache/weekly_progress_state.json cache/stuck_on_outline_state.json cache/cumulative_stats_state.json cache/thesis_templates/ firebase_exports/ -f 2>/dev/null || true
             if ! git diff --staged --quiet; then
               git commit -m "Update retention email state [skip ci]"
               # Push with pull-rebase retries — the run takes ~2.5h and the

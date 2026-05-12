@@ -1,0 +1,8 @@
+{
+  "subject": "{{work_type}} của bạn về {{topic}} đang chờ",
+  "body": [
+    "Kiểm tra nhanh, {{first_name}} — {{work_type}} của bạn về {{topic}} đang ở mức {{progress}}.",
+    "Tạo chương tiếp theo chỉ mất khoảng 60 giây. Câu đầu tiên luôn là khó nhất, và bạn đã vượt qua nó rồi."
+  ],
+  "cta": "Tiếp tục {{work_type}} của tôi"
+}

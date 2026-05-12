@@ -1,0 +1,9 @@
+{
+  "subject": "Dàn bài của bạn đã xong — chọn chương 1, {{first_name}}",
+  "body": [
+    "Bạn đã có dàn bài cho {{topic}}. Phần khó nhất của viết luận văn đã qua — bạn biết mỗi chương nói gì.",
+    "Chạm vào một chương, nhấn tạo, và bạn có bản nháp trong 60 giây. Hầu hết người dùng chọn chương 1 ngay trong ngày.",
+    "P.S. Bạn không cần phải chọn chương 1 — hãy chọn chương nào bạn thấy dễ nhất. AI không quan tâm thứ tự."
+  ],
+  "cta": "Tạo chương 1"
+}

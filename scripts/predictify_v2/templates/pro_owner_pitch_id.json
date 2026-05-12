@@ -1,0 +1,14 @@
+{
+  "subject": "Pengguna Pro bisa dapat penghasilan dari komunitas — simpan 70%",
+  "preview_text": "Beberapa pemilik sekarang menghasilkan cukup untuk menutupi biaya Pro mereka berkali-kali lipat.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Kamu sudah menjadi Pro cukup lama dan prediksimu konsisten. Saatnya membalik model: buka komunitasmu sendiri di Predictify, tetapkan harga bulanan kecil, dan simpan 70% dari setiap langganan.",
+    "Pemilik komunitas teratas mengubah prediksi mereka menjadi pendapatan berulang — dan Predictify menangani semua pembayaran, hosting, dan manajemen anggota. Kamu hanya perlu terus memprediksi seperti yang sudah kamu lakukan.",
+    "Pengaturannya 90 detik. Pilih nama, pilih liga, pilih harga (atau biarkan gratis). Pemilik dengan gambar sampul tumbuh 3x lebih cepat — kami telah membuat generator yang membuatkannya untukmu dalam satu ketukan."
+  ],
+  "cta_text": "Buat komunitasku",
+  "cta_deeplink": "predictify://community/create",
+  "kind": "pro_owner_pitch",
+  "language": "id"
+}

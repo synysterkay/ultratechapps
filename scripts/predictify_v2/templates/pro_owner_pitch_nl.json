@@ -1,0 +1,14 @@
+{
+  "subject": "Pro-gebruikers kunnen verdienen met communities — houd 70%",
+  "preview_text": "Sommige eigenaren verdienen nu genoeg om hun Pro meerdere keren terug te verdienen.",
+  "body_paragraphs": [
+    "Hoi {first_name},",
+    "Je bent al een tijdje Pro en je voorspellingen zijn consistent. Tijd om het model om te draaien: open je eigen community op Predictify, stel een kleine maandelijkse prijs in en houd 70% van elk abonnement.",
+    "Top community-eigenaren zetten hun voorspellingen om in terugkerende inkomsten — en Predictify regelt alle betalingen, hosting en ledenbeheer. Jij blijft gewoon voorspellen zoals je al doet.",
+    "Opzetten duurt 90 seconden. Kies een naam, kies een league, kies een prijs (of houd het gratis). Eigenaren met een coverafbeelding groeien 3x sneller — we hebben een generator gemaakt die er in één tik voor jou een maakt."
+  ],
+  "cta_text": "Maak mijn community aan",
+  "cta_deeplink": "predictify://community/create",
+  "kind": "pro_owner_pitch",
+  "language": "nl"
+}

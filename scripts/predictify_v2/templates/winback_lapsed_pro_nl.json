@@ -1,0 +1,14 @@
+{
+  "subject": "Kom terug naar Pro op onze kosten — 30 dagen gratis, geen kaart nodig",
+  "preview_text": "Wat is er gebeurd? Was het de prijs, de functies, of iets anders?",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Je Pro-abonnement is verlopen en dat hebben we gezien. We gaan het niet overschreeuwen — je weet precies wat Pro doet. We willen alleen weten of er specifiek iets niet voor je werkte.",
+    "Als je het ons vertelt (antwoord gewoon op deze e-mail — een echt mens leest het), voegen we 30 dagen Pro weer toe aan je account, zonder verplichtingen, geen kaart. Dat is een echt aanbod, geen marketingpraatje.",
+    "Of je nu terugkomt of niet, bedankt voor de tijd die je met ons hebt doorgebracht. Jouw feedback helpt ons echt om de volgende versie te bouwen."
+  ],
+  "cta_text": "Herstart Pro gratis voor 30 dagen",
+  "cta_deeplink": "predictify://winback",
+  "kind": "winback_lapsed_pro",
+  "language": "nl"
+}

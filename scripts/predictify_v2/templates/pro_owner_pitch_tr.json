@@ -1,0 +1,14 @@
+{
+  "subject": "Pro kullanıcılar topluluklardan kazanabilir — %70'ini alıkoyun",
+  "preview_text": "Bazı sahipler artık Pro ücretini birkaç kat karşılayacak kadar kazanıyor.",
+  "body_paragraphs": [
+    "Merhaba {first_name},",
+    "Bir süredir Pro kullanıcısısın ve tahminlerin tutarlı. Şimdi modeli tersine çevirme zamanı: Predictify'da kendi topluluğunu aç, küçük bir aylık ücret belirle ve her aboneliğin %70'ini cebine koy.",
+    "En iyi topluluk sahipleri tahminlerini düzenli gelire dönüştürüyor — Predictify tüm ödeme, barındırma ve üye yönetimini halleder. Sen sadece her zamanki gibi tahmin yapmaya devam et.",
+    "Kurulum 90 saniye. Bir isim seç, bir lig seç, bir fiyat seç (veya ücretsiz bırak). Kapak fotoğrafı olan sahipler 3 kat daha hızlı büyüyor — senin için tek dokunuşla bir tane oluşturan bir üretici yaptık."
+  ],
+  "cta_text": "Topluluğumu oluştur",
+  "cta_deeplink": "predictify://community/create",
+  "kind": "pro_owner_pitch",
+  "language": "tr"
+}

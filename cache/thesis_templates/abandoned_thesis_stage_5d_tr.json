@@ -1,0 +1,8 @@
+{
+  "subject": "5 gündür sessizlik — {{topic}} konusunu hâlâ bitirmek istiyor musun?",
+  "body": [
+    "{{topic}} hakkındaki {{work_type}}'ine dokunmayalı beş gün oldu. {{pain_hook}}",
+    "Konu hâlâ önemliyse, uygulamada geçireceğin bir sonraki 60 saniye işleri ilerletecektir. Değilse, yargılamıyorum — sadece abonelikten çık ve kontrol etmeyi bırakayım."
+  ],
+  "cta": "Kaldığım yerden devam et"
+}

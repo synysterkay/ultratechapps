@@ -1,0 +1,8 @@
+{
+  "subject": "{{streak}}'nı kaybetme, {{first_name}}",
+  "body": [
+    "{{streak}} serindesin 🔥 — ve onu kaybetmene bir günlük hareketsizlik kaldı.",
+    "Uygulamada iki dakika geçirmek onu canlı tutar. Hemen aç, yarın sayaç artsın."
+  ],
+  "cta": "Serimi canlı tut"
+}

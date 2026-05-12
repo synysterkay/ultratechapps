@@ -1,0 +1,14 @@
+{
+  "subject": "Die Strongest Signal-Karte – worauf Profis wirklich achten",
+  "preview_text": "Sie trifft bei Elite-Spielen zu 88%. Die meisten Nutzer öffnen sie nicht einmal.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Kurzer Profi-Tipp, den du vielleicht verpasst hast: Scrolle auf jedem Vorhersagebildschirm am Spielergebnis vorbei und finde die 'Strongest Signal'-Karte. Es ist der kalibrierte Double-Chance-Tipp – und bei Elite-Spielen hat er historisch gesehen ~88% getroffen.",
+    "So nutzt du sie: Wenn das Tier-Abzeichen Elite oder Premium sagt, ist das Strongest Signal der sicherste Tipp. Wenn es Standard sagt, behandle es als Ausgangspunkt und schau dir auch die anderen Märkte an.",
+    "Das heutige Beispiel: {top_match_line}. Öffne es und du wirst genau sehen, was ich meine."
+  ],
+  "cta_text": "Öffne den heutigen Top-Tipp",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "pro_power_tip",
+  "language": "de"
+}

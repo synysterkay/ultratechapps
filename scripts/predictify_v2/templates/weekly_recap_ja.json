@@ -1,0 +1,14 @@
+{
+  "subject": "今週のあなたの成績: {recent_correct}/{recent_total} の予想が的中",
+  "preview_text": "精度 {accuracy_pct}%。来週のトップピックが確定しました。",
+  "body_paragraphs": [
+    "やあ {first_name}、",
+    "Predictifyでの今週の簡単な振り返りです：",
+    "✅ {recent_correct}/{recent_total} の予想が的中\n📊 過去30日間の精度 {accuracy_pct}%\n🔥 {streak_days}日連続達成（あなたの記録）",
+    "今後の注目：モデルが今週最も強く推すのは {top_match_line} です。要チェック — アプリを開けばその理由を詳しくお見せします。"
+  ],
+  "cta_text": "来週のトップピックを見る",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "ja"
+}

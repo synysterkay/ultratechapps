@@ -1,0 +1,8 @@
+{
+  "subject": "🔥 Streak 3 hari, {{first_name}}",
+  "body": [
+    "Kamu sedang dalam {{streak}}. Tiga adalah titik balik — setelah ini kebanyakan orang tidak akan putus.",
+    "Jaga semangat dengan satu menit di aplikasi hari ini."
+  ],
+  "cta": "Buka aplikasi"
+}

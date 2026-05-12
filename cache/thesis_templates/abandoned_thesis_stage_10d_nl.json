@@ -1,0 +1,9 @@
+{
+  "subject": "Laatste herinnering over {{topic}}, {{first_name}}",
+  "body": [
+    "Laatste keer dat ik dit noem. Je {{work_type}} over {{topic}} staat nog in je account, precies waar je het achterliet.",
+    "Als je terug wilt komen, tik hieronder — je voortgang is bewaard. Als het leven verder is gegaan, is dat ook oké.",
+    "P.S. Zelfs één hoofdstuk extra verandert de moeilijkheidsgraad voor de rest. Het moeilijkste is de app weer openen."
+  ],
+  "cta": "Open mijn concept"
+}

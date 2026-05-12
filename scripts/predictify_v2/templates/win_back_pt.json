@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify acertou {recent_correct} dos últimos {recent_total} palpites — sem você",
+  "preview_text": "Você ficou quieto. Aqui está o que sua IA vem prevendo.",
+  "body_paragraphs": [
+    "Ei {first_name},",
+    "Atualização rápida: enquanto você esteve fora, a Predictify fez o que sabe fazer de melhor. Últimos {recent_total} palpites: {recent_correct} certos. Isso é {recent_accuracy_pct}% — nada mal para um modelo rodando no piloto automático.",
+    "E o melhor: a principal aposta de hoje é {top_match_line}",
+    "Abra o app, leve 30 segundos para ver a análise completa e decida se sua IA merece uma segunda chance."
+  ],
+  "cta_text": "Veja o palpite mais forte de hoje",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "pt"
+}

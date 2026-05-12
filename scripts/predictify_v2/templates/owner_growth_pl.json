@@ -1,0 +1,14 @@
+{
+  "subject": "Twoja społeczność {community_name} potrzebuje członków",
+  "preview_text": "Oto 30-sekundowa akcja, która potroi wskaźnik dołączania.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "{community_name} działa już od jakiegoś czasu i masz {member_count} członk{member_plural} na razie. Społeczności nie rosną same — ale najbliższe 24 godziny mogą to zmienić.",
+    "Twój najszybszy sposób: wrzuć link zaproszenia do swoich grupowych czatów. Społeczności ze zdjęciem w tle i 5+ członkami rosną 3x szybciej — twój link wygląda świetnie, gdy to masz.",
+    "Przygotowaliśmy dla Ciebie obrazek do udostępnienia. Jeden tap i gotowe do wysłania na WhatsApp, Discord lub gdziekolwiek twoi piłkarscy znajomi się spotykają."
+  ],
+  "cta_text": "Otwórz zestaw do udostępniania",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_growth",
+  "language": "pl"
+}

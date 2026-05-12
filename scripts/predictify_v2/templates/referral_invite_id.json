@@ -1,0 +1,14 @@
+{
+  "subject": "Dapatkan Pro gratis dengan mengundang satu teman pecinta sepak bola",
+  "preview_text": "1 referal = 1 bulan gratis untuk kalian berdua.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Kamu konsisten membuat prediksi — itu bagian yang paling sering dilewatkan pengguna lain. Sekarang bonus mudahnya: undang satu teman yang menonton pertandingan yang sama denganmu, dan kalian berdua dapat satu bulan gratis Predictify Pro begitu mereka mendaftar.",
+    "Kenapa kami melakukan ini: komunitas teman-teman yang memprediksi bersama bertahan 4x lebih lama daripada pengguna solo. Ini lebih baik untuk semua orang — termasuk kami.",
+    "Ketuk di bawah untuk mendapatkan tautan undangan unikmu. Kirim ke satu orang di grup chat-mu. Selesai."
+  ],
+  "cta_text": "Dapatkan tautan undanganku",
+  "cta_deeplink": "predictify://referral",
+  "kind": "referral_invite",
+  "language": "id"
+}

@@ -1,0 +1,9 @@
+{
+  "subject": "Dernier rappel sur {{topic}}, {{first_name}}",
+  "body": [
+    "C'est la dernière fois que je le mentionne. Votre {{work_type}} sur {{topic}} est toujours dans votre compte, exactement là où vous l'avez laissé.",
+    "Si vous voulez revenir, appuyez ci-dessous — votre progression est intacte. Si la vie a continué, ce n'est pas grave non plus.",
+    "P.S. Même un chapitre de plus change la courbe de difficulté pour le reste. Le plus dur est de rouvrir l'application."
+  ],
+  "cta": "Ouvrir mon brouillon"
+}
