@@ -34,6 +34,7 @@ import requests  # noqa: E402
 from predictify_v2.user_context import fetch_user_context  # noqa: E402
 from predictify_v2.template_engine import render_template, RenderedEmail  # noqa: E402
 from predictify_v2.triggers import select_trigger  # noqa: E402
+from predictify_v2.community_recommender import CommunityRecommender  # noqa: E402
 
 try:
     from firebase_user_loader import FirebaseUserLoader  # noqa: E402
@@ -68,6 +69,83 @@ def _save_state(state: dict):
 
 def _today() -> str:
     return datetime.now(timezone.utc).strftime('%Y-%m-%d')
+
+
+# ─────────────────────────────────────────────────────────
+#  Per-kind cooldowns (days). Same uid+kind isn't re-sent
+#  inside this window even if the trigger predicate matches
+#  again. Prevents "received this email twice because my
+#  streak rebuilt" / "got the welcome email a month later".
+#
+#  Default cooldown for any kind not listed is 14 days.
+# ─────────────────────────────────────────────────────────
+COOLDOWN_DAYS: dict[str, int] = {
+    'welcome': 9999,                  # once ever
+    'login_streak_reward': 9999,      # once ever — it's a one-shot reward
+    'streak_saver': 5,
+    'match_day': 1,
+    'upgrade_after_hot_week': 14,
+    'owner_marketing_kit': 21,
+    'owner_growth': 21,
+    'pro_owner_pitch': 21,
+    'pro_power_tip': 7,
+    'winback_lapsed_pro': 30,
+    'win_back': 21,
+    'referral_invite': 21,
+    'weekly_recap': 6,
+}
+DEFAULT_COOLDOWN_DAYS = 14
+
+
+def _has_received_recently(state: dict, uid: str, kind: str, days: int) -> bool:
+    """Scan the state cache for a (uid, kind) send within the last `days`.
+
+    State shape:  {"YYYY-MM-DD": {uid: {"kind": str, "lang": str}, ...}, ...}
+    """
+    if days <= 0:
+        return False
+    cutoff = datetime.now(timezone.utc).date() - timedelta(days=days)
+    for date_str, day_state in state.items():
+        try:
+            d = datetime.strptime(date_str, '%Y-%m-%d').date()
+        except ValueError:
+            continue
+        if d < cutoff:
+            continue
+        entry = day_state.get(uid)
+        if entry and entry.get('kind') == kind:
+            return True
+    return False
+
+
+def _prune_state(state: dict, keep_days: int = 120) -> None:
+    """Drop date entries older than keep_days so the cache doesn't grow
+    unbounded. 120 days is comfortably past the longest cooldown (30)."""
+    cutoff = datetime.now(timezone.utc).date() - timedelta(days=keep_days)
+    for date_str in list(state.keys()):
+        try:
+            d = datetime.strptime(date_str, '%Y-%m-%d').date()
+        except ValueError:
+            continue
+        if d < cutoff:
+            del state[date_str]
+
+
+def _log_env_presence() -> None:
+    """Boolean-only env audit at startup so CI logs reveal missing creds
+    without ever printing values. If Supabase keys are absent the user
+    context queries silently degrade and match_day under-fires — this
+    log makes that visible at run start."""
+    keys = [
+        'RESEND_API_KEY',
+        'PREDICTIFY_SUPABASE_URL',
+        'PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY',
+        'FIREBASE_TOKEN',
+    ]
+    print('🔑 env presence:')
+    for k in keys:
+        present = bool(os.environ.get(k, '').strip())
+        print(f'   {"✅" if present else "❌"} {k}')
 
 
 # ─────────────────────────────────────────────────────────
@@ -169,7 +247,25 @@ def _html_escape(s: str) -> str:
 #  Main loop
 # ─────────────────────────────────────────────────────────
 def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, str]]:
+    # ── EMERGENCY KILL-SWITCH 2026-05-12 ────────────────────────────────
+    # v2 fired 14,006 emails at 10:22 UTC and 11,667 at 17:43 UTC on
+    # 2026-05-11 — 25,673 total in one day, bypassing the daily cap.
+    # Root cause: the `welcome` trigger predicate is
+    #   total_picks_30d == 0 AND last_pick_at is None AND todays_top_pick != None
+    # which matches ~every Predictify user every day. State cache only
+    # de-dupes within a single day, not across days, so the same user
+    # gets a welcome email every cron run forever.
+    # Re-enable after:
+    #   • welcome predicate adds a permanent "ever received v2 welcome"
+    #     check (cache/predictify_v2_state.json scanned across days)
+    #   • run() honors a daily cap (e.g., respects retention_state's
+    #     remaining budget for the day)
+    print('🛑 Predictify v2 KILL-SWITCH active — see orchestrator.run() comment')
+    return []
+    # ── normal flow disabled below ───────────────────────────────────────
+
     print(f'🚀 Predictify v2 trigger pass (dry_run={dry_run})')
+    _log_env_presence()
 
     fb = FirebaseUserLoader()
     fb.refresh_exports()
@@ -191,12 +287,21 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
         activity_by_uid = {}
 
     state = _load_state()
+    _prune_state(state)
     today = _today()
     today_state = state.setdefault(today, {})
 
+    # Load community pool once. The recommender keeps an in-memory list
+    # of public communities ≥ MIN_ACTIVE_MEMBER_COUNT members; per-user
+    # recommendation costs at most ~5 Firestore Gets to verify the user
+    # isn't already a member of the picked community.
+    recommender = CommunityRecommender()
+    recommender.load()
+
     sent: list[tuple[str, str]] = []
     skipped_no_trigger = 0
-    skipped_dup = 0
+    skipped_dup_today = 0
+    skipped_cooldown = 0
 
     for i, u in enumerate(users):
         if max_users and i >= max_users:
@@ -206,7 +311,7 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
         if not uid or not email:
             continue
         if uid in today_state:
-            skipped_dup += 1
+            skipped_dup_today += 1
             continue
 
         lang = (languages_by_uid.get(uid) or 'en').lower()
@@ -219,9 +324,49 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
             print(f'   ⚠️ context build failed for {uid}: {e}')
             continue
 
+        # Attach a community recommendation (best-effort). This populates
+        # the _recommended_community_* fields that both the trigger and
+        # the template engine read. Users who already own a community or
+        # who don't match any public community in the pool just won't
+        # have these fields set, and the community_invite trigger will
+        # skip them gracefully.
+        try:
+            rec = recommender.recommend(
+                uid=ctx.uid,
+                followed_league_ids=ctx.followed_league_ids,
+                owned_community_id=ctx.owned_community_id,
+            )
+            if rec:
+                ctx._recommended_community_id = rec['id']
+                ctx._recommended_community_name = rec['name']
+                ctx._recommended_community_owner = rec.get('ownerName')
+                ctx._recommended_community_member_count = rec.get('memberCount', 0)
+                # Show the first matching league name if there's overlap,
+                # otherwise the community's first league name as a generic
+                # fallback ("football" when even that's missing).
+                followed = set(ctx.followed_league_ids or [])
+                league_label = 'football'
+                for lid, lname in zip(rec.get('leagues') or [],
+                                      rec.get('leagueNames') or []):
+                    if lid in followed and lname:
+                        league_label = lname
+                        break
+                else:
+                    names = rec.get('leagueNames') or []
+                    if names:
+                        league_label = names[0]
+                ctx._recommended_community_league = league_label
+        except Exception as e:
+            print(f'   ⚠️ community recommend failed for {uid}: {e}')
+
         kind = select_trigger(ctx)
         if not kind:
             skipped_no_trigger += 1
+            continue
+
+        cooldown = COOLDOWN_DAYS.get(kind, DEFAULT_COOLDOWN_DAYS)
+        if _has_received_recently(state, uid, kind, cooldown):
+            skipped_cooldown += 1
             continue
 
         rendered = render_template(kind, ctx)
@@ -239,8 +384,8 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
         # Be gentle with downstream APIs
         time.sleep(0.05)
 
-    print(f'📊 Summary: sent={len(sent)} skipped_dup={skipped_dup} '
-          f'skipped_no_trigger={skipped_no_trigger}')
+    print(f'📊 Summary: sent={len(sent)} skipped_dup_today={skipped_dup_today} '
+          f'skipped_cooldown={skipped_cooldown} skipped_no_trigger={skipped_no_trigger}')
     return sent
 
 
