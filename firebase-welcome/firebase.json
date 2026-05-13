@@ -2,7 +2,7 @@
   "functions": [
     {
       "source": "functions",
-      "codebase": "welcome-pipeline",
+      "codebase": "default",
       "runtime": "nodejs20",
       "ignore": [
         "node_modules",

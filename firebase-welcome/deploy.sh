@@ -49,7 +49,19 @@ for PROJECT_ID in "${PROJECTS[@]}"; do
     continue
   }
 
-  if firebase deploy --only functions --project "$PROJECT_ID"; then
+  # CRITICAL: list each welcome-pipeline function with --only.
+  # The redflagscanner Firebase project also hosts the Red Flag Scanner
+  # app's own ~17 functions under the same `default` codebase. An
+  # un-scoped `firebase deploy --only functions` from this directory
+  # would delete every app function that isn't declared in our
+  # functions/index.js — wiping auth, scans, credits, notifications,
+  # referrals, the lifecycle emitters, etc. Always list explicitly.
+  WELCOME_FUNCS="functions:sendWelcomeEmail"
+  if [ "$PROJECT_ID" = "redflagscanner" ]; then
+    WELCOME_FUNCS="$WELCOME_FUNCS,functions:sendSelkaWelcome,functions:onSelkaEmailEvent"
+  fi
+
+  if firebase deploy --only "$WELCOME_FUNCS" --project "$PROJECT_ID" --force; then
     echo "✅ ${PROJECT_ID} deployed successfully"
   else
     echo "❌ ${PROJECT_ID} deployment failed"
