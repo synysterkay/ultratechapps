@@ -2,8 +2,8 @@
   "functions": [
     {
       "source": "functions",
-      "codebase": "default",
-      "runtime": "nodejs18",
+      "codebase": "welcome-pipeline",
+      "runtime": "nodejs20",
       "ignore": [
         "node_modules",
         ".git",

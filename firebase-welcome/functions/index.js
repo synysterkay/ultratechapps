@@ -391,10 +391,20 @@ function sendViaResend(apiKey, fromEmail, fromName, toEmail, subject, html) {
 // ── CLOUD FUNCTION: Firestore trigger on user profile creation ──
 // Each app writes a user doc to "users/{uid}" on first sign-in.
 // This triggers the welcome email.
+//
+// NOTE: redflagscanner has a richer pipeline (localized, Selka-voiced,
+// event-driven retention). It's handled by `./redflag/welcome.js` instead
+// and this function returns early when projectId === "redflagscanner".
 exports.sendWelcomeEmail = onDocumentCreated(
   { document: "users/{userId}", secrets: [resendApiKey] },
   async (event) => {
   const projectId = process.env.GCLOUD_PROJECT || process.env.GCP_PROJECT;
+
+  // Selka (Red Flag Scanner) owns its own welcome path — skip here.
+  if (projectId === "redflagscanner") {
+    return null;
+  }
+
   const appConfig = APP_CONFIG[projectId];
 
   if (!appConfig) {
@@ -458,3 +468,13 @@ exports.sendWelcomeEmail = onDocumentCreated(
     return null;
   }
 });
+
+// ── REDFLAGSCANNER PIPELINE ─────────────────────────────────
+// Selka has a dedicated multi-track lifecycle system (Tracks A–E from the
+// email plan). These two handlers only do work when projectId === "redflagscanner";
+// they're deployed alongside the generic handler but become no-ops for
+// every other app, so nothing else is affected.
+const redflagWelcome = require("./redflag/welcome");
+const redflagDispatcher = require("./redflag/dispatcher");
+exports.sendSelkaWelcome = redflagWelcome.sendSelkaWelcome;
+exports.onSelkaEmailEvent = redflagDispatcher.onEmailEventCreated;
