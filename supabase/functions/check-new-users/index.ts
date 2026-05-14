@@ -22,12 +22,12 @@ const FIREBASE_PROJECTS: Record<
     defaultLang: "en",
     supportedLanguages: ["en", "ar", "fr", "es", "hi", "zh"],
   },
-  redflagscanner: {
-    appId: "redflag_scanner",
-    multilingual: false,
-    defaultLang: "en",
-    supportedLanguages: ["en"],
-  },
+  // redflagscanner is intentionally NOT here. The Selka (Red Flag Scanner)
+  // welcome email is handled by the dedicated `sendSelkaWelcome` Firebase
+  // Cloud Function (firebase-welcome/functions/redflag/welcome.js) which
+  // fires on users/{uid} create with localized, Selka-branded copy.
+  // Listing redflagscanner here too would double-send: this Supabase
+  // cron + the Firebase trigger both firing on the same signup.
   "breakuptherapy-e7dc0": {
     appId: "fresh_start",
     multilingual: false,
