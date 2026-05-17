@@ -326,6 +326,15 @@ def _log_env_presence() -> None:
         'PREDICTIFY_SUPABASE_URL',
         'PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY',
         'FIREBASE_TOKEN',
+        # Signs unsubscribe-link tokens. Without it, links still render
+        # but won't validate when clicked (function returns "expired or
+        # tampered"). Must match the same name on the predictify-
+        # unsubscribe Supabase function.
+        'PREDICTIFY_UNSUBSCRIBE_SECRET',
+        # Required for the suppression-list bulk-load (email_events +
+        # email_suppressions tables on the Email Marketing project).
+        'SUPABASE_URL',
+        'SUPABASE_SERVICE_ROLE_KEY',
     ]
     print('🔑 env presence:')
     for k in keys:
