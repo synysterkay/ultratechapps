@@ -404,3 +404,14 @@ enabled = true
 verify_jwt = false
 import_map = "./functions/resend-webhook/deno.json"
 entrypoint = "./functions/resend-webhook/index.ts"
+
+# Predictify unsubscribe — public GET endpoint from email footer links.
+# No Supabase JWT comes from a mail client's browser; the function
+# authenticates via the HMAC `s` parameter using
+# PREDICTIFY_UNSUBSCRIBE_SECRET. If verify_jwt flips back to true, every
+# unsubscribe click returns 401 → user smashes "Mark as spam" instead →
+# deliverability tank. Same root cause as the stripe-community-webhook
+# incident on the Predictify project.
+[functions.predictify-unsubscribe]
+enabled = true
+verify_jwt = false
