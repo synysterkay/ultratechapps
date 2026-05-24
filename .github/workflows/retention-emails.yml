@@ -120,28 +120,37 @@ jobs:
       - name: Save retention state
         if: always()
         run: |
-          if [ -f cache/retention_state.json ]; then
-            git config user.name "GitHub Actions"
-            git config user.email "actions@github.com"
-            git add cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json cache/abandoned_thesis_state.json cache/free_quota_hit_state.json cache/trial_ending_state.json cache/winback_state.json cache/streak_milestone_state.json cache/weekly_progress_state.json cache/stuck_on_outline_state.json cache/cumulative_stats_state.json cache/thesis_templates/ firebase_exports/ -f 2>/dev/null || true
-            if ! git diff --staged --quiet; then
-              git commit -m "Update retention email state [skip ci]"
-              # Push with pull-rebase retries — the run takes ~2.5h and the
-              # remote often moves (sender_health updater, manual commits,
-              # blog automation). Without retry the push fails silently
-              # via `|| true` and state gets lost between runs, which in
-              # turn causes the v2 trigger pass to re-fire welcome emails
-              # against the entire user base every day.
-              for attempt in 1 2 3 4 5; do
-                if git push origin HEAD:main; then
-                  echo "✅ pushed state on attempt $attempt"
-                  break
-                fi
-                echo "⚠️ push rejected on attempt $attempt — pulling + retrying"
-                git pull --rebase --autostash origin main || true
-                sleep $((attempt * 5))
-              done
+          [ -f cache/retention_state.json ] || exit 0
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          STATE_PATHS="cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json cache/abandoned_thesis_state.json cache/free_quota_hit_state.json cache/trial_ending_state.json cache/winback_state.json cache/streak_milestone_state.json cache/weekly_progress_state.json cache/stuck_on_outline_state.json cache/cumulative_stats_state.json cache/thesis_templates/ firebase_exports/"
+          # Robust push: the run takes ~2.5h and main moves under us (sender
+          # health updater, blog automation, manual commits). A plain rebase
+          # conflicts on the JSON state files and the push loses the race,
+          # silently — which is how daily_stats froze for two weeks while the
+          # campaign was failing. This workflow is the AUTHORITY on these
+          # state files, so on every attempt we reset onto the freshest main
+          # and re-stage our versions (ours always win, no conflict), then
+          # push. Re-fetches each loop so we're always rebasing onto the tip.
+          pushed=""
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin main >/dev/null 2>&1 || true
+            git reset --soft origin/main
+            git add -f $STATE_PATHS 2>/dev/null || true
+            if git diff --staged --quiet; then
+              echo "No state changes to push"; pushed="nochange"; break
             fi
+            git commit -m "Update retention email state [skip ci]" --quiet
+            if git push origin HEAD:main 2>&1; then
+              echo "✅ pushed state on attempt $attempt"; pushed="yes"; break
+            fi
+            echo "⚠️ push rejected on attempt $attempt — refetching + retrying"
+            sleep $((attempt * 4))
+          done
+          if [ -z "$pushed" ]; then
+            echo "🚨 ALERT: state push FAILED after 8 attempts — daily_stats will be stale."
+            echo "   The campaign may have sent fine, but its state didn't persist."
+            exit 1
           fi
       
       - name: Log completion

@@ -88,16 +88,67 @@ def is_warming_phase():
         return True  # Safe default: assume still warming
 
 
+_VERIFIED_DOMAINS_CACHE = None
+
+
+def fetch_verified_domains():
+    """Query Resend for the set of domains whose status == 'verified'.
+
+    This is the system's self-healing guard: any sender whose domain has
+    failed DNS verification (like kaynel.pl did, silently for ~2 weeks)
+    is dropped from rotation automatically instead of 403-ing every send.
+    Cached per process. Returns None if the API can't be reached — callers
+    treat None as 'skip the filter' so a Resend blip never blocks a run.
+    """
+    global _VERIFIED_DOMAINS_CACHE
+    if _VERIFIED_DOMAINS_CACHE is not None:
+        return _VERIFIED_DOMAINS_CACHE
+    api_key = os.getenv('RESEND_API_KEY')
+    if not api_key:
+        return None
+    try:
+        resp = requests.get(
+            'https://api.resend.com/domains',
+            headers={'Authorization': f'Bearer {api_key}'},
+            timeout=15,
+        )
+        if resp.status_code != 200:
+            return None
+        verified = {
+            d['name'] for d in resp.json().get('data', [])
+            if d.get('status') == 'verified'
+        }
+        _VERIFIED_DOMAINS_CACHE = verified
+        return verified
+    except Exception:
+        return None
+
+
 def get_all_sender_caps():
     """
     Get per-sender caps for ALL senders in the pool.
     During warming phase: force 'unknown' status (100/sender) to bypass broken health check.
     After warming: use actual health status per sender.
+    Drops any sender whose domain isn't verified in Resend (self-healing).
     Returns: list of (sender_dict, cap) tuples and total limit.
     """
     from deliverability_monitor import DeliverabilityMonitor
     pool = DeliverabilityMonitor.SENDER_POOL
     warming = is_warming_phase()
+
+    # Self-healing guard: filter the pool to senders whose domain is
+    # currently verified in Resend. If the API is unreachable we keep the
+    # full pool (fail-open) so a transient Resend outage doesn't zero our
+    # capacity — the per-sender 403 drop in run_campaign is the backstop.
+    verified = fetch_verified_domains()
+    if verified is not None:
+        usable = [s for s in pool if s.get('domain', s['email'].split('@')[-1]) in verified]
+        dropped = [s['email'] for s in pool
+                   if s.get('active', True)
+                   and s.get('domain', s['email'].split('@')[-1]) not in verified]
+        if dropped:
+            print(f"   ⚠️ Dropping {len(dropped)} sender(s) with unverified domains: {dropped}")
+        pool = usable
 
     health_path = Path(__file__).parent.parent / 'cache' / 'sender_health.json'
     config_path = Path(__file__).parent.parent / 'config' / 'warming_config.json'
@@ -208,6 +259,7 @@ _APP_SLUGS = {
     'PupShape: Dog Weight Loss Plan': 'pupshape',
     'Predictify: Horse Racing AI': 'horse_racing',
     'Smart Notes - AI Meeting Summary': 'smart_notes',
+    'Crypto AI: Trading Analyzer': 'crypto_ai',
 }
 
 
@@ -612,6 +664,7 @@ class AppRetentionEmailer:
         'Predictify',
         'Thesis Generator',
         'Predictify: Horse Racing AI',
+        'Crypto AI: Trading Analyzer',
         'Volume Booster - Sound Booster',
         'Red Flag Scanner AI',
         'Fresh Start: Breakup Therapy',
@@ -1000,7 +1053,8 @@ class AppRetentionEmailer:
                 sender_name=sender_info['name'],
             )
             if gs.connect():
-                senders.append({'gmail': gs, 'info': sender_info, 'cap': cap, 'sent': 0})
+                senders.append({'gmail': gs, 'info': sender_info, 'cap': cap,
+                                'sent': 0, 'fails': 0, 'disabled': False})
             else:
                 print(f"   ⚠️ Could not connect sender {sender_info['email']} — skipping")
             time.sleep(0.5)  # Avoid Resend rate limit on connect
@@ -1044,13 +1098,23 @@ class AppRetentionEmailer:
                 failed += 1
                 continue
 
-            # Round-robin sender selection — pick sender with lowest sent count
-            # that hasn't hit its per-domain cap
-            available = [s for s in senders if s['sent'] < s['cap']]
+            # Round-robin sender selection — pick the sender with the lowest
+            # (sent + fails) that hasn't hit its cap and isn't disabled.
+            # Including `fails` in the sort key prevents the failure-
+            # amplification loop that caused the 2-week outage: a failing
+            # sender used to keep `sent`=0 and so kept getting re-picked,
+            # routing 100% of traffic through one broken domain. Now a
+            # failure raises its effective rank, and a sender that fails
+            # repeatedly is disabled entirely (see below).
+            available = [s for s in senders
+                         if s['sent'] < s['cap'] and not s['disabled']]
             if not available:
-                print(f"   🛑 All sender caps exhausted after {sent} emails")
+                if all(s['disabled'] for s in senders):
+                    print(f"   🛑 All senders disabled after repeated failures — aborting after {sent} sent")
+                else:
+                    print(f"   🛑 All sender caps exhausted after {sent} emails")
                 break
-            sender_slot = min(available, key=lambda s: s['sent'])
+            sender_slot = min(available, key=lambda s: s['sent'] + s['fails'])
             sender_info = sender_slot['info']
 
             # Per-send attribution context
@@ -1097,6 +1161,7 @@ class AppRetentionEmailer:
             if result == 'sent':
                 sent += 1
                 sender_slot['sent'] += 1
+                sender_slot['fails'] = 0  # reset consecutive-failure counter
                 # Update user state
                 now_str = datetime.now().isoformat()
                 if email_addr not in self.state['users']:
@@ -1135,8 +1200,18 @@ class AppRetentionEmailer:
             else:
                 failed += 1
                 self.state['daily_stats'][today]['failed'] += 1
-                print(f"   ❌ [{i+1}/{len(eligible)}] {email_addr} FAILED")
-            
+                # Attribute the failure to the sender used. After 5
+                # consecutive failures, disable the sender for the rest of
+                # the run — a domain whose DNS lapsed mid-run (or any other
+                # systemic sender problem) gets quarantined instead of
+                # sinking every remaining send.
+                sender_slot['fails'] += 1
+                if sender_slot['fails'] >= 5 and not sender_slot['disabled']:
+                    sender_slot['disabled'] = True
+                    print(f"   🚫 Sender {sender_info['email']} disabled for this run "
+                          f"({sender_slot['fails']} consecutive failures)")
+                print(f"   ❌ [{i+1}/{len(eligible)}] {email_addr} FAILED via {sender_info['email']}")
+
             # Save state every 25 emails
             if (sent + failed) % 25 == 0:
                 self._save_state()
@@ -1163,7 +1238,26 @@ class AppRetentionEmailer:
         print(f"   ❌ Failed: {failed}")
         print(f"   📅 Daily total: {self.state['daily_stats'][today]}")
         print(f"{'='*60}")
-    
+
+        # ── Loud failure alerting ──────────────────────────────────
+        # The kaynel.pl outage went unnoticed for ~2 weeks because a run
+        # that sends 0 and fails everything still "succeeds" as a process.
+        # Surface a high-failure run as a hard error so the GitHub Action
+        # goes red and shows up in the runs list. Only trips when we
+        # actually attempted a meaningful number of sends (avoids
+        # false alarms on tiny/no-eligible-user runs).
+        attempted = sent + failed
+        if attempted >= 20:
+            fail_rate = failed / attempted
+            if fail_rate >= 0.5:
+                print(f"\n🚨 ALERT: {fail_rate:.0%} of sends failed ({failed}/{attempted}).")
+                print("   This usually means a sender domain lost verification, the")
+                print("   RESEND_API_KEY is invalid, or Resend is rejecting the account.")
+                print("   Check: https://resend.com/domains and the per-send errors above.")
+                # Non-zero exit makes the workflow run show as FAILED (red)
+                # instead of silently 'completed/success'.
+                sys.exit(1)
+
     def run_streak_triggers(self, dry_run=False):
         """
         Send streak reminder emails to users with active streaks >= 3.
