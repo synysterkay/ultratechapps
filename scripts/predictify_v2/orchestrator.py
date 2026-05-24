@@ -388,7 +388,7 @@ try:
     from deliverability_monitor import DeliverabilityMonitor
     _SENDER_POOL = [s for s in DeliverabilityMonitor.SENDER_POOL if s.get('active', True)]
 except Exception:
-    _SENDER_POOL = [{'email': 'apps@kaynel.pl', 'name': 'Ana'}]
+    _SENDER_POOL = [{'email': 'tips@predictifyfootball.com', 'name': 'Sam'}]
 
 
 def _pick_sender(uid: str) -> dict:
@@ -396,7 +396,7 @@ def _pick_sender(uid: str) -> dict:
     across sends. Keeps thread-grouping in Gmail consistent and avoids the
     'why does Predictify email me from 5 different domains?' impression."""
     if not _SENDER_POOL:
-        return {'email': 'apps@kaynel.pl', 'name': 'Ana'}
+        return {'email': 'tips@predictifyfootball.com', 'name': 'Sam'}
     h = sum(ord(c) for c in uid) if uid else 0
     return _SENDER_POOL[h % len(_SENDER_POOL)]
 

@@ -22,14 +22,6 @@
   },
 
   "open_only_domains": {
-    "kaynel.pl": {
-      "sender_addresses": ["apps@kaynel.pl", "team@kaynel.pl", "support@kaynel.pl"],
-      "seed_gmail": "kaynelapps@gmail.com"
-    },
-    "vitazelki.pl": {
-      "sender_addresses": ["apps@vitazelki.pl", "hello@vitazelki.pl", "contact@vitazelki.pl"],
-      "seed_gmail": "adava9176@gmail.com"
-    },
     "aibettips.io": {
       "sender_addresses": ["hello@aibettips.io", "tips@aibettips.io", "support@aibettips.io"],
       "seed_gmail": "anasblanew2@gmail.com"

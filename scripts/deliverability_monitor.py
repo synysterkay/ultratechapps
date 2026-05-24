@@ -42,22 +42,12 @@ class DeliverabilityMonitor:
     # Order matters: first = primary, rest = fallbacks.
     # Each domain must be verified in Resend.
     SENDER_POOL = [
-        {
-            "email": "apps@kaynel.pl",
-            "name": "Ana",
-            "domain": "kaynel.pl",
-            "active": True,
-        },
+        # kaynel.pl removed 2026-05-23 — DNS verification failed in Resend.
+        # vitazelki.pl removed 2026-05-23 — retired per ops decision.
         {
             "email": "hello@bestaiapps.site",
             "name": "Alex",
             "domain": "bestaiapps.site",
-            "active": True,
-        },
-        {
-            "email": "apps@vitazelki.pl",
-            "name": "Casey",
-            "domain": "vitazelki.pl",
             "active": True,
         },
         {

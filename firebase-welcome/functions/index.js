@@ -13,13 +13,14 @@ const resendApiKey = defineSecret("RESEND_API_KEY");
 
 // Sender rotation pool — same 7 domains as the main system
 const SENDER_POOL = [
-  { email: "apps@kaynel.pl", name: "Ana" },
+  // Verified-in-Resend senders only (kaynel.pl failed, vitazelki.pl retired — removed 2026-05-23).
   { email: "hello@bestaiapps.site", name: "Alex" },
-  { email: "apps@vitazelki.pl", name: "Casey" },
   { email: "hello@aibettips.io", name: "Jordan" },
   { email: "tips@predictifyfootball.com", name: "Sam" },
   { email: "hello@thesisgenerator.io", name: "Morgan" },
   { email: "hello@passedai.io", name: "Taylor" },
+  { email: "hello@academicsatire.com", name: "Riley" },
+  { email: "tips@predictify.fun", name: "Drew" },
 ];
 
 // Pick a random sender for each welcome email (spreads reputation)
