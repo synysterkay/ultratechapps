@@ -101,13 +101,18 @@ Deno.serve(async (req) => {
   }
 
   const parts = payload.split("|");
-  if (parts.length !== 2 || parts[1] !== "predictify") {
+  // Accept both soccer Predictify ("predictify") and Predictify NBA
+  // ("predictify_nba"). The app slug in parts[1] scopes the suppression
+  // so unsubscribing from one app doesn't silence the other.
+  const ALLOWED_APPS = new Set(["predictify", "predictify_nba"]);
+  if (parts.length !== 2 || !ALLOWED_APPS.has(parts[1])) {
     return new Response(
       htmlPage("Predictify — Unsubscribe", `<p>This unsubscribe link is not valid for Predictify.</p>`),
       { status: 400, headers: { "Content-Type": "text/html; charset=utf-8" } },
     );
   }
   const recipient = parts[0].toLowerCase().trim();
+  const appSlug = parts[1];
 
   if (!SIGNING_SECRET) {
     // Server is misconfigured. Render a "we received your request" page
@@ -134,7 +139,7 @@ Deno.serve(async (req) => {
       .upsert(
         {
           recipient,
-          app: "predictify",
+          app: appSlug,
           reason: "unsubscribe",
         },
         { onConflict: "recipient,app", ignoreDuplicates: false },
