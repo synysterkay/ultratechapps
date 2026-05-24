@@ -56,6 +56,12 @@ const FIREBASE_PROJECTS: Record<
     defaultLang: "en",
     supportedLanguages: ["en", "ar", "es", "fr", "pt", "de", "tr", "it", "pp", "hi", "id", "nl", "pl", "ja"],
   },
+  "nba-predictify": {
+    appId: "predictify_nba",
+    multilingual: true,
+    defaultLang: "en",
+    supportedLanguages: ["en", "ar", "es", "fr", "pt", "de", "tr", "it", "pp", "hi", "id", "nl", "pl", "ja"],
+  },
   "volume-booster-2f7bf": {
     appId: "volume_booster",
     multilingual: true,

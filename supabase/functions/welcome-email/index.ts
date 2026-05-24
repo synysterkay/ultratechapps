@@ -224,6 +224,154 @@ const APP_CONFIG: Record<string, AppConfig> = {
     },
   },
 
+  predictify_nba: {
+    name: "Predictify NBA",
+    multilingual: true,
+    appStoreUrl: "",
+    googlePlayUrl: "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+    emails: {
+      en: {
+        subject: "Your first NBA prediction is ready — here's the edge",
+        cta_text: "Open My First Prediction",
+        body_paragraphs: [
+          "Tonight the NBA tips off and everyone's got a take. Your friends, the TV analysts, the group chat. But you? You'll already know what the data says. Predictify just crunched thousands of variables for every game on tonight's slate — pace, offensive and defensive ratings, rest days, injuries, head-to-head — and your first prediction is ready.",
+          "Here's what makes this different from every other app: you don't just see who wins. You see HOW confident the AI is. That confidence score is the secret. It's the difference between 'the Celtics might cover' and 'the Celtics win 78% of the time under these exact conditions.' One number, built from more data than you could process in a whole season. That's not a hot take — it's an edge.",
+          "Open the app right now. Tap any game on the home screen. Look at the prediction and the confidence score right below it. Then lock in your first pick to start your streak. It takes 30 seconds. When the ball goes up, you'll know something the rest of the group chat doesn't. That feeling is why people open this app every single night.",
+          "Join communities of fans who break down picks daily and vote on the Pick of the Night. P.S. Users who make a prediction on day one are 4x more likely to build a winning streak. Don't just watch the NBA — know the NBA. 🏀",
+        ],
+      },
+      ar: {
+        subject: "أول توقع لك في الدوري الأمريكي جاهز — هذا هو الفرق",
+        cta_text: "افتح أول توقع لي",
+        body_paragraphs: [
+          "الليلة تنطلق مباريات الدوري الأمريكي لكرة السلة، والجميع لديه رأي. أصدقاؤك، المحللون، مجموعة الدردشة. لكنك أنت؟ ستعرف ما تقوله البيانات مسبقًا. حلّل Predictify آلاف المتغيرات لكل مباراة الليلة — الإيقاع، تقييمات الهجوم والدفاع، أيام الراحة، الإصابات، المواجهات السابقة — وأول توقع لك جاهز.",
+          "ما يجعل هذا مختلفًا عن أي تطبيق آخر: لا ترى فقط من سيفوز. بل ترى مدى ثقة الذكاء الاصطناعي. درجة الثقة هي السر. إنها الفرق بين 'قد يفوز السيلتكس' و'يفوز السيلتكس بنسبة 78% في هذه الظروف بالضبط'. رقم واحد، مبني على بيانات أكثر مما يمكنك معالجته في موسم كامل. هذا ليس تخمينًا — إنه أفضلية.",
+          "افتح التطبيق الآن. اضغط على أي مباراة في الصفحة الرئيسية. انظر إلى التوقع ودرجة الثقة أسفله مباشرة. ثم أكّد أول توقع لك لتبدأ سلسلة انتصاراتك. يستغرق 30 ثانية. عندما تبدأ المباراة، ستعرف شيئًا لا تعرفه بقية المجموعة. هذا الشعور هو سبب فتح الناس لهذا التطبيق كل ليلة.",
+          "انضم إلى مجتمعات من المعجبين الذين يحللون التوقعات يوميًا ويصوتون على توقع الليلة. ملاحظة: المستخدمون الذين يقومون بتوقع في اليوم الأول أكثر عرضة بـ 4 مرات لبناء سلسلة انتصارات. لا تكتفِ بمشاهدة الدوري — اعرفه. 🏀",
+        ],
+      },
+      es: {
+        subject: "Tu primera predicción NBA está lista — esta es tu ventaja",
+        cta_text: "Abrir Mi Primera Predicción",
+        body_paragraphs: [
+          "Esta noche arranca la NBA y todos tienen una opinión. Tus amigos, los analistas de la tele, el grupo de chat. ¿Pero tú? Tú ya sabrás lo que dicen los datos. Predictify acaba de analizar miles de variables para cada partido de hoy — ritmo, ratings ofensivos y defensivos, días de descanso, lesiones, historial directo — y tu primera predicción está lista.",
+          "Esto es lo que lo hace diferente de cualquier otra app: no solo ves quién gana. Ves CUÁN seguro está la IA. Ese score de confianza es el secreto. Es la diferencia entre 'los Celtics podrían cubrir' y 'los Celtics ganan el 78% de las veces en estas condiciones exactas'. Un número, construido con más datos de los que podrías procesar en toda una temporada. Eso no es un palpito — es una ventaja.",
+          "Abre la app ahora mismo. Toca cualquier partido en la pantalla de inicio. Mira la predicción y el score de confianza justo debajo. Luego confirma tu primera predicción para iniciar tu racha. Tarda 30 segundos. Cuando salte el balón, sabrás algo que el resto del grupo no sabe. Esa sensación es por lo que la gente abre esta app cada noche.",
+          "Únete a comunidades de fans que analizan predicciones a diario y votan por la Predicción de la Noche. P.D. Los usuarios que hacen una predicción el primer día tienen 4 veces más probabilidades de armar una racha ganadora. No solo veas la NBA — conoce la NBA. 🏀",
+        ],
+      },
+      fr: {
+        subject: "Ta première prédiction NBA est prête — voici ton avantage",
+        cta_text: "Ouvrir Ma Première Prédiction",
+        body_paragraphs: [
+          "Ce soir la NBA reprend et tout le monde a son avis. Tes potes, les analystes à la télé, le groupe de discussion. Mais toi ? Tu sauras déjà ce que disent les données. Predictify vient d'analyser des milliers de variables pour chaque match de ce soir — le rythme, les ratings offensifs et défensifs, les jours de repos, les blessures, les confrontations directes — et ta première prédiction est prête.",
+          "Voilà ce qui change tout par rapport aux autres apps : tu ne vois pas seulement qui gagne. Tu vois à quel point l'IA est confiante. Ce score de confiance, c'est le secret. C'est la différence entre 'les Celtics pourraient passer' et 'les Celtics gagnent 78% du temps dans ces conditions précises'. Un seul chiffre, bâti sur plus de données que tu ne pourrais en traiter en une saison entière. Ça, ce n'est pas un avis — c'est un avantage.",
+          "Ouvre l'appli maintenant. Touche n'importe quel match sur l'écran d'accueil. Regarde la prédiction et le score de confiance juste en dessous. Puis valide ta première prédiction pour lancer ta série. Ça prend 30 secondes. Au coup d'envoi, tu sauras quelque chose que le reste du groupe ignore. C'est ce sentiment qui pousse les gens à ouvrir cette appli chaque soir.",
+          "Rejoins des communautés de fans qui décortiquent les pronostics chaque jour et votent pour le Pronostic du Soir. P.S. Les utilisateurs qui font une prédiction dès le premier jour ont 4 fois plus de chances de bâtir une série gagnante. Ne te contente pas de regarder la NBA — comprends la NBA. 🏀",
+        ],
+      },
+      pt: {
+        subject: "Sua primeira previsão da NBA está pronta — essa é a sua vantagem",
+        cta_text: "Abrir Minha Primeira Previsão",
+        body_paragraphs: [
+          "Hoje à noite a NBA começa e todo mundo tem uma opinião. Seus amigos, os analistas da TV, o grupo do zap. Mas você? Você já vai saber o que os dados dizem. O Predictify acabou de analisar milhares de variáveis para cada jogo de hoje — ritmo, ratings ofensivos e defensivos, dias de descanso, lesões, histórico de confrontos — e sua primeira previsão está pronta.",
+          "O que torna isso diferente de qualquer outro app: você não vê só quem ganha. Você vê O QUÃO confiante a IA está. Esse score de confiança é o segredo. É a diferença entre 'os Celtics podem cobrir' e 'os Celtics vencem 78% das vezes nessas condições exatas'. Um número, construído com mais dados do que você processaria numa temporada inteira. Isso não é achismo — é uma vantagem.",
+          "Abra o app agora. Toque em qualquer jogo na tela inicial. Olhe a previsão e o score de confiança logo abaixo. Depois confirme sua primeira previsão para começar sua sequência. Leva 30 segundos. Quando a bola subir, você vai saber algo que o resto do grupo não sabe. Essa sensação é o motivo de as pessoas abrirem esse app toda noite.",
+          "Entre em comunidades de fãs que analisam palpites diariamente e votam no Palpite da Noite. P.D. Usuários que fazem uma previsão no primeiro dia têm 4x mais chances de construir uma sequência vencedora. Não só assista à NBA — entenda a NBA. 🏀",
+        ],
+      },
+      de: {
+        subject: "Deine erste NBA-Vorhersage ist bereit — das ist dein Vorteil",
+        cta_text: "Meine erste Vorhersage öffnen",
+        body_paragraphs: [
+          "Heute Abend startet die NBA und jeder hat eine Meinung. Deine Freunde, die TV-Analysten, der Gruppenchat. Aber du? Du weißt schon, was die Daten sagen. Predictify hat gerade tausende Variablen für jedes Spiel heute Abend ausgewertet — Tempo, Offensiv- und Defensiv-Ratings, Ruhetage, Verletzungen, direkte Duelle — und deine erste Vorhersage ist bereit.",
+          "Das macht es anders als jede andere App: Du siehst nicht nur, wer gewinnt. Du siehst, WIE sicher sich die KI ist. Dieser Confidence Score ist das Geheimnis. Es ist der Unterschied zwischen 'die Celtics könnten covern' und 'die Celtics gewinnen zu 78% unter genau diesen Bedingungen'. Eine Zahl, gebaut aus mehr Daten, als du in einer ganzen Saison verarbeiten könntest. Das ist keine Meinung — das ist ein Vorteil.",
+          "Öffne die App jetzt. Tippe auf ein beliebiges Spiel auf dem Startbildschirm. Schau dir die Vorhersage und den Confidence Score direkt darunter an. Dann bestätige deine erste Vorhersage, um deine Serie zu starten. Es dauert 30 Sekunden. Beim Tip-off weißt du etwas, das der Rest des Gruppenchats nicht weiß. Dieses Gefühl ist der Grund, warum Leute diese App jeden Abend öffnen.",
+          "Tritt Communities von Fans bei, die täglich Tipps analysieren und für den Tipp des Abends abstimmen. P.S. Nutzer, die am ersten Tag eine Vorhersage machen, bauen 4x häufiger eine Siegesserie auf. Schau nicht nur NBA — versteh die NBA. 🏀",
+        ],
+      },
+      tr: {
+        subject: "İlk NBA tahminin hazır — işte senin avantajın",
+        cta_text: "İlk Tahminimi Aç",
+        body_paragraphs: [
+          "Bu gece NBA başlıyor ve herkesin bir fikri var. Arkadaşların, TV yorumcuları, grup sohbeti. Ama sen? Sen verilerin ne dediğini önceden bileceksin. Predictify, bu geceki her maç için binlerce değişkeni az önce analiz etti — tempo, hücum ve savunma reytingleri, dinlenme günleri, sakatlıklar, karşılaşma geçmişi — ve ilk tahminin hazır.",
+          "Bunu diğer tüm uygulamalardan farklı kılan şey: sadece kimin kazanacağını görmezsin. Yapay zekanın NE KADAR emin olduğunu görürsün. O güven skoru sırdır. 'Celtics farklı kazanabilir' ile 'Celtics tam bu koşullarda %78 kazanır' arasındaki farktır. Tek bir sayı, bir sezon boyunca işleyemeyeceğin kadar veriden inşa edilmiş. Bu bir yorum değil — bir avantaj.",
+          "Uygulamayı şimdi aç. Ana ekranda herhangi bir maça dokun. Tahmine ve hemen altındaki güven skoruna bak. Sonra serini başlatmak için ilk tahminini onayla. 30 saniye sürer. Maç başladığında grubun geri kalanının bilmediği bir şey bileceksin. İşte bu his, insanların bu uygulamayı her gece açmasının sebebi.",
+          "Tahminleri her gün analiz eden ve Gecenin Tahmini'ne oy veren hayran topluluklarına katıl. P.S. İlk gün tahmin yapan kullanıcıların kazanma serisi oluşturma olasılığı 4 kat daha fazla. Sadece NBA izleme — NBA'i bil. 🏀",
+        ],
+      },
+      it: {
+        subject: "La tua prima previsione NBA è pronta — ecco il tuo vantaggio",
+        cta_text: "Apri La Mia Prima Previsione",
+        body_paragraphs: [
+          "Stasera inizia l'NBA e tutti hanno un'opinione. I tuoi amici, gli analisti in TV, la chat di gruppo. Ma tu? Tu saprai già cosa dicono i dati. Predictify ha appena elaborato migliaia di variabili per ogni partita di stasera — ritmo, rating offensivi e difensivi, giorni di riposo, infortuni, precedenti — e la tua prima previsione è pronta.",
+          "Ecco cosa lo rende diverso da ogni altra app: non vedi solo chi vince. Vedi QUANTO è sicura l'IA. Quel confidence score è il segreto. È la differenza tra 'i Celtics potrebbero coprire' e 'i Celtics vincono il 78% delle volte in queste esatte condizioni'. Un numero, costruito con più dati di quanti potresti elaborarne in un'intera stagione. Non è un'opinione — è un vantaggio.",
+          "Apri l'app adesso. Tocca una qualsiasi partita nella schermata principale. Guarda la previsione e il confidence score subito sotto. Poi conferma la tua prima previsione per iniziare la tua striscia. Ci vogliono 30 secondi. Quando si alza la palla a due, saprai qualcosa che il resto della chat non sa. È questa sensazione che spinge la gente ad aprire l'app ogni sera.",
+          "Unisciti a community di tifosi che analizzano i pronostici ogni giorno e votano il Pronostico della Sera. P.S. Gli utenti che fanno una previsione il primo giorno hanno 4 volte più probabilità di costruire una striscia vincente. Non limitarti a guardare l'NBA — conosci l'NBA. 🏀",
+        ],
+      },
+      pp: {
+        subject: "A tua primeira previsão da NBA está pronta — esta é a tua vantagem",
+        cta_text: "Abrir A Minha Primeira Previsão",
+        body_paragraphs: [
+          "Hoje à noite a NBA arranca e toda a gente tem uma opinião. Os teus amigos, os analistas da TV, o grupo de conversa. Mas tu? Tu já vais saber o que dizem os dados. O Predictify acabou de analisar milhares de variáveis para cada jogo desta noite — ritmo, ratings ofensivos e defensivos, dias de descanso, lesões, histórico de confrontos — e a tua primeira previsão está pronta.",
+          "O que torna isto diferente de qualquer outra app: não vês apenas quem ganha. Vês QUÃO confiante está a IA. Esse score de confiança é o segredo. É a diferença entre 'os Celtics podem cobrir' e 'os Celtics vencem 78% das vezes nestas condições exatas'. Um número, construído com mais dados do que conseguirias processar numa época inteira. Isto não é um palpite — é uma vantagem.",
+          "Abre a app agora. Toca em qualquer jogo no ecrã inicial. Olha para a previsão e para o score de confiança mesmo por baixo. Depois confirma a tua primeira previsão para começar a tua série. Demora 30 segundos. Quando a bola subir, vais saber algo que o resto do grupo não sabe. É essa sensação que faz as pessoas abrirem esta app todas as noites.",
+          "Junta-te a comunidades de fãs que analisam palpites diariamente e votam no Palpite da Noite. P.D. Os utilizadores que fazem uma previsão no primeiro dia têm 4x mais hipóteses de construir uma série vencedora. Não te limites a ver a NBA — conhece a NBA. 🏀",
+        ],
+      },
+      hi: {
+        subject: "आपकी पहली NBA भविष्यवाणी तैयार है — यह रहा आपका एज",
+        cta_text: "मेरी पहली भविष्यवाणी खोलें",
+        body_paragraphs: [
+          "आज रात NBA शुरू हो रही है और हर किसी की अपनी राय है। आपके दोस्त, टीवी विश्लेषक, ग्रुप चैट। लेकिन आप? आपको पहले से पता होगा कि डेटा क्या कहता है। Predictify ने आज रात के हर गेम के लिए हजारों वेरिएबल का विश्लेषण किया — पेस, ऑफेंसिव और डिफेंसिव रेटिंग, आराम के दिन, चोटें, आमने-सामने का इतिहास — और आपकी पहली भविष्यवाणी तैयार है।",
+          "यह हर दूसरे ऐप से क्यों अलग है: आप सिर्फ यह नहीं देखते कि कौन जीतेगा। आप देखते हैं कि AI कितना आश्वस्त है। वह confidence score ही राज है। यह 'सेल्टिक्स शायद जीतें' और 'इन हालात में सेल्टिक्स 78% बार जीतते हैं' के बीच का फर्क है। एक नंबर, जितना डेटा आप पूरे सीज़न में प्रोसेस नहीं कर सकते। यह अनुमान नहीं — यह एक एज है।",
+          "अभी ऐप खोलें। होम स्क्रीन पर किसी भी गेम पर टैप करें। भविष्यवाणी और उसके ठीक नीचे confidence score देखें। फिर अपनी स्ट्रीक शुरू करने के लिए अपनी पहली भविष्यवाणी कन्फ़र्म करें। 30 सेकंड लगते हैं। जब गेम शुरू होगा, आपको कुछ ऐसा पता होगा जो बाकी ग्रुप को नहीं। यही एहसास लोगों को हर रात यह ऐप खोलने पर मजबूर करता है।",
+          "उन प्रशंसकों के समुदायों से जुड़ें जो रोज़ पिक्स का विश्लेषण करते हैं और 'Pick of the Night' के लिए वोट करते हैं। P.S. पहले दिन भविष्यवाणी करने वाले यूजर्स की विनिंग स्ट्रीक बनाने की संभावना 4 गुना अधिक है। सिर्फ NBA देखें नहीं — NBA को जानें। 🏀",
+        ],
+      },
+      id: {
+        subject: "Prediksi NBA pertamamu sudah siap — ini keunggulanmu",
+        cta_text: "Buka Prediksi Pertamaku",
+        body_paragraphs: [
+          "Malam ini NBA dimulai dan semua orang punya pendapat. Teman-temanmu, analis TV, grup chat. Tapi kamu? Kamu sudah tahu apa kata data. Predictify baru saja mengolah ribuan variabel untuk setiap pertandingan malam ini — tempo, rating ofensif dan defensif, hari istirahat, cedera, rekor pertemuan — dan prediksi pertamamu sudah siap.",
+          "Inilah yang membuatnya beda dari aplikasi lain: kamu tidak cuma melihat siapa yang menang. Kamu melihat SEBERAPA yakin AI-nya. Confidence score itulah rahasianya. Itu bedanya antara 'Celtics mungkin menang' dan 'Celtics menang 78% dengan kondisi persis seperti ini'. Satu angka, dibangun dari lebih banyak data daripada yang bisa kamu proses dalam satu musim penuh. Itu bukan tebakan — itu keunggulan.",
+          "Buka aplikasinya sekarang. Ketuk pertandingan mana saja di layar utama. Lihat prediksi dan confidence score tepat di bawahnya. Lalu kunci prediksi pertamamu untuk memulai streak-mu. Cuma butuh 30 detik. Saat bola dilempar, kamu akan tahu sesuatu yang tidak diketahui anggota grup lain. Perasaan itulah alasan orang membuka aplikasi ini setiap malam.",
+          "Gabung dengan komunitas penggemar yang membahas prediksi setiap hari dan memilih Prediksi Malam Ini. P.S. Pengguna yang membuat prediksi di hari pertama 4x lebih mungkin membangun streak kemenangan. Jangan cuma nonton NBA — pahami NBA. 🏀",
+        ],
+      },
+      nl: {
+        subject: "Je eerste NBA-voorspelling staat klaar — dit is je voordeel",
+        cta_text: "Mijn Eerste Voorspelling Openen",
+        body_paragraphs: [
+          "Vanavond begint de NBA en iedereen heeft een mening. Je vrienden, de analisten op tv, de groepsapp. Maar jij? Jij weet al wat de data zeggen. Predictify heeft net duizenden variabelen geanalyseerd voor elke wedstrijd van vanavond — tempo, aanvallende en verdedigende ratings, rustdagen, blessures, onderlinge duels — en je eerste voorspelling staat klaar.",
+          "Dit is wat het anders maakt dan elke andere app: je ziet niet alleen wie wint. Je ziet HOE zeker de AI is. Die confidence score is het geheim. Het is het verschil tussen 'de Celtics dekken misschien' en 'de Celtics winnen 78% van de tijd onder precies deze omstandigheden'. Één getal, gebouwd op meer data dan je in een heel seizoen kunt verwerken. Dat is geen mening — dat is een voordeel.",
+          "Open de app nu meteen. Tik op een willekeurige wedstrijd op het startscherm. Bekijk de voorspelling en de confidence score er direct onder. Bevestig dan je eerste voorspelling om je reeks te starten. Het kost 30 seconden. Bij de tip-off weet jij iets wat de rest van de groepsapp niet weet. Dat gevoel is waarom mensen deze app elke avond openen.",
+          "Word lid van community's van fans die dagelijks voorspellingen bespreken en stemmen op de Voorspelling van de Avond. P.S. Gebruikers die op dag één een voorspelling doen, bouwen 4x vaker een winnende reeks op. Kijk niet alleen NBA — ken de NBA. 🏀",
+        ],
+      },
+      pl: {
+        subject: "Twoja pierwsza prognoza NBA jest gotowa — oto twoja przewaga",
+        cta_text: "Otwórz Moją Pierwszą Prognozę",
+        body_paragraphs: [
+          "Dziś wieczorem rusza NBA i każdy ma swoje zdanie. Twoi znajomi, analitycy w telewizji, grupa na czacie. Ale ty? Ty już będziesz wiedzieć, co mówią dane. Predictify właśnie przeanalizował tysiące zmiennych dla każdego dzisiejszego meczu — tempo, oceny ofensywne i defensywne, dni odpoczynku, kontuzje, historia bezpośrednich spotkań — i twoja pierwsza prognoza jest gotowa.",
+          "Oto co odróżnia to od każdej innej aplikacji: nie widzisz tylko, kto wygra. Widzisz, JAK pewna jest AI. Ten confidence score to sekret. To różnica między 'Celtics mogą pokryć' a 'Celtics wygrywają w 78% przypadków w dokładnie tych warunkach'. Jedna liczba, zbudowana z większej ilości danych, niż przetworzyłbyś przez cały sezon. To nie opinia — to przewaga.",
+          "Otwórz aplikację teraz. Dotknij dowolnego meczu na ekranie głównym. Spójrz na prognozę i confidence score tuż pod nią. Potem potwierdź swoją pierwszą prognozę, by rozpocząć swoją serię. Zajmuje to 30 sekund. Gdy piłka pójdzie w górę, będziesz wiedzieć coś, czego nie wie reszta grupy. To uczucie sprawia, że ludzie otwierają tę aplikację każdego wieczoru.",
+          "Dołącz do społeczności fanów, którzy codziennie analizują typy i głosują na Typ Wieczoru. P.S. Użytkownicy, którzy typują pierwszego dnia, 4x częściej budują zwycięską serię. Nie tylko oglądaj NBA — poznaj NBA. 🏀",
+        ],
+      },
+      ja: {
+        subject: "最初のNBA予測が準備できました — これがあなたのエッジです",
+        cta_text: "最初の予測を開く",
+        body_paragraphs: [
+          "今夜NBAが始まり、みんなが意見を言います。友達、テレビのアナリスト、グループチャット。でもあなたは？すでにデータが何を語るかを知っているでしょう。Predictifyは今夜の全試合について何千もの変数を分析したばかり—ペース、オフェンスとディフェンスのレーティング、休養日、怪我、直接対決の成績—そしてあなたの最初の予測が準備できています。",
+          "他のどのアプリとも違う点：ただ勝者を見るだけではありません。AIがどれほど確信しているかを見れます。そのconfidence scoreが秘密です。「セルティックスがカバーするかも」と「この条件でセルティックスが78%勝つ」の違いです。1つの数字、シーズン中かかっても処理しきれないほどのデータから作られています。これは意見ではなく—エッジです。",
+          "今すぐアプリを開いてください。ホーム画面で任意の試合をタップ。予測と、そのすぐ下のconfidence scoreを見てください。そして最初の予測を確定して連勝をスタート。わずか30秒です。ティップオフの瞬間、グループの誰も知らないことをあなたは知っています。その感覚が、人々が毎晩このアプリを開く理由です。",
+          "毎日予測を語り合い、「今夜の予測」に投票するファンのコミュニティに参加しましょう。P.S. 初日に予測したユーザーは、連勝を築く可能性が4倍高くなります。NBAをただ見るだけじゃなく—NBAを知ろう。🏀",
+        ],
+      },
+    },
+  },
   thesis_generator: {
     name: "Thesis Generator",
     multilingual: true,
@@ -759,14 +907,23 @@ function buildHtml(
 
   const appStoreHref = utmCtx ? withUtm(appConfig.appStoreUrl, utmCtx) : appConfig.appStoreUrl;
   const googlePlayHref = utmCtx ? withUtm(appConfig.googlePlayUrl, utmCtx) : appConfig.googlePlayUrl;
+  // Only render a store button when its URL is set. Apps live on one store
+  // only (e.g. Predictify NBA = Play only) show a single clean button; if just
+  // one is present we drop the platform suffix so it reads naturally.
+  const hasIos = !!appConfig.appStoreUrl;
+  const hasAndroid = !!appConfig.googlePlayUrl;
+  const iosLabel = hasIos && hasAndroid ? `${ctaText} (iOS)` : ctaText;
+  const androidLabel = hasIos && hasAndroid ? `${ctaText} (Android)` : ctaText;
+  const iosBtn = hasIos
+    ? `<a href="${appStoreHref}" style="display:inline-block;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:700;font-size:16px;margin:0 6px;">\ud83d\udcf1 ${iosLabel}</a>`
+    : "";
+  const androidBtn = hasAndroid
+    ? `<a href="${googlePlayHref}" style="display:inline-block;background:linear-gradient(135deg,#34d399 0%,#10b981 100%);color:#fff;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:700;font-size:16px;margin:0 6px;">\ud83e\udd16 ${androidLabel}</a>`
+    : "";
   const ctaHtml = `
     <div style="text-align:center;margin:36px 0;">
-      <a href="${appStoreHref}" style="display:inline-block;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:700;font-size:16px;margin:0 6px;">
-        \ud83d\udcf1 ${ctaText} (iOS)
-      </a>
-      <a href="${googlePlayHref}" style="display:inline-block;background:linear-gradient(135deg,#34d399 0%,#10b981 100%);color:#fff;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:700;font-size:16px;margin:0 6px;">
-        \ud83e\udd16 ${ctaText} (Android)
-      </a>
+      ${iosBtn}
+      ${androidBtn}
     </div>`;
 
   return `<!DOCTYPE html>
