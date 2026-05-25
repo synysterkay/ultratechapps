@@ -30,9 +30,14 @@ const APP_STORE_URL =
 // kaynel.pl). Use verified-in-Resend domains only. Persona names are kept —
 // the user sees "Mia <hello@bestaiapps.site>", which is fine. Re-point to
 // hello@soulplan.app once that domain is added + verified in Resend.
-const SENDER_POOL = [
-  { email: "hello@bestaiapps.site", name: "Mia" },
-  { email: "hello@bestaiapps.site", name: "Theo" },
+const SENDER_POOL = [  // all 7 verified-in-Resend senders; health-based rotation picks the best
+  { email: "hello@bestaiapps.site", name: "Alex" },
+  { email: "hello@aibettips.io", name: "Jordan" },
+  { email: "tips@predictifyfootball.com", name: "Sam" },
+  { email: "hello@thesisgenerator.io", name: "Morgan" },
+  { email: "hello@passedai.io", name: "Taylor" },
+  { email: "hello@academicsatire.com", name: "Riley" },
+  { email: "tips@predictify.fun", name: "Drew" },
 ];
 
 const cors = {

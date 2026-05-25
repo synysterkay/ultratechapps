@@ -46,10 +46,14 @@ const KIND = "free_quota_hit";
 const APP_STORE_URL = "https://apps.apple.com/app/thesis-generator-essay-ai/id6739264844";
 const GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=com.thesis.generator.ai";
 
-const SENDER_POOL = [
+const SENDER_POOL = [  // all 7 verified-in-Resend senders; health-based rotation picks the best
+  { email: "hello@bestaiapps.site", name: "Alex" },
+  { email: "hello@aibettips.io", name: "Jordan" },
+  { email: "tips@predictifyfootball.com", name: "Sam" },
   { email: "hello@thesisgenerator.io", name: "Morgan" },
-  { email: "hello@passedai.io",        name: "Taylor" },
+  { email: "hello@passedai.io", name: "Taylor" },
   { email: "hello@academicsatire.com", name: "Riley" },
+  { email: "tips@predictify.fun", name: "Drew" },
 ];
 
 // Instant-paywall-hit template — different copy from the h24 batch

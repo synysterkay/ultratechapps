@@ -40,17 +40,14 @@ const KIND = "first_correct";
 
 // Shared rotation pool — mirrors the orchestrator's 9-sender pool so
 // reputation curves stay consistent across cron + instant paths.
-const SENDER_POOL = [
-  // Verified-in-Resend senders only (updated 2026-05-23). Removed
-  // kaynel.pl (DNS failed), vitazelki.pl (retired), and 4 domains that
-  // were never added to Resend (aifootballai.com, aibetaipredictions.com,
-  // aibetaipredictify.com, aifootballprediction.com).
-  { email: "hello@bestaiapps.site",       name: "Alex" },
-  { email: "hello@aibettips.io",          name: "Jordan" },
+const SENDER_POOL = [  // all 7 verified-in-Resend senders; health-based rotation picks the best
+  { email: "hello@bestaiapps.site", name: "Alex" },
+  { email: "hello@aibettips.io", name: "Jordan" },
   { email: "tips@predictifyfootball.com", name: "Sam" },
-  { email: "tips@predictify.fun",         name: "Drew" },
-  { email: "hello@passedai.io",           name: "Taylor" },
-  { email: "hello@academicsatire.com",    name: "Riley" },
+  { email: "hello@thesisgenerator.io", name: "Morgan" },
+  { email: "hello@passedai.io", name: "Taylor" },
+  { email: "hello@academicsatire.com", name: "Riley" },
+  { email: "tips@predictify.fun", name: "Drew" },
 ];
 
 function pickSender(uid: string) {
