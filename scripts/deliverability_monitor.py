@@ -132,7 +132,7 @@ class DeliverabilityMonitor:
         Structure: {
             "active_sender_index": 0,
             "senders": {
-                "hello@bestaiapps.site": {
+                "apps@kaynel.pl": {
                     "last_check": "2026-02-20T...",
                     "status": "green",            # green/yellow/red
                     "rotated_out_at": null,        # ISO timestamp if rotated out

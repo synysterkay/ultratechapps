@@ -1004,15 +1004,10 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    // Pick language. Accepts the app's canonical BCP-47 tag (same value as the
-    // Superwall `user.language` attribute, e.g. "pt-BR", "zh-Hans"):
-    //   1. exact match ("pt-BR")
-    //   2. base-language fallback ("pt-BR" → "pt", "zh-Hans" → "zh")
-    //   3. English
+    // Pick language (with fallback to en)
     let lang = language || "en";
     if (!appConfig.emails[lang]) {
-      const base = String(lang).split(/[-_]/)[0].toLowerCase();
-      lang = appConfig.emails[base] ? base : "en";
+      lang = "en";
     }
 
     const emailData = appConfig.emails[lang];

@@ -23,14 +23,11 @@ const DEEPLINK_BASE = "https://predictifynba.com";
 
 // Neutral sender pool (no soccer-specific domains). Hash-routed per uid so
 // each user always sees a consistent "from", which protects deliverability.
-const SENDER_POOL = [  // all 7 verified-in-Resend senders; health-based rotation picks the best
+const SENDER_POOL = [
+  // kaynel.pl (DNS failed) + vitazelki.pl (retired) removed 2026-05-23.
   { email: "hello@bestaiapps.site", name: "Alex" },
   { email: "hello@aibettips.io", name: "Jordan" },
-  { email: "tips@predictifyfootball.com", name: "Sam" },
-  { email: "hello@thesisgenerator.io", name: "Morgan" },
-  { email: "hello@passedai.io", name: "Taylor" },
   { email: "hello@academicsatire.com", name: "Riley" },
-  { email: "tips@predictify.fun", name: "Drew" },
 ];
 
 export interface Template {

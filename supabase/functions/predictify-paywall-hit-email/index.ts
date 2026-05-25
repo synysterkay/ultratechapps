@@ -31,14 +31,17 @@ const REF_SALT = Deno.env.get("EMAIL_REF_SALT") || "marketing-tool-v1";
 const APP_SLUG = "predictify";
 const KIND = "paywall_hit";
 
-const SENDER_POOL = [  // all 7 verified-in-Resend senders; health-based rotation picks the best
-  { email: "hello@bestaiapps.site", name: "Alex" },
-  { email: "hello@aibettips.io", name: "Jordan" },
+const SENDER_POOL = [
+  // Verified-in-Resend senders only (updated 2026-05-23). Removed
+  // kaynel.pl (DNS failed), vitazelki.pl (retired), and 4 domains that
+  // were never added to Resend (aifootballai.com, aibetaipredictions.com,
+  // aibetaipredictify.com, aifootballprediction.com).
+  { email: "hello@bestaiapps.site",       name: "Alex" },
+  { email: "hello@aibettips.io",          name: "Jordan" },
   { email: "tips@predictifyfootball.com", name: "Sam" },
-  { email: "hello@thesisgenerator.io", name: "Morgan" },
-  { email: "hello@passedai.io", name: "Taylor" },
-  { email: "hello@academicsatire.com", name: "Riley" },
-  { email: "tips@predictify.fun", name: "Drew" },
+  { email: "tips@predictify.fun",         name: "Drew" },
+  { email: "hello@passedai.io",           name: "Taylor" },
+  { email: "hello@academicsatire.com",    name: "Riley" },
 ];
 
 function pickSender(uid: string) {
