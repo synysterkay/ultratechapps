@@ -1253,6 +1253,12 @@ class AppRetentionEmailer:
                 cycle_note = f" c{cycle}" if cycle > 1 else ""
                 sender_tag = sender_info['email'].split('@')[1]
                 print(f"   ✅ [{sent}/{len(eligible)}] {email_addr} ← {app_name} #{email_num}{cycle_note} via {sender_tag}{remap_note} [{segment}]")
+            elif result == 'duplicate':
+                # Already emailed this address earlier in the run (e.g. the
+                # same person is a user of two apps). Not a failure and not a
+                # send — skip cleanly so it isn't counted against either.
+                print(f"   ⏭️ [{i+1}/{len(eligible)}] {email_addr} skipped — already emailed this run")
+                continue
             elif result == 'bounced':
                 # Auto-remove bounced email from the system
                 failed += 1

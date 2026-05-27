@@ -26,6 +26,22 @@ class GmailSender:
 
     API_URL = "https://api.resend.com/emails"
 
+    # Process-wide dedup: never send the same recipient twice in one run.
+    # The thesis orchestrator runs 11 senders in ONE process and each iterates
+    # per-thesis, so a user with 3 thesis projects (or matching several
+    # senders) was getting 2-3 emails at once — exactly the "spammy duplicate"
+    # report. This class-level set is shared across every GmailSender instance
+    # in the process (it survives the orchestrator's per-sender importlib
+    # .reload, which only reloads the sender module, not gmail_sender), so the
+    # first successful email to an address wins and the rest are suppressed.
+    # v1 retention sends each user at most once per run, so it never trips this.
+    _emailed_recipients: set = set()
+
+    @classmethod
+    def reset_dedup(cls):
+        """Clear the per-run dedup set (call at the start of a fresh run)."""
+        cls._emailed_recipients = set()
+
     def __init__(self, sender_email=None, sender_name=None):
         self.api_key = os.getenv('RESEND_API_KEY')
         self.sender_email = sender_email or 'hello@bestaiapps.site'
@@ -90,11 +106,20 @@ class GmailSender:
         ref_id: opaque correlator (e.g. hashed user id) sent as X-Entity-Ref-ID.
                 Resend echoes it on webhooks so we can join events to users without
                 exposing the raw email address in tag values.
-        Returns: 'sent' on success, 'bounced' if address is invalid, 'failed' otherwise.
+        Returns: 'sent' on success, 'bounced' if address is invalid,
+        'duplicate' if this recipient was already emailed in this run,
+        'failed' otherwise.
         """
         if not self.connected:
             print("   ❌ Not connected. Call connect() first.")
             return 'failed'
+
+        # One email per recipient per process run — suppress duplicates so a
+        # user never receives two emails of the same app at once.
+        dedup_key = (to_email or '').lower().strip()
+        if dedup_key and dedup_key in GmailSender._emailed_recipients:
+            print(f"   ⏭️ Duplicate suppressed — already emailed {to_email} this run")
+            return 'duplicate'
 
         sender = f"{from_name or self.sender_name} <{self.sender_email}>"
 
@@ -127,6 +152,8 @@ class GmailSender:
             )
 
             if resp.status_code in (200, 201):
+                if dedup_key:
+                    GmailSender._emailed_recipients.add(dedup_key)
                 return 'sent'
 
             # Rate limited — back off and retry once
@@ -143,6 +170,8 @@ class GmailSender:
                     timeout=15,
                 )
                 if retry.status_code in (200, 201):
+                    if dedup_key:
+                        GmailSender._emailed_recipients.add(dedup_key)
                     return 'sent'
 
             error_msg = resp.text[:200]
