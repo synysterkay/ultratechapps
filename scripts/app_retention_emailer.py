@@ -49,8 +49,12 @@ HEALTH_CAPS = {
     'unknown': 313,  # Post-warming default — 8 senders × 313 = ~2500/day
 }
 
-# Absolute ceiling (Resend plan: 100K/month ≈ 3,400/day)
-MAX_DAILY_LIMIT = 3400
+# No artificial daily ceiling. Resend is on pay-as-you-go, so we never block
+# a send for hitting a per-day number. The only volume governors that remain
+# are (a) per-sender health caps for NON-priority apps — reputation protection,
+# summed into the dynamic limit below — and (b) the per-run wall-clock budget.
+# PRIORITY_APPS (Predictify Soccer, Thesis Generator) bypass both, so none of
+# their emails are ever dropped for a cap. (Previously clamped at 3,400/day.)
 
 # Wall-clock budget for a single run. GitHub cancels the job at 6h and the
 # workflow step is capped at 300 min; we stop the send loop a bit before that
@@ -202,7 +206,8 @@ def get_all_sender_caps():
         sender_caps.append((sender, cap))
         total += cap
 
-    total = min(total, MAX_DAILY_LIMIT)
+    # No artificial ceiling (pay-as-you-go). The non-priority daily limit is
+    # simply the sum of per-sender health caps; priority apps bypass it.
     return sender_caps, total
 
 
