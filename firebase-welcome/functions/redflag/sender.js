@@ -24,6 +24,7 @@ const SENDER_POOL = [
   {email: "selka@thesisgenerator.io", name: "Selka"},
   {email: "selka@passedai.io", name: "Selka"},
   {email: "selka@academicsatire.com", name: "Selka"},
+  {email: "selka@predictify.fun", name: "Selka"},
 ];
 
 function pickSender() {
