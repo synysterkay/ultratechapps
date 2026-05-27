@@ -131,16 +131,161 @@ class UserContext:
         return delta.total_seconds() / 3600.0
 
 
+# ─────────────────────────────────────────────────────────
+#  Bulk prefetch — the whole behavioral dataset in ~4 queries
+# ─────────────────────────────────────────────────────────
+# The per-user path below makes ~5 Supabase + 1 Firestore reads PER USER.
+# Across ~17k users that was ~90k round-trips / ~2h45m, almost all of it
+# wasted (only ~600 users have any behavioral row). These tables are tiny
+# (user_leagues ~2k, user_picks ~200, predictions ~500, communities ~20),
+# so we load them ONCE here and build every UserContext from memory with
+# zero per-user network calls. Same data, same triggers — ~4000x fewer reads.
+@dataclass
+class BulkContext:
+    fav_leagues_by_uid: dict[str, set] = field(default_factory=dict)
+    accuracy_by_uid: dict[str, dict] = field(default_factory=dict)
+    league_name_by_id: dict[int, str] = field(default_factory=dict)
+    next_match_by_league: dict[int, UpcomingMatch] = field(default_factory=dict)
+    top_pick_today: UpcomingMatch | None = None
+    owned_by_uid: dict[str, dict] = field(default_factory=dict)
+
+
+def _supa_page(table: str, params: dict, url: str, headers: dict, step: int = 1000) -> list:
+    """Range-paginate a Supabase REST table fully."""
+    out, off = [], 0
+    while True:
+        h = dict(headers)
+        h['Range-Unit'] = 'items'
+        h['Range'] = f'{off}-{off + step - 1}'
+        try:
+            r = requests.get(f'{url}/rest/v1/{table}', params=params, headers=h, timeout=30)
+        except Exception:
+            break
+        if r.status_code not in (200, 206):
+            break
+        rows = r.json()
+        out += rows
+        if len(rows) < step:
+            break
+        off += step
+    return out
+
+
+def prefetch_bulk_context() -> BulkContext:
+    """Load the entire Predictify behavioral dataset once. Returns an empty
+    BulkContext (callers fall back to per-user fetch) if creds are missing."""
+    bulk = BulkContext()
+    raw = _supa_headers()
+    if not raw:
+        return bulk
+    url = raw.pop('_url', SUPABASE_URL)
+    headers = raw
+    if not url:
+        return bulk
+
+    now = datetime.now(timezone.utc)
+
+    # 1. Followed leagues → {uid: set(league_id)} (favorites only, matching
+    #    the per-user query's is_favorite=true filter).
+    for row in _supa_page('user_leagues', {'select': 'firebase_uid,league_id,is_favorite'}, url, headers):
+        if row.get('is_favorite') and isinstance(row.get('league_id'), int):
+            bulk.fav_leagues_by_uid.setdefault(row['firebase_uid'], set()).add(row['league_id'])
+
+    # 2. Pick accuracy (last 30d, scored) → {uid: {rate,total,correct}}.
+    since = (now - timedelta(days=30)).isoformat()
+    acc_tmp: dict[str, list] = {}
+    for row in _supa_page('user_picks',
+                          {'select': 'user_id,is_correct', 'created_at': f'gte.{since}',
+                           'is_correct': 'not.is.null'}, url, headers):
+        uid = row.get('user_id')
+        if not uid:
+            continue
+        a = acc_tmp.setdefault(uid, [0, 0])  # [total, correct]
+        a[0] += 1
+        if row.get('is_correct') is True:
+            a[1] += 1
+    for uid, (total, correct) in acc_tmp.items():
+        if total:
+            bulk.accuracy_by_uid[uid] = {'rate': correct / total, 'total': total, 'correct': correct}
+
+    # 3. Predictions (all) → league-name map + global top pick + per-league
+    #    next match. One fetch covers all three; we filter windows in memory.
+    preds = _supa_page('predictions',
+                       {'select': 'fixture_id,league_id,league_name,home_team_name,'
+                                  'away_team_name,match_date,confidence_score,prediction_data'},
+                       url, headers)
+    top_pick = None
+    top_conf = -1.0
+    soon_24h = (now + timedelta(hours=24))
+    soon_36h = (now + timedelta(hours=36))
+    for row in preds:
+        lid = row.get('league_id')
+        if isinstance(lid, int) and row.get('league_name'):
+            bulk.league_name_by_id.setdefault(lid, row['league_name'])
+        md = row.get('match_date')
+        try:
+            kickoff = datetime.fromisoformat(md.replace('Z', '+00:00')) if md else None
+        except Exception:
+            kickoff = None
+        if not kickoff or kickoff < now:
+            continue
+        # Global top pick: highest confidence kicking off within 24h.
+        if kickoff <= soon_24h:
+            conf = float(row.get('confidence_score') or 0)
+            if conf > top_conf:
+                top_conf = conf
+                top_pick = _row_to_upcoming(row)
+        # Per-league next match within 36h (earliest wins).
+        if isinstance(lid, int) and kickoff <= soon_36h:
+            existing = bulk.next_match_by_league.get(lid)
+            if existing is None or (existing.kickoff_dt and kickoff < existing.kickoff_dt):
+                bulk.next_match_by_league[lid] = _row_to_upcoming(row)
+    bulk.top_pick_today = top_pick
+
+    # 4. Community ownership → {ownerId: {id,name,memberCount}} (Firestore,
+    #    all ~20 communities in one list call — replaces a per-user runQuery).
+    tok = _fb_token()
+    if tok:
+        try:
+            r = requests.get(
+                f'{FIRESTORE_BASE}/communities',
+                params=[('pageSize', 300), ('mask.fieldPaths', 'ownerId'),
+                        ('mask.fieldPaths', 'name'), ('mask.fieldPaths', 'memberCount')],
+                headers={'Authorization': f'Bearer {tok}'}, timeout=15,
+            )
+            if r.ok:
+                for doc in r.json().get('documents', []):
+                    fields = doc.get('fields', {})
+                    owner = fields.get('ownerId', {}).get('stringValue')
+                    if not owner:
+                        continue
+                    bulk.owned_by_uid.setdefault(owner, {
+                        'id': doc['name'].rsplit('/', 1)[-1],
+                        'name': fields.get('name', {}).get('stringValue'),
+                        'memberCount': int(fields.get('memberCount', {}).get('integerValue') or 0),
+                    })
+        except Exception:
+            pass
+
+    return bulk
+
+
 def fetch_user_context(
     uid: str,
     email: str,
     display_name: str,
     language: str = 'en',
     activity: dict | None = None,
+    bulk: BulkContext | None = None,
 ) -> UserContext:
     """Build a fresh UserContext for one user. ``activity`` is the dict
     already loaded by FirestoreActivityLoader if available — saves an
-    extra round-trip."""
+    extra round-trip.
+
+    If ``bulk`` (from prefetch_bulk_context) is supplied, ALL behavioral
+    fields are read from the in-memory indexes with zero per-user network
+    calls. Without it, the legacy per-user query path runs (kept for
+    standalone/ad-hoc use)."""
 
     ctx = UserContext(
         uid=uid,
@@ -164,7 +309,35 @@ def fetch_user_context(
         if isinstance(activity.get('favoriteLeague'), int):
             ctx.followed_league_ids.append(activity['favoriteLeague'])
 
-    # Followed leagues + recent picks + accuracy via Supabase.
+    if bulk is not None:
+        # ── Fast path: everything from the in-memory bulk indexes ──
+        fav = bulk.fav_leagues_by_uid.get(uid) or set()
+        ctx.followed_league_ids = list(set(ctx.followed_league_ids) | fav)
+        ctx.followed_league_names = [
+            bulk.league_name_by_id[l] for l in ctx.followed_league_ids
+            if l in bulk.league_name_by_id
+        ]
+        acc = bulk.accuracy_by_uid.get(uid)
+        if acc:
+            ctx.accuracy_30d = acc['rate']
+            ctx.total_picks_30d = acc['total']
+            ctx.correct_picks_30d = acc['correct']
+        # Next followed-league match = earliest across the user's leagues.
+        nm = None
+        for l in ctx.followed_league_ids:
+            m = bulk.next_match_by_league.get(l)
+            if m and (nm is None or (m.kickoff_dt and nm.kickoff_dt and m.kickoff_dt < nm.kickoff_dt)):
+                nm = m
+        ctx.next_match = nm
+        ctx.todays_top_pick = bulk.top_pick_today
+        owned = bulk.owned_by_uid.get(uid)
+        if owned:
+            ctx.owned_community_id = owned['id']
+            ctx.owned_community_name = owned.get('name')
+            ctx.owned_community_member_count = int(owned.get('memberCount') or 0)
+        return ctx
+
+    # ── Legacy per-user path (no bulk supplied) ──
     headers = _supa_headers()
     url = headers.pop('_url', SUPABASE_URL) if headers else SUPABASE_URL
     if headers and url:

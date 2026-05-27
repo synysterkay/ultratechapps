@@ -35,7 +35,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import requests  # noqa: E402
 
-from predictify_v2.user_context import fetch_user_context  # noqa: E402
+from predictify_v2.user_context import fetch_user_context, prefetch_bulk_context  # noqa: E402
 from predictify_v2.template_engine import render_template, RenderedEmail  # noqa: E402
 from predictify_v2.triggers import select_trigger  # noqa: E402
 from predictify_v2.community_recommender import CommunityRecommender  # noqa: E402
@@ -199,6 +199,69 @@ def _firestore_sent_today_uids() -> set[str]:
     except Exception as e:
         print(f'   ⚠️ sent_today_uids query failed: {e}')
     return uids
+
+
+def _firestore_all_sends() -> dict:
+    """Bulk-load the ENTIRE send history into {uid: {kind: latest_sent_at}}.
+
+    The cooldown check used to be a per-user Firestore query — and because
+    nearly every user matches the (once-ever) `welcome` trigger, that meant
+    ~17k sequential round-trips per run (the bulk of the old runtime). One
+    paginated scan here turns the cooldown check into an in-memory lookup.
+    Doubles as the source for `sent_today` (no separate query needed).
+    """
+    tok = _uc._fb_token()
+    if not tok:
+        return {}
+    base = f'{_uc.FIRESTORE_BASE}/{SENDS_COLLECTION}'
+    headers = {'Authorization': f'Bearer {tok}'}
+    index: dict = {}
+    page_token = None
+    while True:
+        params = [('pageSize', 300), ('mask.fieldPaths', 'uid'),
+                  ('mask.fieldPaths', 'kind'), ('mask.fieldPaths', 'sent_at')]
+        if page_token:
+            params.append(('pageToken', page_token))
+        try:
+            r = requests.get(base, params=params, headers=headers, timeout=30)
+        except Exception as e:
+            print(f'   ⚠️ all_sends page failed: {e}')
+            break
+        if r.status_code != 200:
+            print(f'   ⚠️ all_sends query failed: {r.status_code}')
+            break
+        j = r.json()
+        for doc in j.get('documents', []):
+            f = doc.get('fields', {})
+            uid = f.get('uid', {}).get('stringValue')
+            kind = f.get('kind', {}).get('stringValue')
+            sa = f.get('sent_at', {}).get('timestampValue')
+            if not uid or not kind or not sa:
+                continue
+            try:
+                dt = datetime.fromisoformat(sa.replace('Z', '+00:00'))
+            except Exception:
+                continue
+            cur = index.setdefault(uid, {})
+            if kind not in cur or dt > cur[kind]:
+                cur[kind] = dt
+        page_token = j.get('nextPageToken')
+        if not page_token:
+            break
+    return index
+
+
+def _has_recent_in_index(index: dict, uid: str, kind: str, days: int) -> bool:
+    """In-memory equivalent of _firestore_has_recent, against the bulk index.
+    days>=9999 means 'once ever' — any past send of this kind blocks."""
+    if days <= 0:
+        return False
+    dt = index.get(uid, {}).get(kind)
+    if not dt:
+        return False
+    if days >= 9999:
+        return True
+    return dt > (datetime.now(timezone.utc) - timedelta(days=days))
 
 
 def _today() -> str:
@@ -545,11 +608,19 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
     except Exception:
         activity_by_uid = {}
 
-    # Bulk-load the set of uids already emailed today. One query up front
-    # is cheaper than per-user round-trips, and matches the "max one v2
-    # email per user per day" cap the old in-memory `today_state` enforced.
-    sent_today: set[str] = _firestore_sent_today_uids()
-    print(f'   📨 {len(sent_today)} uids already emailed today')
+    # Bulk-load the ENTIRE send history once → {uid: {kind: latest_sent_at}}.
+    # This powers both the per-kind cooldown check (in-memory, see the loop)
+    # and the "already emailed today" dedup — replacing what used to be ~17k
+    # sequential per-user Firestore cooldown queries.
+    t_sends = time.time()
+    sends_index: dict = _firestore_all_sends()
+    today_start = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
+    sent_today: set[str] = {
+        uid for uid, kinds in sends_index.items()
+        if any(dt >= today_start for dt in kinds.values())
+    }
+    print(f'   📨 send history: {len(sends_index)} uids ({time.time()-t_sends:.1f}s), '
+          f'{len(sent_today)} already emailed today')
 
     # Suppression list (bounces, complaints, explicit unsubscribes).
     # Checked AFTER trigger selection so we still count "would-have-sent"
@@ -564,6 +635,18 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
     # isn't already a member of the picked community.
     recommender = CommunityRecommender()
     recommender.load()
+
+    # Bulk-load the ENTIRE behavioral dataset once (user_leagues, user_picks,
+    # predictions, communities — ~2.9k rows in ~4 queries). Each user's
+    # context is then built from memory with zero per-user Supabase/Firestore
+    # reads. This is what collapses the old ~90k-query / ~2h45m pass.
+    t_bulk = time.time()
+    bulk = prefetch_bulk_context()
+    print(f'   ⚡ Bulk context loaded in {time.time() - t_bulk:.1f}s '
+          f'({len(bulk.fav_leagues_by_uid)} users w/ leagues, '
+          f'{len(bulk.accuracy_by_uid)} w/ picks, '
+          f'{len(bulk.owned_by_uid)} community owners, '
+          f'top_pick={"yes" if bulk.top_pick_today else "no"})')
 
     sent: list[tuple[str, str]] = []
     skipped_no_trigger = 0
@@ -584,7 +667,8 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
         display_name = u.get('displayName') or activity.get('displayName') or email.split('@')[0]
 
         try:
-            ctx = fetch_user_context(uid, email, display_name, language=lang, activity=activity)
+            ctx = fetch_user_context(uid, email, display_name, language=lang,
+                                     activity=activity, bulk=bulk)
         except Exception as e:
             return ('error', uid, e)
 
@@ -594,6 +678,13 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
         # who don't match any public community in the pool just won't
         # have these fields set, and the community_invite trigger will
         # skip them gracefully.
+        #
+        # Gate: community_invite requires total_picks_30d >= 2 and no owned
+        # community. Users who can't meet that never read these fields, so we
+        # skip the recommender's per-user Firestore membership checks for them
+        # — the last remaining per-user network cost in this loop.
+        if ctx.total_picks_30d < 2 or ctx.owned_community_id is not None:
+            return (u, ctx, lang)
         try:
             rec = recommender.recommend(
                 uid=ctx.uid,
@@ -685,7 +776,7 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
                     continue
 
                 cooldown = COOLDOWN_DAYS.get(kind, DEFAULT_COOLDOWN_DAYS)
-                if _firestore_has_recent(uid, kind, cooldown):
+                if _has_recent_in_index(sends_index, uid, kind, cooldown):
                     skipped_cooldown += 1
                     continue
 
