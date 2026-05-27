@@ -1128,7 +1128,18 @@ class AppRetentionEmailer:
 
         sent = 0
         failed = 0
-        
+        # Per-app attempt tracking, for the priority "no email missed" audit.
+        # priority_queued = how many priority emails were DUE this run (never
+        # cap-truncated). attempted_by_app counts those we actually tried to
+        # send (sent OR failed). A priority email that's due but never attempted
+        # — because the run broke (all senders down / budget) before reaching
+        # it — is a genuine MISS and must alert.
+        priority_queued = {}
+        for e in priority_eligible:
+            priority_queued[e['app_name']] = priority_queued.get(e['app_name'], 0) + 1
+        attempted_by_app = {}
+        sent_by_app = {}
+
         for i, entry in enumerate(eligible):
             # Time budget: stop cleanly before the workflow step / 6h job limit
             # so state is flushed rather than the process being killed mid-send.
@@ -1213,7 +1224,9 @@ class AppRetentionEmailer:
                 if not subject.startswith(prefix):
                     subject = prefix + subject
 
-            # Send via this sender's connection
+            # Send via this sender's connection — this point counts as an
+            # "attempt" for the per-app audit (we got a sender + built content).
+            attempted_by_app[app_name] = attempted_by_app.get(app_name, 0) + 1
             result = sender_slot['gmail'].send_email(
                 to_email=email_addr,
                 subject=subject,
@@ -1222,9 +1235,10 @@ class AppRetentionEmailer:
                 tags=tags,
                 ref_id=ref_id,
             )
-            
+
             if result == 'sent':
                 sent += 1
+                sent_by_app[app_name] = sent_by_app.get(app_name, 0) + 1
                 sender_slot['sent'] += 1
                 sender_slot['fails'] = 0  # reset consecutive-failure counter
                 # Update user state
@@ -1305,6 +1319,36 @@ class AppRetentionEmailer:
         print(f"   ❌ Failed: {failed}")
         print(f"   📅 Daily total: {self.state['daily_stats'][today]}")
         print(f"{'='*60}")
+
+        # ── Priority "no email missed" audit ───────────────────────
+        # Predictify Soccer + Thesis Generator must never have a DUE email go
+        # unsent for a capacity/health reason. They're uncapped, health-
+        # bypassed, and processed first — so for each, every queued (due) email
+        # should have been ATTEMPTED. A gap means the run broke (all senders
+        # disabled, or budget hit) before reaching due priority mail: a real
+        # miss. Send failures (Resend errors) are NOT misses — the user isn't
+        # advanced and retries next run — but we surface them too.
+        priority_missed = {}
+        for app_name in self.PRIORITY_APPS:
+            queued = priority_queued.get(app_name, 0)
+            if not queued:
+                continue
+            attempted = attempted_by_app.get(app_name, 0)
+            got = sent_by_app.get(app_name, 0)
+            missed = queued - attempted
+            flag = "✅" if missed == 0 else "🚨"
+            print(f"   🔒 Priority audit — {app_name}: due={queued} "
+                  f"attempted={attempted} sent={got} missed={missed} {flag}")
+            if missed > 0:
+                priority_missed[app_name] = missed
+        if priority_missed:
+            print(f"\n🚨 ALERT: {sum(priority_missed.values())} PRIORITY email(s) "
+                  f"went unsent for a capacity reason: {priority_missed}")
+            print("   Priority apps must never be capacity-blocked — this means")
+            print("   the run ran out of working senders or hit its time budget")
+            print("   before reaching due priority mail. Check sender health and")
+            print("   the per-send errors above.")
+            sys.exit(1)
 
         # ── Loud failure alerting ──────────────────────────────────
         # The kaynel.pl outage went unnoticed for ~2 weeks because a run
