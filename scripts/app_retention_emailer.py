@@ -52,6 +52,14 @@ HEALTH_CAPS = {
 # Absolute ceiling (Resend plan: 100K/month ≈ 3,400/day)
 MAX_DAILY_LIMIT = 3400
 
+# Wall-clock budget for a single run. GitHub cancels the job at 6h and the
+# workflow step is capped at 300 min; we stop the send loop a bit before that
+# so the loop exits cleanly and state is flushed BEFORE any timeout — rather
+# than being killed mid-send (which is how a run once died inside git-commit
+# and lost its state). 270 min leaves headroom under the 300-min step cap.
+MAX_RUN_SECONDS = 270 * 60
+_SCRIPT_START = time.monotonic()
+
 # Warming phase start date — bypass health checks during first 4 weeks
 WARMING_START_DATE = '2026-04-03'
 WARMING_PHASE_WEEKS = 4
@@ -1117,6 +1125,17 @@ class AppRetentionEmailer:
         failed = 0
         
         for i, entry in enumerate(eligible):
+            # Time budget: stop cleanly before the workflow step / 6h job limit
+            # so state is flushed rather than the process being killed mid-send.
+            # Whoever isn't reached this run is still due next run (cadence is
+            # per-user), so we just resume — nothing is skipped permanently.
+            if time.monotonic() - _SCRIPT_START > MAX_RUN_SECONDS:
+                self._save_state()
+                print(f"   ⏱️ Run budget hit ({MAX_RUN_SECONDS//60} min) after "
+                      f"{sent} sent — stopping cleanly, state saved. "
+                      f"{len(eligible) - i} not reached (resume next run).")
+                break
+
             email_addr = entry['email']
             app_name = entry['app_name']
             email_num = entry['next_email']
@@ -1256,11 +1275,13 @@ class AppRetentionEmailer:
             # Save state every 25 emails
             if (sent + failed) % 25 == 0:
                 self._save_state()
-            
-            # Rate limit
+
+            # Rate limit — Resend allows 2 req/s, so 0.5s is the safe floor.
+            # Halves the send phase vs the old 1s (a capped ~2.2k batch went
+            # from ~42min to ~21min).
             if i < len(eligible) - 1:
-                time.sleep(1)
-        
+                time.sleep(0.5)
+
         # Disconnect all senders
         for s in senders:
             s['gmail'].disconnect()

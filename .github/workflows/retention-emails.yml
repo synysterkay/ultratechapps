@@ -27,10 +27,17 @@ on:
 permissions:
   contents: write
 
+# Never let two scheduled runs overlap — they'd race on the JSON state
+# files. A queued run waits for the in-flight one rather than cancelling it
+# (cancel-in-progress: false), so a long send is never killed mid-flight.
+concurrency:
+  group: retention-emails
+  cancel-in-progress: false
+
 jobs:
   retention-emails:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -64,6 +71,12 @@ jobs:
             retention-state-
       
       - name: Run retention email campaign
+        # Cap below GitHub's 6h job limit so that if the loading/send phase
+        # runs long, THIS step times out (not the whole job) and control falls
+        # through to "Save state" (if: always()) — which is what froze before
+        # when the 6h limit killed the job mid git-commit and state never
+        # persisted. The script also self-stops via MAX_RUN_SECONDS before this.
+        timeout-minutes: 300
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
@@ -81,40 +94,40 @@ jobs:
           # Auto-localize any v2 templates that are still missing per-language
           # files. Uses the production DEEPSEEK key (free for the language
           # buckets we cover). Idempotent: skips files that already exist.
-          python scripts/predictify_v2/localize_templates.py || true
+          python -u scripts/predictify_v2/localize_templates.py || true
 
           if [ "$MODE" = "generate" ]; then
-            python scripts/app_retention_emailer.py --generate
+            python -u scripts/app_retention_emailer.py --generate
           elif [ "$MODE" = "status" ]; then
-            python scripts/app_retention_emailer.py --status
+            python -u scripts/app_retention_emailer.py --status
           elif [ "$MODE" = "dry-run" ]; then
-            python scripts/app_retention_emailer.py --dry-run
+            python -u scripts/app_retention_emailer.py --dry-run
           elif [ "$MODE" = "refresh" ]; then
-            python scripts/app_retention_emailer.py --refresh
+            python -u scripts/app_retention_emailer.py --refresh
           elif [ "$MODE" = "health-check" ]; then
-            python scripts/deliverability_monitor.py --report
+            python -u scripts/deliverability_monitor.py --report
           elif [ "$MODE" = "streak" ]; then
-            python scripts/app_retention_emailer.py --streak
+            python -u scripts/app_retention_emailer.py --streak
           elif [ "$MODE" = "matchday" ]; then
-            python scripts/app_retention_emailer.py --matchday
+            python -u scripts/app_retention_emailer.py --matchday
           elif [ "$MODE" = "upsell" ]; then
-            python scripts/app_retention_emailer.py --upsell
+            python -u scripts/app_retention_emailer.py --upsell
           else
-            python scripts/app_retention_emailer.py
+            python -u scripts/app_retention_emailer.py
             # Also run trigger-based senders during normal campaign runs.
             # Each has its own cooldown / state file, so daily is safe.
             echo "--- Running streak triggers ---"
-            python scripts/app_retention_emailer.py --streak || true
+            python -u scripts/app_retention_emailer.py --streak || true
             echo "--- Running matchday triggers ---"
-            python scripts/app_retention_emailer.py --matchday || true
+            python -u scripts/app_retention_emailer.py --matchday || true
             echo "--- Running upsell triggers ---"
-            python scripts/app_retention_emailer.py --upsell || true
+            python -u scripts/app_retention_emailer.py --upsell || true
             # ── Thesis Generator v2 trigger senders ──
             # Single entry point now — the orchestrator fires each sender
             # in the right order (celebratory → re-engagement → urgency →
             # monetization → winback → recap). Per-sender state files dedupe.
             echo "--- Running thesis orchestrator (all thesis senders) ---"
-            python scripts/thesis_orchestrator.py || true
+            python -u scripts/thesis_orchestrator.py || true
           fi
       
       - name: Save retention state
