@@ -672,6 +672,18 @@ class AppRetentionEmailer:
         'PupShape: Dog Weight Loss Plan',
     ]
 
+    # ─── PRIORITY APPS (uncapped, health-bypassed) ───────
+    # Per ops decision 2026-05-xx: these apps send ALL eligible emails every
+    # day with NO daily-cap truncation and WITHOUT the green/yellow/red
+    # per-sender throttle — every eligible user is emailed regardless of
+    # sender health status. The verified-domain filter still applies (an
+    # unverified domain hard-403s = zero delivered, which defeats the goal)
+    # and a sender that fails 5× in a run is still quarantined (route around
+    # genuinely broken senders rather than loop failures). Non-priority apps
+    # keep the normal cap + health behavior and yield whatever capacity is
+    # left after the priority apps are fully served.
+    PRIORITY_APPS = {'Predictify', 'Thesis Generator'}
+
     # ─── CAMPAIGN LOGIC ────────────────────────────────────
     
     def _classify_user(self, user, emails_sent):
@@ -1069,17 +1081,30 @@ class AppRetentionEmailer:
         if today not in self.state['daily_stats']:
             self.state['daily_stats'][today] = {'sent': 0, 'failed': 0}
         
-        # Enforce dynamic daily send cap
+        # Enforce dynamic daily send cap — EXCEPT for PRIORITY_APPS, which are
+        # never truncated. Priority emails always go out in full; non-priority
+        # apps share whatever capacity remains under the daily cap.
+        priority_eligible = [e for e in eligible if e['app_name'] in self.PRIORITY_APPS]
+        other_eligible = [e for e in eligible if e['app_name'] not in self.PRIORITY_APPS]
+
         daily_limit = get_dynamic_send_limit()
         already_sent_today = self.state['daily_stats'][today].get('sent', 0)
         remaining_cap = max(0, daily_limit - already_sent_today)
-        if remaining_cap == 0:
-            print(f"   🛑 Daily send cap reached ({daily_limit}). Skipping this run.")
+
+        if remaining_cap < len(other_eligible):
+            print(f"   ⚠️ Cap allows {remaining_cap} more non-priority emails today "
+                  f"(limit: {daily_limit}, already sent: {already_sent_today})")
+            other_eligible = other_eligible[:remaining_cap]
+
+        # Priority apps first (uncapped), then capped remainder.
+        eligible = priority_eligible + other_eligible
+        if priority_eligible:
+            print(f"   ⭐ {len(priority_eligible)} priority emails (uncapped, health-bypassed) "
+                  f"+ {len(other_eligible)} other (capped)")
+        if not eligible:
+            print(f"   🛑 Nothing to send (cap reached and no priority emails).")
             return
-        if remaining_cap < len(eligible):
-            print(f"   ⚠️ Cap allows {remaining_cap} more emails today (limit: {daily_limit}, already sent: {already_sent_today})")
-            eligible = eligible[:remaining_cap]
-        
+
         sent = 0
         failed = 0
         
@@ -1106,8 +1131,16 @@ class AppRetentionEmailer:
             # routing 100% of traffic through one broken domain. Now a
             # failure raises its effective rank, and a sender that fails
             # repeatedly is disabled entirely (see below).
+            #
+            # PRIORITY_APPS ignore the per-sender health cap entirely (health
+            # bypass) — every verified, non-broken sender is fair game so all
+            # eligible priority emails go out. `disabled` (5× consecutive
+            # failures) is still respected: that flags a genuinely broken
+            # sender, and routing around it serves "send everything" better
+            # than looping failures into it.
+            is_priority = app_name in self.PRIORITY_APPS
             available = [s for s in senders
-                         if s['sent'] < s['cap'] and not s['disabled']]
+                         if not s['disabled'] and (is_priority or s['sent'] < s['cap'])]
             if not available:
                 if all(s['disabled'] for s in senders):
                     print(f"   🛑 All senders disabled after repeated failures — aborting after {sent} sent")
