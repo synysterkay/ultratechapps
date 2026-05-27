@@ -601,31 +601,64 @@ class DeliverabilityMonitor:
 
     # ── SPAM TRAP DETECTION ─────────────────────────────────
 
+    def _recipients_from_events(self, event_types, days):
+        """Bulk-fetch recipients for the given email_events types in one
+        indexed Supabase query.
+
+        Replaces the old fetch_event_log path, which paginated the entire
+        Resend /emails API (up to ~500 pages, twice per run) just to find a
+        few bounces — ~24 min on the daily campaign. The resend-webhook
+        already lands every bounce/complaint in email_events with an indexed
+        occurred_at, so one query returns the same set in <1s.
+        """
+        url = os.environ.get('SUPABASE_URL', '')
+        key = os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
+        if not url or not key:
+            cfg = Path(__file__).resolve().parents[1] / 'config' / 'supabase_config.json'
+            if cfg.exists():
+                try:
+                    data = json.load(open(cfg))
+                    url = data['project']['url']
+                    key = data['project']['service_role_key']
+                except Exception:
+                    pass
+        if not url or not key:
+            return set()
+
+        since = (datetime.now() - timedelta(days=days)).strftime('%Y-%m-%dT%H:%M:%SZ')
+        types = ','.join(event_types)
+        out = set()
+        try:
+            r = requests.get(
+                f"{url.rstrip('/')}/rest/v1/email_events",
+                params={
+                    'select': 'recipient',
+                    'event_type': f'in.({types})',
+                    'occurred_at': f'gte.{since}',
+                    'recipient': 'not.is.null',
+                    'limit': '50000',
+                },
+                headers={'apikey': key, 'Authorization': f'Bearer {key}'},
+                timeout=30,
+            )
+            if r.status_code == 200:
+                for row in r.json():
+                    rec = row.get('recipient')
+                    if rec:
+                        out.add(rec.lower())
+        except Exception as e:
+            print(f"   ⚠️ email_events query failed ({types}): {e}")
+        return out
+
     def get_spam_reporters(self, days=7):
-        """
-        Get list of users who reported emails as spam.
-        These should be immediately removed from future sends.
-        """
-        events = self.fetch_event_log(event_type='spam', days=days)
-        reporters = set()
-        for event in events:
-            email = event.get('email')
-            if email:
-                reporters.add(email)
-        return reporters
+        """Emails that filed a spam complaint — remove from future sends.
+        Sourced from email_events (one indexed query)."""
+        return self._recipients_from_events(['email.complained'], days)
 
     def get_hard_bounces(self, days=7):
-        """
-        Get list of emails that hard-bounced.
-        These should be permanently removed (invalid addresses).
-        """
-        events = self.fetch_event_log(event_type='hardBounces', days=days)
-        bounced = set()
-        for event in events:
-            email = event.get('email')
-            if email:
-                bounced.add(email)
-        return bounced
+        """Hard-bounced emails (invalid addresses) — remove permanently.
+        Sourced from email_events (one indexed query)."""
+        return self._recipients_from_events(['email.bounced'], days)
 
     def clean_bad_recipients(self, state):
         """
