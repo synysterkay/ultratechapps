@@ -28,6 +28,7 @@ import hmac
 import hashlib
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
+from concurrent.futures import ThreadPoolExecutor
 
 # Allow `python -m predictify_v2.orchestrator` from scripts/.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -512,6 +513,14 @@ def _build_text(e: RenderedEmail, unsub_url: str | None = None) -> str:
 #  2 × V2_DAILY_SEND_CAP = 1000 emails/day.
 V2_DAILY_SEND_CAP = 500
 
+# Building a user's context is ~13 sequential HTTP reads (Supabase + Firestore).
+# Done serially across ~17k users that was the ~2h45m the run spent before it
+# ever sent an email. The reads are pure I/O and independent per user, so we
+# fan them out across a bounded thread pool. All send/dedup/cap decisions stay
+# strictly sequential below — only the read-only enrichment is parallel.
+V2_FETCH_WORKERS = int(os.environ.get('V2_FETCH_WORKERS', '16'))
+V2_FETCH_CHUNK = 96
+
 
 def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, str]]:
     print(f'🚀 Predictify v2 trigger pass (dry_run={dry_run}, cap={V2_DAILY_SEND_CAP})')
@@ -562,24 +571,14 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
     skipped_cooldown = 0
     skipped_suppressed = 0
 
-    cap_hit = False
-    for i, u in enumerate(users):
-        if max_users and i >= max_users:
-            break
-        if len(sent) >= V2_DAILY_SEND_CAP:
-            cap_hit = True
-            break
+    def _enrich(u):
+        """Read-only: build a user's context and attach a community
+        recommendation. Pure I/O, safe to run in a worker thread — touches no
+        shared mutable state (recommender.pool / _token are read-only after
+        load()). Returns (u, ctx, lang) on success, ('error', uid, exc) on a
+        context-build failure, or None to skip."""
         uid = u.get('localId') or u.get('uid')
         email = u.get('email')
-        if not uid or not email:
-            continue
-        if uid in sent_today:
-            skipped_dup_today += 1
-            continue
-        if email.lower() in suppressed:
-            skipped_suppressed += 1
-            continue
-
         lang = (languages_by_uid.get(uid) or 'en').lower()
         activity = activity_by_uid.get(uid) or {}
         display_name = u.get('displayName') or activity.get('displayName') or email.split('@')[0]
@@ -587,8 +586,7 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
         try:
             ctx = fetch_user_context(uid, email, display_name, language=lang, activity=activity)
         except Exception as e:
-            print(f'   ⚠️ context build failed for {uid}: {e}')
-            continue
+            return ('error', uid, e)
 
         # Attach a community recommendation (best-effort). This populates
         # the _recommended_community_* fields that both the trigger and
@@ -625,30 +623,89 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
         except Exception as e:
             print(f'   ⚠️ community recommend failed for {uid}: {e}')
 
-        kind = select_trigger(ctx)
-        if not kind:
-            skipped_no_trigger += 1
-            continue
+        return (u, ctx, lang)
 
-        cooldown = COOLDOWN_DAYS.get(kind, DEFAULT_COOLDOWN_DAYS)
-        if _firestore_has_recent(uid, kind, cooldown):
-            skipped_cooldown += 1
-            continue
+    # Process users in chunks: enrich each chunk's contexts in parallel
+    # (read-only I/O), then walk the results SEQUENTIALLY to apply trigger /
+    # cooldown / send decisions. Order and the cap behave exactly as the old
+    # serial loop — we just stopped paying for the reads one at a time.
+    cap_hit = False
+    executor = ThreadPoolExecutor(max_workers=V2_FETCH_WORKERS)
+    try:
+        for chunk_start in range(0, len(users), V2_FETCH_CHUNK):
+            if max_users and chunk_start >= max_users:
+                break
+            if len(sent) >= V2_DAILY_SEND_CAP:
+                cap_hit = True
+                break
 
-        rendered = render_template(kind, ctx)
-        if not rendered:
-            skipped_no_trigger += 1
-            continue
+            chunk = users[chunk_start:chunk_start + V2_FETCH_CHUNK]
 
-        ok = _send(email, uid, rendered, dry_run=dry_run)
-        if ok:
-            sent_today.add(uid)
-            sent.append((email, kind))
-            if not dry_run:
-                _firestore_record_send(uid, kind, lang)
-            print(f'   ✅ {email}: {kind} ({lang})')
-        # Be gentle with downstream APIs
-        time.sleep(0.05)
+            # Cheap, no-I/O pre-filter — done serially so the skip counters
+            # stay exact and we don't waste a worker fetching context for a
+            # user we'd drop anyway.
+            candidates = []
+            for u in chunk:
+                uid = u.get('localId') or u.get('uid')
+                email = u.get('email')
+                if not uid or not email:
+                    continue
+                if uid in sent_today:
+                    skipped_dup_today += 1
+                    continue
+                if email.lower() in suppressed:
+                    skipped_suppressed += 1
+                    continue
+                candidates.append(u)
+
+            if not candidates:
+                continue
+
+            # Parallel read-only enrichment for this chunk.
+            results = list(executor.map(_enrich, candidates))
+
+            # Sequential decision + send — preserves ordering and the cap.
+            for res in results:
+                if res is None:
+                    continue
+                if res[0] == 'error':
+                    print(f'   ⚠️ context build failed for {res[1]}: {res[2]}')
+                    continue
+                if len(sent) >= V2_DAILY_SEND_CAP:
+                    cap_hit = True
+                    break
+
+                u, ctx, lang = res
+                uid = ctx.uid
+                email = u.get('email')
+
+                kind = select_trigger(ctx)
+                if not kind:
+                    skipped_no_trigger += 1
+                    continue
+
+                cooldown = COOLDOWN_DAYS.get(kind, DEFAULT_COOLDOWN_DAYS)
+                if _firestore_has_recent(uid, kind, cooldown):
+                    skipped_cooldown += 1
+                    continue
+
+                rendered = render_template(kind, ctx)
+                if not rendered:
+                    skipped_no_trigger += 1
+                    continue
+
+                ok = _send(email, uid, rendered, dry_run=dry_run)
+                if ok:
+                    sent_today.add(uid)
+                    sent.append((email, kind))
+                    if not dry_run:
+                        _firestore_record_send(uid, kind, lang)
+                    print(f'   ✅ {email}: {kind} ({lang})')
+
+            if cap_hit:
+                break
+    finally:
+        executor.shutdown(wait=False)
 
     cap_note = ' 🛑 CAP HIT' if cap_hit else ''
     print(f'📊 Summary: sent={len(sent)}/{V2_DAILY_SEND_CAP} '
