@@ -69,7 +69,15 @@ function timingSafeEqual(a: string, b: string): boolean {
 }
 
 function tagValue(tags: unknown, name: string): string | null {
-  if (!Array.isArray(tags)) return null;
+  if (!tags || typeof tags !== "object") return null;
+  // Resend delivers tags as an OBJECT: { app: "predictify", kind: "welcome" }.
+  // (The previous code assumed an array-of-{name,value} and so wrote null to
+  // every tag column — app/kind/etc. were blank for 13k+ events.)
+  if (!Array.isArray(tags)) {
+    const v = (tags as Record<string, unknown>)[name];
+    return v == null ? null : String(v);
+  }
+  // Tolerate the array-of-{name,value} shape too, just in case.
   for (const t of tags) {
     if (t && typeof t === "object" && (t as Record<string, unknown>).name === name) {
       const v = (t as Record<string, unknown>).value;
@@ -77,6 +85,23 @@ function tagValue(tags: unknown, name: string): string | null {
     }
   }
   return null;
+}
+
+// Resend delivers headers as an ARRAY: [{ name, value }]. X-Entity-Ref-ID
+// (our per-user attribution id) lives there.
+function headerValue(headers: unknown, name: string): string {
+  if (Array.isArray(headers)) {
+    for (const h of headers) {
+      if (h && typeof h === "object" && (h as Record<string, unknown>).name === name) {
+        return String((h as Record<string, unknown>).value ?? "");
+      }
+    }
+    return "";
+  }
+  if (headers && typeof headers === "object") {
+    return String((headers as Record<string, unknown>)[name] ?? "");
+  }
+  return "";
 }
 
 Deno.serve(async (req) => {
@@ -167,9 +192,7 @@ Deno.serve(async (req) => {
       : null;
 
   const refId =
-    (data.headers && typeof data.headers === "object"
-      ? String((data.headers as Record<string, unknown>)["X-Entity-Ref-ID"] ?? "")
-      : "") || tagValue(tags, "ref") || null;
+    headerValue(data.headers, "X-Entity-Ref-ID") || tagValue(tags, "ref") || null;
 
   const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 

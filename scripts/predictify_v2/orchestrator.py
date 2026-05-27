@@ -306,13 +306,17 @@ def _load_suppressed_emails() -> set[str]:
 
     headers = _marketing_headers()
 
-    # Source 1: bounces + complaints from email_events (app-scoped).
+    # Source 1: bounces + complaints from email_events. NOT app-scoped: a
+    # hard bounce means the address itself is dead (bad everywhere), and a
+    # complaint means "stop emailing me". We only ever check this set against
+    # Predictify users anyway, so matching by recipient across all apps is
+    # both safe and more robust — it also doesn't depend on the per-event
+    # `app` tag being populated (historically it wasn't).
     try:
         r = requests.get(
             f'{MARKETING_SUPABASE_URL}/rest/v1/email_events',
             params={
                 'select': 'recipient',
-                'app': 'eq.predictify',
                 'event_type': 'in.(email.bounced,email.complained)',
                 'recipient': 'not.is.null',
                 'limit': '10000',
