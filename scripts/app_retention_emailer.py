@@ -673,10 +673,12 @@ class AppRetentionEmailer:
     ]
 
     # ─── PRIORITY APPS (uncapped, health-bypassed) ───────
-    # Per ops decision 2026-05-xx: these apps send ALL eligible emails every
-    # day with NO daily-cap truncation and WITHOUT the green/yellow/red
-    # per-sender throttle — every eligible user is emailed regardless of
-    # sender health status. The verified-domain filter still applies (an
+    # Per ops decision 2026-05-27: these apps send ALL eligible emails every
+    # day with NO daily-cap truncation, WITHOUT the green/yellow/red per-sender
+    # throttle, and WITHOUT the churning-engagement skip — every eligible user
+    # is emailed regardless of sender health or their engagement history. The
+    # only gates left are per-user cadence (no double-send in a day) and
+    # suppression (spam/bounce). The verified-domain filter still applies (an
     # unverified domain hard-403s = zero delivered, which defeats the goal)
     # and a sender that fails 5× in a run is still quarantined (route around
     # genuinely broken senders rather than loop failures). Non-priority apps
@@ -897,15 +899,21 @@ class AppRetentionEmailer:
                         hours_to_wait = max(days_to_wait * 24, 20)
 
                     # Skip churning users who've received 3+ emails
-                    # They're not engaging — sending more hurts reputation
-                    if segment == 'churning' and emails_sent >= 3:
+                    # They're not engaging — sending more hurts reputation.
+                    # PRIORITY_APPS bypass this (ops decision: send everything,
+                    # even to disengaged users). Per-user cadence below still
+                    # applies, so we never double-send in a day.
+                    if (segment == 'churning' and emails_sent >= 3
+                            and app_name not in self.PRIORITY_APPS):
                         continue
 
                     if hours_since_last < hours_to_wait:
                         continue
                 else:
                     segment = self._classify_user(user, emails_sent)
-                    if segment == 'churning' and emails_sent >= 3:
+                    # PRIORITY_APPS bypass the churning skip (see above).
+                    if (segment == 'churning' and emails_sent >= 3
+                            and app_name not in self.PRIORITY_APPS):
                         continue
 
                 # Check activity data for subscription status
