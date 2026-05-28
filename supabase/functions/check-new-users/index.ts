@@ -56,12 +56,10 @@ const FIREBASE_PROJECTS: Record<
     defaultLang: "en",
     supportedLanguages: ["en", "ar", "es", "fr", "pt", "de", "tr", "it", "pp", "hi", "id", "nl", "pl", "ja"],
   },
-  "nba-predictify": {
-    appId: "predictify_nba",
-    multilingual: true,
-    defaultLang: "en",
-    supportedLanguages: ["en", "ar", "es", "fr", "pt", "de", "tr", "it", "pp", "hi", "id", "nl", "pl", "ja"],
-  },
+  // NBA Predictify intentionally not handled here: the predictify_v2 engine
+  // (predictify-nba-emails workflow) now owns welcome / win-back / match-day
+  // with proper cooldowns + bounce suppression. Keeping it here would double
+  // welcome new NBA signups.
   "volume-booster-2f7bf": {
     appId: "volume_booster",
     multilingual: true,

@@ -14,13 +14,13 @@ name: Predictify NBA Emails (v2 Hooked)
 #                                          (NBA app Supabase pqamiqnnqtfdjapbzzsh: predictions, user_leagues, communities)
 
 on:
-  # Schedule intentionally disabled until a dry-run is validated and the
-  # redundant Deno crons (nba-winback, nba-gameday) are retired — otherwise
-  # users would get doubles. Re-enable by uncommenting once confirmed.
-  # schedule:
-  #   # Offset from Soccer's 09:00/17:00 so we don't spike Resend at once.
-  #   - cron: '0 10 * * *'
-  #   - cron: '0 18 * * *'
+  schedule:
+    # Offset from Soccer's 09:00/17:00 so we don't spike Resend at once.
+    # Old pg_cron jobs (predictify-nba-winback / nba-gameday) were
+    # unscheduled and NBA was dropped from check-new-users when this engine
+    # took over — see CHANGELOG / commit that flipped this on.
+    - cron: '0 10 * * *'
+    - cron: '0 18 * * *'
   workflow_dispatch:
     inputs:
       mode:
