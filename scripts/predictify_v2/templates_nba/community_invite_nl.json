@@ -1,0 +1,14 @@
+{
+  "subject": "Samen voorspellen — {recommended_community_name} is voor fans zoals jij",
+  "preview_text": "{member_count} leden. {league_short}. Gratis om lid te worden.",
+  "body_paragraphs": [
+    "Hoi {first_name},",
+    "In je eentje wedstrijden voorspellen is prima. Maar samen met mensen die dezelfde teams volgen? Veel beter.",
+    "{recommended_community_name} is een Predictify-community voor {league_short}-fans — {member_count} leden, beheerd door {owner_name}, dagelijkse AI-ondersteunde voorspellingen. Je ziet wat anderen kiezen en hoe de groep reageert.",
+    "Word gratis lid. Het kost je niets — kom gewoon langs en voorspel."
+  ],
+  "cta_text": "Word lid van {recommended_community_name}",
+  "cta_deeplink": "predictify://community/{community_id}",
+  "kind": "community_invite",
+  "language": "nl"
+}

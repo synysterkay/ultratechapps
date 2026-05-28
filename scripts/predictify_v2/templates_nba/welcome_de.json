@@ -1,0 +1,14 @@
+{
+  "subject": "Dein erster NBA-Call beginnt hier, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Willkommen bei Predictify. Kurze Einführung: Jedes NBA-Spiel in der App hat einen kalibrierten KI-Konfidenzwert – basierend auf Team-Bewertungen, Tempo, Erholung und Verletzungen – der dir genau sagt, wie zuverlässig der Call ist. Zahlen, keine heißen Tipps.",
+    "Probier es jetzt aus: {top_match_line}. Tippe auf das Spiel, sieh die vollständige Aufschlüsselung – Moneyline, Spread, Total – und sichere deinen Call.",
+    "Profi-Tipp: Mach einen Pick pro Tag für 5 Tage und du baust eine Serie auf. Seriennutzer erkennen die Wert-Calls 3x häufiger vor dem Anpfiff."
+  ],
+  "cta_text": "Meinen ersten Pick machen",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "de"
+}

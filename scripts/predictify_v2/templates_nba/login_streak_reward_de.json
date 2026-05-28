@@ -1,0 +1,14 @@
+{
+  "subject": "🎁 3 Tage in Folge – du hast gerade 1 Woche Pro freigeschaltet",
+  "preview_text": "Öffne die App, um es einzulösen. Keine Karte, keine automatische Verlängerung.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Du hast Predictify drei Tage in Folge geöffnet. Das ist selten – die meisten Nutzer schaffen nicht mehr als zwei.",
+    "Deine Belohnung: 7 Tage Predictify Pro, voll freigeschaltet, ohne Zahlung. Du siehst das stärkste Signal bei jedem Spiel, kalibrierte Konfidenz bei jedem Markt (Moneyline, Spread, Totals, Player Props) und den vollständigen Vorhersageverlauf.",
+    "Tippe unten, um es einzulösen. Es wird sofort aktiviert und hält eine Woche – nutze die App täglich weiter und du kannst mehr verdienen, während die Serie wächst."
+  ],
+  "cta_text": "7-Tage-Pro einlösen",
+  "cta_deeplink": "predictify://reward/streak3",
+  "kind": "login_streak_reward",
+  "language": "de"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "{accuracy_pct}% akurasi minggu ini — Pengguna Pro rata-rata {pro_target_pct}%",
+  "preview_text": "Ini yang disembunyikan model dari akun gratis kamu.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "{recent_total} prediksi terakhirmu mencapai {accuracy_pct}% — jauh di atas rata-rata pengguna gratis. Kamu membaca model lebih baik dari kebanyakan orang.",
+    "Pengguna Pro melihat Sinyal Terkuat untuk setiap pertandingan — satu panggilan yang secara konsisten mencapai {pro_target_pct}%+ — plus kepercayaan yang dikalibrasi di setiap pasar dan proyeksi pemain (poin, rebound, assist). Itulah cara tier akurasi teratas tetap unggul.",
+    "Mau mencobanya selama 7 hari, gratis? Tidak perlu kartu, tidak ada perpanjangan otomatis. Jika tidak meningkatkan angka kamu, kamu bisa pergi."
+  ],
+  "cta_text": "Mulai uji coba Pro 7 hari",
+  "cta_deeplink": "predictify://upgrade?ref=hot_week",
+  "kind": "upgrade_after_hot_week",
+  "language": "id"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} vs {away_team} — {confidence_pct}% Confidence-Call",
+  "preview_text": "{league_name} startet in {hours_to_kickoff}h. Deine KI hat ihren Tipp bereit.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "{home_team} vs {away_team} startet in etwa {hours_to_kickoff} Stunden. Deine KI hat jedes Signal analysiert – offensive & defensive Ratings, Tempo, aktuelle Form, Ruhetage und den Verletzungsbericht – und ihren Tipp abgegeben.",
+    "📊 Der Tipp: {pick_label}\n🎯 Kalibrierte Confidence: {confidence_pct}%\n🏀 Tier: {tier_label}",
+    "Genau dafür haben wir Predictify entwickelt. Öffne die App, sieh dir die vollständige Begründung an und gib deine Vorhersage vor dem Anpfiff ab."
+  ],
+  "cta_text": "Zur vollständigen Vorhersage",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "de"
+}

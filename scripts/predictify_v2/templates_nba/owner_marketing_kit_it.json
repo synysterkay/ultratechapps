@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} ha bisogno di membri — ecco come crescono i top owner",
+  "preview_text": "5 posti dove abbiamo visto gli owner postare e che convertono davvero.",
+  "body_paragraphs": [
+    "Ciao {first_name},",
+    "La tua community {community_name} ha {member_count} membro{member_plural}. Gli owner che hanno raggiunto 25+ membri nella prima settimana usano tutti lo stesso manuale — eccolo qui.",
+    "1. Chat WhatsApp/Telegram: condividi il link con un teaser di una riga (\"Pronostici AI per ogni partita NBA, gratis da unirti\")\n2. X / Twitter: pubblica il tuo pick più sicuro della serata con il link di iscrizione nella risposta\n3. r/nba, r/sportsbook, r/dfsports su Reddit: un thread giornaliero fissato\n4. Commenti su TikTok sotto video di preview NBA o parlay\n5. Server Discord per le squadre che segui",
+    "Predictify crea l'immagine di copertina per te (il tuo link di condivisione ha un aspetto 3 volte migliore con una — questo da solo aumenta il tasso di iscrizione). Apri il kit di condivisione, copia il link, incollalo dove si riuniscono i fan NBA."
+  ],
+  "cta_text": "Apri il kit di condivisione",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "it"
+}

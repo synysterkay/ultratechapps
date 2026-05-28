@@ -1,0 +1,14 @@
+{
+  "subject": "Je {streak_days}-dagense streak eindigt over {hours_to_break} uur",
+  "preview_text": "Eén pick houdt hem in leven. Jouw AI's advies staat klaar.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Je hebt een {streak_days}-dagense voorspellingsstreak. De meeste gebruikers komen nooit verder dan 5 — jij doet iets bijzonders.",
+    "Maar je streak eindigt over ongeveer {hours_to_break} uur als je vandaag geen pick vastlegt. Eén tik. Dat is alles wat het kost.",
+    "Jouw AI heeft het werk al gedaan: {top_match_line}"
+  ],
+  "cta_text": "Red mijn {streak_days}-dagense streak",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "nl"
+}

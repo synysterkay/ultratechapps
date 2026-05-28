@@ -1,0 +1,14 @@
+{
+  "subject": "Pro-Nutzer können mit Communities verdienen — behalte 70%",
+  "preview_text": "Einige Besitzer verdienen inzwischen genug, um ihr Pro-Abo mehrfach zu decken.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Du bist schon eine Weile Pro-Mitglied und deine Tipps sind konstant. Zeit, das Modell umzudrehen: Eröffne deine eigene NBA-Community auf Predictify, setze einen kleinen monatlichen Preis und behalte 70% jeder Mitgliedschaft.",
+    "Top-Community-Besitzer verwandeln ihre Tipps in wiederkehrende Einnahmen — und Predictify kümmert sich um die gesamte Zahlungsabwicklung, das Hosting und die Mitgliederverwaltung. Du tippst einfach weiter wie bisher.",
+    "Die Einrichtung dauert 90 Sekunden: Wähle einen Namen, wähle deinen Schwerpunkt (ein Team, ein Wettstil, DFS), setze einen Preis oder lass es kostenlos. Besitzer mit einem Titelbild wachsen 3x schneller — wir generieren dir eines mit einem Fingertipp."
+  ],
+  "cta_text": "Meine Community erstellen",
+  "cta_deeplink": "predictify://community/create",
+  "kind": "pro_owner_pitch",
+  "language": "de"
+}

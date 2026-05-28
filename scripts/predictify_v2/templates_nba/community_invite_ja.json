@@ -1,0 +1,14 @@
+{
+  "subject": "一緒に予想しよう — {recommended_community_name} はあなたのようなファンのためのコミュニティです",
+  "preview_text": "{member_count}人のメンバー。{league_short}。無料で参加できます。",
+  "body_paragraphs": [
+    "やあ {first_name}、",
+    "一人で試合を予想するのもいいけど、同じチームを応援する人たちと一緒に予想する方がずっと楽しいよね。",
+    "{recommended_community_name} は {league_short} ファンのためのPredictifyコミュニティ — {member_count}人のメンバー、オーナーは {owner_name}、毎日AIがサポートする予想を提供しています。他の人が何を予想しているか、部屋の反応がどうかも見えます。",
+    "無料で参加しよう。お金は一切かからない — ただ参加して予想するだけ。"
+  ],
+  "cta_text": "{recommended_community_name} に参加する",
+  "cta_deeplink": "predictify://community/{community_id}",
+  "kind": "community_invite",
+  "language": "ja"
+}

@@ -7,6 +7,7 @@ sender pipeline can consume it unchanged.
 from __future__ import annotations
 
 import json
+import os
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -15,7 +16,10 @@ from datetime import datetime, timezone
 from .user_context import UserContext, UpcomingMatch
 
 
-TEMPLATES_DIR = Path(__file__).parent / 'templates'
+# Soccer uses `templates/`; the NBA app profile sets
+# PREDICTIFY_TEMPLATES_DIR=templates_nba so the same engine renders NBA copy.
+TEMPLATES_DIR = Path(__file__).parent / os.environ.get(
+    'PREDICTIFY_TEMPLATES_DIR', 'templates')
 
 # Languages we support. Falls back to English if a per-language file is
 # missing — the existing v1 system supports all of these.

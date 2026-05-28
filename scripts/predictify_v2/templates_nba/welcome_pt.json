@@ -1,0 +1,14 @@
+{
+  "subject": "Sua primeira previsão da NBA começa aqui, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Olá {first_name},",
+    "Bem-vindo ao Predictify. Uma orientação rápida: cada jogo da NBA no aplicativo vem com uma pontuação de confiança de IA calibrada — construída a partir de classificações de times, ritmo, descanso e lesões — que mostra exatamente o quão confiável é a previsão. Números, não opiniões.",
+    "Experimente agora: {top_match_line}. Toque no jogo, veja a análise completa — moneyline, spread, total — e faça sua previsão.",
+    "Dica de profissional: faça uma previsão por dia durante 5 dias e você cria uma sequência. Usuários com sequência têm 3x mais chances de identificar as previsões de valor antes do início da partida."
+  ],
+  "cta_text": "Fazer minha primeira previsão",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "pt"
+}

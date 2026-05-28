@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} a besoin de membres — voici comment les meilleurs propriétaires se développent",
+  "preview_text": "5 endroits où nous avons vu des propriétaires publier qui convertissent réellement.",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "Ta communauté {community_name} compte {member_count} membre{member_plural}. Les propriétaires qui atteignent 25+ membres en une semaine utilisent tous le même manuel — le voici.",
+    "1. Groupes WhatsApp/Telegram : partage le lien avec un teaser d'une ligne (\"Pronostics IA pour chaque match NBA, gratuit à rejoindre\")\n2. X / Twitter : poste ton pronostic le plus sûr de la soirée avec le lien d'invitation dans la réponse\n3. r/nba, r/sportsbook, r/dfsports sur Reddit : un fil quotidien épinglé\n4. Commentaires TikTok sous les vidéos de preview / paris NBA\n5. Serveurs Discord pour les équipes que tu couvres",
+    "Predictify crée l'image de couverture pour toi (ton lien de partage est 3x plus efficace avec une — ça à lui seul augmente le taux d'adhésion). Ouvre le kit de partage, copie le lien, colle-le là où les fans de NBA se rassemblent."
+  ],
+  "cta_text": "Ouvrir le kit de partage",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "fr"
+}

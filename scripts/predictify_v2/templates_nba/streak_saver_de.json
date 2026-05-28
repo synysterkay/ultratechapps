@@ -1,0 +1,14 @@
+{
+  "subject": "Deine {streak_days}-tägige Serie endet in {hours_to_break} Stunden",
+  "preview_text": "Ein Tipp hält sie am Leben. Deine KI hat den Call bereit.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Du bist auf einer {streak_days}-tägigen Vorhersageserie. Die meisten Nutzer kommen nie über 5 – du machst etwas Seltenes.",
+    "Aber deine Serie endet in etwa {hours_to_break} Stunden, wenn du heute keinen Tipp abgibst. Ein Tippen. Mehr ist nicht nötig.",
+    "Deine KI hat bereits die Arbeit erledigt: {top_match_line}"
+  ],
+  "cta_text": "Meine {streak_days}-tägige Serie retten",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "de"
+}

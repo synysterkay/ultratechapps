@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify hat {recent_correct} der letzten {recent_total} Tipps richtig gehabt – ohne dich",
+  "preview_text": "Du warst ruhig. Hier ist, was deine KI so getippt hat.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Kurzes Update: während du weg warst, hat Predictify gemacht, was es am besten kann. Letzte {recent_total} Vorhersagen: {recent_correct} richtig – das sind {recent_accuracy_pct}%, im Autopilot-Modus.",
+    "Und das Highlight: Der heutige Top-Tipp ist {top_match_line}",
+    "Öffne die App, nimm dir 30 Sekunden, um die vollständige Begründung zu sehen, und entscheide, ob deine KI einen zweiten Blick verdient."
+  ],
+  "cta_text": "Sieh dir den stärksten Tipp von heute an",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "de"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "आपका सप्ताह: {recent_correct}/{recent_total} भविष्यवाणियाँ सही",
+  "preview_text": "{accuracy_pct}% सटीकता। अगले सप्ताह के लिए शीर्ष पिक तैयार है।",
+  "body_paragraphs": [
+    "नमस्ते {first_name},",
+    "Predictify पर आपके सप्ताह का त्वरित सारांश:",
+    "✅ {recent_correct} में से {recent_total} भविष्यवाणियाँ सही\n📊 पिछले 30 दिनों में {accuracy_pct}% सटीकता\n🔥 {streak_days} दिनों की लगातार सफलता (अब तक का आपका रिकॉर्ड)",
+    "आगे देखें: इस सप्ताह मॉडल का सबसे मजबूत दावा {top_match_line} है। एक नज़र डालें — ऐप खोलें और हम आपको बताएंगे कि ऐसा क्यों है।"
+  ],
+  "cta_text": "अगले सप्ताह की शीर्ष पिक देखें",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "hi"
+}

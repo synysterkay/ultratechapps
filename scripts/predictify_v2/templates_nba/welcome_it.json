@@ -1,0 +1,14 @@
+{
+  "subject": "La tua prima chiamata NBA inizia qui, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Ciao {first_name},",
+    "Benvenuto su Predictify. Breve orientamento: ogni partita NBA nell'app ha un punteggio di confidenza AI calibrato — basato su valutazioni delle squadre, ritmo, riposo e infortuni — che ti dice esattamente quanto è affidabile la chiamata. Numeri, non opinioni.",
+    "Provalo ora: {top_match_line}. Tocca la partita, vedi l'analisi completa — moneyline, spread, totali — e blocca la tua chiamata.",
+    "Consiglio da pro: fai una scelta al giorno per 5 giorni e costruisci una striscia. Gli utenti con striscia hanno 3 volte più probabilità di individuare le chiamate di valore prima del fischio d'inizio."
+  ],
+  "cta_text": "Fai la mia prima scelta",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "it"
+}

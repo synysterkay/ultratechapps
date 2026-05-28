@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} vs {away_team} — {confidence_pct}%の自信のある予想",
+  "preview_text": "{league_name}が{hours_to_kickoff}時間後に開始。あなたのAIが予想を完了しました。",
+  "body_paragraphs": [
+    "やあ {first_name}、",
+    "{home_team} vs {away_team}が約{hours_to_kickoff}時間後に開始します。あなたのAIは攻守の評価、ペース、最近の調子、休養日、負傷者情報などあらゆるシグナルを分析し、予想を確定しました。",
+    "📊 予想: {pick_label}\n🎯 調整済み信頼度: {confidence_pct}%\n🏀 ティア: {tier_label}",
+    "これこそがPredictifyを構築した理由です。アプリを開いて、詳細な根拠を確認し、試合開始前にあなたの予想を確定してください。"
+  ],
+  "cta_text": "予想の詳細を見る",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "ja"
+}

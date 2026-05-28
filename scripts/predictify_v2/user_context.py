@@ -32,7 +32,10 @@ SUPABASE_KEY = (
     os.environ.get('PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY')
     or os.environ.get('SUPABASE_SERVICE_ROLE_KEY', '')
 )
-FIREBASE_PROJECT_ID = 'predictify-3f30d'
+# Soccer is the default; the NBA profile sets PREDICTIFY_FIREBASE_PROJECT_ID=
+# nba-predictify so the language/Firestore lookups hit NBA's project.
+FIREBASE_PROJECT_ID = os.environ.get(
+    'PREDICTIFY_FIREBASE_PROJECT_ID', 'predictify-3f30d')
 FIRESTORE_BASE = (
     f'https://firestore.googleapis.com/v1/projects/'
     f'{FIREBASE_PROJECT_ID}/databases/(default)/documents'

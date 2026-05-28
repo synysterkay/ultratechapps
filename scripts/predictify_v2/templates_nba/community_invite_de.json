@@ -1,0 +1,14 @@
+{
+  "subject": "Gemeinsam tippen — {recommended_community_name} ist für Fans wie dich",
+  "preview_text": "{member_count} Mitglieder. {league_short}. Kostenlos beitreten.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Spiele alleine zu tippen ist okay. Mit Leuten zu tippen, die dieselben Teams verfolgen? Viel besser.",
+    "{recommended_community_name} ist eine Predictify-Community für {league_short}-Fans — {member_count} Mitglieder, geleitet von {owner_name}, tägliche KI-gestützte Tipps. Du siehst, was andere tippen und wie die Gruppe reagiert.",
+    "Tritt kostenlos bei. Du zahlst nichts — komm einfach vorbei und tippe mit."
+  ],
+  "cta_text": "{recommended_community_name} beitreten",
+  "cta_deeplink": "predictify://community/{community_id}",
+  "kind": "community_invite",
+  "language": "de"
+}

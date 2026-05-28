@@ -1,0 +1,14 @@
+{
+  "subject": "Je eerste NBA-voorspelling begint hier, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Welkom bij Predictify. Korte introductie: elke NBA-wedstrijd in de app heeft een gekalibreerde AI-vertrouwensscore — gebaseerd op teamratings, tempo, rust en blessures — die je precies vertelt hoe betrouwbaar de voorspelling is. Cijfers, geen onderbuikgevoelens.",
+    "Probeer het nu: {top_match_line}. Tik op de wedstrijd, bekijk de volledige uitsplitsing — moneyline, spread, totaal — en leg je voorspelling vast.",
+    "Pro-tip: doe één voorspelling per dag gedurende 5 dagen en je bouwt een streak op. Streak-gebruikers zijn 3x vaker geneigd om de waardevolle voorspellingen te spotten voor de aftrap."
+  ],
+  "cta_text": "Maak mijn eerste voorspelling",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "nl"
+}

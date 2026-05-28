@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} vs {away_team} — {confidence_pct}% de confiança",
+  "preview_text": "{league_name} começa em {hours_to_kickoff}h. O palpite da sua IA está pronto.",
+  "body_paragraphs": [
+    "Ei {first_name},",
+    "{home_team} vs {away_team} começa em cerca de {hours_to_kickoff} horas. Sua IA analisou todos os sinais — classificações ofensivas e defensivas, ritmo, forma recente, dias de descanso e o relatório de lesões — e definiu o palpite.",
+    "📊 O palpite: {pick_label}\n🎯 Confiança calibrada: {confidence_pct}%\n🏀 Nível: {tier_label}",
+    "É exatamente para isso que criamos o Predictify. Abra o app, veja a análise completa e trave seu palpite antes do início da partida."
+  ],
+  "cta_text": "Ver o palpite completo",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "pp"
+}

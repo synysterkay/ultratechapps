@@ -1,0 +1,14 @@
+{
+  "subject": "La tarjeta Strongest Signal — lo que los Pros realmente miran",
+  "preview_text": "Acierta más fuerte en juegos de nivel Elite. La mayoría de usuarios nunca la abre.",
+  "body_paragraphs": [
+    "Hola {first_name},",
+    "Un consejo Pro rápido que quizás te perdiste: en cada pantalla de predicción, desplázate más allá de la proyección de resultado final y encuentra la tarjeta 'Strongest Signal'. Es la selección calibrada de mayor confianza para ese partido — y en enfrentamientos de nivel Elite ha sido históricamente la apuesta más segura del tablero.",
+    "Cómo usarla: cuando la insignia de nivel diga Elite o Premium, la Strongest Signal es tu ancla. Cuando dice Standard, trátala como un punto de partida y también considera los otros mercados y las apuestas de jugadores.",
+    "Ejemplo de hoy: {top_match_line}. Ábrelo y verás exactamente a lo que me refiero."
+  ],
+  "cta_text": "Abrir la mejor selección de hoy",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "pro_power_tip",
+  "language": "es"
+}

@@ -1,0 +1,14 @@
+{
+  "kind": "login_streak_reward",
+  "language": "en",
+  "subject": "🎁 3 days in a row — you just unlocked 1 week of Pro",
+  "preview_text": "Open the app to claim. No card, no auto-renew.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "You've opened Predictify three days in a row. That's rare — most users don't make it past two.",
+    "Your reward: 7 days of Predictify Pro, fully unlocked, no payment needed. You'll see the Strongest Signal on every game, calibrated confidence on every market (moneyline, spread, totals, player props), and the full prediction history.",
+    "Tap below to claim. It activates instantly and lasts a week — keep using the app daily and you can earn more as the streak grows."
+  ],
+  "cta_text": "Claim 7-day Pro",
+  "cta_deeplink": "predictify://reward/streak3"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "La tua striscia di {streak_days} giorni termina tra {hours_to_break} ore",
+  "preview_text": "Un pronostico la mantiene viva. La tua AI ha già pronta la sua scelta.",
+  "body_paragraphs": [
+    "Ciao {first_name},",
+    "Sei in una striscia di pronostici vincenti di {streak_days} giorni. La maggior parte degli utenti non supera mai i 5 — tu stai facendo qualcosa di raro.",
+    "Ma la tua striscia termina tra circa {hours_to_break} ore se non blocchi un pronostico oggi. Un tap. Tutto qui.",
+    "La tua AI ha già fatto il lavoro: {top_match_line}"
+  ],
+  "cta_text": "Salva la mia striscia di {streak_days} giorni",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "it"
+}

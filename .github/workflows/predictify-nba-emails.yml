@@ -1,0 +1,100 @@
+name: Predictify NBA Emails (v2 Hooked)
+
+# Behavioral, multilingual lifecycle emails for Predictify: NBA AI.
+# Reuses the same predictify_v2 engine as Soccer, but the env vars below point
+# it at NBA's Firebase project (nba-predictify), NBA's Supabase, and the
+# templates_nba/ folder. Soccer's workflow is untouched.
+#
+# Required GitHub secrets:
+#   RESEND_API_KEY                         (shared Resend account)
+#   DEEPSEEK_API_KEY                       (one-time + ongoing template localization)
+#   FIREBASE_TOKEN                         (a CI token with access to nba-predictify)
+#   SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY            (marketing-tool Supabase: email_events + suppressions)
+#   NBA_PREDICTIFY_SUPABASE_URL / NBA_PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY
+#                                          (NBA app Supabase pqamiqnnqtfdjapbzzsh: predictions, user_leagues, communities)
+
+on:
+  # Schedule intentionally disabled until a dry-run is validated and the
+  # redundant Deno crons (nba-winback, nba-gameday) are retired — otherwise
+  # users would get doubles. Re-enable by uncommenting once confirmed.
+  # schedule:
+  #   # Offset from Soccer's 09:00/17:00 so we don't spike Resend at once.
+  #   - cron: '0 10 * * *'
+  #   - cron: '0 18 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Run mode'
+        required: false
+        default: 'send'
+        type: choice
+        options:
+          - send
+          - dry-run
+          - status
+
+permissions:
+  contents: read
+
+concurrency:
+  group: predictify-nba-emails
+  cancel-in-progress: false
+
+jobs:
+  nba-emails:
+    runs-on: ubuntu-latest
+    env:
+      # ── NBA app profile (selects NBA project/templates inside predictify_v2) ──
+      PREDICTIFY_APP_NAME: 'Predictify: NBA AI'
+      PREDICTIFY_FIREBASE_PROJECT_ID: 'nba-predictify'
+      PREDICTIFY_TEMPLATES_DIR: 'templates_nba'
+      # ── Secrets ──
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      # Marketing-tool Supabase (email_events + suppressions for cross-app dedup)
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      # NBA app Supabase (predictions / user_leagues / communities for personalization)
+      PREDICTIFY_SUPABASE_URL: ${{ secrets.NBA_PREDICTIFY_SUPABASE_URL }}
+      PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.NBA_PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Refresh NBA Firebase user export
+        run: python -c "from scripts.firebase_user_loader import FirebaseUserLoader; FirebaseUserLoader().refresh_exports()"
+
+      - name: Localize NBA templates (idempotent — skips existing)
+        run: python -u scripts/predictify_v2/localize_templates.py || true
+
+      - name: Run NBA v2 email orchestrator
+        timeout-minutes: 120
+        run: |
+          MODE="${{ github.event.inputs.mode || 'send' }}"
+          # orchestrator.py uses sibling imports, so run it from scripts/.
+          cd scripts
+          if [ "$MODE" = "status" ]; then
+            python -u -m predictify_v2.orchestrator --status
+          elif [ "$MODE" = "dry-run" ]; then
+            python -u -m predictify_v2.orchestrator --dry-run
+          else
+            python -u -m predictify_v2.orchestrator
+          fi
+
+      - name: Log completion
+        run: echo "✅ Predictify NBA email run completed at $(date)"

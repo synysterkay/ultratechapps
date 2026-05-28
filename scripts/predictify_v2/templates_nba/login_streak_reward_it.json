@@ -1,0 +1,14 @@
+{
+  "subject": "🎁 3 giorni di fila — hai appena sbloccato 1 settimana di Pro",
+  "preview_text": "Apri l'app per ritirare. Nessuna carta, nessun rinnovo automatico.",
+  "body_paragraphs": [
+    "Ciao {first_name},",
+    "Hai aperto Predictify per tre giorni consecutivi. È raro — la maggior parte degli utenti non arriva al secondo.",
+    "Il tuo premio: 7 giorni di Predictify Pro, completamente sbloccati, senza bisogno di pagamento. Vedrai il Segnale Più Forte su ogni partita, la fiducia calibrata su ogni mercato (moneyline, spread, totali, scommesse sui giocatori) e la cronologia completa delle previsioni.",
+    "Tocca qui sotto per ritirare. Si attiva immediatamente e dura una settimana — continua a usare l'app ogni giorno e potrai guadagnare di più man mano che la serie cresce."
+  ],
+  "cta_text": "Ritira 7 giorni di Pro",
+  "cta_deeplink": "predictify://reward/streak3",
+  "kind": "login_streak_reward",
+  "language": "it"
+}

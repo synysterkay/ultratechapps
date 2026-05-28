@@ -1,0 +1,14 @@
+{
+  "subject": "La carte Signal le plus fort — ce que les Pros regardent vraiment",
+  "preview_text": "Elle frappe le plus fort sur les matchs Elite. La plupart des utilisateurs ne l'ouvrent jamais.",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "Un petit conseil Pro que vous avez peut-être manqué : sur chaque écran de prédiction, faites défiler au-delà de la projection de score final et trouvez la carte 'Signal le plus fort'. C'est le choix calibré avec la plus haute confiance pour ce match — et sur les confrontations de niveau Elite, il a historiquement été le pari le plus sûr du tableau.",
+    "Comment l'utiliser : quand le badge de niveau indique Elite ou Premium, le Signal le plus fort est votre point d'ancrage. Quand il indique Standard, traitez-le comme un point de départ et pesez également les autres marchés et les props de joueurs.",
+    "Exemple d'aujourd'hui : {top_match_line}. Ouvrez-le et vous verrez exactement ce que je veux dire."
+  ],
+  "cta_text": "Ouvrir le meilleur choix du jour",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "pro_power_tip",
+  "language": "fr"
+}

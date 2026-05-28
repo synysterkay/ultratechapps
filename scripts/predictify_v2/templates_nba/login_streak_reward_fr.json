@@ -1,0 +1,14 @@
+{
+  "subject": "🎁 3 jours d'affilée — vous venez de débloquer 1 semaine de Pro",
+  "preview_text": "Ouvrez l'app pour réclamer. Pas de carte, pas de renouvellement automatique.",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "Vous avez ouvert Predictify trois jours d'affilée. C'est rare — la plupart des utilisateurs ne tiennent pas jusqu'à deux.",
+    "Votre récompense : 7 jours de Predictify Pro, entièrement débloqués, sans paiement requis. Vous verrez le Signal le Plus Fort sur chaque match, une confiance calibrée sur chaque marché (moneyline, spread, totaux, props joueurs), et l'historique complet des prédictions.",
+    "Appuyez ci-dessous pour réclamer. Cela s'active instantanément et dure une semaine — continuez à utiliser l'app quotidiennement et vous pourrez gagner plus à mesure que la série s'allonge."
+  ],
+  "cta_text": "Réclamer 7 jours de Pro",
+  "cta_deeplink": "predictify://reward/streak3",
+  "kind": "login_streak_reward",
+  "language": "fr"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "O cartão Strongest Signal — o que os Pros realmente olham",
+  "preview_text": "Ele atinge com mais força em jogos Elite. A maioria dos usuários nunca o abre.",
+  "body_paragraphs": [
+    "Olá {first_name},",
+    "Uma dica rápida de Pro que você pode ter perdido: em cada tela de previsão, role além da projeção de resultado final e encontre o cartão 'Strongest Signal'. É a escolha calibrada de maior confiança para aquele jogo — e em confrontos de nível Elite, historicamente tem sido a aposta mais segura do quadro.",
+    "Como usar: quando o selo de nível disser Elite ou Premium, o Strongest Signal é sua âncora. Quando disser Standard, trate-o como um ponto de partida e considere também os outros mercados e apostas em jogadores.",
+    "Exemplo de hoje: {top_match_line}. Abra e você verá exatamente o que quero dizer."
+  ],
+  "cta_text": "Abrir a melhor escolha de hoje",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "pro_power_tip",
+  "language": "pt"
+}

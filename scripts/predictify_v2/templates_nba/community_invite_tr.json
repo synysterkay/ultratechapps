@@ -1,0 +1,14 @@
+{
+  "subject": "Birlikte tahmin et — {recommended_community_name} senin gibi fanlar için",
+  "preview_text": "{member_count} üye. {league_short}. Katılmak ücretsiz.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Tek başına maç tahmini yapmak güzel. Ama aynı takımları takip eden insanlarla birlikte yapmak? Çok daha iyi.",
+    "{recommended_community_name}, {league_short} fanları için bir Predictify topluluğu — {member_count} üye, {owner_name} tarafından yönetiliyor, günlük yapay zeka destekli tahminler. Diğerlerinin ne tahmin ettiğini ve odanın nasıl tepki verdiğini göreceksin.",
+    "Ücretsiz katıl. Hiçbir şey ödemiyorsun — sadece gel ve tahmin et."
+  ],
+  "cta_text": "{recommended_community_name} topluluğuna katıl",
+  "cta_deeplink": "predictify://community/{community_id}",
+  "kind": "community_invite",
+  "language": "tr"
+}

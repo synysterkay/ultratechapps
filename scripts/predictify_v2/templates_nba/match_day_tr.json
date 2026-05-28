@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} vs {away_team} — %{confidence_pct} güven oranı",
+  "preview_text": "{league_name} {hours_to_kickoff} saat sonra başlıyor. AI'nın tahmini hazır.",
+  "body_paragraphs": [
+    "Merhaba {first_name},",
+    "{home_team} vs {away_team} yaklaşık {hours_to_kickoff} saat sonra başlıyor. AI'nız tüm sinyalleri — hücum ve savunma derecelendirmeleri, tempo, son form, dinlenme günleri ve sakatlık raporu — analiz etti ve bir karar verdi.",
+    "📊 Tahmin: {pick_label}\n🎯 Kalibre edilmiş güven: %{confidence_pct}\n🏀 Seviye: {tier_label}",
+    "Predictify'i tam olarak bunun için geliştirdik. Uygulamayı aç, tüm gerekçeleri gör ve başlamadan önce tahminini kilitle."
+  ],
+  "cta_text": "Tam tahmini gör",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "tr"
+}

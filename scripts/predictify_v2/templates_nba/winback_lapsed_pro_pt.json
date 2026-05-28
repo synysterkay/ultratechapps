@@ -1,0 +1,14 @@
+{
+  "subject": "Volte para o Pro por nossa conta — 30 dias grátis, sem precisar de cartão",
+  "preview_text": "O que aconteceu? Foi o preço, os recursos ou outra coisa?",
+  "body_paragraphs": [
+    "Ei {first_name},",
+    "Sua assinatura Pro expirou e nós percebemos. Não vamos fazer propaganda exagerada — você sabe exatamente o que o Pro faz. Só queremos saber se algo especificamente não funcionou para você.",
+    "Se você nos contar (é só responder a este e-mail — uma pessoa de verdade lê), vamos adicionar 30 dias de Pro de volta à sua conta, sem compromisso, sem cartão. Uma oferta real, não um discurso de marketing.",
+    "Quer você volte ou não, obrigado pelo tempo que passou conosco. Seu feedback nos ajuda genuinamente a construir a próxima versão."
+  ],
+  "cta_text": "Reativar o Pro grátis por 30 dias",
+  "cta_deeplink": "predictify://winback",
+  "kind": "winback_lapsed_pro",
+  "language": "pt"
+}

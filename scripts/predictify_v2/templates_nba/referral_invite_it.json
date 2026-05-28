@@ -1,0 +1,14 @@
+{
+  "subject": "Ottieni Pro gratis invitando un amico NBA",
+  "preview_text": "1 referral = 1 mese gratis per entrambi.",
+  "body_paragraphs": [
+    "Ciao {first_name},",
+    "Stai facendo pronostici con costanza — la parte che la maggior parte degli utenti salta. Ora il bonus facile: invita un amico che guarda le stesse partite che guardi tu, e entrambi ricevete un mese gratuito di Predictify Pro nel momento in cui si iscrive.",
+    "Perché lo facciamo: gli amici che fanno pronostici insieme rimangono 4 volte più a lungo rispetto agli utenti singoli. Meglio per tutti — incluso noi.",
+    "Tocca qui sotto per ottenere il tuo link di invito unico. Invialo a una persona nella tua chat di gruppo. Fatto."
+  ],
+  "cta_text": "Ottieni il mio link di invito",
+  "cta_deeplink": "predictify://referral",
+  "kind": "referral_invite",
+  "language": "it"
+}

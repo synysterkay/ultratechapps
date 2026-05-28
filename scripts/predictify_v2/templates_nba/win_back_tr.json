@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify son {recent_total} tahmininden {recent_correct}'ini doğru bildi — sen yokken",
+  "preview_text": "Sessiz kaldın. İşte yapay zekanın son tahminleri.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Kısa bir güncelleme: sen uzaktayken Predictify en iyi yaptığı şeyi yapmaya devam etti. Son {recent_total} tahminde: {recent_correct} doğru — bu, otomatik pilotta %{recent_accuracy_pct} demek.",
+    "İşte can alıcı nokta: bugünün en güçlü tahmini {top_match_line}",
+    "Uygulamayı aç, tam mantığı görmek için 30 saniyeni ayır ve yapay zekana bir şans daha vermeye değip değmediğine karar ver."
+  ],
+  "cta_text": "Bugünün en güçlü tahminini gör",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "tr"
+}

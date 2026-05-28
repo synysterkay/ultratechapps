@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} üye arıyor — işte en iyi sahiplerin büyüme taktikleri",
+  "preview_text": "Sahiplerin gerçekten dönüşüm sağladığını gördüğümüz 5 yer.",
+  "body_paragraphs": [
+    "Merhaba {first_name},",
+    "Topluluğun {community_name} şu anda {member_count} üyeye sahip{member_plural}. İlk haftada 25+ üyeye ulaşan sahiplerin hepsi aynı oyun kitabını kullanıyor — işte burada.",
+    "1. WhatsApp/Telegram grup sohbetleri: bağlantıyı tek satırlık bir merak uyandırmayla bırakın (\"Her NBA maçı için AI tahminleri, katılmak ücretsiz\")\n2. X / Twitter: gecenin en güvendiğiniz tahminini yayınlayın ve yanıt olarak katılma bağlantısını ekleyin\n3. Reddit'te r/nba, r/sportsbook, r/dfsports: sabitlenmiş günlük bir başlık\n4. NBA önizleme / parlay videoları altında TikTok yorumları\n5. Takip ettiğiniz takımlar için Discord sunucuları",
+    "Predictify sizin için kapak görselini hazırlar (paylaşım bağlantınız bununla 3 kat daha iyi görünür — tek başına katılım oranını artırır). Paylaşım kitini açın, bağlantıyı kopyalayın, NBA hayranlarının toplandığı yere yapıştırın."
+  ],
+  "cta_text": "Paylaşım kitini aç",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "tr"
+}

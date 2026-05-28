@@ -1,0 +1,14 @@
+{
+  "subject": "De Strongest Signal-kaart — waar Pros echt naar kijken",
+  "preview_text": "Het werkt het beste bij Elite-wedstrijden. De meeste gebruikers openen het nooit.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Een snelle Pro-tip die je misschien hebt gemist: scroll op elk voorspellingsscherm voorbij de eindscore-prognose en vind de 'Strongest Signal'-kaart. Het is de meest zelfverzekerde, gekalibreerde keuze voor die wedstrijd — en bij Elite-wedstrijden is het historisch gezien de veiligste gok op het bord.",
+    "Hoe je het gebruikt: als de tier-badge Elite of Premium zegt, is de Strongest Signal je anker. Als het Standaard zegt, behandel het dan als een startpunt en weeg ook de andere markten en spelersprops mee.",
+    "Het voorbeeld van vandaag: {top_match_line}. Open het en je ziet precies wat ik bedoel."
+  ],
+  "cta_text": "Open de topkeuze van vandaag",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "pro_power_tip",
+  "language": "nl"
+}

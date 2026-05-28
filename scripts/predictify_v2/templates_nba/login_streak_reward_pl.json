@@ -1,0 +1,14 @@
+{
+  "subject": "🎁 3 dni z rzędu — właśnie odblokowałeś 1 tydzień Pro",
+  "preview_text": "Otwórz aplikację, aby odebrać. Bez karty, bez automatycznego odnawiania.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Otwierałeś Predictify trzy dni z rzędu. To rzadkość — większość użytkowników nie dociera do drugiego.",
+    "Twoja nagroda: 7 dni Predictify Pro, w pełni odblokowane, bez potrzeby płatności. Zobaczysz Najsilniejszy Sygnał w każdym meczu, skalibrowaną pewność na każdym rynku (moneyline, spread, sumy, zakłady na zawodników) oraz pełną historię przewidywań.",
+    "Kliknij poniżej, aby odebrać. Aktywuje się natychmiast i trwa tydzień — korzystaj z aplikacji codziennie, a możesz zdobyć więcej, gdy seria będzie rosnąć."
+  ],
+  "cta_text": "Odbierz 7-dniowe Pro",
+  "cta_deeplink": "predictify://reward/streak3",
+  "kind": "login_streak_reward",
+  "language": "pl"
+}

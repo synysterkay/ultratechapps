@@ -1,0 +1,14 @@
+{
+  "subject": "Zdobądź darmowe Pro, zapraszając jednego znajomego z NBA",
+  "preview_text": "1 polecenie = 1 miesiąc gratis dla was obojga.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Regularnie typujesz — to część, którą większość użytkowników pomija. Teraz łatwy bonus: zaproś jednego znajomego, który ogląda te same mecze co ty, a oboje dostaniecie darmowy miesiąc Predictify Pro w momencie, gdy się zarejestruje.",
+    "Dlaczego to robimy: znajomi, którzy typują razem, zostają z nami 4 razy dłużej niż samotni użytkownicy. Lepsze dla wszystkich — także dla nas.",
+    "Kliknij poniżej, by zdobyć swój unikalny link zaproszeniowy. Wyślij go jednej osobie na czacie grupowym. Gotowe."
+  ],
+  "cta_text": "Zdobądź mój link zaproszeniowy",
+  "cta_deeplink": "predictify://referral",
+  "kind": "referral_invite",
+  "language": "pl"
+}

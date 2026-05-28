@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify ने पिछले {recent_total} में से {recent_correct} पिक सही किए — आपके बिना",
+  "preview_text": "आप चुप रहे हैं। यहाँ बताया गया है कि आपका AI क्या भविष्यवाणी कर रहा है।",
+  "body_paragraphs": [
+    "नमस्ते {first_name},",
+    "जल्दी से अपडेट: जब आप दूर थे, Predictify अपना काम कर रहा था। पिछले {recent_total} भविष्यवाणियों में से {recent_correct} सही — यानी ऑटोपायलट पर {recent_accuracy_pct}% सटीकता।",
+    "और सबसे दिलचस्प बात: आज का सबसे अच्छा कॉल है {top_match_line}",
+    "ऐप खोलें, पूरी जानकारी देखने में 30 सेकंड लगाएँ, और तय करें कि आपका AI दूसरी नज़र के लायक है या नहीं।"
+  ],
+  "cta_text": "आज का सबसे मजबूत पिक देखें",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "hi"
+}

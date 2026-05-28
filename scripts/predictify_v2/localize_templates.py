@@ -14,7 +14,10 @@ from pathlib import Path
 import requests
 
 
-TEMPLATES_DIR = Path(__file__).parent / 'templates'
+# Which template folder to localize. Defaults to the soccer `templates/` dir;
+# set PREDICTIFY_TEMPLATES_DIR=templates_nba to localize the NBA templates.
+TEMPLATES_DIR = Path(__file__).parent / os.environ.get(
+    'PREDICTIFY_TEMPLATES_DIR', 'templates')
 TARGET_LANGS = {
     'ar': 'Arabic',
     'de': 'German',

@@ -1,0 +1,14 @@
+{
+  "subject": "{streak_days} günlük serin {hours_to_break} saat içinde sona eriyor",
+  "preview_text": "Bir tahminle serini canlı tut. Yapay zekanın önerisi hazır.",
+  "body_paragraphs": [
+    "Merhaba {first_name},",
+    "{streak_days} günlük bir tahmin serin var. Çoğu kullanıcı 5'i bile geçemez — sen nadir bir şey başarıyorsun.",
+    "Ancak serin yaklaşık {hours_to_break} saat içinde sona erecek, eğer bugün bir tahmin yapmazsan. Tek bir dokunuş. Hepsi bu kadar.",
+    "Yapay zekan çoktan işi halletti: {top_match_line}"
+  ],
+  "cta_text": "{streak_days} günlük serimi kurtar",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "tr"
+}

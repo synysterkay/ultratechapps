@@ -1,0 +1,14 @@
+{
+  "subject": "{accuracy_pct}% doğruluk bu hafta — Pro kullanıcılar ortalama {pro_target_pct}%",
+  "preview_text": "İşte modelin ücretsiz sürümde senden sakladığı şey.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Son {recent_total} tahmininde {accuracy_pct}% doğruluk yakaladın — bu, ücretsiz sürüm ortalamasının oldukça üzerinde. Modeli çoğu kişiden daha iyi okuyorsun.",
+    "Pro kullanıcılar her maç için En Güçlü Sinyali görür — sürekli olarak {pro_target_pct}%+ tutan o tek tahmin — ayrıca her piyasada kalibre edilmiş güven ve oyuncu-projeksiyonları (sayı, ribaund, asist). En yüksek doğruluk seviyeleri bu şekilde zirvede kalır.",
+    "7 gün boyunca ücretsiz denemek ister misin? Kart gerekmez, otomatik yenileme yok. Sayılarını değiştirmezse, çekip gidersin."
+  ],
+  "cta_text": "7 günlük Pro denemesini başlat",
+  "cta_deeplink": "predictify://upgrade?ref=hot_week",
+  "kind": "upgrade_after_hot_week",
+  "language": "tr"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} बनाम {away_team} — {confidence_pct}% विश्वास के साथ भविष्यवाणी",
+  "preview_text": "{league_name} की शुरुआत {hours_to_kickoff} घंटे में। आपकी AI की पिक तैयार है।",
+  "body_paragraphs": [
+    "नमस्ते {first_name},",
+    "{home_team} बनाम {away_team} का मुकाबला लगभग {hours_to_kickoff} घंटे में शुरू होगा। आपकी AI ने हर सिग्नल — आक्रमण और बचाव रेटिंग, गति, हालिया फॉर्म, आराम के दिन और चोट रिपोर्ट — का विश्लेषण करके अपनी भविष्यवाणी तय कर ली है।",
+    "📊 पिक: {pick_label}\n🎯 कैलिब्रेटेड विश्वास: {confidence_pct}%\n🏀 टियर: {tier_label}",
+    "यही वह चीज़ है जिसके लिए हमने Predictify बनाया है। ऐप खोलें, पूरा तर्क देखें, और मैच शुरू होने से पहले अपनी भविष्यवाणी लॉक करें।"
+  ],
+  "cta_text": "पूरी भविष्यवाणी देखें",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "hi"
+}

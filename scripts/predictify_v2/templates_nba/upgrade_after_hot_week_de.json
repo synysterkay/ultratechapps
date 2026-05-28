@@ -1,0 +1,14 @@
+{
+  "subject": "{accuracy_pct}% Genauigkeit diese Woche – Pro-Nutzer erzielen durchschnittlich {pro_target_pct}%",
+  "preview_text": "Hier ist, was das Modell vor deinem kostenlosen Tarif verbirgt.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Deine letzten {recent_total} Tipps lagen bei {accuracy_pct}% – weit über dem Durchschnitt des kostenlosen Tarifs. Du liest das Modell besser als die meisten.",
+    "Pro-Nutzer sehen das stärkste Signal für jedes Spiel – den einen Tipp, der konstant {pro_target_pct}%+ erreicht – plus kalibrierte Konfidenz für jeden Markt und Spieler-Prognosen (Punkte, Rebounds, Assists). So bleiben die besten Genauigkeitsstufen an der Spitze.",
+    "Willst du es 7 Tage lang kostenlos testen? Keine Karte nötig, keine automatische Verlängerung. Wenn es deine Zahlen nicht verbessert, gehst du einfach."
+  ],
+  "cta_text": "7-tägige Pro-Testversion starten",
+  "cta_deeplink": "predictify://upgrade?ref=hot_week",
+  "kind": "upgrade_after_hot_week",
+  "language": "de"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "Jouw week: {recent_correct}/{recent_total} voorspellingen goed",
+  "preview_text": "{accuracy_pct}% nauwkeurigheid. Topkeuze klaar voor volgende week.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Korte terugblik op jouw week op Predictify:",
+    "✅ {recent_correct} van de {recent_total} voorspellingen raak\n📊 {accuracy_pct}% nauwkeurigheid in de afgelopen 30 dagen\n🔥 {streak_days}-dagen streak (jouw record tot nu toe)",
+    "Vooruitkijkend: de sterkste call van het model deze week is {top_match_line}. Het is de moeite waard om te bekijken — open de app en we laten je precies zien waarom."
+  ],
+  "cta_text": "Bekijk de topkeuze voor volgende week",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "nl"
+}

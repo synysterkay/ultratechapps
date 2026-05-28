@@ -1,0 +1,14 @@
+{
+  "subject": "{accuracy_pct}% nauwkeurigheid deze week — Pro-gebruikers gemiddeld {pro_target_pct}%",
+  "preview_text": "Hier is wat het model verbergt voor jouw gratis tier.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Je laatste {recent_total} voorspellingen scoorden {accuracy_pct}% — ruim boven het gemiddelde van de gratis tier. Je leest het model beter dan de meeste.",
+    "Pro-gebruikers zien het Strongest Signal voor elke wedstrijd — de ene oproep die consistent {pro_target_pct}%+ haalt — plus gekalibreerd vertrouwen op elke markt en speler-prop-projecties (punten, rebounds, assists). Zo blijven de beste nauwkeurigheid-tiers aan de top.",
+    "Wil je het 7 dagen gratis proberen? Geen kaart nodig, geen automatische verlenging. Als het je cijfers niet verbetert, loop je weg."
+  ],
+  "cta_text": "Start 7-daagse Pro-proef",
+  "cta_deeplink": "predictify://upgrade?ref=hot_week",
+  "kind": "upgrade_after_hot_week",
+  "language": "nl"
+}

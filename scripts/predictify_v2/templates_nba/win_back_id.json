@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify benar {recent_correct} dari {recent_total} prediksi terakhir — tanpa kamu",
+  "preview_text": "Kamu diam saja. Ini yang diprediksi AI-mu.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Update singkat: selama kamu pergi, Predictify tetap melakukan yang terbaik. {recent_total} prediksi terakhir: {recent_correct} benar — itu {recent_accuracy_pct}%, secara otomatis.",
+    "Ini yang menarik: panggilan teratas hari ini adalah {top_match_line}",
+    "Buka aplikasi, luangkan 30 detik untuk melihat alasan lengkapnya, dan putuskan apakah AI-mu layak dilihat lagi."
+  ],
+  "cta_text": "Lihat pilihan terkuat hari ini",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "id"
+}

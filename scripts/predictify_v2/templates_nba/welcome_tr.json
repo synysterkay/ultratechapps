@@ -1,0 +1,14 @@
+{
+  "subject": "İlk NBA tahminin burada başlıyor, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Merhaba {first_name},",
+    "Predictify'e hoş geldin. Kısa bir oryantasyon: uygulamadaki her NBA maçı, takım derecelendirmeleri, tempo, dinlenme ve sakatlıklardan oluşturulan kalibre edilmiş bir AI güven skoruyla gelir — bu skor, tahminin ne kadar güvenilir olduğunu tam olarak söyler. Rakamlar, abartılı yorumlar değil.",
+    "Şimdi dene: {top_match_line}. Maça dokun, tam dökümü gör — para hattı, spread, toplam — ve tahminini kilitle.",
+    "Uzman ipucu: 5 gün boyunca günde bir tahmin yap ve bir seri oluştur. Seri kullananlar, başlama vuruşundan önce değerli tahminleri görmede 3 kat daha başarılı."
+  ],
+  "cta_text": "İlk tahminimi yap",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "tr"
+}

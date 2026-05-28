@@ -1,0 +1,14 @@
+{
+  "subject": "🎁 3 hari berturut-turut — kamu baru saja membuka 1 minggu Pro",
+  "preview_text": "Buka aplikasi untuk klaim. Tanpa kartu, tanpa perpanjangan otomatis.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Kamu sudah membuka Predictify tiga hari berturut-turut. Itu jarang terjadi — kebanyakan pengguna tidak sampai dua hari.",
+    "Hadiahmu: 7 hari Predictify Pro, terbuka penuh, tanpa perlu pembayaran. Kamu akan melihat Sinyal Terkuat di setiap pertandingan, kepercayaan yang terkalibrasi di setiap pasar (moneyline, spread, totals, player props), dan riwayat prediksi lengkap.",
+    "Ketuk di bawah untuk klaim. Aktivasi langsung dan berlaku selama seminggu — terus gunakan aplikasi setiap hari dan kamu bisa mendapatkan lebih banyak seiring bertambahnya streak."
+  ],
+  "cta_text": "Klaim Pro 7 Hari",
+  "cta_deeplink": "predictify://reward/streak3",
+  "kind": "login_streak_reward",
+  "language": "id"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "Twój pierwszy typ NBA zaczyna się tutaj, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Witaj w Predictify. Krótka orientacja: każdy mecz NBA w aplikacji ma skalibrowany wynik pewności AI — oparty na ocenach drużyn, tempie, odpoczynku i kontuzjach — który mówi Ci dokładnie, jak wiarygodny jest typ. Liczby, a nie gorące opinie.",
+    "Wypróbuj teraz: {top_match_line}. Kliknij mecz, zobacz pełną analizę — moneyline, spread, suma — i zatwierdź swój typ.",
+    "Pro tip: zrób jeden typ dziennie przez 5 dni, a zbudujesz passę. Użytkownicy z passą są 3 razy bardziej skłonni dostrzec wartościowe typy przed rozpoczęciem meczu."
+  ],
+  "cta_text": "Wykonaj mój pierwszy typ",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "pl"
+}

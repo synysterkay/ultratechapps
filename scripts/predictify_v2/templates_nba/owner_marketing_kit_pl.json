@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} potrzebuje członków — oto jak rozwijają się najlepsi właściciele",
+  "preview_text": "5 miejsc, w których widzieliśmy, że posty właścicieli faktycznie konwertują.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Twoja społeczność {community_name} ma {member_count} członka{member_plural}. Właściciele, którzy w pierwszym tygodniu osiągnęli 25+ członków, wszyscy korzystają z tego samego podręcznika — oto on.",
+    "1. Grupy WhatsApp/Telegram: wrzuć link z jednolinijkowym zachęcającym tekstem („AI typuje każdy mecz NBA, dołącz za darmo”)\n2. X / Twitter: opublikuj swój najpewniejszy typ wieczoru z linkiem do dołączenia w odpowiedzi\n3. r/nba, r/sportsbook, r/dfsports na Reddicie: przypięty codzienny wątek\n4. Komentarze na TikToku pod filmami z zapowiedziami NBA / typami na kupon\n5. Serwery Discord dla drużyn, które obsługujesz",
+    "Predictify tworzy za Ciebie obraz okładkowy (twój link do udostępnienia wygląda z nim 3x lepiej — to samo w sobie zwiększa wskaźnik dołączeń). Otwórz zestaw udostępniania, skopiuj link, wklej go tam, gdzie gromadzą się fani NBA."
+  ],
+  "cta_text": "Otwórz zestaw udostępniania",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "pl"
+}

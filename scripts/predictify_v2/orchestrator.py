@@ -596,19 +596,24 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
     fb = FirebaseUserLoader()
     fb.refresh_exports()
     users_by_app = fb.load_users_by_app()
-    users = users_by_app.get('Predictify', [])
-    print(f'   Loaded {len(users)} Predictify users')
+    # Soccer default 'Predictify'; NBA profile sets PREDICTIFY_APP_NAME=
+    # 'Predictify: NBA AI' to select NBA users from the same loader.
+    app_name = os.environ.get('PREDICTIFY_APP_NAME', 'Predictify')
+    users = users_by_app.get(app_name, [])
+    print(f'   Loaded {len(users)} {app_name} users')
 
     lang_loader = FirestoreLanguageLoader()
     activity_loader = FirestoreActivityLoader()
 
-    # Cache language + activity in batch where possible.
+    # Cache language + activity in batch where possible. Uses the same
+    # env-selected app (Soccer default, or 'Predictify: NBA AI' for the NBA
+    # profile) so languages come from the right Firebase project.
     try:
-        languages_by_uid = lang_loader.load_languages('Predictify')
+        languages_by_uid = lang_loader.load_languages(app_name)
     except Exception:
         languages_by_uid = {}
     try:
-        activity_by_uid = activity_loader.load_activity('Predictify')
+        activity_by_uid = activity_loader.load_activity(app_name)
     except Exception:
         activity_by_uid = {}
 
