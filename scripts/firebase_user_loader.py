@@ -58,6 +58,15 @@ FIREBASE_APPS = {
         'multilingual': True,
         'supported_languages': ['en', 'ar', 'es', 'fr'],
     },
+    'nba-predictify': {
+        'name': 'Predictify: NBA AI',
+        'export_file': 'predictify_nba_fresh.json',
+        'description': 'AI-powered NBA predictions with calibrated confidence — moneyline, spread, totals & player props, plus injuries and playoff analysis',
+        'app_store_url': 'https://apps.apple.com/app/predictify-nba-ai/id0000000000',
+        'google_play_url': 'https://play.google.com/store/apps/details?id=com.predictify.nba.prediction',
+        'multilingual': True,
+        'supported_languages': ['en', 'ar', 'de', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'nl', 'pl', 'pp', 'pt', 'tr'],
+    },
     'volume-booster-2f7bf': {
         'name': 'Volume Booster - Sound Booster',
         'export_file': 'volume_booster_fresh.json',
@@ -75,6 +84,13 @@ FIREBASE_APPS = {
         'google_play_url': 'https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction',
         'multilingual': True,
         'supported_languages': ['en', 'ar', 'es', 'fr'],
+    },
+    'cryptopredictify': {
+        'name': 'Crypto AI: Trading Analyzer',
+        'export_file': 'cryptopredictify_fresh.json',
+        'description': 'AI-powered cryptocurrency trading signals, market analysis, and portfolio tracking',
+        'app_store_url': 'https://apps.apple.com/app/crypto-ai-trading-analyzer/id6757122088',
+        'google_play_url': '',
     },
 }
 
