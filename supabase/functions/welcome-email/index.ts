@@ -823,29 +823,35 @@ function buildHtml(
   appConfig: AppConfig,
   language: string,
   senderName: string,
-  utmCtx?: { app: string; emailNum: string | number; cycle: number; language: string; ref: string; kind: string }
+  utmCtx?: { app: string; emailNum: string | number; cycle: number; language: string; ref: string; kind: string },
+  firstName?: string
 ): string {
   const isRtl = language === "ar";
   const dirAttr = isRtl ? ' dir="rtl"' : "";
   const textAlign = isRtl ? "right" : "left";
 
-  const greetings: Record<string, string> = {
-    en: "Hey there,",
-    ar: "\u0645\u0631\u062d\u0628\u064b\u0627\u060c",
-    es: "Hola,",
-    fr: "Salut,",
-    zh: "\u4f60\u597d\uff0c",
-    hi: "\u0928\u092e\u0938\u094d\u0924\u0947,",
-    pt: "Ol\u00e1,",
-    ru: "\u041f\u0440\u0438\u0432\u0435\u0442,",
-    de: "Hallo,",
-    tr: "Merhaba,",
-    it: "Ciao,",
-    pp: "Ol\u00e1,",
-    id: "Halo,",
-    nl: "Hallo,",
-    pl: "Cze\u015b\u0107,",
-    ja: "\u3053\u3093\u306b\u3061\u306f\u3001",
+  // Greetings are functions so we can interpolate firstName when the caller
+  // sends one (e.g. SoulPlan plumbs users.{uid}.displayName). Each language
+  // has its own "personalised" form \u2014 Spanish doesn't say "Hi Sarah" the same
+  // way Korean does, so this isn't a single template.
+  const greetings: Record<string, (n?: string) => string> = {
+    en: (n) => n ? `Hey ${n},` : "Hey there,",
+    ar: (n) => n ? `\u0645\u0631\u062d\u0628\u064b\u0627 ${n}\u060c` : "\u0645\u0631\u062d\u0628\u064b\u0627\u060c",
+    es: (n) => n ? `Hola ${n},` : "Hola,",
+    fr: (n) => n ? `Salut ${n},` : "Salut,",
+    zh: (n) => n ? `\u4f60\u597d ${n}\uff0c` : "\u4f60\u597d\uff0c",
+    hi: (n) => n ? `\u0928\u092e\u0938\u094d\u0924\u0947 ${n},` : "\u0928\u092e\u0938\u094d\u0924\u0947,",
+    pt: (n) => n ? `Ol\u00e1 ${n},` : "Ol\u00e1,",
+    ru: (n) => n ? `\u041f\u0440\u0438\u0432\u0435\u0442, ${n}!` : "\u041f\u0440\u0438\u0432\u0435\u0442,",
+    de: (n) => n ? `Hallo ${n},` : "Hallo,",
+    tr: (n) => n ? `Merhaba ${n},` : "Merhaba,",
+    it: (n) => n ? `Ciao ${n},` : "Ciao,",
+    pp: (n) => n ? `Ol\u00e1 ${n},` : "Ol\u00e1,",
+    id: (n) => n ? `Halo ${n},` : "Halo,",
+    nl: (n) => n ? `Hallo ${n},` : "Hallo,",
+    pl: (n) => n ? `Cze\u015b\u0107 ${n},` : "Cze\u015b\u0107,",
+    ja: (n) => n ? `${n}\u3055\u3093\u3001\u3053\u3093\u306b\u3061\u306f\u3001` : "\u3053\u3093\u306b\u3061\u306f\u3001",
+    ko: (n) => n ? `\uc548\ub155\ud558\uc138\uc694 ${n}\ub2d8,` : "\uc548\ub155\ud558\uc138\uc694,",
   };
   const signoffs: Record<string, string> = {
     en: "Talk soon,",
@@ -864,6 +870,7 @@ function buildHtml(
     nl: "Tot snel,",
     pl: "Do zobaczenia,",
     ja: "\u307e\u305f\u306d\u3001",
+    ko: "\ub610 \ubd10\uc694,",
   };
   const footers: Record<string, string> = {
     en: `You're receiving this because you signed up for ${appConfig.name}.`,
@@ -882,9 +889,10 @@ function buildHtml(
     nl: `Je ontvangt dit bericht omdat je je hebt aangemeld voor ${appConfig.name}.`,
     pl: `Otrzymujesz t\u0119 wiadomo\u015b\u0107, poniewa\u017c zarejestroawa\u0142e\u015b si\u0119 w ${appConfig.name}.`,
     ja: `${appConfig.name}\u306b\u3054\u767b\u9332\u3044\u305f\u3060\u3044\u305f\u305f\u3081\u3001\u3053\u306e\u30e1\u30fc\u30eb\u3092\u304a\u9001\u308a\u3057\u3066\u3044\u307e\u3059\u3002`,
+    ko: `${appConfig.name}\uc5d0 \uac00\uc785\ud558\uc168\uae30 \ub54c\ubb38\uc5d0 \uc774 \uc774\uba54\uc77c\uc744 \ubc1b\uc73c\uc168\uc2b5\ub2c8\ub2e4.`,
   };
 
-  const greeting = greetings[language] || greetings.en;
+  const greeting = (greetings[language] || greetings.en)(firstName);
   const signoff = signoffs[language] || signoffs.en;
   const footerText = footers[language] || footers.en;
   const ctaText = emailData.cta_text;
@@ -970,7 +978,7 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
-    const { email, app_id: rawAppId, language } = await req.json();
+    const { email, app_id: rawAppId, language, firstName } = await req.json();
 
     if (!email || !rawAppId) {
       return new Response(
@@ -1023,7 +1031,7 @@ Deno.serve(async (req: Request) => {
       ref,
       kind: "welcome",
     };
-    const html = buildHtml(emailData, appConfig, lang, sender.name, utmCtx);
+    const html = buildHtml(emailData, appConfig, lang, sender.name, utmCtx, firstName);
 
     const tags = [
       { name: "app", value: sanitizeTagValue(app_id) },
