@@ -343,6 +343,26 @@ APP_CONTEXT = {
             "cta": "Go Premium",
         },
     },
+    "Bass Booster": {
+        "target_audience": "Hip-Hop / EDM / Rock listeners who want the drop to actually hit through phone speakers and earbuds",
+        "core_pain": "Flat, lifeless audio. No bass. Music sounds tinny on the phone. Earbuds with zero low-end.",
+        "killer_features": [
+            "200% volume boost — louder than the system max",
+            "10-band EQ + 4 audio profiles (Music / Movie / Podcast / Gaming)",
+            "Bass virtualizer + 3D Surround — feel the drop, even on earbuds",
+            "Works system-wide: Spotify, YouTube, TikTok, games — every audio source",
+            "One-tap Boost slider — drag, listen, instantly louder",
+            "Premium unlocks unlimited boost + the full 10-band EQ",
+        ],
+        "social_proof": "100,000+ downloads, 4.7★ from 12,800 reviewers, ~9k people boosting right now",
+        "emotional_hooks": ["feel every beat", "feel the drop in your chest", "your phone shouldn't sound flat", "make Hip-Hop hit like a subwoofer"],
+        "tone": "Visceral, not clinical. 2nd person, short sentences. Like a friend who hands you their good earbuds and says \"now listen to this.\" Never apologise for promoting Premium.",
+        "subscription": {
+            "weekly": "Weekly subscription",
+            "monthly": "Monthly subscription",
+            "cta": "Go Premium",
+        },
+    },
     "Predictify": {
         "target_audience": "Soccer/football fans who want smarter predictions and data-driven insights",
         "core_pain": "Bad predictions, unreliable tips, missing value bets, no data to back up gut feelings",
@@ -386,6 +406,26 @@ APP_CONTEXT = {
         "subscription": {
             "monthly": "$12.99/month",
             "trial": "3-day free trial",
+            "cta": "Start Free Trial",
+        },
+    },
+    "Crypto AI: Trading Analyzer": {
+        "target_audience": "Retail crypto traders and investors who want institutional-grade analysis without paying $200/mo for TradingView Pro",
+        "core_pain": "FOMO buys at the top, emotional sells at the bottom, drowning in noise from Twitter influencers and pump-and-dump groups, no time to read charts 24/7",
+        "killer_features": [
+            "Upload any chart screenshot — get an AI verdict in seconds (entry, stop, target, R:R, confidence)",
+            "Multi-source signal stack: technicals, sentiment, news, macro, on-chain — all weighted into one read",
+            "Predictify Coach — calm AI mentor that talks you out of revenge trades",
+            "Smart alerts: price approaching your level, Fear & Greed shifts, AI confidence jumps on your watchlist",
+            "Trading journal with ROI tracking + accuracy dashboard (by asset, direction, confidence bucket)",
+            "Communities + live chat — find your tribe of traders, follow top callers, copy what works",
+        ],
+        "social_proof": "Built on the same multi-source AI engine traders pay $99/mo for elsewhere",
+        "emotional_hooks": ["stop guessing", "data beats gut", "the calm voice you need at 3am", "stop missing the move"],
+        "tone": "Like a calm trading desk in your pocket — sharp, never hyped, always disciplined",
+        "subscription": {
+            "monthly": "$19.99/month",
+            "trial": "7-day free trial",
             "cta": "Start Free Trial",
         },
     },
@@ -680,6 +720,8 @@ Generate the email now. Make it impossible to ignore."""
             elif app_name == 'Predictify':
                 app_languages = ['en', 'ar', 'es', 'fr', 'pt', 'de', 'tr', 'it', 'pp', 'hi', 'id', 'nl', 'pl', 'ja']
             elif app_name == 'Volume Booster - Sound Booster':
+                app_languages = ['en', 'ar', 'es', 'fr', 'zh', 'hi', 'pt', 'ru']
+            elif app_name == 'Bass Booster':
                 app_languages = ['en', 'ar', 'es', 'fr', 'zh', 'hi', 'pt', 'ru']
             elif app_name == 'Predictify: Horse Racing AI':
                 app_languages = ['en', 'ar', 'es', 'fr']

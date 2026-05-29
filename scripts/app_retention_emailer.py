@@ -267,6 +267,7 @@ _APP_SLUGS = {
     'Thesis Generator': 'thesis',
     'Red Flag Scanner AI': 'redflag',
     'Volume Booster - Sound Booster': 'volume_booster',
+    'Bass Booster': 'bass_booster',
     'Fresh Start: Breakup Therapy': 'fresh_start',
     'SoulPlan: Plan Dates Together': 'soulplan',
     'PupShape: Dog Weight Loss Plan': 'pupshape',
@@ -679,6 +680,7 @@ class AppRetentionEmailer:
         'Predictify: Horse Racing AI',
         'Crypto AI: Trading Analyzer',
         'Volume Booster - Sound Booster',
+        'Bass Booster',
         'Red Flag Scanner AI',
         'Fresh Start: Breakup Therapy',
         'SoulPlan: Plan Dates Together',
@@ -990,6 +992,9 @@ class AppRetentionEmailer:
             'Volume Booster - Sound Booster': 'Volume Booster - Sound Booster',
             'Predictify: Horse Racing AI': 'Predictify: Horse Racing AI',
             'Thesis Generator': 'Thesis Generator',
+            # SoulPlan writes BCP-47 tags (pt-BR, zh-Hans) via LocaleProvider.syncToBackend
+            # to users.{uid}.language; the loader normalizes dashes + maps to base codes.
+            'SoulPlan: Plan Dates Together': 'SoulPlan: Plan Dates Together',
         }
         for app_name, loader_key in multilingual_apps.items():
             if app_name in users_by_app:

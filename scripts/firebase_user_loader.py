@@ -76,6 +76,15 @@ FIREBASE_APPS = {
         'multilingual': True,
         'supported_languages': ['en', 'es', 'fr', 'zh', 'hi', 'pt', 'ru'],
     },
+    'bass-booster-ce615': {
+        'name': 'Bass Booster',
+        'export_file': 'bass_booster_fresh.json',
+        'description': '10-band EQ, 200% boost, real bass you feel in your chest — for Hip-Hop, EDM, Rock',
+        'google_play_url': 'https://play.google.com/store/apps/details?id=com.soundamplifier.volumeboosterforandroid.volumeboostergoodev.bassboosterequalizer',
+        'app_store_url': '',
+        'multilingual': True,
+        'supported_languages': ['en', 'es', 'fr', 'ar', 'zh', 'hi', 'pt', 'ru'],
+    },
     'horse-racing-f67e8': {
         'name': 'Predictify: Horse Racing AI',
         'export_file': 'horse_racing_fresh.json',
