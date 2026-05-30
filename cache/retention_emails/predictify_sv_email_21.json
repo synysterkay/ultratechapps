@@ -1,0 +1,16 @@
+{
+  "subject": "Jag uppt\u00e4ckte n\u00e5got du missat",
+  "preview_text": "En ny funktion som f\u00f6r\u00e4ndrar allt. \u00d6ppna appen nu.",
+  "body_paragraphs": [
+    "Jag m\u00e5ste erk\u00e4nna en sak. N\u00e4r jag kollade statistiken s\u00e5g jag att du inte loggat in p\u00e5 ett tag. Och det \u00e4r okej, men du har missat n\u00e5got stort. N\u00e5got som f\u00f6r\u00e4ndrar hur du ser p\u00e5 matcher.",
+    "Sedan du sist \u00f6ppnade Predictify har vi lagt till en AI-chatt som svarar p\u00e5 alla dina fotbollsfr\u00e5gor p\u00e5 sekunder. T\u00e4nk dig att kunna fr\u00e5ga varf\u00f6r en spelare har l\u00e5g xG eller vad taktiken \u00e4r i kv\u00e4llens match \u2013 och f\u00e5 ett svar som \u00e4r baserat p\u00e5 tusentals variabler. Ingen gissning, bara fakta.",
+    "Det h\u00e4r \u00e4r inte bara en ny funktion, det \u00e4r ett s\u00e4tt att bli den smartaste i rummet. \u00d6ppna appen, g\u00e5 till chattikonen och testa att fr\u00e5ga om n\u00e5got du alltid undrat. Du kommer bli f\u00f6rv\u00e5nad \u00f6ver vad AI:n ser som du missat.",
+    "Klicka p\u00e5 knappen nedan f\u00f6r att komma ig\u00e5ng. P.S. Om du gillar chattfunktionen, v\u00e4nta bara tills du testar Premium \u2013 d\u00e4r f\u00e5r du tillg\u00e5ng till alla prediktioner och avancerad statistik. Din tredagars provperiod v\u00e4ntar."
+  ],
+  "cta_text": "\u00d6ppna Predictify nu",
+  "email_number": 21,
+  "send_day": 48,
+  "type": "comeback_trigger",
+  "app_name": "Predictify",
+  "generated_at": "2026-05-30T15:28:01.304073"
+}

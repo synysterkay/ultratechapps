@@ -460,7 +460,7 @@ class RetentionEmailGenerator:
             return None
         
         # Language instructions
-        lang_names = {'en': 'English', 'ar': 'Arabic', 'es': 'Spanish', 'fr': 'French', 'zh': 'Chinese', 'hi': 'Hindi', 'pt': 'Portuguese', 'ru': 'Russian', 'de': 'German', 'tr': 'Turkish', 'it': 'Italian', 'pp': 'European Portuguese', 'id': 'Indonesian', 'nl': 'Dutch', 'pl': 'Polish', 'ja': 'Japanese'}
+        lang_names = {'en': 'English', 'ar': 'Arabic', 'es': 'Spanish', 'fr': 'French', 'zh': 'Chinese', 'hi': 'Hindi', 'pt': 'Portuguese', 'ru': 'Russian', 'de': 'German', 'tr': 'Turkish', 'it': 'Italian', 'pp': 'European Portuguese', 'id': 'Indonesian', 'nl': 'Dutch', 'pl': 'Polish', 'ja': 'Japanese', 'bn': 'Bengali', 'el': 'Greek', 'fa': 'Persian', 'ko': 'Korean', 'ro': 'Romanian', 'sv': 'Swedish', 'th': 'Thai', 'uk': 'Ukrainian', 'ur': 'Urdu', 'vi': 'Vietnamese'}
         lang_name = lang_names.get(language, 'English')
         
         lang_instruction = ''
@@ -718,7 +718,7 @@ Generate the email now. Make it impossible to ignore."""
             if languages:
                 app_languages = languages
             elif app_name == 'Predictify':
-                app_languages = ['en', 'ar', 'es', 'fr', 'pt', 'de', 'tr', 'it', 'pp', 'hi', 'id', 'nl', 'pl', 'ja']
+                app_languages = ['en', 'ar', 'es', 'fr', 'pt', 'de', 'tr', 'it', 'pp', 'hi', 'id', 'nl', 'pl', 'ja', 'bn', 'el', 'fa', 'ko', 'ro', 'ru', 'sv', 'th', 'uk', 'ur', 'vi', 'zh']
             elif app_name == 'Volume Booster - Sound Booster':
                 app_languages = ['en', 'ar', 'es', 'fr', 'zh', 'hi', 'pt', 'ru']
             elif app_name == 'Bass Booster':

@@ -20,7 +20,7 @@ FIRESTORE_BASE = 'https://firestore.googleapis.com/v1'
 MULTILINGUAL_PROJECTS = {
     'Predictify': {
         'project_id': 'predictify-3f30d',
-        'supported_languages': ['en', 'ar', 'es', 'fr', 'pt', 'de', 'tr', 'it', 'pp', 'hi', 'id', 'nl', 'pl', 'ja'],
+        'supported_languages': ['en', 'ar', 'es', 'fr', 'pt', 'de', 'tr', 'it', 'pp', 'hi', 'id', 'nl', 'pl', 'ja', 'bn', 'el', 'fa', 'ko', 'ro', 'ru', 'sv', 'th', 'uk', 'ur', 'vi', 'zh'],
         'cache_file': 'predictify_languages.json',
     },
     'Volume Booster - Sound Booster': {
@@ -33,10 +33,23 @@ MULTILINGUAL_PROJECTS = {
         'supported_languages': ['en', 'ar', 'es', 'fr'],
         'cache_file': 'horse_racing_languages.json',
     },
+    'Predictify: NBA AI': {
+        'project_id': 'nba-predictify',
+        'supported_languages': ['en', 'ar', 'es', 'fr', 'pt', 'de', 'tr', 'it', 'pp', 'hi', 'id', 'nl', 'pl', 'ja'],
+        'cache_file': 'predictify_nba_languages.json',
+    },
     'Thesis Generator': {
         'project_id': 'thesis-generator-web',
         'supported_languages': ['en', 'ar', 'es', 'fr', 'hi', 'zh'],
         'cache_file': 'thesis_generator_languages.json',
+    },
+    'SoulPlan: Plan Dates Together': {
+        'project_id': 'soulplan-dateplanner',
+        # Matches the retention cache (cache/retention_emails/soulplan_*_<lang>_email_*.json).
+        # SoulPlan writes a BCP-47 tag to users.{uid}.language (e.g. "pt-BR", "zh-Hans");
+        # see fetch_user_languages() / fetch_for_user_email() for normalization.
+        'supported_languages': ['en', 'ar', 'de', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'ko', 'nl', 'pl', 'pt', 'ru', 'tr', 'zh'],
+        'cache_file': 'soulplan_languages.json',
     },
 }
 
@@ -58,6 +71,16 @@ LANGUAGE_NORMALIZE = {
     'nl': 'nl', 'dutch': 'nl', 'nederlands': 'nl',
     'pl': 'pl', 'polish': 'pl', 'polski': 'pl',
     'ja': 'ja', 'japanese': 'ja',
+    'ko': 'ko', 'korean': 'ko', 'ko_kr': 'ko',
+    'bn': 'bn',
+    'el': 'el',
+    'fa': 'fa',
+    'ro': 'ro',
+    'sv': 'sv',
+    'th': 'th',
+    'uk': 'uk',
+    'ur': 'ur',
+    'vi': 'vi',
 }
 
 
@@ -150,6 +173,9 @@ class FirestoreLanguageLoader:
                     lang = 'en'
                     if 'language' in fields:
                         raw_lang = fields['language'].get('stringValue', 'en').lower().strip()
+                        # Normalize BCP-47 dashes (pt-BR -> pt_br, zh-Hans -> zh_hans)
+                        # so the underscore-keyed LANGUAGE_NORMALIZE table matches.
+                        raw_lang = raw_lang.replace('-', '_')
                         # Strip locale suffixes (e.g. en_US -> en)
                         raw_lang = raw_lang.split('_')[0] if '_' in raw_lang and raw_lang not in LANGUAGE_NORMALIZE else raw_lang
                         lang = LANGUAGE_NORMALIZE.get(raw_lang, 'en')
@@ -230,6 +256,8 @@ class FirestoreLanguageLoader:
                 return 'en'
 
             raw_lang = doc['fields'].get('language', {}).get('stringValue', 'en').lower().strip()
+            # Normalize BCP-47 dashes (pt-BR -> pt_br) so underscore-keyed lookup matches.
+            raw_lang = raw_lang.replace('-', '_')
             if '_' in raw_lang and raw_lang not in LANGUAGE_NORMALIZE:
                 raw_lang = raw_lang.split('_')[0]
             lang = LANGUAGE_NORMALIZE.get(raw_lang, 'en')

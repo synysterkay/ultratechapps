@@ -1,0 +1,16 @@
+{
+  "subject": "Secretul pe care 90% dintre utilizatori il rateaza",
+  "preview_text": "Am descoperit o functionalitate pe care o ignoram si care mi-a schimbat complet predictiile. Citeste mai departe.",
+  "body_paragraphs": [
+    "Acum cateva saptamani, un tip pe nume Andrei mi-a scris ca a dat peste ceva ce parea prea bun pentru a fi adevarat. El pierdusese deja cateva pariuri si era gata sa renunte la aplicatie. Dar apoi a incercat ceva ce majoritatea utilizatorilor nici macar nu deschid.",
+    "A inceput sa foloseasca functia de analiza tactica pentru fiecare meci. Nu doar scorurile, ci si datele despre posesie, xG-ul jucatorilor, punctele forte defensive. A descoperit ca, atunci cand AI-ul ii arata un scor cu 85% incredere, dar datele tactice indicau o alta tendinta, el putea sa ajusteze predictia. Si a inceput sa castige.",
+    "Aceasta functie sta ascunsa in sectiunea de detalii ale meciului, sub butonul 'Analiza avansata'. Acolo gasesti harta termica, comparatia fortelor si istoricul head-to-head. Este ca si cum ai avea un antrenor personal care iti sopteste la ureche inainte de fiecare meci. Si este gratuit pentru toata lumea, dar aproape nimeni nu o foloseste.",
+    "Deschide aplicatia acum si intra la orice meci din Premier League sau Champions League. Apasa pe 'Analiza avansata' si uita-te la date. O sa vezi ce ai ratat pana acum. P.S. Daca vrei si mai multe detalii, incearca perioada de proba de 3 zile la Premium - ai acces la toate statisticile avansate si la predictii nelimitate. Dar nu trebuie sa fii platit pentru a fi mai destept decat ceilalti."
+  ],
+  "cta_text": "Deschide Predictify si incearca analiza avansata",
+  "email_number": 12,
+  "send_day": 25,
+  "type": "feature_deep_dive",
+  "app_name": "Predictify",
+  "generated_at": "2026-05-30T15:18:24.157796"
+}

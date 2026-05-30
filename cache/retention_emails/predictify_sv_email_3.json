@@ -1,0 +1,16 @@
+{
+  "subject": "Hemligheten 90% av anv\u00e4ndarna missar",
+  "preview_text": "Ett enkelt trick som f\u00f6rb\u00e4ttrar dina predictions direkt. \u00d6ppna appen och prova.",
+  "body_paragraphs": [
+    "Jag s\u00e5g n\u00e5got konstigt ig\u00e5r. En match d\u00e4r alla trodde p\u00e5 hemmalagets seger \u2013 men AI:n visade helt andra siffror. Och vet du vad? Det var r\u00e4tt. Det fick mig att t\u00e4nka: de flesta anv\u00e4ndare kollar bara p\u00e5 slutresultatet, men missar en grej som g\u00f6r hela skillnaden.",
+    "Det \u00e4r enkelt, men f\u00e5 anv\u00e4nder det. N\u00e4r du \u00f6ppnar en match, scrolla f\u00f6rbi predictions \u2013 kolla ist\u00e4llet p\u00e5 Confidence Score bredvid varje resultat. Den siffran \u00e4r din b\u00e4sta v\u00e4n. Om den \u00e4r under 60%, \u00e4r det ofta v\u00e4rt att vara f\u00f6rsiktig. \u00d6ver 85%? D\u00e5 kan du luta dig tillbaka. Jag har l\u00e4rt mig att lita p\u00e5 den mer \u00e4n magk\u00e4nslan, och det har r\u00e4ddat mig fr\u00e5n flera d\u00e5liga tips.",
+    "I Predictify ser du Confidence Score f\u00f6r varje prediction direkt p\u00e5 matchkortet. AI:n v\u00e4ger tusentals variabler \u2013 spelform, skador, historik \u2013 och ber\u00e4ttar exakt hur s\u00e4ker den \u00e4r. Testa det p\u00e5 n\u00e4sta Premier League-match.",
+    "\u00d6ppna appen och kolla Confidence Score p\u00e5 en match du tror du kan. Se om den bekr\u00e4ftar din magk\u00e4nsla. P.S. Om du vill ha tillg\u00e5ng till alla ligor och avancerad statistik, testa Premium i 3 dagar gratis \u2013 ingen bindning, bara mer data att vinna p\u00e5."
+  ],
+  "cta_text": "\u00d6ppna Predictify",
+  "email_number": 3,
+  "send_day": 4,
+  "type": "quick_tip",
+  "app_name": "Predictify",
+  "generated_at": "2026-05-30T15:23:56.250400"
+}

@@ -1,0 +1,16 @@
+{
+  "subject": "Misstaget 90% av anv\u00e4ndarna g\u00f6r",
+  "preview_text": "Jag s\u00e5g det sj\u00e4lv \u2013 och det kostade mig en vinst. H\u00e4r \u00e4r sanningen, och en enkel fix.",
+  "body_paragraphs": [
+    "N\u00e4r jag laddade ner Predictify f\u00f6rsta g\u00e5ngen var jag som alla andra \u2013 kastade mig in i matcherna utan att kolla djupare. Gissa vad som h\u00e4nde? Jag f\u00f6rlorade p\u00e5 tre raka spel. Det var inte appens fel. Det var mitt.",
+    "Det st\u00f6rsta misstaget \u00e4r att lita p\u00e5 magk\u00e4nslan ist\u00e4llet f\u00f6r datan. Du ser en favoritvinst och trycker direkt. Men AI:n analyserar tusentals variabler \u2013 fr\u00e5n xG till defensiv struktur \u2013 som du inte ser p\u00e5 ytan. Att hoppa \u00f6ver dessa insikter \u00e4r som att spela med \u00f6gonbindel.",
+    "H\u00e4r \u00e4r fixen: \u00f6ppna en match i appen och scrolla ner till confidence scoren och head-to-head statistiken. Se skillnaden mellan vad du tror och vad AI:n ser. N\u00e4r du b\u00f6rjar anv\u00e4nda dessa data, slutar du gissa och b\u00f6rjar veta.",
+    "Din n\u00e4sta match \u00e4r bara ett tryck bort. \u00d6ppna Predictify nu, v\u00e4lj en match fr\u00e5n Premier League eller Champions League, och kolla confidence scoren f\u00f6rst. P.S. Jag gick fr\u00e5n 30% vinst till 65% p\u00e5 en vecka efter att jag b\u00f6rjade lita p\u00e5 siffrorna. Prova sj\u00e4lv \u2013 du kommer inte \u00e5ngra dig."
+  ],
+  "cta_text": "\u00d6ppna Predictify",
+  "email_number": 6,
+  "send_day": 11,
+  "type": "common_mistake",
+  "app_name": "Predictify",
+  "generated_at": "2026-05-30T15:24:17.567263"
+}
