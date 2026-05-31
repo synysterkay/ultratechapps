@@ -2,7 +2,7 @@
   "active_sender_index": 2,
   "senders": {
     "apps@kaynel.pl": {
-      "last_check": "2026-05-30T04:27:36.890759Z",
+      "last_check": "2026-05-31T07:02:30.822053Z",
       "status": "unknown",
       "rotated_out_at": "2026-03-23T18:23:03.109197",
       "metrics_history": [
@@ -165,7 +165,7 @@
       ]
     },
     "hello@bestaiapps.site": {
-      "last_check": "2026-05-30T04:27:36.890759Z",
+      "last_check": "2026-05-31T07:02:30.822053Z",
       "status": "red",
       "rotated_out_at": "2026-03-24T18:26:33.606857",
       "metrics_history": [
@@ -274,11 +274,22 @@
           "open_rate": 0.0,
           "bounce_rate": 0.0312,
           "complaint_rate": 0.0
+        },
+        {
+          "at": "2026-05-31T07:02:30.822053Z",
+          "status": "red",
+          "delivered": 6341,
+          "opens": 0,
+          "bounces": 199,
+          "complaints": 0,
+          "open_rate": 0.0,
+          "bounce_rate": 0.0314,
+          "complaint_rate": 0.0
         }
       ]
     },
     "apps@vitazelki.pl": {
-      "last_check": "2026-05-30T04:27:36.890759Z",
+      "last_check": "2026-05-31T07:02:30.822053Z",
       "status": "red",
       "rotated_out_at": "2026-03-23T09:32:41.182478",
       "metrics_history": [
@@ -778,7 +789,7 @@
       ]
     },
     "hello@aibettips.io": {
-      "last_check": "2026-05-30T04:27:36.890759Z",
+      "last_check": "2026-05-31T07:02:30.822053Z",
       "status": "red",
       "rotated_out_at": "2026-03-24T09:27:52.743454",
       "metrics_history": [
@@ -870,11 +881,22 @@
           "open_rate": 0.0,
           "bounce_rate": 0.0326,
           "complaint_rate": 0.0
+        },
+        {
+          "at": "2026-05-31T07:02:30.822053Z",
+          "status": "red",
+          "delivered": 6106,
+          "opens": 0,
+          "bounces": 201,
+          "complaints": 0,
+          "open_rate": 0.0,
+          "bounce_rate": 0.0329,
+          "complaint_rate": 0.0
         }
       ]
     },
     "tips@predictifyfootball.com": {
-      "last_check": "2026-05-30T04:27:36.890759Z",
+      "last_check": "2026-05-31T07:02:30.822053Z",
       "status": "red",
       "rotated_out_at": "2026-03-25T09:26:23.544012",
       "metrics_history": [
@@ -966,11 +988,22 @@
           "open_rate": 0.0,
           "bounce_rate": 0.0312,
           "complaint_rate": 0.0
+        },
+        {
+          "at": "2026-05-31T07:02:30.822053Z",
+          "status": "red",
+          "delivered": 6067,
+          "opens": 0,
+          "bounces": 192,
+          "complaints": 0,
+          "open_rate": 0.0,
+          "bounce_rate": 0.0316,
+          "complaint_rate": 0.0
         }
       ]
     },
     "hello@thesisgenerator.io": {
-      "last_check": "2026-05-30T04:27:36.890759Z",
+      "last_check": "2026-05-31T07:02:30.822053Z",
       "status": "red",
       "rotated_out_at": "2026-03-31T09:33:34.813174",
       "metrics_history": [
@@ -1249,11 +1282,22 @@
           "open_rate": 0.0012,
           "bounce_rate": 0.0385,
           "complaint_rate": 0.0
+        },
+        {
+          "at": "2026-05-31T07:02:30.822053Z",
+          "status": "red",
+          "delivered": 1431,
+          "opens": 61,
+          "bounces": 55,
+          "complaints": 0,
+          "open_rate": 0.0426,
+          "bounce_rate": 0.0384,
+          "complaint_rate": 0.0
         }
       ]
     },
     "hello@passedai.io": {
-      "last_check": "2026-05-30T04:27:36.890759Z",
+      "last_check": "2026-05-31T07:02:30.822053Z",
       "status": "red",
       "rotated_out_at": "2026-04-06T09:39:15.515973",
       "metrics_history": [
@@ -1617,12 +1661,23 @@
           "open_rate": 0.0,
           "bounce_rate": 0.027,
           "complaint_rate": 0.0
+        },
+        {
+          "at": "2026-05-31T07:02:30.822053Z",
+          "status": "red",
+          "delivered": 6105,
+          "opens": 0,
+          "bounces": 166,
+          "complaints": 0,
+          "open_rate": 0.0,
+          "bounce_rate": 0.0272,
+          "complaint_rate": 0.0
         }
       ]
     },
     "tips@predictify.fun": {
       "status": "red",
-      "last_check": "2026-05-30T04:27:36.890759Z",
+      "last_check": "2026-05-31T07:02:30.822053Z",
       "rotated_out_at": null,
       "metrics_history": [
         {
@@ -1678,6 +1733,17 @@
           "complaints": 1,
           "open_rate": 0.0,
           "bounce_rate": 0.0322,
+          "complaint_rate": 0.0002
+        },
+        {
+          "at": "2026-05-31T07:02:30.822053Z",
+          "status": "red",
+          "delivered": 6037,
+          "opens": 0,
+          "bounces": 196,
+          "complaints": 1,
+          "open_rate": 0.0,
+          "bounce_rate": 0.0325,
           "complaint_rate": 0.0002
         }
       ],
