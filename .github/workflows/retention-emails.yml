@@ -128,6 +128,11 @@ jobs:
             # monetization → winback → recap). Per-sender state files dedupe.
             echo "--- Running thesis orchestrator (all thesis senders) ---"
             python -u scripts/thesis_orchestrator.py || true
+            # ── PupShape behavioural senders ──
+            # Single entry point — orchestrator imports each sender lazily
+            # and reloads it per run. Per-sender state files dedupe.
+            echo "--- Running pupshape orchestrator (all pupshape senders) ---"
+            python -u scripts/pupshape_orchestrator.py || true
           fi
       
       - name: Save retention state

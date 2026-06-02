@@ -46,7 +46,7 @@ SENDERS = [
     ('first_weigh_in_celebration',  'first_weigh_in_celebration_sender'),
     ('milestone_crossed',           'milestone_crossed_sender'),
     ('progress_card_share_nudge',   'progress_card_share_nudge_sender'),
-    ('streak_milestone',            'streak_milestone_sender'),
+    ('streak_milestone',            'pupshape_streak_milestone_sender'),
     ('weekly_recap',                'weekly_recap_sender'),
     ('streak_at_risk',              'pupshape_streak_at_risk_sender'),
     ('plateau_detected',            'plateau_detected_sender'),
@@ -54,7 +54,7 @@ SENDERS = [
     ('abandoned_app',               'abandoned_app_sender'),
     ('at_goal_celebration',         'at_goal_celebration_sender'),
     ('invite_friend_reminder',      'invite_friend_reminder_sender'),
-    ('winback',                     'winback_sender'),
+    ('winback',                     'pupshape_winback_sender'),
 ]
 
 

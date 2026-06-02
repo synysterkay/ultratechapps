@@ -33,7 +33,7 @@ import localize_phrase
 APP_NAME = 'PupShape'
 APP_SLUG = 'pupshape'
 KIND = 'first_weigh_in_celebration'
-APP_STORE_URL = 'https://apps.apple.com/app/pupshape/id0000000000'  # update on launch
+APP_STORE_URL = 'https://apps.apple.com/app/pupshape-dog-weight-loss-plan/id6739601749'
 DEEP_LINK = 'pupshape://weigh'
 STATE_FILE = Path(__file__).parent.parent / 'cache' / 'first_weigh_in_celebration_state.json'
 _REF_SALT = os.getenv('EMAIL_REF_SALT', 'marketing-tool-v1')
