@@ -1,0 +1,9 @@
+{
+  "subject": "{{dog_name}} a atteint 75% — la dernière ligne droite commence maintenant",
+  "body": [
+    "Trois quarts du chemin, {{first_name}}. {{dog_name}} vient de franchir les 75%.",
+    "Le dernier quart est le plus délicat — le corps résiste le plus aux derniers kilos. Le moteur se pré-déjà à cela. Fiez-vous au rythme ; n'accélérez pas.",
+    "Même balance, même dimanche, même routine. La ligne d'arrivée est plus proche que vous ne le pensez."
+  ],
+  "cta": "Voir la dernière ligne droite"
+}

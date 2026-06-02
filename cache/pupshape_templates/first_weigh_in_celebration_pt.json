@@ -1,0 +1,10 @@
+{
+  "subject": "{{dog_name}} se pesou — o plano começa a aprender agora",
+  "body": [
+    "{{first_name}}, a primeira pesagem de {{dog_name}} acabou de chegar: {{current_weight}} kg.",
+    "Aqui está por que esse número importa mais do que os próximos dez: o plano se adapta a partir de dados reais, não de padrões. O motor agora tem um ponto de referência. Com duas pesagens, ele terá uma velocidade. Com três, poderá identificar um platô e ajustar antes que você perceba.",
+    "Mesma balança, mesmo horário, antes do café da manhã — é só o que precisa para o ciclo se fechar.",
+    "P.S. Toque abaixo para ver o plano de {{dog_name}} com o novo número incorporado."
+  ],
+  "cta": "Ver plano de {{dog_name}}"
+}

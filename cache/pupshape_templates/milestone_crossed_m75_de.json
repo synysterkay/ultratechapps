@@ -1,0 +1,9 @@
+{
+  "subject": "{{dog_name}} hat 75% erreicht — die Zielgerade beginnt jetzt",
+  "body": [
+    "Dreiviertel des Weges geschafft, {{first_name}}. {{dog_name}} hat gerade die 75%-Marke geknackt.",
+    "Das letzte Viertel ist das kniffligste — der Körper wehrt sich am stärksten gegen die letzten Kilos. Der Motor stellt sich bereits darauf ein. Vertraue dem Rhythmus; gib nicht mehr Gas.",
+    "Gleiche Waage, gleicher Sonntag, gleiche Routine. Die Ziellinie ist näher, als du denkst."
+  ],
+  "cta": "Die Zielgerade ansehen"
+}

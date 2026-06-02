@@ -1,0 +1,10 @@
+{
+  "subject": "🏆 {{dog_name}} ha raggiunto il peso obiettivo",
+  "body": [
+    "{{first_name}}. {{dog_name}} ha appena raggiunto {{target_weight}} kg — il numero che avevamo fissato 12 settimane fa.",
+    "Gli studi dicono che un cane magro vive fino a due anni in più. Hai regalato a {{dog_name}} quegli anni. Non è una frase pubblicitaria — è la letteratura scientifica.",
+    "Da qui l'app passa alla modalità mantenimento: una fascia calorica più ampia, pesate più leggere, lo stesso Bailey quando hai domande.",
+    "P.S. La scheda dei progressi qui sotto è pronta per essere condivisa. Gli amici che non hanno mai pesato il loro cane inizieranno dopo averla vista."
+  ],
+  "cta": "Apri la modalità mantenimento"
+}

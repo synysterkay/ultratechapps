@@ -1,0 +1,9 @@
+{
+  "subject": "{{dog_name}} está a 25% do caminho 🐾",
+  "body": [
+    "Um quarto do caminho, {{first_name}}. {{dog_name}} atingiu a marca de 25%.",
+    "Esta é a parte de toda jornada onde nada visível aconteceu ainda — as costelas ainda não voltaram, a energia no passeio ainda está surgindo. O plano funcionou mesmo assim. O próximo quarto geralmente anda mais rápido porque o corpo se adapta.",
+    "Toque abaixo para ver a atualização do quadro de progresso."
+  ],
+  "cta": "Ver a jornada de {{dog_name}}"
+}

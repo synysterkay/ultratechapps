@@ -1,0 +1,10 @@
+{
+  "subject": "🏆 {{dog_name}} atingiu o peso ideal",
+  "body": [
+    "{{first_name}}. {{dog_name}} acabou de atingir {{target_weight}} kg — o número que definimos há 12 semanas.",
+    "Estudos dizem que um cão magro vive até dois anos a mais. Você comprou esses anos para {{dog_name}}. Isso não é uma linha de e-mail exagerada — é a literatura científica.",
+    "A partir daqui, o app entra no modo de manutenção: uma faixa de calorias mais ampla, pesagens mais leves, o mesmo Bailey quando você tiver dúvidas.",
+    "P.S. O cartão de progresso abaixo está pronto para compartilhar. Amigos que nunca pesaram seus cães vão começar depois de vê-lo."
+  ],
+  "cta": "Abrir modo de manutenção"
+}

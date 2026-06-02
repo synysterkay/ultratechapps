@@ -1,0 +1,9 @@
+{
+  "subject": "{{dog_name}} ha raggiunto il 75% — ora inizia la volata finale",
+  "body": [
+    "A tre quarti del percorso, {{first_name}}. {{dog_name}} ha appena superato il 75%.",
+    "L'ultimo quarto è il più insidioso: il corpo resiste di più agli ultimi chili. Il motore si sta già preparando. Fidati del ritmo; non accelerare.",
+    "Stessa bilancia, stessa domenica, stessa routine. Il traguardo è più vicino di quanto pensi."
+  ],
+  "cta": "Vedi la volata finale"
+}

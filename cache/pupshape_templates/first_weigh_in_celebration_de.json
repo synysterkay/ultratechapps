@@ -1,0 +1,10 @@
+{
+  "subject": "{{dog_name}} hat sich gewogen — der Plan beginnt jetzt zu lernen",
+  "body": [
+    "{{first_name}}, {{dog_name}}s erste Wiegung ist da: {{current_weight}} kg.",
+    "Hier ist, warum diese Zahl wichtiger ist als die nächsten zehn: Der Plan passt sich an echte Daten an, nicht an Voreinstellungen. Der Motor hat jetzt einen Ankerpunkt. Nach zwei Wiegungen hat er eine Geschwindigkeit. Nach dreien kann er ein Plateau erkennen und anpassen, bevor du es überhaupt bemerkst.",
+    "Gleiche Waage, gleiche Tageszeit, vor dem Frühstück — das ist alles, was nötig ist, um den Kreislauf zu schließen.",
+    "P.S. Tippe unten, um {{dog_name}}s Plan mit der frischen Zahl zu sehen."
+  ],
+  "cta": "{{dog_name}}s Plan ansehen"
+}

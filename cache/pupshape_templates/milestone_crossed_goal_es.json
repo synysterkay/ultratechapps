@@ -1,0 +1,10 @@
+{
+  "subject": "🏆 {{dog_name}} alcanzó su peso objetivo",
+  "body": [
+    "{{first_name}}. {{dog_name}} acaba de alcanzar {{target_weight}} kg — el número que fijamos hace 12 semanas.",
+    "Los estudios dicen que un perro delgado vive hasta dos años más. Le compraste esos años a {{dog_name}}. No es una línea de correo hiperbólica — es la literatura real.",
+    "A partir de aquí, la app cambia al modo de mantenimiento: un rango de calorías más amplio, pesajes más ligeros, el mismo Bailey cuando tengas preguntas.",
+    "P.D. La tarjeta de progreso a continuación está lista para compartir. Los amigos que nunca han pesado a su perro empezarán después de verla."
+  ],
+  "cta": "Abrir modo de mantenimiento"
+}

@@ -1,0 +1,9 @@
+{
+  "subject": "{{dog_name}} hat 25 % des Wegs geschafft 🐾",
+  "body": [
+    "Ein Viertel des Wegs, {{first_name}}. {{dog_name}} hat die 25-%-Marke erreicht.",
+    "Das ist der Teil jeder Reise, an dem noch nichts Sichtbares passiert ist – die Rippen sind noch nicht zurück, der Schwung im Gang zeigt sich erst langsam. Der Plan hat trotzdem funktioniert. Das nächste Viertel geht normalerweise schneller, weil sich der Körper anpasst.",
+    "Tippen Sie unten, um das Schlangenbrett-Update zu sehen."
+  ],
+  "cta": "{{dog_name}}s Reise ansehen"
+}

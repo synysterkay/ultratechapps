@@ -1,0 +1,9 @@
+{
+  "subject": "La série de {{streak}} jours de {{dog_name}} se termine à minuit",
+  "body": [
+    "{{first_name}}. La série de {{streak}} jours de {{dog_name}} est à un tapotement de la réinitialisation.",
+    "Enregistrez un repas — c'est tout ce qu'il faut. La série survit, le moteur garde son rythme, et {{dog_name}} ne remarque rien (mais le plan, si).",
+    "P.S. Nous n'envoyons jamais ceci plus d'une fois par situation critique. Si vous laissez la série s'arrêter ce soir, la prochaine commence à 1h demain — rien n'est perdu pour toujours."
+  ],
+  "cta": "Sauvegarder la série"
+}

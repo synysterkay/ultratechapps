@@ -1,0 +1,9 @@
+{
+  "subject": "Halbzeit 🎉 — {{dog_name}} hat den Berg offiziell überwunden",
+  "body": [
+    "Halbzeit, {{first_name}}. {{dog_name}} hat gerade die 50%-Marke überschritten.",
+    "Dies ist der Meilenstein, bei dem die meisten Besitzer es bemerken, ohne hinzusehen. Die Taille. Der schnellere Sprung aufs Sofa. Der Tierarzt wird beim nächsten Besuch etwas sagen. Du hast das geschafft.",
+    "P.S. Die Fortschrittskarte unten kannst du teilen – Freunde werden fragen, welche App das ist."
+  ],
+  "cta": "Teile den Halbzeit-Erfolg"
+}

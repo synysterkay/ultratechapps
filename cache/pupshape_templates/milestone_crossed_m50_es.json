@@ -1,0 +1,9 @@
+{
+  "subject": "Mitad del camino 🎉 — {{dog_name}} ya pasó el punto medio",
+  "body": [
+    "Mitad del camino, {{first_name}}. {{dog_name}} acaba de cruzar la línea del 50%.",
+    "Este es el hito donde la mayoría de los dueños lo notan sin mirar. La cintura marcada. El salto más rápido al sofá. El veterinario, en la próxima visita, dirá algo. Tú lograste esto.",
+    "P.D. La tarjeta de progreso abajo es tuya para compartir — los amigos preguntarán qué app es."
+  ],
+  "cta": "Comparte el logro de la mitad"
+}

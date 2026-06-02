@@ -1,0 +1,9 @@
+{
+  "subject": "{{dog_name}}s {{streak}}-Tage-Serie endet um Mitternacht",
+  "body": [
+    "{{first_name}}. {{dog_name}}s {{streak}}-Tage-Serie ist nur einen Klick von einem Reset entfernt.",
+    "Logge eine Mahlzeit – mehr ist nicht nötig. Die Serie bleibt erhalten, der Motor behält seinen Rhythmus, und {{dog_name}} merkt nichts (aber der Plan schon).",
+    "P.S. Wir senden dies nie mehr als einmal pro knappen Fall. Wenn du die Serie heute Nacht verstreichen lässt, beginnt die nächste morgen um 1 – nichts ist für immer verloren."
+  ],
+  "cta": "Serie retten"
+}

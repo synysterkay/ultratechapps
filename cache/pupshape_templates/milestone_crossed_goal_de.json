@@ -1,0 +1,10 @@
+{
+  "subject": "🏆 {{dog_name}} hat das Zielgewicht erreicht",
+  "body": [
+    "{{first_name}}. {{dog_name}} hat gerade {{target_weight}} kg erreicht — die Zahl, die wir vor 12 Wochen festgelegt haben.",
+    "Studien zeigen, dass ein schlanker Hund bis zu zwei Jahre länger lebt. Du hast {{dog_name}} diese Jahre geschenkt. Das ist keine übertriebene E-Mail-Zeile — es ist die tatsächliche Fachliteratur.",
+    "Ab jetzt wechselt die App in den Erhaltungsmodus: ein breiterer Kalorienbereich, leichtere Wiegevorgänge, derselbe Bailey, wenn du Fragen hast.",
+    "P.S. Die Fortschrittskarte unten ist bereit zum Teilen. Freunde, die ihren Hund noch nie gewogen haben, werden damit anfangen, sobald sie sie sehen."
+  ],
+  "cta": "Erhaltungsmodus öffnen"
+}

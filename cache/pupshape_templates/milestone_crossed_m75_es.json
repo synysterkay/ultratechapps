@@ -1,0 +1,9 @@
+{
+  "subject": "{{dog_name}} alcanzó el 75% — la recta final comienza ahora",
+  "body": [
+    "Tres cuartas partes del camino, {{first_name}}. {{dog_name}} acaba de cruzar el 75%.",
+    "El último cuarto es el más complicado: el cuerpo se resiste más a los kilos finales. El motor ya se está ajustando para ello. Confía en el ritmo; no aceleres.",
+    "Misma báscula, mismo domingo, misma rutina. La meta está más cerca de lo que crees."
+  ],
+  "cta": "Ver la recta final"
+}

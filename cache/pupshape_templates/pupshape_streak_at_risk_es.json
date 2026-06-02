@@ -1,0 +1,9 @@
+{
+  "subject": "{{dog_name}} tiene una racha de {{streak}} días que termina a medianoche",
+  "body": [
+    "{{first_name}}. La racha de {{streak}} días de {{dog_name}} está a un toque de reiniciarse.",
+    "Registra una comida — eso es todo lo que se necesita. La racha sobrevive, el motor mantiene su ritmo, y {{dog_name}} no se da cuenta (pero el plan sí).",
+    "P.D. Nunca enviamos esto más de una vez por situación de riesgo. Si dejas que la racha termine esta noche, la próxima comienza mañana a la 1 — nada se pierde para siempre."
+  ],
+  "cta": "Salvar la racha"
+}

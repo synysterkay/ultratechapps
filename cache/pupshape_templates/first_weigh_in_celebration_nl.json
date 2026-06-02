@@ -1,0 +1,10 @@
+{
+  "subject": "{{dog_name}} heeft gewogen — het plan begint nu te leren",
+  "body": [
+    "{{first_name}}, de eerste weging van {{dog_name}} is binnen: {{current_weight}} kg.",
+    "Dit is waarom dit getal belangrijker is dan de volgende tien: het plan past zich aan op basis van echte data, niet van standaardwaarden. De motor heeft nu één ankerpunt. Over twee wegingen heeft het een snelheid. Over drie kan het een plateau herkennen en bijsturen voordat je het ooit zou merken.",
+    "Dezelfde weegschaal, hetzelfde tijdstip, voor het ontbijt — dat is alles wat nodig is om de cyclus te verfijnen.",
+    "P.S. Tik hieronder om het plan van {{dog_name}} te zien met het verse getal erin verwerkt."
+  ],
+  "cta": "Bekijk het plan van {{dog_name}}"
+}

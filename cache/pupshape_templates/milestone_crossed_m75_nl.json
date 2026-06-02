@@ -1,0 +1,9 @@
+{
+  "subject": "{{dog_name}} heeft 75% bereikt — de laatste rechte lijn begint nu",
+  "body": [
+    "Driekwart van de weg, {{first_name}}. {{dog_name}} heeft net 75% bereikt.",
+    "Het laatste kwart is het lastigst — het lichaam verzet zich het hardst tegen de laatste kilo's. De motor stemt zich er al op af. Vertrouw op het ritme; versnel niet.",
+    "Dezelfde weegschaal, dezelfde zondag, dezelfde routine. De finish is dichterbij dan je denkt."
+  ],
+  "cta": "Bekijk de laatste rechte lijn"
+}

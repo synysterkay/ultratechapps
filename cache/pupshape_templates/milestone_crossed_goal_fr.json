@@ -1,0 +1,10 @@
+{
+  "subject": "🏆 {{dog_name}} a atteint son poids cible",
+  "body": [
+    "{{first_name}}. {{dog_name}} vient d'atteindre {{target_weight}} kg — le nombre que nous avions fixé il y a 12 semaines.",
+    "Les études disent qu'un chien mince vit jusqu'à deux ans de plus. Vous avez offert ces années à {{dog_name}}. Ce n'est pas une ligne d'email hyperbolique — c'est la littérature réelle.",
+    "À partir de maintenant, l'application passe en mode maintenance : une fourchette calorique plus large, des pesées plus légères, le même Bailey quand vous avez des questions.",
+    "P.S. La carte de progression ci-dessous est prête à être partagée. Les amis qui n'ont jamais pesé leur chien commenceront après l'avoir vue."
+  ],
+  "cta": "Ouvrir le mode maintenance"
+}

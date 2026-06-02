@@ -1,0 +1,9 @@
+{
+  "subject": "{{dog_name}}'s {{streak}}-daagse reeks eindigt om middernacht",
+  "body": [
+    "{{first_name}}. {{dog_name}}'s {{streak}}-daagse reeks is één tik verwijderd van een reset.",
+    "Log een maaltijd — dat is alles wat nodig is. De reeks overleeft, de motor behoudt zijn ritme, en {{dog_name}} merkt het niet (maar het plan wel).",
+    "P.S. We sturen dit nooit meer dan één keer per bijna-ongeluk. Als je de reeks vanavond laat gaan, begint de volgende morgen om 1 uur — niets is voor altijd verloren."
+  ],
+  "cta": "Red de reeks"
+}

@@ -1,0 +1,9 @@
+{
+  "subject": "A sequência de {{streak}} dias de {{dog_name}} termina à meia-noite",
+  "body": [
+    "{{first_name}}. A sequência de {{streak}} dias de {{dog_name}} está a um toque de ser reiniciada.",
+    "Registre uma refeição — é só isso que precisa. A sequência sobrevive, o motor mantém o ritmo, e {{dog_name}} não percebe (mas o plano percebe).",
+    "P.S. Nunca enviamos isso mais de uma vez por quase perda. Se você deixar a sequência acabar hoje, a próxima começa amanhã à 1 — nada se perde para sempre."
+  ],
+  "cta": "Salvar a sequência"
+}

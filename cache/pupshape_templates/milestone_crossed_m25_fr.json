@@ -1,0 +1,9 @@
+{
+  "subject": "{{dog_name}} a parcouru 25 % du chemin 🐾",
+  "body": [
+    "Un quart du chemin, {{first_name}}. {{dog_name}} a franchi la barre des 25 %.",
+    "C'est la partie de chaque voyage où rien de visible ne s'est encore produit — les côtes ne sont pas encore revenues, le ressort dans la marche est encore en train d'émerger. Le plan a quand même fonctionné. Le prochain quart avance généralement plus vite car le corps s'adapte.",
+    "Appuyez ci-dessous pour voir la mise à jour du serpentin."
+  ],
+  "cta": "Voir le parcours de {{dog_name}}"
+}

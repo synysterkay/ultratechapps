@@ -1,0 +1,9 @@
+{
+  "subject": "{{dog_name}} ha recorrido el 25% del camino 🐾",
+  "body": [
+    "Un cuarto del camino, {{first_name}}. {{dog_name}} ha superado el 25%.",
+    "Esta es la parte de cada viaje donde aún no ha ocurrido nada visible — las costillas aún no han vuelto, el brinco en el paseo todavía está surgiendo. El plan funcionó de todas formas. El siguiente cuarto suele moverse más rápido porque el cuerpo se adapta.",
+    "Toca abajo para ver la actualización del tablero serpiente."
+  ],
+  "cta": "Ver el viaje de {{dog_name}}"
+}

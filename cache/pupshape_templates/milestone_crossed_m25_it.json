@@ -1,0 +1,9 @@
+{
+  "subject": "{{dog_name}} ha completato il 25% del percorso 🐾",
+  "body": [
+    "Un quarto del percorso, {{first_name}}. {{dog_name}} ha superato il traguardo del 25%.",
+    "Questa è la parte di ogni viaggio in cui non è ancora successo nulla di visibile — le costole non sono ancora tornate, la vivacità nella camminata sta ancora emergendo. Il piano ha comunque funzionato. Il prossimo quarto di solito procede più velocemente perché il corpo si adatta.",
+    "Tocca sotto per vedere l'aggiornamento del serpente."
+  ],
+  "cta": "Vedi il percorso di {{dog_name}}"
+}

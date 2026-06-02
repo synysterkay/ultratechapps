@@ -1,0 +1,9 @@
+{
+  "subject": "{{dog_name}} is 25% van de weg 🐾",
+  "body": [
+    "Een kwart van de weg, {{first_name}}. {{dog_name}} heeft de 25% grens bereikt.",
+    "Dit is het deel van elke reis waar nog niets zichtbaars is gebeurd — de ribben zijn nog niet terug, de veer in de stap is nog in opkomst. Het plan heeft toch gewerkt. Het volgende kwart gaat meestal sneller omdat het lichaam zich aanpast.",
+    "Tik hieronder om de snake-board update te zien."
+  ],
+  "cta": "Bekijk {{dog_name}}'s reis"
+}

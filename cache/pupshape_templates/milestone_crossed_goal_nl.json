@@ -1,0 +1,10 @@
+{
+  "subject": "🏆 {{dog_name}} heeft streefgewicht bereikt",
+  "body": [
+    "{{first_name}}. {{dog_name}} heeft zojuist {{target_weight}} kg bereikt — het getal dat we 12 weken geleden hebben ingesteld.",
+    "Onderzoek zegt dat een slanke hond tot twee jaar langer leeft. Jij hebt {{dog_name}} die jaren gegeven. Dat is geen overdreven e-mailregel — het is de daadwerkelijke literatuur.",
+    "Vanaf nu schakelt de app over naar onderhoudsmodus: een bredere calorieband, lichtere wegingen, dezelfde Bailey als je vragen hebt.",
+    "P.S. De voortgangskaart hieronder is klaar om te delen. Vrienden die hun hond nog nooit hebben gewogen, zullen ermee beginnen nadat ze hem zien."
+  ],
+  "cta": "Open onderhoudsmodus"
+}

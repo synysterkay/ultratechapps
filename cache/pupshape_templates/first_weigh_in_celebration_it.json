@@ -1,0 +1,10 @@
+{
+  "subject": "{{dog_name}} ha fatto la prima pesata — il piano inizia a imparare ora",
+  "body": [
+    "{{first_name}}, la prima pesata di {{dog_name}} è appena arrivata: {{current_weight}} kg.",
+    "Ecco perché questo numero è più importante dei prossimi dieci: il piano si adatta dai dati reali, non da valori predefiniti. Il motore ora ha un punto di ancoraggio. Tra due pesate avrà una velocità. Tra tre potrà individuare un plateau e correggere prima che tu te ne accorga.",
+    "Stessa bilancia, stessa ora del giorno, prima di colazione — basta questo per rendere il ciclo più preciso.",
+    "P.S. Tocca sotto per vedere il piano di {{dog_name}} con il nuovo numero integrato."
+  ],
+  "cta": "Vedi il piano di {{dog_name}}"
+}

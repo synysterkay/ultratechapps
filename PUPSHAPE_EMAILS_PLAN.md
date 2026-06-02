@@ -65,7 +65,12 @@ ReferralService         ───▶  users.{uid}.referrals.{           ──�
 
 ---
 
-## 2. The 13 senders
+## 2. The 12 senders
+
+PupShape has **no free trial** — Superwall sells a single monthly
+subscription. So there is no `trial_ending_sender`. Otherwise the
+plan is the standard PupShape lifecycle.
+
 
 | # | Sender | Trigger | Stages | Hooked lever |
 |---|---|---|---|---|
@@ -78,12 +83,11 @@ ReferralService         ───▶  users.{uid}.referrals.{           ──�
 | 7 | `plateau_detected_sender` | `CaloriePlan.plateauDetected == true` for 3 consecutive Sundays | 1 / week max | Trust + retention (engine is doing real work, not just timer-based) |
 | 8 | `body_check_reminder_sender` | No `task_completions.body_condition_score` in any `task_completions.*` doc for 28+ days | 1 / month | External trigger (Path's BCS node re-engagement) |
 | 9 | `at_goal_celebration_sender` | First time `dog.weight ≤ dog.targetWeight + 0.1` (loss) **or** `dog.weight ≥ dog.targetWeight - 0.1` (gain), dedupe per dogId | 1 (once) | Variable reward (peak); transition to maintenance voice |
-| 10 | `trial_ending_sender` | `subscription.status == 'trial'` && `trialEnd` within 3d / 1d | 2 | Monetization (trial → paid) |
-| 11 | `winback_sender` | `subscription.status == 'cancelled'` | 7 / 30 / 60 / 90 d | Monetization (lapsed-pro recovery) |
-| 12 | `invite_friend_reminder_sender` | `usage.streak.current ≥ 7` && `referrals.invitedCount == 0` | 1 (one-shot) | Tribe + investment |
-| 13 | `progress_card_share_nudge_sender` | A milestone fires and the user did NOT tap "Share this win" within 24h | 1 (24h after milestone) | Tribe (low-friction social distribution) |
+| 10 | `winback_sender` | `subscription.status == 'cancelled'` | 7 / 30 / 60 / 90 d | Monetization (lapsed-pro recovery) |
+| 11 | `invite_friend_reminder_sender` | `usage.streak.current ≥ 7` && `referrals.invitedCount == 0` | 1 (one-shot) | Tribe + investment |
+| 12 | `progress_card_share_nudge_sender` | A milestone fires and the user did NOT tap "Share this win" within 24h | 1 (24h after milestone) | Tribe (low-friction social distribution) |
 
-Total: **13 senders × up to 5 stages = ~25 distinct trigger emails**,
+Total: **12 senders × up to 5 stages = ~23 distinct trigger emails**,
 each delivered in the user's chosen language. The generic 30-day
 welcome drip is produced automatically by `app_retention_emailer.py`
 once `apps/pup-shape-dog-weight-loss-plan.md` exists — **not
@@ -179,13 +183,15 @@ fire — they all read from `users.{uid}.usage`.
 ### 4.6 Subscription mirror — ⚠️ MISSING, needs ~20 lines
 Superwall's `subscriptionStatus` is reactive. Subscribe in a top-level
 service (`SubscriptionMirrorService`) and write to
-`users/{uid}.subscription` on every change:
+`users/{uid}.subscription` on every change. PupShape only sells a
+single monthly plan — no trial, no annual — so the mirror only
+tracks `active` vs `expired` vs `cancelled` vs `none`.
 
 ```dart
 Superwall.shared.subscriptionStatus.listen((status) {
   FirebaseFirestore.instance.collection('users').doc(uid).set({
     'subscription': {
-      'status': status.kind,          // 'unknown' | 'active' | 'expired' | 'cancelled' | 'trial'
+      'status': status.kind,          // 'unknown' | 'active' | 'expired' | 'cancelled'
       'entitlements': status.entitlements.map((e) => e.id).toList(),
       'updatedAt': FieldValue.serverTimestamp(),
     },
@@ -193,9 +199,9 @@ Superwall.shared.subscriptionStatus.listen((status) {
 });
 ```
 
-Without this, `trial_ending_sender` and `winback_sender` cannot fire,
-and *every* sender has to assume `!subscription.active` (loses the
-ability to filter paid users out of upsell emails).
+Without this, `winback_sender` cannot fire, and *every* sender has to
+assume `!subscription.active` (loses the ability to filter paid users
+out of upsell emails).
 
 ### 4.7 Milestone events — ⚠️ MISSING, needs ~10 lines
 `WeightLoggingScreen._save` already detects milestone crossings (25 /
@@ -224,21 +230,20 @@ if `shareTappedAt` is still null.
 How every (user_state × event) pair is addressed:
 
 ```
-                       FREE                      TRIAL                   PAID                    CHURNED
-new (<7d)              welcome drip              trial-onboard*          thank-you*              —
-first weigh-in         first_weigh_in_celeb      first_weigh_in_celeb    first_weigh_in_celeb    —
-inactive 2d/5d/10d     abandoned_app             abandoned_app           abandoned_app           —
-streak milestone       streak_milestone          streak_milestone        streak_milestone        —
-streak at risk         streak_at_risk            streak_at_risk          streak_at_risk          —
-weekly recap (Sun)     weekly_recap              weekly_recap            weekly_recap            —
-milestone crossed      milestone_crossed         milestone_crossed       milestone_crossed       —
-plateau                plateau_detected          plateau_detected        plateau_detected        —
-no BCS in 28d          body_check_reminder       body_check_reminder     body_check_reminder     —
-at goal                at_goal_celebration       at_goal_celebration     at_goal_celebration     —
-trial close to end     —                         trial_ending (3d/1d)    —                       —
-cancelled              —                         —                       —                       winback (7/30/60/90)
-streak ≥ 7, 0 inv.     invite_friend_reminder    invite_friend_reminder  invite_friend_reminder  —
-milestone, no share 24h progress_card_share_nudge progress_card_share_nudge progress_card_share_nudge —
+                       FREE                      PAID                    CHURNED
+new (<7d)              welcome drip              thank-you*              —
+first weigh-in         first_weigh_in_celeb      first_weigh_in_celeb    —
+inactive 2d/5d/10d     abandoned_app             abandoned_app           —
+streak milestone       streak_milestone          streak_milestone        —
+streak at risk         streak_at_risk            streak_at_risk          —
+weekly recap (Sun)     weekly_recap              weekly_recap            —
+milestone crossed      milestone_crossed         milestone_crossed       —
+plateau                plateau_detected          plateau_detected        —
+no BCS in 28d          body_check_reminder       body_check_reminder     —
+at goal                at_goal_celebration       at_goal_celebration     —
+cancelled              —                         —                       winback (7/30/60/90)
+streak ≥ 7, 0 inv.     invite_friend_reminder    invite_friend_reminder  —
+milestone, no share 24h progress_card_share_nudge progress_card_share_nudge —
 ```
 
 `*` welcome and thank-you are handled by `app_retention_emailer.py`
@@ -255,7 +260,7 @@ one externally.
 | Phase | How the email system covers it |
 |---|---|
 | **External trigger** | `abandoned_app`, `body_check_reminder`, `winback`, `invite_friend_reminder`, `progress_card_share_nudge` |
-| **Internal trigger** | `streak_at_risk` (loss aversion — "Sir's 6-day streak ends in 3 hours"), `trial_ending` (loss aversion on price), `plateau_detected` ("we mixed up the plan — see what changed") |
+| **Internal trigger** | `streak_at_risk` (loss aversion — "Sir's 6-day streak ends in 3 hours"), `plateau_detected` ("we mixed up the plan — see what changed") |
 | **Action** | Every CTA deep-links into the lowest-friction continue flow. E.g. `pupshape://walk` for activity nudges, `pupshape://weigh` for the weigh-in screen, `pupshape://coach` for Bailey. |
 | **Variable reward** | `first_weigh_in_celebration`, `streak_milestone`, `weekly_recap` (delta is non-deterministic), `milestone_crossed` (the *big* one — pairs with in-app share sheet), `at_goal_celebration` |
 | **Investment** | `weekly_recap` reinforces "you've been doing this for N weeks", `body_check_reminder` adds another data type to the history, `invite_friend_reminder` compounds social capital |

@@ -1,0 +1,9 @@
+{
+  "subject": "À mi-chemin 🎉 — {{dog_name}} a officiellement passé la bosse",
+  "body": [
+    "À mi-chemin, {{first_name}}. {{dog_name}} vient de franchir la barre des 50 %.",
+    "C'est le jalon où la plupart des propriétaires le remarquent sans même regarder. La taille qui se dessine. Le saut plus rapide sur le canapé. Le vétérinaire, lors de la prochaine visite, dira quelque chose. C'est grâce à vous.",
+    "P.S. La carte de progression ci-dessous est à vous pour partager — les amis demanderont quelle application."
+  ],
+  "cta": "Partager la victoire à mi-parcours"
+}
