@@ -81,16 +81,15 @@ def _within_cooldown(prev_iso: str) -> bool:
 
 
 def _plateau_active(dog: dict) -> bool:
-    """Reads the CaloriePlan.plateauDetected flag (with a sustained
-    counter so a one-week blip doesn't trigger)."""
+    """Reads the CaloriePlan.plateauDetected flag.
+
+    The Flutter CalorieEngine._detectPlateau already requires multiple
+    sustained weigh-ins to flag a plateau (it's not a one-snapshot
+    decision), so we trust the boolean and rely on the 14-day cooldown
+    (above) to keep this email from re-firing during a long plateau.
+    """
     plan = dog.get('calorie_plan') or dog.get('plan') or {}
-    detected = bool(plan.get('plateauDetected') or plan.get('plateau_detected'))
-    weeks = plan.get('plateauConsecutiveWeeks') or plan.get('plateau_weeks') or 0
-    try:
-        weeks = int(weeks)
-    except (TypeError, ValueError):
-        weeks = 3 if detected else 0
-    return detected and weeks >= 3
+    return bool(plan.get('plateauDetected') or plan.get('plateau_detected'))
 
 
 def main(dry_run: bool = False) -> None:

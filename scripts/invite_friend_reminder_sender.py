@@ -81,11 +81,23 @@ def _current_streak(user: dict) -> int:
 
 
 def _invited_count(user: dict) -> int:
+    """Returns the number of users this person has successfully invited.
+
+    Flutter's referral_service doesn't denormalise this onto the user
+    doc (it counts redemptions via an aggregation query against the
+    `referrals` collection). Until that denormalisation lands, we
+    return -1 to signal 'unknown' so the trigger predicate can treat
+    a missing count as 'not yet invited' (the right default for the
+    one-shot nudge — once they invite, they get this email exactly
+    once anyway, dedup'd via state)."""
     refs = (user.get('referrals') or user.get('private', {}).get('referrals') or {})
+    raw = refs.get('invitedCount') or refs.get('invited_count')
+    if raw is None:
+        return -1
     try:
-        return int(refs.get('invitedCount') or refs.get('invited_count') or 0)
+        return int(raw)
     except (TypeError, ValueError):
-        return 0
+        return -1
 
 
 def main(dry_run: bool = False) -> None:
@@ -107,7 +119,10 @@ def main(dry_run: bool = False) -> None:
             continue
         if _current_streak(user) < _STREAK_THRESHOLD:
             continue
-        if _invited_count(user) != 0:
+        # Skip users we know HAVE invited. -1 (unknown) and 0 (none yet)
+        # both qualify; the per-user state dedup means each user gets
+        # this email at most once regardless, so over-firing is bounded.
+        if _invited_count(user) > 0:
             continue
         # Pick a lead dog for personalisation
         dogs = user.get('dogs', [])

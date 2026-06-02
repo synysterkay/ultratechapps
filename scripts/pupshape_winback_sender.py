@@ -111,10 +111,25 @@ def _ts(v):
 
 
 def _cancelled_at(user: dict):
+    """Returns the timestamp the user effectively lapsed Pro.
+
+    The Flutter subscription_mirror_service writes `status: 'inactive'`
+    (Superwall's normalised status) — NOT `'cancelled'` — and doesn't
+    persist a dedicated `cancelledAt` field, only `updatedAt`. So we
+    accept both labels and use `updatedAt` as the cancel-time proxy.
+    Anyone whose status is 'active' or 'unknown' is excluded.
+    """
     sub = user.get('subscription') or {}
-    if str(sub.get('status', '')).lower() != 'cancelled':
+    status = str(sub.get('status', '')).lower()
+    if status not in ('cancelled', 'inactive', 'lapsed', 'expired'):
         return None
-    return _ts(sub.get('cancelledAt') or sub.get('cancelled_at') or sub.get('expiresAt'))
+    return _ts(
+        sub.get('cancelledAt')
+        or sub.get('cancelled_at')
+        or sub.get('expiresAt')
+        or sub.get('updatedAt')          # ← the Flutter mirror's stamp
+        or sub.get('updated_at')
+    )
 
 
 def _next_unfired_stage(days_since: int, fired: set) -> int:
