@@ -2,9 +2,13 @@ name: App Retention Emails
 
 on:
   schedule:
-    # Run twice daily — spread volume across all 7 senders
-    - cron: '0 9 * * *'
-    - cron: '0 17 * * *'
+    # Run twice daily, Monday–Saturday only. Skipping Sunday based on
+    # 14-day engagement data — Sunday and early Monday had the worst
+    # open rates and the highest delivery-delay rates across all domains.
+    # Times are still 09:00 + 17:00 UTC; Saturday still runs since many
+    # behavioural triggers (match_day, weekend recap) peak then.
+    - cron: '0 9 * * 1-6'
+    - cron: '0 17 * * 1-6'
   
   workflow_dispatch:
     inputs:
