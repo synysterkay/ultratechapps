@@ -363,6 +363,68 @@ APP_CONTEXT = {
             "cta": "Go Premium",
         },
     },
+    "Loud EQ": {
+        "target_audience": "Commuters, audiobook & podcast listeners, drivers, and anyone with quiet phone speakers who just want to clearly hear what's playing",
+        "core_pain": "Audio too quiet on a noisy commute. Dialogue and narration lost under road noise. Cranking volume to 100% and still straining. Generic boosters that distort or risk the speaker.",
+        "killer_features": [
+            "+200% volume — loud and clear, never harsh",
+            "5-band EQ + 4 audio profiles (Music / Movie / Podcast / Gaming)",
+            "One-tap Optimize that tunes around the exact device you plug into",
+            "Auto-tunes when your AirPods / Bluetooth / wired headphones connect",
+            "Hearing-safe streak — the only booster that watches out for your ears",
+            "Works system-wide: Spotify, YouTube, Audible, podcasts, calls, every source",
+            "Premium unlocks the full +200% boost, all profiles, Sound DNA + calibration",
+        ],
+        "social_proof": "100,000+ downloads, 4.7★, thousands optimizing their sound right now",
+        "emotional_hooks": ["loud, clear, optimized", "hear every word", "stop straining to listen", "loud where it matters, clear where it counts", "louder without going harsh"],
+        "tone": "Practical and calm, not club-adjacent. 2nd person, short sentences. Like a careful friend who set your sound up once so you never have to think about it again. The verb is Optimize, never 'feel the drop'. Hearing-safety is a genuine value, not a guilt trip. Never apologise for promoting Premium.",
+        "subscription": {
+            "weekly": "Weekly subscription",
+            "monthly": "Monthly subscription",
+            "cta": "Go Premium",
+        },
+    },
+    "Loudify": {
+        "target_audience": "Headphone-and-earbud listeners who want one app that just makes audio loud where it matters and clean where it counts — commuters, audiobook fans, gamers, music lovers",
+        "core_pain": "Volume slider hits a wall and dialogue is still buried under HVAC, train noise, dishwashers. Generic boosters distort the moment things get interesting. AutoEQ that promises personalised sound and forgets your headphones the next time you connect.",
+        "killer_features": [
+            "+200% volume — louder than the system max, never harsh",
+            "AutoEQ that knows YOUR headphones — tunes the moment they connect",
+            "Weekly Sound DNA recap — actual data on how you listened this week",
+            "Top Streaks global leaderboard — daily-listening accountability",
+            "4 audio profiles (Music / Movie / Podcast / Gaming) + 10-band EQ",
+            "Works system-wide: Spotify, Audible, YouTube, calls, every source",
+            "Premium unlocks AutoEQ presets, the full +200% boost, and the Sound DNA history",
+        ],
+        "social_proof": "100,000+ listeners, AutoEQ tuned for hundreds of headphone models, weekly Sound DNA delivered to thousands",
+        "emotional_hooks": ["hear it clean", "loud where it matters, clean where it counts", "your headphones, finally tuned right", "the slider isn't a wall anymore"],
+        "tone": "Confident and audio-literate without being snobby. 2nd person, short sentences. Like a friend who tunes hi-fi setups for a living and finally made it one tap. The verb is Tune, not 'feel the drop'. Sound DNA is a real personal report, not a gimmick. Never apologise for promoting Premium.",
+        "subscription": {
+            "weekly": "Weekly subscription",
+            "monthly": "Monthly subscription",
+            "cta": "Go Premium",
+        },
+    },
+    "Volume Booster Pro": {
+        "target_audience": "People who tried the free Volume Booster, hated the ads, and want the same boost but quiet, minimal, and out of the way — power users who just want the slider to work",
+        "core_pain": "Ads in a utility you use every day. Notifications popping in mid-podcast. Bloated boosters that feel like they're being monetised at your expense.",
+        "killer_features": [
+            "+200% volume boost — same engine, zero ads, zero interstitials",
+            "Minimal one-screen UI — the slider, the EQ, and nothing else",
+            "Auto-applies on headphone connect, then gets out of your way",
+            "Works system-wide: Spotify, YouTube, podcasts, games, every audio source",
+            "No notifications, no nags, no pseudo-game layer",
+            "Premium is a one-time pay or a sub — your choice, both unlock the full thing",
+        ],
+        "social_proof": "Built for the users of the free version who said 'just take the ads out and I'd pay'",
+        "emotional_hooks": ["volume without the ads", "minimal, by design", "the slider, and nothing else", "calm utility — like your alarm clock used to be"],
+        "tone": "Calm-sage. Restrained, dry, quietly competent. Like a Japanese stationery brand. Short sentences. The aesthetic IS the message — the email itself should feel uncluttered. Never moralise about why ads in apps are bad — just be the alternative. Never apologise for charging.",
+        "subscription": {
+            "weekly": "Weekly subscription",
+            "monthly": "Monthly subscription",
+            "cta": "Go Premium",
+        },
+    },
     "Predictify": {
         "target_audience": "Soccer/football fans who want smarter predictions and data-driven insights",
         "core_pain": "Bad predictions, unreliable tips, missing value bets, no data to back up gut feelings",
@@ -722,6 +784,14 @@ Generate the email now. Make it impossible to ignore."""
             elif app_name == 'Volume Booster - Sound Booster':
                 app_languages = ['en', 'ar', 'es', 'fr', 'zh', 'hi', 'pt', 'ru']
             elif app_name == 'Bass Booster':
+                app_languages = ['en', 'ar', 'es', 'fr', 'zh', 'hi', 'pt', 'ru']
+            elif app_name == 'Loud EQ':
+                app_languages = ['en', 'ar', 'es', 'fr', 'zh', 'hi', 'pt', 'ru']
+            elif app_name == 'Loudify':
+                app_languages = ['en', 'ar', 'es', 'fr', 'zh', 'hi', 'pt', 'ru']
+            elif app_name == 'Volume Booster Pro':
+                app_languages = ['en', 'ar', 'es', 'fr', 'zh', 'hi', 'pt', 'ru']
+            elif app_name == 'Loud EQ':
                 app_languages = ['en', 'ar', 'es', 'fr', 'zh', 'hi', 'pt', 'ru']
             elif app_name == 'Predictify: Horse Racing AI':
                 app_languages = ['en', 'ar', 'es', 'fr']
