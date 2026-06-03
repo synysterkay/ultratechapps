@@ -556,12 +556,31 @@ SOCIAL PROOF: {context['social_proof']}
 EMOTIONAL HOOKS: {', '.join(context['emotional_hooks'])}
 TONE: {context['tone']}
 
-SUBJECT LINE RULES:
-- Maximum clickbait, maximum curiosity gap
-- 5-10 words, NO emojis
-- Make them NEED to open it
-- Use power words: secret, mistake, warning, discovered, confession, truth, hack
-- Examples: "I made a huge mistake with this app", "Don't use this feature (until you read this)", "The one thing 90% of users skip", "I wasn't going to send this", "This changes everything about [topic]"
+SUBJECT LINE RULES (data-driven — based on 14 days of opens across 70k sends):
+- 4-10 words, NO emojis, NO formulaic templates
+- One specific noun + one specific number, time, or name. Concrete beats abstract.
+- The curiosity gap must point at a real story or fact, not a manufactured shock.
+
+PROVEN WINNERS (open rates 20-100% in our actual send data — copy these patterns):
+- "The 2AM mistake that changed everything" (100% open rate)
+- "Confession: I built this at 2AM" (62% open rate)
+- "The plan Premium users see that you don't" (62% open rate)
+- "Your free thesis is still waiting" (20% open rate)
+- "RB Bragantino vs Internacional — 59% confidence call" (21% — match-day style: specific noun + specific %)
+
+NEVER USE — these formulas produced 0 opens across 5,000+ sends; Gmail has pattern-matched them as spam:
+- "Checking back in — …" anything
+- Any "X% of users [verb]…" (especially "90% of users skip/discover/make/ignore")
+- Generic "The secret/mistake/warning [feature]…"
+- "The one thing 90% of users…"
+- Generic upsells like "12 in a row using Premium picks"
+
+KEY MOVES that consistently drive opens:
+- A specific time of day (2AM, Tuesday 3PM) beats vague ("recently", "lately")
+- A real noun (the user's dog name, a specific team matchup, the user's own topic) beats a category
+- "Your [thing] is [verb]" (e.g. "Your free thesis is still waiting") opens ~20%
+- "Confession:" + specific time + personal claim opens ~60%
+- For behavioural emails: specific event + specific number ("Halftime — 67% confidence call")
 
 EMAIL BODY RULES:
 - 250-400 words MAX (short, punchy, scannable)
