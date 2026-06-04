@@ -1,0 +1,16 @@
+{
+  "subject": "Le bug de 3h du matin qui a tout chang\u00e9",
+  "preview_text": "Un utilisateur a d\u00e9couvert une fonction cach\u00e9e \u00e0 3h du matin. Depuis, il ne mise plus comme avant.",
+  "body_paragraphs": [
+    "Il \u00e9tait 3h du matin, un mardi. Jean-Pierre, parieur depuis 20 ans, \u00e9tait sur le point de jeter son t\u00e9l\u00e9phone par la fen\u00eatre. Ses 5 derniers chevaux avaient tous fini en queue de peloton. Il avait tout essay\u00e9 : les favoris, les outsiders, m\u00eame les pronostics de son oncle qui 'sent' les gagnants. Rien. Et l\u00e0, il a ouvert Predictify, pas pour v\u00e9rifier les pronostics, mais par d\u00e9pit. Il a cliqu\u00e9 sur un bouton qu'il n'avait jamais vu.",
+    "Ce bouton, c'\u00e9tait l'analyse des 'angles morts' de chaque course. Un truc que l'IA fait automatiquement, mais que la plupart des utilisateurs ignorent. L'IA compare le cheval \u00e0 ses concurrents sous 12 crit\u00e8res que m\u00eame les experts oublient : le poids du jockey sur une piste d\u00e9tremp\u00e9e, la forme du cheval apr\u00e8s une course de 5 jours, et un indice de 'fatigue cach\u00e9e' bas\u00e9 sur les donn\u00e9es des 3 derniers mois. Jean-Pierre a test\u00e9 sur une course de plat \u00e0 Longchamp. Le cheval \u00e9tait \u00e0 15 contre 1. Il a mis\u00e9 50 euros.",
+    "Cette fonction, c'est le 'Scanner de Profondeur' dans ton app. Va dans n'importe quelle course, clique sur l'onglet 'Analyse Avanc\u00e9e', puis sur 'Voir les angles morts'. L'IA te montrera en vert les chevaux qui cachent une valeur r\u00e9elle, en rouge ceux qui sont surcot\u00e9s. C'est litt\u00e9ralement un avantage ill\u00e9gal que la technologie t'offre. Jean-Pierre a gagn\u00e9 750 euros cette nuit-l\u00e0. Il ne mise plus sans v\u00e9rifier cette section.",
+    "Ouvre l'app maintenant, va sur la prochaine course du jour (m\u00eame une petite \u00e0 Auteuil) et active le Scanner de Profondeur. Tu verras le cheval que tout le monde ignore. P.S. Si tu veux d\u00e9bloquer l'analyse illimit\u00e9e (plus de 3 courses par jour), essaie le Premium 3 jours gratuit. Y a pas de honte \u00e0 \u00eatre le plus malin de la salle de turf."
+  ],
+  "cta_text": "Ouvrir Predictify : Scanner de Profondeur",
+  "email_number": 12,
+  "send_day": 25,
+  "type": "feature_deep_dive",
+  "app_name": "Predictify: Horse Racing AI",
+  "generated_at": "2026-06-04T06:26:26.956778"
+}

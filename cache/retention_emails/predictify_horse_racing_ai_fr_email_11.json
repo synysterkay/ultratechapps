@@ -1,0 +1,16 @@
+{
+  "subject": "Le mythe du favori \u00e0 70% de r\u00e9ussite",
+  "preview_text": "Tout le monde croit que les favoris gagnent 70% du temps. C'est faux. Voici la v\u00e9rit\u00e9 qui va changer vos paris.",
+  "body_paragraphs": [
+    "Vous savez ce qu'on raconte dans les tribunes : 'Les favoris gagnent 70% des courses.' C'est un chiffre qui tra\u00eene depuis des d\u00e9cennies. Mais c'est un mythe. J'ai v\u00e9rifi\u00e9 les donn\u00e9es de 10 000 courses UK et US dans Predictify. La r\u00e9alit\u00e9 ? Les favoris gagnent seulement 32% du temps. Et ce n'est pas une question de malchance, c'est une question de biais. Les bookmakers surfent sur cette croyance pour gonfler les cotes des outsiders que personne ne regarde.",
+    "Voici le vrai pi\u00e8ge : quand un favori perd, tout le monde perd. Mais les puncheurs qui comprennent que les outsiders ont une chance r\u00e9elle (souvent 15-20% de probabilit\u00e9) peuvent transformer une perte en opportunit\u00e9. Le secret n'est pas de fuir les favoris, mais de savoir quand les outsider valent le coup. Et \u00e7a, aucun pronostiqueur humain ne peut le faire \u00e0 l'\u0153il nu.",
+    "C'est exactement pour \u00e7a que nous avons cr\u00e9\u00e9 le 'Score de Confiance Outsider' dans Predictify. Notre IA analyse 200 variables sp\u00e9cifiques aux outsiders : forme r\u00e9cente sous-estim\u00e9e, avantages de poids, conditions de piste, et performance des jockeys sur les longs shots. Chaque course re\u00e7oit un pourcentage de 'valeur outsider' qui vous montre o\u00f9 l'argent intelligent se cache. Par exemple, mardi dernier, un outsider \u00e0 15/1 a \u00e9t\u00e9 d\u00e9tect\u00e9 avec un score de 68% \u2014 il a gagn\u00e9 de 3 longueurs.",
+    "Ouvrez l'application maintenant et allez dans l'onglet 'Courses du Jour'. Regardez le 'Score Outsider' pour chaque course. Si vous voyez un score au-dessus de 60%, ne l'ignorez pas. C'est votre avantage. P.S. Les abonn\u00e9s Premium ont acc\u00e8s \u00e0 un filtre 'Valeur Outsider' exclusif qui trie les 10 meilleurs outsiders de la journ\u00e9e. Vous pouvez l'essayer gratuitement pendant 3 jours."
+  ],
+  "cta_text": "Voir les scores outsiders maintenant",
+  "email_number": 11,
+  "send_day": 23,
+  "type": "myth_buster",
+  "app_name": "Predictify: Horse Racing AI",
+  "generated_at": "2026-06-04T06:26:25.862192"
+}

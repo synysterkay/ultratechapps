@@ -1,0 +1,16 @@
+{
+  "subject": "Votre bilan du mois sur Predictify",
+  "preview_text": "D\u00e9couvrez ce que vos donn\u00e9es r\u00e9v\u00e8lent apr\u00e8s 28 jours d'analyses et de pr\u00e9dictions.",
+  "body_paragraphs": [
+    "Vous avez rejoint Predictify il y a 28 jours. Ce n'est pas rien. Pendant ce temps, l'IA a analys\u00e9 des milliers de variables sur chaque match que vous avez suivi, et vos pr\u00e9dictions ont d\u00e9j\u00e0 un historique. Voici ce que \u00e7a donne : vous \u00eates pass\u00e9 de l'instinct \u00e0 la donn\u00e9e.",
+    "Votre taux de r\u00e9ussite ? Votre score de confiance moyen ? Les badges que vous avez d\u00e9bloqu\u00e9s ? Tout \u00e7a compte. Pas pour nous montrer, mais pour vous prouver que vous ne misez plus dans le vide. Chaque match, chaque analyse, chaque streak construit votre avantage.",
+    "Le vrai test, c'est maintenant. Ouvrez l'app et regardez votre profil : la section 'Votre mois en chiffres' vous montre tout ce que vous avez accumul\u00e9. Et si vous voulez franchir un cap, le quiz IQ est l\u00e0 pour d\u00e9fier votre cerveau contre l'IA. Pas de blabla, juste des stats.",
+    "Allez, ouvrez Predictify et cliquez sur votre profil. Votre bilan vous attend. P.S. Votre meilleure pr\u00e9diction du mois est mise en avant dans les communaut\u00e9s \u2014 voyez si les autres fans sont d'accord."
+  ],
+  "cta_text": "Voir mon bilan du mois",
+  "email_number": 13,
+  "send_day": 28,
+  "type": "milestone_checkin",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:23:53.555884"
+}

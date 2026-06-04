@@ -1,0 +1,16 @@
+{
+  "subject": "La 2AM qui a tout chang\u00e9",
+  "preview_text": "Pourquoi j'ai cod\u00e9 cette fonction \u00e0 2 heures du matin, en pyjama. Une histoire vraie.",
+  "body_paragraphs": [
+    "Il \u00e9tait 2 heures du matin, un mardi. Je venais de rater un anniversaire important avec ma compagne. Pas par m\u00e9chancet\u00e9, mais par fatigue, par routine. Je me suis dit : si moi, qui construis une app pour planifier des dates, je rate \u00e7a, alors quoi des autres ? J'ai ouvert mon ordinateur, une tasse de caf\u00e9 froid \u00e0 c\u00f4t\u00e9, et j'ai commenc\u00e9 \u00e0 coder une fonction qui n'existait pas encore.",
+    "Cette fonction, c'est le bocal des anniversaires. Pas juste un rappel, mais une alerte douce, qui te pr\u00e9vient une semaine avant, puis trois jours, puis la veille. Elle apprend de tes habitudes : si tu oublies souvent les dates de tes premi\u00e8res sorties, elle te les rappelle avec une note personnalis\u00e9e. Le lendemain, ma compagne m'a envoy\u00e9 un message : 'Tu t'es souvenu de notre premier d\u00eener ?' J'ai souri. C'\u00e9tait \u00e7a, l'\u00e9tincelle.",
+    "Dans SoulPlan, cette fonction s'appelle le bocal des anniversaires. Elle est discr\u00e8te, mais elle change tout. Quand tu l'actives, elle analyse ton historique et te propose des gestes simples : envoyer un message \u00e0 2 heures du matin, planifier une surprise, ou simplement noter la date. Pas de pression, juste de la tendresse.",
+    "Ouvre l'app et va dans Param\u00e8tres > Bocal des anniversaires. Ajoute une date que tu as failli oublier. Tu verras, \u00e7a lib\u00e8re. P.S. : La prochaine fois que tu auras une id\u00e9e de date \u00e0 2 heures du matin, note-la dans la Wishlist. Je les code une par une."
+  ],
+  "cta_text": "Ouvrir SoulPlan : Plan Dates Together",
+  "email_number": 5,
+  "send_day": 9,
+  "type": "behind_the_scenes",
+  "app_name": "SoulPlan: Plan Dates Together",
+  "generated_at": "2026-06-04T06:14:54.369730"
+}

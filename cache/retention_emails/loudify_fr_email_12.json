@@ -1,0 +1,16 @@
+{
+  "subject": "Le r\u00e9glage qui a sauv\u00e9 mon trajet de 45 minutes",
+  "preview_text": "Comment un utilisateur a d\u00e9couvert une fonction cach\u00e9e qui a transform\u00e9 son \u00e9coute quotidienne. Et si c'\u00e9tait votre tour ?",
+  "body_paragraphs": [
+    "Mardi dernier, \u00e0 7h23, un utilisateur de Loudify m'a envoy\u00e9 un message. Il \u00e9tait dans le RER, coinc\u00e9 entre un marteau-piqueur et une conversation t\u00e9l\u00e9phonique. Il m'a \u00e9crit : 'J'ai trouv\u00e9 un r\u00e9glage dans l'appli. Depuis, j'entends chaque mot de mon podcast, m\u00eame avec le bruit du train. C'est comme si j'avais chang\u00e9 de casque sans en acheter un nouveau.' Ce r\u00e9glage, c'est l'\u00e9galiseur 10 bandes, une fonction que 80% de nos utilisateurs n'ont jamais ouverte.",
+    "Vous l'avez peut-\u00eatre vu en passant, mais vous ne l'avez jamais test\u00e9. Pourtant, c'est l'outil le plus puissant de Loudify pour les moments o\u00f9 tout est noy\u00e9 dans le bruit. Pas besoin d'\u00eatre ing\u00e9nieur du son : il suffit de glisser une bande vers le haut pour les voix, vers le bas pour les basses parasites. En 30 secondes, votre audio passe de 'brouillon' \u00e0 'cristallin'. Et \u00e7a marche sur Spotify, Audible, YouTube, vos appels \u2014 tout ce qui passe par vos \u00e9couteurs.",
+    "Ce que ce gars a d\u00e9couvert, c'est que l'\u00e9galiseur n'est pas un gadget. C'est votre arme secr\u00e8te contre le bruit ambiant. Il a partag\u00e9 son r\u00e9glage avec moi : couper les 60 Hz de 3 dB, monter les 2 kHz de 4 dB. R\u00e9sultat : les voix percent le vacarme. Vous pouvez faire pareil en 2 minutes, m\u00eame si vous n'avez jamais touch\u00e9 un EQ de votre vie. Ouvrez Loudify, allez dans Profils > Personnaliser, et essayez ce r\u00e9glage sur votre prochain trajet.",
+    "Essayez-le maintenant. Ouvrez Loudify, allez dans l'onglet Audio, puis '\u00c9galiseur'. Bougez une seule bande : celle \u00e0 2 kHz, montez-la de 2 ou 3 crans. Vous entendrez la diff\u00e9rence imm\u00e9diatement. P.S. Si vous voulez des r\u00e9glages d\u00e9j\u00e0 pr\u00eats pour votre mod\u00e8le de casque pr\u00e9cis, le Premium d\u00e9bloque les AutoEQ \u2014 500+ mod\u00e8les, r\u00e9gl\u00e9s en un tap. Pas de devinettes, juste un son parfait."
+  ],
+  "cta_text": "Ouvrir Loudify et essayer l'\u00e9galiseur",
+  "email_number": 12,
+  "send_day": 25,
+  "type": "feature_deep_dive",
+  "app_name": "Loudify",
+  "generated_at": "2026-06-04T06:20:48.241329"
+}

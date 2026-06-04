@@ -1,0 +1,16 @@
+{
+  "subject": "Confession: I built this at 2AM",
+  "preview_text": "The real story behind the feature that saves relationships. It started with a text I almost ignored.",
+  "body_paragraphs": [
+    "It was 2AM, and I was staring at a screenshot of a conversation that made my stomach drop. My best friend had sent it to me, asking if she was overreacting. I knew she wasn't, but I also knew she'd ignore me if I said it. So I coded the first version of what would become our pattern detection tool right there, in the dark, on a laptop balanced on my knees.",
+    "I wasn't trying to build a business. I was trying to give my friend the proof she needed to see what I saw. The next morning, she scanned the same conversation and saw the toxicity score. She finally broke up with him three days later. That's when I knew this wasn't just a tool\u2014it was a way to bypass the denial, the excuses, the 'maybe I'm crazy' cycle.",
+    "That feature is now your relationship health dashboard. It doesn't just show one red flag\u2014it tracks patterns across every conversation you scan, so you can see if something is a one-off or a recurring manipulation tactic. The gaslighting detection was calibrated using the same texts that kept my friend stuck for months.",
+    "Open the app and scan a conversation you've been second-guessing. Let the data tell you what your gut already knows. P.S. The pattern detection works even on old screenshots\u2014scrolling through your camera roll might reveal something you missed."
+  ],
+  "cta_text": "Open Red Flag Scanner AI",
+  "email_number": 5,
+  "send_day": 9,
+  "type": "behind_the_scenes",
+  "app_name": "Red Flag Scanner AI",
+  "generated_at": "2026-06-04T06:14:22.573990"
+}

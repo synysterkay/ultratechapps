@@ -1,0 +1,16 @@
+{
+  "subject": "The feature I built at 3AM for you",
+  "preview_text": "I didn't plan to share this, but it's live now. One click inside the app.",
+  "body_paragraphs": [
+    "Last Thursday, 3AM, I was staring at a blank screen myself. Deadline tomorrow, zero words, and my brain was fried. So I coded something I never meant to ship\u2014a rewrite engine that turns your rushed draft into a polished A-grade paper in under two minutes.",
+    "I wasn't going to release it. But then I thought about you, stuck at 2AM with the same panic. So I pushed it live just for users who've been with us a while. No announcement, no fanfare. Just this email.",
+    "Open the app. Tap the 'Humanize & Polish' tab. Paste in your messiest paragraph. Watch it rewrite in real time with citations, flow fixes, and anti-AI detection baked in. It's not in the docs. It's not in any tutorial. It's my late-night gift to you.",
+    "One click. That's all it takes. Open Thesis Generator now and hit the tab labeled '3AM Special'\u2014it'll only be there until I decide to pull it. P.S. This also works on your old drafts from last semester. Go dig one up and see what it does."
+  ],
+  "cta_text": "Open Thesis Generator",
+  "email_number": 16,
+  "send_day": 35,
+  "type": "surprise_bonus",
+  "app_name": "Thesis Generator",
+  "generated_at": "2026-06-04T06:13:57.133726"
+}

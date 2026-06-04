@@ -1,0 +1,16 @@
+{
+  "subject": "The 2AM fix that saved 147 playlists",
+  "preview_text": "One user found a buried setting that made every source loud and clean. It's not what you think.",
+  "body_paragraphs": [
+    "A guy named Marcus emailed me last week. He said he was about to delete Loudify after three days \u2014 everything still sounded muddy on his commute. Then at 2AM, frustrated, he tapped something he'd ignored: the AutoEQ profile for his exact headphones. He wrote back five minutes later: 'I can hear the bass line. The train noise is gone. What did I just do?'",
+    "That's the thing about this app. The most powerful feature isn't the volume boost or the EQ sliders. It's the fact that Loudify remembers your headphones \u2014 not just the model, but the exact tuning curve that makes them sing. Once you set it, it reconnects every time. No tweaking. No forgetting.",
+    "You probably tapped 'AutoEQ' once and moved on. But here's what Marcus discovered: that feature doesn't just apply a generic curve. It pulls the specific calibration for your headphone model \u2014 from our database of 400+ models \u2014 and adjusts the EQ so that dialogue cuts through, explosions don't distort, and your ears don't fatigue. It's like having a pro audio engineer in your pocket, but only if you let it work.",
+    "Open Loudify right now. Go to Audio Profiles, select your headphones from the list, and hit 'Apply'. That's it. You'll hear the difference in ten seconds. P.S. \u2014 Marcus now has a 147-day streak. He says it's because he finally stopped fighting the volume slider. Your turn."
+  ],
+  "cta_text": "Open Loudify",
+  "email_number": 12,
+  "send_day": 25,
+  "type": "feature_deep_dive",
+  "app_name": "Loudify",
+  "generated_at": "2026-06-04T06:20:45.158110"
+}

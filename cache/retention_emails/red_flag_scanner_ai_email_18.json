@@ -1,0 +1,16 @@
+{
+  "subject": "Confession: I built this at 3AM",
+  "preview_text": "I never planned to tell you this. But here's the real reason I coded until sunrise.",
+  "body_paragraphs": [
+    "I don't usually write emails like this. But at 3AM last Tuesday, I was staring at my screen, and I realized something I've never told anyone: I built Red Flag Scanner AI because I ignored my own gut feeling once, and it cost me two years of my life.",
+    "That night, I was reviewing scans from users who caught gaslighting patterns early, and I felt this weird mix of pride and regret. Pride because the app works. Regret because I wish I'd had it back then. Every time someone tells me 'your app saved me from a toxic spiral,' I think about the fights I could've skipped, the peace I could've kept.",
+    "Here's the thing you might not know: there's a feature in your account called the 'Pattern Timeline.' It doesn't just score one conversation. It tracks how red flags evolve across weeks, showing you if the love bombing is fading into control or if the apologies are actually promises to change. I coded that feature at 4AM, half-crying over coffee, because I needed to know if my ex's pattern was real or just my anxiety.",
+    "Open your app and go to the Pattern Timeline right now. Run a scan on your last three conversations with the person you're unsure about. See if the data matches what your gut is whispering. P.S. \u2014 The timeline auto-generates a 'Pattern Alert' when manipulation frequency increases by 20% or more. I built that alert for the version of me who needed someone to say 'look again.'"
+  ],
+  "cta_text": "Open Red Flag Scanner AI",
+  "email_number": 18,
+  "send_day": 39,
+  "type": "personal_note",
+  "app_name": "Red Flag Scanner AI",
+  "generated_at": "2026-06-04T06:14:25.988241"
+}

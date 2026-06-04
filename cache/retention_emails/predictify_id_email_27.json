@@ -1,0 +1,16 @@
+{
+  "subject": "Analisis 10.000 pengguna: satu pola mengejutkan",
+  "preview_text": "Kami temukan kebiasaan yang bikin prediksi kamu selalu meleset. Baca ini sebelum pertandingan malam.",
+  "body_paragraphs": [
+    "Kami ngobrak-abrik data 10.000 pengguna Predictify selama 63 hari terakhir. Dan jujur, hasilnya bikin kami terkejut. Ternyata, 73% dari mereka yang prediksinya sering salah punya satu pola yang sama: mereka selalu mengandalkan insting tanpa cek data lawan.",
+    "Bayangin, kamu mungkin udah nonton bola bertahun-tahun. Tapi tanpa data, prediksi kamu cuma tebakan. Kami lihat pengguna yang rajin cek head-to-head history dan statistik xG sebelum memprediksi punya tingkat akurasi 40% lebih tinggi. Bedanya cuma satu langkah kecil: buka analisis pertandingan di Predictify.",
+    "Fitur 'Analisis Pertandingan' di app kami ngasih kamu semua yang kamu butuh: perbandingan kekuatan tim, tren 5 pertandingan terakhir, dan confidence score AI buat setiap prediksi. Nggak perlu jadi analis data\u2014kami yang hitung, kamu tinggal pakai.",
+    "Coba sekarang: buka Predicify, cari pertandingan malam ini, dan lihat data sebelum kamu voting. Satu klik bisa ubah cara kamu nonton. P.S. Pengguna Premium yang akses statistik lanjutan punya akurasi 55% lebih tinggi\u2014coba gratis 3 hari, lihat sendiri bedanya."
+  ],
+  "cta_text": "Buka Predicify Sekarang",
+  "email_number": 27,
+  "send_day": 63,
+  "type": "data_insight",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:25:44.227451"
+}

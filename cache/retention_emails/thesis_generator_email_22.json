@@ -1,0 +1,16 @@
+{
+  "subject": "The 2AM hack that saved my grade",
+  "preview_text": "One workflow trick most Thesis Generator users never discover. It'll save you hours.",
+  "body_paragraphs": [
+    "I was staring at my screen at 2AM, three cups of coffee deep, and my thesis still looked like a half-baked mess. Deadline was in 12 hours. Then I found this weird shortcut inside Thesis Generator\u2014the kind of thing the devs built but never advertise. It changed everything.",
+    "Here's the deal: most students use the app to generate a thesis statement, maybe a few citations, then export. But the power users\u2014the ones pulling A's while sleeping\u2014they do something different. They use the \"Humanize\" feature first, before they even write a word. They paste in their draft abstract, hit Humanize, and watch the app rewrite it in a way that sounds natural, bypassing Turnitin's AI detection entirely. Then they use the generated text as a scaffold for the whole paper.",
+    "I tried it on a whim. Poured my messy intro into Humanize, let it smooth out the language, and suddenly I had a polished base to work from. The graphs? Auto-generated from my data in minutes. The citations? Formatted in APA without me lifting a finger. That paper got an A- and I finished it by 5AM.",
+    "Open Thesis Generator now, go to the Humanize tab, and paste in any paragraph you're struggling with. See what happens. P.S. The Export to PDF button saves you 30 minutes of formatting\u2014just click it when you're done."
+  ],
+  "cta_text": "Open Thesis Generator and try Humanize",
+  "email_number": 22,
+  "send_day": 50,
+  "type": "power_user_shortcut",
+  "app_name": "Thesis Generator",
+  "generated_at": "2026-06-04T06:14:07.369937"
+}

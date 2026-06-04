@@ -1,0 +1,16 @@
+{
+  "subject": "Kesalahan yang bikin prediksi kamu kacau",
+  "preview_text": "Bukan soal data atau keberuntungan\u2014ini yang paling sering disalahartikan.",
+  "body_paragraphs": [
+    "Banyak pengguna Predictify mengira semakin banyak data, semakin akurat prediksi. Padahal, kesalahan terbesar adalah mengabaikan confidence score. Kamu lihat angka, ikut tren, tapi lupa bahwa AI sendiri bisa ragu\u2014dan itu tanda bahaya.",
+    "Misalnya, Bayern vs Dortmund: AI bilang Bayern menang 70% percaya diri. Tapi cek lagi\u2014poin kepercayaan itu 59%. Artinya, masih banyak variabel yang membuat hasil tidak pasti. Tanpa memahami angka ini, kamu bisa terjebak pada prediksi yang tampak aman tapi sebenarnya berisiko tinggi.",
+    "Di Predictify, setiap prediksi punya confidence score yang jelas\u2014dari 50% hingga 95%. Itu bukan hiasan, itu peta risiko. Klik prediksi apa pun, lihat skor kepercayaan, dan bandingkan dengan data lain. Jangan cuma ikuti angka mentah.",
+    "Coba sekarang: buka app, pilih pertandingan malam ini, dan lihat confidence score-nya. Kamu akan sadar di mana selama ini salah langkah. P.S. Kalau kamu belum coba fitur AI Chat, tanya soal match apa pun\u2014jawabannya langsung dari data, bukan feeling."
+  ],
+  "cta_text": "Buka Prediksi Malam Ini",
+  "email_number": 6,
+  "send_day": 11,
+  "type": "common_mistake",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:23:03.307252"
+}

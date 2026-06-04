@@ -1,0 +1,16 @@
+{
+  "subject": "Confession: I built this at 2AM",
+  "preview_text": "I don't usually write emails like this, but I need to tell you something real about Loudify.",
+  "body_paragraphs": [
+    "I don't usually write emails like this. But it's 2AM, I just pushed an update, and I need to tell you something I've never put in writing before.",
+    "When I started Loudify, it wasn't about making another audio app. It was because I was sitting on a train, headphones on, volume maxed, and I still couldn't hear the dialogue in my audiobook over the HVAC. That moment, I realized the slider isn't a wall\u2014it's a promise that someone broke. So I built something that actually works. Not a generic booster that distorts when things get loud, but a tool that knows your headphones, tunes them the moment they connect, and gives you +200% volume without the harshness.",
+    "That's what AutoEQ does. It remembers your headphones\u2014every time. And the Sound DNA recap? That's not a gimmick. It's your actual listening data, delivered weekly, so you can see how you hear. I built this for you, for commuters, gamers, music lovers\u2014anyone who's tired of audio that doesn't deliver.",
+    "Open Loudify now. Connect your headphones. Tap the AutoEQ preset for your model. Hear the difference. That's all I ask. P.S. The top streak on the global leaderboard right now is 47 days. You're welcome to take it."
+  ],
+  "cta_text": "Open Loudify",
+  "email_number": 18,
+  "send_day": 39,
+  "type": "personal_note",
+  "app_name": "Loudify",
+  "generated_at": "2026-06-04T06:20:57.782785"
+}

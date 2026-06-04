@@ -1,0 +1,16 @@
+{
+  "subject": "The midnight setup that made 34% on UNI",
+  "preview_text": "One trader found a hidden signal in the AI stack that most users never touch. Here's how you can too.",
+  "body_paragraphs": [
+    "It was 2:47 AM, and a user was about to revenge trade after a bad loss. He'd already opened the app three times, fighting the urge to yolo into a pump. Instead, he accidentally tapped something he'd never noticed before.",
+    "That something was the multi-source signal stack. Most people just look at the AI verdict on a chart screenshot. But buried beneath that verdict is a detailed breakdown: technicals, sentiment, news, macro, and on-chain data all weighted into one read. He saw that on-chain was screaming accumulation while sentiment was neutral. He took a long on UNI at $8.40 with a 2.8:1 R:R. The AI confidence was only 67%, which would have scared off most traders. But he understood why.",
+    "The feature that changed everything for him was the signal drill-down. Tap any AI verdict on your watchlist, then tap the signal score number next to it. You'll see a live breakdown of exactly what's driving the AI's confidence. It's like having a trading desk whisper the logic behind every call. No guesswork. No FOMO. Just data.",
+    "Open the app now, go to your watchlist, and tap any AI verdict. Then tap the signal score. See the breakdown for yourself. P.S. The user who found this made 34% on that UNI trade. He says it's the closest thing to having a Bloomberg Terminal in your pocket \u2014 for the cost of a streaming subscription."
+  ],
+  "cta_text": "Open Crypto AI: Trading Analyzer",
+  "email_number": 12,
+  "send_day": 25,
+  "type": "feature_deep_dive",
+  "app_name": "Crypto AI: Trading Analyzer",
+  "generated_at": "2026-06-04T06:26:47.870613"
+}

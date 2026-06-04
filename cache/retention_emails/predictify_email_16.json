@@ -1,0 +1,16 @@
+{
+  "subject": "The 2AM feature we hid from everyone",
+  "preview_text": "I built something for you at 2AM last week. Not in the roadmap. Not in any update. Just for you.",
+  "body_paragraphs": [
+    "Two nights ago, at 2AM, I was staring at the same prediction screen you see every day. And I realized something was missing. So I built it. A hidden layer of data that nobody else gets. Not in any release notes, not in any update. Just for you.",
+    "I call it the 'Shadow Sheet' \u2014 a real-time comparison of our AI's raw confidence vs. the betting market's odds for every match. It shows you where the market is sleeping on a team, and where our AI sees an edge. I wasn't planning to share this, but you've been with us long enough to deserve it.",
+    "Open Predictify, go to any upcoming match \u2014 Premier League, Champions League, even the Indonesian Liga 1 \u2014 and tap the 'Deep Dive' button. You'll see a new tab called 'Market Gap.' That's the Shadow Sheet. It updates every 15 minutes. No other user sees it. Not yet.",
+    "Open the app now and check the 'Market Gap' tab on tomorrow's match. See if you spot the 12% edge our AI found on the underdog. P.S. \u2014 This feature disappears after 48 hours if no one uses it. Don't let it vanish."
+  ],
+  "cta_text": "Open Predictify and find the hidden tab",
+  "email_number": 16,
+  "send_day": 35,
+  "type": "surprise_bonus",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:24:16.066465"
+}

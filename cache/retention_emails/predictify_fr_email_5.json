@@ -1,0 +1,16 @@
+{
+  "subject": "La fonction que j'ai cod\u00e9e \u00e0 2h du matin",
+  "preview_text": "L'histoire vraie derri\u00e8re un outil que vous utilisez peut-\u00eatre d\u00e9j\u00e0 sur Predictify.",
+  "body_paragraphs": [
+    "Il \u00e9tait 2h du matin, un mardi. Je regardais un match de Serie A \u2013 Atalanta contre Fiorentina \u2013 et j'avais ce pressentiment que les statistiques officielles ne capturaient pas. J'ai ouvert mon ordinateur, frustr\u00e9, et j'ai commenc\u00e9 \u00e0 coder un truc qui n'existait pas encore sur Predictify.",
+    "J'en avais marre des pr\u00e9dictions qui ne tenaient pas compte du contexte : le vent, l'arbitre, l'\u00e9tat de la pelouse. Ce soir-l\u00e0, j'ai ajout\u00e9 une couche d'analyse que personne ne demandait parce que moi, je ne trouvais pas de r\u00e9ponse fiable. Le r\u00e9sultat ? Un taux de pr\u00e9cision qui a grimp\u00e9 de 12% sur les matchs \u00e0 faible confiance.",
+    "Cette fonction, c'est le score de confiance que vous voyez \u00e0 c\u00f4t\u00e9 de chaque pr\u00e9diction. Il ne sort pas de nulle part. Chaque pourcentage est le fruit de nuits blanches et de centaines de tests. Aujourd'hui, il analyse plus de 5000 variables par match \u2013 bien plus que ce que la plupart des fans imaginent.",
+    "La prochaine fois que vous verrez un score \u00e0 78%, sachez qu'il a \u00e9t\u00e9 cod\u00e9 \u00e0 2h du matin, avec une obsession : vous donner la v\u00e9rit\u00e9, pas une intuition. Allez dans l'app, ouvrez un match de Premier League, et regardez le d\u00e9tail du score de confiance. Vous verrez, \u00e7a change tout. P.S. \u2013 Si vous voulez voir l'historique complet de mes nuits blanches, cliquez sur 'Statistiques avanc\u00e9es' dans le menu Premium. L'essai gratuit de 3 jours est l\u00e0 pour \u00e7a."
+  ],
+  "cta_text": "Voir le score de confiance maintenant",
+  "email_number": 5,
+  "send_day": 9,
+  "type": "behind_the_scenes",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:22:54.533919"
+}

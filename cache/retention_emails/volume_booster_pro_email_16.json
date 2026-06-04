@@ -1,0 +1,16 @@
+{
+  "subject": "The slider I built at 3AM",
+  "preview_text": "A quiet feature I wasn't going to ship \u2014 but you might actually use",
+  "body_paragraphs": [
+    "At 3AM last week, I built something I wasn't planning to share. Just a slider with no edges, no labels, no noise. It does one thing: lets you boost volume without the app getting in the way.",
+    "I didn't tell the team. Didn't design a fancy screen. Just coded it and forgot about it. Then I used it for three days straight \u2014 on a podcast, a YouTube video, a game \u2014 and realized it's the version I wanted all along.",
+    "It's in the app now, buried under settings. No notifications, no upsell. Just the slider, at +200%, and then it disappears. It auto-applies when you plug in headphones. Feels like a secret handshake.",
+    "Open Volume Booster Pro, go to Settings, and look for 'Quiet Mode.' Try it once. P.S. \u2014 This isn't in the free version. It's a small thank-you for being here."
+  ],
+  "cta_text": "Open Volume Booster Pro",
+  "email_number": 16,
+  "send_day": 35,
+  "type": "surprise_bonus",
+  "app_name": "Volume Booster Pro",
+  "generated_at": "2026-06-04T06:21:54.456208"
+}

@@ -1,0 +1,16 @@
+{
+  "subject": "Sai l\u1ea7m l\u00fac 2 gi\u1edd s\u00e1ng khi\u1ebfn b\u1ea1n m\u1ea5t c\u01a1 h\u1ed9i",
+  "preview_text": "H\u1ea7u h\u1ebft ng\u01b0\u1eddi d\u00f9ng m\u1eafc l\u1ed7i n\u00e0y khi ki\u1ec3m tra d\u1ef1 \u0111o\u00e1n. C\u00e1ch kh\u1eafc ph\u1ee5c ch\u1ec9 m\u1ea5t 30 gi\u00e2y.",
+  "body_paragraphs": [
+    "T\u00f4i c\u00e1 l\u00e0 b\u1ea1n \u0111\u00e3 t\u1eebng th\u1ee9c \u0111\u1ebfn 2 gi\u1edd s\u00e1ng, m\u1edf \u1ee9ng d\u1ee5ng, nh\u00ecn v\u00e0o d\u1ef1 \u0111o\u00e1n cho tr\u1eadn \u0111\u1ea5u s\u1eafp t\u1edbi, v\u00e0 r\u1ed3i... b\u1ecf qua n\u00f3. \u0110\u00f3 ch\u00ednh l\u00e0 sai l\u1ea7m s\u1ed1 m\u1ed9t m\u00e0 g\u1ea7n nh\u01b0 t\u1ea5t c\u1ea3 ng\u01b0\u1eddi d\u00f9ng m\u1eafc ph\u1ea3i. H\u1ecd ngh\u0129 r\u1eb1ng ch\u1ec9 c\u1ea7n nh\u00ecn \u0111i\u1ec3m s\u1ed1 l\u00e0 \u0111\u1ee7, nh\u01b0ng s\u1ef1 th\u1eadt l\u00e0 b\u1ea1n \u0111ang b\u1ecf l\u1ee1 th\u00f4ng tin quan tr\u1ecdng nh\u1ea5t.",
+    "D\u1eef li\u1ec7u t\u1eeb h\u00e0ng ngh\u00ecn ng\u01b0\u1eddi d\u00f9ng cho th\u1ea5y: nh\u1eefng ai ki\u1ec3m tra chi ti\u1ebft '\u0110i\u1ec3m tin c\u1eady' (confidence score) tr\u01b0\u1edbc m\u1ed7i d\u1ef1 \u0111o\u00e1n c\u00f3 t\u1ef7 l\u1ec7 th\u1eafng cao h\u01a1n 40%. C\u00f2n l\u1ea1i, h\u1ecd ch\u1ecdn theo c\u1ea3m t\u00ednh v\u00e0 th\u1ea5t v\u1ecdng. \u0110\u1eebng \u0111\u1ec3 \u0111i\u1ec1u \u0111\u00f3 x\u1ea3y ra v\u1edbi b\u1ea1n n\u1eefa.",
+    "T\u00ednh n\u0103ng '\u0110i\u1ec3m tin c\u1eady' l\u00e0 v\u0169 kh\u00ed b\u00ed m\u1eadt c\u1ee7a Predictify. N\u00f3 cho b\u1ea1n bi\u1ebft AI t\u1ef1 tin \u0111\u1ebfn \u0111\u00e2u v\u1ec1 m\u1ed7i d\u1ef1 \u0111o\u00e1n\u2014t\u1eeb 0% \u0111\u1ebfn 100%. V\u00ed d\u1ee5, tr\u1eadn Real Madrid vs Barcelona, AI c\u00f3 th\u1ec3 \u0111\u01b0a ra d\u1ef1 \u0111o\u00e1n 85% cho \u0111\u1ed9i ch\u1ee7 nh\u00e0. B\u1ecf qua con s\u1ed1 \u0111\u00f3 l\u00e0 b\u1ea1n \u0111ang t\u1ef1 l\u00e0m kh\u00f3 m\u00ecnh.",
+    "M\u1edf Predictify ngay b\u00e2y gi\u1edd, v\u00e0o tab 'D\u1ef1 \u0111o\u00e1n h\u00f4m nay', v\u00e0 l\u1ecdc theo '\u0110i\u1ec3m tin c\u1eady cao nh\u1ea5t'. H\u00e3y th\u1eed xem. P.S. N\u1ebfu b\u1ea1n mu\u1ed1n truy c\u1eadp t\u1ea5t c\u1ea3 d\u1ef1 \u0111o\u00e1n kh\u00f4ng gi\u1edbi h\u1ea1n, b\u1ea3n d\u00f9ng th\u1eed 3 ng\u00e0y Premium ch\u1ec9 12,99 \u0111\u00f4/th\u00e1ng\u2014\u0111\u00e1ng gi\u00e1 h\u01a1n m\u1ed9t v\u00e9 xem tr\u1eadn \u0111\u1ea5u."
+  ],
+  "cta_text": "M\u1edf Predictify ngay",
+  "email_number": 6,
+  "send_day": 11,
+  "type": "common_mistake",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:23:07.074400"
+}

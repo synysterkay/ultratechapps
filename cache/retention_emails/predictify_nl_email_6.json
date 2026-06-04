@@ -1,0 +1,16 @@
+{
+  "subject": "De fout die 80% van de gebruikers maakt",
+  "preview_text": "Ontdek waarom jouw voorspellingen niet kloppen en hoe je het met \u00e9\u00e9n aanpassing oplost.",
+  "body_paragraphs": [
+    "Je hebt de app, je checkt de data, maar je resultaten blijven achter. Dat is geen toeval \u2014 80% van de gebruikers maakt dezelfde fout: ze vertrouwen op hun onderbuikgevoel in plaats van de cijfers. Ik zag het gisteren bij een gebruiker die een weddenschap plaatste op Barcelona, terwijl de AI een 47% confidence score gaf. Hij verloor.",
+    "De #1 fout? Je laat emoties de data overstemmen. Jij bent slim genoeg om te weten dat data altijd wint. Het is niet dat de AI het mis heeft \u2014 het is dat jij de verkeerde match kiest om op te vertrouwen. De fix is simpel: check de confidence score v\u00f3\u00f3r elke voorspelling. Als die onder 70% staat, skip je de wedstrijd.",
+    "Open Predictify en ga naar je dashboard. Klik op een aankomende wedstrijd \u2014 bijvoorbeeld Real Madrid tegen Atletico \u2014 en lees de confidence score. Vergelijk het met je eigen idee. De kans is groot dat je verrast bent. Dit is wat de topgebruikers doen: ze vertrouwen alleen op scores boven 75%.",
+    "Open nu de app en test het met \u00e9\u00e9n wedstrijd van vanavond. P.S. De AI heeft voor vanavond een 83% confidence call op Bayern M\u00fcnchen \u2014 check het voordat je iets plaatst."
+  ],
+  "cta_text": "Open Predictify",
+  "email_number": 6,
+  "send_day": 11,
+  "type": "common_mistake",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:23:04.685937"
+}

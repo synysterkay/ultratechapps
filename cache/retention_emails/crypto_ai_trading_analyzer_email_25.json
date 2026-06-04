@@ -1,0 +1,16 @@
+{
+  "subject": "The weirdest trade I saw this month",
+  "preview_text": "A user uploaded a photo of their cat. The verdict? 78% confidence. You won't believe what happened next.",
+  "body_paragraphs": [
+    "Last week, someone uploaded a screenshot of their cat's food bowl. No chart. No numbers. Just a photo of kibble. The app gave them a trading verdict with 78% confidence. I thought it was a bug \u2014 until I checked the logs.",
+    "Turns out, they were using the app not for crypto, but for random decisions. Should I buy this stock? Eat that? Go to bed? The AI didn't care. It analyzed the 'chart' of the bowl's pattern and spat out a signal anyway. And they followed it. Made money on a meme coin an hour later.",
+    "That's when I realized: you can upload anything. A napkin sketch. A screenshot of your friend's watchlist. Even the Fear & Greed index you clipped from Twitter. The AI doesn't judge \u2014 it just reads structure and gives you a readout. It's like having a sober friend at 3am who tells you what the data actually says.",
+    "Open the app, upload something random. A receipt. A tweet. A photo of your dog. See what the AI says. I bet it surprises you. P.S. \u2014 One user uploaded a photo of their ceiling crack and got a 'strong sell' signal on their altcoin position. They sold. Coin dumped 12% an hour later. Not saying it's magic, but..."
+  ],
+  "cta_text": "Open Crypto AI: Trading Analyzer",
+  "email_number": 25,
+  "send_day": 58,
+  "type": "unexpected_use_case",
+  "app_name": "Crypto AI: Trading Analyzer",
+  "generated_at": "2026-06-04T06:26:49.833567"
+}

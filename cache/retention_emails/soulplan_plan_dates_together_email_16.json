@@ -1,0 +1,16 @@
+{
+  "subject": "The midnight build you almost missed",
+  "preview_text": "I made something extra for you at 2AM. Wasn't planning to share this, but it might save your next Friday night.",
+  "body_paragraphs": [
+    "Two weeks ago, I was staring at my screen at 2AM, and I realized something: we built this whole app for couples planning dates, but we never built the one thing that would make it effortless when you have zero energy left. So I broke the rules and built it anyway.",
+    "You know that feeling when you're both tired, it's Friday, and someone says 'I don't know, what do you want to do?' \u2014 and suddenly the night dies before it starts? That's the moment I wanted to kill. So I coded a hidden mode that doesn't ask you to think. It just hands you a date based on your last three moods together, no swiping, no scrolling.",
+    "It's called 'Tonight's Shortcut' \u2014 it lives inside the Tonight's Date card, but only after you've opened the app three times without planning anything. It reads your couple vibe from the Memory Timeline and pulls one date from your Wishlist. One tap. That's it. I was going to keep it as a personal experiment, but I think you need it more than I do.",
+    "Open SoulPlan now and look for the small 'surprise' badge on your home screen. Tap it once and tell your partner you thought of them tonight. P.S. \u2014 If you use it tonight, your streak counter gets a free week freeze automatically. I didn't tell anyone else about that."
+  ],
+  "cta_text": "Open SoulPlan: Plan Dates Together",
+  "email_number": 16,
+  "send_day": 35,
+  "type": "surprise_bonus",
+  "app_name": "SoulPlan: Plan Dates Together",
+  "generated_at": "2026-06-04T06:15:43.552243"
+}

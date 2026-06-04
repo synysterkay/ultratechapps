@@ -1,0 +1,16 @@
+{
+  "subject": "Mon erreur de 2h du matin qui a chang\u00e9 Loudify",
+  "preview_text": "J'ai pass\u00e9 3 nuits \u00e0 coder une surprise pour toi. Pas pr\u00e9vu. Pas dans le planning. Et \u00e7a va changer ta fa\u00e7on d'\u00e9couter.",
+  "body_paragraphs": [
+    "Tu sais ces nuits o\u00f9 tu bosses sur un truc, et soudain tu d\u00e9rapes dans une autre direction ? La semaine derni\u00e8re, vers 2h du matin, j'\u00e9tais en train de peaufiner l'AutoEQ pour un mod\u00e8le de casque. Et l\u00e0, j'ai eu une id\u00e9e compl\u00e8tement d\u00e9bile. J'ai cod\u00e9 un petit module bonus, juste pour voir si \u00e7a marchait. Trois nuits plus tard, ce module est devenu mon obsession.",
+    "Je ne comptais pas le partager. C'\u00e9tait un side-project personnel, un truc pour moi. Mais apr\u00e8s l'avoir test\u00e9 sur mes propres trajets en m\u00e9tro, sur mes sessions gaming et mes podcasts, j'ai r\u00e9alis\u00e9 que c'\u00e9tait trop utile pour le garder. Alors je l'ai int\u00e9gr\u00e9 \u00e0 Loudify, discr\u00e8tement, sans le dire \u00e0 l'\u00e9quipe.",
+    "\u00c7a s'appelle le 'Boost Surprise'. Un bouton cach\u00e9 dans l'\u00e9galiseur qui, une fois activ\u00e9, monte le volume de 30% de plus que le maximum normal, tout en nettoyant les aigus. Aucun souffle. Aucune distorsion. Juste le son brut, plus fort, l\u00e0 o\u00f9 \u00e7a compte. Teste-le sur un morceau que tu connais par c\u0153ur \u2014 tu vas entendre des d\u00e9tails que tu n'avais jamais remarqu\u00e9s.",
+    "Ouvre Loudify, va dans l'onglet \u00c9galiseur, et active le bouton 'Boost Surprise'. C'est gratuit pour les 48 prochaines heures. Apr\u00e8s, je le r\u00e9serve aux abonn\u00e9s Premium. P.S. \u2014 Si tu veux le garder pour toujours, passe \u00e0 Premium : tu d\u00e9bloques l'AutoEQ complet, le Sound DNA int\u00e9gral, et ce boost devient permanent."
+  ],
+  "cta_text": "Ouvrir Loudify et activer le Boost Surprise",
+  "email_number": 16,
+  "send_day": 35,
+  "type": "surprise_bonus",
+  "app_name": "Loudify",
+  "generated_at": "2026-06-04T06:20:55.262611"
+}

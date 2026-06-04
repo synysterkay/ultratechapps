@@ -1,0 +1,16 @@
+{
+  "subject": "One friend needs this app tonight",
+  "preview_text": "You know who it is. Send them this before 2AM panic hits.",
+  "body_paragraphs": [
+    "I know you've been there. Staring at a blank page at 2AM, heart racing, deadline in hours. That one friend of yours? They're living that right now.",
+    "You've got the app. You know how fast it kills that panic. But there's someone in your life\u2014maybe a roommate, a study group buddy, or that kid who always asks for help\u2014who's drowning without it.",
+    "Share your referral link in the app. They get a free thesis starter. You get a permanent upgrade. It's the kind of help you wish someone gave you before you learned the hard way.",
+    "Open Thesis Generator and find your referral link. P.S. The person you're thinking of? Send it now. They'll thank you at 2AM tomorrow."
+  ],
+  "cta_text": "Open Thesis Generator",
+  "email_number": 26,
+  "send_day": 60,
+  "type": "referral_trigger",
+  "app_name": "Thesis Generator",
+  "generated_at": "2026-06-04T06:14:11.719722"
+}

@@ -1,0 +1,16 @@
+{
+  "subject": "Confession: I built this at 2AM",
+  "preview_text": "The real story behind Predictify's confidence score feature\u2014and why it almost didn't exist.",
+  "body_paragraphs": [
+    "It was 2AM, and I was staring at a spreadsheet of 47 losing races. My gut told me one horse would win, but the numbers screamed another. I ignored the data, lost $200, and couldn't sleep. That night, I realized most punters\u2014myself included\u2014are just guessing with expensive feelings.",
+    "So I started coding. Not for a paycheck, but to shut up that inner voice that says 'trust your instinct.' I built a system that crunches jockey form, track conditions, and weight advantages without ego. The first test? A longshot at Cheltenham that the AI rated 78% confidence. I bet against it. Lost again. The AI was right twice, and I was wrong twice. That's when I knew this had to be in your hands.",
+    "That 2AM frustration became the confidence score feature\u2014the one number that tells you exactly how sure the AI is before you place a bet. No fluff, no gut feelings. Just cold, hard data from thousands of variables. It's the closest thing to a second opinion from a racing expert who never sleeps.",
+    "Open Predictify now and check the confidence score on today's featured race. See where the data points\u2014and where your gut might be tricking you. P.S. The AI's longest winning streak on record? 14 straight predictions above 70% confidence. That's not luck\u2014that's math."
+  ],
+  "cta_text": "Open Predictify: Horse Racing AI",
+  "email_number": 5,
+  "send_day": 9,
+  "type": "behind_the_scenes",
+  "app_name": "Predictify: Horse Racing AI",
+  "generated_at": "2026-06-04T06:26:15.383081"
+}

@@ -1,0 +1,16 @@
+{
+  "subject": "Le pari du dimanche soir que je n'avais pas vu venir",
+  "preview_text": "Un utilisateur a utilis\u00e9 Predictify pour un type de pari que je n'aurais jamais imagin\u00e9. Voici comment.",
+  "body_paragraphs": [
+    "La semaine derni\u00e8re, un gars m'a envoy\u00e9 un message \u00e0 2h du matin. Il avait utilis\u00e9 Predictify pour analyser des courses de trot attel\u00e9 en France \u2014 un truc que je n'avais jamais pens\u00e9 \u00e0 couvrir. Il a gagn\u00e9 4 paris sur 5 avec nos confidences scores. J'\u00e9tais sci\u00e9.",
+    "Je croyais que l'app \u00e9tait juste pour les pur-sang et les grands meetings. Mais ce type m'a ouvert les yeux : nos algorithmes analysent les m\u00eames variables \u2014 forme du jockey, conditions de piste, poids \u2014 peu importe la discipline. Il a simplement tap\u00e9 'trot attel\u00e9 Vincennes' dans la recherche et a laiss\u00e9 l'IA faire le boulot.",
+    "C'est le genre d'usage que je n'avais pas anticip\u00e9. Nos donn\u00e9es couvrent d\u00e9j\u00e0 des milliers de courses globales, mais ce gars a trouv\u00e9 une faille que m\u00eame moi j'avais rat\u00e9e. Si tu veux tenter le coup, ouvre l'app et cherche une course de trot ou un hippodrome local que tu connais. Laisse l'IA te surprendre.",
+    "Va voir la section 'Recherche de courses' et tape un lieu ou une discipline que tu n'as jamais essay\u00e9e. Tu pourrais \u00eatre le prochain \u00e0 me faire dire 'je n'avais pas vu \u00e7a venir'. P.S. \u2014 J'ai test\u00e9 le trot attel\u00e9 hier avec un cr\u00e9dit gratuit. R\u00e9sultat : 3 sur 4. Essaie, tu verras."
+  ],
+  "cta_text": "Ouvrir Predictify : Course de chevaux IA",
+  "email_number": 25,
+  "send_day": 58,
+  "type": "unexpected_use_case",
+  "app_name": "Predictify: Horse Racing AI",
+  "generated_at": "2026-06-04T06:26:40.204350"
+}

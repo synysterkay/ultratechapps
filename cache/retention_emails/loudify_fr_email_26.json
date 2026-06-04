@@ -1,0 +1,16 @@
+{
+  "subject": "La personne qui a besoin de Loudify",
+  "preview_text": "Vous savez qui c'est. Ce message est pour elle.",
+  "body_paragraphs": [
+    "Vous avez une personne dans votre vie qui \u00e9coute tout au casque, mais qui r\u00e2le toujours que le son est trop bas ou que les dialogues sont enterr\u00e9s. Vous la voyez, elle baisse le volume pour monter le son, puis le monte pour rien. C'est frustrant, et vous le savez.",
+    "Loudify n'est pas juste pour vous. C'est pour cette amie qui ne supporte plus le bruit du m\u00e9tro pendant ses podcasts, ce coll\u00e8gue qui joue \u00e0 fond mais doit baisser les effets sonores pour entendre les voix, ce parent qui regarde des s\u00e9ries avec un casque qui sature. Vous avez d\u00e9j\u00e0 pens\u00e9 \u00e0 lui en parler, mais vous ne l'avez pas fait. Maintenant, c'est le moment.",
+    "L'application a une fonctionnalit\u00e9 de partage int\u00e9gr\u00e9e : vous pouvez envoyer un lien direct vers votre profil Sound DNA \u00e0 quelqu'un. Elle verra comment vous \u00e9coutez, et elle pourra essayer l'\u00e9galiseur automatique qui s'adapte \u00e0 ses propres \u00e9couteurs. Pas de configuration, pas de pr\u00e9r\u00e9glages bidons. Juste le son qui devient clair et fort l\u00e0 o\u00f9 il faut.",
+    "Ouvrez Loudify, allez dans votre Sound DNA, et partagez-le avec cette personne. Vous lui ferez un vrai cadeau : le silence des bruits parasites, enfin. P.S. Si elle s'inscrit avec votre lien, vous gagnez tous les deux un mois de Premium en plus. Mais franchement, le vrai gain, c'est de la voir arr\u00eater de tripoter le volume toutes les deux minutes."
+  ],
+  "cta_text": "Partager mon Sound DNA",
+  "email_number": 26,
+  "send_day": 60,
+  "type": "referral_trigger",
+  "app_name": "Loudify",
+  "generated_at": "2026-06-04T06:21:17.944323"
+}

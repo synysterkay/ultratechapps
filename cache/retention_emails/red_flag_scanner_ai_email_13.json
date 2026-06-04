@@ -1,0 +1,16 @@
+{
+  "subject": "Your 28-day pattern report is ready",
+  "preview_text": "You've scanned more conversations than 90% of users. Here's what your data says.",
+  "body_paragraphs": [
+    "It's been 28 days since you started using Red Flag Scanner AI. That's a full cycle of noticing what's been hiding in plain sight.",
+    "In that time, you've scanned enough conversations to reveal a pattern most people miss for months. Your dashboard now shows a toxicity trend line\u2014whether things are getting better or worse, and exactly which behaviors keep showing up.",
+    "Open the app and check your Relationship Health Dashboard. Look at the 'Pattern Detection' section. It highlights the specific red flags that repeat in your conversations\u2014gaslighting phrases, manipulation tactics, or love bombing signals. This is your blind spot map.",
+    "Click 'View My 28-Day Report' now. See what your own data says. P.S. Most users see a pattern they didn't realize was there\u2014and it changes everything."
+  ],
+  "cta_text": "View My 28-Day Report",
+  "email_number": 13,
+  "send_day": 28,
+  "type": "milestone_checkin",
+  "app_name": "Red Flag Scanner AI",
+  "generated_at": "2026-06-04T06:14:23.460318"
+}

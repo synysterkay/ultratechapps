@@ -1,0 +1,16 @@
+{
+  "subject": "De 2AM-fout die alles veranderde",
+  "preview_text": "Ik zat om 2 uur 's nachts met een biertje naar data te staren. Dit is wat er gebeurde.",
+  "body_paragraphs": [
+    "Het was 2 uur 's nachts, ik had een biertje op en staarde naar een spreadsheet met duizenden voetbalwedstrijden. Mijn vrienden lachten me uit omdat ik dacht dat data beter was dan onderbuikgevoel. Maar toen zag ik iets: een patroon in de xG van een underdog-team dat niemand had opgemerkt. Die ene wedstrijd veranderde alles.",
+    "Ik bouwde die nacht een prototype. Het bleek dat 73% van de 'onvoorspelbare' uitslagen eigenlijk te voorspellen waren met de juiste variabelen. Sindsdien heb ik honderden uren gestoken in het perfectioneren van de AI die nu in Predictify zit. Het is niet perfect, maar het is verdomd dichtbij.",
+    "Die functie? Dat is de 'Confidence Score' die je bij elke voorspelling ziet. Het is niet zomaar een getal \u2014 het is het resultaat van duizenden uren aan data-analyse, van 2AM-sessies tot 4AM-crashes. Wanneer je een wedstrijd opent, zie je precies hoe zeker de AI is. Geen giswerk, geen bullshit.",
+    "Open Predictify nu en kijk naar de confidence score van de eerstvolgende wedstrijd. Zie het verschil tussen een 59% en een 89% call. P.S. De Premier League-clash dit weekend heeft een verrassend hoge score \u2014 check 'm voor je je inzet plaatst."
+  ],
+  "cta_text": "Open Predictify en check de scores",
+  "email_number": 5,
+  "send_day": 9,
+  "type": "behind_the_scenes",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:22:56.994205"
+}

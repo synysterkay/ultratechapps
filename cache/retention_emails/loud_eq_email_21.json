@@ -1,0 +1,16 @@
+{
+  "subject": "The 4AM tweak that changed your sound",
+  "preview_text": "A small fix we shipped while you were away. Open Loud EQ and hear the difference.",
+  "body_paragraphs": [
+    "Four in the morning, and our sound engineer was still dialing in a new profile. He found a way to pull dialogue out of road noise without making it harsh. That tweak is in your app now, waiting for you.",
+    "Since you last opened Loud EQ, we shipped a fresh calibration for Bluetooth earbuds. It targets the frequencies that get swallowed by wind and engine hum. You don't have to do anything\u2014just connect your AirPods or headphones, and the app tunes itself.",
+    "Open the app once. Tap the Optimize button when you plug in your headphones. You'll hear the difference in under five seconds\u2014clearer voices, less strain, no distortion. It's like someone handed you a new pair of ears for your commute.",
+    "Tap 'Open Loud EQ' and give it a try. P.S. The Premium profile unlocks a +200% boost that keeps your hearing safe. One listen and you'll wonder how you drove without it."
+  ],
+  "cta_text": "Open Loud EQ",
+  "email_number": 21,
+  "send_day": 48,
+  "type": "comeback_trigger",
+  "app_name": "Loud EQ",
+  "generated_at": "2026-06-04T06:20:00.263280"
+}

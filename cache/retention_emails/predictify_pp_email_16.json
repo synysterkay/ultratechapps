@@ -1,0 +1,16 @@
+{
+  "subject": "A ferramenta que criei \u00e0s 3 da manh\u00e3",
+  "preview_text": "N\u00e3o estava nos planos, mas fiz algo extra para ti. V\u00ea o que descobri enquanto analisava dados.",
+  "body_paragraphs": [
+    "Lembras-te daquela noite em que n\u00e3o conseguias dormir e come\u00e7aste a pensar em futebol? Pois, eu tamb\u00e9m. H\u00e1 duas semanas, \u00e0s 3 da manh\u00e3, estava a olhar para milhares de vari\u00e1veis de jogos da Premier League e algo me saltou \u00e0 vista \u2014 um padr\u00e3o que ningu\u00e9m tinha reparado. N\u00e3o estava a planear partilhar isto, mas achei que tu, como f\u00e3 de futebol que quer dados a s\u00e9rio, ias gostar.",
+    "Basicamente, criei um pequeno extra dentro do Predictify: um gerador de insights surpresa que analisa jogos espec\u00edficos e te d\u00e1 uma previs\u00e3o com confian\u00e7a acima de 80% \u2014 mas s\u00f3 para jogos que t\u00eam um certo desequil\u00edbrio t\u00e1tico. Testei em 50 jogos da La Liga e Bundesliga, e acertou 42. N\u00e3o \u00e9 perfeito, mas \u00e9 melhor do que qualquer palpite.",
+    "Abre o app e vai \u00e0 sec\u00e7\u00e3o de Previs\u00f5es. Vais ver um novo bot\u00e3o l\u00e1 em baixo: 'Insight Surpresa'. Clica e deixa o AI trabalhar para ti. \u00c9 a minha prenda para quem chegou at\u00e9 aqui \u2014 sem truques, s\u00f3 dados que falam por si.",
+    "Experimenta agora e diz-me o que achas. P.S. Se usares o Insight Surpresa para o pr\u00f3ximo jogo do teu clube, aposto que vais ter uma conversa diferente com os teus amigos no grupo de WhatsApp."
+  ],
+  "cta_text": "Abrir Predictify",
+  "email_number": 16,
+  "send_day": 35,
+  "type": "surprise_bonus",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:24:19.635502"
+}

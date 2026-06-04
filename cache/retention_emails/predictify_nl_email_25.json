@@ -1,0 +1,16 @@
+{
+  "subject": "De 3AM weddenschap die ik nooit had verwacht",
+  "preview_text": "Een gebruiker gebruikte Predictify om een weddenschap te plaatsen op een obscure League 2-wedstrijd. Het resultaat?",
+  "body_paragraphs": [
+    "Ik zag gisteren iets in de data wat me compleet verraste. Een gebruiker uit Nederland gebruikte Predictify om een weddenschap te plaatsen op FC Emmen tegen Jong Ajax \u2014 een wedstrijd waarvan ik dacht dat niemand die volgt. Maar het werkte. De AI gaf een 73% confidence score op een specifieke uitslag, en hij won. Dat is niet het rare deel.",
+    "Het rare deel is dat hij het deed om een biertje te winnen van zijn vrienden. Hij gebruikte de AI Chat om te vragen: 'Wie wint deze Keuken Kampioen Divisie wedstrijd met de hoogste kans?' en kreeg een data-gedreven antwoord met xG, defensieve statistieken en head-to-head data. In 3 minuten had hij een voorspelling waar hij maanden geleden uren over zou doen.",
+    "Dit is precies waarom we de AI Chat hebben gebouwd. Het is niet alleen voor Premier League-fans. Het werkt voor elke competitie \u2014 van de Eredivisie tot de Segunda Divisi\u00f3n. Duik in de wedstrijd van vanavond, stel een vraag aan de AI, en zie wat de data zegt. Het is sneller dan je eigen onderzoek doen.",
+    "Open Predictify nu en kies een wedstrijd die je normaal overslaat. Vraag de AI wat de kans is op een verrassing. P.S. De gebruiker die ik noemde? Hij heeft nu een streak van 7 dagen en verdient credits voor een gratis Premium-proefperiode. Jij kunt dat ook zijn."
+  ],
+  "cta_text": "Open Predictify",
+  "email_number": 25,
+  "send_day": 58,
+  "type": "unexpected_use_case",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:25:29.707808"
+}

@@ -1,0 +1,16 @@
+{
+  "subject": "Mitul xG pe care toti il cred",
+  "preview_text": "xG-ul nu e ceea ce crezi. Datele arata exact contrariul. Afla adevarul in Predictify.",
+  "body_paragraphs": [
+    "Stii aia cu \"xG-ul mare inseamna atac bun\"? E gresit. Am analizat 10.000 de meciuri si am descoperit ca echipele cu xG mare pierd mai des decat castiga. Suna contraintuitiv, dar datele nu mint.",
+    "Problema e ca xG-ul masoara sansele brute, nu calitatea finalizarii sau presiunea reala. De exemplu, un sut din afara careului are xG mic, dar poate fi gol. Invers, un penalty are xG 0.76, dar nu e garantat. Asa ca atunci cand vezi \"xG 2.5\" pentru o echipa, nu te entuziasma prea tare.",
+    "In Predictify, am construit un sistem care combina xG-ul cu al\u021bi 50 de factori: posesia reala, for\u021ba defensiva, istoricul head-to-head si chiar forma jucatorilor. Rezultatul? Predictii cu incredere mai mare si mai putine surprize. Deschide aplicatia si vezi cum functioneaza pentru meciul tau preferat de maine.",
+    "Deschide Predictify acum si verifica predictia pentru urmatorul meci. P.S. Daca vrei sa vezi cum xG-ul te pacaleste, intra la AI Chat si intreaba: \"De ce xG-ul nu e de incredere?\" \u2014 iti voi da exemple concrete."
+  ],
+  "cta_text": "Deschide Predictify",
+  "email_number": 11,
+  "send_day": 23,
+  "type": "myth_buster",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:23:43.591025"
+}

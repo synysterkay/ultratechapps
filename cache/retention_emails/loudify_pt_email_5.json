@@ -1,0 +1,16 @@
+{
+  "subject": "A feature que nasceu \u00e0s 2AM",
+  "preview_text": "Por que constru\u00ed algo que ningu\u00e9m pediu \u2014 e como isso mudou tudo para voc\u00ea.",
+  "body_paragraphs": [
+    "Eram 2 da manh\u00e3. Eu estava no sof\u00e1, fones no ouvido, tentando ouvir um podcast enquanto o ventilador zumbia. O volume no m\u00e1ximo, mas o di\u00e1logo sumia no ru\u00eddo. Eu sabia que dava pra fazer melhor \u2014 n\u00e3o era hardware, era software mal pensado.",
+    "Naquela noite, eu comecei a mexer no Equalizador. Testei frequ\u00eancias, ajustei ganhos, at\u00e9 que percebi: o problema n\u00e3o \u00e9 o volume, \u00e9 como o som \u00e9 tratado antes de chegar aos seus ouvidos. A\u00ed veio a ideia \u2014 um boost limpo, que n\u00e3o distorce quando o beat sobe. Algo que funciona com Spotify, YouTube, at\u00e9 chamadas.",
+    "Loudify nasceu da\u00ed. O AutoEQ que reconhece seus fones assim que voc\u00ea conecta? Foi testado \u00e0s 3AM com um fone velho. O +200% de volume? Veio de um erro de c\u00e1lculo que virou recurso. N\u00e3o \u00e9 m\u00e1gica \u2014 \u00e9 engenharia para fazer o \u00e1udio ser o que ele deveria ser: alto onde precisa, limpo onde conta.",
+    "Quer ver o que eu descobri naquela madrugada? Abra o Loudify e v\u00e1 no Equalizador. Escolha o perfil 'Podcast' e aumente o ganho em +5 dB nas frequ\u00eancias m\u00e9dias. Voc\u00ea vai ouvir a diferen\u00e7a em segundos. P.S.: Seu Sound DNA dessa semana j\u00e1 est\u00e1 pronto \u2014 ele mostra exatamente quantas vezes voc\u00ea usou o boost noturno. Spoiler: mais do que pensa."
+  ],
+  "cta_text": "Abrir Loudify agora",
+  "email_number": 5,
+  "send_day": 9,
+  "type": "behind_the_scenes",
+  "app_name": "Loudify",
+  "generated_at": "2026-06-04T06:20:31.469699"
+}

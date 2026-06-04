@@ -1,0 +1,16 @@
+{
+  "subject": "Le bonus secret que j'ai cod\u00e9 \u00e0 3h du matin",
+  "preview_text": "Une fonction cach\u00e9e que je n'avais pas pr\u00e9vu de partager. Elle va transformer vos soir\u00e9es.",
+  "body_paragraphs": [
+    "Il y a deux semaines, \u00e0 3h du matin, je n'arrivais pas \u00e0 dormir. Je pensais \u00e0 toi et \u00e0 ton partenaire, \u00e0 ces soir\u00e9es o\u00f9 vous voulez juste un moment \u00e0 deux sans que la planification devienne une corv\u00e9e. Alors j'ai ouvert mon \u00e9diteur de code, et j'ai commenc\u00e9 \u00e0 construire quelque chose en secret.",
+    "Ce n'\u00e9tait pas pr\u00e9vu dans la roadmap. Pas de brief, pas de r\u00e9union. Juste une id\u00e9e qui me trottait dans la t\u00eate : et si je cr\u00e9ais un mode 'Surprise' qui pioche dans votre liste de souhaits, mais avec une touche totalement inattendue ? Un truc qui fait que quand vous ouvrez l'app, vous avez une proposition pr\u00eate, mais avec un twist qui vous surprend, vous et votre partenaire.",
+    "J'ai test\u00e9 \u00e7a en interne avec quelques couples, et les retours m'ont bluff\u00e9. Une amie m'a dit : 'C'est comme si l'app lisait dans nos pens\u00e9es, mais en mieux.' Alors voil\u00e0, je l'ai int\u00e9gr\u00e9 en douce dans la section 'Ce soir' de SoulPlan. Quand vous choisissez une humeur \u2014 cosy, aventureux, joueur, apaisant \u2014 le mode Surprise ajoute un \u00e9l\u00e9ment impr\u00e9vu. Un ingr\u00e9dient secret, une activit\u00e9 bonus, un lieu que vous n'auriez jamais envisag\u00e9.",
+    "Ouvre l'app maintenant, va dans 'Ce soir', s\u00e9lectionne une humeur, et active le mode Surprise. C'est cadeau. Juste pour toi, pour ce soir. Et si tu veux me remercier, envoie-moi un message dans l'app \u2014 j'adore savoir ce que vous en pensez. P.S. Ce mode dispara\u00eet dans 48 heures si personne ne l'utilise. Ne le laisse pas s'\u00e9teindre."
+  ],
+  "cta_text": "Ouvrir SoulPlan et activer le mode Surprise",
+  "email_number": 16,
+  "send_day": 35,
+  "type": "surprise_bonus",
+  "app_name": "SoulPlan: Plan Dates Together",
+  "generated_at": "2026-06-04T06:15:46.301678"
+}

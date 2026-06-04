@@ -1,0 +1,16 @@
+{
+  "subject": "The 3AM tool I built for your dog",
+  "preview_text": "I wasn't going to share this, but your pup deserves it. Check your app now.",
+  "body_paragraphs": [
+    "Last Tuesday at 3AM, I was staring at my own dog's food bowl, frustrated. The vet said he needed to drop 4 pounds, but every treat felt like a betrayal. So I built something I never planned to release.",
+    "It's a hidden feature in PupShape that uses your dog's breed, age, and current weight to calculate the exact calorie deficit per day\u2014no confusing charts, no guesswork. I tested it on my own pup first. He lost 1.2 pounds in two weeks, and the vet actually high-fived me.",
+    "I coded this as a side project, but after seeing 110 dogs thrive on our main plan, I realized this could save owners from the guilt of overfeeding. It's already in your app under the Progress tab\u2014just tap the calculator icon next to your dog's weight milestone. No one else has this yet.",
+    "Open PupShape now and find the hidden calculator. Your dog deserves that extra mile. P.S. The first 50 people to use it get a bonus treat guide sent straight to their inbox\u2014I made that at 4AM, too."
+  ],
+  "cta_text": "Open PupShape: Dog Weight Loss Plan",
+  "email_number": 16,
+  "send_day": 35,
+  "type": "surprise_bonus",
+  "app_name": "PupShape: Dog Weight Loss Plan",
+  "generated_at": "2026-06-04T06:16:57.526564"
+}

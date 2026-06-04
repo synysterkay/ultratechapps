@@ -1,0 +1,16 @@
+{
+  "subject": "La fonction que j'ai cod\u00e9e \u00e0 2h du matin",
+  "preview_text": "Pourquoi j'ai pass\u00e9 une nuit blanche sur une fonctionnalit\u00e9 qui allait sauver vos oreilles.",
+  "body_paragraphs": [
+    "Il \u00e9tait 2h du matin, un mardi. J'\u00e9tais dans mon salon, les \u00e9couteurs viss\u00e9s sur les oreilles, \u00e0 \u00e9couter un podcast sur mon t\u00e9l\u00e9phone. Le bruit du frigo couvrait la voix du narrateur. J'ai mont\u00e9 le volume \u00e0 fond. Toujours pas assez. J'ai ouvert une app de boost g\u00e9n\u00e9rique, et l\u00e0, le son est devenu satur\u00e9, agressif, presque douloureux. J'ai eu une r\u00e9v\u00e9lation : ce n'\u00e9tait pas un probl\u00e8me de volume, c'\u00e9tait un probl\u00e8me de conception.",
+    "La plupart des apps de boost se contentent d'augmenter le gain brut, ce qui \u00e9crase les voix et fait gr\u00e9siller les hauts-parleurs. Moi, je voulais quelque chose de diff\u00e9rent : un boost qui pr\u00e9serve la clart\u00e9 des dialogues, m\u00eame dans un train bond\u00e9 ou sur une autoroute. J'ai donc pass\u00e9 la nuit \u00e0 coder un algorithme qui analyse en temps r\u00e9el le signal audio pour ajuster les fr\u00e9quences sans jamais d\u00e9passer un seuil de distorsion. C'est devenu l'Optimisation automatique de Loud EQ.",
+    "Cette fonctionnalit\u00e9, c'est mon b\u00e9b\u00e9. Elle \u00e9coute ce que vous \u00e9coutez, d\u00e9tecte le type de contenu (podcast, musique, film) et ajuste automatiquement l'\u00e9galiseur pour que chaque mot soit net, sans jamais fatiguer vos oreilles. Et elle le fait en une seule touche. Pas de r\u00e9glages compliqu\u00e9s, pas de jargon technique. Juste un bouton qui transforme votre exp\u00e9rience audio.",
+    "Alors voil\u00e0 : ouvrez Loud EQ, tapez sur 'Optimiser' et \u00e9coutez la diff\u00e9rence. Vous verrez pourquoi j'ai sacrifi\u00e9 une nuit de sommeil pour \u00e7a. P.S. \u2014 Si vous voulez pousser le volume encore plus loin sans risque, le mode Premium d\u00e9bloque le boost complet de +200% et des profils sonores sur-mesure. Mais commencez par l'optimisation gratuite. Vous m'en direz des nouvelles."
+  ],
+  "cta_text": "Ouvrir Loud EQ et optimiser",
+  "email_number": 5,
+  "send_day": 9,
+  "type": "behind_the_scenes",
+  "app_name": "Loud EQ",
+  "generated_at": "2026-06-04T06:19:28.399134"
+}

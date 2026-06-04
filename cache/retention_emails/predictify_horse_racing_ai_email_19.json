@@ -1,0 +1,16 @@
+{
+  "subject": "Your 42-day preview: the racecard upgrade",
+  "preview_text": "The feature our beta testers have been begging for. Here's what's coming.",
+  "body_paragraphs": [
+    "I've been staring at a prototype all week, and I have to tell you\u2014it's the kind of thing that makes you laugh at how you ever bet without it. The team's been quiet because we wanted to get this right, but now I can finally give you a look at what's about to hit the app. You heard it here first.",
+    "We're adding a live track bias overlay. That means the AI will now show you, in real time, which part of the track is running fastest\u2014rail, middle, or wide\u2014based on the first few races of the day. No more guessing if the leader's bias is real or just a fluke. This alone could flip a 20% win rate into something far scarier.",
+    "The feature will roll out next week, but you can already see the raw data feeding it under the racecard analysis tab. Open any upcoming race and look for the track condition report. That's the skeleton. The overlay will be the muscle.",
+    "Open Predictify now and check the racecard analysis for today's first race. See the track condition report\u2014that's your sneak peek. P.S. Premium users will get the overlay 48 hours early. Start your 3-day trial today, and you'll be the first to see it when it drops."
+  ],
+  "cta_text": "Open Predictify: Horse Racing AI",
+  "email_number": 19,
+  "send_day": 42,
+  "type": "sneak_peek",
+  "app_name": "Predictify: Horse Racing AI",
+  "generated_at": "2026-06-04T06:26:30.541498"
+}

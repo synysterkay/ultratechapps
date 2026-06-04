@@ -1,0 +1,16 @@
+{
+  "subject": "The 2AM discovery that changed my listening",
+  "preview_text": "One user found a hidden setting in Loud EQ that made their commute bearable. You have it too.",
+  "body_paragraphs": [
+    "A user emailed me last week. They said they almost deleted our app after day one. Thought it was just another volume booster that made everything sound like a tin can. They were about to give up. Then, at 2AM during a late drive home, they accidentally tapped something in the settings menu. They had been stuck in traffic for an hour. Podcast was impossible to hear over the engine. They were frustrated, done with it.",
+    "They found the Audio Profile toggle. Switched from 'Music' to 'Podcast' on a whim. Suddenly, the narrator's voice cut through the road noise like they were sitting next to them. No distortion. No harshness. Just clear dialogue. They said it felt like someone turned down the car, not up the volume. They'd been missing it for weeks. That one switch changed everything for them.",
+    "This is the feature most users never touch: the 5-band equalizer and four audio profiles built into Loud EQ. Music mode boosts bass and treble. Podcast mode sharpens the mid-range where voices live. Movie mode widens the soundstage. Gaming mode punches up footsteps and cues. One tap changes everything. It's buried in the main screen after you start playback. Tap the wave icon at the bottom. You already have it. Try it with your worst offending audio source.",
+    "Open Loud EQ right now. Play something you've struggled to hear. Tap that wave icon and switch to 'Podcast' or 'Movie'. Hear the difference. That's what this app was built for. P.S. Premium users get Sound DNA calibration that learns your ear's sensitivity. That user upgraded after that night. The flag is still there if you want it."
+  ],
+  "cta_text": "Open Loud EQ",
+  "email_number": 12,
+  "send_day": 25,
+  "type": "feature_deep_dive",
+  "app_name": "Loud EQ",
+  "generated_at": "2026-06-04T06:19:41.000446"
+}

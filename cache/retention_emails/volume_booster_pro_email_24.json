@@ -1,0 +1,16 @@
+{
+  "subject": "The user who emailed us at 3AM",
+  "preview_text": "A quiet story that changed how we think about our app. Read it before you open the app.",
+  "body_paragraphs": [
+    "At 3AM last Tuesday, a user sent us a single line: 'Your app made me forget it exists.' We read it on mute. No exclamation points. No emojis. Just calm, precise gratitude. That's the kind of user we built Volume Booster Pro for.",
+    "This user had been using the free version for months, tolerating the ads because the boost worked. Then they tried Premium. They wrote: 'The slider stays out of my way. I plug in headphones, it boosts, I forget about it. That's all I ever wanted.' No one in our team needed to say anything after reading that.",
+    "That 'auto-apply on headphone connect' feature? It's exactly what they described. Open the app once, enable it, and it fades into the background. No pop-ups, no notifications, no second thoughts. Just a clean boost every time you press play.",
+    "If you haven't turned on auto-apply yet, try it today. Open Volume Booster Pro, tap the gear icon, toggle 'Auto-apply on headphone connect.' Then plug in your headphones and hit play. Let it disappear. P.S. That user also said: 'I almost didn't write in. But the silence was too good not to share.'"
+  ],
+  "cta_text": "Open Volume Booster Pro",
+  "email_number": 24,
+  "send_day": 55,
+  "type": "user_spotlight",
+  "app_name": "Volume Booster Pro",
+  "generated_at": "2026-06-04T06:22:10.082991"
+}

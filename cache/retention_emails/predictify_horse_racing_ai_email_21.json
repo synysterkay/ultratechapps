@@ -1,0 +1,16 @@
+{
+  "subject": "Your 48-day old picks just got smarter",
+  "preview_text": "We updated the AI model last night. Your old race analyses now show new confidence scores.",
+  "body_paragraphs": [
+    "It's been 48 days. Since you last opened Predictify, we made a change that rewrites every race analysis you've ever seen. Not a minor tweak. We rebuilt the core AI model based on 14,000 new race outcomes since your signup.",
+    "Your saved picks from Day 1? They now look different. The AI recalculated confidence scores using fresh data on track conditions, jockey form shifts, and weather patterns from the past seven weeks. Some of your old 'losers' actually had winning signals you never saw.",
+    "Open the app. Go to your history tab. Tap any race card from your first week. The new analysis is already there, waiting. Compare the old confidence score to the new one \u2014 you'll see where the AI was blind before.",
+    "See what changed. It might change how you bet next time. P.S. \u2014 The new model flagged a 73% confidence angle on today's 3:45 at Cheltenham that didn't exist last month."
+  ],
+  "cta_text": "Open Predictify: Horse Racing AI",
+  "email_number": 21,
+  "send_day": 48,
+  "type": "comeback_trigger",
+  "app_name": "Predictify: Horse Racing AI",
+  "generated_at": "2026-06-04T06:26:32.860701"
+}

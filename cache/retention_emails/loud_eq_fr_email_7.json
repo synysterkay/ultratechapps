@@ -1,0 +1,16 @@
+{
+  "subject": "Le r\u00e9glage secret que j'utilise \u00e0 7h du matin",
+  "preview_text": "D\u00e9couvrez comment un simple r\u00e9glage rend votre audio 10x plus clair dans le bruit du m\u00e9tro.",
+  "body_paragraphs": [
+    "Je me suis r\u00e9veill\u00e9 \u00e0 7h ce matin, m\u00e9tro bond\u00e9, j'essaie d'\u00e9couter un podcast. Bruit de roues, conversations, tout se m\u00e9lange. J'ai mont\u00e9 le volume \u00e0 fond, mais rien. Puis j'ai r\u00e9alis\u00e9 que je faisais tout faux depuis des semaines.",
+    "Le probl\u00e8me, c'est pas le volume brut. C'est la fa\u00e7on dont l'audio est m\u00e9lang\u00e9. La plupart des boosters poussent tout en m\u00eame temps, ce qui \u00e9crase les voix sous le bruit. Moi, j'ai trouv\u00e9 un hack : utiliser l'\u00e9galiseur pour couper les fr\u00e9quences basses (les vibrations du m\u00e9tro) et amplifier les m\u00e9diums (l\u00e0 o\u00f9 sont les voix). R\u00e9sultat ? J'entends chaque mot, m\u00eame \u00e0 50% du volume max.",
+    "Dans Loud EQ, ce hack s'appelle le profil \"Podcast\" \u2014 mais vous pouvez le peaufiner avec l'\u00e9galiseur 5 bandes. Allez dans l'app, branchez vos \u00e9couteurs, tapez sur \"Optimiser\" une fois. L'app ajuste automatiquement le son pour votre appareil. Puis sous l'onglet \u00c9galiseur, montez les fr\u00e9quences 1 kHz et 2 kHz de 3 dB, baissez les 60 Hz de -2 dB. Essayez maintenant : vous allez capter chaque mot sans effort.",
+    "Ouvrez Loud EQ, testez ce r\u00e9glage avec votre prochaine \u00e9coute. P.S. : Si vous voulez aller plus loin, le mode Premium d\u00e9bloque l'\u00e9galiseur complet et le calibrage automatique pour chaque appareil. Mais m\u00eame sans, ce petit ajustement change tout."
+  ],
+  "cta_text": "Ouvrir Loud EQ et tester ce r\u00e9glage",
+  "email_number": 7,
+  "send_day": 14,
+  "type": "value_bomb",
+  "app_name": "Loud EQ",
+  "generated_at": "2026-06-04T06:19:32.506999"
+}

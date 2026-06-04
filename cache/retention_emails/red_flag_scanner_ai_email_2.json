@@ -1,0 +1,16 @@
+{
+  "subject": "Confession: I built this at 2AM",
+  "preview_text": "Most users never tap this one button. It catches what you're missing.",
+  "body_paragraphs": [
+    "There's a feature in your Red Flag Scanner that I coded at 2AM after a friend's breakup. She had screenshots of texts that felt 'off' but couldn't prove it. So I built a hidden pattern detector. Most users never even tap the button.",
+    "It works like this: you scan one conversation, and the app gives you a toxicity score. But the real power is in the 'Patterns' tab. It cross-references every chat you've scanned, looking for repeated gaslighting phrases, love bombing sequences, or manipulation tactics. One user told me, 'I didn't realize he said the same thing to three different people.'",
+    "You've already downloaded the app, so you're one step ahead. But if you haven't clicked 'Patterns' yet, you're missing the part that saved my friend from a cycle she couldn't see. It's anonymous, takes 10 seconds, and shows you what your gut already knows.",
+    "Open Red Flag Scanner AI now, go to your dashboard, and tap 'Patterns'. See what's hiding in plain sight. P.S. The first scan is free, but the pattern data is only available after your second scan\u2014so scan another conversation today."
+  ],
+  "cta_text": "Open Red Flag Scanner AI",
+  "email_number": 2,
+  "send_day": 2,
+  "type": "hidden_feature",
+  "app_name": "Red Flag Scanner AI",
+  "generated_at": "2026-06-04T06:14:21.070290"
+}

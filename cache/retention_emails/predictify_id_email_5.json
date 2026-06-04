@@ -1,0 +1,16 @@
+{
+  "subject": "Kode yang kutulis jam 2 pagi",
+  "preview_text": "Kenapa aku menghabiskan 3 jam untuk satu fitur yang mungkin tidak pernah kamu lihat",
+  "body_paragraphs": [
+    "Jam 2 pagi, kopi sudah dingin, dan aku masih duduk di depan laptop. Bukan karena deadline, tapi karena satu pertanyaan bodoh: kenapa prediksi bola selalu terasa seperti tebak-tebakan? Aku muak dengan tips yang bilang 'tim ini lagi bagus' tanpa data, dan aku yakin kamu juga.",
+    "Malam itu, aku mulai menulis kode untuk Confidence Score. Bukan sekadar angka, tapi cara untuk bilang 'aku yakin 80%' atau 'ini 50:50, hati-hati'. Butuh 20 iterasi dan 3 cangkir kopi, tapi hasilnya sekarang ada di setiap prediksi di aplikasi. Kamu bisa lihat seberapa yakin AI-nya, bukan hanya terima mentah-mentah.",
+    "Fitur itu sekarang ada di setiap halaman prediksi \u2014 coba lihat laga malam ini. Misalnya, Barcelona vs Madrid, ada angka confidence score di samping skor. Ini bukan trik marketing, ini cara aku bilang 'percaya atau tidak, ini datanya'. Kamu bisa cek langsung di tab 'Predictions' dan bandingkan dengan feelingmu.",
+    "Buka aplikasi sekarang, pilih satu pertandingan, dan lihat confidence score-nya. Kalau kamu merasa prediksinya aneh, tulis ke aku \u2014 serius, aku baca semua feedback. P.S. Fitur IQ Quiz juga kubuat jam 3 pagi minggu berikutnya, coba tebak skormu lawan AI."
+  ],
+  "cta_text": "Buka Prediksi Sekarang",
+  "email_number": 5,
+  "send_day": 9,
+  "type": "behind_the_scenes",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:22:55.893320"
+}

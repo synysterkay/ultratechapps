@@ -1,0 +1,16 @@
+{
+  "subject": "Die 2AM-Entscheidung, die alles ver\u00e4nderte",
+  "preview_text": "Warum ich um 2 Uhr morgens eine Funktion baute, die deine Vorhersagen revolutioniert. Die wahre Geschichte.",
+  "body_paragraphs": [
+    "Es war 2 Uhr morgens, nach einer Niederlage meines Lieblingsteams. Ich sa\u00df da, mit leeren Bierflaschen und einem frustrierenden Gef\u00fchl: Ich hatte wieder mal auf das falsche Pferd gesetzt. Meine Bauchgef\u00fchl-Vorhersagen waren einfach nicht zuverl\u00e4ssig. Also \u00f6ffnete ich meinen Laptop und begann zu programmieren \u2013 nicht f\u00fcr Geld, sondern aus purer Wut und Neugier.",
+    "Ich wollte wissen: Warum verliere ich immer? Die Antwort war simpel: Ich hatte keine Daten. Also baute ich einen Algorithmus, der Tausende Variablen pro Spiel analysiert \u2013 von xG bis zur Abwehrst\u00e4rke. Nach 48 Stunden hatte ich eine Prognose f\u00fcr das n\u00e4chste Spiel: 67 % Konfidenz. Ich wettete dagegen und gewann. Dann noch einmal. Und noch einmal. In einer Woche hatte ich 8 von 10 Wetten richtig.",
+    "Das f\u00fchrte zur Funktion, die wir heute Konfidenz-Score nennen. Jede Vorhersage in Predictify zeigt dir, wie sicher die KI ist \u2013 von 0 bis 100 %. Keine R\u00e4tselraten mehr. \u00d6ffne die App, geh zur Spielanalyse und such dir ein Match mit hohem Konfidenz-Score. Teste es selbst. Du wirst sehen: Daten schlagen Bauchgef\u00fchl.",
+    "\u00d6ffne Predictify und pr\u00fcf die Konfidenz-Scores f\u00fcr das n\u00e4chste Spiel. P.S.: Mein erstes Testspiel war Manchester City gegen Arsenal \u2013 2:1 mit 71 % Konfidenz. Rate mal, wer gewonnen hat?"
+  ],
+  "cta_text": "Konfidenz-Score jetzt pr\u00fcfen",
+  "email_number": 5,
+  "send_day": 9,
+  "type": "behind_the_scenes",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:22:55.091444"
+}

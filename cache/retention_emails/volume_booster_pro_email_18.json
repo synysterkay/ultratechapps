@@ -1,0 +1,16 @@
+{
+  "subject": "The 2AM build that changed how I code",
+  "preview_text": "I don't usually write emails like this, but... what I built at 2AM might be the only thing you need today.",
+  "body_paragraphs": [
+    "I woke up at 2AM last Tuesday. Not from a nightmare \u2014 just my brain grinding on something. I opened my laptop and wrote a single line of code that changed how I think about this app. It wasn't a feature. It was a removal.",
+    "I deleted the ad SDK from the free version. Just yanked it. Because I realized something: you didn't download Volume Booster Pro to be sold to. You downloaded it to turn up your podcasts and get back to your life. The ads were a wall between you and that moment.",
+    "So here's what that 2AM build became: the same +200% boost, zero interstitials, zero notifications. The slider, the EQ, and nothing else. It auto-applies when your headphones connect, then vanishes. No nags. No game layer. Just quiet utility \u2014 like your alarm clock used to be.",
+    "Open the app today. Tap the headphone icon to set it to auto-apply. Then forget it exists. That's the point. P.S. \u2014 I'm keeping this build as a hidden version for users who email me. Reply to this email with '2AM' and I'll send you the link. No strings."
+  ],
+  "cta_text": "Open Volume Booster Pro",
+  "email_number": 18,
+  "send_day": 39,
+  "type": "personal_note",
+  "app_name": "Volume Booster Pro",
+  "generated_at": "2026-06-04T06:21:58.167726"
+}

@@ -1,0 +1,16 @@
+{
+  "subject": "Confession: I built this at 2AM",
+  "preview_text": "The real reason I coded this feature at 2AM, and why it's the only one that matters.",
+  "body_paragraphs": [
+    "I was lying in bed at 2AM, staring at the ceiling. A podcast was playing through my phone's speaker, volume maxed out, but I could barely hear the dialogue over the ambient hum of the fridge. The free volume booster I'd been using had just interrupted the episode with a full-screen ad for a game I'd never play. I snapped. Not at the app\u2014at myself for tolerating it.",
+    "That night, I opened my laptop and started coding. Not out of passion for a flashy feature, but out of pure frustration. I wanted a utility that did one thing well: boost audio, everywhere, without asking for attention. No notifications, no gamified streaks, no pop-ups asking me to rate it after every session. Just a slider that worked. I built the core engine in three hours, tested it on Spotify, YouTube, and a game, and then went back to sleep. The next morning, I realized I'd built what I'd been searching for: a volume booster that got out of the way.",
+    "That slider\u2014the one you see when you open the app\u2014is the only thing I cared about. It applies +200% boost system-wide, auto-engages when you plug in headphones, and never bothers you again. The EQ is there if you need it, but the whole point is you don't have to think about it. It's the quiet utility your phone should have come with. No ads, no interstitials, no nonsense.",
+    "Open the app today. Move the slider to where you need it. Then close it. That's it. That's the whole experience. \n\nP.S. If you've ever wanted to hear a podcast clearly over a fan or dishwasher, this is for you. The Premium version removes the one-time paywall reminder after 30 days\u2014but the boost works the same either way."
+  ],
+  "cta_text": "Open Volume Booster Pro",
+  "email_number": 5,
+  "send_day": 9,
+  "type": "behind_the_scenes",
+  "app_name": "Volume Booster Pro",
+  "generated_at": "2026-06-04T06:21:33.788632"
+}

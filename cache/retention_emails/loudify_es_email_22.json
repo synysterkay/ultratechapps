@@ -1,0 +1,16 @@
+{
+  "subject": "El atajo que 3 usuarios descubrieron a las 3AM",
+  "preview_text": "Hay una forma de evitar que el AutoEQ se olvide de tus aud\u00edfonos. No est\u00e1 en la ayuda.",
+  "body_paragraphs": [
+    "Tres usuarios, todos a las 3AM, encontraron algo que el equipo nunca document\u00f3. No era un bug. Era un atajo que convierte el AutoEQ en algo que recuerda tus aud\u00edfonos aunque los cambies cada hora.",
+    "La mayor\u00eda usa Loudify como viene: sube el volumen, elige un perfil, listo. Pero los que llevan 50 d\u00edas seguidos saben que el verdadero truco no est\u00e1 en los ajustes b\u00e1sicos. Est\u00e1 en una combinaci\u00f3n de dos toques que nadie te dice porque parece demasiado simple.",
+    "Abre la app. Ve a la pesta\u00f1a de perfiles. Mant\u00e9n presionado el nombre de tus aud\u00edfonos actuales durante tres segundos. Ahora, cada vez que los conectes, el AutoEQ se activa autom\u00e1ticamente, sin que tengas que volver a seleccionarlos. No es magia, es c\u00f3mo los power users evitan que el sonido se corte a mitad de un podcast.",
+    "Pru\u00e9balo ahora con tus aud\u00edfonos favoritos. Si no funciona, es porque tus aud\u00edfonos no est\u00e1n en la lista de presets \u2014 pero puedes a\u00f1adirlos desde el men\u00fa de ajustes. P.D.: Los que ya lo usan reportan que el sonido se siente m\u00e1s limpio, como si el ecualizador supiera exactamente qu\u00e9 hacer antes de que t\u00fa lo pidas."
+  ],
+  "cta_text": "Abrir Loudify y probar el atajo",
+  "email_number": 22,
+  "send_day": 50,
+  "type": "power_user_shortcut",
+  "app_name": "Loudify",
+  "generated_at": "2026-06-04T06:21:07.314079"
+}

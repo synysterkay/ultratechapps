@@ -1,0 +1,16 @@
+{
+  "subject": "Le r\u00e9glage que 200 utilisateurs gardent secret",
+  "preview_text": "Ils gagnent 3 minutes par session. D\u00e9couvrez pourquoi ils ne le partagent pas.",
+  "body_paragraphs": [
+    "Un matin, j'ai vu un utilisateur avec 500 jours de streak. Il \u00e9coutait des podcasts \u00e0 2x la vitesse, mais son audio restait clair. Je lui ai demand\u00e9 son secret. Il a h\u00e9sit\u00e9. Puis il m'a montr\u00e9 un geste que je n'avais jamais vu dans l'app.",
+    "Ce n'est pas une fonction cach\u00e9e dans un menu. C'est un raccourci que les power users activent en 2 taps, et que personne ne mentionne parce que \u00e7a leur donne un avantage. Ils gagnent du temps sur chaque session, sans jamais toucher l'\u00e9galiseur.",
+    "Ouvrez Loudify, allez dans l'onglet Profils, et appuyez trois fois sur le nom de votre casque. Vous verrez appara\u00eetre 'Mode acc\u00e9l\u00e9r\u00e9'. Activez-le. D\u00e9sormais, chaque fois que vous branchez vos \u00e9couteurs, votre profil pr\u00e9f\u00e9r\u00e9 s'applique automatiquement, avec le boost +200% et l'\u00e9galiseur ajust\u00e9. Plus besoin de configurer. Juste \u00e9couter.",
+    "Essayez-le maintenant. Ouvrez l'app, faites le test. Et si vous voulez aller plus loin, le Premium d\u00e9bloque 3 profils suppl\u00e9mentaires et l'historique complet de votre Sound DNA. P.S. Ce mode fonctionne m\u00eame avec des \u00e9couteurs Bluetooth. Vos trajets ne seront plus jamais les m\u00eames."
+  ],
+  "cta_text": "Ouvrir Loudify et tester le mode acc\u00e9l\u00e9r\u00e9",
+  "email_number": 22,
+  "send_day": 50,
+  "type": "power_user_shortcut",
+  "app_name": "Loudify",
+  "generated_at": "2026-06-04T06:21:07.744738"
+}

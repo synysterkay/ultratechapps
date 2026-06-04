@@ -1,0 +1,16 @@
+{
+  "subject": "De sneltoets die 89% van gebruikers mist",
+  "preview_text": "Ontdek de verborgen shortcut die power users elke dag gebruiken om hun voorspellingen te verbeteren. Mis deze kans niet.",
+  "body_paragraphs": [
+    "Ik was om 2 uur 's nachts bezig met het analyseren van een Bundesliga-wedstrijd, toen ik een patroon zag dat ik nog nooit had opgemerkt. Het zit verstopt in een functie die de meeste gebruikers nooit openen, maar de top 10% van onze power users zweren erbij. Het is geen rocket science, gewoon een slimme manier om de data te gebruiken die je al hebt.",
+    "De shortcut is simpel: voordat je een voorspelling opslaat, check je de 'Head-to-head' tab en combineer je dat met de 'Confidence score' van de AI. Kijk naar de laatste 5 wedstrijden, maar filter op thuis- en uitwedstrijden apart. Bijvoorbeeld: als de AI een 78% confidence geeft, maar de head-to-head data laat een 3-0 thuiswinst zien in de laatste ontmoeting, dan is de kans groot dat de AI een belangrijke factor over het hoofd ziet. Power users gebruiken dit om hun eigen analyses te verfijnen en waardevolle weddenschappen te vinden.",
+    "Dit is precies wat de AI Chat niet kan doen: het combineert menselijke intu\u00eftie met data. Open de app, ga naar een wedstrijd van vanavond, en probeer het zelf. Klik op 'Head-to-head', scrol naar beneden, en kijk naar de thuis-uit splitsing. Vergelijk dat met de confidence score. Je zult verrast zijn hoe vaak de AI een verkeerde inschatting maakt op basis van context.",
+    "Probeer het nu met de wedstrijd FC Barcelona vs Real Madrid. Open Predictify en check de head-to-head data. Je ziet meteen waarom power users dit geheim houden. P.S. Dit werkt het best voor derby's en play-off wedstrijden \u2014 de AI heeft moeite met de emotie in die wedstrijden."
+  ],
+  "cta_text": "Open Predictify en probeer de shortcut",
+  "email_number": 22,
+  "send_day": 50,
+  "type": "power_user_shortcut",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:25:07.340388"
+}

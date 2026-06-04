@@ -1,0 +1,16 @@
+{
+  "subject": "Bek\u00e4nnelsen: Jag byggde det h\u00e4r klockan 02",
+  "preview_text": "S\u00e5 h\u00e4r f\u00f6ddes den funktion som f\u00f6r\u00e4ndrade allt \u2013 en s\u00f6mnl\u00f6s natt och en galen id\u00e9.",
+  "body_paragraphs": [
+    "Klockan var 02:17 n\u00e4r id\u00e9n slog mig. Jag satt uppe med en kopp kallt kaffe, stirrade p\u00e5 en matchrapport fr\u00e5n en tysk tredjedivision och ins\u00e5g n\u00e5got: vi hade fel. Hela tiden. V\u00e5ra algoritmer var bra, men de missade det viktigaste \u2013 den m\u00e4nskliga faktorn. Det var d\u00e5 jag best\u00e4mde mig f\u00f6r att bygga n\u00e5got annorlunda.",
+    "Jag ville att AI:n inte bara skulle spotta ut siffror, utan f\u00f6rklara varf\u00f6r. Varf\u00f6r var ett lag med 30% bollinnehav favoriter? Varf\u00f6r satt en anfallare med 0.4 xG p\u00e5 b\u00e4nken? Det blev min grej: att klockan 02:00 varje natt gr\u00e4va djupare, testa nya variabler och se vad som h\u00e4nde om vi lade till spelares s\u00f6mnvanor eller resavst\u00e5nd.",
+    "Resultatet? Funktionen du ser som 'Djupanalys' i appen. Den som visar taktiska diagram och head-to-head-data som du inte hittar n\u00e5gon annanstans. Den byggdes p\u00e5 en s\u00f6mnl\u00f6s natt, med en k\u00e4nsla av att vi kunde g\u00f6ra b\u00e4ttre. Och det kan vi \u2013 om du v\u00e5gar lita p\u00e5 datan ist\u00e4llet f\u00f6r magk\u00e4nslan.",
+    "\u00d6ppna Predictify nu och kolla p\u00e5 en match du trodde du kunde. Klicka p\u00e5 'Djupanalys' och se vad siffrorna s\u00e4ger. Det kan f\u00f6r\u00e4ndra din syn p\u00e5 spelet. P.S. Jag har lagt till en ny confidence-score f\u00f6r de kommande Premier League-matcherna \u2013 kika in innan helgen."
+  ],
+  "cta_text": "\u00d6ppna Predictify och testa Djupanalys",
+  "email_number": 5,
+  "send_day": 9,
+  "type": "behind_the_scenes",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:23:01.132796"
+}

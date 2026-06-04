@@ -1,0 +1,16 @@
+{
+  "subject": "L'outil que j'ai cod\u00e9 \u00e0 3h du matin",
+  "preview_text": "Je ne comptais pas le partager, mais il change tout. Un aper\u00e7u exclusif pour toi.",
+  "body_paragraphs": [
+    "Il y a deux semaines, \u00e0 3h du matin, j'ai ouvert Xcode sans savoir ce que je cherchais. Juste l'id\u00e9e que notre moteur de volume m\u00e9ritait un geste plus silencieux. Un truc que j'avais en t\u00eate depuis un moment, mais jamais le temps de coder.",
+    "C'est devenu ceci : un mode qui ne fait qu'une chose \u2014 r\u00e9duire le bruit de fond des fichiers audio system-wide. Pas de curseur, pas d'\u00e9galiseur. Un seul bouton. Z\u00e9ro pub. Z\u00e9ro notification. \u00c7a s'applique automatiquement quand tu branches tes \u00e9couteurs, puis \u00e7a dispara\u00eet.",
+    "Je ne voulais pas le publier dans l'app. Trop brut, trop sp\u00e9cifique. Mais en le testant, j'ai vu des gens du groupe beta l'utiliser plus que le slider principal. Alors le voil\u00e0, en bonus cach\u00e9. Tu le trouves dans Param\u00e8tres \u2192 Audio avanc\u00e9 \u2192 Nettoyage silencieux.",
+    "Clique sur 'Volume Booster Pro' dans ton t\u00e9l\u00e9phone, va dans Audio avanc\u00e9, et active-le. Si tu ne le fais pas maintenant, tu oublieras. P.S. \u2014 Ce mode fonctionne m\u00eame en fond, sans interface. Exactement comme tu voulais que l'app se comporte depuis le d\u00e9but."
+  ],
+  "cta_text": "Ouvrir Volume Booster Pro",
+  "email_number": 16,
+  "send_day": 35,
+  "type": "surprise_bonus",
+  "app_name": "Volume Booster Pro",
+  "generated_at": "2026-06-04T06:21:56.635031"
+}

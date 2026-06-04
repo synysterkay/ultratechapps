@@ -1,0 +1,16 @@
+{
+  "subject": "Your 48-day streak is waiting",
+  "preview_text": "Something changed in Predictify since you left. A new AI feature that could shift your match predictions.",
+  "body_paragraphs": [
+    "You haven't opened Predictify in 48 days. In that time, our AI has analyzed 12,000 new matches across 50 leagues, and I've got a confession: the version you downloaded is now outdated. A major update landed last week that changes how you see every game.",
+    "The new AI Chat feature lets you ask any football question\u2014like 'What's the xG difference between Haaland and Mbappe?' or 'Which underdog has the best defensive stats this month?'\u2014and get an instant, data-backed answer. It's like having a stats guru in your pocket, and it's already helping fans spot value bets they missed before.",
+    "Since you left, we added confidence scores for every prediction, so you know exactly when the AI is sure\u2014and when it's not. Plus, our communities are buzzing with discussions on the latest Premier League upsets. The IQ Quiz leaderboard has a new champion, and your old streak is still there, waiting for you to beat it.",
+    "Open Predictify now and test the AI Chat with a question about your favorite team. PS: Your daily login streak is at zero days\u2014rebuild it today and earn free credits for premium insights."
+  ],
+  "cta_text": "Open Predictify Now",
+  "email_number": 21,
+  "send_day": 48,
+  "type": "comeback_trigger",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:24:53.321796"
+}

@@ -1,0 +1,16 @@
+{
+  "subject": "La funzione che ho costruito alle 3 di notte",
+  "preview_text": "Non avevo intenzione di condividerla, ma poi ho pensato che te la saresti meritato. Dentro c'\u00e8 qualcosa di grosso.",
+  "body_paragraphs": [
+    "L'altra notte non riuscivo a dormire. Stavo guardando le statistiche del prossimo turno di Champions e mi sono accorto che mancava qualcosa. Cos\u00ec, alle 3 del mattino, ho aperto il portatile e ho iniziato a scrivere codice. Non avevo intenzione di mostrarlo a nessuno, ma poi ho pensato: se lo uso io, forse pu\u00f2 servire anche a te.",
+    "Ho costruito un piccolo motore di confronto istantaneo. In pratica, selezioni una partita e l'IA ti mostra non solo il pronostico, ma anche come si \u00e8 comportata la stessa squadra nelle ultime 5 partite con condizioni simili: avversario, orario, stadio. \u00c8 come avere un secondo cervello che non dimentica mai nulla. L'ho chiamato \"Match Mirror\" e l'ho attivato per tutti gli utenti di Predictify, ma solo per le prossime 48 ore.",
+    "Apri l'app, vai alla scheda di una partita di Premier o Serie A, e troverai un nuovo pulsante: \"Confronto Mirror\". Toccalo e vedrai dati che non avevi mai visto prima. Percentuali di possesso, xG attesi, errori difensivi \u2014 tutto messo a confronto con il passato. \u00c8 un'arma segreta per chi vuole scommettere con la testa, non con il cuore.",
+    "Non lasciarlo scadere. Apri adesso Predictify e prova il Match Mirror sulla partita che preferisci. P.S. \u2014 Se vuoi avere questo strumento in modo permanente, dai un'occhiata all'abbonamento Premium. Costa 12,99$ al mese, ma hai 3 giorni gratis per testarlo. Non te ne pentirai."
+  ],
+  "cta_text": "Apri Predictify e prova Match Mirror",
+  "email_number": 16,
+  "send_day": 35,
+  "type": "surprise_bonus",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:24:20.202616"
+}

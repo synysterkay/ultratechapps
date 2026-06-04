@@ -1,0 +1,16 @@
+{
+  "subject": "Confesiune: am construit Predictify la 3 dimineata",
+  "preview_text": "O singura functie iti poate schimba total modul in care vezi meciurile. Deschide aplicatia acum si vezi cat de usor e.",
+  "body_paragraphs": [
+    "Stiu ca ai descarcat Predictify si probabil te intrebi ce facem diferit. Hai sa iti spun o poveste. Acum cateva luni, la 3 dimineata, stateam cu cafeaua langa mine si analizam datele unui meci de Premier League. Am realizat ca, desi aveam mii de variabile in fata, nu reuseam sa gasesc rapid ce conteaza cu adevarat. Asa mi-a venit ideea: un instrument care iti arata, in 30 de secunde, exact cat de sigur esti pe o predictie.",
+    "Ai simtit vreodata ca pariezi pe baza unui instinct, fara sa ai dovezi concrete? Sau ca ai pierdut o sansa buna pentru ca nu ai avut timp sa studiezi meciul? Exact asta am vrut sa rezolv. Am construit Predictify pentru ca am obosit sa vad oameni pierzand bani pe predictii gresite, cand datele erau acolo, dar greu de accesat.",
+    "In aplicatie, exista o singura functie care iti ofera valoare imediata: Confidence Score. Pentru fiecare meci, AI-ul meu analizeaza mii de variabile (xG, posesie, istoric head-to-head, forta defensiva) si iti spune cat de sigur e de rezultat. Nu mai trebuie sa ghice\u0219ti. Deschide aplicatia, alege un meci din Premier League sau Champions League si vezi scorul de incredere. Dureaza 30 de secunde.",
+    "Deschide Predictify acum si verifica primul tau meci. Alege unul din lista de astazi si uita-te la Confidence Score. P.S. Daca vrei sa vezi toate predictiile fara limita, incearca varianta Premium cu 3 zile gratuite. E 12.99 dolari pe luna, dar merita pentru datele complete."
+  ],
+  "cta_text": "Deschide Predictify",
+  "email_number": 1,
+  "send_day": 0,
+  "type": "welcome_quick_win",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:22:30.526294"
+}

@@ -1,0 +1,16 @@
+{
+  "subject": "U\u017cytkownik o 3:00 znalaz\u0142 co\u015b, czego nie przewidzia\u0142em",
+  "preview_text": "Nie spodziewa\u0142em si\u0119, \u017ce kto\u015b u\u017cyje Predykty w ten spos\u00f3b. To zmieni\u0142o wszystko.",
+  "body_paragraphs": [
+    "O 3:00 w nocy dosta\u0142em wiadomo\u015b\u0107 od u\u017cytkownika z Polski. Napisa\u0142: \"Sprawdzi\u0142em, ile razy AI si\u0119 myli\u0142o w derbach Mediolanu. Wynik? 12 b\u0142\u0119d\u00f3w na 20 mecz\u00f3w. To zmieni\u0142o moje typy na zawsze.\" Nie spodziewa\u0142em si\u0119, \u017ce kto\u015b u\u017cyje Predykty w ten spos\u00f3b.",
+    "On nie szuka\u0142 typ\u00f3w na dzi\u015b. On testowa\u0142 AI, jakby to by\u0142 przeciwnik w szachach. Zacz\u0105\u0142 od sprawdzenia naszych statystyk dla konkretnych derb\u00f3w, potem dla ca\u0142ej Serie A. Znalaz\u0142 wz\u00f3r: AI ma 67% trafie\u0144 w meczach, gdzie r\u00f3\u017cnica w xG jest mniejsza ni\u017c 0.3. Dla niego to by\u0142 klucz do obstawiania remis\u00f3w.",
+    "To jest sedno: nie musisz \u015blepo ufa\u0107 predykcjom. Mo\u017cesz wej\u015b\u0107 w szczeg\u00f3\u0142y ka\u017cdego meczu, zobaczy\u0107 histori\u0119 trafie\u0144 AI dla danej ligi, por\u00f3wna\u0107 z w\u0142asn\u0105 wiedz\u0105. Funkcja \"AI Chat\" pozwala zada\u0107 pytanie: \"Ile razy AI mia\u0142o racj\u0119 w Premier League przy 80% pewno\u015bci?\" Odpowied\u017a? 89%.",
+    "Otw\u00f3rz Predykty i wejd\u017a w dowolny mecz. Kliknij w \"Szczeg\u00f3\u0142y AI\" i zobacz, jak cz\u0119sto nasze modele trafiaj\u0105 w tej lidze. P.S. Je\u015bli znajdziesz lig\u0119, gdzie AI ma poni\u017cej 60% trafie\u0144, daj zna\u0107 \u2014 to najszybszy spos\u00f3b, by ulepszy\u0107 nasze algorytmy."
+  ],
+  "cta_text": "Sprawd\u017a histori\u0119 trafie\u0144 AI",
+  "email_number": 25,
+  "send_day": 58,
+  "type": "unexpected_use_case",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:25:30.801846"
+}

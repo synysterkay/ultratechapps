@@ -1,0 +1,16 @@
+{
+  "subject": "Your 45-day racing report is ready",
+  "preview_text": "See how your picks stack up vs AI. Plus a surprise for the sharpest among us.",
+  "body_paragraphs": [
+    "You've been in the saddle for 45 days. That's enough time to know if you're backing winners or just guessing. Here's the thing: most users at this point either become obsessed or drift off. But you're still here, and that means you're one of the few who truly wants to win.",
+    "We've been tracking every pick you've made. Every race you've analyzed. The AI sees patterns you don't\u2014like how your best win rate comes on wet tracks at 3PM, or how you consistently overlook longshots that the model flags at 60%+ confidence. This isn't a gimmick. It's your edge.",
+    "Open the app now and check your Personal Performance Dashboard. It's under the 'My Stats' tab. You'll see your win rate, average odds, and a customized 'Next Best Bet' based on your history. It's like having a private handicapper who knows your style.",
+    "Click below to see your report. P.S. The top 10% of users by accuracy this month get a free week of Premium\u2014no strings attached. Check your inbox tomorrow if you're on the list."
+  ],
+  "cta_text": "Open Predictify: Horse Racing AI",
+  "email_number": 20,
+  "send_day": 45,
+  "type": "loyalty_farewell",
+  "app_name": "Predictify: Horse Racing AI",
+  "generated_at": "2026-06-04T06:26:30.859220"
+}

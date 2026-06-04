@@ -1,0 +1,16 @@
+{
+  "subject": "A pessoa que precisa ouvir isso",
+  "preview_text": "Voc\u00ea conhece algu\u00e9m que sofre com o volume baixo. Esse e-mail \u00e9 sobre ela.",
+  "body_paragraphs": [
+    "Voc\u00ea tem aquela pessoa que sempre reclama que o som do fone n\u00e3o passa do 70%? Ou que vive pedindo pra repetir o que voc\u00ea disse porque o \u00e1udio do v\u00eddeo t\u00e1 baixo? Pois \u00e9. Voc\u00ea sabe exatamente quem \u00e9.",
+    "Essa pessoa provavelmente j\u00e1 tentou de tudo \u2014 aumentar o volume no app, no sistema, at\u00e9 no equalizador padr\u00e3o. E no fim, o som continua baixo e distorcido. O que ela precisa n\u00e3o \u00e9 de mais for\u00e7a no slider, \u00e9 de um app que entenda de \u00e1udio de verdade.",
+    "O Loudify faz exatamente isso: +200% de volume sem distorcer, e o AutoEQ que ajusta o som pros fones dela automaticamente. N\u00e3o \u00e9 m\u00e1gica, \u00e9 engenharia de som que cabe no bolso. E o melhor: o Sound DNA mostra, toda semana, como ela t\u00e1 ouvindo \u2014 um relat\u00f3rio que vira um h\u00e1bito.",
+    "Abre o app agora e toca no bot\u00e3o de compartilhar. Manda pra essa pessoa. P.S.: Ela vai te agradecer depois de ouvir a primeira m\u00fasica limpa e alta \u2014 sem pedir desculpa pelo volume."
+  ],
+  "cta_text": "Compartilhar com algu\u00e9m",
+  "email_number": 26,
+  "send_day": 60,
+  "type": "referral_trigger",
+  "app_name": "Loudify",
+  "generated_at": "2026-06-04T06:21:17.327287"
+}

@@ -1,0 +1,16 @@
+{
+  "subject": "The 6AM workflow top users swear by",
+  "preview_text": "How the top 1% of Predictify users set up their predictions before breakfast\u2014and why it works.",
+  "body_paragraphs": [
+    "I noticed something weird while digging into our data last week. The top 1% of Predictify users\u2014the ones who nail predictions consistently\u2014all do the same thing before 6AM. They don't check headlines, gut feelings, or even their favorite pundit's hot takes. They open the app, scan one specific screen, and lock in their bets before the coffee's brewed.",
+    "Here's the move: they start with the AI confidence scores for the day's biggest matchups. Not the obvious ones, either. They filter by leagues they ignore\u2014like the Brazilian Serie A or the Belgian Pro League\u2014where the AI finds value gaps the market misses. Last week, that led to a 67% confidence call on a mid-table clash that paid out 3x. The data doesn't lie.",
+    "This is exactly why we built the workflow tab inside Predictify. It's tucked under the 'My Predictions' screen, but power users pin it to their home screen. It shows you the top 5 matches ranked by confidence score, updated daily at 5AM. No fluff, no noise\u2014just the numbers that beat the bookies. You can set it up in 10 seconds: swipe left, tap the star icon, and it's there every morning.",
+    "Open Predictify now and check your workflow tab. If you don't see it, go to settings and toggle 'Morning Briefing' on. That's it.\n\nP.S. The 1% also use the IQ Quiz to sharpen their instincts\u2014test yours against the AI today. It's free, and the leaderboard resets tomorrow."
+  ],
+  "cta_text": "Open Predictify",
+  "email_number": 10,
+  "send_day": 21,
+  "type": "pro_workflow",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:23:30.606105"
+}

@@ -1,0 +1,16 @@
+{
+  "subject": "Your thesis is still waiting at 2AM",
+  "preview_text": "We added something new since you last opened the app. Open it and see what changed.",
+  "body_paragraphs": [
+    "Remember that feeling of staring at a blank page at 2AM, deadline panic creeping in? That's exactly when 90% of our users finally open Thesis Generator and get their thesis done in 10 minutes flat. But you haven't opened it in a while, and something changed since you last did.",
+    "We rolled out a new feature that auto-generates graphs, tables, and citations from your thesis draft\u2014no extra work. It's like having a research assistant who never sleeps. Plus, we updated our AI humanizer to bypass Turnitin and GPTZero even better, so you can submit with confidence.",
+    "Open the app now and check out the new 'Quick Graph' button in your draft editor. It turns your data into a polished chart in seconds, ready to export to PDF. No extra steps, no waiting.",
+    "Tap the button below to open Thesis Generator and see what's new. P.S. Your last draft is still saved\u2014just hit 'Open Draft' and you're back in action."
+  ],
+  "cta_text": "Open Thesis Generator",
+  "email_number": 21,
+  "send_day": 48,
+  "type": "comeback_trigger",
+  "app_name": "Thesis Generator",
+  "generated_at": "2026-06-04T06:14:03.995127"
+}

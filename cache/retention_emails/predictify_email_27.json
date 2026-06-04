@@ -1,0 +1,16 @@
+{
+  "subject": "The 10,000 user shocker",
+  "preview_text": "We analyzed 10,000 users and found something shocking. The best predictors share one simple habit.",
+  "body_paragraphs": [
+    "Here's the thing. We crunched the numbers from 10,000 Predictify users over the last 63 days, and one pattern jumped out like a red card at a derby. The ones who hit 70%+ on their predictions didn't just rely on gut. They did one thing before every match.",
+    "It's not about more data. It's about the right data at the right time. These users checked the AI's confidence score for the match, then cross-referenced it with the head-to-head stats. That combo alone boosted their accuracy by 23%. No tipster, no insider info. Just the app.",
+    "Here's the feature that separates the pros from the punters: the pre-match insights card. It loads in 3 seconds and shows you the AI's top 3 variables for the upcoming game \u2014 like xG differential or defensive gaps from the last 5 matches. Open Predictify now, tap any match, and swipe left to see your edge.",
+    "Stop guessing. Start knowing. Open the app and check the confidence score on your next match. P.S. \u2014 The top 3 users in the IQ Quiz this week all use this feature. Don't get left behind."
+  ],
+  "cta_text": "Open Predictify",
+  "email_number": 27,
+  "send_day": 63,
+  "type": "data_insight",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:25:40.113871"
+}

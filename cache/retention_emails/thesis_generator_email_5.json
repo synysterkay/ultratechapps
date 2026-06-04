@@ -1,0 +1,16 @@
+{
+  "subject": "The 2AM mistake that changed everything",
+  "preview_text": "I accidentally built our most-used feature while half-asleep. Here's the real story.",
+  "body_paragraphs": [
+    "It was 2AM. I had a 10-page paper due in 8 hours and my brain was fried. I'd been staring at a blank screen for three hours, chugging coffee, and my thesis statement was still garbage. I typed something so bad I laughed out loud \u2014 then accidentally hit 'enter' on a test script I'd been coding for weeks.",
+    "That script did something weird: it took my half-formed idea and turned it into a solid argument. Not perfect, but good enough to stop the panic. I submitted it, got an A-, and realized I'd stumbled onto something. The next morning, I cleaned up the code and named it 'Instant Thesis' \u2014 now the most-used feature in the app.",
+    "I built Thesis Generator for that exact 2AM moment \u2014 when you're out of time and your brain won't cooperate. Open the app right now and tap 'Instant Thesis.' Drop in a topic, any topic, and watch it generate a strong, citation-ready thesis in under 10 seconds. No staring, no second-guessing.",
+    "You already have the app. Just open it and try one thesis. That's it. P.S. \u2014 The humanize feature was born the same week, after I got flagged by Turnitin. Tap the 'Humanize' button after your thesis is ready \u2014 it rewrites your text to sound like you actually wrote it at 2PM."
+  ],
+  "cta_text": "Open Thesis Generator",
+  "email_number": 5,
+  "send_day": 9,
+  "type": "behind_the_scenes",
+  "app_name": "Thesis Generator",
+  "generated_at": "2026-06-04T06:13:40.609002"
+}

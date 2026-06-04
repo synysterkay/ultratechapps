@@ -1,0 +1,16 @@
+{
+  "subject": "The 2AM mistake that changed everything",
+  "preview_text": "Bir gece yar\u0131s\u0131 kodu yazarken yapt\u0131\u011f\u0131m hata, uygulaman\u0131n en sevilen \u00f6zelli\u011fini do\u011furdu. \u0130\u015fte ger\u00e7ek hikaye.",
+  "body_paragraphs": [
+    "Saat gece 2'ydi. G\u00f6zlerim ekrana kilitlenmi\u015f, bir ma\u00e7\u0131n binlerce de\u011fi\u015fkenini analiz eden bir algoritma yazmaya \u00e7al\u0131\u015f\u0131yordum. Ama bir sat\u0131r kodu yanl\u0131\u015f yazd\u0131m. Sonu\u00e7? Algoritma, tahminleri tam tersine \u00e7evirdi. Normalde sinirlenirdim ama bu hata bana bir \u015fey g\u00f6sterdi: Bazen verilerin s\u00f6yledi\u011fiyle, hislerin s\u00f6yledi\u011fi tamamen farkl\u0131 olabiliyor.",
+    "O hatay\u0131 d\u00fczeltmek yerine, onu bir \u00f6zelli\u011fe d\u00f6n\u00fc\u015ft\u00fcrmeye karar verdim. \u0130\u015fte o gece, Predictify'nin 'G\u00fcven Skoru' do\u011fdu. Her tahminin arkas\u0131ndaki y\u00fczdeyi g\u00f6r\u00fcyorsun ya i\u015fte o, 2AM'deki bir hatan\u0131n \u00fcr\u00fcn\u00fc. \u00c7\u00fcnk\u00fc ger\u00e7ek \u015fu: Futbol tahmini yaparken hi\u00e7bir \u015fey %100 kesin de\u011fil. Ama veriler, ne zaman risk alman gerekti\u011fini s\u00f6yleyebilir.",
+    "\u015eimdi uygulamada bir ma\u00e7a bak. Mesela bu hafta sonu Galatasaray-Fenerbah\u00e7e derbisi. G\u00fcven Skoru'nun yan\u0131nda bir y\u00fczde g\u00f6receksin. O say\u0131, binlerce de\u011fi\u015fkenin analizinden sonra AI'n\u0131n ne kadar emin oldu\u011funu g\u00f6steriyor. E\u011fer %70 \u00fcst\u00fcyse, o tahmin ciddiye al\u0131nmay\u0131 hak ediyor. %50'nin alt\u0131ndaysa, belki de kendi i\u00e7g\u00fcd\u00fclerine g\u00fcvenmelisin.",
+    "A\u00e7 Predictify'yi, \u015fu anki ma\u00e7lardan birinin G\u00fcven Skoru'na bak. Ka\u00e7ta ka\u00e7? E\u011fer %80'in \u00fcst\u00fcndeyse, o ma\u00e7\u0131 izlerken ekstra dikkatli ol. \u00c7\u00fcnk\u00fc veriler bazen en b\u00fcy\u00fck s\u00fcrprizi saklar. P.S. Premium \u00fcyeler, sadece %80 \u00fcst\u00fc tahminleri filtreleyip g\u00f6rebiliyor. Denemek istersen, 3 g\u00fcnl\u00fck \u00fccretsiz deneme seni bekliyor."
+  ],
+  "cta_text": "\u015eimdi A\u00e7 ve G\u00fcven Skorunu G\u00f6r",
+  "email_number": 5,
+  "send_day": 9,
+  "type": "behind_the_scenes",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:22:56.815545"
+}

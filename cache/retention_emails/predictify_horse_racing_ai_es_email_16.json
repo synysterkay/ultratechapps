@@ -1,0 +1,16 @@
+{
+  "subject": "El secreto que guarde hasta hoy",
+  "preview_text": "No planeaba compartir esto, pero vi algo en los datos del fin de semana que me obligo a hacerlo.",
+  "body_paragraphs": [
+    "La semana pasada, a las 3 de la manana, estaba revisando las carreras del sabado y algo no cuadraba. Los datos de pista, el viento, el peso de los jinetes... todo apuntaba a un patron que nadie mas ha visto. Decidi construir algo en secreto, solo para mi, pero luego pense en ti.",
+    "Resulta que combinando la velocidad promedio de los ultimos 5 largos con la condicion del pasto (seca o pesada), el modelo predice un 23% mas de exactitud en carreras de 5 a 7 furlongs. No es un tip cualquiera: es un filtro que te ahorra horas de formularios y te da la jugada mas solida del dia.",
+    "Lo llame el bonus oculto. Esta en la seccion de analisis profundo de cada carrera, justo debajo del puntaje de confianza. Toca el icono de ojo y se despliega un grafico que compara el rendimiento del caballo en condiciones similares. No lo tenia previsto lanzarlo hasta el mes que viene, pero tu eres de los primeros en verlo.",
+    "Abre la app ahora, busca cualquier carrera de hoy y prueba el bonus oculto. Te prometo que no es humo. PD: Si ves un patron raro en los datos, me escribes. Esto es solo el comienzo de algo mas grande, y quiero que estes dentro."
+  ],
+  "cta_text": "Abrir Predictify: Horse Racing AI y probar el bonus",
+  "email_number": 16,
+  "send_day": 35,
+  "type": "surprise_bonus",
+  "app_name": "Predictify: Horse Racing AI",
+  "generated_at": "2026-06-04T06:26:29.681917"
+}

@@ -1,0 +1,16 @@
+{
+  "subject": "Your 45-day streak is waiting",
+  "preview_text": "You've been part of Predictify for 45 days. Here's what the power users do next.",
+  "body_paragraphs": [
+    "You've been with us for 45 days. That's not a new user anymore\u2014that's a scout who's been in the stands long enough to spot patterns the crowd misses. You've seen the AI break down xG, defensive strength, and head-to-head history. You've stopped guessing and started knowing. Now, it's time to shift from fan to ambassador.",
+    "The fans who get the most out of Predictify don't just check predictions. They build streaks, climb the IQ leaderboard, and vote on the Prediction of the Day in their community. They turn data into bragging rights. You've already got the foundation. The next chapter is about proving your football IQ and helping others see the game the way you do.",
+    "Open the app today. Go to the IQ Quiz and challenge yourself against the AI\u2014your current score is the baseline. Then, hit the Communities tab and vote on the latest POTD. That's where the smartest fans in the room hang out, and you belong there.",
+    "One clear action: Open Predictify, take the IQ Quiz, and share your score in a community chat. P.S. The user with the highest IQ score this week gets a free month of Premium. Your move."
+  ],
+  "cta_text": "Open Predictify",
+  "email_number": 20,
+  "send_day": 45,
+  "type": "loyalty_farewell",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:24:45.422020"
+}

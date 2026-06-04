@@ -1,0 +1,17 @@
+{
+  "subject": "The feature we built at 2AM",
+  "preview_text": "A quiet improvement you didn't ask for, but will use every day. Here's what's coming next.",
+  "body_paragraphs": [
+    "Last Tuesday, at 2AM, I was testing Volume Booster Pro with a podcast. No ads. No notifications. Just the slider. And I realized something was missing.",
+    "Not a bug. Not a crash. But a small gap in the experience \u2014 the kind you only notice when everything else is already perfect. So I built a fix that night.",
+    "Next update, you'll see it: a new 'Auto-Mute on Call' toggle that silences volume boost the second your phone rings. No more fumbling mid-conversation. It's the kind of feature you forget you need until you use it.",
+    "Open the app now and check Settings. The toggle isn't live yet, but the foundation is there. Try the slider. Feel the calm. And when the update drops, you'll know why we built it at 2AM.",
+    "P.S. \u2014 Premium users get early access to this feature. You're already on the list."
+  ],
+  "cta_text": "Open Volume Booster Pro",
+  "email_number": 19,
+  "send_day": 42,
+  "type": "sneak_peek",
+  "app_name": "Volume Booster Pro",
+  "generated_at": "2026-06-04T06:22:00.390490"
+}

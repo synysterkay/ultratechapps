@@ -1,0 +1,16 @@
+{
+  "subject": "The setup you skipped on Day 1",
+  "preview_text": "Most users tap 'Skip' on this screen. Here's what they miss.",
+  "body_paragraphs": [
+    "You downloaded Loud EQ yesterday. Probably tapped 'Skip' on the Sound DNA setup. Most people do. Figured you'd come back later. But here's the thing\u2014that one screen is the whole reason the app works.",
+    "Sound DNA is the feature that tunes your EQ around your specific headphones. Not generic presets. It listens to how your earbuds handle bass, mids, treble. Then it optimizes every song, podcast, or call so you hear everything clearly\u2014even on a noisy train or with the volume halfway up.",
+    "It takes 30 seconds. Plug in your headphones, tap 'Analyze', and your profile saves automatically. Next time you're on the commute, Loud EQ adjusts without you thinking about it. No distortion. No straining. Just clear audio where it matters.",
+    "Open Loud EQ and run Sound DNA now. It's hidden in the Settings tab. P.S. Premium users get unlimited profiles\u2014one for your AirPods, one for your car, one for your wired buds. The free version saves one. Pick wisely."
+  ],
+  "cta_text": "Run Sound DNA now",
+  "email_number": 2,
+  "send_day": 2,
+  "type": "hidden_feature",
+  "app_name": "Loud EQ",
+  "generated_at": "2026-06-04T06:19:20.385648"
+}

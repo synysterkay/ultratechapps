@@ -1,0 +1,16 @@
+{
+  "subject": "Confession: I built this at 2AM",
+  "preview_text": "The real reason behind our chart analyzer feature \u2014 and why it works at 3am.",
+  "body_paragraphs": [
+    "It was 2AM, and I was staring at a crypto chart with that familiar pit in my stomach. I'd just watched a coin rip 20% after ignoring my own rules, chasing a tweet from a guy with a Lambo avatar. Sound familiar? That night, I realized: retail traders don't need more data. They need a filter that cuts through the noise \u2014 something that tells you, 'This is the move, or this isn't.'",
+    "So I built it. Not for a VC deck or a product roadmap. Just for me, at my desk, after one too many FOMO buys. The first version was a mess of APIs and coffee stains, but it worked: upload a chart, get a clean verdict \u2014 entry, stop, target, confidence. No hype, no bias. Just math and signal.",
+    "That 2AM experiment became Crypto AI's core feature: upload any chart screenshot and get an AI verdict in seconds. It's like having a calm trading desk in your pocket, one that never chases pumps or panics at dips. It's the voice I needed that night \u2014 and it's waiting for you.",
+    "Open the app, upload your most recent chart, and see the verdict. P.S. \u2014 the AI is especially sharp on low-cap altcoins right now, where Twitter noise is loudest."
+  ],
+  "cta_text": "Upload your chart now",
+  "email_number": 5,
+  "send_day": 9,
+  "type": "behind_the_scenes",
+  "app_name": "Crypto AI: Trading Analyzer",
+  "generated_at": "2026-06-04T06:26:44.838611"
+}

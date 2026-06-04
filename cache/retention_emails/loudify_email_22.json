@@ -1,0 +1,16 @@
+{
+  "subject": "The 2AM shortcut power users swear by",
+  "preview_text": "There's a hidden workflow in Loudify that makes your headphones sound insane. Most people never find it. You will.",
+  "body_paragraphs": [
+    "Power users have a secret. It's not in the settings menu. It's not an EQ preset they found on Reddit. It's a two-tap workflow that rewrites the entire sound of your headphones \u2014 and Loudify never tells you about it.",
+    "Here's how it works: instead of opening the app, picking a profile, and adjusting the boost manually, they use a gesture that only shows up after you've tuned your headphones at least three times. Once you do, a hidden 'Quick Tune' icon appears in your notification shade. One tap loads your last-used AutoEQ preset. A second tap toggles between Music and Podcast mode. That's it. No app open. No scrolling. No thinking.",
+    "Why does this matter? Because 90% of the time, you just want to plug in and hear it clean \u2014 without the friction of remembering your settings. Quick Tune remembers for you. It's the difference between fumbling with sliders and just hearing it right.",
+    "Here's what I want you to do: Open Loudify, go to your AutoEQ presets, and tap any headphone model three times in a row. Watch what happens. Then use Quick Tune for the rest of the week. You'll never go back. P.S. This only works for Premium users \u2014 but if you're on the free trial, it works until it expires. Don't waste it."
+  ],
+  "cta_text": "Open Loudify now",
+  "email_number": 22,
+  "send_day": 50,
+  "type": "power_user_shortcut",
+  "app_name": "Loudify",
+  "generated_at": "2026-06-04T06:21:07.568548"
+}

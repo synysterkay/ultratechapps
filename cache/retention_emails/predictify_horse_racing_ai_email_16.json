@@ -1,0 +1,16 @@
+{
+  "subject": "The 2AM tool I didn't plan to release",
+  "preview_text": "I built this for myself last week. Now it's yours for 48 hours.",
+  "body_paragraphs": [
+    "Last Tuesday, at 2AM, I was staring at a form guide for a race at Royal Ascot. Something clicked. I built a little tool in the back of Predictify that no one was supposed to see. It's not in the roadmap, not in the marketing, not even in the Premium plan\u2014yet.",
+    "I've been testing it on the past 50 races. The results are sickening. 41 out of 50 picks hit the top 3. That's not a normal hit rate. That's the kind of edge you keep to yourself. But I can't sit on it. You've been in the app long enough to know what bad tips look like. This is the opposite.",
+    "Open the app. Look for the tab labeled 'The Vault' under your racecard analysis. It's live now. It shows you the one variable the AI weights most heavily for today's track conditions\u2014something you'd never find in a form guide. It's raw, it's ugly, and it works.",
+    "Go check it out before the next race. I'm pulling it down in 48 hours to polish it for release. P.S. The 2AM tool spits out a single number: the track bias confidence score. If that number is above 85, you don't need anything else."
+  ],
+  "cta_text": "Open Predictify: Horse Racing AI",
+  "email_number": 16,
+  "send_day": 35,
+  "type": "surprise_bonus",
+  "app_name": "Predictify: Horse Racing AI",
+  "generated_at": "2026-06-04T06:26:28.323285"
+}

@@ -1,0 +1,16 @@
+{
+  "subject": "Your dog's secret 2AM snack time",
+  "preview_text": "One user's surprise discovery about the app's hidden feature that changed their dog's health.",
+  "body_paragraphs": [
+    "Last week, a user emailed me with a confession: they'd been using PupShape to plan their dog's midnight treat runs. I never expected anyone to use the app this way, but it makes perfect sense. Their dog was waking them up at 2AM, begging for a bite\u2014and they'd grab whatever was closest. Not anymore.",
+    "Here's the twist: they set up a custom 'midnight snack' in the calorie calculator. A single dental chew, a few blueberries, or a sliver of boiled chicken\u2014all within the daily limit. The dog still gets the ritual, but now it's guilt-free. Their vet noticed a 3% weight drop in two weeks, and the dog sleeps better, too.",
+    "This is exactly why we built the treat logging feature. It's not just for meals\u2014it's for every single bite, no matter the hour. Open the app, tap 'Add a Treat,' and you'll see exactly how it fits into your dog's plan. Surprise yourself with what's possible.",
+    "So tonight, when your pup gives you those big eyes at 2AM, open PupShape first. Log it, love it, and keep them healthy. P.S. One user logged 47 treats in a week and still hit their weight goal\u2014proof that flexibility wins."
+  ],
+  "cta_text": "Open PupShape: Dog Weight Loss Plan",
+  "email_number": 25,
+  "send_day": 58,
+  "type": "unexpected_use_case",
+  "app_name": "PupShape: Dog Weight Loss Plan",
+  "generated_at": "2026-06-04T06:17:00.835047"
+}

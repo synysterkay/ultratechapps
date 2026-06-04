@@ -1,0 +1,16 @@
+{
+  "subject": "Der 3-Uhr-Morgen-Fehler, der alles ver\u00e4nderte",
+  "preview_text": "Wie ein User durch einen Zufall die versteckte Funktion entdeckte, die seine gesamte Strategie revolutionierte.",
+  "body_paragraphs": [
+    "Es war 3 Uhr morgens, und ein User aus Berlin hatte schon wieder eine falsche Vorhersage getroffen. Er war frustriert, kurz davor, die App zu l\u00f6schen. Aber dann klickte er versehentlich auf einen Button, den er noch nie bemerkt hatte.",
+    "Was er entdeckte, war kein Zufall: eine Funktion, die tausende Variablen pro Spiel analysiert \u2013 und ihm eine Confidence Score von 87% f\u00fcr ein Underdog-Spiel gab. Seitdem hat er 14 von 16 Wetten gewonnen. Kein Bauchgef\u00fchl mehr, nur noch Daten.",
+    "Die Rede ist von der 'Deep Dive'-Analyse in Predictify. Klicke auf ein beliebiges Spiel und dann auf 'Taktische Analyse'. Sieh dir xG, Defensivst\u00e4rke und Head-to-Head-Daten an, die die KI in Sekunden berechnet. Die meisten User \u00fcberspringen diesen Tab \u2013 aber genau hier liegen die Gewinner.",
+    "\u00d6ffne Predictify jetzt und checke das n\u00e4chste Premier-League-Spiel mit der Deep Dive-Analyse. Du wirst sehen, warum dieser User nie wieder r\u00e4t. P.S.: Premium-User sehen zus\u00e4tzlich exklusive Confidence-Scores und erweiterte Statistiken \u2013 der 3-Tage-Test ist kostenlos."
+  ],
+  "cta_text": "Jetzt Deep Dive \u00f6ffnen",
+  "email_number": 12,
+  "send_day": 25,
+  "type": "feature_deep_dive",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:23:47.038685"
+}

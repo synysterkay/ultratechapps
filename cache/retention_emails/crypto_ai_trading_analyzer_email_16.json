@@ -1,0 +1,16 @@
+{
+  "subject": "The 3am graph you weren't supposed to see",
+  "preview_text": "I built a hidden signal overlay for one specific chart pattern. It's live now, but only if you open the app.",
+  "body_paragraphs": [
+    "Last week at 3am, I was testing a new signal overlay on a random BTC chart. I didn't plan to show anyone. But the result was so clean\u2014entry, stop, target, all lined up\u2014I saved it. Then I built it into the app.",
+    "This isn't a feature we advertised. It's a surprise bonus for traders who actually open the app and look. It's a multi-source signal stack that filters out the noise on volatile patterns\u2014the kind that usually trigger FOMO or panic sells. I wanted to see if pure data could beat gut instinct on a 1-minute chart. It did.",
+    "Here's what I did: I took the same multi-source engine that powers our Premium analysis and tuned it for one specific setup\u2014breakouts from tight ranges on low timeframes. The result is an overlay that shows you the AI's confidence in real time, not after the move. No hype, just a number. You can see it right now in the 'Smart Alerts' section\u2014just open any chart screenshot and tap the new 'Signal Boost' toggle.",
+    "Go open the app and upload any chart screenshot you're watching. Hit the 'Signal Boost' toggle in the analysis screen. See if the AI's verdict matches your gut. If it does, you just saved hours of screen time. If it doesn't, you learned something. P.S. This overlay will disappear in 48 hours if no one uses it. I'm not sure I'll keep it\u2014but for now, it's yours."
+  ],
+  "cta_text": "Open Crypto AI: Trading Analyzer",
+  "email_number": 16,
+  "send_day": 35,
+  "type": "surprise_bonus",
+  "app_name": "Crypto AI: Trading Analyzer",
+  "generated_at": "2026-06-04T06:26:49.382470"
+}

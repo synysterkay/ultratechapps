@@ -1,0 +1,16 @@
+{
+  "subject": "Il bug delle 3 di notte che abbiamo sistemato",
+  "preview_text": "Avevamo un problema con la timeline dei ricordi. Ora \u00e8 pi\u00f9 bella che mai.",
+  "body_paragraphs": [
+    "Tre giorni fa, alle 3 di notte, mentre ero in preda a un attacco di caffeina e perfezionismo, ho scoperto un bug nella timeline dei ricordi. Non era un bug grave \u2014 niente crash o dati persi \u2014 ma era subdolo. Ogni tanto, quando aggiungevi una foto dopo una cena speciale, la data veniva registrata con un giorno di ritardo. Un dettaglio minuscolo, ma per me era inaccettabile.",
+    "Ho passato due ore a scovare il problema. Alla fine l'ho trovato: un errore in una riga di codice che mescolava i fusi orari. Ora \u00e8 stato corretto, e la tua timeline dei ricordi \u00e8 finalmente perfetta. Ogni foto, ogni nota, ogni momento speciale sar\u00e0 al posto giusto, senza stranezze.",
+    "So che forse non hai aperto l'app da un po', e va bene cos\u00ec. Ma ora c'\u00e8 qualcosa di nuovo: la timeline \u00e8 pi\u00f9 fluida, veloce e \u2014 soprattutto \u2014 precisa. Puoi rivedere la vostra storia, aggiungere le foto che avevi dimenticato e vedere il vostro percorso come non l'hai mai visto prima. \u00c8 come avere un diario segreto che cresce con voi, senza errori.",
+    "Apri l'app e dai un'occhiata alla vostra timeline. Potresti trovare un ricordo che avevi quasi dimenticato. P.S. \u2014 Se non hai ancora provato la modalit\u00e0 'Tonight's Date', \u00e8 il momento giusto: scegli un mood, e il vostro appuntamento \u00e8 pronto in 30 secondi. Non serve altro."
+  ],
+  "cta_text": "Apri SoulPlan: Plan Dates Together",
+  "email_number": 21,
+  "send_day": 48,
+  "type": "comeback_trigger",
+  "app_name": "SoulPlan: Plan Dates Together",
+  "generated_at": "2026-06-04T06:16:10.157632"
+}

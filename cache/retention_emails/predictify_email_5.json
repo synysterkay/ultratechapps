@@ -1,0 +1,16 @@
+{
+  "subject": "The 2AM mistake that changed everything",
+  "preview_text": "I was half-asleep, coding a feature that would redefine how you see match predictions. Here's the real story.",
+  "body_paragraphs": [
+    "It was 2AM. I was on my third coffee, staring at a screen full of football data, trying to fix a bug that kept spitting out wrong scores. Frustrated, I accidentally coded a logic error that swapped home and away stats for a Barcelona vs Real Madrid simulation. The result? A 4-1 prediction that everyone laughed at\u2014until the actual match ended 4-1. That moment, I realized gut feeling isn't enough; data, even when flawed, can uncover truths we miss.",
+    "That bug became the backbone of Predictify's AI. I spent the next week refining that mistake, teaching the system to analyze thousands of variables per match\u2014xG, defensive shape, even weather patterns. Now, when you see a prediction with a 59% confidence score for RB Bragantino vs Internacional, it's because the AI has already tested a hundred wrong paths to give you the right one. This isn't a gimmick; it's a tool built by someone who's been burned by bad tips too.",
+    "Open Predictify and check the AI Chat. Ask it 'Why is Atletico Madrid underperforming?' or 'What's the tactical weakness in Liverpool's midfield?' You'll get the same data-backed reasoning I use to build the confidence scores you see on every match. This feature exists because I wanted every fan to have a second brain\u2014one that's awake at 2AM, analyzing while you sleep.",
+    "So here's your move: open the app, tap AI Chat, and ask a question that's been bugging you. See the data behind the answer. Then, check the confidence score on tonight's matches. You'll feel what I felt that night\u2014the shift from guessing to knowing. P.S. The 4-1 prediction? It wasn't a fluke. The AI now flags when home and away stats are reversed\u2014a lesson I learned the hard way."
+  ],
+  "cta_text": "Open Predictify",
+  "email_number": 5,
+  "send_day": 9,
+  "type": "behind_the_scenes",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:22:54.300946"
+}

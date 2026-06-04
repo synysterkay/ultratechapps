@@ -1,0 +1,16 @@
+{
+  "subject": "The 2AM mistake that changed everything",
+  "preview_text": "A small tweak at 2AM that made your headphones sound like a new pair. Find out what changed.",
+  "body_paragraphs": [
+    "Two weeks ago, at 2AM, I made a mistake that accidentally fixed something you've been dealing with since day one. I was tweaking the AutoEQ for my own headphones\u2014just a minor adjustment\u2014and suddenly the dialogue in my podcast cut through the train noise like it wasn't there. No distortion. No harshness. Just clean, loud sound where it mattered.",
+    "That mistake? I realized the volume slider wasn't the problem. The problem was that your headphones weren't tuned for the way you actually listen. So we rebuilt the AutoEQ engine to adapt in real-time\u2014not just when you first connect, but every time you open the app. Your headphones now remember how you like things, even if you switch between music, calls, and gaming.",
+    "This update is live now. Open Loudify, reconnect your headphones, and let the new AutoEQ run once. You'll hear the difference immediately\u2014louder dialogue, cleaner bass, and zero of that tinny boost that used to ruin the moment. It's like getting a free upgrade to your hardware.",
+    "Tap 'Open Loudify' and test it with your current audio. P.S. Premium users get full access to the new tuning profiles plus a weekly Sound DNA report that shows exactly how your listening habits changed. Yours is already waiting."
+  ],
+  "cta_text": "Open Loudify",
+  "email_number": 21,
+  "send_day": 48,
+  "type": "comeback_trigger",
+  "app_name": "Loudify",
+  "generated_at": "2026-06-04T06:21:04.915199"
+}

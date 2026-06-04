@@ -1,0 +1,16 @@
+{
+  "subject": "The 2AM mistake that changed everything",
+  "preview_text": "How one student turned a panic-fueled error into an A+ paper. This trick is now in your app.",
+  "body_paragraphs": [
+    "Two weeks ago, a stressed student\u2014let\u2019s call him Mark\u2014opened Thesis Generator at 2AM, staring at a blank page with a deadline in 6 hours. He typed a half-baked idea into the thesis input, hit generate, and got something decent. But then he made a mistake: he ignored the outline feature and tried to write the paper from scratch. He wasted 3 hours. When he finally used the outline-to-full-paper feature, he finished in 45 minutes. He got an A-.",
+    "Here\u2019s the hack Mark discovered by accident: after you generate your thesis, don\u2019t just export it. Click \u2018Outline to Full Paper\u2019 inside the app\u2014it takes your thesis, your sources, and your key points, and builds a complete, structured draft in minutes. Then, before you submit, run it through the \u2018Humanize AI Text\u2019 tool to bypass any detection. It\u2019s like having a co-writer who never sleeps.",
+    "This is the exact workflow that 50,000+ students use to go from blank page to polished PDF in under an hour. No more 8-hour slogs. No more panic at 3AM. Just a clear path from idea to submission. And you already have the app\u2014you just haven\u2019t used this sequence yet.",
+    "Open Thesis Generator now and try the outline-to-full-paper flow with your current project. It\u2019ll change everything. P.S. The humanize feature works best on drafts with at least 500 words\u2014paste a chunk of your own writing first for seamless blending."
+  ],
+  "cta_text": "Open Thesis Generator",
+  "email_number": 7,
+  "send_day": 14,
+  "type": "value_bomb",
+  "app_name": "Thesis Generator",
+  "generated_at": "2026-06-04T06:13:42.484478"
+}

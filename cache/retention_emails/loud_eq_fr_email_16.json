@@ -1,0 +1,16 @@
+{
+  "subject": "Le mode cach\u00e9 que j'ai cod\u00e9 \u00e0 3h du matin",
+  "preview_text": "Une fonctionnalit\u00e9 bonus que je n'avais pas pr\u00e9vu de partager. Elle change tout dans les transports.",
+  "body_paragraphs": [
+    "Il y a deux semaines, je n'arrivais pas \u00e0 dormir. Je me suis lev\u00e9, j'ai ouvert l'\u00e9diteur de code, et j'ai commenc\u00e9 \u00e0 bricoler. Ce qui est sorti n'\u00e9tait pas dans la roadmap. Mais depuis que je l'utilise, mes trajets en m\u00e9tro sont devenus silencieux \u2014 dans le bon sens.",
+    "Ce n'est pas un bug fix ou une mise \u00e0 jour mineure. C'est un mode d'\u00e9coute que j'ai con\u00e7u pour les moments o\u00f9 le bruit ambiant est \u00e9crasant \u2014 moteur de bus, klaxons, conversations autour. Il s'active automatiquement quand tu branches des \u00e9couteurs, et il ajuste l'\u00e9galiseur pour que les voix restent nettes sans pousser le volume \u00e0 fond.",
+    "Je l'ai appel\u00e9 'Mode Focus'. Il fait partie des profils audio maintenant \u2014 tu le trouves dans l'onglet \u00c9galiseur, sous 'Podcast' et 'Musique'. Un seul tap pour l'activer, et il s'adapte en temps r\u00e9el \u00e0 ton environnement. Si tu \u00e9coutes des livres audio ou des news sur le chemin du travail, tu vas enfin entendre chaque mot sans forcer.",
+    "Ouvre Loud EQ, va dans l'\u00c9galiseur, et s\u00e9lectionne 'Focus'. Tu verras la diff\u00e9rence d\u00e8s les premi\u00e8res secondes. Et si tu veux le garder pour toujours, un essai Premium te d\u00e9bloque tout le potentiel \u2014 y compris la calibration automatique de tes \u00e9couteurs. P.S. J'ai aussi ajout\u00e9 un petit compteur de d\u00e9cibels en bas de l'\u00e9cran, pour v\u00e9rifier que tu restes dans la zone safe. C'est mon petit geste pour tes oreilles."
+  ],
+  "cta_text": "Ouvrir Loud EQ et essayer le mode Focus",
+  "email_number": 16,
+  "send_day": 35,
+  "type": "surprise_bonus",
+  "app_name": "Loud EQ",
+  "generated_at": "2026-06-04T06:19:50.874142"
+}

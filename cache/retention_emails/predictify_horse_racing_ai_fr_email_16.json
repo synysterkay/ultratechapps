@@ -1,0 +1,16 @@
+{
+  "subject": "Le calcul que j'ai fait \u00e0 3h du matin",
+  "preview_text": "Un outil que je n'avais pas pr\u00e9vu de partager. Il a chang\u00e9 ma fa\u00e7on de lire les courses.",
+  "body_paragraphs": [
+    "L'autre nuit, \u00e0 3h du matin, je regardais les donn\u00e9es de Royal Ascot. Pas pour le travail. Juste par obsession. Et l\u00e0, j'ai vu un pattern que j'avais manqu\u00e9 pendant des mois. Les chevaux avec un certain ratio poids/course gagnaient 23% plus souvent sous un ciel couvert. J'ai cod\u00e9 un outil en une heure. Pour moi.",
+    "Je l'ai test\u00e9 sur 200 courses. Le taux de r\u00e9ussite \u00e9tait dingue. Mais je l'ai rang\u00e9. Jusqu'\u00e0 ce qu'un ami perde trois paris d'affil\u00e9e sur des favoris. Je lui ai montr\u00e9. Il a gagn\u00e9 les deux suivants. Alors voil\u00e0 : j'ai ajout\u00e9 ce calcul dans l'onglet 'Analyse M\u00e9t\u00e9o' de l'app. Il s'appelle 'Indice Ciel Couvert'. Regarde-le avant ta prochaine mise.",
+    "Ce n'est pas un algorithme parfait. Mais il te donne un angle que 90% des parieurs ignorent. Les bookmakers ne le voient pas venir. Et toi, tu l'as dans l'app, gratuitement, depuis aujourd'hui.",
+    "Ouvre Predictify: Horse Racing AI et va dans 'Analyse M\u00e9t\u00e9o' pour tester l'Indice Ciel Couvert. Tu verras, \u00e7a change la donne. P.S. Je ne garantis pas que \u00e7a reste gratuit. Profites-en tant que c'est l\u00e0."
+  ],
+  "cta_text": "Ouvre Predictify: Horse Racing AI",
+  "email_number": 16,
+  "send_day": 35,
+  "type": "surprise_bonus",
+  "app_name": "Predictify: Horse Racing AI",
+  "generated_at": "2026-06-04T06:26:29.831025"
+}

@@ -1,0 +1,16 @@
+{
+  "subject": "The 5-minute setup most users skip",
+  "preview_text": "There's a feature buried in the settings that changes everything. Most never find it.",
+  "body_paragraphs": [
+    "I spent 10 minutes staring at a racecard last week, sweating over a 12-horse field at Kempton. Then I remembered something I coded at 2AM\u2014a feature I almost buried in the settings because I thought it was too simple. Turns out, it's the one thing that separates the punters who win consistently from the ones who chase losses.",
+    "Most users never touch this. They open the app, glance at the confidence scores, and close it. But the sharp ones\u2014the ones who message me on Discord saying 'this horse romped home'\u2014they all use one thing: the advanced filter panel. It lets you drill into a horse's record on this exact track, in this exact weather, against this exact class of competition. The AI already crunches thousands of variables, but this filter hands you the steering wheel.",
+    "Open Predictify: Horse Racing AI, tap the filter icon on any racecard, and set 'track condition' to today's going. Then toggle 'class level' to match the race. What you'll see is a shortlist of horses with a proven edge\u2014often a 10-1 shot the AI ranks higher than the market. I built this for the obsessive form students who want data, not guesses.",
+    "Try it before the next race. One filter change could save you a losing streak. P.S. The same filter works for every major track\u2014Cheltenham, Churchill Downs, Randwick. Your next 12-1 winner might be one tap away."
+  ],
+  "cta_text": "Open Predictify: Horse Racing AI",
+  "email_number": 2,
+  "send_day": 2,
+  "type": "hidden_feature",
+  "app_name": "Predictify: Horse Racing AI",
+  "generated_at": "2026-06-04T06:26:12.361211"
+}

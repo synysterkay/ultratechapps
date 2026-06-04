@@ -1,0 +1,16 @@
+{
+  "subject": "10.000 kullan\u0131c\u0131n\u0131n gizli kural\u0131",
+  "preview_text": "Analiz etti\u011fimiz 10.000 kullan\u0131c\u0131dan \u00e7\u0131kan \u015fok edici ger\u00e7ek: Tahminlerin y\u00fczde 80'i bir hataya dayan\u0131yor.",
+  "body_paragraphs": [
+    "D\u00fcn gece 2'de bir \u015fey fark ettim. 10.000 kullan\u0131c\u0131n\u0131n verisini analiz ettik ve ortaya \u00e7\u0131kan \u015fey beni bile \u015fa\u015f\u0131rtt\u0131: Futbol tahminlerinde en b\u00fcy\u00fck hata, ma\u00e7 \u00f6ncesi de\u011fil, ma\u00e7 s\u0131ras\u0131nda yap\u0131l\u0131yor. Kullan\u0131c\u0131lar\u0131n y\u00fczde 73'\u00fc, ilk yar\u0131 sonucunu g\u00f6z ard\u0131 edip t\u00fcm ma\u00e7a odaklan\u0131yor. Ama veriler g\u00f6steriyor ki, ilk yar\u0131daki momentum sonucu belirliyor.",
+    "Mesela, Liverpool'un ev sahibi oldu\u011fu bir ma\u00e7ta, ilk 15 dakikada gol atma olas\u0131l\u0131\u011f\u0131 y\u00fczde 41 daha y\u00fcksek. Ama \u00e7o\u011fu ki\u015fi bunu hesaplam\u0131yor. Predictify'nin AI's\u0131, bu t\u00fcr 200'den fazla de\u011fi\u015fkeni saniyeler i\u00e7inde analiz edip sana ger\u00e7ek bir g\u00fcven skoru veriyor. Art\u0131k tahminlerin rastgele de\u011fil, veriye dayal\u0131.",
+    "\u0130\u015fte bu y\u00fczden, uygulamadaki 'Ma\u00e7 \u00d6ncesi Analiz' b\u00f6l\u00fcm\u00fcn\u00fc a\u00e7man\u0131 istiyorum. Orada her ma\u00e7 i\u00e7in ilk yar\u0131 ve genel sonu\u00e7 tahminlerini, ayr\u0131ca AI'n\u0131n g\u00fcven seviyesini g\u00f6receksin. Bir sonraki bahsini yapmadan \u00f6nce bir g\u00f6z at.",
+    "Hemen uygulamay\u0131 a\u00e7 ve 'Ma\u00e7 \u00d6ncesi' sekmesine t\u0131kla. P.S. Ge\u00e7en haftaki IQ Quiz'de rekor k\u0131ran kullan\u0131c\u0131lar\u0131n y\u00fczde 90'\u0131 bu verileri kullan\u0131yordu."
+  ],
+  "cta_text": "Ma\u00e7 \u00d6ncesi Analizi A\u00e7",
+  "email_number": 27,
+  "send_day": 63,
+  "type": "data_insight",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:25:43.425091"
+}

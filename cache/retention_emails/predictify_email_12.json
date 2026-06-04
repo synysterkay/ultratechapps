@@ -1,0 +1,16 @@
+{
+  "subject": "The 2AM mistake that changed everything",
+  "preview_text": "One user's 2AM slip-up revealed a feature that turns bad predictions into wins. See what they found.",
+  "body_paragraphs": [
+    "It was 2AM. You're half-asleep, scrolling through match previews, and you accidentally tap a button you've always ignored\u2014a buried stats tab. That mistake? It revealed a feature that turned one fan's losing streak into a 7-prediction winning run. No hype, just data.",
+    "This user, like you, had the app for weeks but never dug deeper. They thought confidence scores were enough. Then they discovered the AI's tactical breakdown\u2014how it analyzes defensive shifts, xG trends, and even weather patterns per match. Suddenly, their gut feelings had backup. They stopped guessing and started knowing.",
+    "Here's the feature: every Predictify match prediction has a hidden 'Deep Dive' layer. Tap any confidence score, and you'll see the AI's reasoning\u2014player form, head-to-head history, even formation weaknesses. It's like having a scout whispering in your ear. Most users miss it because it's one tap away, not front and center.",
+    "Open Predictify now, pick any match from tonight's fixtures, and tap the confidence score badge. See the data the AI used. If you want full access to all stats, the 3-day Premium trial unlocks the complete tactical breakdowns for every league. P.S. The user who found this at 2AM? They're now in the top 1% of our IQ quiz leaderboard. Your turn."
+  ],
+  "cta_text": "Open Predictify",
+  "email_number": 12,
+  "send_day": 25,
+  "type": "feature_deep_dive",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:23:45.154631"
+}

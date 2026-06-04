@@ -1,0 +1,16 @@
+{
+  "subject": "Your 45-day trading report is ready",
+  "preview_text": "Open the app to see your accuracy score, ROI, and what comes next for you.",
+  "body_paragraphs": [
+    "Day 45. That is 45 days of data, decisions, and trades. You are not a new user anymore. You are someone who has felt the sting of a FOMO buy and the relief of a disciplined exit. The app has been watching, learning, and now it is time to show you what it sees.",
+    "Your trading journal has tracked every call you made, every AI verdict you followed, every time you ignored the signal and went with your gut. The numbers do not lie. Your accuracy by asset, your ROI by direction, your biggest wins and your hardest lessons \u2014 it is all there in your personal report. This is not a generic summary. It is a mirror.",
+    "Open the app and tap the Loyalty tab. You will see your 45-day scorecard: your precision, your confidence buckets, and the trades that defined your journey. This is where the real work begins. The next chapter is not about guessing. It is about stacking wins with data.",
+    "Tap 'Open Crypto AI: Trading Analyzer' now and claim your report. Your future self will thank you. P.S. The top 10% of users at day 45 unlock ambassador status \u2014 exclusive access to live calls from the AI team. Check your rank."
+  ],
+  "cta_text": "Open Crypto AI: Trading Analyzer",
+  "email_number": 20,
+  "send_day": 45,
+  "type": "loyalty_farewell",
+  "app_name": "Crypto AI: Trading Analyzer",
+  "generated_at": "2026-06-04T06:26:48.629034"
+}

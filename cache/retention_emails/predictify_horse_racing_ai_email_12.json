@@ -1,0 +1,16 @@
+{
+  "subject": "The 10PM discovery one user called a cheat code",
+  "preview_text": "A buried feature that turned a losing streak into 4 straight wins. See what you missed.",
+  "body_paragraphs": [
+    "A guy named Mike emailed me last week. He'd been on a nasty losing streak\u2014five days of watching his picks fall apart. Then, at 10PM on a Tuesday, he stumbled onto something in the app he'd never noticed. He called it a cheat code. He won four races straight the next day.",
+    "Mike isn't some genius punter. He's just a guy who hates reading form guides. What he found was a single toggle that changed how the AI ranks its picks. Most users skip it because it's buried under the racecard settings\u2014but it's the reason our sharpest bettors win at 2x the average rate.",
+    "Go to any racecard in Predictify. Tap the filter icon in the top right corner. See that slider labeled 'Weight-Adjusted Confidence'? Flip it on. The AI recalculates every prediction based on handicap weight shifts, track condition changes, and jockey-trainer synergy over the last 30 days. It's like turning on night vision at a dark track.",
+    "Open the app now, pull up tomorrow's first race, and flip that toggle. Watch the confidence scores jump or drop. Your P.S.: Mike is now on a 12-day streak. He still doesn't read form guides. He just uses this one toggle."
+  ],
+  "cta_text": "Open Predictify: Horse Racing AI",
+  "email_number": 12,
+  "send_day": 25,
+  "type": "feature_deep_dive",
+  "app_name": "Predictify: Horse Racing AI",
+  "generated_at": "2026-06-04T06:26:24.052692"
+}

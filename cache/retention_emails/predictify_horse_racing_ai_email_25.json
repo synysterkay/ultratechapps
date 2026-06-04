@@ -1,0 +1,16 @@
+{
+  "subject": "The 2AM race analysis no one asked for",
+  "preview_text": "One user secretly used Predictify to find a hidden edge \u2013 here's how.",
+  "body_paragraphs": [
+    "A user messaged me last week. They said, 'I never expected to use your app for THIS.' I'll admit, I was curious. They weren't trying to pick winners \u2013 they were testing if the AI could spot a horse that was being unfairly overlooked by the market. And it worked.",
+    "Turns out, they'd been tracking confidence scores for horses with low public odds. When the AI gave a horse a 74% confidence score but the market had it at 20-1, they'd bet small. Over 58 days, they turned a small pot into a consistent profit. They weren't chasing big wins \u2013 they were hunting mispriced runners.",
+    "You can do the same. Open Predictify: Horse Racing AI and look at any racecard. Sort by confidence score vs. actual odds. The gap between them is where the edge lives. It's a feature we built for analysis, but this user turned it into a strategy. And now you know it.",
+    "Try it today. Open the app, find a race with a high confidence score and long odds, and see if the market's missing something. P.S. If you want deeper stats, Premium unlocks historical odds comparisons \u2013 but the core trick works for free."
+  ],
+  "cta_text": "Open Predictify: Horse Racing AI",
+  "email_number": 25,
+  "send_day": 58,
+  "type": "unexpected_use_case",
+  "app_name": "Predictify: Horse Racing AI",
+  "generated_at": "2026-06-04T06:26:37.262328"
+}

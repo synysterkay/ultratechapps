@@ -1,0 +1,16 @@
+{
+  "subject": "Confession : j'ai cod\u00e9 \u00e7a \u00e0 2h du matin",
+  "preview_text": "L'histoire vraie derri\u00e8re une feature qui a chang\u00e9 ma fa\u00e7on d'\u00e9couter. Et la tienne aussi.",
+  "body_paragraphs": [
+    "J'\u00e9tais l\u00e0, \u00e0 2h du matin, les yeux br\u00fblants, un caf\u00e9 froid \u00e0 c\u00f4t\u00e9. Pas pour un bug. Pour une id\u00e9e qui me semblait trop simple pour exister : et si l'audio pouvait \u00eatre fort sans devenir moche, m\u00eame dans le bruit d'un train ?",
+    "Je venais de passer une heure \u00e0 \u00e9couter un podcast avec des \u00e9couteurs \u00e0 15 balles, et la voix de l'invit\u00e9 \u00e9tait enterr\u00e9e sous le ventilateur. Le slider \u00e9tait \u00e0 fond, mais rien n'y faisait. J'ai craqu\u00e9. J'ai ouvert l'\u00e9diteur de code, et j'ai commenc\u00e9 \u00e0 bricoler un algo qui ferait ce que les autres apps promettent sans jamais le faire : booster le volume sans saturer, et garder les dialogues clairs, m\u00eame quand le train freine.",
+    "Cette feature, c'est le boost +200 % de Loudify. Pas un gadget de marketeur. Un truc que j'ai test\u00e9 sur mon propre matos, avec mes propres oreilles, et qui marche vraiment. Pas besoin de jargon. Juste : tu l'actives, et tout devient plus fort, plus propre, sans distortion. M\u00eame tes vieux \u00e9couteurs vont comprendre ce que \u00e7a veut dire.",
+    "Ouvre Loudify maintenant, et va dans l'onglet 'Boost'. Monte-le \u00e0 fond. \u00c9coute la diff\u00e9rence. Pas besoin de payer pour \u00e7a. Mais si tu veux que \u00e7a se souvienne de tes \u00e9couteurs \u00e0 chaque fois, le Premium est l\u00e0, avec l'AutoEQ qui les reconna\u00eet en une seconde. P.S. Cette histoire, je la raconte pour la premi\u00e8re fois. Mais la feature, elle est pr\u00eate depuis le jour 1. Tu l'as d\u00e9j\u00e0 essay\u00e9e ?"
+  ],
+  "cta_text": "Ouvrir Loudify",
+  "email_number": 5,
+  "send_day": 9,
+  "type": "behind_the_scenes",
+  "app_name": "Loudify",
+  "generated_at": "2026-06-04T06:20:31.341297"
+}

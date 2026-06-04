@@ -1,0 +1,16 @@
+{
+  "subject": "Your 28-day AI trading report is ready",
+  "preview_text": "See what your algo has been doing while you slept. Confidence scores, missed calls, and a quiet prediction.",
+  "body_paragraphs": [
+    "You signed up 28 days ago. That's one full market cycle\u2014two Bitcoin weekends, four Fed minutes, and probably at least one 3AM panic scroll. I pulled your personal trading report from the last month. The numbers are interesting.",
+    "Here's what stands out: the AI flagged 11 setups where confidence hit 70% or higher. You acted on 3 of them. The other 8? They're still sitting in your screenshot library, unanalyzed. That's not a criticism\u2014it's a pattern. Most retail traders hesitate on high-conviction signals because they don't trust the data yet. But the data doesn't care about your feelings.",
+    "Open the app and tap 'Your Month in Review' at the top of your dashboard. It shows your actual ROI by asset, your accuracy by confidence bucket, and one quiet prediction the AI made 14 days ago that's still playing out. That prediction alone could save you from a revenge trade tonight.",
+    "One tap, two seconds. See what you've been missing. P.S. The quiet prediction? It involves a dog coin you probably yelled at on Twitter. Check it before the FOMO hits again."
+  ],
+  "cta_text": "Open Crypto AI: Trading Analyzer",
+  "email_number": 13,
+  "send_day": 28,
+  "type": "milestone_checkin",
+  "app_name": "Crypto AI: Trading Analyzer",
+  "generated_at": "2026-06-04T06:26:48.027194"
+}

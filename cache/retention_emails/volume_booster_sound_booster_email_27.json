@@ -1,0 +1,16 @@
+{
+  "subject": "The 2AM discovery that shocked our team",
+  "preview_text": "We analyzed 10,000 users and found a pattern that changes how you hear your music. See what they do differently.",
+  "body_paragraphs": [
+    "Two weeks ago, I pulled an all-nighter diving into our app data. 10,000 users, millions of listening sessions, and one stat made me literally drop my coffee: the average Volume Booster user boosts their volume 200% above system max\u2014but 90% never touch the equalizer. That's like driving a Ferrari in first gear.",
+    "Here's the crazy part: the users who do spend 30 seconds tweaking the equalizer report a 300% higher satisfaction rating. They're not just louder\u2014they're hearing bass they didn't know existed, vocals that cut through traffic, and podcasts that sound like the host is in the room. The data doesn't lie: your phone has more potential than you think.",
+    "That's why I built the genre-optimized presets into the app. One tap on 'Rock' adds punch to your guitar riffs. 'Jazz' opens up the soundstage. 'Electronic' makes the bass thump like a club. It's not magic\u2014it's just using the equalizer that's already in your pocket. Most people skip it because they think it's complicated. It's not.",
+    "Open the app, tap the equalizer icon, and pick a preset that matches what you're listening to right now. Your ears will thank me. P.S. Premium users get unlimited boost levels and advanced EQ controls\u2014but even on the free version, the presets alone will change your listening forever."
+  ],
+  "cta_text": "Open Volume Booster - Sound Booster",
+  "email_number": 27,
+  "send_day": 63,
+  "type": "data_insight",
+  "app_name": "Volume Booster - Sound Booster",
+  "generated_at": "2026-06-04T06:17:59.799754"
+}

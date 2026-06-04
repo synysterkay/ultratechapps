@@ -1,0 +1,16 @@
+{
+  "subject": "Your dog's 8-week milestone just appeared",
+  "preview_text": "We added something new to your PupShape dashboard that might surprise you. Check it out.",
+  "body_paragraphs": [
+    "Remember when you first set up your dog's weight loss plan? That date is now 48 days behind us. And something shifted in the app since you last opened it. I'll show you exactly what.",
+    "We quietly rolled out a feature that maps your dog's actual progress against the original 8-week target. It's not just a chart \u2014 it compares your pup's weight, energy, and treat logs to the 110+ dogs who've already lost an average of 15% in 8 weeks. Yours might be ahead or behind, but the data is real and specific to your breed.",
+    "Open the 'Milestones' tab in PupShape. You'll see a new timeline with a red line for where most dogs plateau and a green zone for the sweet spot. The app now predicts your dog's next weight milestone based on their unique calorie burn and your recent treat entries. It's like a personal coach that adjusts every week.",
+    "Go check it now \u2014 the prediction updates every time you log a walk or a meal. P.S. One user told us seeing the green zone made them switch from kibble to low-cal treats. Their dog hit 12% loss in 6 weeks."
+  ],
+  "cta_text": "Open PupShape: Dog Weight Loss Plan",
+  "email_number": 21,
+  "send_day": 48,
+  "type": "comeback_trigger",
+  "app_name": "PupShape: Dog Weight Loss Plan",
+  "generated_at": "2026-06-04T06:16:58.909998"
+}

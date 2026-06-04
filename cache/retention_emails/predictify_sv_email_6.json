@@ -1,0 +1,16 @@
+{
+  "subject": "Misstaget som kostar dig 47% av vinsterna",
+  "preview_text": "De flesta anv\u00e4ndare g\u00f6r samma fel dag 11. H\u00e4r \u00e4r fixen som tar 2 minuter.",
+  "body_paragraphs": [
+    "Du kollar p\u00e5 en match, k\u00e4nner att du har koll p\u00e5 laget, och sl\u00e5r till med en snabb gissning. Det \u00e4r precis d\u00e4r de flesta tappar n\u00e4stan h\u00e4lften av sina vinster. Jag s\u00e5g en anv\u00e4ndare i veckan som var 100% s\u00e4ker p\u00e5 att Liverpool skulle vinna \u2014 AI:n sa 63% f\u00f6r en oavgjord match. Han ignorerade det, f\u00f6rlorade, och sa sedan 'jag borde ha kollat data f\u00f6rst'.",
+    "H\u00e4r \u00e4r grejen: din hj\u00e4rna \u00e4r bra p\u00e5 att skapa historier, men d\u00e5lig p\u00e5 sannolikheter. Den #1 misstaget som f\u00f6rst\u00f6r dina resultat \u00e4r att lita p\u00e5 magk\u00e4nslan ist\u00e4llet f\u00f6r data. Du ser ett favoritlag och trycker 'vinst', utan att kolla p\u00e5 xG, skador eller taktik. Det \u00e4r som att spela poker med slutna \u00f6gon.",
+    "Predictify AI analyserar \u00f6ver 10 000 variabler per match \u2014 fr\u00e5n motst\u00e5ndarens defensiva svagheter till v\u00e4drets p\u00e5verkan p\u00e5 bollkontroll. Kolla Confidence Score f\u00f6r varje prediktion: om den st\u00e5r p\u00e5 51% \u00e4r det en varning. Anv\u00e4nd IQ Quiz f\u00f6r att testa din kunskap mot AI:n \u2014 du l\u00e4r dig dina blindspots p\u00e5 5 minuter.",
+    "\u00d6ppna Predictify nu och kolla en match du tror du har koll p\u00e5. Skriv in ditt val, j\u00e4mf\u00f6r med AI:ns analys \u2014 och se skillnaden. P.S. De anv\u00e4ndare som tj\u00e4nar mest \u00e4r de som alltid kollar data f\u00f6rst. Din f\u00f6rsta gratisanalys v\u00e4ntar."
+  ],
+  "cta_text": "\u00d6ppna Predictify och kolla datasynen",
+  "email_number": 6,
+  "send_day": 11,
+  "type": "common_mistake",
+  "app_name": "Predictify",
+  "generated_at": "2026-06-04T06:23:07.736106"
+}
