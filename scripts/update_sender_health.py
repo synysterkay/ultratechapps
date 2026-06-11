@@ -52,6 +52,22 @@ def load_supabase_creds():
 def fetch_health_rows():
     url, key = load_supabase_creds()
     headers = {'apikey': key, 'Authorization': f'Bearer {key}'}
+
+    # sender_health_7d is now a MATERIALIZED view (since 2026-06-11). The
+    # CTE-based regular view used to time out PostgREST with a 500 once
+    # email_events crossed ~90k rows in a 7-day window. The materialized
+    # view is table-fast to query — we just need to refresh it first so
+    # the data reflects the last cron run.
+    refresh = requests.post(
+        f'{url}/rest/v1/rpc/refresh_sender_health_7d',
+        headers={**headers, 'Content-Type': 'application/json'},
+        json={},
+        timeout=60,
+    )
+    if not refresh.ok:
+        print(f'   ⚠️  refresh_sender_health_7d failed ({refresh.status_code}): '
+              f'{refresh.text[:200]} — querying stale data')
+
     resp = requests.get(
         f'{url}/rest/v1/sender_health_7d',
         params={'select': '*'},
