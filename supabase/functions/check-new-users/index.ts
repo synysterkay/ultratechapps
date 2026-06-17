@@ -72,6 +72,13 @@ const FIREBASE_PROJECTS: Record<
     defaultLang: "en",
     supportedLanguages: ["en", "ar", "es", "fr"],
   },
+  "boyfriend-ai-f1e5e": {
+    appId: "ai_boyfriend",
+    multilingual: true,
+    defaultLang: "en",
+    // Mirrors lib/l10n/app_localizations.dart kSupportedLanguages in the Flutter app.
+    supportedLanguages: ["en", "es", "fr", "de", "it", "pt", "ar", "ja", "ko", "zh", "ru", "tr", "hi", "id", "pl", "nl"],
+  },
 };
 
 const PROJECT_IDS = Object.keys(FIREBASE_PROJECTS);
@@ -170,13 +177,15 @@ const LANG_NORMALIZE: Record<string, string> = {
   ko: "ko", korean: "ko",
 };
 
-// ── Fetch user language from Firestore via query ────────────
-async function fetchUserLanguage(
+// ── Fetch user language + first name from Firestore via query ────────────
+// One Firestore round-trip per user — read whatever personalisation signals
+// the user doc carries (today: language, displayName).
+async function fetchUserLocaleData(
   projectId: string,
   accessToken: string,
   email: string,
   supportedLanguages: string[]
-): Promise<string> {
+): Promise<{ language: string; firstName?: string }> {
   try {
     const url = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents:runQuery`;
     const res = await fetch(url, {
@@ -200,20 +209,27 @@ async function fetchUserLanguage(
       }),
     });
 
-    if (!res.ok) return "en";
+    if (!res.ok) return { language: "en" };
 
     const results = await res.json();
     const doc = results?.[0]?.document;
-    if (!doc?.fields) return "en";
+    if (!doc?.fields) return { language: "en" };
+
+    // First name = first word of displayName, trimmed.
+    const displayName = (doc.fields.displayName?.stringValue ?? "").trim();
+    const firstName = displayName ? displayName.split(/\s+/)[0] : undefined;
 
     const rawLang = doc.fields.language?.stringValue?.toLowerCase().trim();
-    if (!rawLang) return "en";
+    if (!rawLang) return { language: "en", firstName };
 
     const base = rawLang.split(/[_-]/)[0];
     const lang = LANG_NORMALIZE[base] || LANG_NORMALIZE[rawLang] || "en";
-    return supportedLanguages.includes(lang) ? lang : "en";
+    return {
+      language: supportedLanguages.includes(lang) ? lang : "en",
+      firstName,
+    };
   } catch {
-    return "en";
+    return { language: "en" };
   }
 }
 
@@ -352,15 +368,18 @@ Deno.serve(async (req) => {
         await new Promise((r) => setTimeout(r, 600));
       }
 
-      // Look up language (per-user Firestore query — avoids daily quota exhaustion)
+      // Look up language + firstName (per-user Firestore query — one round-trip).
       let language = config.defaultLang;
+      let firstName: string | undefined;
       if (config.multilingual) {
-        language = await fetchUserLanguage(
+        const data = await fetchUserLocaleData(
           targetProjectId,
           accessToken,
           email,
           config.supportedLanguages
         );
+        language = data.language;
+        firstName = data.firstName;
       }
 
       // Send welcome email
@@ -376,6 +395,7 @@ Deno.serve(async (req) => {
             email: email,
             app_id: config.appId,
             language: language,
+            firstName: firstName, // welcome-email greeting personalisation
           }),
         });
 
