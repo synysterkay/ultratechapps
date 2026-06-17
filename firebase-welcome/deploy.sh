@@ -19,8 +19,12 @@ PROJECTS=(
   "breakuptherapy-e7dc0"
   "soulplan-dateplanner"
   "petmealai"
-  "boyfriend-ai-f1e5e"
-  "apb412---ai-girlfriend-app"
+  # NOTE: boyfriend-ai-f1e5e and apb412---ai-girlfriend-app intentionally
+  # NOT included here. They are on Firebase Spark (free) plan, which can't
+  # use Cloud Functions secrets. Welcome emails for both apps are delivered
+  # via the Supabase check-new-users Edge Function (~5 min after signup
+  # instead of instant) — see supabase/functions/check-new-users/index.ts.
+  # Re-add them here only if those projects are upgraded to Blaze.
 )
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

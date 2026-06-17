@@ -268,20 +268,13 @@ const APP_CONFIG = {
       },
     },
   },
-  "boyfriend-ai-f1e5e": {
-    name: "Ai Boyfriend",
-    multilingual: true,
-    appStoreUrl: "https://apps.apple.com/app/ai-boyfriend-virtual-love/id6757331334",
-    googlePlayUrl: "https://play.google.com/store/apps/details?id=com.aiboyfriend.virtuallove",
-    emails: require("./boyfriend-emails"),
-  },
-  "apb412---ai-girlfriend-app": {
-    name: "Ai Girlfriend",
-    multilingual: true,
-    appStoreUrl: "https://apps.apple.com/app/ai-girlfriend-virtual-love/id6757268335",
-    googlePlayUrl: "https://play.google.com/store/apps/details?id=com.aigirlfriend.virtuallove",
-    emails: require("./girlfriend-emails"),
-  },
+  // NOTE: boyfriend-ai-f1e5e and apb412---ai-girlfriend-app intentionally
+  // NOT registered here. They're on Firebase Spark (free) plan and welcomes
+  // are delivered via the Supabase check-new-users Edge Function instead
+  // (~5 min after signup). The boyfriend-emails.js / girlfriend-emails.js
+  // template files are kept on disk for parity with the Supabase versions
+  // (supabase/functions/welcome-email/{boyfriend,girlfriend}-emails.ts) so
+  // re-adding either project here is just an entry's worth of work.
 };
 
 // ── HTML BUILDER ────────────────────────────────────────────
