@@ -272,14 +272,14 @@ const APP_CONFIG = {
     name: "Ai Boyfriend",
     multilingual: true,
     appStoreUrl: "https://apps.apple.com/app/ai-boyfriend-virtual-love/id6757331334",
-    googlePlayUrl: "",
+    googlePlayUrl: "https://play.google.com/store/apps/details?id=com.aiboyfriend.virtuallove",
     emails: require("./boyfriend-emails"),
   },
   "apb412---ai-girlfriend-app": {
     name: "Ai Girlfriend",
     multilingual: true,
-    appStoreUrl: "",
-    googlePlayUrl: "",
+    appStoreUrl: "https://apps.apple.com/app/ai-girlfriend-virtual-love/id6757268335",
+    googlePlayUrl: "https://play.google.com/store/apps/details?id=com.aigirlfriend.virtuallove",
     emails: require("./girlfriend-emails"),
   },
 };
