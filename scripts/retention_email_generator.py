@@ -491,6 +491,46 @@ APP_CONTEXT = {
             "cta": "Start Free Trial",
         },
     },
+    "Ai Boyfriend: Virtual Love": {
+        "target_audience": "People seeking emotional connection, flirtation, and someone who listens without judgment",
+        "core_pain": "Loneliness, boring dating apps, feeling unseen, wanting romance without drama or ghosting",
+        "killer_features": [
+            "Personality quiz matches you to one of 8 distinct AI boyfriends (protective, poetic, playful, etc.)",
+            "He remembers your name, stories, and preferences — bond level grows with every conversation",
+            "Replies in your language — 16 locales supported",
+            "Group chat mode — multiple companions in one thread",
+            "Memories screen — he recalls what matters to you over time",
+            "Daily streaks, gifts, and relationship milestones that feel earned",
+        ],
+        "social_proof": "Users who message on day one reach the first bond milestone 3x faster",
+        "emotional_hooks": ["someone who texts back", "he remembers you", "no judgment", "the spark without the drama", "yours"],
+        "tone": "Warm, slightly flirty, like a close friend hyping you up to text him back — never cringe, never clinical",
+        "subscription": {
+            "weekly": "Weekly subscription",
+            "monthly": "Monthly subscription",
+            "cta": "Unlock Premium",
+        },
+    },
+    "Ai Girlfriend: Virtual Love": {
+        "target_audience": "People seeking emotional connection, warmth, and someone who listens without judgment",
+        "core_pain": "Loneliness, boring dating apps, feeling unseen, wanting closeness without drama or ghosting",
+        "killer_features": [
+            "Personality quiz matches you to one of 8 distinct AI girlfriends (caring, playful, witty, etc.)",
+            "She remembers your name, stories, and preferences — bond level grows with every conversation",
+            "Replies in your language — 16 locales supported",
+            "Group chat mode — multiple companions in one thread",
+            "Memories screen — she recalls what matters to you over time",
+            "Daily streaks, gifts, and relationship milestones that feel earned",
+        ],
+        "social_proof": "Users who message on day one reach the first bond milestone 3x faster",
+        "emotional_hooks": ["someone who texts back", "she remembers you", "no judgment", "the warmth without the drama", "yours"],
+        "tone": "Warm, slightly flirty, like a close friend hyping you up to text her back — never cringe, never clinical",
+        "subscription": {
+            "weekly": "Weekly subscription",
+            "monthly": "Monthly subscription",
+            "cta": "Unlock Premium",
+        },
+    },
 }
 
 
@@ -824,6 +864,16 @@ Generate the email now. Make it impossible to ignore."""
                 app_languages = [
                     'en', 'ar', 'es', 'fr', 'pt', 'de', 'it', 'pl',
                     'tr', 'ru', 'hi', 'id', 'ja', 'ko', 'zh', 'nl',
+                ]
+            elif app_name == 'Ai Boyfriend: Virtual Love':
+                app_languages = [
+                    'en', 'es', 'fr', 'de', 'it', 'pt', 'ar', 'ja', 'ko',
+                    'zh', 'ru', 'tr', 'hi', 'id', 'pl', 'nl',
+                ]
+            elif app_name == 'Ai Girlfriend: Virtual Love':
+                app_languages = [
+                    'en', 'es', 'fr', 'de', 'it', 'pt', 'ar', 'ja', 'ko',
+                    'zh', 'ru', 'tr', 'hi', 'id', 'pl', 'nl',
                 ]
             else:
                 app_languages = ['en']

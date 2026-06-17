@@ -128,6 +128,24 @@ FIREBASE_APPS = {
         'app_store_url': 'https://apps.apple.com/app/crypto-ai-trading-analyzer/id6757122088',
         'google_play_url': '',
     },
+    'boyfriend-ai-f1e5e': {
+        'name': 'Ai Boyfriend: Virtual Love',
+        'export_file': 'boyfriend_ai_fresh.json',
+        'description': 'AI-powered virtual boyfriend for engaging conversations, emotional connection, and companionship',
+        'app_store_url': 'https://apps.apple.com/app/ai-boyfriend-virtual-love/id6757331334',
+        'google_play_url': '',
+        'multilingual': True,
+        'supported_languages': ['en', 'es', 'fr', 'de', 'it', 'pt', 'ar', 'ja', 'ko', 'zh', 'ru', 'tr', 'hi', 'id', 'pl', 'nl'],
+    },
+    'apb412---ai-girlfriend-app': {
+        'name': 'Ai Girlfriend: Virtual Love',
+        'export_file': 'girlfriend_ai_fresh.json',
+        'description': 'AI-powered virtual girlfriend for warm conversations, emotional connection, and companionship',
+        'app_store_url': '',
+        'google_play_url': '',
+        'multilingual': True,
+        'supported_languages': ['en', 'es', 'fr', 'de', 'it', 'pt', 'ar', 'ja', 'ko', 'zh', 'ru', 'tr', 'hi', 'id', 'pl', 'nl'],
+    },
 }
 
 

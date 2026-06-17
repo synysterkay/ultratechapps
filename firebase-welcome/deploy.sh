@@ -19,6 +19,8 @@ PROJECTS=(
   "breakuptherapy-e7dc0"
   "soulplan-dateplanner"
   "petmealai"
+  "boyfriend-ai-f1e5e"
+  "apb412---ai-girlfriend-app"
 )
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

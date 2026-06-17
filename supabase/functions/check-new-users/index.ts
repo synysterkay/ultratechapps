@@ -79,6 +79,13 @@ const FIREBASE_PROJECTS: Record<
     // Mirrors lib/l10n/app_localizations.dart kSupportedLanguages in the Flutter app.
     supportedLanguages: ["en", "es", "fr", "de", "it", "pt", "ar", "ja", "ko", "zh", "ru", "tr", "hi", "id", "pl", "nl"],
   },
+  "apb412---ai-girlfriend-app": {
+    appId: "ai_girlfriend",
+    multilingual: true,
+    defaultLang: "en",
+    // Mirrors girlfriend_ai/lib/l10n kSupportedLanguages in the Flutter app.
+    supportedLanguages: ["en", "es", "fr", "de", "it", "pt", "ar", "ja", "ko", "zh", "ru", "tr", "hi", "id", "pl", "nl"],
+  },
 };
 
 const PROJECT_IDS = Object.keys(FIREBASE_PROJECTS);

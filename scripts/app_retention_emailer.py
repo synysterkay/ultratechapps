@@ -277,6 +277,8 @@ _APP_SLUGS = {
     'Predictify: Horse Racing AI': 'horse_racing',
     'Smart Notes - AI Meeting Summary': 'smart_notes',
     'Crypto AI: Trading Analyzer': 'crypto_ai',
+    'Ai Boyfriend: Virtual Love': 'ai_boyfriend',
+    'Ai Girlfriend: Virtual Love': 'ai_girlfriend',
 }
 
 
@@ -691,6 +693,8 @@ class AppRetentionEmailer:
         'Fresh Start: Breakup Therapy',
         'SoulPlan: Plan Dates Together',
         'PupShape: Dog Weight Loss Plan',
+        'Ai Boyfriend: Virtual Love',
+        'Ai Girlfriend: Virtual Love',
     ]
 
     # ─── PRIORITY APPS (uncapped, health-bypassed) ───────

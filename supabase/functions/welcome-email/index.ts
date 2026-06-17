@@ -8,6 +8,7 @@
 
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { BOYFRIEND_EMAILS } from "./boyfriend-emails.ts";
+import { GIRLFRIEND_EMAILS } from "./girlfriend-emails.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") || "";
 const REF_SALT = Deno.env.get("EMAIL_REF_SALT") || "marketing-tool-v1";
@@ -823,6 +824,13 @@ const APP_CONFIG: Record<string, AppConfig> = {
     appStoreUrl: "https://apps.apple.com/app/ai-boyfriend-virtual-love/id6757331334",
     googlePlayUrl: "",
     emails: BOYFRIEND_EMAILS,
+  },
+  ai_girlfriend: {
+    name: "Ai Girlfriend",
+    multilingual: true,
+    appStoreUrl: "",
+    googlePlayUrl: "",
+    emails: GIRLFRIEND_EMAILS,
   },
 };
 

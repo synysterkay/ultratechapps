@@ -268,6 +268,20 @@ const APP_CONFIG = {
       },
     },
   },
+  "boyfriend-ai-f1e5e": {
+    name: "Ai Boyfriend",
+    multilingual: true,
+    appStoreUrl: "https://apps.apple.com/app/ai-boyfriend-virtual-love/id6757331334",
+    googlePlayUrl: "",
+    emails: require("./boyfriend-emails"),
+  },
+  "apb412---ai-girlfriend-app": {
+    name: "Ai Girlfriend",
+    multilingual: true,
+    appStoreUrl: "",
+    googlePlayUrl: "",
+    emails: require("./girlfriend-emails"),
+  },
 };
 
 // ── HTML BUILDER ────────────────────────────────────────────
@@ -312,17 +326,23 @@ function buildHtml(emailData, appConfig, language, senderName) {
     }
   });
 
-  // CTA buttons
+  // CTA buttons — render whichever store URLs are configured (iOS-only apps included).
   let ctaHtml = "";
-  if (appConfig.appStoreUrl && appConfig.googlePlayUrl) {
+  const hasIos = !!appConfig.appStoreUrl;
+  const hasAndroid = !!appConfig.googlePlayUrl;
+  if (hasIos || hasAndroid) {
+    const iosLabel = hasIos && hasAndroid ? `${ctaText} (iOS)` : ctaText;
+    const androidLabel = hasIos && hasAndroid ? `${ctaText} (Android)` : ctaText;
+    const iosBtn = hasIos
+      ? `<a href="${appConfig.appStoreUrl}" style="display:inline-block;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:700;font-size:16px;margin:0 6px;">\ud83d\udcf1 ${iosLabel}</a>`
+      : "";
+    const androidBtn = hasAndroid
+      ? `<a href="${appConfig.googlePlayUrl}" style="display:inline-block;background:linear-gradient(135deg,#34d399 0%,#10b981 100%);color:#fff;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:700;font-size:16px;margin:0 6px;">\ud83e\udd16 ${androidLabel}</a>`
+      : "";
     ctaHtml = `
     <div style="text-align:center;margin:36px 0;">
-      <a href="${appConfig.appStoreUrl}" style="display:inline-block;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:700;font-size:16px;margin:0 6px;">
-        \ud83d\udcf1 ${ctaText} (iOS)
-      </a>
-      <a href="${appConfig.googlePlayUrl}" style="display:inline-block;background:linear-gradient(135deg,#34d399 0%,#10b981 100%);color:#fff;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:700;font-size:16px;margin:0 6px;">
-        \ud83e\udd16 ${ctaText} (Android)
-      </a>
+      ${iosBtn}
+      ${androidBtn}
     </div>`;
   }
 
