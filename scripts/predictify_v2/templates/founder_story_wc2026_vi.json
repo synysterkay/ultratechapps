@@ -1,0 +1,16 @@
+{
+  "subject": "World Cup 2026 — đọc bằng dữ liệu, không phải tin đồn",
+  "preview_text": "Ngôi nhà matchday của bạn dành cho những phân tích trung thực — và thành tích bạn có thể tự kiểm chứng.",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "Giải đấu lớn nhất hành tinh xứng đáng được nhìn nhận bằng dữ liệu, không phải phỏng đoán.",
+    "Đó là lý do chúng tôi xây dựng Predictify: AI hoạt động 24/7, phân tích bàn thắng kỳ vọng, phong độ, chấn thương, và xác suất thực tế cho 1X2, tài/xỉu, cả hai đội ghi bàn và hơn thế nữa. Với những lựa chọn có độ tin cậy cao nhất, mô hình đã đúng hơn 80% thời gian — và chúng tôi công bố mọi kết quả để bạn tự kiểm chứng.",
+    "Chúng tôi đã tạo trung tâm World Cup 2026 trong ứng dụng cho chính khoảnh khắc này — phân tích trước giờ bóng lăn, các chủ đề matchday, và tổng kết trung thực sau khi kết thúc trận đấu.",
+    "Mở trung tâm và đưa ra dự đoán táo bạo nhất của bạn: đội đen tối, bất ngờ vòng bảng, hay ai sẽ nâng cúp.",
+    "Tái bút: Chúng tôi không phải nhà cái và không hứa hẹn thắng chắc. Chúng tôi hứa hẹn những dự báo rõ ràng và thành tích bạn có thể kiểm tra — từng trận một."
+  ],
+  "cta_text": "Mở Trung tâm World Cup",
+  "cta_deeplink": "predictify://community/worldcup2026",
+  "kind": "founder_story_wc2026",
+  "language": "vi"
+}

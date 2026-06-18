@@ -1,0 +1,16 @@
+{
+  "subject": "Dünya Kupası 2026 — gürültüyle değil, veriyle okuyun",
+  "preview_text": "Dürüst analizler için maç günü eviniz — ve doğrulayabileceğiniz bir geçmiş.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Dünyanın en büyük turnuvası tahminden daha iyisini hak ediyor.",
+    "İşte bu yüzden Predictify'i kurduk: 7/24 çalışan yapay zeka, beklenen goller, form, sakatlıklar ve 1X2, alt/üst, KGYK ve daha fazlasında gerçek olasılıklar. En yüksek güvenli tahminlerimizde model %80'den fazla doğru çıktı — ve her sonucu yayınlıyoruz, böylece kendiniz doğrulayabilirsiniz.",
+    "Dünya Kupası 2026 merkezini tam da bu an için uygulama içinde oluşturduk — maç öncesi analizler, maç günü başlıkları ve bitiş düdüğünden sonra dürüst özetler.",
+    "Merkezi açın ve en cesur tahmininizi yapın: sürpriz takım, grup aşaması şoku veya kupayı kaldıran kim olacak.",
+    "Not: Biz bir bahis şirketi değiliz ve garantili kazanç vaat etmiyoruz. Net tahminler ve maç maç kontrol edebileceğiniz bir geçmiş sunuyoruz."
+  ],
+  "cta_text": "Dünya Kupası Merkezini Aç",
+  "cta_deeplink": "predictify://community/worldcup2026",
+  "kind": "founder_story_wc2026",
+  "language": "tr"
+}

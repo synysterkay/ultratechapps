@@ -1,0 +1,16 @@
+{
+  "subject": "Mondiali 2026 — leggili con i dati, non con il rumore",
+  "preview_text": "La tua casa per il matchday con analisi oneste — e un track record che puoi verificare.",
+  "body_paragraphs": [
+    "Ciao {first_name},",
+    "Il torneo più grande del pianeta merita più di semplici supposizioni.",
+    "Ecco perché abbiamo creato Predictify: un'AI che lavora 24/7, gol attesi, forma, infortuni e probabilità reali su 1X2, over/under, BTTS e altro. Sulle nostre scelte a più alta confidenza, il modello è stato corretto oltre l'80% delle volte — e pubblichiamo ogni risultato così puoi verificarlo tu stesso.",
+    "Abbiamo creato l'hub dei Mondiali 2026 dentro l'app proprio per questo momento — analisi pre-partita, thread del matchday e resoconti onesti dopo il fischio finale.",
+    "Apri l'hub e lancia la tua previsione più audace: cavallo scuro, sorpresa nella fase a gironi o chi alza la coppa.",
+    "P.S. Non siamo un bookmaker e non promettiamo vincite garantite. Promettiamo previsioni chiare e un track record che puoi controllare — partita per partita."
+  ],
+  "cta_text": "Apri l'Hub Mondiali",
+  "cta_deeplink": "predictify://community/worldcup2026",
+  "kind": "founder_story_wc2026",
+  "language": "it"
+}

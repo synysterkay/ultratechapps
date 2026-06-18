@@ -1,0 +1,16 @@
+{
+  "subject": "Coupe du Monde 2026 — lisez-la avec des données, pas du bruit",
+  "preview_text": "Votre repère pour les matchs : des analyses honnêtes et un bilan que vous pouvez vérifier.",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "Le plus grand tournoi de la planète mérite mieux que des suppositions.",
+    "C'est pourquoi nous avons créé Predictify : une IA qui tourne 24h/24, les buts attendus, la forme, les blessures, et les probabilités réelles sur 1X2, over/under, BTTS et plus encore. Sur nos pronostics les plus sûrs, le modèle a été correct plus de 80% du temps — et nous publions chaque résultat pour que vous puissiez vérifier par vous-même.",
+    "Nous avons créé le hub Coupe du Monde 2026 dans l'app pour ce moment précis : analyses avant le coup d'envoi, fils de discussion le jour du match, et résumés honnêtes après le coup de sifflet final.",
+    "Ouvrez le hub et lancez votre pari le plus audacieux : outsider, surprise en phase de groupes, ou qui soulève le trophée.",
+    "P.S. Nous ne sommes pas un bookmaker et nous ne promettons pas de gains garantis. Nous promettons des prévisions claires et un bilan que vous pouvez vérifier — match après match."
+  ],
+  "cta_text": "Ouvrir le hub Coupe du Monde",
+  "cta_deeplink": "predictify://community/worldcup2026",
+  "kind": "founder_story_wc2026",
+  "language": "fr"
+}
