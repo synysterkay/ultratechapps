@@ -2,15 +2,6 @@
   "warming_mode": "two_tier",
   "notes": "Full warming = opens + replies (Cloudflare Email Routing). Open-only = sends from Resend, Gmail opens via IMAP, no replies.",
   "full_warming_domains": {
-    "bestaiapps.site": {
-      "cloudflare": true,
-      "warmer_addresses": [
-        "info@bestaiapps.site"
-      ],
-      "forwarding": {
-        "info@bestaiapps.site": "kayneltest@gmail.com"
-      }
-    },
     "academicsatire.com": {
       "cloudflare": true,
       "warmer_addresses": [

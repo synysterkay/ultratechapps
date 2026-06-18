@@ -93,6 +93,9 @@ jobs:
           # predictify_v2/* for behavioral trigger evaluation.
           PREDICTIFY_SUPABASE_URL: ${{ secrets.PREDICTIFY_SUPABASE_URL }}
           PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY }}
+          # Founder-story backfill only (ignored by normal retention / v2 triggers).
+          FOUNDER_STORY_SEND_CAP: "2000"
+          FOUNDER_STORY_PASSES: "10"
         run: |
           MODE="${{ github.event.inputs.mode || 'send' }}"
 
@@ -121,9 +124,8 @@ jobs:
           elif [ "$MODE" = "founder-story" ]; then
             python -u scripts/founder_story_wc2026_sender.py --dry-run || true
             python -u scripts/founder_story_wc2026_sender.py --warm || true
-            # 8 passes × 500 cap = up to 4,000 sends per workflow run.
-            # GitHub cancels duplicate workflow_dispatch; multi-pass avoids that.
-            python -u scripts/founder_story_wc2026_sender.py --passes 8
+            # 10 passes × 2000 cap = up to 20,000 founder-story sends per run.
+            python -u scripts/founder_story_wc2026_sender.py --passes "${FOUNDER_STORY_PASSES:-10}"
           else
             python -u scripts/app_retention_emailer.py
             # Founder story is integrated into predictify_v2 (once-ever fallback).

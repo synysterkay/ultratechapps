@@ -44,12 +44,7 @@ class DeliverabilityMonitor:
     SENDER_POOL = [
         # kaynel.pl removed 2026-05-23 — DNS verification failed in Resend.
         # vitazelki.pl removed 2026-05-23 — retired per ops decision.
-        {
-            "email": "hello@bestaiapps.site",
-            "name": "Alex",
-            "domain": "bestaiapps.site",
-            "active": True,
-        },
+        # bestaiapps.site removed 2026-06-18 — domain retired.
         {
             "email": "hello@aibettips.io",
             "name": "Jordan",

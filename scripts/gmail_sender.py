@@ -44,8 +44,8 @@ class GmailSender:
 
     def __init__(self, sender_email=None, sender_name=None):
         self.api_key = os.getenv('RESEND_API_KEY')
-        self.sender_email = sender_email or 'hello@bestaiapps.site'
-        self.sender_name = sender_name or 'Ana'
+        self.sender_email = sender_email or 'tips@predictifyfootball.com'
+        self.sender_name = sender_name or 'Sam'
         self.delay_between_emails = 0.15  # Resend allows ~10/sec
         self.connected = False
 

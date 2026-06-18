@@ -592,6 +592,15 @@ def _build_text(e: RenderedEmail, unsub_url: str | None = None) -> str:
 #  daily crons (09:00 + 17:00 UTC) the realistic worst case is
 #  2 × V2_DAILY_SEND_CAP = 1000 emails/day.
 V2_DAILY_SEND_CAP = 500
+# Founder-story backfill uses a higher per-pass cap so one workflow run can
+# clear the backlog (~20k users) in a single job.
+FOUNDER_STORY_SEND_CAP = 2000
+
+
+def _send_cap(founder_story_only: bool) -> int:
+    if founder_story_only:
+        return int(os.environ.get('FOUNDER_STORY_SEND_CAP', FOUNDER_STORY_SEND_CAP))
+    return int(os.environ.get('V2_DAILY_SEND_CAP', V2_DAILY_SEND_CAP))
 
 # Building a user's context is ~13 sequential HTTP reads (Supabase + Firestore).
 # Done serially across ~17k users that was the ~2h45m the run spent before it
@@ -643,7 +652,8 @@ def run(
     founder_story_only: bool = False,
 ) -> list[tuple[str, str]]:
     mode = 'founder_story backfill' if founder_story_only else 'triggers'
-    print(f'🚀 Predictify v2 {mode} (dry_run={dry_run}, cap={V2_DAILY_SEND_CAP})')
+    send_cap = _send_cap(founder_story_only)
+    print(f'🚀 Predictify v2 {mode} (dry_run={dry_run}, cap={send_cap})')
     _log_env_presence()
 
     fb = FirebaseUserLoader()
@@ -791,7 +801,7 @@ def run(
         for chunk_start in range(0, len(users), V2_FETCH_CHUNK):
             if max_users and chunk_start >= max_users:
                 break
-            if len(sent) >= V2_DAILY_SEND_CAP:
+            if len(sent) >= send_cap:
                 cap_hit = True
                 break
 
@@ -830,7 +840,7 @@ def run(
                 if res[0] == 'error':
                     print(f'   ⚠️ context build failed for {res[1]}: {res[2]}')
                     continue
-                if len(sent) >= V2_DAILY_SEND_CAP:
+                if len(sent) >= send_cap:
                     cap_hit = True
                     break
 
@@ -871,7 +881,7 @@ def run(
         executor.shutdown(wait=False)
 
     cap_note = ' 🛑 CAP HIT' if cap_hit else ''
-    print(f'📊 Summary: sent={len(sent)}/{V2_DAILY_SEND_CAP} '
+    print(f'📊 Summary: sent={len(sent)}/{send_cap} '
           f'skipped_dup_today={skipped_dup_today} '
           f'skipped_cooldown={skipped_cooldown} '
           f'skipped_suppressed={skipped_suppressed} '

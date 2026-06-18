@@ -10,7 +10,7 @@ Usage:
   python3 scripts/founder_story_wc2026_sender.py --dry-run
   python3 scripts/founder_story_wc2026_sender.py --warm
   python3 scripts/founder_story_wc2026_sender.py
-  python3 scripts/founder_story_wc2026_sender.py --passes 8
+  python3 scripts/founder_story_wc2026_sender.py --passes 10
 """
 import json
 import os
@@ -81,6 +81,10 @@ def main(dry_run: bool = False, warm_only: bool = False, passes: int = 1) -> Non
             break
         if batch == 0:
             print('No more eligible users — stopping early')
+            break
+        per_pass_cap = int(os.environ.get('FOUNDER_STORY_SEND_CAP', '2000'))
+        if not dry_run and batch < per_pass_cap:
+            print(f'Partial pass ({batch}/{per_pass_cap}) — backlog exhausted')
             break
     if passes > 1 and not dry_run:
         print(f'\n📬 Total sent across passes: {total}')
