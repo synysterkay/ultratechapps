@@ -1,15 +1,15 @@
 {
-  "subject": "Världsmästerskapet 2026 — läs det med data, inte brus",
+  "subject": "World Cup 2026 — läs det med data, inte brus",
   "preview_text": "Din matchdagshubb för ärlig analys — och en meritlista du kan verifiera.",
   "body_paragraphs": [
     "Hej {first_name},",
-    "Den största turneringen på jorden förtjänar bättre än gissningar.",
-    "Det är därför vi byggde Predictify: AI som kör 24/7, förväntade mål, form, skador och verkliga sannolikheter på 1X2, över/under, BTTS och mer. På våra högsta förtroendespel har modellen haft rätt mer än 80% av gångerna — och vi publicerar varje resultat så att du kan verifiera det själv.",
-    "Vi skapade navet för Världsmästerskapet 2026 i appen för just detta ögonblick — analyser före avspark, matchdagstrådar och ärliga sammanfattningar efter full tid.",
-    "Öppna navet och släpp loss din djärvaste gissning: mörk häst, gruppspelsskräll eller vem som lyfter pokalen.",
-    "P.S. Vi är ingen bookmaker och vi lovar inte garanterade vinster. Vi lovar tydliga prognoser och en meritlista du kan kontrollera — match för match."
+    "Världens största turnering förtjänar bättre än gissningar.",
+    "Därför byggde vi Predictify: AI som kör 24/7, förväntade mål, form, skador och verkliga sannolikheter på 1X2, över/under, BTTS och mer. På våra högsta förtroendespel har modellen haft rätt mer än 80% av gångerna — och vi publicerar varje resultat så att du kan verifiera det själv.",
+    "Vi skapade World Cup 2026-hubben i appen för just detta ögonblick — analys före avspark, matchdagstrådar och ärliga sammanfattningar efter slutsignal.",
+    "Öppna hubben och släng in din djärvaste gissning: mörk häst, gruppspelsskräll eller vem som lyfter pokalen.",
+    "P.S. Vi är ingen bookmaker och vi lovar inga garanterade vinster. Vi lovar tydliga prognoser och en meritlista du kan kolla — match för match."
   ],
-  "cta_text": "Öppna VM-navet",
+  "cta_text": "Öppna World Cup Hub",
   "cta_deeplink": "predictify://community/worldcup2026",
   "kind": "founder_story_wc2026",
   "language": "sv"

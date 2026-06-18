@@ -1,15 +1,15 @@
 {
-  "subject": "Mistrzostwa Świata 2026 — czytaj z danymi, nie z szumem",
-  "preview_text": "Twój meczowy dom dla uczciwych analiz — i śledzonych wyników, które możesz sam sprawdzić.",
+  "subject": "Mundial 2026 — czytaj z danymi, nie z szumem",
+  "preview_text": "Twój meczowy dom z uczciwymi analizami — i udokumentowanymi wynikami, które możesz sprawdzić.",
   "body_paragraphs": [
     "Hej {first_name},",
     "Największy turniej na ziemi zasługuje na coś więcej niż zgadywanie.",
-    "Dlatego stworzyliśmy Predictify: AI, które działa 24/7, oczekiwane gole, forma, kontuzje i realne prawdopodobieństwa na 1X2, over/under, BTTS i więcej. Przy naszych najwyżej ocenianych typach model trafiał w ponad 80% przypadków — a my publikujemy każdy wynik, abyś mógł to sam sprawdzić.",
-    "Stworzyliśmy centrum Mistrzostw Świata 2026 w aplikacji właśnie na ten moment — analizy przed pierwszym gwizdkiem, wątki meczowe i uczciwe podsumowania po końcowym gwizdku.",
-    "Otwórz centrum i rzuć swoją najśmielszą prognozę: czarny koń, niespodzianka w fazie grupowej lub kto podnosi puchar.",
-    "P.S. Nie jesteśmy bukmacherem i nie obiecujemy gwarantowanych wygranych. Obiecujemy jasne prognozy i śledzone wyniki, które możesz sprawdzić — mecz po meczu."
+    "Dlatego stworzyliśmy Predictify: AI, które działa 24/7, bierze pod uwagę oczekiwane gole, formę, kontuzje i realne prawdopodobieństwa na 1X2, over/under, BTTS i więcej. W przypadku naszych typów z najwyższym poziomem pewności model trafiał w ponad 80% przypadków — a my publikujemy każdy wynik, abyś mógł to sam sprawdzić.",
+    "Stworzyliśmy centrum Mundialu 2026 w aplikacji właśnie na tę chwilę — analizy przed pierwszym gwizdkiem, wątki meczowe i uczciwe podsumowania po końcowym gwizdku.",
+    "Otwórz centrum i wrzuć swoje najodważniejsze typy: czarnego konia, niespodziankę w fazie grupowej albo kto podniesie puchar.",
+    "P.S. Nie jesteśmy bukmacherem i nie obiecujemy gwarantowanych wygranych. Obiecujemy jasne prognozy i udokumentowane wyniki, które możesz sprawdzić — mecz po meczu."
   ],
-  "cta_text": "Otwórz centrum Mistrzostw Świata",
+  "cta_text": "Otwórz centrum Mundialu",
   "cta_deeplink": "predictify://community/worldcup2026",
   "kind": "founder_story_wc2026",
   "language": "pl"
