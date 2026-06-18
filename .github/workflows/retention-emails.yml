@@ -96,10 +96,11 @@ jobs:
         run: |
           MODE="${{ github.event.inputs.mode || 'send' }}"
 
-          # Auto-localize any v2 templates that are still missing per-language
-          # files. Uses the production DEEPSEEK key (free for the language
-          # buckets we cover). Idempotent: skips files that already exist.
-          python -u scripts/predictify_v2/localize_templates.py || true
+          # Skip full template localize on founder-story backfill — templates
+          # are already warmed; this saves ~15 min per run.
+          if [ "$MODE" != "founder-story" ]; then
+            python -u scripts/predictify_v2/localize_templates.py || true
+          fi
 
           if [ "$MODE" = "generate" ]; then
             python -u scripts/app_retention_emailer.py --generate
@@ -120,7 +121,9 @@ jobs:
           elif [ "$MODE" = "founder-story" ]; then
             python -u scripts/founder_story_wc2026_sender.py --dry-run || true
             python -u scripts/founder_story_wc2026_sender.py --warm || true
-            python -u scripts/founder_story_wc2026_sender.py
+            # 8 passes × 500 cap = up to 4,000 sends per workflow run.
+            # GitHub cancels duplicate workflow_dispatch; multi-pass avoids that.
+            python -u scripts/founder_story_wc2026_sender.py --passes 8
           else
             python -u scripts/app_retention_emailer.py
             # Founder story is integrated into predictify_v2 (once-ever fallback).

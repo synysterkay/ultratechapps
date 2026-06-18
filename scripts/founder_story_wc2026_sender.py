@@ -10,6 +10,7 @@ Usage:
   python3 scripts/founder_story_wc2026_sender.py --dry-run
   python3 scripts/founder_story_wc2026_sender.py --warm
   python3 scripts/founder_story_wc2026_sender.py
+  python3 scripts/founder_story_wc2026_sender.py --passes 8
 """
 import json
 import os
@@ -61,17 +62,37 @@ def warm_templates() -> None:
             print(f'    ⚠️ failed: {e}')
 
 
-def main(dry_run: bool = False, warm_only: bool = False) -> None:
+def main(dry_run: bool = False, warm_only: bool = False, passes: int = 1) -> None:
     if warm_only:
         warm_templates()
         return
 
     from predictify_v2.orchestrator import run_founder_story_backfill
-    run_founder_story_backfill(dry_run=dry_run)
+
+    passes = int(os.environ.get('FOUNDER_STORY_PASSES', passes))
+    total = 0
+    for n in range(1, passes + 1):
+        if passes > 1:
+            print(f'\n=== Founder story backfill pass {n}/{passes} ===')
+        sent = run_founder_story_backfill(dry_run=dry_run)
+        batch = len(sent)
+        total += batch
+        if dry_run:
+            break
+        if batch == 0:
+            print('No more eligible users — stopping early')
+            break
+    if passes > 1 and not dry_run:
+        print(f'\n📬 Total sent across passes: {total}')
 
 
 if __name__ == '__main__':
+    passes = 1
+    for i, arg in enumerate(sys.argv):
+        if arg == '--passes' and i + 1 < len(sys.argv):
+            passes = int(sys.argv[i + 1])
     main(
         dry_run='--dry-run' in sys.argv,
         warm_only='--warm' in sys.argv,
+        passes=passes,
     )
