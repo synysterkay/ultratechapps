@@ -168,6 +168,8 @@ def _build_merge_fields(kind: str, ctx: UserContext) -> dict[str, str] | None:
         # Only fires for free users (gated by trigger). Reward is the
         # short Pro flag toggled by the in-app reward screen.
         return base
+    if kind == 'founder_story_wc2026':
+        return base
     if kind == 'upgrade_after_hot_week':
         if ctx.total_picks_30d < 5 or (ctx.accuracy_30d or 0) < 0.6:
             return None

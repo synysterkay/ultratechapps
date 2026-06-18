@@ -13,6 +13,10 @@ Why priority matters:
   A user who is mid-streak AND has an upcoming followed-league match
   should get the streak_saver (loss aversion is the strongest internal
   trigger). They also shouldn't get the welcome email twice.
+
+Founder story (World Cup 2026) is NOT listed here — it fires as a
+once-ever fallback in orchestrator._pick_kind() when no behavioral
+trigger matches and the user hasn't received it yet.
 """
 from __future__ import annotations
 

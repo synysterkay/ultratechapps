@@ -27,6 +27,7 @@ on:
           - streak
           - matchday
           - upsell
+          - founder-story
 
 permissions:
   contents: write
@@ -116,8 +117,14 @@ jobs:
             python -u scripts/app_retention_emailer.py --matchday
           elif [ "$MODE" = "upsell" ]; then
             python -u scripts/app_retention_emailer.py --upsell
+          elif [ "$MODE" = "founder-story" ]; then
+            python -u scripts/founder_story_wc2026_sender.py --dry-run || true
+            python -u scripts/founder_story_wc2026_sender.py --warm || true
+            python -u scripts/founder_story_wc2026_sender.py
           else
             python -u scripts/app_retention_emailer.py
+            # Founder story is integrated into predictify_v2 (once-ever fallback).
+            # Manual catch-up: workflow_dispatch mode founder-story.
             # Also run trigger-based senders during normal campaign runs.
             # Each has its own cooldown / state file, so daily is safe.
             echo "--- Running streak triggers ---"
@@ -138,6 +145,27 @@ jobs:
             echo "--- Running pupshape orchestrator (all pupshape senders) ---"
             python -u scripts/pupshape_orchestrator.py || true
           fi
+      
+      - name: Commit founder story templates
+        if: always() && github.event.inputs.mode == 'founder-story'
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add -f scripts/predictify_v2/templates/founder_story_wc2026_*.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "No founder story template changes to push"
+            exit 0
+          fi
+          git commit -m "Add localized founder story templates [skip ci]" --quiet
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main 2>/dev/null || true
+            if git push origin HEAD:main 2>&1; then
+              echo "✅ pushed founder story templates on attempt $attempt"
+              exit 0
+            fi
+            sleep $((attempt * 3))
+          done
+          echo "⚠️ founder story template push failed"
       
       - name: Save retention state
         if: always()

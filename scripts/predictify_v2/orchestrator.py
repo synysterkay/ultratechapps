@@ -366,9 +366,12 @@ def _load_suppressed_emails() -> set[str]:
 #
 #  Default cooldown for any kind not listed is 14 days.
 # ─────────────────────────────────────────────────────────
+FOUNDER_STORY_KIND = 'founder_story_wc2026'
+
 COOLDOWN_DAYS: dict[str, int] = {
     'welcome': 9999,                  # once ever
     'login_streak_reward': 9999,      # once ever — it's a one-shot reward
+    FOUNDER_STORY_KIND: 9999,        # once ever — World Cup 2026 founder letter
     'streak_saver': 5,
     'match_day': 1,
     'upgrade_after_hot_week': 14,
@@ -515,6 +518,16 @@ def _send(to: str, uid: str, email: RenderedEmail, dry_run: bool = False) -> boo
         return False
 
 
+def _cta_href(e: RenderedEmail) -> str:
+    """Prefer an explicit deeplink / landing URL from the template."""
+    dl = (e.cta_deeplink or '').strip()
+    if dl.startswith('http://') or dl.startswith('https://'):
+        return dl
+    if dl.startswith('predictify://'):
+        return dl
+    return f'https://predictifyfootball.com/?ref=email&kind={e.kind}'
+
+
 def _build_html(e: RenderedEmail, unsub_url: str | None = None) -> str:
     is_rtl = e.language == 'ar'
     dir_attr = ' dir="rtl"' if is_rtl else ''
@@ -534,7 +547,7 @@ def _build_html(e: RenderedEmail, unsub_url: str | None = None) -> str:
 <div style="display:none;color:#9ca3af;font-size:0">{_html_escape(e.preview_text)}</div>
 {paras}
 <div style="text-align:center;margin:28px 0">
-<a href="https://predictifyfootball.com/?ref=email&amp;kind={e.kind}" style="display:inline-block;padding:14px 28px;background:#3B82F6;color:#fff;text-decoration:none;border-radius:10px;font-weight:700;font-size:15px">{_html_escape(e.cta_text)}</a>
+<a href="{_html_escape(_cta_href(e))}" style="display:inline-block;padding:14px 28px;background:#3B82F6;color:#fff;text-decoration:none;border-radius:10px;font-weight:700;font-size:15px">{_html_escape(e.cta_text)}</a>
 </div>
 <div style="margin-top:32px;padding-top:16px;border-top:1px solid #e5e7eb;font-size:12px;color:#9ca3af;text-align:center">
 You're receiving this because you signed up for Predictify.
@@ -553,7 +566,7 @@ def _build_text(e: RenderedEmail, unsub_url: str | None = None) -> str:
     keeping the text version short and useful (not just an HTML strip)
     is the cheap improvement."""
     body = '\n\n'.join(p for p in e.body_paragraphs if p)
-    cta_url = f'https://predictifyfootball.com/?ref=email&kind={e.kind}'
+    cta_url = _cta_href(e)
     unsub = unsub_url or 'https://predictifyfootball.com/unsubscribe'
     lines = [
         'PREDICTIFY',
@@ -589,8 +602,48 @@ V2_FETCH_WORKERS = int(os.environ.get('V2_FETCH_WORKERS', '16'))
 V2_FETCH_CHUNK = 96
 
 
-def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, str]]:
-    print(f'🚀 Predictify v2 trigger pass (dry_run={dry_run}, cap={V2_DAILY_SEND_CAP})')
+def _legacy_founder_story_emails() -> set[str]:
+    """Emails already sent by the pre-v2 standalone script (if any)."""
+    path = Path(__file__).resolve().parents[2] / 'cache' / 'founder_story_wc2026_state.json'
+    if not path.exists():
+        return set()
+    try:
+        data = json.loads(path.read_text())
+        return {e.lower() for e in (data.get('sent') or {})}
+    except Exception:
+        return set()
+
+
+def _pick_kind(
+    ctx,
+    uid: str,
+    email: str,
+    sends_index: dict,
+    *,
+    founder_story_only: bool,
+    legacy_founder_sent: set[str],
+) -> str | None:
+    """Select the v2 email kind for a user."""
+    already = (
+        email.lower() in legacy_founder_sent
+        or _has_recent_in_index(sends_index, uid, FOUNDER_STORY_KIND, 9999)
+    )
+    if founder_story_only:
+        return None if already else FOUNDER_STORY_KIND
+
+    kind = select_trigger(ctx)
+    if kind:
+        return kind
+    return None if already else FOUNDER_STORY_KIND
+
+
+def run(
+    dry_run: bool = False,
+    max_users: int | None = None,
+    founder_story_only: bool = False,
+) -> list[tuple[str, str]]:
+    mode = 'founder_story backfill' if founder_story_only else 'triggers'
+    print(f'🚀 Predictify v2 {mode} (dry_run={dry_run}, cap={V2_DAILY_SEND_CAP})')
     _log_env_presence()
 
     fb = FirebaseUserLoader()
@@ -636,6 +689,9 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
     # in the summary line — useful for spotting drift in the suppressed
     # population vs total addressable.
     suppressed: set[str] = _load_suppressed_emails()
+    legacy_founder_sent = _legacy_founder_story_emails()
+    if legacy_founder_sent:
+        print(f'   📜 {len(legacy_founder_sent)} legacy founder-story sends (skipped)')
     print(f'   🚫 {len(suppressed)} suppressed addresses')
 
     # Load community pool once. The recommender keeps an in-memory list
@@ -756,6 +812,9 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
                 if email.lower() in suppressed:
                     skipped_suppressed += 1
                     continue
+                if founder_story_only and email.lower() in legacy_founder_sent:
+                    skipped_cooldown += 1
+                    continue
                 candidates.append(u)
 
             if not candidates:
@@ -779,7 +838,11 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
                 uid = ctx.uid
                 email = u.get('email')
 
-                kind = select_trigger(ctx)
+                kind = _pick_kind(
+                    ctx, uid, email, sends_index,
+                    founder_story_only=founder_story_only,
+                    legacy_founder_sent=legacy_founder_sent,
+                )
                 if not kind:
                     skipped_no_trigger += 1
                     continue
@@ -814,6 +877,12 @@ def run(dry_run: bool = False, max_users: int | None = None) -> list[tuple[str, 
           f'skipped_suppressed={skipped_suppressed} '
           f'skipped_no_trigger={skipped_no_trigger}{cap_note}')
     return sent
+
+
+def run_founder_story_backfill(dry_run: bool = False) -> list[tuple[str, str]]:
+    """Send the World Cup founder letter to every user who hasn't received it.
+    Ignores behavioral triggers — use for manual catch-up / first rollout."""
+    return run(dry_run=dry_run, founder_story_only=True)
 
 
 def status():
@@ -866,6 +935,9 @@ def status():
 if __name__ == '__main__':
     if '--status' in sys.argv:
         status()
+    elif '--founder-story' in sys.argv:
+        dry = '--dry-run' in sys.argv
+        run_founder_story_backfill(dry_run=dry)
     else:
         dry = '--dry-run' in sys.argv
         run(dry_run=dry)

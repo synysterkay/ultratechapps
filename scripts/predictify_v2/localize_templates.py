@@ -32,6 +32,18 @@ TARGET_LANGS = {
     'pp': 'Brazilian Portuguese',
     'pt': 'Portuguese',
     'tr': 'Turkish',
+    'bn': 'Bengali',
+    'el': 'Greek',
+    'fa': 'Persian',
+    'ko': 'Korean',
+    'ro': 'Romanian',
+    'ru': 'Russian',
+    'sv': 'Swedish',
+    'th': 'Thai',
+    'uk': 'Ukrainian',
+    'ur': 'Urdu',
+    'vi': 'Vietnamese',
+    'zh': 'Simplified Chinese',
 }
 
 DEEPSEEK_KEY = os.environ.get('DEEPSEEK_API_KEY', '')
