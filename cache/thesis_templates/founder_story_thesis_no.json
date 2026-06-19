@@ -1,0 +1,13 @@
+{
+  "subject": "48 timer igjen. Vi leverte likevel — og bestod 5/5.",
+  "body": [
+    "Vi sender vanligvis ikke slike e-poster — men Thesis Generator finnes på grunn av en natt en av våre teammedlemmer aldri vil glemme.",
+    "Vi begynte å bygge appen et helt år før vi lanserte den — humanisering, grafer, tabeller, referanser. Vi fortsatte å teste fordi «godt nok» ikke var godt nok for en ekte grad.",
+    "Så traff en av oss veggen som enhver oppgaveskriver frykter: en masteroppgave med to dagers frist. Temaet var satt. Forskningen var gjort. Og en bilulykke etterlot begge hendene brukket — den typen uke hvor du er takknemlig for å være i live og fortsatt livredd for fredagen.",
+    "Med nesten ingen tid og ingen mulighet til å skrive normalt, brukte vi appen vi hadde bygget. Den genererte en full, innleveringsklar oppgave på omtrent ti minutter. Vi gjennomgikk den, leverte den, og bestod 5/5.",
+    "Det er derfor Thesis Generator finnes: for øyeblikket når klokken vinner med mindre noe skjer raskt.",
+    "Du trenger ikke en perfekt måned foran deg. Åpne appen, skriv inn emnet ditt og det du allerede har forsket på, og generer {{work_type}}.",
+    "P.S. Hvis {{topic}} allerede er i appen, fortsett der du slapp. Hvis ikke, start nå mens du fortsatt har dager — ikke timer."
+  ],
+  "cta": "Generer min {{work_type}}"
+}

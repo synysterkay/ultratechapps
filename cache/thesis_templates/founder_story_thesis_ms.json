@@ -1,0 +1,13 @@
+{
+  "subject": "48 jam lagi. Kami tetap hantar — dan lulus 5/5.",
+  "body": [
+    "Kami jarang hantar emel macam ini — tetapi Thesis Generator wujud kerana satu malam yang tidak akan dilupakan oleh salah seorang ahli pasukan kami.",
+    "Kami mula membina aplikasi ini setahun penuh sebelum melancarkannya — humanisasi, graf, jadual, rujukan. Kami terus menguji kerana “cukup baik” tidak cukup baik untuk ijazah sebenar.",
+    "Kemudian salah seorang daripada kami menghadapi tembok yang ditakuti setiap penulis tesis: tesis sarjana perlu dihantar dalam dua hari. Topik sudah ditetapkan. Penyelidikan sudah selesai. Dan kemalangan kereta menyebabkan kedua-dua tangan patah — minggu yang membuatkan anda bersyukur masih hidup tetapi masih takut tentang hari Jumaat.",
+    "Dengan hampir tiada masa dan tidak boleh menaip secara normal, kami menggunakan aplikasi yang sedang kami bina. Ia menghasilkan tesis lengkap yang siap dihantar dalam kira-kira sepuluh minit. Kami menyemaknya, menghantarnya, dan lulus 5/5.",
+    "Itulah sebabnya Thesis Generator wujud: untuk saat apabila masa mengalahkan anda melainkan sesuatu bergerak pantas.",
+    "Anda tidak perlu mempunyai bulan yang sempurna di hadapan. Buka aplikasi, masukkan topik dan apa yang telah anda selidik, dan hasilkan {{work_type}} anda.",
+    "P.S. Jika {{topic}} sudah ada dalam aplikasi, sambung di mana anda tinggalkan. Jika tidak, mulakan sekarang selagi anda masih ada hari — bukan jam."
+  ],
+  "cta": "Hasilkan {{work_type}} saya"
+}

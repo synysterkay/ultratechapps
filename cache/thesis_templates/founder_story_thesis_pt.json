@@ -1,0 +1,13 @@
+{
+  "subject": "48 horas restantes. Ainda assim submetemos — e passamos 5/5.",
+  "body": [
+    "Normalmente não enviamos e-mails como este — mas o Thesis Generator existe por causa de uma noite que um dos nossos nunca vai esquecer.",
+    "Começamos a construir o app um ano inteiro antes de lançá-lo — humanização, gráficos, tabelas, referências. Continuamos testando porque \"bom o suficiente\" não era bom o suficiente para um diploma de verdade.",
+    "Então um de nós enfrentou o muro que todo escritor de tese teme: uma tese de mestrado com prazo de dois dias. O tema estava definido. A pesquisa estava pronta. E um acidente de carro deixou ambas as mãos quebradas — o tipo de semana em que você agradece por estar vivo e ainda assim fica aterrorizado com a sexta-feira.",
+    "Com quase nenhum tempo e sem jeito de digitar normalmente, usamos o app que estávamos construindo. Ele gerou uma tese completa e pronta para submissão em cerca de dez minutos. Revisamos, submetemos e passamos 5/5.",
+    "É por isso que o Thesis Generator existe: para o momento em que o relógio vence, a menos que algo se mova rápido.",
+    "Você não precisa de um mês perfeito pela frente. Abra o app, insira seu tema e o que já pesquisou, e gere seu {{work_type}}.",
+    "P.S. Se {{topic}} já estiver no app, continue de onde parou. Se não, comece agora enquanto ainda tem dias — não horas."
+  ],
+  "cta": "Gerar meu {{work_type}}"
+}

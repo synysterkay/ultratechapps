@@ -1,0 +1,13 @@
+{
+  "subject": "Còn 48 giờ. Chúng tôi vẫn nộp — và đạt 5/5.",
+  "body": [
+    "Chúng tôi thường không gửi email kiểu này — nhưng Thesis Generator ra đời từ một đêm mà một thành viên trong nhóm sẽ không bao giờ quên.",
+    "Chúng tôi bắt đầu xây dựng ứng dụng cả năm trước khi phát hành — nhân cách hóa, biểu đồ, bảng, tài liệu tham khảo. Chúng tôi cứ thử nghiệm vì \"đủ tốt\" chưa đủ tốt cho một tấm bằng thực sự.",
+    "Rồi một người trong chúng tôi gặp phải bức tường mà mọi người viết luận văn đều sợ: luận văn thạc sĩ phải nộp trong hai ngày. Chủ đề đã được xác định. Nghiên cứu đã hoàn thành. Và một tai nạn xe hơi khiến cả hai tay bị gãy — kiểu tuần mà bạn biết ơn vì còn sống nhưng vẫn khiếp sợ vì thứ Sáu.",
+    "Với gần như không có thời gian và không thể gõ bình thường, chúng tôi đã sử dụng ứng dụng mà mình đang xây dựng. Nó tạo ra một luận văn hoàn chỉnh, sẵn sàng nộp trong khoảng mười phút. Chúng tôi xem lại, nộp nó, và đạt 5/5.",
+    "Đó là lý do Thesis Generator tồn tại: cho khoảnh khắc khi thời gian chiến thắng trừ khi có thứ gì đó di chuyển nhanh.",
+    "Bạn không cần một tháng hoàn hảo phía trước. Mở ứng dụng, nhập chủ đề và những gì bạn đã nghiên cứu, và tạo {{work_type}} của bạn.",
+    "P.S. Nếu {{topic}} đã có trong ứng dụng, hãy tiếp tục từ chỗ bạn dừng lại. Nếu không, hãy bắt đầu ngay khi bạn còn ngày — chứ không phải giờ."
+  ],
+  "cta": "Tạo {{work_type}} của tôi"
+}

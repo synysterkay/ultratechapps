@@ -46,6 +46,14 @@
         "team@passedai.io"
       ],
       "seed_gmail": "testkaynel@gmail.com"
+    },
+    "kaynel.solutions": {
+      "sender_addresses": [
+        "hello@kaynel.solutions",
+        "team@kaynel.solutions",
+        "support@kaynel.solutions"
+      ],
+      "seed_gmail": "kaynelpl@gmail.com"
     }
   },
   "gmail_accounts": [

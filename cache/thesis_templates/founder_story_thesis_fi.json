@@ -1,0 +1,13 @@
+{
+  "subject": "48 tuntia jäljellä. Lähetimme silti — ja läpäisimme 5/5.",
+  "body": [
+    "Emme yleensä lähetä tällaisia sähköposteja — mutta Thesis Generator on olemassa yhden tiimiläisemme unohtumattoman yön takia.",
+    "Aloimme rakentaa sovellusta kokonaisen vuoden ennen sen julkaisua — humanisointi, kaaviot, taulukot, viitteet. Testasimme jatkuvasti, koska \"tarpeeksi hyvä\" ei ollut tarpeeksi hyvä oikealle tutkinnolle.",
+    "Sitten yksi meistä törmäsi seinään, jota jokainen opinnäytetyön kirjoittaja pelkää: maisterintutkielma erääntyy kahden päivän päästä. Aihe oli asetettu. Tutkimus oli tehty. Ja auto-onnettomuus mursi molemmat kädet — sellainen viikko, jossa olet kiitollinen että olet elossa ja silti kauhuissasi perjantaista.",
+    "Lähes ilman aikaa ja ilman mahdollisuutta kirjoittaa normaalisti, käytimme sovellusta, jota olimme rakentaneet. Se tuotti täyden, palautusvalmiin opinnäytetyön noin kymmenessä minuutissa. Tarkistimme sen, lähetimme sen ja läpäisimme 5/5.",
+    "Siksi Thesis Generator on olemassa: sitä hetkeä varten, kun kello voittaa, ellei jokin liiku nopeasti.",
+    "Sinun ei tarvitse olla täydellinen kuukausi edessäsi. Avaa sovellus, syötä aiheesi ja mitä olet jo tutkinut, ja generoi {{work_type}}.",
+    "P.S. Jos {{topic}} on jo sovelluksessa, jatka siitä mihin jäit. Jos ei, aloita nyt, kun sinulla on vielä päiviä — ei tunteja."
+  ],
+  "cta": "Generoi {{work_type}}"
+}

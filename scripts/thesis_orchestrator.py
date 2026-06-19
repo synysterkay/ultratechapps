@@ -50,6 +50,7 @@ SENDERS = [
     ('winback',               'winback_sender'),
     ('weekly_progress',       'weekly_progress_sender'),
     ('cumulative_stats',      'cumulative_stats_sender'),
+    ('founder_story',         'founder_story_thesis_sender'),
 ]
 
 
@@ -70,7 +71,7 @@ def run_one(name, mod, dry_run):
 
 def warm_all_translations():
     """Walk every sender, extract its EN_SOURCE(s), and warm the DeepSeek
-    cache for all 20 languages. Run once after deploying new senders so
+    cache for all 34 languages. Run once after deploying new senders so
     production sends never pay the cold translation latency.
 
     Each sender exposes its English source either as `EN_SOURCE` (single
@@ -133,7 +134,13 @@ def main():
     for name, mod in SENDERS:
         if only and only != name:
             continue
-        run_one(name, mod, dry_run)
+        if name == 'founder_story':
+            # Daily catch-up for new signups after the initial backfill.
+            import importlib
+            module = importlib.import_module(mod)
+            module.main(dry_run=dry_run, daily=True)
+        else:
+            run_one(name, mod, dry_run)
         time.sleep(0.5)
     print('\n🏁 Thesis orchestrator done.')
 

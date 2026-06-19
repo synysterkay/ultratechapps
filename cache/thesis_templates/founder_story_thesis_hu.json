@@ -1,0 +1,13 @@
+{
+  "subject": "48 óra maradt. Mégis leadtuk – és 5/5-öt kaptunk.",
+  "body": [
+    "Általában nem küldünk ilyen e-maileket – de a Thesis Generator azért létezik, mert csapatunk egyik tagja sosem felejti el azt az estét.",
+    "Egy teljes évvel a megjelenés előtt kezdtük el építeni az alkalmazást – humanizálás, grafikonok, táblázatok, hivatkozások. Folyamatosan teszteltük, mert a „jó elég” nem volt elég egy igazi diplomához.",
+    "Aztán egyikünk elérte azt a falat, amitől minden szakdolgozatíró fél: két nap alatt kellett leadni a mesterdolgozatot. A téma adott volt. A kutatás kész. És egy autóbalesetben mindkét keze eltört – az a fajta hét, amikor hálás vagy, hogy élsz, és mégis rettegsz a péntektől.",
+    "Szinte semmi idővel és normális gépelési lehetőség nélkül használtuk az alkalmazást, amit építettünk. Körülbelül tíz perc alatt generált egy teljes, leadásra kész szakdolgozatot. Átnéztük, leadtuk, és 5/5-öt kaptunk.",
+    "Ezért létezik a Thesis Generator: arra a pillanatra, amikor az óra nyer, hacsak valami nem mozdul gyorsan.",
+    "Nincs szükséged egy tökéletes hónapra. Nyisd meg az alkalmazást, add meg a témádat és amit már kutattál, és generáld le a(z) {{work_type}}-t.",
+    "U.i.: Ha a(z) {{topic}} már szerepel az alkalmazásban, folytasd onnan, ahol abbahagytad. Ha nem, kezdd el most, amíg még napjaid vannak – nem óráid."
+  ],
+  "cta": "Generálom a(z) {{work_type}}-t"
+}

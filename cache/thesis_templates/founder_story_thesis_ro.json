@@ -1,0 +1,13 @@
+{
+  "subject": "Au mai rămas 48 de ore. Tot am trimis — și am luat 5/5.",
+  "body": [
+    "De obicei nu trimitem emailuri de genul acesta — dar Thesis Generator există datorită unei nopți pe care unul dintre noi nu o va uita niciodată.",
+    "Am început să construim aplicația cu un an întreg înainte să o lansăm — umanizare, grafice, tabele, referințe. Am tot testat pentru că „destul de bun” nu era suficient de bun pentru o diplomă reală.",
+    "Apoi unul dintre noi a dat de peretele de care se teme orice autor de teză: o lucrare de masterat de predat în două zile. Subiectul era stabilit. Cercetarea era făcută. Și un accident de mașină i-a rupt ambele mâini — genul de săptămână în care ești recunoscător că ești în viață și totuși îngrozit de vineri.",
+    "Cu aproape deloc timp și fără să poată tasta normal, am folosit aplicația pe care o construiam. A generat o teză completă, gata de predat, în aproximativ zece minute. Am revizuit-o, am trimis-o și am luat 5/5.",
+    "De asta există Thesis Generator: pentru momentul în care ceasul câștigă dacă ceva nu se mișcă repede.",
+    "Nu ai nevoie de o lună perfectă în față. Deschide aplicația, introdu subiectul tău și ce ai cercetat deja, și generează-ți {{work_type}}.",
+    "P.S. Dacă {{topic}} este deja în aplicație, continuă de unde ai rămas. Dacă nu, începe acum, cât mai ai zile — nu ore."
+  ],
+  "cta": "Generează-mi {{work_type}}"
+}

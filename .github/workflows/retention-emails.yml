@@ -28,6 +28,7 @@ on:
           - matchday
           - upsell
           - founder-story
+          - thesis-founder-story
 
 permissions:
   contents: write
@@ -126,6 +127,11 @@ jobs:
             python -u scripts/founder_story_wc2026_sender.py --warm || true
             # 10 passes × 2000 cap = up to 20,000 founder-story sends per run.
             python -u scripts/founder_story_wc2026_sender.py --passes "${FOUNDER_STORY_PASSES:-10}"
+          elif [ "$MODE" = "thesis-founder-story" ]; then
+            python -u scripts/founder_story_thesis_sender.py --dry-run || true
+            python -u scripts/founder_story_thesis_sender.py --warm || true
+            # 3 passes × 2000 cap covers ~5,800 Thesis Generator users.
+            python -u scripts/founder_story_thesis_sender.py --passes "${FOUNDER_STORY_THESIS_PASSES:-3}"
           else
             python -u scripts/app_retention_emailer.py
             # Founder story is integrated into predictify_v2 (once-ever fallback).
@@ -151,6 +157,27 @@ jobs:
             python -u scripts/pupshape_orchestrator.py || true
           fi
       
+      - name: Commit thesis founder story templates
+        if: always() && github.event.inputs.mode == 'thesis-founder-story'
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add -f cache/thesis_templates/founder_story_thesis_*.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "No thesis founder story template changes to push"
+            exit 0
+          fi
+          git commit -m "Add localized thesis founder story templates [skip ci]" --quiet
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main 2>/dev/null || true
+            if git push origin HEAD:main 2>&1; then
+              echo "✅ pushed thesis founder story templates on attempt $attempt"
+              exit 0
+            fi
+            sleep $((attempt * 3))
+          done
+          echo "⚠️ thesis founder story template push failed"
+
       - name: Commit founder story templates
         if: always() && github.event.inputs.mode == 'founder-story'
         run: |
@@ -178,7 +205,7 @@ jobs:
           [ -f cache/retention_state.json ] || exit 0
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          STATE_PATHS="cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json cache/abandoned_thesis_state.json cache/free_quota_hit_state.json cache/trial_ending_state.json cache/winback_state.json cache/streak_milestone_state.json cache/weekly_progress_state.json cache/stuck_on_outline_state.json cache/cumulative_stats_state.json cache/thesis_templates/ firebase_exports/"
+          STATE_PATHS="cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json cache/abandoned_thesis_state.json cache/free_quota_hit_state.json cache/trial_ending_state.json cache/winback_state.json cache/streak_milestone_state.json cache/weekly_progress_state.json cache/stuck_on_outline_state.json cache/cumulative_stats_state.json cache/founder_story_thesis_state.json cache/thesis_templates/ firebase_exports/"
           # Robust push: the run takes ~2.5h and main moves under us (sender
           # health updater, blog automation, manual commits). A plain rebase
           # conflicts on the JSON state files and the push loses the race,

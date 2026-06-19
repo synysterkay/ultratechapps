@@ -46,6 +46,12 @@ class DeliverabilityMonitor:
         # vitazelki.pl removed 2026-05-23 — retired per ops decision.
         # bestaiapps.site removed 2026-06-18 — domain retired.
         {
+            "email": "hello@kaynel.solutions",
+            "name": "Alex",
+            "domain": "kaynel.solutions",
+            "active": True,
+        },
+        {
             "email": "hello@aibettips.io",
             "name": "Jordan",
             "domain": "aibettips.io",

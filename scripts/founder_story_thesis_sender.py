@@ -1,0 +1,312 @@
+#!/usr/bin/env python3
+"""
+Thesis Generator founder-story email — once-ever letter to the full user base.
+
+Mirrors Predictify's founder_story_wc2026 backfill: walk every Firestore user,
+skip suppressions + already-sent, localize via thesis_template_translator.
+
+Usage:
+  python3 scripts/founder_story_thesis_sender.py --dry-run
+  python3 scripts/founder_story_thesis_sender.py --warm
+  python3 scripts/founder_story_thesis_sender.py
+  python3 scripts/founder_story_thesis_sender.py --passes 3
+  python3 scripts/founder_story_thesis_sender.py --daily   # orchestrator catch-up
+"""
+from __future__ import annotations
+
+import hashlib
+import json
+import os
+import sys
+import time
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent))
+
+from gmail_sender import GmailSender
+from firebase_user_loader import FirebaseUserLoader
+from thesis_users_loader import get_access_token, load_all_users
+from thesis_template_translator import get_localized, warm_all, SUPPORTED
+from thesis_email_chrome import render as render_email
+from deliverability_monitor import DeliverabilityMonitor
+import localize_phrase
+
+APP_NAME = 'Thesis Generator'
+APP_SLUG = 'thesis'
+KIND = 'founder_story_thesis'
+APP_STORE_URL = 'https://apps.apple.com/app/thesis-generator-essay-ai/id6739264844'
+STATE_FILE = Path(__file__).parent.parent / 'cache' / 'founder_story_thesis_state.json'
+_REF_SALT = os.getenv('EMAIL_REF_SALT', 'marketing-tool-v1')
+BACKFILL_CAP = int(os.getenv('FOUNDER_STORY_THESIS_SEND_CAP', '2000'))
+DAILY_CATCHUP_CAP = int(os.getenv('FOUNDER_STORY_THESIS_DAILY_CAP', '50'))
+
+EN_SOURCE = {
+    'subject': '48 hours left. We still submitted — and passed 5/5.',
+    'body': [
+        "We don't usually send emails like this — but Thesis Generator exists because of a night one of our team will never forget.",
+        "We started building the app a full year before we shipped it — humanization, graphs, tables, references. We kept testing because “good enough” wasn't good enough for a real degree.",
+        "Then one of us hit the wall every thesis writer fears: a master's thesis due in two days. The topic was set. The research was done. And a car accident left both hands broken — the kind of week where you're grateful to be alive and still terrified about Friday.",
+        "With almost no time and no way to type normally, we used the app we'd been building. It generated a full, submission-ready thesis in about ten minutes. We reviewed it, submitted it, and passed 5/5.",
+        "That's why Thesis Generator exists: for the moment when the clock wins unless something moves fast.",
+        "You don't need a perfect month ahead of you. Open the app, enter your topic and what you've already researched, and generate your {{work_type}}.",
+        "P.S. If {{topic}} is already in the app, pick up where you left off. If not, start now while you still have days — not hours.",
+    ],
+    'cta': 'Generate my {{work_type}}',
+}
+
+
+def _load_state() -> dict:
+    if STATE_FILE.exists():
+        try:
+            return json.loads(STATE_FILE.read_text())
+        except Exception:
+            pass
+    return {'sent': {}}
+
+
+def _save_state(state: dict) -> None:
+    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    STATE_FILE.write_text(json.dumps(state, indent=2))
+
+
+def _ref(email: str) -> str:
+    return hashlib.sha256(f"{_REF_SALT}:{email.lower().strip()}".encode()).hexdigest()[:16]
+
+
+def _skip_email(email: str) -> bool:
+    e = email.lower()
+    return (
+        not e
+        or 'cloudtestlabaccounts.com' in e
+        or e.endswith('@example.com')
+        or 'test@' in e
+    )
+
+
+def _load_suppressed_emails() -> set[str]:
+    url = os.getenv('SUPABASE_URL', '').rstrip('/')
+    key = os.getenv('SUPABASE_SERVICE_ROLE_KEY', '')
+    if not url or not key:
+        return set()
+    try:
+        import requests
+        r = requests.get(
+            f'{url}/rest/v1/email_suppressions',
+            headers={'apikey': key, 'Authorization': f'Bearer {key}'},
+            params={'select': 'email'},
+            timeout=20,
+        )
+        if r.status_code != 200:
+            return set()
+        return {row['email'].lower().strip() for row in r.json() if row.get('email')}
+    except Exception:
+        return set()
+
+
+def _connect_senders() -> list[GmailSender]:
+    senders: list[GmailSender] = []
+    for info in DeliverabilityMonitor.SENDER_POOL:
+        if not info.get('active', True):
+            continue
+        gs = GmailSender(sender_email=info['email'], sender_name=info['name'])
+        if gs.connect():
+            senders.append(gs)
+        time.sleep(0.3)
+    return senders
+
+
+def _plan_for_user(user: dict) -> dict:
+    plan = dict(user.get('plan') or {})
+    plan['first_name'] = plan.get('first_name') or user.get('first_name') or 'there'
+    plan['topic'] = plan.get('topic') or plan.get('subject') or 'your thesis'
+    wt = plan.get('workType') or plan.get('work_type') or 'fullThesis'
+    plan['work_type'] = wt
+    return plan
+
+
+def warm_templates() -> None:
+    """Pre-fill cache/thesis_templates/founder_story_thesis_{lang}.json."""
+    _write_en_cache()
+    print(f'🔥 Warming {KIND} for {len(SUPPORTED) - 1} languages…')
+    result = warm_all(KIND, EN_SOURCE)
+    ok = sum(1 for v in result.values() if v in ('cached', 'translated'))
+    print(f'✅ Warm complete: {ok}/{len(SUPPORTED) - 1} languages ready')
+
+
+def _write_en_cache() -> None:
+    from thesis_template_translator import _write_cache
+    _write_cache(KIND, 'en', EN_SOURCE)
+
+
+def _load_candidates(token: str | None) -> list[dict]:
+    """All Thesis Generator auth users, enriched with Firestore language/plan when available."""
+    auth_users = FirebaseUserLoader().load_users_by_app().get(APP_NAME, [])
+    fs_by_email: dict[str, dict] = {}
+    fs_by_uid: dict[str, dict] = {}
+    if token:
+        for u in load_all_users(token):
+            fs_by_email[u['email']] = u
+            if u.get('uid'):
+                fs_by_uid[u['uid']] = u
+
+    out: list[dict] = []
+    for au in auth_users:
+        email = au['email']
+        uid = au.get('uid', '')
+        fs = fs_by_email.get(email) or (fs_by_uid.get(uid) if uid else None)
+        if fs:
+            user = {**au, **fs}
+        else:
+            local = email.split('@', 1)[0]
+            user = {
+                **au,
+                'first_name': local.split('.')[0].capitalize() if local else 'there',
+                'language': 'en',
+                'plan': {},
+            }
+        out.append(user)
+    return out
+
+
+def run_send(*, dry_run: bool = False, send_cap: int | None = None) -> list[str]:
+    """Send founder story to users who haven't received it. Returns emails sent."""
+    cap = send_cap if send_cap is not None else BACKFILL_CAP
+    state = _load_state()
+    state.setdefault('sent', {})
+    already = set(state['sent'].keys())
+
+    token = get_access_token()
+    if not token:
+        print('⚠️ FIREBASE_TOKEN not set — using auth export only (language defaults to en)')
+
+    suppressed = _load_suppressed_emails()
+    if suppressed:
+        print(f'   🚫 {len(suppressed)} suppressed addresses')
+
+    candidates = []
+    for user in _load_candidates(token):
+        email = user['email']
+        if _skip_email(email) or email in already or email in suppressed:
+            continue
+        candidates.append(user)
+
+    print(f'📬 {len(candidates)} users eligible (cap={cap}, already sent={len(already)}, auth+firestore merged)')
+    if not candidates:
+        return []
+
+    if dry_run:
+        for u in candidates[:30]:
+            print(f"   • {u['email']}  lang={u.get('language', 'en')}")
+        if len(candidates) > 30:
+            print(f'   … and {len(candidates) - 30} more')
+        print('🏁 DRY RUN')
+        return []
+
+    if not os.getenv('RESEND_API_KEY'):
+        print('❌ RESEND_API_KEY not set')
+        return []
+
+    senders = _connect_senders()
+    if not senders:
+        print('❌ No Resend senders available')
+        return []
+
+    sent_emails: list[str] = []
+    failed = 0
+    for i, user in enumerate(candidates):
+        if len(sent_emails) >= cap:
+            print(f'   🛑 Cap hit ({cap})')
+            break
+
+        email = user['email']
+        lang = user.get('language') or 'en'
+        plan = _plan_for_user(user)
+
+        tpl = get_localized(KIND, lang, EN_SOURCE)
+        subject = localize_phrase.interpolate(lang, tpl.get('subject', EN_SOURCE['subject']), plan)
+        paragraphs = [
+            localize_phrase.interpolate(lang, p, plan)
+            for p in tpl.get('body', EN_SOURCE['body'])
+        ]
+        cta_text = localize_phrase.interpolate(lang, tpl.get('cta', EN_SOURCE['cta']), plan)
+
+        html = render_email(
+            lang, paragraphs, cta_text, APP_STORE_URL,
+            sender_name='The Thesis Generator team',
+            app_name=APP_NAME,
+            gradient='invite',
+            signoff_override='',
+        )
+
+        sender = senders[i % len(senders)]
+        tags = [
+            {'name': 'app', 'value': APP_SLUG},
+            {'name': 'kind', 'value': KIND},
+            {'name': 'language', 'value': lang},
+            {'name': 'system', 'value': 'thesis_founder_story'},
+        ]
+        result = sender.send_email(
+            to_email=email,
+            subject=subject,
+            html_body=html,
+            from_name=APP_NAME,
+            tags=tags,
+            ref_id=_ref(email),
+        )
+        if result == 'sent':
+            sent_emails.append(email)
+            state['sent'][email] = {
+                'sent_at': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
+                'language': lang,
+                'uid': user.get('uid'),
+            }
+            if len(sent_emails) % 25 == 0:
+                _save_state(state)
+            print(f'   ✅ [{len(sent_emails)}] {email} ({lang})')
+        else:
+            failed += 1
+            print(f'   ❌ {email} result={result}')
+        time.sleep(0.25)
+
+    _save_state(state)
+    print(f'\n📊 Done — sent {len(sent_emails)}, failed {failed}, total ever {len(state["sent"])}')
+    return sent_emails
+
+
+def main(dry_run: bool = False, warm_only: bool = False, passes: int = 1, daily: bool = False) -> None:
+    if warm_only:
+        warm_templates()
+        return
+
+    _write_en_cache()
+    cap = DAILY_CATCHUP_CAP if daily else BACKFILL_CAP
+    passes = int(os.environ.get('FOUNDER_STORY_THESIS_PASSES', passes))
+    total = 0
+    for n in range(1, passes + 1):
+        if passes > 1 and not daily:
+            print(f'\n=== Thesis founder story pass {n}/{passes} ===')
+        batch = run_send(dry_run=dry_run, send_cap=cap)
+        total += len(batch)
+        if dry_run:
+            break
+        if not batch:
+            print('No more eligible users — stopping early')
+            break
+        if not daily and len(batch) < cap:
+            print(f'Partial pass ({len(batch)}/{cap}) — backlog exhausted')
+            break
+    if passes > 1 and not dry_run and not daily:
+        print(f'\n📬 Total sent across passes: {total}')
+
+
+if __name__ == '__main__':
+    passes = 1
+    for i, arg in enumerate(sys.argv):
+        if arg == '--passes' and i + 1 < len(sys.argv):
+            passes = int(sys.argv[i + 1])
+    main(
+        dry_run='--dry-run' in sys.argv,
+        warm_only='--warm' in sys.argv,
+        passes=passes,
+        daily='--daily' in sys.argv,
+    )

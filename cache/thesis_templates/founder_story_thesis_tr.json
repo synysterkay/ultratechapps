@@ -1,0 +1,13 @@
+{
+  "subject": "48 saat kalmıştı. Yine de teslim ettik — ve 5/5 ile geçtik.",
+  "body": [
+    "Genelde böyle e-postalar göndermeyiz — ama Thesis Generator, ekibimizden birinin asla unutamayacağı bir gece sayesinde var.",
+    "Uygulamayı yayınlamadan tam bir yıl önce inşa etmeye başladık — insancıllaştırma, grafikler, tablolar, referanslar. Sürekli test ettik çünkü 'yeterince iyi' gerçek bir diploma için yeterli değildi.",
+    "Sonra birimiz her tez yazarının korktuğu duvara çarptı: iki gün içinde teslim edilmesi gereken bir yüksek lisans tezi. Konu belirlenmişti. Araştırma yapılmıştı. Ve bir araba kazası iki elini de kırdı — hayatta olduğun için minnettar ama Cuma günü hâlâ dehşete düştüğün türden bir hafta.",
+    "Neredeyse hiç zamanımız yoktu ve normal şekilde yazamıyorduk, üzerinde çalıştığımız uygulamayı kullandık. Yaklaşık on dakikada teslime hazır, eksiksiz bir tez oluşturdu. Gözden geçirdik, teslim ettik ve 5/5 ile geçtik.",
+    "İşte Thesis Generator bu yüzden var: saat kazanmak için bir şeyin hızlı hareket etmesi gerektiği an için.",
+    "Önünüzde mükemmel bir ay olması gerekmiyor. Uygulamayı açın, konunuzu ve daha önce araştırdıklarınızı girin ve {{work_type}} oluşturun.",
+    "Not: {{topic}} zaten uygulamadaysa, kaldığınız yerden devam edin. Değilse, saatler değil günleriniz varken şimdi başlayın."
+  ],
+  "cta": "{{work_type}} oluştur"
+}

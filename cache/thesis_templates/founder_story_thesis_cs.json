@@ -1,0 +1,13 @@
+{
+  "subject": "Zbývá 48 hodin. Přesto jsme odevzdali — a prošli 5/5.",
+  "body": [
+    "Obvykle takové emaily neposíláme — ale Thesis Generator existuje díky noci, na kterou jeden z našeho týmu nikdy nezapomene.",
+    "Aplikaci jsme začali stavět celý rok předtím, než jsme ji vydali — humanizace, grafy, tabulky, reference. Stále jsme testovali, protože „dost dobré“ nebylo dost dobré pro skutečný titul.",
+    "Pak jeden z nás narazil na zeď, které se bojí každý pisatel diplomky: magisterská práce odevzdávaná za dva dny. Téma bylo stanovené. Výzkum hotový. A autonehoda zlomila obě ruce — ten druh týdne, kdy jste vděční, že jste naživu, a přitom stále vyděšení z pátku.",
+    "S téměř žádným časem a bez možnosti normálně psát jsme použili aplikaci, kterou jsme vyvíjeli. Během asi deseti minut vygenerovala kompletní, k odevzdání připravenou práci. Zkontrolovali jsme ji, odevzdali a prošli 5/5.",
+    "Proto Thesis Generator existuje: pro okamžik, kdy hodiny vyhrávají, pokud se něco nepohne rychle.",
+    "Nepotřebujete mít před sebou dokonalý měsíc. Otevřete aplikaci, zadejte své téma a to, co už jste prozkoumali, a vygenerujte svou {{work_type}}.",
+    "P.S. Pokud je {{topic}} již v aplikaci, navážete tam, kde jste skončili. Pokud ne, začněte teď, dokud máte ještě dny — ne hodiny."
+  ],
+  "cta": "Vygenerovat mou {{work_type}}"
+}

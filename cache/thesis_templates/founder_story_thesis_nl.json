@@ -1,0 +1,13 @@
+{
+  "subject": "48 uur over. We hebben het toch ingediend — en 5/5 gehaald.",
+  "body": [
+    "We sturen normaal geen e-mails zoals deze — maar Thesis Generator bestaat vanwege een nacht die een van ons team nooit zal vergeten.",
+    "We begonnen de app een heel jaar voordat we hem uitbrachten — humanisering, grafieken, tabellen, referenties. We bleven testen omdat 'goed genoeg' niet goed genoeg was voor een echt diploma.",
+    "Toen liep een van ons tegen de muur aan waar elke scriptieschrijver bang voor is: een masterscriptie die over twee dagen ingeleverd moest worden. Het onderwerp stond vast. Het onderzoek was gedaan. En een auto-ongeluk brak beide handen — het soort week waarin je dankbaar bent dat je leeft en nog steeds doodsbang bent voor vrijdag.",
+    "Met bijna geen tijd en geen manier om normaal te typen, gebruikten we de app die we aan het bouwen waren. Het genereerde een volledige, inleverbare scriptie in ongeveer tien minuten. We hebben het nagekeken, ingediend en 5/5 gehaald.",
+    "Daarom bestaat Thesis Generator: voor het moment waarop de klok wint, tenzij er iets snel beweegt.",
+    "Je hebt geen perfecte maand voor je nodig. Open de app, voer je onderwerp en wat je al hebt onderzocht in, en genereer je {{work_type}}.",
+    "P.S. Als {{topic}} al in de app staat, pak dan de draad weer op waar je gebleven was. Zo niet, begin dan nu terwijl je nog dagen hebt — geen uren."
+  ],
+  "cta": "Genereer mijn {{work_type}}"
+}

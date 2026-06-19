@@ -4,7 +4,7 @@
 import os
 import requests
 
-RESEND_API_KEY = os.environ.get("RESEND_API_KEY", "re_62t3PuEy_23Q3uAQP6SMeYPRLgGVRraAr")
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY", "")
 BASE_URL = "https://api.resend.com"
 HEADERS = {
     "Authorization": f"Bearer {RESEND_API_KEY}",
@@ -12,7 +12,7 @@ HEADERS = {
 }
 
 DOMAINS = [
-    "kaynel.pl",
+    "kaynel.solutions",
     "aibettips.io",
     "predictifyfootball.com",
     "thesisgenerator.io",
@@ -50,6 +50,9 @@ def get_domain_details(domain_id):
 
 
 def main():
+    if not RESEND_API_KEY:
+        raise SystemExit("RESEND_API_KEY environment variable is required")
+
     print("=" * 70)
     print("RESEND DOMAIN RECEIVING SETUP")
     print("=" * 70)

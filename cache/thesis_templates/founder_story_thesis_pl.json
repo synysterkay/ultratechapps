@@ -1,0 +1,13 @@
+{
+  "subject": "Zostało 48 godzin. Mimo to złożyliśmy — i zdaliśmy na 5/5.",
+  "body": [
+    "Zwykle nie wysyłamy takich e-maili — ale Thesis Generator powstał dzięki nocy, której jeden z naszego zespołu nigdy nie zapomni.",
+    "Zaczęliśmy budować aplikację na rok przed jej wydaniem — humanizacja, wykresy, tabele, bibliografia. Ciągle testowaliśmy, bo „wystarczająco dobrze” nie było wystarczająco dobre dla prawdziwego dyplomu.",
+    "Potem jeden z nas uderzył w ścianę, której boi się każdy piszący pracę dyplomową: praca magisterska do oddania za dwa dni. Temat był ustalony. Badania były zrobione. A wypadek samochodowy złamał obie ręce — taki tydzień, w którym jesteś wdzięczny, że żyjesz, a jednocześnie przerażony piątkiem.",
+    "Mając prawie zero czasu i bez możliwości normalnego pisania, użyliśmy aplikacji, którą budowaliśmy. Wygenerowała pełną, gotową do złożenia pracę w około dziesięć minut. Przejrzeliśmy ją, złożyliśmy i zdaliśmy na 5/5.",
+    "Dlatego istnieje Thesis Generator: na moment, gdy zegar wygrywa, chyba że coś zadziała szybko.",
+    "Nie potrzebujesz idealnego miesiąca przed sobą. Otwórz aplikację, wpisz swój temat i to, co już zbadałeś, i wygeneruj swoją {{work_type}}.",
+    "P.S. Jeśli {{topic}} jest już w aplikacji, kontynuuj od miejsca, w którym skończyłeś. Jeśli nie, zacznij teraz, póki masz jeszcze dni — a nie godziny."
+  ],
+  "cta": "Wygeneruj moją {{work_type}}"
+}

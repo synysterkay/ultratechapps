@@ -1,0 +1,13 @@
+{
+  "subject": "48 oras na lang. Nag-submit pa rin kami — at pumasa ng 5/5.",
+  "body": [
+    "Hindi kami madalas magpadala ng ganitong email — pero umiiral ang Thesis Generator dahil sa isang gabing hindi malilimutan ng isa sa aming team.",
+    "Sinimulan naming buuin ang app isang taon bago namin ito ilunsad — humanization, graphs, tables, references. Patuloy kaming nag-test dahil hindi sapat ang \"sapat na\" para sa isang tunay na degree.",
+    "Tapos isa sa amin ay nakaranas ng kinatatakutan ng bawat thesis writer: isang master's thesis na dapat ipasa sa loob ng dalawang araw. Nakatakda na ang paksa. Tapos na ang research. At isang aksidente sa sasakyan ang nag-iwan ng dalawang kamay na bali — ang uri ng linggo kung saan nagpapasalamat kang buhay ka pa at natatakot pa rin sa Biyernes.",
+    "Halos walang oras at walang paraan para mag-type nang normal, ginamit namin ang app na ginagawa namin. Nakabuo ito ng kumpleto at handa-ipasang thesis sa loob ng halos sampung minuto. Sinuri namin, isinumite, at pumasa ng 5/5.",
+    "Iyan ang dahilan kung bakit umiiral ang Thesis Generator: para sa sandaling mananalo ang oras maliban kung may kikilos nang mabilis.",
+    "Hindi mo kailangan ng perpektong buwan sa hinaharap. Buksan ang app, ilagay ang iyong paksa at ang iyong na-research na, at i-generate ang iyong {{work_type}}.",
+    "P.S. Kung nasa app na ang {{topic}}, kunin mo kung saan ka tumigil. Kung hindi, magsimula ngayon habang may mga araw ka pa — hindi oras."
+  ],
+  "cta": "I-generate ang aking {{work_type}}"
+}
