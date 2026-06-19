@@ -7,10 +7,12 @@ then queries Firestore REST API for user documents with language field.
 Supports multiple Firebase projects (Predictify, Volume Booster, etc.)
 """
 import os
+import sys
 import json
 import requests
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).parent))
 from localize_phrase import LANGUAGES as THESIS_APP_LANGUAGES
 
 
