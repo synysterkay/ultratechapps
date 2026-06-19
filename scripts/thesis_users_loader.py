@@ -61,6 +61,14 @@ _LEGACY_NAME_TO_CODE = {
     'Turkish': 'tr',   'Dutch': 'nl',       'Polish': 'pl',
     'Swedish': 'sv',   'Romanian': 'ro',    'Indonesian': 'id',
     'Thai': 'th',      'Vietnamese': 'vi',
+    # 14 added 2026-05 alongside the picker expansion — future-proof if a
+    # legacy write path ever stores these display names.
+    'Bengali': 'bn',   'Urdu': 'ur',        'Persian': 'fa',
+    'Farsi': 'fa',     'Hebrew': 'he',      'Greek': 'el',
+    'Czech': 'cs',     'Danish': 'da',      'Finnish': 'fi',
+    'Norwegian': 'no', 'Hungarian': 'hu',   'Ukrainian': 'uk',
+    'Filipino': 'tl',  'Tagalog': 'tl',     'Malay': 'ms',
+    'Swahili': 'sw',
 }
 
 
@@ -143,6 +151,18 @@ def get_access_token():
     return None
 
 
+def normalize_user_language(raw: str) -> str:
+    """Map Firestore `users.language` (BCP-47, legacy display names, etc.)
+    to the canonical 2-letter code used by thesis email templates."""
+    if not raw:
+        return 'en'
+    s = str(raw).strip()
+    if s in _LEGACY_NAME_TO_CODE:
+        return _LEGACY_NAME_TO_CODE[s]
+    from localize_phrase import normalize_language
+    return normalize_language(s)
+
+
 def _first_name(display_name, nickname, email):
     """Best-effort first name. The Flutter app writes `displayName` from
     Apple sign-in / Google profiles, and onboarding stores `nickname`. Fall
@@ -188,12 +208,8 @@ def load_all_users(token: str, page_size: int = 300):
             # ('English', 'Swedish'). Map those down to the canonical 2-letter
             # code via `localize_phrase.normalize_language`, which also
             # canonicalizes locale strings like 'en_US' / 'pt-BR'.
-            from localize_phrase import normalize_language, LANGUAGES as _SUPPORTED
             raw_lang = (_f(fields, 'language', default='') or '').strip()
-            if raw_lang in _LEGACY_NAME_TO_CODE:
-                lang = _LEGACY_NAME_TO_CODE[raw_lang]
-            else:
-                lang = normalize_language(raw_lang or 'en')
+            lang = normalize_user_language(raw_lang or 'en')
             plan = _f_map(fields, 'plan')
             subscription = _f_map(fields, 'subscription') or None
             usage = _f_map(fields, 'usage') or None

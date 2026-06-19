@@ -11,6 +11,8 @@ import json
 import requests
 from pathlib import Path
 
+from localize_phrase import LANGUAGES as THESIS_APP_LANGUAGES
+
 
 # Google OAuth2 token endpoint
 TOKEN_URL = 'https://securetoken.googleapis.com/v1/token'
@@ -40,7 +42,8 @@ MULTILINGUAL_PROJECTS = {
     },
     'Thesis Generator': {
         'project_id': 'thesis-generator-web',
-        'supported_languages': ['en', 'ar', 'es', 'fr', 'hi', 'zh'],
+        # Full 34-language picker set — matches thesis_template_translator + app.
+        'supported_languages': THESIS_APP_LANGUAGES,
         'cache_file': 'thesis_generator_languages.json',
     },
     'SoulPlan: Plan Dates Together': {
@@ -50,6 +53,12 @@ MULTILINGUAL_PROJECTS = {
         # see fetch_user_languages() / fetch_for_user_email() for normalization.
         'supported_languages': ['en', 'ar', 'de', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'ko', 'nl', 'pl', 'pt', 'ru', 'tr', 'zh'],
         'cache_file': 'soulplan_languages.json',
+    },
+    'Ai Boyfriend: Virtual Love': {
+        'project_id': 'boyfriend-ai-f1e5e',
+        # Mirrors lib/l10n/app_localizations.dart kSupportedLanguages.
+        'supported_languages': ['en', 'es', 'fr', 'de', 'it', 'pt', 'ar', 'ja', 'ko', 'zh', 'ru', 'tr', 'hi', 'id', 'pl', 'nl'],
+        'cache_file': 'boyfriend_ai_languages.json',
     },
 }
 
@@ -172,15 +181,20 @@ class FirestoreLanguageLoader:
                     # Extract language (default 'en')
                     lang = 'en'
                     if 'language' in fields:
-                        raw_lang = fields['language'].get('stringValue', 'en').lower().strip()
-                        # Normalize BCP-47 dashes (pt-BR -> pt_br, zh-Hans -> zh_hans)
-                        # so the underscore-keyed LANGUAGE_NORMALIZE table matches.
-                        raw_lang = raw_lang.replace('-', '_')
-                        # Strip locale suffixes (e.g. en_US -> en)
-                        raw_lang = raw_lang.split('_')[0] if '_' in raw_lang and raw_lang not in LANGUAGE_NORMALIZE else raw_lang
-                        lang = LANGUAGE_NORMALIZE.get(raw_lang, 'en')
+                        raw_lang = fields['language'].get('stringValue', 'en')
+                        if project_id == 'thesis-generator-web':
+                            from thesis_users_loader import normalize_user_language
+                            lang = normalize_user_language(raw_lang)
+                        else:
+                            raw_lang = raw_lang.lower().strip()
+                            raw_lang = raw_lang.replace('-', '_')
+                            raw_lang = (
+                                raw_lang.split('_')[0]
+                                if '_' in raw_lang and raw_lang not in LANGUAGE_NORMALIZE
+                                else raw_lang
+                            )
+                            lang = LANGUAGE_NORMALIZE.get(raw_lang, 'en')
 
-                    # Only keep languages this app supports
                     if lang not in supported:
                         lang = 'en'
 
@@ -255,12 +269,16 @@ class FirestoreLanguageLoader:
             if not doc or not doc.get('fields'):
                 return 'en'
 
-            raw_lang = doc['fields'].get('language', {}).get('stringValue', 'en').lower().strip()
-            # Normalize BCP-47 dashes (pt-BR -> pt_br) so underscore-keyed lookup matches.
-            raw_lang = raw_lang.replace('-', '_')
-            if '_' in raw_lang and raw_lang not in LANGUAGE_NORMALIZE:
-                raw_lang = raw_lang.split('_')[0]
-            lang = LANGUAGE_NORMALIZE.get(raw_lang, 'en')
+            raw_lang = doc['fields'].get('language', {}).get('stringValue', 'en')
+            if project_id == 'thesis-generator-web':
+                from thesis_users_loader import normalize_user_language
+                lang = normalize_user_language(raw_lang)
+            else:
+                raw_lang = raw_lang.lower().strip()
+                raw_lang = raw_lang.replace('-', '_')
+                if '_' in raw_lang and raw_lang not in LANGUAGE_NORMALIZE:
+                    raw_lang = raw_lang.split('_')[0]
+                lang = LANGUAGE_NORMALIZE.get(raw_lang, 'en')
             return lang if lang in supported else 'en'
         except Exception:
             return 'en'

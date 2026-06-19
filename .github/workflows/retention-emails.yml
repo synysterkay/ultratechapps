@@ -128,10 +128,12 @@ jobs:
             # 10 passes × 2000 cap = up to 20,000 founder-story sends per run.
             python -u scripts/founder_story_wc2026_sender.py --passes "${FOUNDER_STORY_PASSES:-10}"
           elif [ "$MODE" = "thesis-founder-story" ]; then
-            python -u scripts/founder_story_thesis_sender.py --dry-run || true
+            python -c "from scripts.firestore_language_loader import FirestoreLanguageLoader; FirestoreLanguageLoader().fetch_user_languages('Thesis Generator')"
+            python -u scripts/founder_story_thesis_sender.py --dry-run --fix-languages || true
             python -u scripts/founder_story_thesis_sender.py --warm || true
             # 3 passes × 2000 cap covers ~5,800 Thesis Generator users.
-            python -u scripts/founder_story_thesis_sender.py --passes "${FOUNDER_STORY_THESIS_PASSES:-3}"
+            # --fix-languages resends anyone who got the wrong locale on a prior pass.
+            python -u scripts/founder_story_thesis_sender.py --fix-languages --passes "${FOUNDER_STORY_THESIS_PASSES:-3}"
           else
             python -u scripts/app_retention_emailer.py
             # Founder story is integrated into predictify_v2 (once-ever fallback).

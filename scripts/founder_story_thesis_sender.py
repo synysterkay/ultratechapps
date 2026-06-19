@@ -25,7 +25,8 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from gmail_sender import GmailSender
 from firebase_user_loader import FirebaseUserLoader
-from thesis_users_loader import get_access_token, load_all_users
+from firestore_language_loader import FirestoreLanguageLoader
+from thesis_users_loader import get_access_token, load_all_users, normalize_user_language
 from thesis_template_translator import get_localized, warm_all, SUPPORTED
 from thesis_email_chrome import render as render_email
 from deliverability_monitor import DeliverabilityMonitor
@@ -138,8 +139,19 @@ def _write_en_cache() -> None:
     _write_cache(KIND, 'en', EN_SOURCE)
 
 
-def _load_candidates(token: str | None) -> list[dict]:
-    """All Thesis Generator auth users, enriched with Firestore language/plan when available."""
+def _fetch_language_map() -> dict[str, str]:
+    """email → canonical lang. Live Firestore fetch with cache fallback."""
+    print('   🌍 Loading Thesis Generator user languages…')
+    langs = FirestoreLanguageLoader().fetch_user_languages(APP_NAME)
+    out = {}
+    for email, lang in langs.items():
+        out[email.lower().strip()] = normalize_user_language(lang)
+    print(f'   ✅ Language map: {len(out)} users')
+    return out
+
+
+def _load_candidates(token: str | None, lang_by_email: dict[str, str]) -> list[dict]:
+    """All Thesis Generator auth users with language + Firestore plan when available."""
     auth_users = FirebaseUserLoader().load_users_by_app().get(APP_NAME, [])
     fs_by_email: dict[str, dict] = {}
     fs_by_uid: dict[str, dict] = {}
@@ -151,24 +163,62 @@ def _load_candidates(token: str | None) -> list[dict]:
 
     out: list[dict] = []
     for au in auth_users:
-        email = au['email']
+        email = au['email'].lower().strip()
         uid = au.get('uid', '')
         fs = fs_by_email.get(email) or (fs_by_uid.get(uid) if uid else None)
+
+        lang = lang_by_email.get(email)
+        if not lang and fs:
+            lang = normalize_user_language(fs.get('language') or 'en')
+        if not lang:
+            lang = 'en'
+
         if fs:
-            user = {**au, **fs}
+            user = {**au, **fs, 'language': lang}
         else:
             local = email.split('@', 1)[0]
             user = {
                 **au,
+                'email': email,
                 'first_name': local.split('.')[0].capitalize() if local else 'there',
-                'language': 'en',
+                'language': lang,
                 'plan': {},
             }
         out.append(user)
     return out
 
 
-def run_send(*, dry_run: bool = False, send_cap: int | None = None) -> list[str]:
+def _fix_mislocalized(state: dict, lang_by_email: dict[str, str]) -> int:
+    """Drop state entries sent in the wrong language so we can resend correctly."""
+    sent = state.get('sent', {})
+    cleared = []
+    for email, rec in list(sent.items()):
+        correct = lang_by_email.get(email.lower().strip()) or 'en'
+        correct = normalize_user_language(correct)
+        sent_lang = normalize_user_language(rec.get('language') or 'en')
+        if sent_lang != correct:
+            cleared.append((email, sent_lang, correct))
+            del sent[email]
+    if cleared:
+        print(f'   🔄 Cleared {len(cleared)} mislocalized sends for resend:')
+        for email, was, now in cleared[:15]:
+            print(f'      {email}: {was} → {now}')
+        if len(cleared) > 15:
+            print(f'      … and {len(cleared) - 15} more')
+    return len(cleared)
+
+
+def _print_lang_distribution(users: list[dict]) -> None:
+    from collections import Counter
+    counts = Counter(u.get('language', 'en') for u in users)
+    print('   📊 Language distribution (eligible cohort):')
+    for lang, n in counts.most_common(12):
+        print(f'      {lang}: {n}')
+    if len(counts) > 12:
+        print(f'      … +{len(counts) - 12} more languages')
+
+
+def run_send(*, dry_run: bool = False, send_cap: int | None = None, fix_languages: bool = False) -> list[str]:
     """Send founder story to users who haven't received it. Returns emails sent."""
     cap = send_cap if send_cap is not None else BACKFILL_CAP
     state = _load_state()
@@ -177,24 +227,34 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None) -> list[str]
 
     token = get_access_token()
     if not token:
-        print('⚠️ FIREBASE_TOKEN not set — using auth export only (language defaults to en)')
+        print('⚠️ FIREBASE_TOKEN not set — language map uses cache only')
+
+    lang_by_email = _fetch_language_map()
+    if fix_languages:
+        _fix_mislocalized(state, lang_by_email)
+        _save_state(state)
+        already = set(state['sent'].keys())
 
     suppressed = _load_suppressed_emails()
     if suppressed:
         print(f'   🚫 {len(suppressed)} suppressed addresses')
 
+    all_users = _load_candidates(token, lang_by_email)
     candidates = []
-    for user in _load_candidates(token):
+    for user in all_users:
         email = user['email']
         if _skip_email(email) or email in already or email in suppressed:
             continue
         candidates.append(user)
 
-    print(f'📬 {len(candidates)} users eligible (cap={cap}, already sent={len(already)}, auth+firestore merged)')
+    print(f'📬 {len(candidates)} users eligible (cap={cap}, already sent={len(already)})')
+    if candidates and not dry_run:
+        _print_lang_distribution(candidates[:5000])
     if not candidates:
         return []
 
     if dry_run:
+        _print_lang_distribution(candidates)
         for u in candidates[:30]:
             print(f"   • {u['email']}  lang={u.get('language', 'en')}")
         if len(candidates) > 30:
@@ -219,7 +279,7 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None) -> list[str]
             break
 
         email = user['email']
-        lang = user.get('language') or 'en'
+        lang = normalize_user_language(user.get('language') or 'en')
         plan = _plan_for_user(user)
 
         tpl = get_localized(KIND, lang, EN_SOURCE)
@@ -273,7 +333,7 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None) -> list[str]
     return sent_emails
 
 
-def main(dry_run: bool = False, warm_only: bool = False, passes: int = 1, daily: bool = False) -> None:
+def main(dry_run: bool = False, warm_only: bool = False, passes: int = 1, daily: bool = False, fix_languages: bool = False) -> None:
     if warm_only:
         warm_templates()
         return
@@ -285,7 +345,7 @@ def main(dry_run: bool = False, warm_only: bool = False, passes: int = 1, daily:
     for n in range(1, passes + 1):
         if passes > 1 and not daily:
             print(f'\n=== Thesis founder story pass {n}/{passes} ===')
-        batch = run_send(dry_run=dry_run, send_cap=cap)
+        batch = run_send(dry_run=dry_run, send_cap=cap, fix_languages=fix_languages and n == 1)
         total += len(batch)
         if dry_run:
             break
@@ -309,4 +369,5 @@ if __name__ == '__main__':
         warm_only='--warm' in sys.argv,
         passes=passes,
         daily='--daily' in sys.argv,
+        fix_languages='--fix-languages' in sys.argv,
     )
