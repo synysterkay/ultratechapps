@@ -1,0 +1,13 @@
+{
+  "subject": "{{first_name}}, your deadline didn't pause — day {{days_since_story}}",
+  "body": [
+    "Five days ago we told you why Thesis Generator exists. Since then, your submission date didn't move backward — but {{topic}} is still waiting.",
+    "The loop that actually gets theses finished: feel the deadline closing → open the app → tap generate in under 3 minutes. The first draft surprises you — better than another week staring at a blank page — and every chapter you finish makes the next one easier.",
+    "Students who opened the app this week didn't find more time. They stopped negotiating with themselves and shipped a draft they could edit instead of dread.",
+    "The guilt compounds daily. Day {{days_since_story}} feels heavier than day one. You already signed up. You already know the story. The only missing piece is one tap on your {{work_type}}.",
+    "P.S. If {{topic}} is already in the app, finish it today — momentum beats motivation every single time."
+  ],
+  "cta": "Start my {{work_type}} now",
+  "cta_android": "Open on Android",
+  "cta_web": "Continue on web"
+}

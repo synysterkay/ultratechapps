@@ -19,6 +19,8 @@ Order matters:
 9. Winback 7/30/60/90                      (lapsed-subscriber recovery)
 10. Weekly progress recap (Sundays only)   (Investment summary)
 11. Cumulative stats (1st of month)        (Investment summary, monthly)
+12. Founder story #1 (once-ever backfill)  (Origin story)
+13. Founder story #2 (5 days after #1)   (Hooked-model activation nudge)
 
 A user might match multiple senders in one run; each sender's local
 state-cache prevents double-sends.
@@ -51,6 +53,7 @@ SENDERS = [
     ('weekly_progress',       'weekly_progress_sender'),
     ('cumulative_stats',      'cumulative_stats_sender'),
     ('founder_story',         'founder_story_thesis_sender'),
+    ('founder_story_2',       'founder_story_thesis_2_sender'),
 ]
 
 
@@ -136,6 +139,11 @@ def main():
             continue
         if name == 'founder_story':
             # Daily catch-up for new signups after the initial backfill.
+            import importlib
+            module = importlib.import_module(mod)
+            module.main(dry_run=dry_run, daily=True)
+        elif name == 'founder_story_2':
+            # FS2 goes out 5+ days after FS1 — daily catch-up drains the queue.
             import importlib
             module = importlib.import_module(mod)
             module.main(dry_run=dry_run, daily=True)

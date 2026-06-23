@@ -29,6 +29,7 @@ on:
           - upsell
           - founder-story
           - thesis-founder-story
+          - thesis-founder-story-2
 
 permissions:
   contents: write
@@ -73,6 +74,7 @@ jobs:
             cache/retention_state.json
             cache/sender_health.json
             cache/founder_story_thesis_state.json
+            cache/founder_story_thesis_2_state.json
             cache/founder_story_wc2026_state.json
           key: retention-state-${{ github.run_number }}
           restore-keys: |
@@ -135,6 +137,11 @@ jobs:
             # 3 passes × 2000 cap covers ~5,800 Thesis Generator users.
             # --fix-languages resends anyone who got the wrong locale on a prior pass.
             python -u scripts/founder_story_thesis_sender.py --fix-languages --passes "${FOUNDER_STORY_THESIS_PASSES:-3}"
+          elif [ "$MODE" = "thesis-founder-story-2" ]; then
+            python -u scripts/founder_story_thesis_2_sender.py --dry-run || true
+            python -u scripts/founder_story_thesis_2_sender.py --warm || true
+            # Backfill FS2 to everyone 5+ days past FS1 (2000/run cap).
+            python -u scripts/founder_story_thesis_2_sender.py
           else
             python -u scripts/app_retention_emailer.py
             # Founder story is integrated into predictify_v2 (once-ever fallback).
@@ -163,6 +170,27 @@ jobs:
             python -u scripts/pro_minimal_orchestrator.py || true
           fi
       
+      - name: Commit thesis founder story 2 templates
+        if: always() && github.event.inputs.mode == 'thesis-founder-story-2'
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add -f cache/thesis_templates/founder_story_thesis_2_*.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "No thesis founder story 2 template changes to push"
+            exit 0
+          fi
+          git commit -m "Add localized thesis founder story 2 templates [skip ci]" --quiet
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main 2>/dev/null || true
+            if git push origin HEAD:main 2>&1; then
+              echo "✅ pushed thesis founder story 2 templates on attempt $attempt"
+              exit 0
+            fi
+            sleep $((attempt * 3))
+          done
+          echo "⚠️ thesis founder story 2 template push failed"
+
       - name: Commit thesis founder story templates
         if: always() && github.event.inputs.mode == 'thesis-founder-story'
         run: |
@@ -208,7 +236,7 @@ jobs:
       - name: Save retention state
         if: always()
         run: |
-          STATE_PATHS="cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json cache/abandoned_thesis_state.json cache/free_quota_hit_state.json cache/trial_ending_state.json cache/winback_state.json cache/streak_milestone_state.json cache/weekly_progress_state.json cache/stuck_on_outline_state.json cache/cumulative_stats_state.json cache/founder_story_thesis_state.json cache/pro_minimal_*_state.json cache/thesis_templates/ firebase_exports/"
+          STATE_PATHS="cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json cache/abandoned_thesis_state.json cache/free_quota_hit_state.json cache/trial_ending_state.json cache/winback_state.json cache/streak_milestone_state.json cache/weekly_progress_state.json cache/stuck_on_outline_state.json cache/cumulative_stats_state.json cache/founder_story_thesis_state.json cache/founder_story_thesis_2_state.json cache/pro_minimal_*_state.json cache/thesis_templates/ firebase_exports/"
           # Thesis-only / founder-story runs may not touch retention_state.json.
           has_state=0
           for path in $STATE_PATHS; do
