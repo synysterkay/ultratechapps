@@ -9,6 +9,7 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { BOYFRIEND_EMAILS } from "./boyfriend-emails.ts";
 import { GIRLFRIEND_EMAILS } from "./girlfriend-emails.ts";
+import { SENDER_POOL_FULL as SENDER_POOL } from "../_shared/sender_pool.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") || "";
 const REF_SALT = Deno.env.get("EMAIL_REF_SALT") || "marketing-tool-v1";
@@ -45,18 +46,6 @@ function withUtm(
     return url;
   }
 }
-
-// ── SENDER POOL (same 7 domains as main system) ────────────
-const SENDER_POOL = [
-  // Verified-in-Resend senders only (kaynel.pl failed, vitazelki.pl retired — removed 2026-05-23).
-  { email: "hello@bestaiapps.site", name: "Alex" },
-  { email: "hello@aibettips.io", name: "Jordan" },
-  { email: "tips@predictifyfootball.com", name: "Sam" },
-  { email: "hello@thesisgenerator.io", name: "Morgan" },
-  { email: "hello@passedai.io", name: "Taylor" },
-  { email: "hello@academicsatire.com", name: "Riley" },
-  { email: "tips@predictify.fun", name: "Drew" },
-];
 
 function getRandomSender() {
   return SENDER_POOL[Math.floor(Math.random() * SENDER_POOL.length)];

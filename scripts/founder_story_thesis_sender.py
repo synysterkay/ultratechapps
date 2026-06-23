@@ -36,6 +36,8 @@ APP_NAME = 'Thesis Generator'
 APP_SLUG = 'thesis'
 KIND = 'founder_story_thesis'
 APP_STORE_URL = 'https://apps.apple.com/app/thesis-generator-essay-ai/id6739264844'
+GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/details?id=com.thesis.generator.ai'
+WEB_APP_URL = 'https://thesisgenerator.io'
 STATE_FILE = Path(__file__).parent.parent / 'cache' / 'founder_story_thesis_state.json'
 _REF_SALT = os.getenv('EMAIL_REF_SALT', 'marketing-tool-v1')
 BACKFILL_CAP = int(os.getenv('FOUNDER_STORY_THESIS_SEND_CAP', '2000'))
@@ -53,6 +55,8 @@ EN_SOURCE = {
         "P.S. If {{topic}} is already in the app, pick up where you left off. If not, start now while you still have days — not hours.",
     ],
     'cta': 'Generate my {{work_type}}',
+    'cta_android': 'Get it on Android',
+    'cta_web': 'Open the web app',
 }
 
 
@@ -289,6 +293,12 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None, fix_language
             for p in tpl.get('body', EN_SOURCE['body'])
         ]
         cta_text = localize_phrase.interpolate(lang, tpl.get('cta', EN_SOURCE['cta']), plan)
+        cta_android = localize_phrase.interpolate(
+            lang, tpl.get('cta_android', EN_SOURCE['cta_android']), plan,
+        )
+        cta_web = localize_phrase.interpolate(
+            lang, tpl.get('cta_web', EN_SOURCE['cta_web']), plan,
+        )
 
         html = render_email(
             lang, paragraphs, cta_text, APP_STORE_URL,
@@ -296,6 +306,11 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None, fix_language
             app_name=APP_NAME,
             gradient='invite',
             signoff_override='',
+            cta_links=[
+                {'text': cta_text, 'url': APP_STORE_URL, 'variant': 'primary'},
+                {'text': cta_android, 'url': GOOGLE_PLAY_URL, 'variant': 'play'},
+                {'text': cta_web, 'url': WEB_APP_URL, 'variant': 'web'},
+            ],
         )
 
         sender = senders[i % len(senders)]

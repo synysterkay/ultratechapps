@@ -11,6 +11,7 @@
 // on this slug so NBA and soccer Predictify never cross-contaminate.
 
 import { createClient } from "jsr:@supabase/supabase-js@2";
+import { SENDER_POOL_NBA as SENDER_POOL, sanitizeSubject } from "./sender_pool.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") || "";
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL") || "";
@@ -20,15 +21,6 @@ const REF_SALT = Deno.env.get("EMAIL_REF_SALT") || "marketing-tool-v1";
 export const APP_NAME = "Predictify NBA";
 export const APP_SLUG = "predictify_nba";
 const DEEPLINK_BASE = "https://predictifynba.com";
-
-// Neutral sender pool (no soccer-specific domains). Hash-routed per uid so
-// each user always sees a consistent "from", which protects deliverability.
-const SENDER_POOL = [
-  // kaynel.pl (DNS failed) + vitazelki.pl (retired) removed 2026-05-23.
-  { email: "hello@bestaiapps.site", name: "Alex" },
-  { email: "hello@aibettips.io", name: "Jordan" },
-  { email: "hello@academicsatire.com", name: "Riley" },
-];
 
 export interface Template {
   subject: string;
@@ -237,7 +229,7 @@ export async function handleNbaEmail(req: Request, cfg: EmailConfig): Promise<Re
   }
 
   const tpl = cfg.templates[lang] || cfg.templates.en;
-  const subject = interpolate(tpl.subject, vars);
+  const subject = sanitizeSubject(interpolate(tpl.subject, vars));
   const paragraphs = tpl.body.map((p) => interpolate(p, vars));
   const ctaText = tpl.cta;
 

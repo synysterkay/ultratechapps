@@ -40,6 +40,44 @@ GRADIENTS = {
 }
 
 
+def _cta_button(text: str, url: str, bg: str) -> str:
+    return (
+        f'<a href="{url}" style="display:inline-block;background:{bg};color:#fff;'
+        f'padding:16px 44px;text-decoration:none;border-radius:8px;font-weight:700;'
+        f'font-size:17px;">{text} →</a>'
+    )
+
+
+def _cta_section(
+    cta_text: str,
+    cta_url: str,
+    c1: str,
+    c2: str,
+    cta_links: list[dict] | None = None,
+) -> str:
+    if not cta_links:
+        bg = f'linear-gradient(135deg,{c1} 0%,{c2} 100%)'
+        return (
+            f'<div style="text-align:center;margin:36px 0;">'
+            f'{_cta_button(cta_text, cta_url, bg)}'
+            f'</div>'
+        )
+    play_c1, play_c2 = GRADIENTS['celebrate']
+    web_c1, web_c2 = GRADIENTS['invite']
+    variants = {
+        'primary': f'linear-gradient(135deg,{c1} 0%,{c2} 100%)',
+        'play': f'linear-gradient(135deg,{play_c1} 0%,{play_c2} 100%)',
+        'web': f'linear-gradient(135deg,{web_c1} 0%,{web_c2} 100%)',
+    }
+    buttons = '\n'.join(
+        f'<div style="margin:0 0 12px 0;">'
+        f'{_cta_button(link["text"], link["url"], variants.get(link.get("variant", "primary"), variants["primary"]))}'
+        f'</div>'
+        for link in cta_links
+    )
+    return f'<div style="text-align:center;margin:36px 0;">{buttons}</div>'
+
+
 def render(language: str,
            paragraphs,
            cta_text: str,
@@ -49,7 +87,8 @@ def render(language: str,
            gradient: str = 'invite',
            celebratory: bool = False,
            greeting_override: str = None,
-           signoff_override: str = None) -> str:
+           signoff_override: str = None,
+           cta_links: list[dict] | None = None) -> str:
     """Render the full HTML body for a retention email.
 
     `language` may be any code; falls back to 'en' if unsupported.
@@ -100,6 +139,7 @@ def render(language: str,
             f'{weight}text-align:{text_align};">{p}</p>'
         )
     body_html = ''.join(body_html_parts)
+    cta_html = _cta_section(cta_text, cta_url, c1, c2, cta_links)
 
     return f'''<!DOCTYPE html>
 <html{dir_attr}>
@@ -107,9 +147,7 @@ def render(language: str,
 <body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:600px;margin:0 auto;padding:40px 24px;background:#fff;color:#2d3748;text-align:{text_align};">
     <p style="margin:0 0 24px;font-size:18px;color:#6b7280;">{greeting}</p>
     {body_html}
-    <div style="text-align:center;margin:36px 0;">
-        <a href="{cta_url}" style="display:inline-block;background:linear-gradient(135deg,{c1} 0%,{c2} 100%);color:#fff;padding:16px 44px;text-decoration:none;border-radius:8px;font-weight:700;font-size:17px;">{cta_text} →</a>
-    </div>
+    {cta_html}
     <p style="margin:32px 0 0;font-size:17px;color:#4b5563;">{signoff}<br><strong>{sender_name}</strong></p>
     <div style="margin-top:48px;padding-top:24px;border-top:1px solid #e5e7eb;text-align:center;">
         <p style="margin:0 0 8px;font-size:13px;color:#d1d5db;">San Francisco, CA 94117, United States</p>

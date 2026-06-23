@@ -9,5 +9,7 @@
     "You don't need a perfect month ahead of you. Open the app, enter your topic and what you've already researched, and generate your {{work_type}}.",
     "P.S. If {{topic}} is already in the app, pick up where you left off. If not, start now while you still have days — not hours."
   ],
-  "cta": "Generate my {{work_type}}"
+  "cta": "Generate my {{work_type}}",
+  "cta_android": "Get it on Android",
+  "cta_web": "Open the web app"
 }

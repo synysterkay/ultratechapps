@@ -20,21 +20,10 @@
 // That trigger POSTs to this function; this function only renders + sends.
 
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+import { SENDER_POOL_FULL as SENDER_POOL } from "../_shared/sender_pool.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") || "";
 const FUNCTION_AUTH_KEY = Deno.env.get("FUNCTION_AUTH_KEY") || "";
-
-// Same verified Resend domains used by welcome-email (deliverability_monitor
-// rotates these). Keep in sync if welcome-email's SENDER_POOL changes.
-const SENDER_POOL = [
-  { email: "alex@bestaiapps.site", name: "Alex" },
-  { email: "jordan@aibettips.io", name: "Jordan" },
-  { email: "sam@predictifyfootball.com", name: "Sam" },
-  { email: "taylor@thesisgenerator.io", name: "Taylor" },
-  { email: "morgan@passedai.io", name: "Morgan" },
-  { email: "casey@academicsatire.com", name: "Casey" },
-  { email: "riley@predictify.fun", name: "Riley" },
-];
 
 function pickSender() {
   return SENDER_POOL[Math.floor(Math.random() * SENDER_POOL.length)];

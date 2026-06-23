@@ -13,8 +13,8 @@ const resendApiKey = defineSecret("RESEND_API_KEY");
 
 // Sender rotation pool — same 7 domains as the main system
 const SENDER_POOL = [
-  // Verified-in-Resend senders only (kaynel.pl failed, vitazelki.pl retired — removed 2026-05-23).
-  { email: "hello@bestaiapps.site", name: "Alex" },
+  // Keep in sync with supabase/functions/_shared/sender_pool.ts
+  { email: "hello@kaynel.solutions", name: "Alex" },
   { email: "hello@aibettips.io", name: "Jordan" },
   { email: "tips@predictifyfootball.com", name: "Sam" },
   { email: "hello@thesisgenerator.io", name: "Morgan" },

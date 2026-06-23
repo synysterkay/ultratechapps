@@ -18,7 +18,7 @@ const SENDER_POOL = [
   // DKIM + SPF records land for selka.app:
   //   {email: "hello@selka.app", name: "Selka"},
   // kaynel.pl (DNS failed) + vitazelki.pl (retired) removed 2026-05-23.
-  {email: "selka@bestaiapps.site", name: "Selka"},
+  {email: "selka@kaynel.solutions", name: "Selka"},
   {email: "selka@aibettips.io", name: "Selka"},
   {email: "selka@predictifyfootball.com", name: "Selka"},
   {email: "selka@thesisgenerator.io", name: "Selka"},

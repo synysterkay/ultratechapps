@@ -1879,6 +1879,7 @@ class AppRetentionEmailer:
 
         sent = 0
         failed = 0
+        skipped_no_template = 0
         for entry in eligible:
             email_addr = entry['email']
             app_name = entry['app_name']
@@ -1887,7 +1888,7 @@ class AppRetentionEmailer:
 
             template = templates.get((app_name, variant, lang))
             if not template:
-                failed += 1
+                skipped_no_template += 1
                 continue
 
             # Round-robin sender (within their daily cap)
@@ -1940,7 +1941,7 @@ class AppRetentionEmailer:
         for s in senders:
             s['gmail'].disconnect()
         self._save_state()
-        print(f"\n📊 Upsells sent: {sent} | failed: {failed}")
+        print(f"\n📊 Upsells sent: {sent} | failed: {failed} | skipped (no template): {skipped_no_template}")
 
     def _load_upsell_template(self, app_name, variant, language='en'):
         """Load upsell email template from cache. Falls back to English if

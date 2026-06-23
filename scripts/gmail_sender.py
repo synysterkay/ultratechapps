@@ -20,6 +20,14 @@ def _sanitize_tag(value: str) -> str:
     return _TAG_VALUE_RE.sub('_', value)
 
 
+def _sanitize_subject(subject: str, max_len: int = 2000) -> str:
+    """Resend rejects newlines and subjects over 2000 chars."""
+    s = re.sub(r'[\r\n]+', ' ', subject or '').strip()
+    if len(s) > max_len:
+        s = s[: max_len - 1] + '…'
+    return s
+
+
 # Keep class name GmailSender so nothing else needs to change
 class GmailSender:
     """Resend email sender — same interface as previous senders."""
@@ -126,7 +134,7 @@ class GmailSender:
         payload = {
             "from": sender,
             "to": [to_email],
-            "subject": subject,
+            "subject": _sanitize_subject(subject),
             "html": html_body,
             "reply_to": self.sender_email,
         }

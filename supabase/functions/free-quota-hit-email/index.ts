@@ -34,6 +34,7 @@
 
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
+import { SENDER_POOL_THESIS as SENDER_POOL } from "../_shared/sender_pool.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") || "";
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL") || "";
@@ -45,12 +46,6 @@ const APP_SLUG = "thesis";
 const KIND = "free_quota_hit";
 const APP_STORE_URL = "https://apps.apple.com/app/thesis-generator-essay-ai/id6739264844";
 const GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=com.thesis.generator.ai";
-
-const SENDER_POOL = [
-  { email: "hello@thesisgenerator.io", name: "Morgan" },
-  { email: "hello@passedai.io",        name: "Taylor" },
-  { email: "hello@academicsatire.com", name: "Riley" },
-];
 
 // Instant-paywall-hit template — different copy from the h24 batch
 // version because the user just hit the paywall this minute, not

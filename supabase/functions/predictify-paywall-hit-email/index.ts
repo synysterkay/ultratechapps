@@ -22,6 +22,7 @@
 
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
+import { SENDER_POOL_PREDICTIFY as SENDER_POOL } from "../_shared/sender_pool.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") || "";
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL") || "";
@@ -30,19 +31,6 @@ const REF_SALT = Deno.env.get("EMAIL_REF_SALT") || "marketing-tool-v1";
 
 const APP_SLUG = "predictify";
 const KIND = "paywall_hit";
-
-const SENDER_POOL = [
-  // Verified-in-Resend senders only (updated 2026-05-23). Removed
-  // kaynel.pl (DNS failed), vitazelki.pl (retired), and 4 domains that
-  // were never added to Resend (aifootballai.com, aibetaipredictions.com,
-  // aibetaipredictify.com, aifootballprediction.com).
-  { email: "hello@bestaiapps.site",       name: "Alex" },
-  { email: "hello@aibettips.io",          name: "Jordan" },
-  { email: "tips@predictifyfootball.com", name: "Sam" },
-  { email: "tips@predictify.fun",         name: "Drew" },
-  { email: "hello@passedai.io",           name: "Taylor" },
-  { email: "hello@academicsatire.com",    name: "Riley" },
-];
 
 function pickSender(uid: string) {
   let h = 0;
