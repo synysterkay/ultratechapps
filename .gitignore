@@ -33,10 +33,13 @@ venv/
 ENV/
 env/
 
-# Cache (ignore all except pre-generated retention emails)
+# Cache (ignore all except pre-generated retention emails + tracked state)
 cache/*
 !cache/retention_emails/
 !cache/thesis_templates/
+!cache/*_state.json
+!cache/retention_state.json
+!cache/sender_health.json
 cache/retention_emails/.gitkeep
 *.cache
 .cache/

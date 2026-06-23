@@ -72,6 +72,8 @@ jobs:
           path: |
             cache/retention_state.json
             cache/sender_health.json
+            cache/founder_story_thesis_state.json
+            cache/founder_story_wc2026_state.json
           key: retention-state-${{ github.run_number }}
           restore-keys: |
             retention-state-

@@ -11,6 +11,7 @@ Usage:
   python3 scripts/founder_story_thesis_sender.py
   python3 scripts/founder_story_thesis_sender.py --passes 3
   python3 scripts/founder_story_thesis_sender.py --daily   # orchestrator catch-up
+  python3 scripts/founder_story_thesis_sender.py --rebuild-state  # restore dedup from Supabase
 """
 from __future__ import annotations
 
@@ -60,13 +61,91 @@ EN_SOURCE = {
 }
 
 
+def _supabase_creds() -> tuple[str, str]:
+    url = os.getenv('SUPABASE_URL', '').rstrip('/')
+    key = os.getenv('SUPABASE_SERVICE_ROLE_KEY', '')
+    if url and key:
+        return url, key
+    cfg = Path(__file__).resolve().parents[1] / 'config' / 'supabase_config.json'
+    if cfg.exists():
+        data = json.loads(cfg.read_text())
+        return data['project']['url'].rstrip('/'), data['project']['service_role_key']
+    return '', ''
+
+
+def _fetch_sent_from_supabase() -> dict[str, dict]:
+    """Recipients with email.sent events for this campaign (dedup source of truth)."""
+    url, key = _supabase_creds()
+    if not url or not key:
+        return {}
+    try:
+        import requests
+        headers = {'apikey': key, 'Authorization': f'Bearer {key}'}
+        sent: dict[str, dict] = {}
+        offset = 0
+        page_size = 1000
+        while True:
+            r = requests.get(
+                f'{url}/rest/v1/email_events',
+                headers=headers,
+                params={
+                    'select': 'recipient,language,occurred_at',
+                    'app': f'eq.{APP_SLUG}',
+                    'kind': f'eq.{KIND}',
+                    'event_type': 'eq.email.sent',
+                    'order': 'occurred_at.asc',
+                    'offset': offset,
+                    'limit': page_size,
+                },
+                timeout=60,
+            )
+            if r.status_code != 200:
+                return sent
+            rows = r.json()
+            for row in rows:
+                email = (row.get('recipient') or '').lower().strip()
+                if not email or email in sent:
+                    continue
+                occurred = row.get('occurred_at') or ''
+                sent[email] = {
+                    'sent_at': occurred.replace('+00:00', 'Z') if occurred else '',
+                    'language': row.get('language') or 'en',
+                    'source': 'supabase',
+                }
+            if len(rows) < page_size:
+                break
+            offset += page_size
+        return sent
+    except Exception:
+        return {}
+
+
 def _load_state() -> dict:
+    state: dict = {'sent': {}}
     if STATE_FILE.exists():
         try:
-            return json.loads(STATE_FILE.read_text())
+            state = json.loads(STATE_FILE.read_text())
         except Exception:
             pass
-    return {'sent': {}}
+    state.setdefault('sent', {})
+    remote = _fetch_sent_from_supabase()
+    merged = 0
+    for email, info in remote.items():
+        if email not in state['sent']:
+            state['sent'][email] = info
+            merged += 1
+    if merged:
+        print(f'   📎 Merged {merged} sent recipients from Supabase email_events')
+    return state
+
+
+def rebuild_state_from_supabase() -> int:
+    """Rebuild cache/founder_story_thesis_state.json from email_events."""
+    remote = _fetch_sent_from_supabase()
+    state = {'sent': remote, 'rebuilt_at': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())}
+    _save_state(state)
+    print(f'✅ Rebuilt {STATE_FILE.name}: {len(remote)} recipients')
+    return len(remote)
 
 
 def _save_state(state: dict) -> None:
@@ -348,7 +427,11 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None, fix_language
     return sent_emails
 
 
-def main(dry_run: bool = False, warm_only: bool = False, passes: int = 1, daily: bool = False, fix_languages: bool = False) -> None:
+def main(dry_run: bool = False, warm_only: bool = False, passes: int = 1, daily: bool = False, fix_languages: bool = False, rebuild_state: bool = False) -> None:
+    if rebuild_state:
+        rebuild_state_from_supabase()
+        return
+
     if warm_only:
         warm_templates()
         return
@@ -385,4 +468,5 @@ if __name__ == '__main__':
         passes=passes,
         daily='--daily' in sys.argv,
         fix_languages='--fix-languages' in sys.argv,
+        rebuild_state='--rebuild-state' in sys.argv,
     )
