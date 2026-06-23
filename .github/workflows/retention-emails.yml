@@ -75,6 +75,12 @@ jobs:
           key: retention-state-${{ github.run_number }}
           restore-keys: |
             retention-state-
+
+      - name: Sync bounce and complaint suppressions
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: python -u sync_suppressions.py --days 30
       
       - name: Run retention email campaign
         # Cap below GitHub's 6h job limit so that if the loading/send phase
