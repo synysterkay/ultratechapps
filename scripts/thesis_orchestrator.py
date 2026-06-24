@@ -50,7 +50,6 @@ SENDERS = [
     ('winback',               'winback_sender'),
     ('weekly_progress',       'weekly_progress_sender'),
     ('cumulative_stats',      'cumulative_stats_sender'),
-    ('founder_story',         'founder_story_thesis_sender'),
 ]
 
 
@@ -134,13 +133,7 @@ def main():
     for name, mod in SENDERS:
         if only and only != name:
             continue
-        if name == 'founder_story':
-            # Daily catch-up for new signups after the initial backfill.
-            import importlib
-            module = importlib.import_module(mod)
-            module.main(dry_run=dry_run, daily=True)
-        else:
-            run_one(name, mod, dry_run)
+        run_one(name, mod, dry_run)
         time.sleep(0.5)
     print('\n🏁 Thesis orchestrator done.')
 
