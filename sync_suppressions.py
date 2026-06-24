@@ -101,6 +101,13 @@ def fetch_bad_events(url: str, key: str, *, days: int, limit: int) -> list[dict]
 
 def build_suppressions(events: list[dict]) -> list[dict]:
     by_key: dict[tuple[str, str], str] = {}
+
+    def remember(recipient: str, app: str, reason: str) -> None:
+        key = (recipient, app)
+        # A complaint is stronger than a bounce if both exist for the same key.
+        if by_key.get(key) != "complaint":
+            by_key[key] = reason
+
     for event in events:
         recipient = (event.get("recipient") or "").lower().strip()
         app = (event.get("app") or "").strip()
@@ -108,11 +115,12 @@ def build_suppressions(events: list[dict]) -> list[dict]:
         if not recipient or not app or event_type not in EVENT_REASON:
             continue
 
-        key = (recipient, app)
         reason = EVENT_REASON[event_type]
-        # A complaint is stronger than a bounce if both exist for the same key.
-        if by_key.get(key) != "complaint":
-            by_key[key] = reason
+        remember(recipient, app, reason)
+        # Hard bounces and complaints are recipient-level deliverability
+        # signals. Keep the app-specific row for analytics, and add a global
+        # row so every campaign skips that address before hitting Resend.
+        remember(recipient, "*", reason)
 
     return [
         {"recipient": recipient, "app": app, "reason": reason}

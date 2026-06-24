@@ -7,15 +7,16 @@ the right order, with shared dedup against the global suppression list.
 Designed to be invoked from `retention-emails.yml` so the workflow
 doesn't have to know about each individual script.
 
-Order matters:
-1. Welcome / first-thesis-complete         (highest-conversion celebratory)
-2. Stuck-on-outline                        (the biggest funnel drop-off)
-3. Abandoned thesis 2d / 5d / 10d          (general re-engagement)
-4. Streak milestone (3/7/14/30/100)        (variable-reward celebration)
-5. Streak at risk                          (loss aversion)
-6. Deadline countdown 14/7/3/1/0           (urgent external trigger)
-7. Free-quota-hit upgrade 24h/72h/7d       (monetization)
-8. Trial ending 3d/1d                      (monetization)
+Order matters. The shared sender enforces a daily Thesis volume cap, so the
+highest-intent / highest-revenue moments run first:
+1. Free-quota-hit upgrade 24h/72h/7d       (monetization)
+2. Welcome / first-thesis-complete         (fresh activation)
+3. Deadline countdown 14/7/3/1/0           (urgent external trigger)
+4. Trial ending 3d/1d                      (monetization)
+5. Abandoned thesis 2d / 5d / 10d          (general re-engagement)
+6. Stuck-on-outline                        (funnel recovery)
+7. Streak milestone (3/7/14/30/100)        (variable-reward celebration)
+8. Streak at risk                          (loss aversion)
 9. Winback 7/30/60/90                      (lapsed-subscriber recovery)
 10. Weekly progress recap (Sundays only)   (Investment summary)
 11. Cumulative stats (1st of month)        (Investment summary, monthly)
@@ -39,14 +40,14 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 # Sender modules (imported lazily so a broken sender doesn't kill the run).
 SENDERS = [
+    ('free_quota_hit',        'free_quota_hit_sender'),
     ('first_thesis_complete', 'first_thesis_complete_sender'),
-    ('stuck_on_outline',      'stuck_on_outline_sender'),
+    ('deadline_countdown',    'deadline_countdown_sender'),
+    ('trial_ending',          'trial_ending_sender'),
     ('abandoned_thesis',      'abandoned_thesis_sender'),
+    ('stuck_on_outline',      'stuck_on_outline_sender'),
     ('streak_milestone',      'streak_milestone_sender'),
     ('streak_at_risk',        'streak_at_risk_sender'),
-    ('deadline_countdown',    'deadline_countdown_sender'),
-    ('free_quota_hit',        'free_quota_hit_sender'),
-    ('trial_ending',          'trial_ending_sender'),
     ('winback',               'winback_sender'),
     ('weekly_progress',       'weekly_progress_sender'),
     ('cumulative_stats',      'cumulative_stats_sender'),
