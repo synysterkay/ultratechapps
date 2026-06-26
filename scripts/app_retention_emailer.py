@@ -288,6 +288,11 @@ def app_slug(app_name: str) -> str:
     return re.sub(r'[^a-z0-9_]', '_', app_name.lower())[:32]
 
 
+def _skipped_send_result(result: str) -> bool:
+    """Outcomes that are not delivery failures (no quarantine, no CI alert)."""
+    return result in ('duplicate', 'suppressed', 'throttled')
+
+
 def user_ref(email: str) -> str:
     """Stable opaque user identifier for webhook correlation."""
     h = hashlib.sha256(f"{_REF_SALT}:{email.lower().strip()}".encode()).hexdigest()
@@ -823,6 +828,10 @@ class AppRetentionEmailer:
             # Skip suppressed users (spam reporters / hard bounces)
             if user_state and user_state.get('suppressed'):
                 continue
+
+            # Skip durable Supabase suppressions (synced bounces/complaints)
+            if GmailSender._is_suppressed(email.lower(), app_slug(app_name)):
+                continue
             
             if user_state is None:
                 # New user from Firebase — check if Supabase already sent welcome email
@@ -1143,6 +1152,7 @@ class AppRetentionEmailer:
 
         sent = 0
         failed = 0
+        skipped = 0
         
         for i, entry in enumerate(eligible):
             # Time budget: stop cleanly before the workflow step / 6h job limit
@@ -1272,7 +1282,12 @@ class AppRetentionEmailer:
                 # Already emailed this address earlier in the run (e.g. the
                 # same person is a user of two apps). Not a failure and not a
                 # send — skip cleanly so it isn't counted against either.
+                skipped += 1
                 print(f"   ⏭️ [{i+1}/{len(eligible)}] {email_addr} skipped — already emailed this run")
+                continue
+            elif result in ('suppressed', 'throttled'):
+                skipped += 1
+                print(f"   ⏭️ [{i+1}/{len(eligible)}] {email_addr} skipped — {result}")
                 continue
             elif result == 'bounced':
                 # Auto-remove bounced email from the system
@@ -1323,17 +1338,14 @@ class AppRetentionEmailer:
         print(f"\n{'='*60}")
         print(f"📊 CAMPAIGN RESULTS")
         print(f"   ✅ Sent: {sent}")
+        print(f"   ⏭️ Skipped: {skipped}")
         print(f"   ❌ Failed: {failed}")
         print(f"   📅 Daily total: {self.state['daily_stats'][today]}")
         print(f"{'='*60}")
 
         # ── Loud failure alerting ──────────────────────────────────
-        # The kaynel.pl outage went unnoticed for ~2 weeks because a run
-        # that sends 0 and fails everything still "succeeds" as a process.
-        # Surface a high-failure run as a hard error so the GitHub Action
-        # goes red and shows up in the runs list. Only trips when we
-        # actually attempted a meaningful number of sends (avoids
-        # false alarms on tiny/no-eligible-user runs).
+        # Suppressed / throttled / duplicate skips are intentional — only
+        # count real delivery failures against the alert threshold.
         attempted = sent + failed
         if attempted >= 20:
             fail_rate = failed / attempted
@@ -1930,6 +1942,8 @@ class AppRetentionEmailer:
                 if email_addr in self.state['users']:
                     del self.state['users'][email_addr]
                 self.state['daily_stats'][today]['failed'] += 1
+            elif _skipped_send_result(result):
+                continue
             else:
                 failed += 1
                 self.state['daily_stats'][today]['failed'] += 1

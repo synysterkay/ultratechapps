@@ -23,7 +23,7 @@ from datetime import datetime, timezone, timedelta
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from gmail_sender import GmailSender
+from gmail_sender import GmailSender, SKIP_RESULTS
 from thesis_users_loader import (
     get_access_token, load_users_dict, load_theses_by_status, is_paid,
 )
@@ -204,9 +204,11 @@ def main(dry_run=False):
             if sent % 10 == 0:
                 _save_state(state)
             print(f'   ✅ [{sent}] {email}  {stage}  {lang}')
+        elif result in SKIP_RESULTS:
+            print(f'   ⏭️ {email} result={result}')
         else:
             failed += 1
-            print(f'   ❌ {email}  result={result}')
+            print(f'   ❌ {email} result={result}')
         time.sleep(0.2)
 
     sender.disconnect()
