@@ -45,15 +45,14 @@ BACKFILL_CAP = int(os.getenv('FOUNDER_STORY_THESIS_SEND_CAP', '2000'))
 DAILY_CATCHUP_CAP = int(os.getenv('FOUNDER_STORY_THESIS_DAILY_CAP', '50'))
 
 EN_SOURCE = {
-    'subject': '48 hours left. We still submitted — and passed 5/5.',
+    'subject': '{{first_name}}, 48 hours left — we still passed 5/5',
     'body': [
-        "We don't usually send emails like this — but Thesis Generator exists because of a night one of our team will never forget.",
-        "We started building the app a full year before we shipped it — humanization, graphs, tables, references. We kept testing because “good enough” wasn't good enough for a real degree.",
-        "Then one of us hit the wall every thesis writer fears: a master's thesis due in two days. The topic was set. The research was done. And a car accident left both hands broken — the kind of week where you're grateful to be alive and still terrified about Friday.",
-        "With almost no time and no way to type normally, we used the app we'd been building. It generated a full, submission-ready thesis in about ten minutes. We reviewed it, submitted it, and passed 5/5.",
-        "That's why Thesis Generator exists: for the moment when the clock wins unless something moves fast.",
-        "You don't need a perfect month ahead of you. Open the app, enter your topic and what you've already researched, and generate your {{work_type}}.",
-        "P.S. If {{topic}} is already in the app, pick up where you left off. If not, start now while you still have days — not hours.",
+        "Most people don't fail a {{work_type}} because they aren't smart enough. They fail because the clock runs out first.",
+        "One of our teammates hit that wall for real: {{work_type}} due in 48 hours, topic set, research done — then days where typing normally wasn't an option. Same deadline. Same degree on the line.",
+        "She opened the app we'd spent a year building. Ten minutes later she had a full draft — outline, chapters, references. She edited it, submitted it, and passed 5/5.",
+        "That's why Thesis Generator exists: turn {{topic}} from something you're avoiding into something you can open, edit, and submit.",
+        "Your next step takes about three minutes: enter what you already know about {{topic}}, tap generate, and work from a draft instead of a blank page.",
+        "P.S. A rough draft today beats a perfect plan next week. Start while you still have days — not hours.",
     ],
     'cta': 'Generate my {{work_type}}',
     'cta_android': 'Get it on Android',
@@ -208,8 +207,18 @@ def _plan_for_user(user: dict) -> dict:
     return plan
 
 
-def warm_templates() -> None:
+def warm_templates(refresh: bool = False) -> None:
     """Pre-fill cache/thesis_templates/founder_story_thesis_{lang}.json."""
+    if refresh:
+        cache_dir = Path(__file__).resolve().parents[1] / 'cache' / 'thesis_templates'
+        removed = 0
+        for path in cache_dir.glob(f'{KIND}_*.json'):
+            if path.name.endswith('_en.json'):
+                continue
+            path.unlink(missing_ok=True)
+            removed += 1
+        if removed:
+            print(f'   🔄 Cleared {removed} cached {KIND} translations for refresh')
     _write_en_cache()
     print(f'🔥 Warming {KIND} for {len(SUPPORTED) - 1} languages…')
     result = warm_all(KIND, EN_SOURCE)
@@ -433,13 +442,13 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None, fix_language
     return sent_emails
 
 
-def main(dry_run: bool = False, warm_only: bool = False, passes: int = 1, daily: bool = False, fix_languages: bool = False, rebuild_state: bool = False) -> None:
+def main(dry_run: bool = False, warm_only: bool = False, passes: int = 1, daily: bool = False, fix_languages: bool = False, rebuild_state: bool = False, refresh_templates: bool = False) -> None:
     if rebuild_state:
         rebuild_state_from_supabase()
         return
 
     if warm_only:
-        warm_templates()
+        warm_templates(refresh=refresh_templates)
         return
 
     _write_en_cache()
@@ -475,4 +484,5 @@ if __name__ == '__main__':
         daily='--daily' in sys.argv,
         fix_languages='--fix-languages' in sys.argv,
         rebuild_state='--rebuild-state' in sys.argv,
+        refresh_templates='--refresh-templates' in sys.argv,
     )

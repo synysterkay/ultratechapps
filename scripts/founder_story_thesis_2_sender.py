@@ -55,15 +55,15 @@ BACKFILL_CAP = int(os.getenv('FOUNDER_STORY_THESIS_2_SEND_CAP', '2000'))
 DAILY_CATCHUP_CAP = int(os.getenv('FOUNDER_STORY_THESIS_2_DAILY_CAP', '200'))
 
 EN_SOURCE = {
-    'subject': '{{first_name}}, your deadline didn\'t pause — day {{days_since_story}}',
+    'subject': '{{first_name}}, {{topic}} — 3 minutes to a draft you can edit',
     'body': [
-        "Five days ago we told you why Thesis Generator exists. Since then, your submission date didn't move backward — but {{topic}} is still waiting.",
-        "The loop that actually gets theses finished: feel the deadline closing → open the app → tap generate in under 3 minutes. The first draft surprises you — better than another week staring at a blank page — and every chapter you finish makes the next one easier.",
-        "Students who opened the app this week didn't find more time. They stopped negotiating with themselves and shipped a draft they could edit instead of dread.",
-        "The guilt compounds daily. Day {{days_since_story}} feels heavier than day one. You already signed up. You already know the story. The only missing piece is one tap on your {{work_type}}.",
-        "P.S. If {{topic}} is already in the app, finish it today — momentum beats motivation every single time.",
+        "{{first_name}}, you signed up for a reason — and {{topic}} is still waiting.",
+        "Students who opened Thesis Generator this week didn't find more time. They stopped negotiating with a blank page and generated a rough {{work_type}} in under three minutes. Editing a draft feels manageable. Dreading one for another week doesn't.",
+        "The loop that works: feel the deadline closing → open the app → enter {{topic}} and what you've already researched → tap generate → spend twenty minutes editing instead of twenty days stuck.",
+        "Day {{days_since_story}} since our first note. Your submission date didn't move backward.",
+        "P.S. If {{topic}} is already in the app, open it and finish one section today. One section is enough to restart momentum.",
     ],
-    'cta': 'Start my {{work_type}} now',
+    'cta': 'Draft my {{work_type}} in 3 minutes',
     'cta_android': 'Open on Android',
     'cta_web': 'Continue on web',
 }
@@ -153,7 +153,17 @@ def _write_en_cache() -> None:
     _write_cache(KIND, 'en', EN_SOURCE)
 
 
-def warm_templates() -> None:
+def warm_templates(refresh: bool = False) -> None:
+    if refresh:
+        cache_dir = Path(__file__).resolve().parents[1] / 'cache' / 'thesis_templates'
+        removed = 0
+        for path in cache_dir.glob(f'{KIND}_*.json'):
+            if path.name.endswith('_en.json'):
+                continue
+            path.unlink(missing_ok=True)
+            removed += 1
+        if removed:
+            print(f'   🔄 Cleared {removed} cached {KIND} translations for refresh')
     _write_en_cache()
     from thesis_template_translator import SUPPORTED
     print(f'🔥 Warming {KIND} for {len(SUPPORTED) - 1} languages…')
@@ -325,9 +335,9 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None) -> list[str]
     return sent_emails
 
 
-def main(dry_run: bool = False, warm_only: bool = False, daily: bool = False) -> None:
+def main(dry_run: bool = False, warm_only: bool = False, daily: bool = False, refresh_templates: bool = False) -> None:
     if warm_only:
-        warm_templates()
+        warm_templates(refresh=refresh_templates)
         return
 
     _write_en_cache()
@@ -340,4 +350,5 @@ if __name__ == '__main__':
         dry_run='--dry-run' in sys.argv,
         warm_only='--warm' in sys.argv,
         daily='--daily' in sys.argv,
+        refresh_templates='--refresh-templates' in sys.argv,
     )

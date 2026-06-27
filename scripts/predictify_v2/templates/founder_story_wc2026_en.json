@@ -1,16 +1,16 @@
 {
   "kind": "founder_story_wc2026",
   "language": "en",
-  "subject": "World Cup 2026 — read it with data, not noise",
-  "preview_text": "Your matchday home for honest analysis — and a track record you can verify.",
+  "subject": "Everyone has a World Cup take — do you have the data?",
+  "preview_text": "80%+ on our highest-confidence picks. Verify every result yourself.",
   "body_paragraphs": [
     "Hey {first_name},",
-    "The biggest tournament on earth deserves better than guesswork.",
-    "That's why we built Predictify: AI that runs 24/7, expected goals, form, injuries, and real probabilities on 1X2, over/under, BTTS and more. On our highest-confidence picks, the model has been correct more than 80% of the time — and we publish every result so you can verify it yourself.",
-    "We created the World Cup 2026 hub inside the app for exactly this moment — pre-kickoff breakdowns, matchday threads, and honest recaps after full time.",
-    "Open the hub and drop your boldest call: dark horse, group-stage upset, or who lifts the trophy.",
-    "P.S. We're not a bookmaker and we don't promise guaranteed wins. We promise clear forecasts and a track record you can check — match by match."
+    "World Cup 2026 is when casual fans and sharp readers split — guesswork vs. numbers.",
+    "Predictify runs 24/7: form, injuries, xG, and published probabilities on 1X2, O/U, BTTS and more. On our highest-confidence picks, the model has cleared 80%+ — and we publish every result so you can verify it match by match.",
+    "We built the World Cup hub for exactly this: pre-match breakdowns, matchday threads, and honest post-game recaps.",
+    "Open the hub now. Drop one call — dark horse, upset, or winner — before kickoff while everyone else is still arguing from gut feel.",
+    "P.S. We're not a bookmaker. No guaranteed wins — just forecasts and a track record you can check."
   ],
-  "cta_text": "Open World Cup Hub",
+  "cta_text": "Open World Cup Hub — free",
   "cta_deeplink": "predictify://community/worldcup2026"
 }

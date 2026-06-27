@@ -34,8 +34,8 @@ TARGET_LANGS = {
 }
 
 
-def warm_templates() -> None:
-    """Generate missing per-language JSON from founder_story_wc2026_en.json."""
+def warm_templates(refresh: bool = False) -> None:
+    """Generate per-language JSON from founder_story_wc2026_en.json."""
     from predictify_v2.localize_templates import translate_template
 
     en_path = TEMPLATES_DIR / f'{KIND}_en.json'
@@ -47,10 +47,20 @@ def warm_templates() -> None:
     with open(en_path, encoding='utf-8') as f:
         en = json.load(f)
 
+    if refresh:
+        removed = 0
+        for path in TEMPLATES_DIR.glob(f'{KIND}_*.json'):
+            if path.name.endswith('_en.json'):
+                continue
+            path.unlink(missing_ok=True)
+            removed += 1
+        if removed:
+            print(f'   🔄 Cleared {removed} cached {KIND} translations for refresh')
+
     print(f'🔥 Warming {KIND} templates…')
     for lang, name in TARGET_LANGS.items():
         out = TEMPLATES_DIR / f'{KIND}_{lang}.json'
-        if out.exists():
+        if out.exists() and not refresh:
             print(f'  ↪ {out.name} exists')
             continue
         print(f'  → {lang} ({name})…', flush=True)
@@ -62,9 +72,9 @@ def warm_templates() -> None:
             print(f'    ⚠️ failed: {e}')
 
 
-def main(dry_run: bool = False, warm_only: bool = False, passes: int = 1) -> None:
+def main(dry_run: bool = False, warm_only: bool = False, passes: int = 1, refresh_templates: bool = False) -> None:
     if warm_only:
-        warm_templates()
+        warm_templates(refresh=refresh_templates)
         return
 
     from predictify_v2.orchestrator import run_founder_story_backfill
@@ -99,4 +109,5 @@ if __name__ == '__main__':
         dry_run='--dry-run' in sys.argv,
         warm_only='--warm' in sys.argv,
         passes=passes,
+        refresh_templates='--refresh-templates' in sys.argv,
     )

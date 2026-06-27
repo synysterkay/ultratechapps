@@ -138,16 +138,16 @@ jobs:
             python -u scripts/app_retention_emailer.py --upsell
           elif [ "$MODE" = "founder-story" ]; then
             python -u scripts/founder_story_wc2026_sender.py --dry-run || true
-            python -u scripts/founder_story_wc2026_sender.py --warm || true
+            python -u scripts/founder_story_wc2026_sender.py --warm --refresh-templates || true
             # 10 passes × 2000 cap = up to 20,000 founder-story sends per run.
             python -u scripts/founder_story_wc2026_sender.py --passes "${FOUNDER_STORY_PASSES:-10}"
           elif [ "$MODE" = "thesis-founder-story" ]; then
             python -u scripts/founder_story_thesis_sender.py --dry-run --fix-languages || true
-            python -u scripts/founder_story_thesis_sender.py --warm || true
+            python -u scripts/founder_story_thesis_sender.py --warm --refresh-templates || true
             python -u scripts/founder_story_thesis_sender.py --fix-languages --passes "${FOUNDER_STORY_THESIS_PASSES:-3}"
           elif [ "$MODE" = "thesis-founder-story-2" ]; then
             python -u scripts/founder_story_thesis_2_sender.py --dry-run || true
-            python -u scripts/founder_story_thesis_2_sender.py --warm || true
+            python -u scripts/founder_story_thesis_2_sender.py --warm --refresh-templates || true
             python -u scripts/founder_story_thesis_2_sender.py
           else
             python -u scripts/app_retention_emailer.py
