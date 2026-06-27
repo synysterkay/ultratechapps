@@ -24,7 +24,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from gmail_sender import GmailSender
+from gmail_sender import GmailSender, SKIP_RESULTS
 from thesis_users_loader import get_access_token, normalize_user_language
 from thesis_template_translator import get_localized, warm_all
 from thesis_email_chrome import render as render_email
@@ -207,6 +207,8 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None) -> list[str]
     for email, fs1_rec in fs1_eligible.items():
         if email in already_fs2 or email in suppressed:
             continue
+        if GmailSender._is_suppressed(email, APP_SLUG):
+            continue
         user = users_by_email.get(email)
         if not user:
             user = {
@@ -245,6 +247,7 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None) -> list[str]
 
     sent_emails: list[str] = []
     failed = 0
+    skipped = 0
     for i, (user, fs1_rec) in enumerate(candidates):
         if len(sent_emails) >= cap:
             print(f'   🛑 Cap hit ({cap})')
@@ -309,13 +312,16 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None) -> list[str]
             if len(sent_emails) % 25 == 0:
                 _save_state(state)
             print(f'   ✅ [{len(sent_emails)}] {email} ({lang}) +{fs1_rec.get("days_since")}d')
+        elif result in SKIP_RESULTS:
+            skipped += 1
+            print(f'   ⏭️ {email} result={result}')
         else:
             failed += 1
             print(f'   ❌ {email} result={result}')
         time.sleep(0.25)
 
     _save_state(state)
-    print(f'\n📊 Done — sent {len(sent_emails)}, failed {failed}, total FS2 ever {len(state["sent"])}')
+    print(f'\n📊 Done — sent {len(sent_emails)}, skipped {skipped}, failed {failed}, total FS2 ever {len(state["sent"])}')
     return sent_emails
 
 

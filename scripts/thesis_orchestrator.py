@@ -7,8 +7,7 @@ the right order, with shared dedup against the global suppression list.
 Designed to be invoked from `retention-emails.yml` so the workflow
 doesn't have to know about each individual script.
 
-Order matters. The shared sender enforces a daily Thesis volume cap, so the
-highest-intent / highest-revenue moments run first:
+Order matters. Highest-intent / highest-revenue Thesis senders run first.
 1. Free-quota-hit upgrade 24h/72h/7d       (monetization)
 2. Welcome / first-thesis-complete         (fresh activation)
 3. Deadline countdown 14/7/3/1/0           (urgent external trigger)

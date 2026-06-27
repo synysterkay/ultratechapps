@@ -106,15 +106,11 @@ jobs:
           # Founder-story backfill only (ignored by normal retention / v2 triggers).
           FOUNDER_STORY_SEND_CAP: "2000"
           FOUNDER_STORY_PASSES: "10"
-          # Thesis Generator volume ramps automatically from recent
-          # delivery/engagement health in email_events. The cap starts at 500
-          # per rolling 24h and can rise to 3000 when bounces stay low and
-          # opens/clicks are healthy.
-          THESIS_DAILY_SEND_CAP_BASE: "500"
-          THESIS_DAILY_SEND_CAP_MAX: "3000"
-          THESIS_SENDER_EMAIL: "hello@thesisgenerator.io"
-          THESIS_SENDER_NAME: "Thesis Generator"
           RESEND_SEND_DELAY_SECONDS: "0.25"
+          # Thesis daily volume cap disabled — deliverability is guarded by the
+          # suppression list + per-sender health caps. Set
+          # THESIS_DAILY_SEND_CAP_DISABLED=0 to re-enable auto-ramp.
+          THESIS_DAILY_SEND_CAP_DISABLED: "1"
         run: |
           MODE="${{ github.event.inputs.mode || 'send' }}"
 
@@ -167,8 +163,8 @@ jobs:
             python -u scripts/app_retention_emailer.py --upsell || true
             # ── Thesis Generator v2 trigger senders ──
             # Single entry point now — the orchestrator fires highest-intent
-            # Thesis senders first. The shared Resend sender enforces the
-            # automatic 24h volume cap and durable suppression list.
+            # Thesis senders first. Durable suppression list + per-sender caps
+            # guard deliverability (daily Thesis volume cap is disabled).
             echo "--- Running thesis orchestrator (all thesis senders) ---"
             python -u scripts/thesis_orchestrator.py || true
             # ── PupShape behavioural senders ──

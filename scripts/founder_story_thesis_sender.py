@@ -24,7 +24,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from gmail_sender import GmailSender
+from gmail_sender import GmailSender, SKIP_RESULTS
 from firebase_user_loader import FirebaseUserLoader
 from firestore_language_loader import FirestoreLanguageLoader
 from thesis_users_loader import get_access_token, load_all_users, normalize_user_language
@@ -328,6 +328,8 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None, fix_language
         email = user['email']
         if _skip_email(email) or email in already or email in suppressed:
             continue
+        if GmailSender._is_suppressed(email, APP_SLUG):
+            continue
         candidates.append(user)
 
     print(f'📬 {len(candidates)} users eligible (cap={cap}, already sent={len(already)})')
@@ -356,6 +358,7 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None, fix_language
 
     sent_emails: list[str] = []
     failed = 0
+    skipped = 0
     for i, user in enumerate(candidates):
         if len(sent_emails) >= cap:
             print(f'   🛑 Cap hit ({cap})')
@@ -417,13 +420,16 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None, fix_language
             if len(sent_emails) % 25 == 0:
                 _save_state(state)
             print(f'   ✅ [{len(sent_emails)}] {email} ({lang})')
+        elif result in SKIP_RESULTS:
+            skipped += 1
+            print(f'   ⏭️ {email} result={result}')
         else:
             failed += 1
             print(f'   ❌ {email} result={result}')
         time.sleep(0.25)
 
     _save_state(state)
-    print(f'\n📊 Done — sent {len(sent_emails)}, failed {failed}, total ever {len(state["sent"])}')
+    print(f'\n📊 Done — sent {len(sent_emails)}, skipped {skipped}, failed {failed}, total ever {len(state["sent"])}')
     return sent_emails
 
 

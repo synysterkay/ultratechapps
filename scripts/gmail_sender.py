@@ -171,6 +171,11 @@ class GmailSender:
         return False
 
     @classmethod
+    def _thesis_cap_disabled(cls) -> bool:
+        """Daily Thesis send cap is off by default — set THESIS_DAILY_SEND_CAP_DISABLED=0 to re-enable."""
+        return os.getenv('THESIS_DAILY_SEND_CAP_DISABLED', '1').lower() in ('1', 'true', 'yes')
+
+    @classmethod
     def _fetch_thesis_volume_metrics(cls):
         now = _utc_now()
         default = {
@@ -263,6 +268,8 @@ class GmailSender:
 
     @classmethod
     def _thesis_volume_metrics(cls):
+        if cls._thesis_cap_disabled():
+            return None
         if cls._volume_cache is None:
             cls._volume_cache = cls._fetch_thesis_volume_metrics()
             m = cls._volume_cache
@@ -279,7 +286,11 @@ class GmailSender:
     def _under_thesis_cap(cls, app):
         if not _is_thesis_app(app):
             return True
+        if cls._thesis_cap_disabled():
+            return True
         metrics = cls._thesis_volume_metrics()
+        if not metrics:
+            return True
         used = metrics.get('sent_24h', 0) + cls._run_counts['thesis']
         return used < metrics.get('cap', 0)
 
@@ -363,7 +374,7 @@ class GmailSender:
             return 'suppressed'
 
         if not self._under_thesis_cap(app):
-            metrics = self._thesis_volume_metrics()
+            metrics = self._thesis_volume_metrics() or {}
             used = metrics.get('sent_24h', 0) + GmailSender._run_counts['thesis']
             print(f"   ⏭️ Thesis volume cap reached — {used}/{metrics.get('cap', 0)} sent in 24h")
             return 'throttled'
