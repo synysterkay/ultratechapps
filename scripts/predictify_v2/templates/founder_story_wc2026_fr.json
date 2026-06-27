@@ -1,15 +1,15 @@
 {
-  "subject": "Coupe du Monde 2026 — lisez-la avec des données, pas du bruit",
-  "preview_text": "Votre repère pour les jours de match avec des analyses honnêtes — et un bilan que vous pouvez vérifier.",
+  "subject": "Tout le monde a un avis sur la Coupe du Monde — avez-vous les données ?",
+  "preview_text": "80%+ sur nos pronostics les plus sûrs. Vérifiez chaque résultat vous-même.",
   "body_paragraphs": [
     "Salut {first_name},",
-    "Le plus grand tournoi de la planète mérite mieux que des suppositions.",
-    "C'est pourquoi nous avons créé Predictify : une IA qui tourne 24h/24, les expected goals, la forme, les blessures, et des probabilités réelles sur 1X2, over/under, BTTS et plus encore. Sur nos pronostics les plus confiants, le modèle a été correct plus de 80% du temps — et nous publions chaque résultat pour que vous puissiez vérifier par vous-même.",
-    "Nous avons créé le hub Coupe du Monde 2026 dans l'app exactement pour ce moment — analyses avant le coup d'envoi, fils de discussion le jour du match, et résumés honnêtes après le coup de sifflet final.",
-    "Ouvrez le hub et lancez votre pari le plus audacieux : outsider, surprise de la phase de groupes, ou qui soulève le trophée.",
-    "P.S. Nous ne sommes pas un bookmaker et nous ne promettons pas de gains garantis. Nous promettons des prévisions claires et un bilan que vous pouvez vérifier — match après match."
+    "La Coupe du Monde 2026, c'est le moment où les fans occasionnels et les lecteurs avertis se séparent — intuition contre chiffres.",
+    "Predictify tourne 24h/24 : forme, blessures, xG, et probabilités publiées sur 1X2, O/U, BTTS et plus. Sur nos pronostics les plus sûrs, le modèle a dépassé les 80% — et nous publions chaque résultat pour que vous puissiez vérifier match par match.",
+    "Nous avons construit le hub Coupe du Monde exactement pour ça : analyses d'avant-match, fils de discussion le jour du match, et résumés honnêtes après le coup de sifflet final.",
+    "Ouvrez le hub maintenant. Lâchez un pronostic — outsider, surprise, ou vainqueur — avant le coup d'envoi pendant que les autres se disputent encore à l'instinct.",
+    "P.S. Nous ne sommes pas un bookmaker. Pas de victoires garanties — juste des prévisions et un historique que vous pouvez vérifier."
   ],
-  "cta_text": "Ouvrir le hub Coupe du Monde",
+  "cta_text": "Ouvrir le hub Coupe du Monde — gratuit",
   "cta_deeplink": "predictify://community/worldcup2026",
   "kind": "founder_story_wc2026",
   "language": "fr"

@@ -1,15 +1,15 @@
 {
-  "subject": "Mondiali 2026 — leggili con i dati, non con il rumore",
-  "preview_text": "La tua casa per il matchday con analisi oneste — e un track record che puoi verificare.",
+  "subject": "Tutti hanno un'opinione sui Mondiali — tu hai i dati?",
+  "preview_text": "80%+ sulle nostre scelte ad alta fiducia. Verifica ogni risultato tu stesso.",
   "body_paragraphs": [
     "Ciao {first_name},",
-    "Il torneo più grande del pianeta merita più di semplici supposizioni.",
-    "Ecco perché abbiamo creato Predictify: un'IA che lavora 24/7, gol attesi, forma, infortuni e probabilità reali su 1X2, over/under, BTTS e altro. Sulle nostre scelte a più alta confidenza, il modello è stato corretto oltre l'80% delle volte — e pubblichiamo ogni risultato così puoi verificarlo tu stesso.",
-    "Abbiamo creato l'hub dei Mondiali 2026 nell'app proprio per questo momento — analisi pre-partita, thread del matchday e resoconti onesti dopo il fischio finale.",
-    "Apri l'hub e lancia la tua previsione più audace: cavallo scuro, sorpresa nella fase a gironi o chi alza la coppa.",
-    "P.S. Non siamo un bookmaker e non promettiamo vincite garantite. Promettiamo previsioni chiare e un track record che puoi controllare — partita per partita."
+    "I Mondiali 2026 sono il momento in cui i tifosi occasionali e i lettori più esperti si dividono — tra congetture e numeri.",
+    "Predictify funziona 24/7: forma, infortuni, xG e probabilità pubblicate su 1X2, O/U, BTTS e altro ancora. Sulle nostre scelte ad alta fiducia, il modello ha superato l'80% — e pubblichiamo ogni risultato così puoi verificarlo partita per partita.",
+    "Abbiamo creato l'hub dei Mondiali proprio per questo: analisi pre-partita, discussioni in giornata di gara e riepiloghi onesti post-partita.",
+    "Apri l'hub ora. Lancia una previsione — cavallo scuro, sorpresa o vincitore — prima del calcio d'inizio, mentre tutti gli altri stanno ancora discutendo a istinto.",
+    "P.S. Non siamo un bookmaker. Nessuna vincita garantita — solo previsioni e un track record che puoi controllare."
   ],
-  "cta_text": "Apri l'Hub Mondiali",
+  "cta_text": "Apri l'Hub dei Mondiali — gratis",
   "cta_deeplink": "predictify://community/worldcup2026",
   "kind": "founder_story_wc2026",
   "language": "it"

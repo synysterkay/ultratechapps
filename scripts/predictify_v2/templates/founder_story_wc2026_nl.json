@@ -1,15 +1,15 @@
 {
-  "subject": "Wereldkampioenschap 2026 — lees het met data, niet met ruis",
-  "preview_text": "Jouw wedstrijdplek voor eerlijke analyses — en een staat van dienst die je kunt controleren.",
+  "subject": "Iedereen heeft een WK-mening — heb jij de data?",
+  "preview_text": "80%+ op onze hoogste-confidence picks. Controleer elk resultaat zelf.",
   "body_paragraphs": [
     "Hoi {first_name},",
-    "Het grootste toernooi ter wereld verdient beter dan giswerk.",
-    "Daarom bouwden we Predictify: AI die 24/7 draait, expected goals, vorm, blessures en echte kansen op 1X2, over/under, BTTS en meer. Bij onze picks met het hoogste vertrouwen heeft het model meer dan 80% van de tijd gelijk — en we publiceren elk resultaat, zodat je het zelf kunt controleren.",
-    "We hebben de Wereldkampioenschap 2026-hub in de app gemaakt voor precies dit moment — analyses voor de aftrap, wedstrijdthreads en eerlijke samenvattingen na afloop.",
-    "Open de hub en plaats je stoutste voorspelling: dark horse, groepsfase-verrassing of wie de beker omhoog tilt.",
-    "P.S. We zijn geen bookmaker en we beloven geen gegarandeerde winsten. We beloven duidelijke voorspellingen en een staat van dienst die je kunt checken — wedstrijd voor wedstrijd."
+    "Het WK 2026 is het moment waarop casual fans en scherpe lezers uit elkaar gaan — giswerk versus cijfers.",
+    "Predictify draait 24/7: vorm, blessures, xG en gepubliceerde kansen op 1X2, O/U, BTTS en meer. Op onze hoogste-confidence picks heeft het model 80%+ gehaald — en we publiceren elk resultaat zodat je het wedstrijd voor wedstrijd kunt verifiëren.",
+    "We hebben de WK-hub precies hiervoor gebouwd: pre-match analyses, wedstrijdthreads en eerlijke nabeschouwingen.",
+    "Open de hub nu. Drop één voorspelling — dark horse, verrassing of winnaar — voor de aftrap, terwijl iedereen nog aan het discussiëren is op basis van onderbuikgevoel.",
+    "P.S. We zijn geen bookmaker. Geen gegarandeerde winsten — alleen voorspellingen en een track record dat je kunt checken."
   ],
-  "cta_text": "Open WK-hub",
+  "cta_text": "Open WK Hub — gratis",
   "cta_deeplink": "predictify://community/worldcup2026",
   "kind": "founder_story_wc2026",
   "language": "nl"

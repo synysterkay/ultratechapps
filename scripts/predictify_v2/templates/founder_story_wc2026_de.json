@@ -1,15 +1,15 @@
 {
-  "subject": "World Cup 2026 — lies ihn mit Daten, nicht mit Lärm",
-  "preview_text": "Dein Matchday-Zuhause für ehrliche Analysen – und eine nachprüfbare Erfolgsbilanz.",
+  "subject": "Jeder hat eine WM-Einschätzung – hast du die Daten?",
+  "preview_text": "80%+ bei unseren sichersten Tipps. Überprüfe jedes Ergebnis selbst.",
   "body_paragraphs": [
     "Hey {first_name},",
-    "Das größte Turnier der Erde verdient mehr als bloßes Raten.",
-    "Deshalb haben wir Predictify entwickelt: KI, die rund um die Uhr läuft, erwartete Tore, Form, Verletzungen und echte Wahrscheinlichkeiten für 1X2, Over/Under, BTTS und mehr. Bei unseren Top-Tipps mit höchster Sicherheit lag das Modell in über 80 % der Fälle richtig – und wir veröffentlichen jedes Ergebnis, damit du es selbst überprüfen kannst.",
-    "Wir haben den World Cup 2026-Hub genau für diesen Moment in der App erstellt – Vorberichte vor dem Anpfiff, Matchday-Threads und ehrliche Zusammenfassungen nach dem Schlusspfiff.",
-    "Öffne den Hub und poste deine kühnste Prognose: Geheimfavorit, Gruppenphase-Überraschung oder wer den Pokal holt.",
-    "P.S. Wir sind kein Buchmacher und versprechen keine garantierten Gewinne. Wir versprechen klare Vorhersagen und eine Erfolgsbilanz, die du Spiel für Spiel überprüfen kannst."
+    "Die WM 2026 trennt die Gelegenheitsfans von den scharfen Lesern – Bauchgefühl vs. Zahlen.",
+    "Predictify läuft rund um die Uhr: Form, Verletzungen, xG und veröffentlichte Wahrscheinlichkeiten für 1X2, O/U, BTTS und mehr. Bei unseren sichersten Tipps liegt das Modell bei über 80% – und wir veröffentlichen jedes Ergebnis, damit du es Spiel für Spiel überprüfen kannst.",
+    "Wir haben den WM-Hub genau dafür gebaut: Vorberichte, Spieltag-Threads und ehrliche Nachberichte.",
+    "Öffne jetzt den Hub. Gib einen Tipp ab – Außenseiter, Überraschung oder Sieger – vor dem Anpfiff, während alle anderen noch aus dem Bauch heraus diskutieren.",
+    "P.S. Wir sind kein Buchmacher. Keine garantierten Gewinne – nur Prognosen und eine nachvollziehbare Erfolgsbilanz."
   ],
-  "cta_text": "World Cup Hub öffnen",
+  "cta_text": "WM-Hub öffnen – kostenlos",
   "cta_deeplink": "predictify://community/worldcup2026",
   "kind": "founder_story_wc2026",
   "language": "de"

@@ -1,15 +1,15 @@
 {
-  "subject": "World Cup 2026 — läs det med data, inte brus",
-  "preview_text": "Din matchdagshubb för ärlig analys — och en meritlista du kan verifiera.",
+  "subject": "Alla har en VM-åsikt — har du datan?",
+  "preview_text": "80%+ på våra högsta förtroendespel. Verifiera varje resultat själv.",
   "body_paragraphs": [
     "Hej {first_name},",
-    "Världens största turnering förtjänar bättre än gissningar.",
-    "Därför byggde vi Predictify: AI som kör 24/7, förväntade mål, form, skador och verkliga sannolikheter på 1X2, över/under, BTTS och mer. På våra högsta förtroendespel har modellen haft rätt mer än 80% av gångerna — och vi publicerar varje resultat så att du kan verifiera det själv.",
-    "Vi skapade World Cup 2026-hubben i appen för just detta ögonblick — analys före avspark, matchdagstrådar och ärliga sammanfattningar efter slutsignal.",
-    "Öppna hubben och släng in din djärvaste gissning: mörk häst, gruppspelsskräll eller vem som lyfter pokalen.",
-    "P.S. Vi är ingen bookmaker och vi lovar inga garanterade vinster. Vi lovar tydliga prognoser och en meritlista du kan kolla — match för match."
+    "VM 2026 är när vanliga fans och skarpa läsare skiljs åt — gissningar vs. siffror.",
+    "Predictify kör 24/7: form, skador, xG och publicerade sannolikheter på 1X2, Ö/U, BTTS och mer. På våra högsta förtroendespel har modellen klarat 80%+ — och vi publicerar varje resultat så du kan verifiera det match för match.",
+    "Vi byggde VM-hubben för just detta: inför match-genomgångar, matchdagstrådar och ärliga eftermatcher.",
+    "Öppna hubben nu. Släng in en gissning — mörk häst, skräll eller vinnare — före avspark medan alla andra fortfarande argumenterar från magkänsla.",
+    "P.S. Vi är ingen bookmaker. Inga garanterade vinster — bara prognoser och en resultathistorik du kan kontrollera."
   ],
-  "cta_text": "Öppna World Cup Hub",
+  "cta_text": "Öppna VM-hubben — gratis",
   "cta_deeplink": "predictify://community/worldcup2026",
   "kind": "founder_story_wc2026",
   "language": "sv"

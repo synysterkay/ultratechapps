@@ -1,15 +1,15 @@
 {
-  "subject": "Campionatul Mondial 2026 — citește-l cu date, nu cu zgomot",
-  "preview_text": "Locul tău de meci pentru analize oneste — și un istoric pe care îl poți verifica.",
+  "subject": "Toată lumea are o părere despre Cupa Mondială — ai tu datele?",
+  "preview_text": "Peste 80% pe alegerile noastre cu cea mai mare încredere. Verifică fiecare rezultat chiar tu.",
   "body_paragraphs": [
     "Hei {first_name},",
-    "Cel mai mare turneu de pe pământ merită mai mult decât ghiceli.",
-    "De aceea am construit Predictify: AI care rulează 24/7, goluri așteptate, formă, accidentări și probabilități reale pe 1X2, peste/sub, BTTS și multe altele. La alegerile noastre cu cea mai mare încredere, modelul a avut dreptate în peste 80% din cazuri — și publicăm fiecare rezultat ca să poți verifica singur.",
-    "Am creat hub-ul Campionatului Mondial 2026 în aplicație exact pentru acest moment — analize înainte de start, fire de discuție în ziua meciului și recenzii oneste după final.",
-    "Deschide hub-ul și spune cea mai îndrăzneață predicție: calul negru, surpriza din faza grupelor sau cine ridică trofeul.",
-    "P.S. Nu suntem o casă de pariuri și nu promitem câștiguri garantate. Promitem previziuni clare și un istoric pe care îl poți verifica — meci cu meci."
+    "Cupa Mondială 2026 este momentul când fanii obișnuiți și cititorii ascuțiți se despart — ghicitul vs. cifrele.",
+    "Predictify rulează 24/7: formă, accidentări, xG și probabilități publicate pe 1X2, Peste/Sub, Ambele marchează și multe altele. Pe alegerile noastre cu cea mai mare încredere, modelul a depășit 80% — și publicăm fiecare rezultat pentru a-l putea verifica meci cu meci.",
+    "Am construit hub-ul Cupei Mondiale exact pentru asta: analize pre-meci, fire de discuție în ziua meciului și recapitulări oneste post-meci.",
+    "Deschide hub-ul acum. Aruncă o predicție — cal întunecat, surpriză sau câștigător — înainte de start, în timp ce toți ceilalți încă se ceartă pe bază de instinct.",
+    "P.S. Nu suntem o casă de pariuri. Fără câștiguri garantate — doar previziuni și un istoric pe care îl poți verifica."
   ],
-  "cta_text": "Deschide Hub-ul Campionatului Mondial",
+  "cta_text": "Deschide Hub-ul Cupei Mondiale — gratuit",
   "cta_deeplink": "predictify://community/worldcup2026",
   "kind": "founder_story_wc2026",
   "language": "ro"

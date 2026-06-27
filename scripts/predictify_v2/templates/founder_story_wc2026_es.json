@@ -1,15 +1,15 @@
 {
-  "subject": "Mundial 2026 — léelo con datos, no con ruido",
-  "preview_text": "Tu hogar de partidos con análisis honesto — y un historial que puedes verificar.",
+  "subject": "Todos tienen una opinión sobre el Mundial — ¿tú tienes los datos?",
+  "preview_text": "Más del 80% en nuestras selecciones de mayor confianza. Verifica cada resultado tú mismo.",
   "body_paragraphs": [
     "Hola {first_name},",
-    "El torneo más grande del planeta merece algo mejor que suposiciones.",
-    "Por eso creamos Predictify: IA que funciona 24/7, goles esperados, forma, lesiones y probabilidades reales en 1X2, más/menos, BTTS y más. En nuestras selecciones de mayor confianza, el modelo ha acertado más del 80% de las veces — y publicamos cada resultado para que puedas verificarlo tú mismo.",
-    "Creamos el centro del Mundial 2026 dentro de la aplicación justo para este momento — análisis previos al inicio, hilos de partido y resúmenes honestos después del tiempo completo.",
-    "Abre el centro y lanza tu predicción más audaz: caballo negro, sorpresa en la fase de grupos o quién levanta el trofeo.",
-    "P.D. No somos una casa de apuestas ni prometemos victorias garantizadas. Prometemos pronósticos claros y un historial que puedes revisar — partido a partido."
+    "El Mundial 2026 es donde los aficionados casuales y los lectores astutos se separan — corazonadas vs. números.",
+    "Predictify funciona 24/7: forma, lesiones, xG y probabilidades publicadas en 1X2, Más/Menos, Ambos Anotan y más. En nuestras selecciones de mayor confianza, el modelo ha superado el 80% — y publicamos cada resultado para que puedas verificarlo partido por partido.",
+    "Construimos el hub del Mundial exactamente para esto: análisis previos, hilos de jornada y resúmenes honestos post-partido.",
+    "Abre el hub ahora. Haz una predicción — caballo oscuro, sorpresa o ganador — antes del pitido inicial mientras todos los demás siguen discutiendo desde el instinto.",
+    "P.D. No somos una casa de apuestas. No hay victorias garantizadas — solo pronósticos y un historial que puedes comprobar."
   ],
-  "cta_text": "Abrir Centro del Mundial",
+  "cta_text": "Abrir Hub del Mundial — gratis",
   "cta_deeplink": "predictify://community/worldcup2026",
   "kind": "founder_story_wc2026",
   "language": "es"

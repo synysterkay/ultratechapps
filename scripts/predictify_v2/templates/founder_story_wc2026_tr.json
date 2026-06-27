@@ -1,15 +1,15 @@
 {
-  "subject": "Dünya Kupası 2026 — gürültüyle değil, veriyle okuyun",
-  "preview_text": "Dürüst analizler için maç günü eviniz — ve doğrulayabileceğiniz bir geçmiş.",
+  "subject": "Herkesin bir Dünya Kupası tahmini var — senin verin var mı?",
+  "preview_text": "En yüksek güvenli tahminlerimizde %80+ başarı. Her sonucu kendin doğrula.",
   "body_paragraphs": [
     "Merhaba {first_name},",
-    "Dünyanın en büyük turnuvası tahminden daha iyisini hak ediyor.",
-    "İşte bu yüzden Predictify'i kurduk: 7/24 çalışan yapay zeka, beklenen goller, form, sakatlıklar ve 1X2, alt/üst, karşılıklı gol ve daha fazlasında gerçek olasılıklar. En yüksek güvenli tahminlerimizde model %80'den fazla doğruluk payına sahip — ve her sonucu yayınlıyoruz, böylece kendiniz doğrulayabilirsiniz.",
-    "World Cup 2026 merkezini tam da bu an için uygulama içinde oluşturduk — maç öncesi analizler, maç günü başlıkları ve bitiş düdüğünden sonra dürüst özetler.",
-    "Merkezi açın ve en cesur tahmininizi yapın: sürpriz takım, grup aşaması sürprizi veya kupayı kaldıran kim olacak.",
-    "Not: Biz bir bahis şirketi değiliz ve garantili kazanç vaat etmiyoruz. Net tahminler ve maç maç kontrol edebileceğiniz bir geçmiş sunuyoruz."
+    "2026 Dünya Kupası, sıradan izleyicilerle keskin okuyucuları ayıran an — tahmin mi, sayılar mı.",
+    "Predictify 7/24 çalışır: form, sakatlıklar, xG ve 1X2, A/G, KGYK ve daha fazlası için yayınlanmış olasılıklar. En yüksek güvenli tahminlerimizde model %80+ başarı sağladı — ve her sonucu yayınlıyoruz, böylece maç maç doğrulayabilirsin.",
+    "Dünya Kupası merkezini tam da bunun için kurduk: maç öncesi analizler, maç günü başlıkları ve dürüst maç sonu özetleri.",
+    "Merkezi hemen aç. Başlama vuruşundan önce bir tahmin yap — sürpriz, favori ya da kazanan — herkes hâlâ içgüdüleriyle tartışırken.",
+    "Dipnot: Biz bir bahis şirketi değiliz. Garanti kazanç yok — sadece tahminler ve kontrol edebileceğin bir geçmiş."
   ],
-  "cta_text": "World Cup Merkezini Aç",
+  "cta_text": "Dünya Kupası Merkezini Aç — ücretsiz",
   "cta_deeplink": "predictify://community/worldcup2026",
   "kind": "founder_story_wc2026",
   "language": "tr"

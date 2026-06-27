@@ -1,15 +1,15 @@
 {
-  "subject": "Mundial 2026 — czytaj z danymi, nie z szumem",
-  "preview_text": "Twój meczowy dom z uczciwymi analizami — i udokumentowanymi wynikami, które możesz sprawdzić.",
+  "subject": "Każdy ma swoją opinię o Pucharze Świata — a ty masz dane?",
+  "preview_text": "80%+ na naszych najpewniejszych typach. Sprawdź każdy wynik sam.",
   "body_paragraphs": [
     "Hej {first_name},",
-    "Największy turniej na ziemi zasługuje na coś więcej niż zgadywanie.",
-    "Dlatego stworzyliśmy Predictify: AI, które działa 24/7, bierze pod uwagę oczekiwane gole, formę, kontuzje i realne prawdopodobieństwa na 1X2, over/under, BTTS i więcej. W przypadku naszych typów z najwyższym poziomem pewności model trafiał w ponad 80% przypadków — a my publikujemy każdy wynik, abyś mógł to sam sprawdzić.",
-    "Stworzyliśmy centrum Mundialu 2026 w aplikacji właśnie na tę chwilę — analizy przed pierwszym gwizdkiem, wątki meczowe i uczciwe podsumowania po końcowym gwizdku.",
-    "Otwórz centrum i wrzuć swoje najodważniejsze typy: czarnego konia, niespodziankę w fazie grupowej albo kto podniesie puchar.",
-    "P.S. Nie jesteśmy bukmacherem i nie obiecujemy gwarantowanych wygranych. Obiecujemy jasne prognozy i udokumentowane wyniki, które możesz sprawdzić — mecz po meczu."
+    "Puchar Świata 2026 to moment, w którym przypadkowi fani i bystrzy czytelnicy się rozchodzą — zgadywanie kontra liczby.",
+    "Predictify działa 24/7: forma, kontuzje, xG i publikowane prawdopodobieństwa dla 1X2, O/U, BTTS i więcej. Na naszych najpewniejszych typach model osiągnął 80%+ — a my publikujemy każdy wynik, żebyś mógł go zweryfikować mecz po meczu.",
+    "Zbudowaliśmy hub Pucharu Świata właśnie po to: analizy przedmeczowe, wątki meczowe i szczere podsumowania po meczu.",
+    "Otwórz hub teraz. Rzuć jeden typ — czarnego konia, niespodziankę lub zwycięzcę — przed pierwszym gwizdkiem, podczas gdy inni wciąż kłócą się na podstawie przeczucia.",
+    "P.S. Nie jesteśmy bukmacherem. Brak gwarantowanych wygranych — tylko prognozy i historia, którą możesz sprawdzić."
   ],
-  "cta_text": "Otwórz centrum Mundialu",
+  "cta_text": "Otwórz hub Pucharu Świata — za darmo",
   "cta_deeplink": "predictify://community/worldcup2026",
   "kind": "founder_story_wc2026",
   "language": "pl"

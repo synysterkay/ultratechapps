@@ -1,15 +1,15 @@
 {
-  "subject": "World Cup 2026 — đọc nó bằng dữ liệu, không phải tin đồn",
-  "preview_text": "Ngôi nhà matchday của bạn cho những phân tích trung thực — và thành tích bạn có thể kiểm chứng.",
+  "subject": "Ai cũng có nhận định về World Cup — bạn có dữ liệu không?",
+  "preview_text": "80%+ trên các lựa chọn có độ tin cậy cao nhất. Tự mình kiểm chứng từng kết quả.",
   "body_paragraphs": [
     "Chào {first_name},",
-    "Giải đấu lớn nhất hành tinh xứng đáng được nhìn nhận bằng hơn cả phỏng đoán.",
-    "Đó là lý do chúng tôi xây dựng Predictify: AI hoạt động 24/7, phân tích bàn thắng kỳ vọng, phong độ, chấn thương, và xác suất thực tế cho 1X2, tài/xỉu, BTTS và nhiều hơn nữa. Với những lựa chọn có độ tin cậy cao nhất, mô hình đã đúng hơn 80% thời gian — và chúng tôi công bố mọi kết quả để bạn tự kiểm chứng.",
-    "Chúng tôi đã tạo trung tâm World Cup 2026 trong ứng dụng cho chính khoảnh khắc này — phân tích trước giờ bóng lăn, các luồng thảo luận matchday, và tổng kết trung thực sau khi trận đấu kết thúc.",
-    "Mở trung tâm và đưa ra dự đoán táo bạo nhất của bạn: đội đen tối, bất ngờ vòng bảng, hay ai sẽ nâng cúp.",
-    "P.S. Chúng tôi không phải nhà cái và không hứa hẹn thắng chắc. Chúng tôi hứa hẹn dự báo rõ ràng và thành tích bạn có thể kiểm tra — từng trận một."
+    "World Cup 2026 là lúc người hâm mộ bình thường và độc giả sắc sảo tách biệt — phỏng đoán so với con số.",
+    "Predictify hoạt động 24/7: phong độ, chấn thương, xG, và xác suất công bố cho 1X2, Tài/Xỉu, Cả hai đội ghi bàn và nhiều hơn nữa. Trên các lựa chọn có độ tin cậy cao nhất, mô hình đã đạt trên 80% — và chúng tôi công bố mọi kết quả để bạn có thể kiểm chứng từng trận.",
+    "Chúng tôi xây dựng trung tâm World Cup chính xác cho điều này: phân tích trước trận, luồng thảo luận ngày thi đấu, và tổng kết trung thực sau trận.",
+    "Mở trung tâm ngay bây giờ. Đưa ra một dự đoán — ngựa ô, bất ngờ, hoặc đội vô địch — trước giờ bóng lăn trong khi những người khác vẫn đang tranh luận bằng cảm tính.",
+    "Tái bút: Chúng tôi không phải nhà cái. Không có chiến thắng đảm bảo — chỉ có dự báo và thành tích bạn có thể kiểm tra."
   ],
-  "cta_text": "Mở Trung tâm World Cup",
+  "cta_text": "Mở Trung tâm World Cup — miễn phí",
   "cta_deeplink": "predictify://community/worldcup2026",
   "kind": "founder_story_wc2026",
   "language": "vi"
