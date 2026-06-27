@@ -1,0 +1,525 @@
+{
+  "warming_started": "2026-04-03T22:02:50.126548+00:00",
+  "total_sent": 18828,
+  "total_opened": 9617,
+  "total_replied": 2147,
+  "daily_log": {
+    "2026-04-03": {
+      "sent": 40,
+      "opened": 0,
+      "replied": 0,
+      "week": 1
+    },
+    "2026-04-04": {
+      "sent": 80,
+      "opened": 13,
+      "replied": 8,
+      "week": 1
+    },
+    "2026-04-05": {
+      "sent": 80,
+      "opened": 10,
+      "replied": 5,
+      "week": 1
+    },
+    "2026-04-06": {
+      "sent": 80,
+      "opened": 9,
+      "replied": 4,
+      "week": 1
+    },
+    "2026-04-07": {
+      "sent": 80,
+      "opened": 67,
+      "replied": 4,
+      "week": 1
+    },
+    "2026-04-08": {
+      "sent": 80,
+      "opened": 56,
+      "replied": 6,
+      "week": 1
+    },
+    "2026-04-09": {
+      "sent": 80,
+      "opened": 43,
+      "replied": 6,
+      "week": 1
+    },
+    "2026-04-10": {
+      "sent": 80,
+      "opened": 41,
+      "replied": 6,
+      "week": 1
+    },
+    "2026-04-11": {
+      "sent": 160,
+      "opened": 104,
+      "replied": 14,
+      "week": 2
+    },
+    "2026-04-12": {
+      "sent": 160,
+      "opened": 102,
+      "replied": 16,
+      "week": 2
+    },
+    "2026-04-13": {
+      "sent": 160,
+      "opened": 97,
+      "replied": 12,
+      "week": 2
+    },
+    "2026-04-14": {
+      "sent": 160,
+      "opened": 106,
+      "replied": 17,
+      "week": 2
+    },
+    "2026-04-15": {
+      "sent": 160,
+      "opened": 112,
+      "replied": 21,
+      "week": 2
+    },
+    "2026-04-16": {
+      "sent": 160,
+      "opened": 112,
+      "replied": 20,
+      "week": 2
+    },
+    "2026-04-17": {
+      "sent": 160,
+      "opened": 110,
+      "replied": 20,
+      "week": 2
+    },
+    "2026-04-18": {
+      "sent": 240,
+      "opened": 116,
+      "replied": 22,
+      "week": 3
+    },
+    "2026-04-19": {
+      "sent": 240,
+      "opened": 138,
+      "replied": 28,
+      "week": 3
+    },
+    "2026-04-20": {
+      "sent": 240,
+      "opened": 148,
+      "replied": 25,
+      "week": 3
+    },
+    "2026-04-21": {
+      "sent": 240,
+      "opened": 141,
+      "replied": 27,
+      "week": 3
+    },
+    "2026-04-22": {
+      "sent": 240,
+      "opened": 141,
+      "replied": 28,
+      "week": 3
+    },
+    "2026-04-23": {
+      "sent": 240,
+      "opened": 130,
+      "replied": 33,
+      "week": 3
+    },
+    "2026-04-24": {
+      "sent": 240,
+      "opened": 104,
+      "replied": 23,
+      "week": 3
+    },
+    "2026-04-25": {
+      "sent": 320,
+      "opened": 116,
+      "replied": 28,
+      "week": 4
+    },
+    "2026-04-26": {
+      "sent": 320,
+      "opened": 141,
+      "replied": 33,
+      "week": 4
+    },
+    "2026-04-27": {
+      "sent": 319,
+      "opened": 141,
+      "replied": 38,
+      "week": 4
+    },
+    "2026-04-28": {
+      "sent": 320,
+      "opened": 143,
+      "replied": 39,
+      "week": 4
+    },
+    "2026-04-29": {
+      "sent": 320,
+      "opened": 136,
+      "replied": 36,
+      "week": 4
+    },
+    "2026-04-30": {
+      "sent": 318,
+      "opened": 139,
+      "replied": 36,
+      "week": 4
+    },
+    "2026-05-01": {
+      "sent": 320,
+      "opened": 139,
+      "replied": 32,
+      "week": 4
+    },
+    "2026-05-02": {
+      "sent": 320,
+      "opened": 139,
+      "replied": 29,
+      "week": 5
+    },
+    "2026-05-03": {
+      "sent": 320,
+      "opened": 141,
+      "replied": 33,
+      "week": 5
+    },
+    "2026-05-04": {
+      "sent": 319,
+      "opened": 143,
+      "replied": 37,
+      "week": 5
+    },
+    "2026-05-05": {
+      "sent": 319,
+      "opened": 140,
+      "replied": 31,
+      "week": 5
+    },
+    "2026-05-06": {
+      "sent": 288,
+      "opened": 135,
+      "replied": 31,
+      "week": 5
+    },
+    "2026-05-07": {
+      "sent": 288,
+      "opened": 156,
+      "replied": 24,
+      "week": 5
+    },
+    "2026-05-08": {
+      "sent": 288,
+      "opened": 159,
+      "replied": 30,
+      "week": 5
+    },
+    "2026-05-09": {
+      "sent": 288,
+      "opened": 155,
+      "replied": 30,
+      "week": 6
+    },
+    "2026-05-10": {
+      "sent": 288,
+      "opened": 157,
+      "replied": 34,
+      "week": 6
+    },
+    "2026-05-11": {
+      "sent": 240,
+      "opened": 141,
+      "replied": 29,
+      "week": 6
+    },
+    "2026-05-12": {
+      "sent": 288,
+      "opened": 152,
+      "replied": 33,
+      "week": 6
+    },
+    "2026-05-13": {
+      "sent": 281,
+      "opened": 154,
+      "replied": 35,
+      "week": 6
+    },
+    "2026-05-14": {
+      "sent": 288,
+      "opened": 152,
+      "replied": 34,
+      "week": 6
+    },
+    "2026-05-15": {
+      "sent": 288,
+      "opened": 157,
+      "replied": 34,
+      "week": 6
+    },
+    "2026-05-16": {
+      "sent": 288,
+      "opened": 154,
+      "replied": 29,
+      "week": 7
+    },
+    "2026-05-17": {
+      "sent": 288,
+      "opened": 158,
+      "replied": 36,
+      "week": 7
+    },
+    "2026-05-18": {
+      "sent": 267,
+      "opened": 153,
+      "replied": 30,
+      "week": 7
+    },
+    "2026-05-19": {
+      "sent": 252,
+      "opened": 157,
+      "replied": 38,
+      "week": 7
+    },
+    "2026-05-20": {
+      "sent": 252,
+      "opened": 157,
+      "replied": 35,
+      "week": 7
+    },
+    "2026-05-21": {
+      "sent": 252,
+      "opened": 153,
+      "replied": 27,
+      "week": 7
+    },
+    "2026-05-22": {
+      "sent": 252,
+      "opened": 155,
+      "replied": 29,
+      "week": 7
+    },
+    "2026-05-23": {
+      "sent": 252,
+      "opened": 151,
+      "replied": 26,
+      "week": 8
+    },
+    "2026-05-24": {
+      "sent": 231,
+      "opened": 132,
+      "replied": 37,
+      "week": 8
+    },
+    "2026-05-25": {
+      "sent": 216,
+      "opened": 119,
+      "replied": 37,
+      "week": 8
+    },
+    "2026-05-26": {
+      "sent": 108,
+      "opened": 56,
+      "replied": 17,
+      "week": 8
+    },
+    "2026-05-27": {
+      "sent": 152,
+      "opened": 104,
+      "replied": 27,
+      "week": 8
+    },
+    "2026-05-28": {
+      "sent": 178,
+      "opened": 109,
+      "replied": 42,
+      "week": 8
+    },
+    "2026-05-29": {
+      "sent": 179,
+      "opened": 113,
+      "replied": 30,
+      "week": 8
+    },
+    "2026-05-30": {
+      "sent": 215,
+      "opened": 117,
+      "replied": 35,
+      "week": 9
+    },
+    "2026-05-31": {
+      "sent": 216,
+      "opened": 114,
+      "replied": 38,
+      "week": 9
+    },
+    "2026-06-01": {
+      "sent": 201,
+      "opened": 116,
+      "replied": 34,
+      "week": 9
+    },
+    "2026-06-02": {
+      "sent": 216,
+      "opened": 120,
+      "replied": 39,
+      "week": 9
+    },
+    "2026-06-03": {
+      "sent": 192,
+      "opened": 110,
+      "replied": 25,
+      "week": 9
+    },
+    "2026-06-04": {
+      "sent": 215,
+      "opened": 117,
+      "replied": 36,
+      "week": 9
+    },
+    "2026-06-05": {
+      "sent": 214,
+      "opened": 118,
+      "replied": 38,
+      "week": 9
+    },
+    "2026-06-06": {
+      "sent": 216,
+      "opened": 118,
+      "replied": 41,
+      "week": 10
+    },
+    "2026-06-07": {
+      "sent": 216,
+      "opened": 115,
+      "replied": 34,
+      "week": 10
+    },
+    "2026-06-08": {
+      "sent": 209,
+      "opened": 113,
+      "replied": 30,
+      "week": 10
+    },
+    "2026-06-09": {
+      "sent": 216,
+      "opened": 116,
+      "replied": 31,
+      "week": 10
+    },
+    "2026-06-10": {
+      "sent": 216,
+      "opened": 117,
+      "replied": 36,
+      "week": 10
+    },
+    "2026-06-11": {
+      "sent": 214,
+      "opened": 111,
+      "replied": 33,
+      "week": 10
+    },
+    "2026-06-12": {
+      "sent": 216,
+      "opened": 97,
+      "replied": 17,
+      "week": 10
+    },
+    "2026-06-13": {
+      "sent": 215,
+      "opened": 97,
+      "replied": 29,
+      "week": 11
+    },
+    "2026-06-14": {
+      "sent": 216,
+      "opened": 100,
+      "replied": 20,
+      "week": 11
+    },
+    "2026-06-15": {
+      "sent": 212,
+      "opened": 100,
+      "replied": 27,
+      "week": 11
+    },
+    "2026-06-16": {
+      "sent": 216,
+      "opened": 99,
+      "replied": 21,
+      "week": 11
+    },
+    "2026-06-17": {
+      "sent": 216,
+      "opened": 95,
+      "replied": 23,
+      "week": 11
+    },
+    "2026-06-18": {
+      "sent": 95,
+      "opened": 83,
+      "replied": 14,
+      "week": 11
+    },
+    "2026-06-19": {
+      "sent": 206,
+      "opened": 75,
+      "replied": 6,
+      "week": 11
+    },
+    "2026-06-20": {
+      "sent": 204,
+      "opened": 72,
+      "replied": 7,
+      "week": 12
+    },
+    "2026-06-21": {
+      "sent": 216,
+      "opened": 76,
+      "replied": 9,
+      "week": 12
+    },
+    "2026-06-22": {
+      "sent": 216,
+      "opened": 76,
+      "replied": 9,
+      "week": 12
+    },
+    "2026-06-23": {
+      "sent": 213,
+      "opened": 72,
+      "replied": 10,
+      "week": 12
+    },
+    "2026-06-24": {
+      "sent": 216,
+      "opened": 78,
+      "replied": 10,
+      "week": 12
+    },
+    "2026-06-25": {
+      "sent": 184,
+      "opened": 71,
+      "replied": 4,
+      "week": 12
+    },
+    "2026-06-26": {
+      "sent": 216,
+      "opened": 77,
+      "replied": 13,
+      "week": 12
+    },
+    "2026-06-27": {
+      "sent": 108,
+      "opened": 40,
+      "replied": 7,
+      "week": 13
+    }
+  },
+  "per_domain": {}
+}
