@@ -1,0 +1,13 @@
+{
+  "subject": "{{first_name}}, {{topic}} — 3 minuty do wersji roboczej, którą możesz edytować",
+  "body": [
+    "{{first_name}}, napisałem do Ciebie kilka dni temu — a {{topic}} wciąż czeka.",
+    "Studenci, którzy w tym tygodniu otworzyli Thesis Generator, nie znaleźli więcej czasu. Przestali negocjować z pustą stroną i wygenerowali wstępną wersję {{work_type}} w niecałe trzy minuty. Edytowanie wersji roboczej wydaje się wykonalne. Obawianie się jej przez kolejny tydzień — nie.",
+    "Działająca pętla: poczuj zbliżający się termin → otwórz aplikację → wpisz {{topic}} i to, co już zbadałeś → naciśnij generuj → spędź dwadzieścia minut na edycji zamiast dwudziestu dni w martwym punkcie.",
+    "Dzień {{days_since_story}} od naszej pierwszej wiadomości. Termin oddania nie cofnął się.",
+    "P.S. Jeśli {{topic}} jest już w aplikacji, otwórz ją i dokończ jedną sekcję dzisiaj. Jedna sekcja wystarczy, by odzyskać rozpęd."
+  ],
+  "cta": "Stwórz wstępną wersję {{work_type}} w 3 minuty",
+  "cta_android": "Otwórz na Androidzie",
+  "cta_web": "Kontynuuj w przeglądarce"
+}

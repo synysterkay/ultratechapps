@@ -1,0 +1,13 @@
+{
+  "subject": "{{first_name}}, {{topic}} — 3 minutos para un borrador que puedas editar",
+  "body": [
+    "{{first_name}}, te escribí hace unos días — y {{topic}} sigue esperando.",
+    "Los estudiantes que abrieron Thesis Generator esta semana no encontraron más tiempo. Dejaron de negociar con una página en blanco y generaron un {{work_type}} preliminar en menos de tres minutos. Editar un borrador se siente manejable. Temerlo por otra semana, no.",
+    "El ciclo que funciona: sentir que el plazo se acerca → abrir la aplicación → ingresar {{topic}} y lo que ya has investigado → tocar generar → pasar veinte minutos editando en lugar de veinte días atascado.",
+    "Día {{days_since_story}} desde nuestra primera nota. Tu fecha de entrega no retrocedió.",
+    "P.D. Si {{topic}} ya está en la aplicación, ábrela y termina una sección hoy. Una sección es suficiente para retomar el impulso."
+  ],
+  "cta": "Redacta mi {{work_type}} en 3 minutos",
+  "cta_android": "Abrir en Android",
+  "cta_web": "Continuar en la web"
+}

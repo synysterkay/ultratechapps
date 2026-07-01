@@ -1,0 +1,13 @@
+{
+  "subject": "{{first_name}}, {{topic}} — 3 phút để có bản nháp bạn có thể chỉnh sửa",
+  "body": [
+    "{{first_name}}, tôi đã viết cho bạn vài ngày trước — và {{topic}} vẫn đang chờ đợi.",
+    "Những sinh viên đã mở Thesis Generator tuần này không tìm thấy thêm thời gian. Họ ngừng đàm phán với trang giấy trắng và tạo ra một bản nháp {{work_type}} trong vòng chưa đầy ba phút. Chỉnh sửa một bản nháp có vẻ dễ quản lý. Lo lắng về nó thêm một tuần nữa thì không.",
+    "Vòng lặp hiệu quả: cảm thấy hạn chót đến gần → mở ứng dụng → nhập {{topic}} và những gì bạn đã nghiên cứu → nhấn tạo → dành hai mươi phút chỉnh sửa thay vì hai mươi ngày bế tắc.",
+    "Ngày thứ {{days_since_story}} kể từ tin nhắn đầu tiên của chúng tôi. Ngày nộp bài của bạn không lùi lại.",
+    "P.S. Nếu {{topic}} đã có trong ứng dụng, hãy mở nó và hoàn thành một phần hôm nay. Một phần là đủ để khởi động lại đà."
+  ],
+  "cta": "Tạo bản nháp {{work_type}} trong 3 phút",
+  "cta_android": "Mở trên Android",
+  "cta_web": "Tiếp tục trên web"
+}

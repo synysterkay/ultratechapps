@@ -1,0 +1,13 @@
+{
+  "subject": "{{first_name}}, {{topic}} — 3 Minuten zu einem bearbeitbaren Entwurf",
+  "body": [
+    "{{first_name}}, ich habe Ihnen vor ein paar Tagen geschrieben — und {{topic}} wartet noch immer.",
+    "Studenten, die diese Woche Thesis Generator geöffnet haben, haben nicht mehr Zeit gefunden. Sie haben aufgehört, mit einer leeren Seite zu verhandeln, und in weniger als drei Minuten einen groben {{work_type}} erstellt. Einen Entwurf zu bearbeiten fühlt sich machbar an. Eine weitere Woche davor zu bangen nicht.",
+    "Der Kreislauf, der funktioniert: die Abgabefrist näher rücken spüren → die App öffnen → {{topic}} und das bereits Recherchierte eingeben → auf Generieren tippen → zwanzig Minuten mit Bearbeiten verbringen statt zwanzig Tage festzustecken.",
+    "Tag {{days_since_story}} seit unserer ersten Nachricht. Ihr Abgabedatum ist nicht zurückgegangen.",
+    "P.S. Wenn {{topic}} bereits in der App ist, öffnen Sie sie und beenden Sie heute einen Abschnitt. Ein Abschnitt reicht, um den Schwung wiederzubeleben."
+  ],
+  "cta": "Erstellen Sie meinen {{work_type}} in 3 Minuten",
+  "cta_android": "Auf Android öffnen",
+  "cta_web": "Im Web fortsetzen"
+}

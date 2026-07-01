@@ -1,0 +1,13 @@
+{
+  "subject": "{{first_name}}, {{topic}} — 3 dakikada düzenleyebileceğin bir taslak",
+  "body": [
+    "{{first_name}}, birkaç gün önce size yazmıştım — ve {{topic}} hâlâ bekliyor.",
+    "Bu hafta Thesis Generator'ı açan öğrenciler daha fazla zaman bulamadı. Boş bir sayfayla pazarlık yapmayı bıraktılar ve üç dakikadan kısa sürede kaba bir {{work_type}} oluşturdular. Bir taslağı düzenlemek yönetilebilir geliyor. Bir hafta daha ondan korkmak öyle değil.",
+    "İşe yarayan döngü: teslim tarihinin yaklaştığını hisset → uygulamayı aç → {{topic}} ve daha önce araştırdıklarını gir → oluştur'a dokun → yirmi gün takılı kalmak yerine yirmi dakika düzenleme yap.",
+    "İlk notumuzdan bu yana {{days_since_story}}. gün. Teslim tarihin geriye gitmedi.",
+    "Not: {{topic}} zaten uygulamadaysa, aç ve bugün bir bölümü bitir. Bir bölüm, ivmeyi yeniden başlatmak için yeterlidir."
+  ],
+  "cta": "{{work_type}}'imi 3 dakikada taslakla",
+  "cta_android": "Android'de aç",
+  "cta_web": "Web'de devam et"
+}

@@ -1,0 +1,13 @@
+{
+  "subject": "{{first_name}}, {{topic}} — 3 minuten naar een concept dat u kunt bewerken",
+  "body": [
+    "{{first_name}}, ik schreef u een paar dagen geleden — en {{topic}} wacht nog steeds.",
+    "Studenten die deze week Thesis Generator openden, vonden niet meer tijd. Ze stopten met onderhandelen met een lege pagina en genereerden een ruwe {{work_type}} in minder dan drie minuten. Het bewerken van een concept voelt beheersbaar. Er nog een week tegenop zien niet.",
+    "De cyclus die werkt: voel de deadline naderen → open de app → voer {{topic}} in en wat u al heeft onderzocht → tik op genereren → besteed twintig minuten aan bewerken in plaats van twintig dagen vast te zitten.",
+    "Dag {{days_since_story}} sinds ons eerste bericht. Uw inleverdatum is niet achteruit gegaan.",
+    "P.S. Als {{topic}} al in de app staat, open hem dan en maak vandaag één sectie af. Eén sectie is genoeg om de vaart er weer in te krijgen."
+  ],
+  "cta": "Stel mijn {{work_type}} op in 3 minuten",
+  "cta_android": "Openen op Android",
+  "cta_web": "Doorgaan op het web"
+}

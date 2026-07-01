@@ -1,0 +1,13 @@
+{
+  "subject": "{{first_name}}, {{topic}} — 3 minutos para um rascunho que você pode editar",
+  "body": [
+    "{{first_name}}, escrevi para você alguns dias atrás — e {{topic}} ainda está esperando.",
+    "Os alunos que abriram o Thesis Generator esta semana não encontraram mais tempo. Eles pararam de negociar com uma página em branco e geraram um rascunho do {{work_type}} em menos de três minutos. Editar um rascunho parece administrável. Temer um por mais uma semana, não.",
+    "O ciclo que funciona: sentir o prazo se aproximando → abrir o aplicativo → inserir {{topic}} e o que você já pesquisou → tocar em gerar → passar vinte minutos editando em vez de vinte dias preso.",
+    "Dia {{days_since_story}} desde nossa primeira nota. Sua data de entrega não andou para trás.",
+    "P.S. Se {{topic}} já está no aplicativo, abra-o e termine uma seção hoje. Uma seção é suficiente para retomar o ritmo."
+  ],
+  "cta": "Rascunhar meu {{work_type}} em 3 minutos",
+  "cta_android": "Abrir no Android",
+  "cta_web": "Continuar na web"
+}

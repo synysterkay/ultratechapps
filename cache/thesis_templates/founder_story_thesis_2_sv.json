@@ -1,0 +1,13 @@
+{
+  "subject": "{{first_name}}, {{topic}} — 3 minuter till ett utkast du kan redigera",
+  "body": [
+    "{{first_name}}, jag skrev till dig för några dagar sedan — och {{topic}} väntar fortfarande.",
+    "Studenter som öppnade Thesis Generator den här veckan fick inte mer tid. De slutade förhandla med en tom sida och genererade ett grovt {{work_type}} på under tre minuter. Att redigera ett utkast känns hanterbart. Att frukta ett i ytterligare en vecka gör det inte.",
+    "Loopen som fungerar: känn deadline närma sig → öppna appen → ange {{topic}} och vad du redan forskat på → tryck generera → lägg tjugo minuter på att redigera istället för tjugo dagar fast.",
+    "Dag {{days_since_story}} sedan vår första notis. Ditt inlämningsdatum har inte flyttats bakåt.",
+    "P.S. Om {{topic}} redan finns i appen, öppna den och avsluta en sektion idag. En sektion räcker för att återstarta momentum."
+  ],
+  "cta": "Utkast till mitt {{work_type}} på 3 minuter",
+  "cta_android": "Öppna på Android",
+  "cta_web": "Fortsätt på webben"
+}

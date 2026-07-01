@@ -1,0 +1,13 @@
+{
+  "subject": "{{first_name}}, {{topic}} — 3 minuti per una bozza modificabile",
+  "body": [
+    "{{first_name}}, ti ho scritto qualche giorno fa — e {{topic}} sta ancora aspettando.",
+    "Gli studenti che hanno aperto Thesis Generator questa settimana non hanno trovato più tempo. Hanno smesso di negoziare con una pagina bianca e hanno generato una bozza di {{work_type}} in meno di tre minuti. Modificare una bozza sembra gestibile. Temerla per un'altra settimana no.",
+    "Il ciclo che funziona: sentire la scadenza avvicinarsi → aprire l'app → inserire {{topic}} e ciò che hai già ricercato → toccare genera → passare venti minuti a modificare invece di venti giorni bloccato.",
+    "Giorno {{days_since_story}} dal nostro primo messaggio. La tua data di consegna non è arretrata.",
+    "P.S. Se {{topic}} è già nell'app, aprila e completa una sezione oggi. Una sezione è sufficiente per riavviare lo slancio."
+  ],
+  "cta": "Bozza del mio {{work_type}} in 3 minuti",
+  "cta_android": "Apri su Android",
+  "cta_web": "Continua sul web"
+}

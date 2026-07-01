@@ -1,0 +1,13 @@
+{
+  "subject": "{{first_name}}, {{topic}} — 3 minutes pour un brouillon que vous pouvez éditer",
+  "body": [
+    "{{first_name}}, je vous ai écrit il y a quelques jours — et {{topic}} attend toujours.",
+    "Les étudiants qui ont ouvert Thesis Generator cette semaine n'ont pas trouvé plus de temps. Ils ont arrêté de négocier avec une page blanche et ont généré un {{work_type}} brut en moins de trois minutes. Éditer un brouillon semble gérable. Le redouter une semaine de plus, non.",
+    "La boucle qui fonctionne : sentir l'échéance approcher → ouvrir l'application → saisir {{topic}} et ce que vous avez déjà recherché → appuyer sur générer → passer vingt minutes à éditer au lieu de vingt jours bloqués.",
+    "Jour {{days_since_story}} depuis notre premier message. Votre date de soumission n'a pas reculé.",
+    "P.S. Si {{topic}} est déjà dans l'application, ouvrez-la et terminez une section aujourd'hui. Une section suffit pour relancer l'élan."
+  ],
+  "cta": "Rédiger mon {{work_type}} en 3 minutes",
+  "cta_android": "Ouvrir sur Android",
+  "cta_web": "Continuer sur le web"
+}

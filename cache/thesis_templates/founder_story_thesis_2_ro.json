@@ -1,0 +1,13 @@
+{
+  "subject": "{{first_name}}, {{topic}} — 3 minute până la o schiță pe care o poți edita",
+  "body": [
+    "{{first_name}}, ți-am scris acum câteva zile — și {{topic}} încă așteaptă.",
+    "Studenții care au deschis Thesis Generator săptămâna aceasta nu au găsit mai mult timp. Au încetat să negocieze cu o pagină goală și au generat un {{work_type}} brut în mai puțin de trei minute. Editarea unei schițe pare gestionabilă. Să o temi pentru încă o săptămână, nu.",
+    "Ciclul care funcționează: simți termenul limită apropiindu-se → deschizi aplicația → introduci {{topic}} și ce ai cercetat deja → apeși generează → petreci douăzeci de minute editând în loc de douăzeci de zile blocat.",
+    "Ziua {{days_since_story}} de la prima noastră notă. Data ta de predare nu s-a mișcat înapoi.",
+    "P.S. Dacă {{topic}} este deja în aplicație, deschide-o și termină o secțiune astăzi. O singură secțiune este suficientă pentru a reporni impulsul."
+  ],
+  "cta": "Schițează-mi {{work_type}} în 3 minute",
+  "cta_android": "Deschide pe Android",
+  "cta_web": "Continuă pe web"
+}

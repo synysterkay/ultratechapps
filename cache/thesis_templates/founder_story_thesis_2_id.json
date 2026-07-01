@@ -1,0 +1,13 @@
+{
+  "subject": "{{first_name}}, {{topic}} — 3 menit menuju draf yang bisa Anda edit",
+  "body": [
+    "{{first_name}}, saya menulis kepada Anda beberapa hari yang lalu — dan {{topic}} masih menunggu.",
+    "Mahasiswa yang membuka Thesis Generator minggu ini tidak menemukan lebih banyak waktu. Mereka berhenti bernegosiasi dengan halaman kosong dan menghasilkan {{work_type}} kasar dalam waktu kurang dari tiga menit. Mengedit draf terasa mudah. Menakut-nakutinya selama seminggu lagi tidak.",
+    "Lingkaran yang berhasil: rasakan tenggat semakin dekat → buka aplikasi → masukkan {{topic}} dan apa yang sudah Anda teliti → ketuk generate → habiskan dua puluh menit untuk mengedit, bukan dua puluh hari terjebak.",
+    "Hari ke-{{days_since_story}} sejak catatan pertama kami. Tanggal pengumpulan Anda tidak mundur.",
+    "P.S. Jika {{topic}} sudah ada di aplikasi, buka dan selesaikan satu bagian hari ini. Satu bagian sudah cukup untuk memulai kembali momentum."
+  ],
+  "cta": "Buat draf {{work_type}} dalam 3 menit",
+  "cta_android": "Buka di Android",
+  "cta_web": "Lanjutkan di web"
+}
