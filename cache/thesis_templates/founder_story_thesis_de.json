@@ -1,13 +1,14 @@
 {
-  "subject": "48 Stunden übrig. Wir haben trotzdem eingereicht – und 5/5 bestanden.",
+  "subject": "{{first_name}}, starrst du immer noch auf eine leere Seite?",
   "body": [
-    "Normalerweise schicken wir keine solchen E-Mails – aber Thesis Generator existiert wegen einer Nacht, die eines unserer Teammitglieder nie vergessen wird.",
-    "Wir begannen mit dem Bau der App ein ganzes Jahr, bevor wir sie veröffentlichten – Humanisierung, Grafiken, Tabellen, Referenzen. Wir testeten immer weiter, weil „gut genug“ für einen echten Abschluss nicht gut genug war.",
-    "Dann traf einen von uns die Wand, die jeder Thesis-Schreiber fürchtet: eine Masterarbeit, die in zwei Tagen fällig war. Das Thema stand fest. Die Recherche war erledigt. Und ein Autounfall ließ beide Hände gebrochen zurück – die Art von Woche, in der man dankbar ist, am Leben zu sein, und trotzdem Angst vor Freitag hat.",
-    "Mit fast keiner Zeit und keiner Möglichkeit, normal zu tippen, nutzten wir die App, die wir gebaut hatten. Sie generierte in etwa zehn Minuten eine vollständige, einreichungsreife Thesis. Wir überprüften sie, reichten sie ein und bestanden mit 5/5.",
-    "Deshalb existiert Thesis Generator: für den Moment, in dem die Uhr gewinnt, wenn sich nicht etwas schnell bewegt.",
-    "Du brauchst keinen perfekten Monat vor dir. Öffne die App, gib dein Thema und das, was du bereits recherchiert hast, ein und generiere deine {{work_type}}.",
-    "P.S. Wenn {{topic}} bereits in der App ist, mach dort weiter, wo du aufgehört hast. Wenn nicht, fang jetzt an, solange du noch Tage hast – nicht Stunden."
+    "Jedes Semester versprechen sich Studierende: \"Dieses Mal fange ich früh an.\" Dann wird aus einer Woche drei Tage, aus drei Tagen eine Nacht – und plötzlich ist es 2:14 Uhr morgens, zwanzig Tabs offen und überall Referenzen.",
+    "Ich habe Thesis Generator gebaut, weil akademisches Schreiben keine Faulheit ist – es ist überwältigend. Nicht etwas, das für dich denkt. Etwas, das dir hilft, schneller zu denken.",
+    "Eine unserer Teammitglieder hat diese Wand wirklich erlebt: {{work_type}} fällig in 48 Stunden, Thema gesetzt, Recherche erledigt – dann Tage, an denen normales Tippen keine Option war. Sie öffnete die App, die wir ein Jahr lang gebaut hatten. Zehn Minuten später hatte sie einen vollständigen Entwurf – Gliederung, Kapitel, Referenzen. Sie bearbeitete ihn, reichte ihn ein und bestand mit 5/5.",
+    "Deshalb gibt es Thesis Generator: {{topic}} von etwas, das du vermeidest, in etwas verwandeln, das du öffnen, bearbeiten und einreichen kannst.",
+    "Dein nächster Schritt dauert etwa drei Minuten: Gib ein, was du bereits über {{topic}} weißt, tippe auf \"Generieren\" und arbeite mit einem Entwurf statt einer leeren Seite. Deine Ideen verdienen mehr Zeit als Formatierung.",
+    "P.S. Ein grober Entwurf heute ist besser als ein perfekter Plan nächste Woche. Fang an, solange du noch Tage hast – nicht Stunden."
   ],
-  "cta": "Generiere meine {{work_type}}"
+  "cta": "Mein {{work_type}} generieren",
+  "cta_android": "Hol es dir auf Android",
+  "cta_web": "Web-App öffnen"
 }

@@ -1,13 +1,14 @@
 {
-  "subject": "48 timmar kvar. Vi lämnade ändå in — och fick 5/5.",
+  "subject": "{{first_name}}, stirrar du fortfarande på en tom sida?",
   "body": [
-    "Vi skickar vanligtvis inte sådana här mejl — men Thesis Generator finns på grund av en natt som en i vårt team aldrig kommer att glömma.",
-    "Vi började bygga appen ett helt år innan vi lanserade den — humanisering, grafer, tabeller, referenser. Vi fortsatte testa för att \"tillräckligt bra\" inte var bra nog för en riktig examen.",
-    "Sedan drabbades en av oss av den vägg varje uppsatsskrivare fruktar: en masteruppsats som skulle lämnas in om två dagar. Ämnet var bestämt. Forskningen var klar. Och en bilolycka hade brutit båda händerna — den sortens vecka där man är tacksam för att vara vid liv och ändå livrädd inför fredagen.",
-    "Med nästan ingen tid och inget sätt att skriva normalt använde vi appen vi hade byggt. Den genererade en fullständig, inlämningsklar uppsats på ungefär tio minuter. Vi granskade den, lämnade in den och fick 5/5.",
-    "Det är därför Thesis Generator finns: för stunden när klockan vinner om inte något går snabbt.",
-    "Du behöver inte ha en perfekt månad framför dig. Öppna appen, ange ditt ämne och det du redan forskat på, och generera din {{work_type}}.",
-    "P.S. Om {{topic}} redan finns i appen, fortsätt där du slutade. Om inte, börja nu medan du fortfarande har dagar — inte timmar."
+    "Varje termin lovar studenter sig själva: \"Den här gången börjar jag i tid.\" Sedan blir en vecka tre dagar, tre dagar blir en natt — och plötsligt är klockan 02:14 med tjugo flikar öppna och referenser överallt.",
+    "Jag byggde Thesis Generator för att akademiskt skrivande inte är lathet — det är överväldigande. Inte något som tänker åt dig. Något som hjälper dig att tänka snabbare.",
+    "En av våra teammedlemmar nådde den väggen på riktigt: {{work_type}} inlämning om 48 timmar, ämne satt, forskning klar — sedan dagar där normal skrivning inte var ett alternativ. Hon öppnade appen vi hade byggt under ett år. Tio minuter senare hade hon ett fullt utkast — disposition, kapitel, referenser. Hon redigerade det, lämnade in det och fick 5/5.",
+    "Det är därför Thesis Generator finns: för att förvandla {{topic}} från något du undviker till något du kan öppna, redigera och lämna in.",
+    "Ditt nästa steg tar ungefär tre minuter: skriv in vad du redan vet om {{topic}}, tryck på generera, och arbeta från ett utkast istället för en tom sida. Dina idéer förtjänar mer tid än formatering.",
+    "P.S. Ett grovt utkast idag slår en perfekt plan nästa vecka. Börja medan du fortfarande har dagar — inte timmar."
   ],
-  "cta": "Generera min {{work_type}}"
+  "cta": "Generera min {{work_type}}",
+  "cta_android": "Hämta på Android",
+  "cta_web": "Öppna webbappen"
 }

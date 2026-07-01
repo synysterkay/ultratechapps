@@ -1,13 +1,14 @@
 {
-  "subject": "Còn 48 giờ. Chúng tôi vẫn nộp — và đạt 5/5.",
+  "subject": "{{first_name}}, vẫn đang nhìn chằm chằm vào trang giấy trắng?",
   "body": [
-    "Chúng tôi thường không gửi email kiểu này — nhưng Thesis Generator ra đời từ một đêm mà một thành viên trong nhóm sẽ không bao giờ quên.",
-    "Chúng tôi bắt đầu xây dựng ứng dụng cả năm trước khi phát hành — nhân cách hóa, biểu đồ, bảng, tài liệu tham khảo. Chúng tôi cứ thử nghiệm vì \"đủ tốt\" chưa đủ tốt cho một tấm bằng thực sự.",
-    "Rồi một người trong chúng tôi gặp phải bức tường mà mọi người viết luận văn đều sợ: luận văn thạc sĩ phải nộp trong hai ngày. Chủ đề đã được xác định. Nghiên cứu đã hoàn thành. Và một tai nạn xe hơi khiến cả hai tay bị gãy — kiểu tuần mà bạn biết ơn vì còn sống nhưng vẫn khiếp sợ vì thứ Sáu.",
-    "Với gần như không có thời gian và không thể gõ bình thường, chúng tôi đã sử dụng ứng dụng mà mình đang xây dựng. Nó tạo ra một luận văn hoàn chỉnh, sẵn sàng nộp trong khoảng mười phút. Chúng tôi xem lại, nộp nó, và đạt 5/5.",
-    "Đó là lý do Thesis Generator tồn tại: cho khoảnh khắc khi thời gian chiến thắng trừ khi có thứ gì đó di chuyển nhanh.",
-    "Bạn không cần một tháng hoàn hảo phía trước. Mở ứng dụng, nhập chủ đề và những gì bạn đã nghiên cứu, và tạo {{work_type}} của bạn.",
-    "P.S. Nếu {{topic}} đã có trong ứng dụng, hãy tiếp tục từ chỗ bạn dừng lại. Nếu không, hãy bắt đầu ngay khi bạn còn ngày — chứ không phải giờ."
+    "Mỗi kỳ, sinh viên tự hứa: \"Lần này mình sẽ bắt đầu sớm.\" Rồi một tuần thành ba ngày, ba ngày thành một đêm — và đột nhiên là 2:14 sáng với hai mươi tab mở và tài liệu tham khảo khắp nơi.",
+    "Tôi xây dựng Thesis Generator vì viết luận không phải là lười biếng — mà là quá tải. Không phải thứ nghĩ hộ bạn. Mà là thứ giúp bạn suy nghĩ nhanh hơn.",
+    "Một thành viên trong nhóm chúng tôi đã thực sự gặp khó khăn: {{work_type}} phải nộp trong 48 giờ, chủ đề đã chọn, nghiên cứu đã xong — nhưng những ngày sau đó việc gõ phím bình thường không còn là lựa chọn. Cô ấy mở ứng dụng chúng tôi đã dành một năm xây dựng. Mười phút sau, cô ấy đã có một bản nháp hoàn chỉnh — dàn ý, chương, tài liệu tham khảo. Cô ấy chỉnh sửa, nộp bài và đạt điểm 5/5.",
+    "Đó là lý do Thesis Generator tồn tại: biến {{topic}} từ thứ bạn tránh né thành thứ bạn có thể mở, chỉnh sửa và nộp.",
+    "Bước tiếp theo của bạn mất khoảng ba phút: nhập những gì bạn đã biết về {{topic}}, nhấn tạo, và làm việc từ bản nháp thay vì trang giấy trắng. Ý tưởng của bạn xứng đáng có nhiều thời gian hơn là định dạng.",
+    "P.S. Một bản nháp thô hôm nay còn hơn một kế hoạch hoàn hảo tuần sau. Bắt đầu khi bạn còn ngày — chứ không phải giờ."
   ],
-  "cta": "Tạo {{work_type}} của tôi"
+  "cta": "Tạo {{work_type}} của tôi",
+  "cta_android": "Tải trên Android",
+  "cta_web": "Mở ứng dụng web"
 }
