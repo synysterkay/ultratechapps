@@ -1,12 +1,12 @@
 {
   "subject": "{{first_name}}, wciąż gapisz się na pustą stronę?",
   "body": [
-    "Każdego semestru studenci obiecują sobie: „Tym razem zacznę wcześnie”. Potem tydzień zamienia się w trzy dni, trzy dni w jedną noc — i nagle jest 2:14 nad ranem, masz otwarte dwadzieścia kart i pełno odnośników.",
+    "Każdego semestru studenci obiecują sobie: „Tym razem zacznę wcześnie”. Potem tydzień zamienia się w trzy dni, trzy dni w jedną noc — i nagle jest 2:14 nad ranem, dwadzieścia otwartych kart i pełno odnośników.",
     "Zbudowałem Thesis Generator, bo pisanie prac akademickich to nie lenistwo — to przytłoczenie. Nie coś, co myśli za ciebie. Coś, co pomaga ci myśleć szybciej.",
-    "Jedna z naszych współpracowniczek naprawdę uderzyła w ścianę: {{work_type}} do oddania w 48 godzin, temat ustalony, badania zrobione — a potem dni, kiedy normalne pisanie nie wchodziło w grę. Otworzyła aplikację, którą budowaliśmy przez rok. Dziesięć minut później miała pełny szkic — konspekt, rozdziały, odnośniki. Poprawiła go, oddała i dostała 5/5.",
-    "Dlatego istnieje Thesis Generator: zamień {{topic}} z czegoś, czego unikasz, w coś, co możesz otworzyć, edytować i oddać.",
+    "Jedna z naszych współpracowniczek naprawdę uderzyła w ścianę: {{work_type}} do oddania w 48 godzin, temat ustalony, badania zrobione — a potem dni, w których normalne pisanie nie wchodziło w grę. Otworzyła aplikację, którą budowaliśmy przez rok. Dziesięć minut później miała pełny szkic — konspekt, rozdziały, odnośniki. Poprawiła go, oddała i dostała 5/5.",
+    "Po to istnieje Thesis Generator: zamienić {{topic}} z czegoś, czego unikasz, w coś, co możesz otworzyć, edytować i oddać.",
     "Twój następny krok zajmuje około trzech minut: wpisz to, co już wiesz o {{topic}}, naciśnij generuj i pracuj na szkicu zamiast na pustej stronie. Twoje pomysły zasługują na więcej czasu niż formatowanie.",
-    "P.S. Kiepski szkic dzisiaj jest lepszy niż doskonały plan w przyszłym tygodniu. Zacznij, póki masz jeszcze dni — nie godziny."
+    "P.S. Kiepski szkic dzisiaj jest lepszy niż idealny plan w przyszłym tygodniu. Zacznij, póki masz jeszcze dni — nie godziny."
   ],
   "cta": "Wygeneruj moją {{work_type}}",
   "cta_android": "Pobierz na Androida",

@@ -1,11 +1,11 @@
 {
   "subject": "{{first_name}}, hâlâ boş bir sayfaya mı bakıyorsun?",
   "body": [
-    "Her dönem öğrenciler kendilerine söz verir: \"Bu sefer erken başlayacağım.\" Sonra bir hafta üç güne, üç gün bir geceye dönüşür — ve birden saat 2:14 olur, yirmi sekme açık ve referanslar her yerde.",
-    "Thesis Generator'ı kurdum çünkü akademik yazı tembellik değil — bunaltıcıdır. Senin yerine düşünen bir şey değil. Daha hızlı düşünmene yardımcı olan bir şey.",
-    "Takım arkadaşlarımızdan biri gerçekten o duvara tosladı: {{work_type}} 48 saat içinde teslim edilecek, konu belirlenmiş, araştırma yapılmış — ama sonra günlerce normal yazamadı. Bir yıldır üzerinde çalıştığımız uygulamayı açtı. On dakika sonra tam bir taslağı vardı — ana hatlar, bölümler, referanslar. Düzenledi, teslim etti ve 5/5 aldı.",
-    "İşte Thesis Generator bu yüzden var: {{topic}}'i kaçındığın bir şeyden, açıp düzenleyip teslim edebileceğin bir şeye dönüştürmek.",
-    "Bir sonraki adımın yaklaşık üç dakika sürüyor: {{topic}} hakkında bildiklerini gir, oluştur'a dokun ve boş bir sayfa yerine bir taslak üzerinden çalış. Fikirlerin biçimlendirmeden daha fazla zamanı hak ediyor.",
+    "Her dönem öğrenciler kendilerine söz verir: \"Bu sefer erken başlayacağım.\" Sonra bir hafta üç güne, üç gün bir geceye dönüşür — ve aniden saat 2:14, yirmi sekme açık ve referanslar her yerde.",
+    "Thesis Generator'ı kurdum çünkü akademik yazı tembellik değil — bunaltıcı. Senin yerine düşünen bir şey değil. Daha hızlı düşünmene yardımcı olan bir şey.",
+    "Takım arkadaşlarımızdan biri gerçekten o duvara tosladı: {{work_type}} 48 saat içinde teslim edilecek, konu belirlenmiş, araştırma yapılmış — ama sonra günlerce normal şekilde yazamadı. Bir yıldır üzerinde çalıştığımız uygulamayı açtı. On dakika sonra tam bir taslağı vardı — ana hatlar, bölümler, referanslar. Düzenledi, teslim etti ve 5/5 ile geçti.",
+    "İşte bu yüzden Thesis Generator var: {{topic}}'yi kaçındığın bir şeyden, açıp düzenleyip teslim edebileceğin bir şeye dönüştürmek.",
+    "Bir sonraki adımın yaklaşık üç dakika sürüyor: {{topic}} hakkında zaten bildiklerini gir, oluştur'a dokun ve boş bir sayfa yerine bir taslak üzerinden çalış. Fikirlerin, biçimlendirmeden daha fazla zamanı hak ediyor.",
     "Not: Bugünkü kaba bir taslak, gelecek haftaki mükemmel plandan iyidir. Günlerin varken başla — saatlerin değil."
   ],
   "cta": "{{work_type}}'imi oluştur",

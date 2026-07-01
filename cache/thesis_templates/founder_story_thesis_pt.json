@@ -2,11 +2,11 @@
   "subject": "{{first_name}}, ainda olhando para uma página em branco?",
   "body": [
     "Todo semestre, os alunos prometem a si mesmos: \"Desta vez vou começar cedo.\" Então uma semana vira três dias, três dias viram uma noite — e de repente são 2:14 da manhã com vinte abas abertas e referências por toda parte.",
-    "Eu construí o Thesis Generator porque escrever trabalhos acadêmicos não é preguiça — é opressão. Não é algo que pensa por você. É algo que ajuda você a pensar mais rápido.",
-    "Uma das nossas colegas enfrentou esse muro de verdade: {{work_type}} para entregar em 48 horas, tópico definido, pesquisa feita — e então dias em que digitar normalmente não era uma opção. Ela abriu o aplicativo que passamos um ano construindo. Dez minutos depois, ela tinha um rascunho completo — esboço, capítulos, referências. Ela editou, submeteu e passou com 5/5.",
+    "Eu construí o Thesis Generator porque escrever trabalhos acadêmicos não é preguiça — é algo avassalador. Não é algo que pensa por você. É algo que ajuda você a pensar mais rápido.",
+    "Uma das nossas colegas enfrentou esse muro de verdade: {{work_type}} para entregar em 48 horas, tópico definido, pesquisa feita — mas dias em que digitar normalmente não era uma opção. Ela abriu o aplicativo que passamos um ano construindo. Dez minutos depois, ela tinha um rascunho completo — esboço, capítulos, referências. Ela editou, submeteu e passou com nota 5/5.",
     "É por isso que o Thesis Generator existe: transformar {{topic}} de algo que você evita em algo que você pode abrir, editar e submeter.",
     "Seu próximo passo leva cerca de três minutos: insira o que você já sabe sobre {{topic}}, toque em gerar e trabalhe a partir de um rascunho em vez de uma página em branco. Suas ideias merecem mais tempo do que formatação.",
-    "P.S. Um rascunho hoje é melhor que um plano perfeito na próxima semana. Comece enquanto você ainda tem dias — não horas."
+    "P.S. Um rascunho imperfeito hoje é melhor do que um plano perfeito na próxima semana. Comece enquanto você ainda tem dias — não horas."
   ],
   "cta": "Gerar meu {{work_type}}",
   "cta_android": "Baixe no Android",

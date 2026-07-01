@@ -1,7 +1,7 @@
 {
-  "subject": "{{first_name}}, toujours à regarder une page blanche ?",
+  "subject": "{{first_name}}, vous fixez encore une page blanche ?",
   "body": [
-    "Chaque semestre, les étudiants se promettent : « Cette fois, je commencerai tôt. » Puis une semaine devient trois jours, trois jours deviennent une nuit — et soudain il est 2h14 du matin avec vingt onglets ouverts et des références partout.",
+    "Chaque semestre, les étudiants se promettent : \"Cette fois, je commencerai tôt.\" Puis une semaine devient trois jours, trois jours deviennent une nuit — et soudain il est 2h14 du matin avec vingt onglets ouverts et des références partout.",
     "J'ai construit Thesis Generator parce que l'écriture académique n'est pas de la paresse — c'est accablant. Pas quelque chose qui pense à votre place. Quelque chose qui vous aide à penser plus vite.",
     "Une de nos coéquipières a vraiment touché le fond : {{work_type}} à rendre dans 48 heures, sujet défini, recherche faite — puis des jours où taper normalement n'était pas une option. Elle a ouvert l'application que nous avions passé un an à construire. Dix minutes plus tard, elle avait un brouillon complet — plan, chapitres, références. Elle l'a édité, soumis, et a obtenu 5/5.",
     "Voilà pourquoi Thesis Generator existe : transformer {{topic}} de quelque chose que vous évitez en quelque chose que vous pouvez ouvrir, éditer et soumettre.",

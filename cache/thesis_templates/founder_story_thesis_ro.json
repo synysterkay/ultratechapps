@@ -1,11 +1,11 @@
 {
   "subject": "{{first_name}}, încă te uiți la o pagină goală?",
   "body": [
-    "În fiecare semestru, studenții își promit: „De data asta încep devreme.” Apoi o săptămână devine trei zile, trei zile devin o noapte — și brusc este 2:14 dimineața, cu douăzeci de file deschise și referințe peste tot.",
-    "Am construit Thesis Generator pentru că scrierea academică nu este lene — este copleșitoare. Nu ceva care gândește pentru tine. Ceva care te ajută să gândești mai repede.",
-    "Una dintre colegele noastre a ajuns cu adevărat la acel perete: {{work_type}} de predat în 48 de ore, subiect stabilit, cercetare făcută — apoi zile în care scrisul normal nu era o opțiune. A deschis aplicația pe care am petrecut un an construind-o. Zece minute mai târziu avea o schiță completă — structură, capitole, referințe. A editat-o, a predat-o și a luat 5/5.",
-    "De aceea există Thesis Generator: transformă {{topic}} din ceva pe care îl eviți în ceva pe care poți să îl deschizi, să editezi și să predai.",
-    "Următorul tău pas durează aproximativ trei minute: introdu ce știi deja despre {{topic}}, apasă generează și lucrează dintr-o schiță în loc de o pagină goală. Ideile tale merită mai mult timp decât formatarea.",
+    "În fiecare semestru, studenții își promit: „De data asta încep devreme.” Apoi o săptămână devine trei zile, trei zile devin o noapte — și brusc e 2:14 dimineața cu douăzeci de file deschise și referințe peste tot.",
+    "Am construit Thesis Generator pentru că scrisul academic nu e lene — e copleșitor. Nu ceva care gândește pentru tine. Ceva care te ajută să gândești mai repede.",
+    "Una dintre colegele noastre a ajuns la acel blocaj real: {{work_type}} de predat în 48 de ore, subiect stabilit, cercetare făcută — apoi zile în care scrisul normal nu era o opțiune. A deschis aplicația pe care o construisem timp de un an. Zece minute mai târziu avea o schiță completă — structură, capitole, referințe. A editat-o, a trimis-o și a luat 5/5.",
+    "De asta există Thesis Generator: transformă {{topic}} din ceva ce eviți în ceva ce poți deschide, edita și trimite.",
+    "Următorul tău pas durează cam trei minute: introdu ce știi deja despre {{topic}}, apasă generează și lucrează de la o schiță, nu de la o pagină goală. Ideile tale merită mai mult timp decât formatarea.",
     "P.S. O schiță brută azi bate un plan perfect săptămâna viitoare. Începe cât încă ai zile — nu ore."
   ],
   "cta": "Generează-mi {{work_type}}",

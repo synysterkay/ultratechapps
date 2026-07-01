@@ -2,13 +2,13 @@
   "subject": "{{first_name}}, starrst du immer noch auf eine leere Seite?",
   "body": [
     "Jedes Semester versprechen sich Studierende: \"Dieses Mal fange ich früh an.\" Dann wird aus einer Woche drei Tage, aus drei Tagen eine Nacht – und plötzlich ist es 2:14 Uhr morgens, zwanzig Tabs offen und überall Referenzen.",
-    "Ich habe Thesis Generator gebaut, weil akademisches Schreiben keine Faulheit ist – es ist überwältigend. Nicht etwas, das für dich denkt. Etwas, das dir hilft, schneller zu denken.",
-    "Eine unserer Teammitglieder hat diese Wand wirklich erlebt: {{work_type}} fällig in 48 Stunden, Thema gesetzt, Recherche erledigt – dann Tage, an denen normales Tippen keine Option war. Sie öffnete die App, die wir ein Jahr lang gebaut hatten. Zehn Minuten später hatte sie einen vollständigen Entwurf – Gliederung, Kapitel, Referenzen. Sie bearbeitete ihn, reichte ihn ein und bestand mit 5/5.",
-    "Deshalb gibt es Thesis Generator: {{topic}} von etwas, das du vermeidest, in etwas verwandeln, das du öffnen, bearbeiten und einreichen kannst.",
-    "Dein nächster Schritt dauert etwa drei Minuten: Gib ein, was du bereits über {{topic}} weißt, tippe auf \"Generieren\" und arbeite mit einem Entwurf statt einer leeren Seite. Deine Ideen verdienen mehr Zeit als Formatierung.",
+    "Ich habe Thesis Generator entwickelt, weil akademisches Schreiben nicht Faulheit ist – es ist überwältigend. Nicht etwas, das für dich denkt. Etwas, das dir hilft, schneller zu denken.",
+    "Eine unserer Teammitglieder ist wirklich an diese Wand gestoßen: {{work_type}} fällig in 48 Stunden, Thema gesetzt, Recherche erledigt – dann Tage, an denen normales Tippen keine Option war. Sie öffnete die App, die wir ein Jahr lang gebaut hatten. Zehn Minuten später hatte sie einen vollständigen Entwurf – Gliederung, Kapitel, Referenzen. Sie bearbeitete ihn, reichte ihn ein und bestand mit 5/5.",
+    "Deshalb gibt es Thesis Generator: um {{topic}} von etwas, das du vermeidest, in etwas zu verwandeln, das du öffnen, bearbeiten und einreichen kannst.",
+    "Dein nächster Schritt dauert etwa drei Minuten: gib ein, was du bereits über {{topic}} weißt, tippe auf \"Generieren\" und arbeite mit einem Entwurf statt einer leeren Seite. Deine Ideen verdienen mehr Zeit als Formatierung.",
     "P.S. Ein grober Entwurf heute ist besser als ein perfekter Plan nächste Woche. Fang an, solange du noch Tage hast – nicht Stunden."
   ],
   "cta": "Mein {{work_type}} generieren",
-  "cta_android": "Hol es dir auf Android",
+  "cta_android": "Hol dir die App bei Android",
   "cta_web": "Web-App öffnen"
 }

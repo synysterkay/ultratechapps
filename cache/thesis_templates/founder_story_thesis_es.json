@@ -1,14 +1,14 @@
 {
   "subject": "{{first_name}}, ¿todavía mirando una página en blanco?",
   "body": [
-    "Cada semestre, los estudiantes se prometen: \"Esta vez empezaré temprano\". Luego una semana se convierte en tres días, tres días se convierten en una noche — y de repente son las 2:14 AM con veinte pestañas abiertas y referencias por todas partes.",
+    "Cada semestre, los estudiantes se prometen: \"Esta vez empezaré temprano\". Luego una semana se convierte en tres días, tres días en una noche — y de repente son las 2:14 AM con veinte pestañas abiertas y referencias por todas partes.",
     "Construí Thesis Generator porque escribir trabajos académicos no es pereza — es abrumador. No es algo que piense por ti. Es algo que te ayuda a pensar más rápido.",
-    "Una de nuestras compañeras enfrentó ese muro de verdad: {{work_type}} para entregar en 48 horas, tema definido, investigación hecha — luego días en los que escribir normalmente no era una opción. Abrió la aplicación que habíamos pasado un año construyendo. Diez minutos después tenía un borrador completo — esquema, capítulos, referencias. Lo editó, lo entregó y aprobó con 5/5.",
+    "Una de nuestras compañeras se encontró con ese muro de verdad: {{work_type}} para entregar en 48 horas, tema definido, investigación hecha — luego días en los que escribir normalmente no era una opción. Abrió la aplicación que habíamos pasado un año construyendo. Diez minutos después tenía un borrador completo — esquema, capítulos, referencias. Lo editó, lo entregó y aprobó con 5/5.",
     "Por eso existe Thesis Generator: convertir {{topic}} de algo que evitas en algo que puedes abrir, editar y entregar.",
-    "Tu próximo paso toma unos tres minutos: ingresa lo que ya sabes sobre {{topic}}, presiona generar, y trabaja a partir de un borrador en lugar de una página en blanco. Tus ideas merecen más tiempo que el formato.",
-    "P.D. Un borrador hoy vale más que un plan perfecto la próxima semana. Empieza mientras aún tienes días — no horas."
+    "Tu próximo paso toma unos tres minutos: ingresa lo que ya sabes sobre {{topic}}, toca generar y trabaja a partir de un borrador en lugar de una página en blanco. Tus ideas merecen más tiempo que el formato.",
+    "P.D. Un borrador hoy es mejor que un plan perfecto la próxima semana. Empieza mientras aún tienes días — no horas."
   ],
-  "cta": "Generar mi {{work_type}}",
+  "cta": "Genera mi {{work_type}}",
   "cta_android": "Consíguelo en Android",
   "cta_web": "Abrir la aplicación web"
 }

@@ -3,12 +3,12 @@
   "body": [
     "Ogni semestre, gli studenti si promettono: \"Questa volta inizierò presto.\" Poi una settimana diventa tre giorni, tre giorni diventano una notte — e improvvisamente sono le 2:14 del mattino con venti schede aperte e riferimenti dappertutto.",
     "Ho creato Thesis Generator perché scrivere una tesi non è pigrizia — è opprimente. Non qualcosa che pensa per te. Qualcosa che ti aiuta a pensare più velocemente.",
-    "Una delle nostre colleghe ha incontrato quel muro per davvero: {{work_type}} da consegnare in 48 ore, argomento scelto, ricerca fatta — poi giorni in cui scrivere normalmente non era un'opzione. Ha aperto l'app che avevamo passato un anno a costruire. Dieci minuti dopo aveva una bozza completa — schema, capitoli, riferimenti. L'ha modificata, l'ha consegnata e ha preso 5/5.",
-    "Ecco perché esiste Thesis Generator: trasformare {{topic}} da qualcosa che eviti in qualcosa che puoi aprire, modificare e consegnare.",
+    "Una delle nostre compagne di squadra ha incontrato quel muro per davvero: {{work_type}} da consegnare in 48 ore, argomento scelto, ricerca fatta — poi giorni in cui scrivere normalmente non era un'opzione. Ha aperto l'app che avevamo passato un anno a costruire. Dieci minuti dopo aveva una bozza completa — schema, capitoli, riferimenti. L'ha modificata, l'ha inviata e ha preso 5/5.",
+    "Ecco perché esiste Thesis Generator: trasformare {{topic}} da qualcosa che eviti in qualcosa che puoi aprire, modificare e inviare.",
     "Il tuo prossimo passo richiede circa tre minuti: inserisci ciò che già sai su {{topic}}, tocca genera e lavora da una bozza invece che da una pagina bianca. Le tue idee meritano più tempo della formattazione.",
     "P.S. Una bozza oggi batte un piano perfetto la prossima settimana. Inizia mentre hai ancora giorni — non ore."
   ],
   "cta": "Genera la mia {{work_type}}",
-  "cta_android": "Scarica su Android",
+  "cta_android": "Scaricala su Android",
   "cta_web": "Apri l'app web"
 }
