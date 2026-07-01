@@ -1,11 +1,11 @@
 {
-  "subject": "{{first_name}}, 48 hours left — we still passed 5/5",
+  "subject": "{{first_name}}, still staring at a blank page?",
   "body": [
-    "Most people don't fail a {{work_type}} because they aren't smart enough. They fail because the clock runs out first.",
-    "One of our teammates hit that wall for real: {{work_type}} due in 48 hours, topic set, research done — then days where typing normally wasn't an option. Same deadline. Same degree on the line.",
-    "She opened the app we'd spent a year building. Ten minutes later she had a full draft — outline, chapters, references. She edited it, submitted it, and passed 5/5.",
+    "Every semester, students promise themselves: \"This time I'll start early.\" Then a week becomes three days, three days become one night — and suddenly it's 2:14 AM with twenty tabs open and references everywhere.",
+    "I built Thesis Generator because academic writing isn't laziness — it's overwhelming. Not something that thinks for you. Something that helps you think faster.",
+    "One of our teammates hit that wall for real: {{work_type}} due in 48 hours, topic set, research done — then days where typing normally wasn't an option. She opened the app we'd spent a year building. Ten minutes later she had a full draft — outline, chapters, references. She edited it, submitted it, and passed 5/5.",
     "That's why Thesis Generator exists: turn {{topic}} from something you're avoiding into something you can open, edit, and submit.",
-    "Your next step takes about three minutes: enter what you already know about {{topic}}, tap generate, and work from a draft instead of a blank page.",
+    "Your next step takes about three minutes: enter what you already know about {{topic}}, tap generate, and work from a draft instead of a blank page. Your ideas deserve more time than formatting.",
     "P.S. A rough draft today beats a perfect plan next week. Start while you still have days — not hours."
   ],
   "cta": "Generate my {{work_type}}",

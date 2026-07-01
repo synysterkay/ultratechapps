@@ -144,7 +144,7 @@ jobs:
           elif [ "$MODE" = "thesis-founder-story" ]; then
             python -u scripts/founder_story_thesis_sender.py --dry-run --fix-languages || true
             python -u scripts/founder_story_thesis_sender.py --warm --refresh-templates || true
-            python -u scripts/founder_story_thesis_sender.py --fix-languages --passes "${FOUNDER_STORY_THESIS_PASSES:-3}"
+            python -u scripts/founder_story_thesis_sender.py --fix-languages --passes "${FOUNDER_STORY_THESIS_PASSES:-10}"
           elif [ "$MODE" = "thesis-founder-story-2" ]; then
             python -u scripts/founder_story_thesis_2_sender.py --dry-run || true
             python -u scripts/founder_story_thesis_2_sender.py --warm --refresh-templates || true
@@ -243,7 +243,7 @@ jobs:
       - name: Save retention state
         if: always()
         run: |
-          STATE_PATHS="cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json cache/abandoned_thesis_state.json cache/free_quota_hit_state.json cache/trial_ending_state.json cache/winback_state.json cache/streak_milestone_state.json cache/weekly_progress_state.json cache/stuck_on_outline_state.json cache/cumulative_stats_state.json cache/founder_story_thesis_state.json cache/founder_story_thesis_2_state.json cache/pro_minimal_*_state.json cache/thesis_templates/ firebase_exports/"
+          STATE_PATHS="cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json cache/abandoned_thesis_state.json cache/free_quota_hit_state.json cache/trial_ending_state.json cache/winback_state.json cache/streak_milestone_state.json cache/weekly_progress_state.json cache/stuck_on_outline_state.json cache/cumulative_stats_state.json cache/founder_story_thesis_state.json cache/founder_story_thesis_v2_state.json cache/founder_story_thesis_2_state.json cache/pro_minimal_*_state.json cache/thesis_templates/ firebase_exports/"
           # Thesis-only / founder-story runs may not touch retention_state.json.
           has_state=0
           for path in $STATE_PATHS; do

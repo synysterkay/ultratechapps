@@ -1,7 +1,7 @@
 {
   "subject": "{{first_name}}, {{topic}} — 3 minutes to a draft you can edit",
   "body": [
-    "{{first_name}}, you signed up for a reason — and {{topic}} is still waiting.",
+    "{{first_name}}, I wrote to you a few days ago — and {{topic}} is still waiting.",
     "Students who opened Thesis Generator this week didn't find more time. They stopped negotiating with a blank page and generated a rough {{work_type}} in under three minutes. Editing a draft feels manageable. Dreading one for another week doesn't.",
     "The loop that works: feel the deadline closing → open the app → enter {{topic}} and what you've already researched → tap generate → spend twenty minutes editing instead of twenty days stuck.",
     "Day {{days_since_story}} since our first note. Your submission date didn't move backward.",

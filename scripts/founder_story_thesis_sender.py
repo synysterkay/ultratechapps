@@ -2,8 +2,8 @@
 """
 Thesis Generator founder-story email — once-ever letter to the full user base.
 
-Mirrors Predictify's founder_story_wc2026 backfill: walk every Firestore user,
-skip suppressions + already-sent, localize via thesis_template_translator.
+Campaign kind `founder_story_thesis_v2` (Ana hybrid copy). Re-sends to users who
+already received v1 (`founder_story_thesis`) because dedup is tracked separately.
 
 Usage:
   python3 scripts/founder_story_thesis_sender.py --dry-run
@@ -35,23 +35,26 @@ import localize_phrase
 
 APP_NAME = 'Thesis Generator'
 APP_SLUG = 'thesis'
-KIND = 'founder_story_thesis'
+LEGACY_KIND = 'founder_story_thesis'
+KIND = 'founder_story_thesis_v2'
+TEMPLATE_KIND = 'founder_story_thesis'
 APP_STORE_URL = 'https://apps.apple.com/app/thesis-generator-essay-ai/id6739264844'
 GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/details?id=com.thesis.generator.ai'
 WEB_APP_URL = 'https://thesisgenerator.io'
-STATE_FILE = Path(__file__).parent.parent / 'cache' / 'founder_story_thesis_state.json'
+LEGACY_STATE_FILE = Path(__file__).parent.parent / 'cache' / 'founder_story_thesis_state.json'
+STATE_FILE = Path(__file__).parent.parent / 'cache' / 'founder_story_thesis_v2_state.json'
 _REF_SALT = os.getenv('EMAIL_REF_SALT', 'marketing-tool-v1')
 BACKFILL_CAP = int(os.getenv('FOUNDER_STORY_THESIS_SEND_CAP', '2000'))
 DAILY_CATCHUP_CAP = int(os.getenv('FOUNDER_STORY_THESIS_DAILY_CAP', '50'))
 
 EN_SOURCE = {
-    'subject': '{{first_name}}, 48 hours left — we still passed 5/5',
+    'subject': '{{first_name}}, still staring at a blank page?',
     'body': [
-        "Most people don't fail a {{work_type}} because they aren't smart enough. They fail because the clock runs out first.",
-        "One of our teammates hit that wall for real: {{work_type}} due in 48 hours, topic set, research done — then days where typing normally wasn't an option. Same deadline. Same degree on the line.",
-        "She opened the app we'd spent a year building. Ten minutes later she had a full draft — outline, chapters, references. She edited it, submitted it, and passed 5/5.",
+        'Every semester, students promise themselves: "This time I\'ll start early." Then a week becomes three days, three days become one night — and suddenly it\'s 2:14 AM with twenty tabs open and references everywhere.',
+        "I built Thesis Generator because academic writing isn't laziness — it's overwhelming. Not something that thinks for you. Something that helps you think faster.",
+        "One of our teammates hit that wall for real: {{work_type}} due in 48 hours, topic set, research done — then days where typing normally wasn't an option. She opened the app we'd spent a year building. Ten minutes later she had a full draft — outline, chapters, references. She edited it, submitted it, and passed 5/5.",
         "That's why Thesis Generator exists: turn {{topic}} from something you're avoiding into something you can open, edit, and submit.",
-        "Your next step takes about three minutes: enter what you already know about {{topic}}, tap generate, and work from a draft instead of a blank page.",
+        "Your next step takes about three minutes: enter what you already know about {{topic}}, tap generate, and work from a draft instead of a blank page. Your ideas deserve more time than formatting.",
         "P.S. A rough draft today beats a perfect plan next week. Start while you still have days — not hours.",
     ],
     'cta': 'Generate my {{work_type}}',
@@ -72,8 +75,9 @@ def _supabase_creds() -> tuple[str, str]:
     return '', ''
 
 
-def _fetch_sent_from_supabase() -> dict[str, dict]:
+def _fetch_sent_from_supabase(kind: str | None = None) -> dict[str, dict]:
     """Recipients with email.sent events for this campaign (dedup source of truth)."""
+    kind = kind or KIND
     url, key = _supabase_creds()
     if not url or not key:
         return {}
@@ -90,7 +94,7 @@ def _fetch_sent_from_supabase() -> dict[str, dict]:
                 params={
                     'select': 'recipient,language,occurred_at',
                     'app': f'eq.{APP_SLUG}',
-                    'kind': f'eq.{KIND}',
+                    'kind': f'eq.{kind}',
                     'event_type': 'eq.email.sent',
                     'order': 'occurred_at.asc',
                     'offset': offset,
@@ -119,27 +123,54 @@ def _fetch_sent_from_supabase() -> dict[str, dict]:
         return {}
 
 
-def _load_state() -> dict:
+def _load_state_file(path: Path, kind: str) -> dict:
     state: dict = {'sent': {}}
-    if STATE_FILE.exists():
+    if path.exists():
         try:
-            state = json.loads(STATE_FILE.read_text())
+            state = json.loads(path.read_text())
         except Exception:
             pass
     state.setdefault('sent', {})
-    remote = _fetch_sent_from_supabase()
+    remote = _fetch_sent_from_supabase(kind)
     merged = 0
     for email, info in remote.items():
         if email not in state['sent']:
             state['sent'][email] = info
             merged += 1
     if merged:
-        print(f'   📎 Merged {merged} sent recipients from Supabase email_events')
+        print(f'   📎 Merged {merged} {kind} recipients from Supabase email_events')
     return state
 
 
+def _load_state() -> dict:
+    return _load_state_file(STATE_FILE, KIND)
+
+
+def load_combined_founder_story_state() -> dict:
+    """Merge v1 + v2 founder story sends; earliest sent_at wins per email."""
+    combined: dict[str, dict] = {}
+    for kind, path in (
+        (LEGACY_KIND, LEGACY_STATE_FILE),
+        (KIND, STATE_FILE),
+    ):
+        state = _load_state_file(path, kind)
+        for email, rec in state.get('sent', {}).items():
+            email = email.lower().strip()
+            if not email:
+                continue
+            existing = combined.get(email)
+            if not existing:
+                combined[email] = {**rec, 'kind': kind}
+                continue
+            cur = rec.get('sent_at') or ''
+            prev = existing.get('sent_at') or ''
+            if cur and (not prev or cur < prev):
+                combined[email] = {**rec, 'kind': kind}
+    return {'sent': combined}
+
+
 def rebuild_state_from_supabase() -> int:
-    """Rebuild cache/founder_story_thesis_state.json from email_events."""
+    """Rebuild cache/founder_story_thesis_v2_state.json from email_events."""
     remote = _fetch_sent_from_supabase()
     state = {'sent': remote, 'rebuilt_at': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())}
     _save_state(state)
@@ -212,23 +243,23 @@ def warm_templates(refresh: bool = False) -> None:
     if refresh:
         cache_dir = Path(__file__).resolve().parents[1] / 'cache' / 'thesis_templates'
         removed = 0
-        for path in cache_dir.glob(f'{KIND}_*.json'):
+        for path in cache_dir.glob(f'{TEMPLATE_KIND}_*.json'):
             if path.name.endswith('_en.json'):
                 continue
             path.unlink(missing_ok=True)
             removed += 1
         if removed:
-            print(f'   🔄 Cleared {removed} cached {KIND} translations for refresh')
+            print(f'   🔄 Cleared {removed} cached {TEMPLATE_KIND} translations for refresh')
     _write_en_cache()
-    print(f'🔥 Warming {KIND} for {len(SUPPORTED) - 1} languages…')
-    result = warm_all(KIND, EN_SOURCE)
+    print(f'🔥 Warming {TEMPLATE_KIND} for {len(SUPPORTED) - 1} languages…')
+    result = warm_all(TEMPLATE_KIND, EN_SOURCE)
     ok = sum(1 for v in result.values() if v in ('cached', 'translated'))
     print(f'✅ Warm complete: {ok}/{len(SUPPORTED) - 1} languages ready')
 
 
 def _write_en_cache() -> None:
     from thesis_template_translator import _write_cache
-    _write_cache(KIND, 'en', EN_SOURCE)
+    _write_cache(TEMPLATE_KIND, 'en', EN_SOURCE)
 
 
 def _fetch_language_map() -> dict[str, str]:
@@ -377,7 +408,7 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None, fix_language
         lang = normalize_user_language(user.get('language') or 'en')
         plan = _plan_for_user(user)
 
-        tpl = get_localized(KIND, lang, EN_SOURCE)
+        tpl = get_localized(TEMPLATE_KIND, lang, EN_SOURCE)
         subject = localize_phrase.interpolate(lang, tpl.get('subject', EN_SOURCE['subject']), plan)
         paragraphs = [
             localize_phrase.interpolate(lang, p, plan)
@@ -393,10 +424,9 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None, fix_language
 
         html = render_email(
             lang, paragraphs, cta_text, APP_STORE_URL,
-            sender_name='The Thesis Generator team',
+            sender_name='Ana',
             app_name=APP_NAME,
             gradient='invite',
-            signoff_override='',
             cta_links=[
                 {'text': cta_text, 'url': APP_STORE_URL, 'variant': 'primary'},
                 {'text': cta_android, 'url': GOOGLE_PLAY_URL, 'variant': 'play'},
@@ -409,7 +439,7 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None, fix_language
             {'name': 'app', 'value': APP_SLUG},
             {'name': 'kind', 'value': KIND},
             {'name': 'language', 'value': lang},
-            {'name': 'system', 'value': 'thesis_founder_story'},
+            {'name': 'system', 'value': 'thesis_founder_story_v2'},
         ]
         result = sender.send_email(
             to_email=email,

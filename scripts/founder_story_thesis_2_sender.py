@@ -3,8 +3,8 @@
 Thesis Generator founder story #2 — Hooked-model follow-up sent 5 days after
 founder story #1.
 
-Eligible: received founder_story_thesis at least DELAY_DAYS ago, not yet sent
-founder_story_thesis_2. Runs daily via thesis_orchestrator with a catch-up cap.
+Eligible: received founder_story_thesis or founder_story_thesis_v2 at least
+DELAY_DAYS ago, not yet sent founder_story_thesis_2.
 
 Usage:
   python3 scripts/founder_story_thesis_2_sender.py --dry-run
@@ -40,7 +40,7 @@ from founder_story_thesis_sender import (
     _connect_senders,
     _fetch_language_map,
     _load_candidates,
-    _load_state as _load_fs1_state,
+    load_combined_founder_story_state,
     _load_suppressed_emails,
     _plan_for_user,
     _ref,
@@ -57,7 +57,7 @@ DAILY_CATCHUP_CAP = int(os.getenv('FOUNDER_STORY_THESIS_2_DAILY_CAP', '200'))
 EN_SOURCE = {
     'subject': '{{first_name}}, {{topic}} — 3 minutes to a draft you can edit',
     'body': [
-        "{{first_name}}, you signed up for a reason — and {{topic}} is still waiting.",
+        "{{first_name}}, I wrote to you a few days ago — and {{topic}} is still waiting.",
         "Students who opened Thesis Generator this week didn't find more time. They stopped negotiating with a blank page and generated a rough {{work_type}} in under three minutes. Editing a draft feels manageable. Dreading one for another week doesn't.",
         "The loop that works: feel the deadline closing → open the app → enter {{topic}} and what you've already researched → tap generate → spend twenty minutes editing instead of twenty days stuck.",
         "Day {{days_since_story}} since our first note. Your submission date didn't move backward.",
@@ -173,7 +173,7 @@ def warm_templates(refresh: bool = False) -> None:
 
 
 def _eligible_fs1_recipients(fs1_state: dict, now: datetime) -> dict[str, dict]:
-    """email → {sent_at, language, days_since} for FS1 sends at least DELAY_DAYS old."""
+    """email → {sent_at, language, days_since} for v1/v2 sends at least DELAY_DAYS old."""
     cutoff = now - timedelta(days=DELAY_DAYS)
     eligible: dict[str, dict] = {}
     for email, rec in fs1_state.get('sent', {}).items():
@@ -194,13 +194,13 @@ def _eligible_fs1_recipients(fs1_state: dict, now: datetime) -> dict[str, dict]:
 def run_send(*, dry_run: bool = False, send_cap: int | None = None) -> list[str]:
     cap = send_cap if send_cap is not None else BACKFILL_CAP
     now = datetime.now(timezone.utc)
-    fs1_state = _load_fs1_state()
+    fs1_state = load_combined_founder_story_state()
     state = _load_state()
     state.setdefault('sent', {})
     already_fs2 = set(state['sent'].keys())
 
     fs1_eligible = _eligible_fs1_recipients(fs1_state, now)
-    print(f'   📅 FS1 sent ≥{DELAY_DAYS}d ago: {len(fs1_eligible)} recipients')
+    print(f'   📅 Founder story (v1/v2) sent ≥{DELAY_DAYS}d ago: {len(fs1_eligible)} recipients')
 
     token = get_access_token()
     if not token:
@@ -284,10 +284,9 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None) -> list[str]
 
         html = render_email(
             lang, paragraphs, cta_text, APP_STORE_URL,
-            sender_name='The Thesis Generator team',
+            sender_name='Ana',
             app_name=APP_NAME,
             gradient='urgent',
-            signoff_override='',
             cta_links=[
                 {'text': cta_text, 'url': APP_STORE_URL, 'variant': 'primary'},
                 {'text': cta_android, 'url': GOOGLE_PLAY_URL, 'variant': 'play'},
