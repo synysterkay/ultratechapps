@@ -30,6 +30,7 @@ on:
           - founder-story
           - thesis-founder-story
           - thesis-founder-story-2
+          - thesis-warm-templates
 
 permissions:
   contents: write
@@ -141,6 +142,9 @@ jobs:
             python -u scripts/founder_story_wc2026_sender.py --warm --refresh-templates || true
             # 10 passes × 2000 cap = up to 20,000 founder-story sends per run.
             python -u scripts/founder_story_wc2026_sender.py --passes "${FOUNDER_STORY_PASSES:-10}"
+          elif [ "$MODE" = "thesis-warm-templates" ]; then
+            python -u scripts/founder_story_thesis_sender.py --warm --refresh-templates
+            python -u scripts/founder_story_thesis_2_sender.py --warm --refresh-templates
           elif [ "$MODE" = "thesis-founder-story" ]; then
             python -u scripts/founder_story_thesis_sender.py --dry-run --fix-languages || true
             python -u scripts/founder_story_thesis_sender.py --warm --refresh-templates || true
@@ -178,7 +182,7 @@ jobs:
           fi
       
       - name: Commit thesis founder story 2 templates
-        if: always() && github.event.inputs.mode == 'thesis-founder-story-2'
+        if: always() && (github.event.inputs.mode == 'thesis-founder-story-2' || github.event.inputs.mode == 'thesis-warm-templates')
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
@@ -199,7 +203,7 @@ jobs:
           echo "⚠️ thesis founder story 2 template push failed"
 
       - name: Commit thesis founder story templates
-        if: always() && github.event.inputs.mode == 'thesis-founder-story'
+        if: always() && (github.event.inputs.mode == 'thesis-founder-story' || github.event.inputs.mode == 'thesis-warm-templates')
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"

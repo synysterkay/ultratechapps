@@ -28,7 +28,7 @@ from gmail_sender import GmailSender, SKIP_RESULTS
 from firebase_user_loader import FirebaseUserLoader
 from firestore_language_loader import FirestoreLanguageLoader
 from thesis_users_loader import get_access_token, load_all_users, normalize_user_language
-from thesis_template_translator import get_localized, warm_all, SUPPORTED
+from thesis_template_translator import get_localized, warm_all, SUPPORTED, _read_cache
 from thesis_email_chrome import render as render_email
 from deliverability_monitor import DeliverabilityMonitor
 import localize_phrase
@@ -240,6 +240,8 @@ def _plan_for_user(user: dict) -> dict:
 
 def warm_templates(refresh: bool = False) -> None:
     """Pre-fill cache/thesis_templates/founder_story_thesis_{lang}.json."""
+    if not os.environ.get('DEEPSEEK_API_KEY', '').strip():
+        raise SystemExit('DEEPSEEK_API_KEY not set — cannot warm translations')
     if refresh:
         cache_dir = Path(__file__).resolve().parents[1] / 'cache' / 'thesis_templates'
         removed = 0
@@ -408,7 +410,9 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None, fix_language
         lang = normalize_user_language(user.get('language') or 'en')
         plan = _plan_for_user(user)
 
-        tpl = get_localized(TEMPLATE_KIND, lang, EN_SOURCE)
+        if lang != 'en' and _read_cache(TEMPLATE_KIND, lang) is None:
+            print(f'   ⚠️ No cached template for {TEMPLATE_KIND}/{lang} — using English')
+        tpl = get_localized(TEMPLATE_KIND, lang, EN_SOURCE, allow_api=False)
         subject = localize_phrase.interpolate(lang, tpl.get('subject', EN_SOURCE['subject']), plan)
         paragraphs = [
             localize_phrase.interpolate(lang, p, plan)

@@ -26,7 +26,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from gmail_sender import GmailSender, SKIP_RESULTS
 from thesis_users_loader import get_access_token, normalize_user_language
-from thesis_template_translator import get_localized, warm_all
+from thesis_template_translator import get_localized, warm_all, _read_cache
 from thesis_email_chrome import render as render_email
 from deliverability_monitor import DeliverabilityMonitor
 import localize_phrase
@@ -154,6 +154,8 @@ def _write_en_cache() -> None:
 
 
 def warm_templates(refresh: bool = False) -> None:
+    if not os.environ.get('DEEPSEEK_API_KEY', '').strip():
+        raise SystemExit('DEEPSEEK_API_KEY not set — cannot warm translations')
     if refresh:
         cache_dir = Path(__file__).resolve().parents[1] / 'cache' / 'thesis_templates'
         removed = 0
@@ -268,7 +270,9 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None) -> list[str]
         plan = _plan_for_user(user)
         plan['days_since_story'] = str(fs1_rec.get('days_since', DELAY_DAYS))
 
-        tpl = get_localized(KIND, lang, EN_SOURCE)
+        if lang != 'en' and _read_cache(KIND, lang) is None:
+            print(f'   ⚠️ No cached template for {KIND}/{lang} — using English')
+        tpl = get_localized(KIND, lang, EN_SOURCE, allow_api=False)
         subject = localize_phrase.interpolate(lang, tpl.get('subject', EN_SOURCE['subject']), plan)
         paragraphs = [
             localize_phrase.interpolate(lang, p, plan)
