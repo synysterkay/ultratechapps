@@ -28,6 +28,7 @@ on:
           - matchday
           - upsell
           - founder-story
+          - founder-story-non-sub
           - thesis-founder-story
           - thesis-founder-story-2
           - thesis-warm-templates
@@ -137,6 +138,9 @@ jobs:
             python -u scripts/app_retention_emailer.py --matchday
           elif [ "$MODE" = "upsell" ]; then
             python -u scripts/app_retention_emailer.py --upsell
+          elif [ "$MODE" = "founder-story-non-sub" ]; then
+            python -u scripts/founder_story_wc2026_sender.py --non-subscribers-only --dry-run || true
+            python -u scripts/founder_story_wc2026_sender.py --passes "${FOUNDER_STORY_PASSES:-10}" --non-subscribers-only
           elif [ "$MODE" = "founder-story" ]; then
             python -u scripts/founder_story_wc2026_sender.py --dry-run || true
             python -u scripts/founder_story_wc2026_sender.py --warm --refresh-templates || true

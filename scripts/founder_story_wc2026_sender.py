@@ -11,6 +11,7 @@ Usage:
   python3 scripts/founder_story_wc2026_sender.py --warm
   python3 scripts/founder_story_wc2026_sender.py
   python3 scripts/founder_story_wc2026_sender.py --passes 10
+  python3 scripts/founder_story_wc2026_sender.py --non-subscribers-only --passes 10
 """
 import json
 import os
@@ -72,19 +73,31 @@ def warm_templates(refresh: bool = False) -> None:
             print(f'    ⚠️ failed: {e}')
 
 
-def main(dry_run: bool = False, warm_only: bool = False, passes: int = 1, refresh_templates: bool = False) -> None:
+def main(
+    dry_run: bool = False,
+    warm_only: bool = False,
+    passes: int = 1,
+    refresh_templates: bool = False,
+    non_subscribers_only: bool = False,
+) -> None:
     if warm_only:
         warm_templates(refresh=refresh_templates)
         return
 
-    from predictify_v2.orchestrator import run_founder_story_backfill
+    if non_subscribers_only:
+        from predictify_v2.orchestrator import run_founder_story_non_subscriber_resend
+        run_fn = run_founder_story_non_subscriber_resend
+    else:
+        from predictify_v2.orchestrator import run_founder_story_backfill
+        run_fn = run_founder_story_backfill
 
     passes = int(os.environ.get('FOUNDER_STORY_PASSES', passes))
     total = 0
     for n in range(1, passes + 1):
         if passes > 1:
-            print(f'\n=== Founder story backfill pass {n}/{passes} ===')
-        sent = run_founder_story_backfill(dry_run=dry_run)
+            label = 'non-subscriber resend' if non_subscribers_only else 'backfill'
+            print(f'\n=== Founder story {label} pass {n}/{passes} ===')
+        sent = run_fn(dry_run=dry_run)
         batch = len(sent)
         total += batch
         if dry_run:
@@ -110,4 +123,5 @@ if __name__ == '__main__':
         warm_only='--warm' in sys.argv,
         passes=passes,
         refresh_templates='--refresh-templates' in sys.argv,
+        non_subscribers_only='--non-subscribers-only' in sys.argv,
     )

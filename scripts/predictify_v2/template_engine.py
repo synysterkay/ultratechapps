@@ -28,6 +28,16 @@ SUPPORTED_LANGS = [
     'pp', 'pt', 'tr',
 ]
 
+# Resend campaigns use a distinct Firestore kind but share the same JSON copy.
+FOUNDER_STORY_TEMPLATE_KIND = 'founder_story_wc2026'
+FOUNDER_STORY_V2_KIND = 'founder_story_wc2026_v2'
+
+
+def _template_kind(kind: str) -> str:
+    if kind in (FOUNDER_STORY_TEMPLATE_KIND, FOUNDER_STORY_V2_KIND):
+        return FOUNDER_STORY_TEMPLATE_KIND
+    return kind
+
 
 @dataclass
 class RenderedEmail:
@@ -75,7 +85,7 @@ def _load_template(kind: str, language: str) -> dict | None:
         if lang in seen:
             continue
         seen.add(lang)
-        path = TEMPLATES_DIR / f'{kind}_{lang}.json'
+        path = TEMPLATES_DIR / f'{_template_kind(kind)}_{lang}.json'
         if path.exists():
             try:
                 with open(path) as f:
@@ -168,7 +178,7 @@ def _build_merge_fields(kind: str, ctx: UserContext) -> dict[str, str] | None:
         # Only fires for free users (gated by trigger). Reward is the
         # short Pro flag toggled by the in-app reward screen.
         return base
-    if kind == 'founder_story_wc2026':
+    if kind in (FOUNDER_STORY_TEMPLATE_KIND, FOUNDER_STORY_V2_KIND):
         return base
     if kind == 'upgrade_after_hot_week':
         if ctx.total_picks_30d < 5 or (ctx.accuracy_30d or 0) < 0.6:

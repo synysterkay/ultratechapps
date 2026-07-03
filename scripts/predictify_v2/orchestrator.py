@@ -367,11 +367,13 @@ def _load_suppressed_emails() -> set[str]:
 #  Default cooldown for any kind not listed is 14 days.
 # ─────────────────────────────────────────────────────────
 FOUNDER_STORY_KIND = 'founder_story_wc2026'
+FOUNDER_STORY_V2_KIND = 'founder_story_wc2026_v2'
 
 COOLDOWN_DAYS: dict[str, int] = {
     'welcome': 9999,                  # once ever
     'login_streak_reward': 9999,      # once ever — it's a one-shot reward
     FOUNDER_STORY_KIND: 9999,        # once ever — World Cup 2026 founder letter
+    FOUNDER_STORY_V2_KIND: 9999,     # once ever — non-subscriber resend campaign
     'streak_saver': 5,
     'match_day': 1,
     'upgrade_after_hot_week': 14,
@@ -630,9 +632,15 @@ def _pick_kind(
     sends_index: dict,
     *,
     founder_story_only: bool,
+    founder_story_v2: bool,
     legacy_founder_sent: set[str],
 ) -> str | None:
     """Select the v2 email kind for a user."""
+    if founder_story_v2:
+        if _has_recent_in_index(sends_index, uid, FOUNDER_STORY_V2_KIND, 9999):
+            return None
+        return FOUNDER_STORY_V2_KIND
+
     already = (
         email.lower() in legacy_founder_sent
         or _has_recent_in_index(sends_index, uid, FOUNDER_STORY_KIND, 9999)
@@ -646,14 +654,32 @@ def _pick_kind(
     return None if already else FOUNDER_STORY_KIND
 
 
+def _is_subscriber(activity: dict | None) -> bool:
+    """True when Firestore shows an active Superwall / Pro subscription."""
+    if not activity:
+        return False
+    return bool(activity.get('isPremium') or activity.get('isSubscribed'))
+
+
 def run(
     dry_run: bool = False,
     max_users: int | None = None,
     founder_story_only: bool = False,
+    founder_story_v2: bool = False,
+    non_subscribers_only: bool = False,
 ) -> list[tuple[str, str]]:
-    mode = 'founder_story backfill' if founder_story_only else 'triggers'
-    send_cap = _send_cap(founder_story_only)
+    if founder_story_v2 and non_subscribers_only:
+        mode = 'founder_story v2 non-subscriber resend'
+    elif founder_story_only:
+        mode = 'founder_story backfill'
+    else:
+        mode = 'triggers'
+    send_cap = _send_cap(founder_story_only or founder_story_v2)
     print(f'🚀 Predictify v2 {mode} (dry_run={dry_run}, cap={send_cap})')
+    if non_subscribers_only:
+        print('   🎯 Audience: free users only (isPremium/isSubscribed=false)')
+    if founder_story_v2:
+        print(f'   📨 Campaign kind: {FOUNDER_STORY_V2_KIND} (re-sends OK for prior v1)')
     _log_env_presence()
 
     fb = FirebaseUserLoader()
@@ -728,6 +754,7 @@ def run(
     skipped_dup_today = 0
     skipped_cooldown = 0
     skipped_suppressed = 0
+    skipped_subscriber = 0
 
     def _enrich(u):
         """Read-only: build a user's context and attach a community
@@ -822,7 +849,10 @@ def run(
                 if email.lower() in suppressed:
                     skipped_suppressed += 1
                     continue
-                if founder_story_only and email.lower() in legacy_founder_sent:
+                if non_subscribers_only and _is_subscriber(activity_by_uid.get(uid)):
+                    skipped_subscriber += 1
+                    continue
+                if founder_story_only and not founder_story_v2 and email.lower() in legacy_founder_sent:
                     skipped_cooldown += 1
                     continue
                 candidates.append(u)
@@ -850,7 +880,8 @@ def run(
 
                 kind = _pick_kind(
                     ctx, uid, email, sends_index,
-                    founder_story_only=founder_story_only,
+                    founder_story_only=founder_story_only or founder_story_v2,
+                    founder_story_v2=founder_story_v2,
                     legacy_founder_sent=legacy_founder_sent,
                 )
                 if not kind:
@@ -885,6 +916,7 @@ def run(
           f'skipped_dup_today={skipped_dup_today} '
           f'skipped_cooldown={skipped_cooldown} '
           f'skipped_suppressed={skipped_suppressed} '
+          f'skipped_subscriber={skipped_subscriber} '
           f'skipped_no_trigger={skipped_no_trigger}{cap_note}')
     return sent
 
@@ -893,6 +925,19 @@ def run_founder_story_backfill(dry_run: bool = False) -> list[tuple[str, str]]:
     """Send the World Cup founder letter to every user who hasn't received it.
     Ignores behavioral triggers — use for manual catch-up / first rollout."""
     return run(dry_run=dry_run, founder_story_only=True)
+
+
+def run_founder_story_non_subscriber_resend(dry_run: bool = False) -> list[tuple[str, str]]:
+    """Re-send founder story to free users (no Superwall subscription).
+
+    Uses founder_story_wc2026_v2 for dedup so prior v1 recipients who never
+    subscribed are eligible again. New signups who never got v1 also qualify."""
+    return run(
+        dry_run=dry_run,
+        founder_story_only=True,
+        founder_story_v2=True,
+        non_subscribers_only=True,
+    )
 
 
 def status():
@@ -945,6 +990,9 @@ def status():
 if __name__ == '__main__':
     if '--status' in sys.argv:
         status()
+    elif '--founder-story-non-sub' in sys.argv:
+        dry = '--dry-run' in sys.argv
+        run_founder_story_non_subscriber_resend(dry_run=dry)
     elif '--founder-story' in sys.argv:
         dry = '--dry-run' in sys.argv
         run_founder_story_backfill(dry_run=dry)
