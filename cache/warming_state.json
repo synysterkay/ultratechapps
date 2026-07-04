@@ -1,8 +1,8 @@
 {
   "warming_started": "2026-04-03T22:02:50.126548+00:00",
-  "total_sent": 20298,
-  "total_opened": 10151,
-  "total_replied": 2231,
+  "total_sent": 20406,
+  "total_opened": 10191,
+  "total_replied": 2233,
   "daily_log": {
     "2026-04-03": {
       "sent": 40,
@@ -557,9 +557,9 @@
       "week": 13
     },
     "2026-07-04": {
-      "sent": 108,
-      "opened": 40,
-      "replied": 6,
+      "sent": 216,
+      "opened": 80,
+      "replied": 8,
       "week": 14
     }
   },
