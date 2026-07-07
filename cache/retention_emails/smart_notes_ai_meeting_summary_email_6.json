@@ -1,0 +1,17 @@
+{
+  "subject": "The 2AM mistake that changed everything",
+  "preview_text": "Most users do this one thing wrong on Day 1. Here's how to fix it in 30 seconds.",
+  "body_paragraphs": [
+    "Two weeks ago, a founder messaged me at 2AM. He'd been using Smart Notes for a week, but his summaries were a mess\u2014scattered, missing key points, and he was still rewriting notes manually. He was about to uninstall. I asked one question: 'Are you setting the meeting language before you record?' He paused. 'I didn't know I could.' That's the number one mistake I see: people skip the language controls and wonder why the AI gets confused. It's like expecting a translator to guess your language\u2014it can't read your mind.",
+    "Here's the fix: before any meeting, lecture, or call, open the profile language and meeting language settings. Set them to the actual languages being spoken. One founder I know cut his note-taking time by 3 hours a week just by doing this. The AI goes from 'okay' to 'scary good'\u2014capturing every phrase, every action item, even switching between languages mid-sentence. No more losing key points or wasting time on rewrites.",
+    "Inside the app, tap 'Settings' then 'Language Profiles.' Choose your primary language and the meeting language. That's it. Your next summary will be structured, searchable, and ready to share with your team. Users who do this on their first recording see 60% more consistent usage in week one\u2014because the results feel like magic.",
+    "Open Smart Notes now and update your language settings. Try a short test recording\u2014you'll see the difference instantly. P.S. If you're in a bilingual meeting, set both languages. The AI handles it seamlessly, and your action items will be perfectly searchable in any language.",
+    "Try this now"
+  ],
+  "cta_text": "Open Smart Notes - AI Meeting Summary",
+  "email_number": 6,
+  "send_day": 11,
+  "type": "common_mistake",
+  "app_name": "Smart Notes - AI Meeting Summary",
+  "generated_at": "2026-07-07T11:21:35.627057"
+}

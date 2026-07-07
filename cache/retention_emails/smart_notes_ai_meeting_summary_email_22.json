@@ -1,0 +1,16 @@
+{
+  "subject": "The toggle that saves 2 hours weekly",
+  "preview_text": "A hidden setting power users enable that most never discover. It cuts meeting summary time in half.",
+  "body_paragraphs": [
+    "I discovered this by accident at 2AM while digging through settings. One toggle. That's all it takes to cut your post-meeting chaos by 2 hours a week. Power users enable it on day one, but nobody talks about it because they assume everyone knows.",
+    "Here's the shortcut: Open the app, tap the profile icon in the top right, then find 'Meeting Language Auto-Detect'. Turn it on. From that moment, the app reads the room's language mid-meeting and outputs your summary in that language instead of your default. No more manually switching profiles for bilingual calls. No more transcripts in the wrong tongue.",
+    "It sounds small, but for founders and teams juggling global clients, this one setting eliminates the biggest friction point. Students using it for multilingual lectures get summaries in the lecturer's language, not their own. The time you save on editing or re-transcribing adds up fast.",
+    "Try it right now: Open Smart Notes, go to Settings, toggle 'Auto-Detect Language', then record a meeting. P.S. The real hack is combining this with the 'Action Item Extraction' feature\u2014your next steps will automatically appear in the meeting's language, ready to share with your team."
+  ],
+  "cta_text": "Open Smart Notes - AI Meeting Summary",
+  "email_number": 22,
+  "send_day": 50,
+  "type": "power_user_shortcut",
+  "app_name": "Smart Notes - AI Meeting Summary",
+  "generated_at": "2026-07-07T11:23:21.372655"
+}

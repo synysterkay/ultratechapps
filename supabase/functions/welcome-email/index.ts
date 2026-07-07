@@ -846,6 +846,35 @@ const APP_CONFIG: Record<string, AppConfig> = {
     },
   },
 
+  smart_notes: {
+    name: "Smart Notes - AI Meeting Summary",
+    multilingual: true,
+    appStoreUrl: "https://apps.apple.com/app/smart-notes-ai-meeting-summary/id6756840480",
+    googlePlayUrl: "https://play.google.com/store/apps/details?id=pl.audiorecorder.voicerecorder.callrecorder",
+    emails: {
+      en: {
+        subject: "Your first AI meeting summary is one tap away",
+        cta_text: "Record your first note",
+        body_paragraphs: [
+          "You installed Smart Notes for one reason: stop losing important details after meetings. The fastest win is simple — record one short meeting, then let AI do the heavy lifting.",
+          "Most people open the app, look around, and postpone the first recording. That delay kills momentum. The Hooked loop starts with one trigger and one action: press record when your next conversation starts.",
+          "Open Smart Notes now and run a 60-second test recording. You'll instantly see transcript quality and an auto-structured summary with key points and actions. In under a minute, you'll move from raw audio to usable notes.",
+          "Tap below and make your first recording now. P.S. Users who generate their first summary on day one are far more likely to keep a consistent meeting-notes habit.",
+        ],
+      },
+      es: {
+        subject: "Tu primer resumen con IA está a un toque",
+        cta_text: "Grabar mi primera nota",
+        body_paragraphs: [
+          "Instalaste Smart Notes por una razón: dejar de perder detalles importantes después de cada reunión. La victoria más rápida es simple: graba una reunión corta y deja que la IA haga el trabajo pesado.",
+          "Muchos usuarios abren la app, miran todo y posponen su primera grabación. Ese retraso rompe el impulso. El ciclo Hooked empieza con un disparador y una acción: pulsa grabar en tu próxima conversación.",
+          "Abre Smart Notes ahora y haz una prueba de 60 segundos. Verás la transcripción y un resumen estructurado con puntos clave y acciones.",
+          "Toca el botón y haz tu primera grabación hoy. P.D. Quienes generan su primer resumen el primer día crean el hábito mucho más rápido.",
+        ],
+      },
+    },
+  },
+
   ai_boyfriend: {
     name: "Ai Boyfriend",
     multilingual: true,

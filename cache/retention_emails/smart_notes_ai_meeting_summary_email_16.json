@@ -1,0 +1,16 @@
+{
+  "subject": "The midnight feature I wasn't going to share",
+  "preview_text": "I built something extra for you at 2AM. Not everyone gets this. Check your app.",
+  "body_paragraphs": [
+    "Last Tuesday at 2AM, after a brutal week of back-to-back calls, I couldn't sleep. I kept thinking about the one thing that drives me crazy after every meeting\u2014trying to remember who said what and what I actually agreed to do. So I coded something I wasn't planning to release. It's a hidden tool inside Smart Notes that turns your raw transcripts into instant, shareable action items. No extra clicks, no formatting. Just the key decisions and tasks, ready to copy into your team chat.",
+    "I tested it on my own messiest meeting recordings, and it saved me 20 minutes of rewriting notes per call. I almost kept it to myself because it's not polished\u2014it's raw, fast, and a bit rough around the edges. But that's exactly why it works. It's the kind of shortcut you'd build for yourself at 2AM, not something a committee designed.",
+    "This feature lives inside the 'Notes' tab in your app. Open any past meeting summary, and you'll see a new button labeled 'Extract Actions.' Tap it, and Smart Notes instantly pulls out every action item, decision, and follow-up from the transcript. No manual searching. No re-reading. It's like having a second brain that already organized your meeting before you even think about it.",
+    "Go open Smart Notes now, find any old meeting, and hit 'Extract Actions.' See how it feels to never rewrite notes again. I'd love to hear if it helps you too\u2014just reply to this email. P.S. This feature might disappear if I decide to polish it more before the next update. So use it while it's here."
+  ],
+  "cta_text": "Open Smart Notes and Extract Actions",
+  "email_number": 16,
+  "send_day": 35,
+  "type": "surprise_bonus",
+  "app_name": "Smart Notes - AI Meeting Summary",
+  "generated_at": "2026-07-07T11:22:44.570394"
+}

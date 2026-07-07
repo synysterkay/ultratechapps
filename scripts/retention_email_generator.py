@@ -440,6 +440,26 @@ APP_CONTEXT = {
             "cta": "Go Premium",
         },
     },
+    "Smart Notes - AI Meeting Summary": {
+        "target_audience": "Founders, students, and teams who need reliable meeting transcripts and summaries",
+        "core_pain": "Forgetting key points after meetings, losing action items, wasting time rewriting notes",
+        "killer_features": [
+            "One-tap recording for meetings, calls, and lectures",
+            "Fast AI transcription from audio to searchable text",
+            "Structured summary with key points and action items",
+            "Language-aware transcription and summary output",
+            "Profile language + meeting language controls",
+            "Shareable notes for async team follow-up",
+        ],
+        "social_proof": "Users who create their first summary on day one return far more consistently in week one",
+        "emotional_hooks": ["never miss a key point again", "leave meetings with clarity", "less chaos after calls", "save hours every week"],
+        "tone": "Like a productivity-savvy teammate who turns messy meetings into clear next steps",
+        "subscription": {
+            "weekly": "Weekly subscription",
+            "monthly": "Monthly subscription",
+            "cta": "Unlock Pro",
+        },
+    },
     "Predictify": {
         "target_audience": "Soccer/football fans who want smarter predictions and data-driven insights",
         "core_pain": "Bad predictions, unreliable tips, missing value bets, no data to back up gut feelings",
@@ -855,6 +875,8 @@ Generate the email now. Make it impossible to ignore."""
                 app_languages = languages
             elif app_name == 'Predictify':
                 app_languages = ['en', 'ar', 'es', 'fr', 'pt', 'de', 'tr', 'it', 'pp', 'hi', 'id', 'nl', 'pl', 'ja', 'bn', 'el', 'fa', 'ko', 'ro', 'ru', 'sv', 'th', 'uk', 'ur', 'vi', 'zh']
+            elif app_name == 'Smart Notes - AI Meeting Summary':
+                app_languages = ['en', 'es', 'fr', 'de', 'pt', 'it', 'ar', 'hi']
             elif app_name == 'Volume Booster - Sound Booster':
                 app_languages = ['en', 'ar', 'es', 'fr', 'zh', 'hi', 'pt', 'ru']
             elif app_name == 'Bass Booster':

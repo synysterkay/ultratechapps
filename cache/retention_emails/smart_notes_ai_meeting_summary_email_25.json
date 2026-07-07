@@ -1,0 +1,16 @@
+{
+  "subject": "The day a user recorded their dog",
+  "preview_text": "I never expected anyone to use Smart Notes this way. But one person did, and what they discovered will surprise you.",
+  "body_paragraphs": [
+    "Last week, I got an email from a user that made me stop mid-bite. They said they used Smart Notes to record their dog barking at a delivery person. I thought, okay, weird flex, but okay. Then they explained why\u2014and I realized they'd stumbled onto something I never imagined.",
+    "They were trying to figure out if their dog's barking patterns changed after a new neighbor moved in. So they hit record during a few walks, let the AI transcribe the barks into timestamps, and got a summary showing the exact times and triggers. They told me it helped them adjust their training schedule. I sat there, coffee in hand, thinking: this is brilliant.",
+    "You don't need a dog to do this. The feature they used is the same one that transcribes your meetings: one-tap recording plus fast AI transcription. It works for any audio\u2014lectures, phone calls, even random ideas you shout into your phone. The summary then pulls out patterns you'd never catch by ear. It's like having a detective for your sound.",
+    "So here's my ask: this week, try recording something you never would. A brainstorming session. A podcast snippet. A conversation with a friend about a project. Just tap record, let Smart Notes handle the rest, and see what patterns surface. Then reply and tell me what you found. I'm genuinely curious. P.S. The user with the dog now has a calmer pup and a weekly habit of recording their walks to track progress."
+  ],
+  "cta_text": "Open Smart Notes and record something unexpected",
+  "email_number": 25,
+  "send_day": 58,
+  "type": "unexpected_use_case",
+  "app_name": "Smart Notes - AI Meeting Summary",
+  "generated_at": "2026-07-07T11:23:41.657865"
+}

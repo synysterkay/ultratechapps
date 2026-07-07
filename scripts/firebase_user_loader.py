@@ -158,6 +158,15 @@ FIREBASE_APPS = {
         'multilingual': True,
         'supported_languages': ['en', 'es', 'fr', 'de', 'it', 'pt', 'ar', 'ja', 'ko', 'zh', 'ru', 'tr', 'hi', 'id', 'pl', 'nl'],
     },
+    'audio-recorder-microphone': {
+        'name': 'Smart Notes - AI Meeting Summary',
+        'export_file': 'smart_notes_fresh.json',
+        'description': 'AI meeting recorder with transcription and structured summaries',
+        'app_store_url': 'https://apps.apple.com/app/smart-notes-ai-meeting-summary/id6756840480',
+        'google_play_url': 'https://play.google.com/store/apps/details?id=pl.audiorecorder.voicerecorder.callrecorder',
+        'multilingual': True,
+        'supported_languages': ['en', 'es', 'fr', 'de', 'pt', 'it', 'ar', 'hi'],
+    },
 }
 
 

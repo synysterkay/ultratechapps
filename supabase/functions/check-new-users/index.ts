@@ -96,6 +96,13 @@ const FIREBASE_PROJECTS: Record<
     // Mirrors girlfriend_ai/lib/l10n kSupportedLanguages in the Flutter app.
     supportedLanguages: ["en", "es", "fr", "de", "it", "pt", "ar", "ja", "ko", "zh", "ru", "tr", "hi", "id", "pl", "nl"],
   },
+  "audio-recorder-microphone": {
+    appId: "smart_notes",
+    multilingual: true,
+    defaultLang: "en",
+    // Mirrors Smart Notes app-localization codes.
+    supportedLanguages: ["en", "es", "fr", "de", "pt", "it", "ar", "hi"],
+  },
 };
 
 const PROJECT_IDS = Object.keys(FIREBASE_PROJECTS);

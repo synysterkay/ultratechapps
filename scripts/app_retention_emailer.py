@@ -689,6 +689,7 @@ class AppRetentionEmailer:
         'Thesis Generator',
         'Predictify: Horse Racing AI',
         'Crypto AI: Trading Analyzer',
+        'Smart Notes - AI Meeting Summary',
         'Volume Booster - Sound Booster',
         'Bass Booster',
         'Loud EQ',
@@ -1011,6 +1012,7 @@ class AppRetentionEmailer:
             'Volume Booster - Sound Booster': 'Volume Booster - Sound Booster',
             'Predictify: Horse Racing AI': 'Predictify: Horse Racing AI',
             'Thesis Generator': 'Thesis Generator',
+            'Smart Notes - AI Meeting Summary': 'Smart Notes - AI Meeting Summary',
             # SoulPlan writes BCP-47 tags (pt-BR, zh-Hans) via LocaleProvider.syncToBackend
             # to users.{uid}.language; the loader normalizes dashes + maps to base codes.
             'SoulPlan: Plan Dates Together': 'SoulPlan: Plan Dates Together',

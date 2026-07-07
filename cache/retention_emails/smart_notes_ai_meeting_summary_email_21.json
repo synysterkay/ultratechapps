@@ -1,0 +1,16 @@
+{
+  "subject": "Your summaries just got an upgrade",
+  "preview_text": "We added something you'll want to try. Open the app and see what changed.",
+  "body_paragraphs": [
+    "Last week, a user told me they stopped using Smart Notes because they couldn't find old transcripts fast enough. That hurt, because we're built to solve exactly that. So we went back to work, and yesterday we pushed a change I think you'll actually use.",
+    "The new search works like your brain does. You can type a phrase, a person's name, or even a vague memory like 'that call about the launch timeline' and it pulls up the right transcript in seconds. No more scrolling through folders or guessing dates.",
+    "It's already live in the app. Open any meeting transcript and tap the search icon at the top. Try searching for something you know you said two weeks ago. I bet you find it faster than you expect.",
+    "Give it a shot now \u2014 it's the kind of thing that saves you five minutes every single day. P.S. This update works with every language you have saved in your profile, so don't worry if your meetings switch between English and Spanish."
+  ],
+  "cta_text": "Open Smart Notes - AI Meeting Summary",
+  "email_number": 21,
+  "send_day": 48,
+  "type": "comeback_trigger",
+  "app_name": "Smart Notes - AI Meeting Summary",
+  "generated_at": "2026-07-07T11:23:15.122073"
+}

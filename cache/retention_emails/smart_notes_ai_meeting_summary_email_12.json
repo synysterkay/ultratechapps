@@ -1,0 +1,16 @@
+{
+  "subject": "The 2AM feature buried in your app",
+  "preview_text": "One user found this by accident at 2AM. Now they never miss a key point.",
+  "body_paragraphs": [
+    "Last week, a founder sent me a message at 2AM: 'I just had 4 back-to-back calls and forgot everything from the first one. Then I stumbled on something in your app that saved my night.' He was talking about a feature most users ignore \u2014 the ability to set meeting language before recording.",
+    "He had a client call in Spanish, his notes were a mess. But when he tapped the language control in Smart Notes, the AI switched modes. The transcript came out clean, the summary picked up every action item. He told me it felt like the app suddenly spoke his client's language.",
+    "That's the buried feature: Profile language + meeting language controls. You've had it since day one, but it's tucked in settings. Switch it before a meeting, and the AI adjusts transcription and summary output for that specific language \u2014 no more garbled notes from multilingual calls.",
+    "Next time you have a meeting in a different language \u2014 or even just a heavy accent \u2014 open the app, tap the language control, and set it before recording. Try it on your next call. P.S. Premium unlocks 5+ language profiles, so you can switch between them instantly without reconfiguring."
+  ],
+  "cta_text": "Open Smart Notes - AI Meeting Summary",
+  "email_number": 12,
+  "send_day": 25,
+  "type": "feature_deep_dive",
+  "app_name": "Smart Notes - AI Meeting Summary",
+  "generated_at": "2026-07-07T11:22:18.929706"
+}
