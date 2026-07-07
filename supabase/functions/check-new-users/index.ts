@@ -50,6 +50,16 @@ const FIREBASE_PROJECTS: Record<
     defaultLang: "en",
     supportedLanguages: ["en"],
   },
+  "parents-ai-e49a8": {
+    appId: "kinbound",
+    multilingual: true,
+    defaultLang: "en",
+    // Mirrors lib/core/localization/app_locales.dart in the Kinbound Flutter app.
+    supportedLanguages: [
+      "en", "es", "fr", "de", "it", "pt", "nl", "ja", "ko", "zh",
+      "ar", "hi", "id", "pl", "ru", "tr",
+    ],
+  },
   "predictify-3f30d": {
     appId: "predictify",
     multilingual: true,

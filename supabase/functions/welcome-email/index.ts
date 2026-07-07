@@ -669,6 +669,45 @@ const APP_CONFIG: Record<string, AppConfig> = {
     },
   },
 
+  kinbound: {
+    name: "Kinbound: AI Parent Life Coach",
+    multilingual: true,
+    appStoreUrl: "https://apps.apple.com/app/kinbound-ai-parent-life-coach/id6757409071",
+    googlePlayUrl: "",
+    emails: {
+      en: {
+        subject: "The 30-second move that stops a meltdown spiral",
+        cta_text: "Open Help me now",
+        body_paragraphs: [
+          "You just downloaded Kinbound. The trap almost every parent hits is the same: open it once, feel better for a minute, close it, and think you'll remember what to say when the meltdown actually starts. You won't — not in the moment your brain goes blank.",
+          "Here's the fastest win in the app: tap Help me now on the home screen. Pick the situation that matches right now — tantrum, bedtime, defiance, whatever. Kinbound gives you exact words to say out loud. Not theory. A script. Thirty seconds.",
+          "Do it once before the next hard moment. Save the script with the bookmark if it lands. That's the whole loop — moment → words → calmer exit.",
+          "Tap below and run Help me now once while it's quiet. Future-you at peak chaos will thank present-you. P.S. Parents who use Help me now in the first 24 hours come back 3× more on hard nights. Don't wait for the meltdown to practice.",
+        ],
+      },
+      es: {
+        subject: "El movimiento de 30 segundos que frena una rabieta",
+        cta_text: "Abrir Ayúdame ahora",
+        body_paragraphs: [
+          "Acabas de descargar Kinbound. La trampa es la misma: abrirlo una vez, sentirte mejor un minuto, cerrarlo y pensar que recordarás qué decir cuando empiece la rabieta. No lo harás — no cuando tu cerebro se queda en blanco.",
+          "La victoria más rápida: toca Ayúdame ahora en inicio. Elige la situación — rabieta, hora de dormir, desobediencia. Kinbound te da palabras exactas para decir en voz alta. No teoría. Un guion. Treinta segundos.",
+          "Hazlo una vez antes del próximo momento difícil. Guarda el guion si funciona.",
+          "Toca abajo y prueba Ayúdame ahora mientras hay calma. P.D. Los padres que lo usan en las primeras 24 horas vuelven 3× más en noches difíciles.",
+        ],
+      },
+      fr: {
+        subject: "Le geste de 30 secondes qui arrête une crise",
+        cta_text: "Ouvrir Aide-moi maintenant",
+        body_paragraphs: [
+          "Vous venez de télécharger Kinbound. Le piège est le même pour presque tous les parents : ouvrir une fois, se sentir mieux une minute, fermer, et penser qu'on se souviendra quoi dire quand la crise commence. Vous n'y arriverez pas — pas quand le cerveau se vide.",
+          "Le gain le plus rapide : appuyez sur Aide-moi maintenant. Choisissez la situation — crise, coucher, opposition. Kinbound donne les mots exacts à dire à voix haute. Pas de théorie. Un script. Trente secondes.",
+          "Faites-le une fois avant le prochain moment difficile. Sauvegardez le script s'il vous parle.",
+          "Appuyez ci-dessous et essayez Aide-moi maintenant pendant le calme. P.S. Les parents qui l'utilisent dans les 24 premières heures reviennent 3× plus les soirs difficiles.",
+        ],
+      },
+    },
+  },
+
   volume_booster: {
     name: "Volume Booster - Sound Booster",
     multilingual: true,

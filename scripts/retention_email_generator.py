@@ -323,6 +323,21 @@ APP_CONTEXT = {
         "emotional_hooks": ["longer life for your best friend", "the guilt of overfeeding", "seeing them struggle to play", "doing right by them"],
         "tone": "Like a caring dog-parent friend who figured out the nutrition puzzle",
     },
+    "Kinbound: AI Parent Life Coach": {
+        "target_audience": "Parents of toddlers through teens who need calm scripts in meltdown moments",
+        "core_pain": "Brain goes blank during tantrums, conflicting parenting advice online, guilt after yelling, 3am worry spirals",
+        "killer_features": [
+            "Help me now — instant coaching scripts for tantrums, bedtime, defiance",
+            "Calm-day streak on Today without punishing missed days",
+            "Saved scripts and moment memories on-device",
+            "Gentle vs structured coach tones",
+            "Family premium with unlimited copilot",
+            "16-language AI coaching",
+        ],
+        "social_proof": "Parents using Help me now in the first 24h return 3x more on hard nights",
+        "emotional_hooks": ["what to say when they're screaming", "repair after you yelled", "bedtime without a battle", "feeling like a good parent again"],
+        "tone": "Like a warm parenting coach texting at 9pm — zero judgment, practical words",
+    },
     "Volume Booster - Sound Booster": {
         "target_audience": "Music lovers, podcast listeners, and anyone frustrated with low device volume",
         "core_pain": "Phone speakers too quiet, can't hear audio in noisy environments, poor sound quality, no bass, music sounds flat",

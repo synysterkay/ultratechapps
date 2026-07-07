@@ -49,6 +49,18 @@ FIREBASE_APPS = {
         'app_store_url': 'https://apps.apple.com/app/pupshape-dog-weight-loss-plan/id6739601749',
         'google_play_url': 'https://play.google.com/store/apps/details?id=com.mealplanner.foodofdogs.petmeal',
     },
+    'parents-ai-e49a8': {
+        'name': 'Kinbound: AI Parent Life Coach',
+        'export_file': 'parents_ai_e49a8_fresh.json',
+        'description': 'AI parenting coach for meltdowns, bedtime, and hard moments — scripts when you need them',
+        'app_store_url': 'https://apps.apple.com/app/kinbound-ai-parent-life-coach/id6757409071',
+        'google_play_url': '',
+        'multilingual': True,
+        'supported_languages': [
+            'en', 'es', 'fr', 'de', 'it', 'pt', 'nl', 'ja', 'ko', 'zh',
+            'ar', 'hi', 'id', 'pl', 'ru', 'tr',
+        ],
+    },
     'predictify-3f30d': {
         'name': 'Predictify',
         'export_file': 'predictify_fresh.json',

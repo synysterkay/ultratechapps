@@ -180,6 +180,8 @@ jobs:
             # and reloads it per run. Per-sender state files dedupe.
             echo "--- Running pupshape orchestrator (all pupshape senders) ---"
             python -u scripts/pupshape_orchestrator.py || true
+            echo "--- Running kinbound orchestrator (all kinbound senders) ---"
+            python -u scripts/kinbound_orchestrator.py || true
             # ── Volume Booster Pro (pro-minimal) hooked senders ──
             echo "--- Running pro-minimal orchestrator (Volume Booster Pro) ---"
             python -u scripts/pro_minimal_orchestrator.py || true
