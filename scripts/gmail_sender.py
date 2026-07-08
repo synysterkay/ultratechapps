@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
-Resend Email Sender
-Sends transactional emails via Resend API.
-Cost: Free tier = 3,000 emails/month, then $20/month for 50K.
+Email Sender — Resend (default) or Mailgun (temporary).
 
-Drop-in replacement — same interface: connect(), send_email(), send_batch(), disconnect().
+Set EMAIL_PROVIDER=mailgun + MAILGUN_API_KEY + MAILGUN_DOMAIN=passedai.io to pin
+all sends to passedai.io while Resend is under review. Unset to restore Resend.
+
+Drop-in interface: connect(), send_email(), send_batch(), disconnect().
 """
 import time
 import os
@@ -60,11 +61,20 @@ def _is_thesis_app(app):
     return app in {'thesis', 'thesis_generator'}
 
 
+def _email_provider():
+    return (os.getenv('EMAIL_PROVIDER') or 'resend').lower()
+
+
+def _is_mailgun():
+    return _email_provider() == 'mailgun'
+
+
 # Keep class name GmailSender so nothing else needs to change
 class GmailSender:
-    """Resend email sender — same interface as previous senders."""
+    """Resend or Mailgun email sender — same interface as previous senders."""
 
-    API_URL = "https://api.resend.com/emails"
+    RESEND_API_URL = "https://api.resend.com/emails"
+    MAILGUN_API_BASE = "https://api.mailgun.net/v3"
 
     # Process-wide dedup: never send the same recipient twice in one run.
     # The thesis orchestrator runs 11 senders in ONE process and each iterates
@@ -86,16 +96,22 @@ class GmailSender:
         cls._emailed_recipients = set()
 
     def __init__(self, sender_email=None, sender_name=None):
-        self.api_key = os.getenv('RESEND_API_KEY')
+        self._use_mailgun = _is_mailgun()
+        self.api_key = (
+            os.getenv('MAILGUN_API_KEY') if self._use_mailgun else os.getenv('RESEND_API_KEY')
+        )
+        self.mailgun_domain = os.getenv('MAILGUN_DOMAIN', 'passedai.io')
         self._explicit_sender_email = sender_email is not None
         self._explicit_sender_name = sender_name is not None
         self.sender_email = sender_email or 'tips@predictifyfootball.com'
         self.sender_name = sender_name or 'Sam'
-        self.delay_between_emails = float(os.getenv('RESEND_SEND_DELAY_SECONDS', '0.25'))
+        delay_env = 'MAILGUN_SEND_DELAY_SECONDS' if self._use_mailgun else 'RESEND_SEND_DELAY_SECONDS'
+        self.delay_between_emails = float(os.getenv(delay_env, '0.25'))
         self.connected = False
 
         if not self.api_key:
-            raise ValueError("RESEND_API_KEY must be set")
+            key_name = 'MAILGUN_API_KEY' if self._use_mailgun else 'RESEND_API_KEY'
+            raise ValueError(f"{key_name} must be set")
 
     @classmethod
     def _supabase_creds(cls):
@@ -294,6 +310,13 @@ class GmailSender:
         used = metrics.get('sent_24h', 0) + cls._run_counts['thesis']
         return used < metrics.get('cap', 0)
 
+    def _mailgun_pinned_email(self, sender_email):
+        """Pin all From addresses to passedai.io when Mailgun is active."""
+        local = (sender_email or '').split('@')[0].lower()
+        if local == 'selka':
+            return os.getenv('MAILGUN_SELKA_SENDER_EMAIL', 'selka@passedai.io')
+        return os.getenv('MAILGUN_SENDER_EMAIL', 'hello@passedai.io')
+
     def _effective_sender(self, app, from_name=None):
         sender_email = self.sender_email
         sender_name = from_name or self.sender_name
@@ -301,10 +324,17 @@ class GmailSender:
             sender_email = os.getenv('THESIS_SENDER_EMAIL', 'hello@thesisgenerator.io')
             if not from_name and not self._explicit_sender_name:
                 sender_name = os.getenv('THESIS_SENDER_NAME', 'Thesis Generator')
+        if self._use_mailgun:
+            sender_email = self._mailgun_pinned_email(sender_email)
         return sender_email, sender_name
 
     def connect(self):
-        """Verify Resend API key works."""
+        """Verify email provider credentials."""
+        if self._use_mailgun:
+            return self._connect_mailgun()
+        return self._connect_resend()
+
+    def _connect_resend(self):
         for attempt in range(2):
             try:
                 resp = requests.get(
@@ -328,6 +358,25 @@ class GmailSender:
                 print(f"❌ Resend connection failed: {e}")
                 return False
         return False
+
+    def _connect_mailgun(self):
+        try:
+            resp = requests.get(
+                f"{self.MAILGUN_API_BASE}/domains/{self.mailgun_domain}",
+                auth=('api', self.api_key),
+                timeout=10,
+            )
+            if resp.status_code == 200:
+                state = resp.json().get('domain', {}).get('state', 'unknown')
+                pinned = self._mailgun_pinned_email(self.sender_email)
+                print(f"✅ Connected to Mailgun domain {self.mailgun_domain} ({state}) — sending as {pinned}")
+                self.connected = True
+                return True
+            print(f"❌ Mailgun auth failed: {resp.status_code} {resp.text[:200]}")
+            return False
+        except Exception as e:
+            print(f"❌ Mailgun connection failed: {e}")
+            return False
 
     def disconnect(self):
         """No-op — REST API, no persistent connection."""
@@ -387,17 +436,35 @@ class GmailSender:
             return 'duplicate'
 
         sender_email, sender_name = self._effective_sender(app, from_name)
-        sender = f"{sender_name} <{sender_email}>"
+        subject_clean = _sanitize_subject(subject)
 
+        if self._use_mailgun:
+            return self._send_mailgun(
+                to_email, subject_clean, html_body, sender_email, sender_name,
+                tags, ref_id, dedup_key, app,
+            )
+        return self._send_resend(
+            to_email, subject_clean, html_body, sender_email, sender_name,
+            tags, ref_id, dedup_key, app,
+        )
+
+    def _mark_sent(self, dedup_key, app):
+        if dedup_key:
+            GmailSender._emailed_recipients.add(dedup_key)
+        if _is_thesis_app(app):
+            GmailSender._run_counts['thesis'] += 1
+
+    def _send_resend(self, to_email, subject, html_body, sender_email, sender_name,
+                     tags, ref_id, dedup_key, app):
+        sender = f"{sender_name} <{sender_email}>"
         payload = {
             "from": sender,
             "to": [to_email],
-            "subject": _sanitize_subject(subject),
+            "subject": subject,
             "html": html_body,
             "reply_to": sender_email,
         }
         if tags:
-            # Resend tag values must match ^[A-Za-z0-9_-]+$; sanitize to be safe.
             payload["tags"] = [
                 {"name": str(t["name"])[:256],
                  "value": _sanitize_tag(str(t["value"]))[:256]}
@@ -408,7 +475,7 @@ class GmailSender:
 
         try:
             resp = requests.post(
-                self.API_URL,
+                self.RESEND_API_URL,
                 headers={
                     "Authorization": f"Bearer {self.api_key}",
                     "Content-Type": "application/json",
@@ -418,18 +485,14 @@ class GmailSender:
             )
 
             if resp.status_code in (200, 201):
-                if dedup_key:
-                    GmailSender._emailed_recipients.add(dedup_key)
-                if _is_thesis_app(app):
-                    GmailSender._run_counts['thesis'] += 1
+                self._mark_sent(dedup_key, app)
                 return 'sent'
 
-            # Rate limited — back off and retry once
             if resp.status_code == 429:
-                print(f"   ⏳ Resend rate limited — backing off...")
+                print("   ⏳ Resend rate limited — backing off...")
                 time.sleep(2)
                 retry = requests.post(
-                    self.API_URL,
+                    self.RESEND_API_URL,
                     headers={
                         "Authorization": f"Bearer {self.api_key}",
                         "Content-Type": "application/json",
@@ -438,15 +501,10 @@ class GmailSender:
                     timeout=15,
                 )
                 if retry.status_code in (200, 201):
-                    if dedup_key:
-                        GmailSender._emailed_recipients.add(dedup_key)
-                    if _is_thesis_app(app):
-                        GmailSender._run_counts['thesis'] += 1
+                    self._mark_sent(dedup_key, app)
                     return 'sent'
 
             error_msg = resp.text[:200]
-
-            # Detect hard bounce
             if self._is_bounce(resp.status_code, resp.text):
                 print(f"   🔴 BOUNCED: {to_email} — {error_msg}")
                 return 'bounced'
@@ -455,6 +513,46 @@ class GmailSender:
             return 'failed'
         except Exception as e:
             print(f"   ❌ Resend send error: {e}")
+            return 'failed'
+
+    def _send_mailgun(self, to_email, subject, html_body, sender_email, sender_name,
+                      tags, ref_id, dedup_key, app):
+        data = {
+            'from': f"{sender_name} <{sender_email}>",
+            'to': to_email,
+            'subject': subject,
+            'html': html_body,
+            'h:Reply-To': sender_email,
+        }
+        if ref_id:
+            data['v:ref_id'] = str(ref_id)[:256]
+        if tags:
+            data['o:tag'] = [
+                f"{t['name']}:{_sanitize_tag(str(t['value']))}"
+                for t in tags if t.get('name') and t.get('value') is not None
+            ]
+
+        try:
+            resp = requests.post(
+                f"{self.MAILGUN_API_BASE}/{self.mailgun_domain}/messages",
+                auth=('api', self.api_key),
+                data=data,
+                timeout=15,
+            )
+
+            if resp.status_code == 200:
+                self._mark_sent(dedup_key, app)
+                return 'sent'
+
+            error_msg = resp.text[:200]
+            if self._is_bounce(resp.status_code, resp.text):
+                print(f"   🔴 BOUNCED: {to_email} — {error_msg}")
+                return 'bounced'
+
+            print(f"   ❌ Mailgun error [{resp.status_code}]: {error_msg}")
+            return 'failed'
+        except Exception as e:
+            print(f"   ❌ Mailgun send error: {e}")
             return 'failed'
 
     def send_batch(self, emails, progress_callback=None):

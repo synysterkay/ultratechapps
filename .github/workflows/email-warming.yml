@@ -49,7 +49,12 @@ jobs:
 
       - name: Run email warming
         env:
+          EMAIL_PROVIDER: ${{ secrets.EMAIL_PROVIDER }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
+          MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+          MAILGUN_SENDER_EMAIL: ${{ secrets.MAILGUN_SENDER_EMAIL }}
+          MAILGUN_SELKA_SENDER_EMAIL: ${{ secrets.MAILGUN_SELKA_SENDER_EMAIL }}
           GMAIL_APP_PWD_ANASKAY_13: ${{ secrets.GMAIL_APP_PWD_ANASKAY_13 }}
           GMAIL_APP_PWD_ADAMMLENIAK: ${{ secrets.GMAIL_APP_PWD_ADAMMLENIAK }}
           GMAIL_APP_PWD_KAYNELTEST: ${{ secrets.GMAIL_APP_PWD_KAYNELTEST }}

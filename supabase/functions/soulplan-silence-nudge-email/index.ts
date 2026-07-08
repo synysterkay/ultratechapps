@@ -18,12 +18,12 @@
 
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { SENDER_POOL_FULL as SENDER_POOL } from "../_shared/sender_pool.ts";
+import { hasEmailCredentials, resolveSender, sendEmail } from "../_shared/email_transport.ts";
 
-const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") || "";
 const FUNCTION_AUTH_KEY = Deno.env.get("FUNCTION_AUTH_KEY") || "";
 
 function pickSender() {
-  return SENDER_POOL[Math.floor(Math.random() * SENDER_POOL.length)];
+  return resolveSender(SENDER_POOL[Math.floor(Math.random() * SENDER_POOL.length)]);
 }
 
 const LANG_NORMALIZE: Record<string, string> = {
@@ -207,9 +207,9 @@ Deno.serve(async (req) => {
   if (FUNCTION_AUTH_KEY && auth !== `Bearer ${FUNCTION_AUTH_KEY}`) {
     return new Response("Unauthorized", { status: 401 });
   }
-  if (!RESEND_API_KEY) {
+  if (!hasEmailCredentials()) {
     return new Response(
-      JSON.stringify({ error: "RESEND_API_KEY not configured" }),
+      JSON.stringify({ error: "email credentials not configured" }),
       { status: 500, headers: { "Content-Type": "application/json" } },
     );
   }
@@ -240,34 +240,27 @@ Deno.serve(async (req) => {
   const sender = pickSender();
   const html = buildHtml(lang, template, sender.name, payload.firstName, payload.partnerName);
 
-  const resendRes = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${RESEND_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: `${sender.name} <${sender.email}>`,
-      to: [payload.email],
-      subject: template.subject,
-      html,
-      tags: [
-        { name: "app", value: "soulplan" },
-        { name: "kind", value: "silence_nudge" },
-        { name: "language", value: lang },
-      ],
-    }),
+  const sendResult = await sendEmail({
+    fromName: sender.name,
+    fromEmail: sender.email,
+    to: String(payload.email),
+    subject: template.subject,
+    html,
+    tags: [
+      { name: "app", value: "soulplan" },
+      { name: "kind", value: "silence_nudge" },
+      { name: "language", value: lang },
+    ],
   });
 
-  const resendData = await resendRes.json().catch(() => ({}));
-  if (!resendRes.ok) {
+  if (!sendResult.ok) {
     return new Response(
-      JSON.stringify({ error: "Resend failed", status: resendRes.status, data: resendData }),
+      JSON.stringify({ error: "send failed", status: sendResult.status, data: sendResult.details }),
       { status: 502, headers: { "Content-Type": "application/json" } },
     );
   }
   return new Response(
-    JSON.stringify({ ok: true, language: lang, id: resendData.id }),
+    JSON.stringify({ ok: true, language: lang, id: sendResult.id }),
     { status: 200, headers: { "Content-Type": "application/json" } },
   );
 });

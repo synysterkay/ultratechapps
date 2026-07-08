@@ -44,6 +44,7 @@ try:
     from firebase_user_loader import FirebaseUserLoader  # noqa: E402
     from firestore_language_loader import FirestoreLanguageLoader  # noqa: E402
     from firestore_activity_loader import FirestoreActivityLoader  # noqa: E402
+    from gmail_sender import GmailSender  # noqa: E402
 except ImportError:
     print('⚠️ Could not import firebase loaders — run from scripts/ dir')
     raise
@@ -416,11 +417,27 @@ def _log_env_presence() -> None:
 
 
 # ─────────────────────────────────────────────────────────
-#  Resend sender — rotates through the v1 sender pool so v2 inherits the
-#  same warmup curve + deliverability monitoring. Hashing on UID keeps each
-#  user assigned to the same sender across days (lower spam-folder risk).
+#  Email sender — rotates through the v1 sender pool (Resend or Mailgun via
+#  gmail_sender.GmailSender). Hashing on UID keeps each user on the same
+#  sender across days.
 # ─────────────────────────────────────────────────────────
 RESEND_KEY = os.environ.get('RESEND_API_KEY', '')
+_EMAIL_SENDER: GmailSender | None = None
+
+
+def _email_configured() -> bool:
+    if (os.getenv('EMAIL_PROVIDER') or 'resend').lower() == 'mailgun':
+        return bool(os.getenv('MAILGUN_API_KEY') and os.getenv('MAILGUN_DOMAIN'))
+    return bool(RESEND_KEY)
+
+
+def _get_email_sender() -> GmailSender:
+    global _EMAIL_SENDER
+    if _EMAIL_SENDER is None:
+        _EMAIL_SENDER = GmailSender()
+        if not _EMAIL_SENDER.connect():
+            raise RuntimeError('email provider connection failed')
+    return _EMAIL_SENDER
 
 # Unsubscribe link signing. Same secret lives on the
 # predictify-unsubscribe Edge Function which verifies the HMAC before
@@ -475,45 +492,37 @@ def _pick_sender(uid: str) -> dict:
 
 
 def _send(to: str, uid: str, email: RenderedEmail, dry_run: bool = False) -> bool:
-    if not RESEND_KEY:
-        print('⚠️ RESEND_API_KEY missing')
+    if not _email_configured():
+        print('⚠️ email credentials missing (RESEND_API_KEY or MAILGUN_*)')
         return False
     sender = _pick_sender(uid)
-    from_header = f"{sender['name']} <{sender['email']}>"
     unsub_url = _build_unsub_url(to)
     html = _build_html(email, unsub_url=unsub_url)
-    text = _build_text(email, unsub_url=unsub_url)
     if dry_run:
         print(f'   [DRY] would send to {to} from {sender["email"]}: {email.subject!r}')
         return True
     try:
-        r = requests.post(
-            'https://api.resend.com/emails',
-            headers={
-                'Authorization': f'Bearer {RESEND_KEY}',
-                'Content-Type': 'application/json',
-            },
-            json={
-                'from': from_header,
-                'to': to,
-                'subject': email.subject,
-                'html': html,
-                # Plain-text fallback drops the multipart/alternative spam
-                # signal that HTML-only emails carry. Most clients render
-                # the HTML; the text part exists so filters don't flag.
-                'text': text,
-                'tags': [
-                    {'name': 'app', 'value': 'predictify'},
-                    {'name': 'kind', 'value': email.kind},
-                    {'name': 'lang', 'value': email.language},
-                    {'name': 'system', 'value': 'v2'},
-                ],
-            },
-            timeout=20,
+        mailer = _get_email_sender()
+        mailer.sender_email = sender['email']
+        mailer.sender_name = sender['name']
+        result = mailer.send_email(
+            to_email=to,
+            subject=email.subject,
+            html_body=html,
+            from_name=sender['name'],
+            tags=[
+                {'name': 'app', 'value': 'predictify'},
+                {'name': 'kind', 'value': email.kind},
+                {'name': 'lang', 'value': email.language},
+                {'name': 'system', 'value': 'v2'},
+            ],
         )
-        if r.status_code in (200, 201, 202):
+        if result == 'sent':
             return True
-        print(f'   ⚠️ Resend {r.status_code}: {r.text[:200]}')
+        if result in ('duplicate', 'suppressed', 'throttled'):
+            print(f'   ⏭️ Skipped {to} — {result}')
+            return False
+        print(f'   ⚠️ Send failed for {to}: {result}')
         return False
     except Exception as e:
         print(f'   ⚠️ Send failed: {e}')

@@ -38,7 +38,12 @@ jobs:
 
       - name: Run v2 orchestrator with streak-saver filter
         env:
+          EMAIL_PROVIDER: ${{ secrets.EMAIL_PROVIDER }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
+          MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+          MAILGUN_SENDER_EMAIL: ${{ secrets.MAILGUN_SENDER_EMAIL }}
+          MAILGUN_SELKA_SENDER_EMAIL: ${{ secrets.MAILGUN_SELKA_SENDER_EMAIL }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}

@@ -9,7 +9,7 @@
  * Centralizing means a brand tweak hits all 20+ templates at once.
  */
 
-const {Resend} = require("resend");
+const {sendEmail, resolveSender} = require("../email_transport");
 const {isRtl} = require("./translator");
 const {APP_STORE_URL, PLAY_STORE_URL} = require("./templates");
 
@@ -27,7 +27,7 @@ const SENDER_POOL = [
 ];
 
 function pickSender() {
-  return SENDER_POOL[Math.floor(Math.random() * SENDER_POOL.length)];
+  return resolveSender(SENDER_POOL[Math.floor(Math.random() * SENDER_POOL.length)]);
 }
 
 /**
@@ -42,7 +42,6 @@ function pickSender() {
  * @returns {Promise<Object>}            Resend response (or throws)
  */
 async function sendSelkaEmail({template, vars, toEmail, locale, resendApiKey}) {
-  const resend = new Resend(resendApiKey);
   const sender = pickSender();
   const interp = (s) => interpolate(s, vars);
 
@@ -55,12 +54,13 @@ async function sendSelkaEmail({template, vars, toEmail, locale, resendApiKey}) {
     locale,
   });
 
-  const res = await resend.emails.send({
-    from: `${sender.name} <${sender.email}>`,
-    to: [toEmail],
+  const res = await sendEmail({
+    apiKey: resendApiKey,
+    fromEmail: sender.email,
+    fromName: sender.name,
+    toEmail,
     subject,
     html,
-    reply_to: sender.email,
   });
   return res;
 }

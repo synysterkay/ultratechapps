@@ -1,6 +1,9 @@
 /**
- * Canonical Resend sender pools — keep in sync with
+ * Canonical sender pools — keep in sync with
  * scripts/deliverability_monitor.py SENDER_POOL.
+ *
+ * When EMAIL_PROVIDER=mailgun, email_transport.ts pins all sends to
+ * hello@passedai.io / selka@passedai.io regardless of pool rotation.
  *
  * bestaiapps.site removed 2026-06-18 — domain retired.
  */

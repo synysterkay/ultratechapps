@@ -10,8 +10,8 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { BOYFRIEND_EMAILS } from "./boyfriend-emails.ts";
 import { GIRLFRIEND_EMAILS } from "./girlfriend-emails.ts";
 import { SENDER_POOL_FULL as SENDER_POOL } from "../_shared/sender_pool.ts";
+import { hasEmailCredentials, isSendFailureBounce, resolveSender, sendEmail } from "../_shared/email_transport.ts";
 
-const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") || "";
 const REF_SALT = Deno.env.get("EMAIL_REF_SALT") || "marketing-tool-v1";
 
 // ── ATTRIBUTION HELPERS ─────────────────────────────────────
@@ -48,7 +48,7 @@ function withUtm(
 }
 
 function getRandomSender() {
-  return SENDER_POOL[Math.floor(Math.random() * SENDER_POOL.length)];
+  return resolveSender(SENDER_POOL[Math.floor(Math.random() * SENDER_POOL.length)]);
 }
 
 // ── APP CONFIG (mapped by app_id passed from mobile apps) ───
@@ -1079,9 +1079,9 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    if (!RESEND_API_KEY) {
+    if (!hasEmailCredentials()) {
       return new Response(
-        JSON.stringify({ error: "RESEND_API_KEY not configured" }),
+        JSON.stringify({ error: "email credentials not configured" }),
         { status: 500, headers: { "Content-Type": "application/json" } }
       );
     }
@@ -1116,44 +1116,30 @@ Deno.serve(async (req: Request) => {
       { name: "segment", value: "new" },
     ];
 
-    // Send via Resend
-    const resendRes = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: `${appConfig.name} <${sender.email}>`,
-        to: [email],
-        subject: emailData.subject,
-        html: html,
-        reply_to: sender.email,
-        tags,
-        headers: { "X-Entity-Ref-ID": ref },
-      }),
+    const sendResult = await sendEmail({
+      fromName: appConfig.name,
+      fromEmail: sender.email,
+      to: email,
+      subject: emailData.subject,
+      html,
+      replyTo: sender.email,
+      tags,
+      refId: ref,
     });
 
-    const resendData = await resendRes.json();
+    if (!sendResult.ok) {
+      console.error(`Email error [${sendResult.status}]:`, sendResult.details);
 
-    if (!resendRes.ok) {
-      console.error(`Resend error [${resendRes.status}]:`, resendData);
-
-      // Detect hard bounce (invalid/non-existent address)
-      const errStr = JSON.stringify(resendData).toLowerCase();
-      const bounceIndicators = ['not found', 'does not exist', 'invalid', 'rejected', 'bounce', 'undeliverable', 'mailbox', 'unknown user'];
-      const isBounce = (resendRes.status === 400 || resendRes.status === 422) && bounceIndicators.some(b => errStr.includes(b));
-
-      if (isBounce) {
+      if (isSendFailureBounce(sendResult)) {
         console.log(`BOUNCED: ${email} — removing from system`);
         return new Response(
-          JSON.stringify({ error: "Bounced", bounced: true, details: resendData }),
+          JSON.stringify({ error: "Bounced", bounced: true, details: sendResult.details }),
           { status: 400, headers: { "Content-Type": "application/json" } }
         );
       }
 
       return new Response(
-        JSON.stringify({ error: "Failed to send email", details: resendData }),
+        JSON.stringify({ error: "Failed to send email", details: sendResult.details }),
         { status: 500, headers: { "Content-Type": "application/json" } }
       );
     }
@@ -1163,7 +1149,7 @@ Deno.serve(async (req: Request) => {
     return new Response(
       JSON.stringify({
         success: true,
-        message_id: resendData.id,
+        message_id: sendResult.id,
         app: appConfig.name,
         language: lang,
       }),

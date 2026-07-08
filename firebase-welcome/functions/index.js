@@ -2,7 +2,7 @@ const { onDocumentCreated } = require("firebase-functions/v2/firestore");
 const { setGlobalOptions } = require("firebase-functions/v2");
 const { defineSecret } = require("firebase-functions/params");
 const admin = require("firebase-admin");
-const https = require("https");
+const {sendEmail, resolveSender} = require("./email_transport");
 
 admin.initializeApp();
 
@@ -25,7 +25,7 @@ const SENDER_POOL = [
 
 // Pick a random sender for each welcome email (spreads reputation)
 function getRandomSender() {
-  return SENDER_POOL[Math.floor(Math.random() * SENDER_POOL.length)];
+  return resolveSender(SENDER_POOL[Math.floor(Math.random() * SENDER_POOL.length)]);
 }
 
 // ── APP CONFIG (mapped by Firebase project ID) ──────────────
@@ -360,47 +360,7 @@ function buildHtml(emailData, appConfig, language, senderName) {
 </html>`;
 }
 
-// ── RESEND SENDER ───────────────────────────────────────────
-function sendViaResend(apiKey, fromEmail, fromName, toEmail, subject, html) {
-  return new Promise((resolve, reject) => {
-    const payload = JSON.stringify({
-      from: `${fromName} <${fromEmail}>`,
-      to: [toEmail],
-      subject: subject,
-      html: html,
-      reply_to: fromEmail,
-    });
-
-    const options = {
-      hostname: "api.resend.com",
-      path: "/emails",
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-        "Content-Length": Buffer.byteLength(payload),
-      },
-    };
-
-    const req = https.request(options, (res) => {
-      let data = "";
-      res.on("data", (chunk) => (data += chunk));
-      res.on("end", () => {
-        if (res.statusCode === 200 || res.statusCode === 201) {
-          console.log(`✅ Welcome email sent to ${toEmail}`);
-          resolve(JSON.parse(data));
-        } else {
-          console.error(`❌ Resend error [${res.statusCode}]: ${data}`);
-          reject(new Error(`Resend ${res.statusCode}: ${data}`));
-        }
-      });
-    });
-
-    req.on("error", reject);
-    req.write(payload);
-    req.end();
-  });
-}
+// ── EMAIL SENDER (Resend or Mailgun via email_transport.js) ──
 
 // ── CLOUD FUNCTION: Firestore trigger on user profile creation ──
 // Each app writes a user doc to "users/{uid}" on first sign-in.
@@ -463,14 +423,15 @@ exports.sendWelcomeEmail = onDocumentCreated(
   const html = buildHtml(emailData, appConfig, language, sender.name);
 
   try {
-    await sendViaResend(
+    await sendEmail({
       apiKey,
-      sender.email,
-      appConfig.name, // from_name = app name (like the main emailer)
-      userEmail,
-      emailData.subject,
-      html
-    );
+      fromEmail: sender.email,
+      fromName: appConfig.name,
+      toEmail: userEmail,
+      subject: emailData.subject,
+      html,
+    });
+    console.log(`✅ Welcome email sent to ${userEmail}`);
 
     // Mark welcome email as sent in Firestore
     await snap.ref.update({ welcome_email_sent: true, welcome_email_at: new Date().toISOString() });

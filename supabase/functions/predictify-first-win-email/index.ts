@@ -29,8 +29,8 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
 import { SENDER_POOL_PREDICTIFY as SENDER_POOL } from "../_shared/sender_pool.ts";
+import { hasEmailCredentials, resolveSender, sendEmail } from "../_shared/email_transport.ts";
 
-const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY") || "";
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL") || "";
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
 const REF_SALT = Deno.env.get("EMAIL_REF_SALT") || "marketing-tool-v1";
@@ -183,7 +183,7 @@ Deno.serve(async (req) => {
     });
   }
   if (req.method !== "POST") return new Response("Method not allowed", { status: 405 });
-  if (!RESEND_API_KEY) return new Response(JSON.stringify({ error: "RESEND_API_KEY missing" }), { status: 500 });
+  if (!hasEmailCredentials()) return new Response(JSON.stringify({ error: "email credentials missing" }), { status: 500 });
 
   let payload: Record<string, unknown>;
   try { payload = await req.json(); }
@@ -243,7 +243,7 @@ Deno.serve(async (req) => {
   const paragraphs = tpl.body.map((p) => interpolate(p, vars));
   const ctaText = tpl.cta;
 
-  const sender = pickSender(uid);
+  const sender = resolveSender(pickSender(uid));
   const ref = await userRef(email);
   const deeplink = fixtureId
     ? `https://predictifyfootball.com/?ref=email&kind=${KIND}&fixture=${fixtureId}`
@@ -268,33 +268,26 @@ Deno.serve(async (req) => {
     { name: "system", value: "instant_v1" },
   ];
 
-  const resendRes = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      from: `${sender.name} <${sender.email}>`,
-      to: [email],
-      subject,
-      html,
-      text,
-      reply_to: sender.email,
-      tags,
-      headers: { "X-Entity-Ref-ID": ref },
-    }),
+  const sendResult = await sendEmail({
+    fromName: sender.name,
+    fromEmail: sender.email,
+    to: email,
+    subject,
+    html,
+    text,
+    replyTo: sender.email,
+    tags,
+    refId: ref,
   });
 
-  let resendData: Record<string, unknown>;
-  try { resendData = await resendRes.json(); }
-  catch { resendData = { raw: await resendRes.text() }; }
-
-  if (!resendRes.ok) {
-    console.error(`Resend ${resendRes.status}: ${JSON.stringify(resendData)}`);
-    return new Response(JSON.stringify({ error: "send failed", details: resendData }), {
+  if (!sendResult.ok) {
+    console.error(`Email send ${sendResult.status}: ${JSON.stringify(sendResult.details)}`);
+    return new Response(JSON.stringify({ error: "send failed", details: sendResult.details }), {
       status: 500, headers: { "Content-Type": "application/json" },
     });
   }
 
-  const messageId = String((resendData as Record<string, unknown>).id || "");
+  const messageId = sendResult.id || "";
   const { error: insertErr } = await supabase
     .from("instant_emails_sent")
     .insert({
