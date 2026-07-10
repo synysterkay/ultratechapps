@@ -1,126 +1,19 @@
 {
-  "warming_mode": "two_tier",
-  "notes": "Full warming = opens + replies (Cloudflare Email Routing). Open-only = sends from Resend, Gmail opens via IMAP, no replies.",
-  "full_warming_domains": {
-    "academicsatire.com": {
-      "cloudflare": true,
-      "warmer_addresses": [
-        "hello@academicsatire.com",
-        "team@academicsatire.com"
-      ],
-      "forwarding": {
-        "hello@academicsatire.com": "adammleniak@gmail.com",
-        "team@academicsatire.com": "kaynelpl@gmail.com"
-      }
-    }
-  },
+  "warming_mode": "open_only",
+  "notes": "SMTP2GO active domains only (2026-07). Sends via SMTP2GO; Gmail seeds open via IMAP.",
+  "full_warming_domains": {},
   "open_only_domains": {
-    "aibettips.io": {
-      "sender_addresses": [
-        "hello@aibettips.io",
-        "tips@aibettips.io",
-        "support@aibettips.io"
-      ],
+    "breakuprelief.com": {
+      "sender_addresses": ["hello@breakuprelief.com"],
       "seed_gmail": "anasblanew2@gmail.com"
     },
-    "predictifyfootball.com": {
-      "sender_addresses": [
-        "tips@predictifyfootball.com",
-        "hello@predictifyfootball.com",
-        "info@predictifyfootball.com"
-      ],
+    "kaynel.solutions": {
+      "sender_addresses": ["hello@kaynel.solutions"],
       "seed_gmail": "passedai@gmail.com"
     },
-    "thesisgenerator.io": {
-      "sender_addresses": [
-        "hello@thesisgenerator.io",
-        "support@thesisgenerator.io",
-        "team@thesisgenerator.io"
-      ],
-      "seed_gmail": "testkaynel@gmail.com"
-    },
     "passedai.io": {
-      "sender_addresses": [
-        "hello@passedai.io",
-        "info@passedai.io",
-        "team@passedai.io"
-      ],
+      "sender_addresses": ["hello@passedai.io"],
       "seed_gmail": "testkaynel@gmail.com"
-    },
-    "kaynel.solutions": {
-      "sender_addresses": [
-        "hello@kaynel.solutions",
-        "team@kaynel.solutions",
-        "support@kaynel.solutions"
-      ],
-      "seed_gmail": "kaynelpl@gmail.com"
     }
-  },
-  "gmail_accounts": [
-    "kayneltest@gmail.com",
-    "testkaynel@gmail.com",
-    "kaynelpl@gmail.com",
-    "adammleniak@gmail.com",
-    "kaynelapps@gmail.com",
-    "adava9176@gmail.com",
-    "anasblanew2@gmail.com",
-    "passedai@gmail.com"
-  ],
-  "auto_scaling": {
-    "green": {
-      "description": "open_rate >= 15% AND bounce_rate < 2%",
-      "marketing_cap_per_domain": 420,
-      "warming_per_domain": 10
-    },
-    "yellow": {
-      "description": "open_rate 5-15% OR bounce_rate 2-3%",
-      "marketing_cap_per_domain": 150,
-      "warming_per_domain": 20
-    },
-    "red": {
-      "description": "open_rate < 5% OR bounce_rate > 3%",
-      "marketing_cap_per_domain": 50,
-      "warming_per_domain": 30
-    },
-    "unknown": {
-      "description": "No data or tracking issue. Bumped to 313 on 2026-05-04 (after 3 weeks of warming + bounce rate sub-0.2% all week) \u2014 total 8 senders \u00d7 313 = 2504/day. Next +25% step up to 391/sender (3128/day) after 7 days of webhook engagement data confirms healthy open/click rates. Will drop back to a lower number if/when we add a brand-new sender domain to the pool.",
-      "marketing_cap_per_domain": 313,
-      "warming_per_domain": 25
-    }
-  },
-  "ramp_schedule": {
-    "week_1": {
-      "warm_per_sender": 5,
-      "total_target": 35
-    },
-    "week_2": {
-      "warm_per_sender": 10,
-      "total_target": 70
-    },
-    "week_3": {
-      "warm_per_sender": 15,
-      "total_target": 105
-    },
-    "_comment_week_4_plus": "Reduced 2026-05-05 from 20 \u2192 18 per sender (160\u2192144/day total, ~72 per cycle) per user request \u2014 keeps warming-to-marketing ratio at ~5.7% of the 2504/day Resend volume, still within the healthy 5-15% range. Bump back up if open rate on warming traffic drops or marketing reputation degrades.",
-    "week_4_plus": {
-      "warm_per_sender": 18,
-      "total_target": 144
-    }
-  },
-  "timing": {
-    "cron_schedule_1": "0 10 * * *",
-    "cron_schedule_2": "0 15 * * *",
-    "delay_between_sends_min_sec": 600,
-    "delay_between_sends_max_sec": 2700,
-    "delay_before_open_min_sec": 300,
-    "delay_before_open_max_sec": 1800,
-    "delay_before_reply_min_sec": 600,
-    "delay_before_reply_max_sec": 3600
-  },
-  "reply_behavior": {
-    "open_only_pct": 30,
-    "open_and_reply_pct": 40,
-    "open_reply_thread_pct": 20,
-    "spam_rescue_pct": 10
   }
 }

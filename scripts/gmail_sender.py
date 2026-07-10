@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Email Sender — Resend (default) or Mailgun (temporary).
+Email Sender — Resend (default), Mailgun, or SMTP2GO.
 
-Set EMAIL_PROVIDER=mailgun + MAILGUN_API_KEY + MAILGUN_DOMAIN=passedai.io to pin
-all sends to passedai.io while Resend is under review. Unset to restore Resend.
+Set EMAIL_PROVIDER=smtp2go + SMTP2GO_API_KEY for multi-domain SMTP2GO sends.
+Set EMAIL_PROVIDER=mailgun + MAILGUN_* to pin to passedai.io (legacy bridge).
 
 Drop-in interface: connect(), send_email(), send_batch(), disconnect().
 """
@@ -69,12 +69,25 @@ def _is_mailgun():
     return _email_provider() == 'mailgun'
 
 
+def _is_smtp2go():
+    return _email_provider() == 'smtp2go'
+
+
+def _api_key_env_name():
+    if _is_mailgun():
+        return 'MAILGUN_API_KEY'
+    if _is_smtp2go():
+        return 'SMTP2GO_API_KEY'
+    return 'RESEND_API_KEY'
+
+
 # Keep class name GmailSender so nothing else needs to change
 class GmailSender:
-    """Resend or Mailgun email sender — same interface as previous senders."""
+    """Resend, Mailgun, or SMTP2GO email sender — same interface as previous senders."""
 
     RESEND_API_URL = "https://api.resend.com/emails"
     MAILGUN_API_BASE = "https://api.mailgun.net/v3"
+    SMTP2GO_API_URL = "https://api.smtp2go.com/v3/email/send"
 
     # Process-wide dedup: never send the same recipient twice in one run.
     # The thesis orchestrator runs 11 senders in ONE process and each iterates
@@ -97,21 +110,24 @@ class GmailSender:
 
     def __init__(self, sender_email=None, sender_name=None):
         self._use_mailgun = _is_mailgun()
-        self.api_key = (
-            os.getenv('MAILGUN_API_KEY') if self._use_mailgun else os.getenv('RESEND_API_KEY')
-        )
+        self._use_smtp2go = _is_smtp2go()
+        self.api_key = os.getenv(_api_key_env_name())
         self.mailgun_domain = os.getenv('MAILGUN_DOMAIN', 'passedai.io')
         self._explicit_sender_email = sender_email is not None
         self._explicit_sender_name = sender_name is not None
-        self.sender_email = sender_email or 'tips@predictifyfootball.com'
+        self.sender_email = sender_email or 'hello@passedai.io'
         self.sender_name = sender_name or 'Sam'
-        delay_env = 'MAILGUN_SEND_DELAY_SECONDS' if self._use_mailgun else 'RESEND_SEND_DELAY_SECONDS'
+        if self._use_mailgun:
+            delay_env = 'MAILGUN_SEND_DELAY_SECONDS'
+        elif self._use_smtp2go:
+            delay_env = 'SMTP2GO_SEND_DELAY_SECONDS'
+        else:
+            delay_env = 'RESEND_SEND_DELAY_SECONDS'
         self.delay_between_emails = float(os.getenv(delay_env, '0.25'))
         self.connected = False
 
         if not self.api_key:
-            key_name = 'MAILGUN_API_KEY' if self._use_mailgun else 'RESEND_API_KEY'
-            raise ValueError(f"{key_name} must be set")
+            raise ValueError(f"{_api_key_env_name()} must be set")
 
     @classmethod
     def _supabase_creds(cls):
@@ -321,7 +337,7 @@ class GmailSender:
         sender_email = self.sender_email
         sender_name = from_name or self.sender_name
         if _is_thesis_app(app) and not self._explicit_sender_email:
-            sender_email = os.getenv('THESIS_SENDER_EMAIL', 'hello@thesisgenerator.io')
+            sender_email = os.getenv('THESIS_SENDER_EMAIL', 'hello@passedai.io')
             if not from_name and not self._explicit_sender_name:
                 sender_name = os.getenv('THESIS_SENDER_NAME', 'Thesis Generator')
         if self._use_mailgun:
@@ -332,6 +348,8 @@ class GmailSender:
         """Verify email provider credentials."""
         if self._use_mailgun:
             return self._connect_mailgun()
+        if self._use_smtp2go:
+            return self._connect_smtp2go()
         return self._connect_resend()
 
     def _connect_resend(self):
@@ -378,6 +396,44 @@ class GmailSender:
             print(f"❌ Mailgun connection failed: {e}")
             return False
 
+    def _connect_smtp2go(self):
+        try:
+            resp = requests.post(
+                "https://api.smtp2go.com/v3/domain/view",
+                headers={
+                    "X-Smtp2go-Api-Key": self.api_key,
+                    "Content-Type": "application/json",
+                },
+                json={},
+                timeout=10,
+            )
+            if resp.status_code == 200:
+                domains = resp.json().get('data', {}).get('domains', [])
+                verified = []
+                for entry in domains:
+                    d = (entry or {}).get('domain', {})
+                    name = d.get('fulldomain')
+                    if not name:
+                        continue
+                    ok = d.get('dkim_verified') and d.get('rpath_verified')
+                    verified.append(f"{name}{'✓' if ok else '…'}")
+                print(f"✅ Connected to SMTP2GO as {self.sender_email} (domains: {', '.join(verified) or 'none yet'})")
+                self.connected = True
+                return True
+
+            body = resp.json() if resp.headers.get('content-type', '').startswith('application/json') else {}
+            err_code = str((body.get('data') or {}).get('error_code', ''))
+            if resp.status_code == 400 and 'ENDPOINT_PERMISSION_DENIED' in err_code:
+                print(f"✅ SMTP2GO API key OK — verify sender domains in the SMTP2GO dashboard")
+                self.connected = True
+                return True
+
+            print(f"❌ SMTP2GO auth failed: {resp.status_code} {resp.text[:200]}")
+            return False
+        except Exception as e:
+            print(f"❌ SMTP2GO connection failed: {e}")
+            return False
+
     def disconnect(self):
         """No-op — REST API, no persistent connection."""
         self.connected = False
@@ -409,8 +465,13 @@ class GmailSender:
         Returns: 'sent' on success, 'bounced' if address is invalid,
         'duplicate' if this recipient was already emailed in this run,
         'suppressed' if blocked by durable suppression, 'throttled' if the
-        Thesis auto-ramp daily cap has been reached, 'failed' otherwise.
+        Thesis auto-ramp daily cap has been reached, 'paused' if sending is
+        globally disabled, 'failed' otherwise.
         """
+        if (os.getenv('EMAIL_SENDING_PAUSED') or '').lower() in ('1', 'true', 'yes'):
+            print('   ⏸️ Email sending paused (EMAIL_SENDING_PAUSED)')
+            return 'paused'
+
         if not self.connected:
             print("   ❌ Not connected. Call connect() first.")
             return 'failed'
@@ -440,6 +501,11 @@ class GmailSender:
 
         if self._use_mailgun:
             return self._send_mailgun(
+                to_email, subject_clean, html_body, sender_email, sender_name,
+                tags, ref_id, dedup_key, app,
+            )
+        if self._use_smtp2go:
+            return self._send_smtp2go(
                 to_email, subject_clean, html_body, sender_email, sender_name,
                 tags, ref_id, dedup_key, app,
             )
@@ -553,6 +619,60 @@ class GmailSender:
             return 'failed'
         except Exception as e:
             print(f"   ❌ Mailgun send error: {e}")
+            return 'failed'
+
+    def _send_smtp2go(self, to_email, subject, html_body, sender_email, sender_name,
+                      tags, ref_id, dedup_key, app):
+        payload = {
+            'sender': f"{sender_name} <{sender_email}>",
+            'to': [to_email],
+            'subject': subject,
+            'html_body': html_body,
+            'custom_headers': [{'header': 'Reply-To', 'value': sender_email}],
+        }
+        if ref_id:
+            payload['custom_headers'].append({
+                'header': 'X-Entity-Ref-ID',
+                'value': str(ref_id)[:256],
+            })
+        if tags:
+            for t in tags:
+                if t.get('name') and t.get('value') is not None:
+                    payload['custom_headers'].append({
+                        'header': f"X-Tag-{str(t['name'])[:64]}",
+                        'value': _sanitize_tag(str(t['value']))[:256],
+                    })
+
+        try:
+            resp = requests.post(
+                self.SMTP2GO_API_URL,
+                headers={
+                    'X-Smtp2go-Api-Key': self.api_key,
+                    'Content-Type': 'application/json',
+                    'accept': 'application/json',
+                },
+                json=payload,
+                timeout=15,
+            )
+
+            if resp.status_code == 200:
+                data = resp.json().get('data', {})
+                if data.get('error') or data.get('failed', 0) > 0:
+                    error_msg = json.dumps(data)[:200]
+                    print(f"   ❌ SMTP2GO error: {error_msg}")
+                    return 'failed'
+                self._mark_sent(dedup_key, app)
+                return 'sent'
+
+            error_msg = resp.text[:200]
+            if self._is_bounce(resp.status_code, resp.text):
+                print(f"   🔴 BOUNCED: {to_email} — {error_msg}")
+                return 'bounced'
+
+            print(f"   ❌ SMTP2GO error [{resp.status_code}]: {error_msg}")
+            return 'failed'
+        except Exception as e:
+            print(f"   ❌ SMTP2GO send error: {e}")
             return 'failed'
 
     def send_batch(self, emails, progress_callback=None):

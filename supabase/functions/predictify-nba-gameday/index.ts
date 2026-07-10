@@ -144,6 +144,14 @@ Deno.serve(async (req) => {
     });
   }
 
+  const sendingPaused = (Deno.env.get("EMAIL_SENDING_PAUSED") || "").toLowerCase();
+  if (sendingPaused === "1" || sendingPaused === "true" || sendingPaused === "yes") {
+    return new Response(
+      JSON.stringify({ paused: true, message: "Email sending paused — NBA game-day cron skipped" }),
+      { status: 200, headers: { "Content-Type": "application/json" } },
+    );
+  }
+
   const start = Date.now();
   const deadline = start + DEADLINE_MS;
 

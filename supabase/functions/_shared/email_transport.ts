@@ -1,12 +1,14 @@
 /**
- * Pluggable email transport — Resend (default) or Mailgun (temporary).
+ * Pluggable email transport — Resend, Mailgun, or SMTP2GO.
  *
- * Set EMAIL_PROVIDER=mailgun + MAILGUN_API_KEY + MAILGUN_DOMAIN=passedai.io
- * to pin all sends to passedai.io while Resend is under review.
- * Unset EMAIL_PROVIDER (or set to "resend") to restore multi-domain Resend.
+ * Set EMAIL_PROVIDER=smtp2go + SMTP2GO_API_KEY for multi-domain SMTP2GO sends.
+ * Set EMAIL_PROVIDER=mailgun + MAILGUN_* to pin to passedai.io (legacy bridge).
+ * Unset EMAIL_PROVIDER (or set to "resend") for Resend.
  */
 
 import type { SenderIdentity } from "./sender_pool.ts";
+
+export type EmailProviderName = "resend" | "mailgun" | "smtp2go";
 
 export interface EmailTag {
   name: string;
@@ -44,19 +46,30 @@ const BOUNCE_INDICATORS = [
   "unknown user",
 ];
 
-export function emailProvider(): "resend" | "mailgun" {
+export function emailProvider(): EmailProviderName {
   const p = (Deno.env.get("EMAIL_PROVIDER") || "resend").toLowerCase();
-  return p === "mailgun" ? "mailgun" : "resend";
+  if (p === "mailgun") return "mailgun";
+  if (p === "smtp2go") return "smtp2go";
+  return "resend";
+}
+
+export function isEmailSendingPaused(): boolean {
+  const v = (Deno.env.get("EMAIL_SENDING_PAUSED") || "").toLowerCase();
+  return v === "1" || v === "true" || v === "yes";
 }
 
 export function hasEmailCredentials(): boolean {
-  if (emailProvider() === "mailgun") {
+  const provider = emailProvider();
+  if (provider === "mailgun") {
     return !!(Deno.env.get("MAILGUN_API_KEY") && Deno.env.get("MAILGUN_DOMAIN"));
+  }
+  if (provider === "smtp2go") {
+    return !!Deno.env.get("SMTP2GO_API_KEY");
   }
   return !!Deno.env.get("RESEND_API_KEY");
 }
 
-/** Pin sender to passedai.io when Mailgun is active; pass through on Resend. */
+/** Pin sender to passedai.io when Mailgun is active; pass through otherwise. */
 export function resolveSender(poolSender: SenderIdentity): SenderIdentity {
   if (emailProvider() !== "mailgun") return poolSender;
 
@@ -77,6 +90,24 @@ export function isSendFailureBounce(result: SendEmailResult): boolean {
 
 function sanitizeTag(value: string): string {
   return value.replace(/[^A-Za-z0-9_-]/g, "_").slice(0, 256);
+}
+
+function smtp2goHeaders(params: SendEmailParams): Array<{ header: string; value: string }> {
+  const headers: Array<{ header: string; value: string }> = [];
+  const replyTo = params.replyTo || params.fromEmail;
+  if (replyTo) {
+    headers.push({ header: "Reply-To", value: replyTo });
+  }
+  if (params.refId) {
+    headers.push({ header: "X-Entity-Ref-ID", value: String(params.refId).slice(0, 256) });
+  }
+  for (const tag of params.tags || []) {
+    headers.push({
+      header: `X-Tag-${String(tag.name).slice(0, 64)}`,
+      value: sanitizeTag(String(tag.value)).slice(0, 256),
+    });
+  }
+  return headers;
 }
 
 async function sendViaResend(params: SendEmailParams): Promise<SendEmailResult> {
@@ -165,9 +196,57 @@ async function sendViaMailgun(params: SendEmailParams): Promise<SendEmailResult>
   return { ok: true, status: res.status, id, details };
 }
 
-export async function sendEmail(params: SendEmailParams): Promise<SendEmailResult> {
-  if (emailProvider() === "mailgun") {
-    return sendViaMailgun(params);
+async function sendViaSmtp2go(params: SendEmailParams): Promise<SendEmailResult> {
+  const apiKey = Deno.env.get("SMTP2GO_API_KEY") || "";
+  const resolved = resolveSender({ email: params.fromEmail, name: params.fromName });
+
+  const body: Record<string, unknown> = {
+    sender: `${params.fromName} <${resolved.email}>`,
+    to: [params.to],
+    subject: params.subject,
+    html_body: params.html,
+  };
+  if (params.text) body.text_body = params.text;
+
+  const customHeaders = smtp2goHeaders({ ...params, fromEmail: resolved.email });
+  if (customHeaders.length) body.custom_headers = customHeaders;
+
+  const res = await fetch("https://api.smtp2go.com/v3/email/send", {
+    method: "POST",
+    headers: {
+      "X-Smtp2go-Api-Key": apiKey,
+      "Content-Type": "application/json",
+      accept: "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+
+  let details: unknown;
+  try {
+    details = await res.json();
+  } catch {
+    details = { raw: await res.text() };
   }
+
+  if (!res.ok) {
+    return { ok: false, status: res.status, details };
+  }
+
+  const data = (details as Record<string, unknown>).data as Record<string, unknown> | undefined;
+  if (data?.error || (typeof data?.failed === "number" && data.failed > 0)) {
+    return { ok: false, status: 400, details };
+  }
+
+  const id = String(data?.email_id || "");
+  return { ok: true, status: res.status, id, details };
+}
+
+export async function sendEmail(params: SendEmailParams): Promise<SendEmailResult> {
+  if (isEmailSendingPaused()) {
+    return { ok: false, status: 503, details: { paused: true, message: "Email sending paused" } };
+  }
+  const provider = emailProvider();
+  if (provider === "mailgun") return sendViaMailgun(params);
+  if (provider === "smtp2go") return sendViaSmtp2go(params);
   return sendViaResend(params);
 }

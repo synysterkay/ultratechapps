@@ -1,18 +1,30 @@
 /**
  * Pluggable email transport for Firebase Cloud Functions.
- * Set EMAIL_PROVIDER=mailgun to pin sends to passedai.io.
+ * EMAIL_PROVIDER: resend | mailgun | smtp2go
  */
 
 const https = require("https");
 const querystring = require("querystring");
 
 function emailProvider() {
-  return (process.env.EMAIL_PROVIDER || "resend").toLowerCase() === "mailgun" ? "mailgun" : "resend";
+  const p = (process.env.EMAIL_PROVIDER || "resend").toLowerCase();
+  if (p === "mailgun") return "mailgun";
+  if (p === "smtp2go") return "smtp2go";
+  return "resend";
+}
+
+function isEmailSendingPaused() {
+  const v = (process.env.EMAIL_SENDING_PAUSED || "").toLowerCase();
+  return v === "1" || v === "true" || v === "yes";
 }
 
 function hasEmailCredentials(apiKey) {
-  if (emailProvider() === "mailgun") {
+  const provider = emailProvider();
+  if (provider === "mailgun") {
     return !!(process.env.MAILGUN_API_KEY && process.env.MAILGUN_DOMAIN);
+  }
+  if (provider === "smtp2go") {
+    return !!process.env.SMTP2GO_API_KEY;
   }
   return !!apiKey;
 }
@@ -88,8 +100,8 @@ function sendViaMailgun(fromEmail, fromName, toEmail, subject, html) {
       method: "POST",
       headers: {
         Authorization: `Basic ${auth}`,
-        "Content-Type": "application/x-www-form-urlencoded",
         "Content-Length": Buffer.byteLength(body),
+        "Content-Type": "application/x-www-form-urlencoded",
       },
     };
 
@@ -111,11 +123,60 @@ function sendViaMailgun(fromEmail, fromName, toEmail, subject, html) {
   });
 }
 
+function sendViaSmtp2go(fromEmail, fromName, toEmail, subject, html) {
+  return new Promise((resolve, reject) => {
+    const apiKey = process.env.SMTP2GO_API_KEY;
+    const sender = resolveSender({email: fromEmail, name: fromName});
+    const payload = JSON.stringify({
+      sender: `${fromName} <${sender.email}>`,
+      to: [toEmail],
+      subject,
+      html_body: html,
+      custom_headers: [{header: "Reply-To", value: sender.email}],
+    });
+
+    const options = {
+      hostname: "api.smtp2go.com",
+      path: "/v3/email/send",
+      method: "POST",
+      headers: {
+        "X-Smtp2go-Api-Key": apiKey,
+        "Content-Type": "application/json",
+        accept: "application/json",
+        "Content-Length": Buffer.byteLength(payload),
+      },
+    };
+
+    const req = https.request(options, (res) => {
+      let data = "";
+      res.on("data", (chunk) => (data += chunk));
+      res.on("end", () => {
+        if (res.statusCode === 200) {
+          resolve(JSON.parse(data));
+        } else {
+          reject(new Error(`SMTP2GO ${res.statusCode}: ${data}`));
+        }
+      });
+    });
+
+    req.on("error", reject);
+    req.write(payload);
+    req.end();
+  });
+}
+
 async function sendEmail({apiKey, fromEmail, fromName, toEmail, subject, html}) {
-  if (emailProvider() === "mailgun") {
+  if (isEmailSendingPaused()) {
+    throw new Error("Email sending paused (EMAIL_SENDING_PAUSED)");
+  }
+  const provider = emailProvider();
+  if (provider === "mailgun") {
     return sendViaMailgun(fromEmail, fromName, toEmail, subject, html);
+  }
+  if (provider === "smtp2go") {
+    return sendViaSmtp2go(fromEmail, fromName, toEmail, subject, html);
   }
   return sendViaResend(apiKey, fromEmail, fromName, toEmail, subject, html);
 }
 
-module.exports = {emailProvider, hasEmailCredentials, resolveSender, sendEmail};
+module.exports = {emailProvider, hasEmailCredentials, resolveSender, sendEmail, isEmailSendingPaused};

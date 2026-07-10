@@ -23,12 +23,21 @@ const {translateTemplate, normalizeLocale} = require("./translator");
 const {sendSelkaEmail} = require("./sender");
 
 const resendApiKey = defineSecret("RESEND_API_KEY");
+const mailgunApiKey = defineSecret("MAILGUN_API_KEY");
 const deepseekApiKey = defineSecret("DEEPSEEK_API_KEY");
+
+const useMailgun = (process.env.EMAIL_PROVIDER || "resend").toLowerCase() === "mailgun";
+const useSmtp2go = (process.env.EMAIL_PROVIDER || "resend").toLowerCase() === "smtp2go";
+const selkaSecrets = useSmtp2go
+  ? [deepseekApiKey]
+  : useMailgun
+    ? [mailgunApiKey, deepseekApiKey]
+    : [resendApiKey, mailgunApiKey, deepseekApiKey];
 
 exports.sendSelkaWelcome = onDocumentCreated(
     {
       document: "users/{userId}",
-      secrets: [resendApiKey, deepseekApiKey],
+      secrets: selkaSecrets,
     },
     async (event) => {
       const projectId = process.env.GCLOUD_PROJECT;
@@ -62,7 +71,7 @@ exports.sendSelkaWelcome = onDocumentCreated(
           vars,
           toEmail: user.email,
           locale,
-          resendApiKey: resendApiKey.value(),
+          resendApiKey: (useMailgun || useSmtp2go) ? "" : resendApiKey.value(),
         });
         await snap.ref.update({
           welcome_email_sent: true,

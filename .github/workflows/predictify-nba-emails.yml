@@ -50,6 +50,7 @@ jobs:
       PREDICTIFY_TEMPLATES_DIR: 'templates_nba'
       # ── Secrets ──
       EMAIL_PROVIDER: ${{ secrets.EMAIL_PROVIDER }}
+      SMTP2GO_API_KEY: ${{ secrets.SMTP2GO_API_KEY }}
       RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
       MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
       MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}

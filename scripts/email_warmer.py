@@ -117,19 +117,34 @@ def _get_domain_health(domain):
 # ─── SEND VIA RESEND ────────────────────────────────────
 
 def send_warming_email(from_email, from_name, to_email, subject, body, dry_run=False):
-    """Send a warming email via Resend API."""
+    """Send a warming email via configured provider (SMTP2GO / Resend)."""
     if dry_run:
         print(f"   [DRY RUN] Would send: {from_email} → {to_email}: '{subject}'")
         return True
-
-    if not RESEND_API_KEY:
-        print("   ❌ RESEND_API_KEY not set")
-        return False
 
     html_body = f"""<div style="font-family: -apple-system, Arial, sans-serif; font-size: 14px; color: #333; line-height: 1.6;">
 <p>{body}</p>
 <p style="margin-top: 20px; color: #666;">Best,<br>{from_name}</p>
 </div>"""
+
+    provider = (os.getenv("EMAIL_PROVIDER") or "resend").lower()
+    if provider in ("smtp2go", "mailgun"):
+        from scripts.gmail_sender import GmailSender
+        sender = GmailSender(sender_email=from_email, sender_name=from_name)
+        if not sender.connect():
+            return False
+        result = sender.send_email(
+            to_email, subject, html_body,
+            tags=[{"name": "kind", "value": "warming"}],
+        )
+        ok = result == "sent"
+        if ok:
+            print(f"   ✅ Sent: {from_email} → {to_email}: '{subject}'")
+        return ok
+
+    if not RESEND_API_KEY:
+        print("   ❌ RESEND_API_KEY not set")
+        return False
 
     try:
         resp = requests.post(
@@ -144,7 +159,6 @@ def send_warming_email(from_email, from_name, to_email, subject, body, dry_run=F
                 "subject": subject,
                 "html": html_body,
                 "reply_to": from_email,
-                # Tag as warming so it's filtered out of marketing health metrics.
                 "tags": [{"name": "kind", "value": "warming"}],
             },
             timeout=15,

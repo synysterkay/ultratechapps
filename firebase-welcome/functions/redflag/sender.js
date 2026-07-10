@@ -14,16 +14,8 @@ const {isRtl} = require("./translator");
 const {APP_STORE_URL, PLAY_STORE_URL} = require("./templates");
 
 const SENDER_POOL = [
-  // selka.app not yet verified in Resend — re-enable this entry once
-  // DKIM + SPF records land for selka.app:
-  //   {email: "hello@selka.app", name: "Selka"},
-  // kaynel.pl (DNS failed) + vitazelki.pl (retired) removed 2026-05-23.
   {email: "selka@kaynel.solutions", name: "Selka"},
-  {email: "selka@aibettips.io", name: "Selka"},
-  {email: "selka@predictifyfootball.com", name: "Selka"},
-  {email: "selka@thesisgenerator.io", name: "Selka"},
   {email: "selka@passedai.io", name: "Selka"},
-  {email: "selka@academicsatire.com", name: "Selka"},
 ];
 
 function pickSender() {

@@ -2,7 +2,7 @@ const { onDocumentCreated } = require("firebase-functions/v2/firestore");
 const { setGlobalOptions } = require("firebase-functions/v2");
 const { defineSecret } = require("firebase-functions/params");
 const admin = require("firebase-admin");
-const {sendEmail, resolveSender} = require("./email_transport");
+const {sendEmail, resolveSender, hasEmailCredentials} = require("./email_transport");
 
 admin.initializeApp();
 
@@ -10,17 +10,25 @@ setGlobalOptions({ region: "us-central1" });
 
 // ── CONFIG ──────────────────────────────────────────────────
 const resendApiKey = defineSecret("RESEND_API_KEY");
+const mailgunApiKey = defineSecret("MAILGUN_API_KEY");
+
+function emailProviderName() {
+  return (process.env.EMAIL_PROVIDER || "resend").toLowerCase();
+}
+const useMailgun = emailProviderName() === "mailgun";
+const useSmtp2go = emailProviderName() === "smtp2go";
+const welcomeEmailSecrets = useSmtp2go
+  ? []
+  : useMailgun
+    ? [mailgunApiKey]
+    : [resendApiKey, mailgunApiKey];
 
 // Sender rotation pool — same 7 domains as the main system
 const SENDER_POOL = [
-  // Keep in sync with supabase/functions/_shared/sender_pool.ts
+  // Keep in sync with supabase/functions/_shared/sender_pool.ts (SMTP2GO active domains)
+  { email: "hello@breakuprelief.com", name: "Casey" },
   { email: "hello@kaynel.solutions", name: "Alex" },
-  { email: "hello@aibettips.io", name: "Jordan" },
-  { email: "tips@predictifyfootball.com", name: "Sam" },
-  { email: "hello@thesisgenerator.io", name: "Morgan" },
   { email: "hello@passedai.io", name: "Taylor" },
-  { email: "hello@academicsatire.com", name: "Riley" },
-  { email: "tips@predictify.fun", name: "Drew" },
 ];
 
 // Pick a random sender for each welcome email (spreads reputation)
@@ -370,7 +378,7 @@ function buildHtml(emailData, appConfig, language, senderName) {
 // event-driven retention). It's handled by `./redflag/welcome.js` instead
 // and this function returns early when projectId === "redflagscanner".
 exports.sendWelcomeEmail = onDocumentCreated(
-  { document: "users/{userId}", secrets: [resendApiKey] },
+  { document: "users/{userId}", secrets: welcomeEmailSecrets },
   async (event) => {
   const projectId = process.env.GCLOUD_PROJECT || process.env.GCP_PROJECT;
 
@@ -386,9 +394,9 @@ exports.sendWelcomeEmail = onDocumentCreated(
     return null;
   }
 
-  const apiKey = resendApiKey.value();
-  if (!apiKey) {
-    console.error("❌ RESEND_API_KEY not set");
+  const apiKey = (useMailgun || useSmtp2go) ? "" : resendApiKey.value();
+  if (!hasEmailCredentials(apiKey)) {
+    console.error("❌ Email credentials not set (RESEND_API_KEY, MAILGUN_API_KEY, or SMTP2GO_API_KEY)");
     return null;
   }
 

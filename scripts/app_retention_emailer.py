@@ -290,7 +290,7 @@ def app_slug(app_name: str) -> str:
 
 def _skipped_send_result(result: str) -> bool:
     """Outcomes that are not delivery failures (no quarantine, no CI alert)."""
-    return result in ('duplicate', 'suppressed', 'throttled')
+    return result in ('duplicate', 'suppressed', 'throttled', 'paused')
 
 
 def user_ref(email: str) -> str:

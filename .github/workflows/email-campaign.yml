@@ -34,6 +34,7 @@ jobs:
       - name: Run email sequence manager
         env:
           EMAIL_PROVIDER: ${{ secrets.EMAIL_PROVIDER }}
+          SMTP2GO_API_KEY: ${{ secrets.SMTP2GO_API_KEY }}
           MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
           MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
           MAILGUN_SENDER_EMAIL: ${{ secrets.MAILGUN_SENDER_EMAIL }}

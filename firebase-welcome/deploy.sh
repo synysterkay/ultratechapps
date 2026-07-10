@@ -9,8 +9,7 @@ set -euo pipefail
 # Prerequisites:
 #   - firebase-tools installed: npm install -g firebase-tools
 #   - Logged in: firebase login  (or use FIREBASE_TOKEN env var)
-#   - RESEND_API_KEY set as a secret in each project:
-#       firebase functions:secrets:set RESEND_API_KEY --project <id>
+#   - RESEND_API_KEY, MAILGUN_API_KEY, or SMTP2GO_API_KEY set per project / .env
 
 PROJECTS=(
   "predictify-3f30d"
@@ -47,13 +46,22 @@ for PROJECT_ID in "${PROJECTS[@]}"; do
   echo ""
   echo "🚀 Deploying to ${PROJECT_ID}..."
 
-  # First, ensure the RESEND_API_KEY secret exists
-  firebase functions:secrets:access RESEND_API_KEY --project "$PROJECT_ID" > /dev/null 2>&1 || {
-    echo "⚠️  RESEND_API_KEY secret not found for $PROJECT_ID."
-    echo "   Run: firebase functions:secrets:set RESEND_API_KEY --project $PROJECT_ID"
+  # Need Resend, Mailgun, or SMTP2GO credentials (secret or functions/.env).
+  has_resend=0
+  has_mailgun=0
+  has_smtp2go=0
+  firebase functions:secrets:access RESEND_API_KEY --project "$PROJECT_ID" > /dev/null 2>&1 && has_resend=1
+  firebase functions:secrets:access MAILGUN_API_KEY --project "$PROJECT_ID" > /dev/null 2>&1 && has_mailgun=1
+  firebase functions:secrets:access SMTP2GO_API_KEY --project "$PROJECT_ID" > /dev/null 2>&1 && has_smtp2go=1
+  if [ -f "functions/.env" ] && grep -q '^SMTP2GO_API_KEY=' functions/.env 2>/dev/null; then
+    has_smtp2go=1
+  fi
+  if [ "$has_resend" -eq 0 ] && [ "$has_mailgun" -eq 0 ] && [ "$has_smtp2go" -eq 0 ]; then
+    echo "⚠️  No email API key for $PROJECT_ID (RESEND, MAILGUN, or SMTP2GO)."
+    echo "   Set functions/.env or: firebase functions:secrets:set SMTP2GO_API_KEY --project $PROJECT_ID"
     FAILED+=("$PROJECT_ID (missing secret)")
     continue
-  }
+  fi
 
   # CRITICAL: list each welcome-pipeline function with --only.
   # The redflagscanner Firebase project also hosts the Red Flag Scanner

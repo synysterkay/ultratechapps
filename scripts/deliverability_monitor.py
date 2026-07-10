@@ -40,11 +40,15 @@ class DeliverabilityMonitor:
 
     # ── SENDER IDENTITIES (add new senders here) ───────────
     # Order matters: first = primary, rest = fallbacks.
-    # Each domain must be verified in Resend.
+    # SMTP2GO enabled: breakuprelief.com, kaynel.solutions, passedai.io.
+    # predictifyfootball.com unverified; predictify.fun verified but disabled.
     SENDER_POOL = [
-        # kaynel.pl removed 2026-05-23 — DNS verification failed in Resend.
-        # vitazelki.pl removed 2026-05-23 — retired per ops decision.
-        # bestaiapps.site removed 2026-06-18 — domain retired.
+        {
+            "email": "hello@breakuprelief.com",
+            "name": "Casey",
+            "domain": "breakuprelief.com",
+            "active": True,
+        },
         {
             "email": "hello@kaynel.solutions",
             "name": "Alex",
@@ -52,39 +56,9 @@ class DeliverabilityMonitor:
             "active": True,
         },
         {
-            "email": "hello@aibettips.io",
-            "name": "Jordan",
-            "domain": "aibettips.io",
-            "active": True,
-        },
-        {
-            "email": "tips@predictifyfootball.com",
-            "name": "Sam",
-            "domain": "predictifyfootball.com",
-            "active": True,
-        },
-        {
-            "email": "hello@thesisgenerator.io",
-            "name": "Morgan",
-            "domain": "thesisgenerator.io",
-            "active": True,
-        },
-        {
             "email": "hello@passedai.io",
             "name": "Taylor",
             "domain": "passedai.io",
-            "active": True,
-        },
-        {
-            "email": "hello@academicsatire.com",
-            "name": "Riley",
-            "domain": "academicsatire.com",
-            "active": True,
-        },
-        {
-            "email": "tips@predictify.fun",
-            "name": "Drew",
-            "domain": "predictify.fun",
             "active": True,
         },
     ]

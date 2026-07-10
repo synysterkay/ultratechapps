@@ -23,7 +23,16 @@ const {translateTemplate, normalizeLocale} = require("./translator");
 const {sendSelkaEmail} = require("./sender");
 
 const resendApiKey = defineSecret("RESEND_API_KEY");
+const mailgunApiKey = defineSecret("MAILGUN_API_KEY");
 const deepseekApiKey = defineSecret("DEEPSEEK_API_KEY");
+
+const useMailgun = (process.env.EMAIL_PROVIDER || "resend").toLowerCase() === "mailgun";
+const useSmtp2go = (process.env.EMAIL_PROVIDER || "resend").toLowerCase() === "smtp2go";
+const selkaSecrets = useSmtp2go
+  ? [deepseekApiKey]
+  : useMailgun
+    ? [mailgunApiKey, deepseekApiKey]
+    : [resendApiKey, mailgunApiKey, deepseekApiKey];
 
 // event_type → template_id. Lets us map fine-grained events from the app
 // (e.g. `analysis_complete` with count=1) onto specific templates without
@@ -63,7 +72,7 @@ const EVENT_ROUTES = {
 exports.onEmailEventCreated = onDocumentCreated(
     {
       document: "email_events/{eventId}",
-      secrets: [resendApiKey, deepseekApiKey],
+      secrets: selkaSecrets,
     },
     async (event) => {
       // Only Selka project — other apps in this codebase have their own
@@ -144,7 +153,7 @@ exports.onEmailEventCreated = onDocumentCreated(
           vars,
           toEmail: user.email,
           locale,
-          resendApiKey: resendApiKey.value(),
+          resendApiKey: (useMailgun || useSmtp2go) ? "" : resendApiKey.value(),
         });
         await snap.ref.update({
           sent: true,
