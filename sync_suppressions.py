@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Sync Resend bounce/complaint webhook events into email_suppressions.
+"""Sync provider bounce/complaint events into email_suppressions.
 
-This keeps the durable suppression table in step with raw email_events so
-instant Supabase Edge Functions can skip known bad recipients before sending.
+Reads email_events (Resend webhooks, ZeptoMail webhooks, welcome-path
+bounce records) and upserts durable suppressions so every sender skips
+known bad addresses before the next attempt.
 """
 
 from __future__ import annotations

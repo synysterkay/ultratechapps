@@ -7,10 +7,12 @@
 //           Content-Type: application/json
 
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+import { createClient } from "jsr:@supabase/supabase-js@2";
 import { BOYFRIEND_EMAILS } from "./boyfriend-emails.ts";
 import { GIRLFRIEND_EMAILS } from "./girlfriend-emails.ts";
 import { SENDER_POOL_FULL as SENDER_POOL } from "../_shared/sender_pool.ts";
 import { hasEmailCredentials, isSendFailureBounce, resolveSender, sendEmail } from "../_shared/email_transport.ts";
+import { recordHardBounce } from "../_shared/email_suppressions.ts";
 
 const REF_SALT = Deno.env.get("EMAIL_REF_SALT") || "marketing-tool-v1";
 
@@ -1277,7 +1279,22 @@ Deno.serve(async (req: Request) => {
       console.error(`Email error [${sendResult.status}]:`, sendResult.details);
 
       if (isSendFailureBounce(sendResult)) {
-        console.log(`BOUNCED: ${email} — removing from system`);
+        console.log(`BOUNCED: ${email} — adding to suppression list`);
+        const supabase = createClient(
+          Deno.env.get("SUPABASE_URL") || "",
+          Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "",
+        );
+        await recordHardBounce(supabase, {
+          recipient: email,
+          app: app_id,
+          eventId: `welcome-bounce-${ref}-${Date.now()}`,
+          messageId: sendResult.id,
+          senderDomain: sender.email.split("@")[1] || undefined,
+          kind: "welcome",
+          language: lang,
+          refId: ref,
+          raw: sendResult.details,
+        });
         return new Response(
           JSON.stringify({ error: "Bounced", bounced: true, details: sendResult.details }),
           { status: 400, headers: { "Content-Type": "application/json" } }

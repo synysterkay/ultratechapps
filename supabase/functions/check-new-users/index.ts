@@ -7,6 +7,7 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
 import { emailProvider, isZeptomailReviewMode } from "../_shared/email_transport.ts";
+import { loadSuppressedRecipients, upsertBounceSuppression } from "../_shared/email_suppressions.ts";
 
 // ── Config ──────────────────────────────────────────────────
 const MAX_EMAILS_PER_RUN = 60;
@@ -371,6 +372,11 @@ Deno.serve(async (req) => {
 
     results.push(`📊 ${welcomedSet.size} already welcomed for ${config.appId}`);
 
+    const suppressedSet = await loadSuppressedRecipients(supabase, config.appId);
+    if (suppressedSet.size > 0) {
+      results.push(`🚫 ${suppressedSet.size} suppressed addresses loaded for ${config.appId}`);
+    }
+
     let zeptomailSentToday = 0;
     let emailCap = MAX_EMAILS_PER_RUN;
     if (isZeptomailReviewMode()) {
@@ -381,8 +387,7 @@ Deno.serve(async (req) => {
         .from("welcomed_users")
         .select("email", { count: "exact", head: true })
         .eq("app_id", "thesis_generator")
-        .gte("welcomed_at", todayStart.toISOString())
-        .or("bounced.is.null,bounced.eq.false");
+        .gte("welcomed_at", todayStart.toISOString());
 
       if (countErr) {
         results.push(`⚠️ ZeptoMail daily cap lookup failed: ${countErr.message}`);
@@ -447,6 +452,23 @@ Deno.serve(async (req) => {
       }
 
       if (welcomedSet.has(email)) continue;
+
+      if (suppressedSet.has(email)) {
+        await supabase.from("welcomed_users").upsert(
+          {
+            email,
+            app_id: config.appId,
+            firebase_uid: user.localId,
+            firebase_project: targetProjectId,
+            language: config.defaultLang,
+            welcomed_at: new Date().toISOString(),
+          },
+          { onConflict: "email,app_id" },
+        );
+        welcomedSet.add(email);
+        totalSkipped++;
+        continue;
+      }
 
       // New user found!
       totalNew++;
@@ -516,7 +538,8 @@ Deno.serve(async (req) => {
             welcomedSet.add(email);
           }
         } else if (welcomeData.bounced) {
-          console.log(`BOUNCED: ${email} (${config.appId}) — marking in DB`);
+          console.log(`BOUNCED: ${email} (${config.appId}) — suppressing`);
+          await upsertBounceSuppression(supabase, email, config.appId);
           await supabase
             .from("welcomed_users")
             .upsert(
@@ -527,10 +550,10 @@ Deno.serve(async (req) => {
                 firebase_project: targetProjectId,
                 language: language,
                 welcomed_at: new Date().toISOString(),
-                bounced: true,
               },
               { onConflict: "email,app_id" }
             );
+          suppressedSet.add(email);
           welcomedSet.add(email);
           totalSkipped++;
         } else {

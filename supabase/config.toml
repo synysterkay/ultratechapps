@@ -405,6 +405,12 @@ verify_jwt = false
 import_map = "./functions/resend-webhook/deno.json"
 entrypoint = "./functions/resend-webhook/index.ts"
 
+[functions.zeptomail-webhook]
+enabled = true
+verify_jwt = false
+import_map = "./functions/zeptomail-webhook/deno.json"
+entrypoint = "./functions/zeptomail-webhook/index.ts"
+
 # Predictify unsubscribe — public GET endpoint from email footer links.
 # No Supabase JWT comes from a mail client's browser; the function
 # authenticates via the HMAC `s` parameter using
