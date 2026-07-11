@@ -371,13 +371,12 @@ const APP_CONFIG: Record<string, AppConfig> = {
     googlePlayUrl: "https://play.google.com/store/apps/details?id=com.thesis.generator.ai",
     emails: {
       en: {
-        subject: "The one mistake 90% of new users make",
-        cta_text: "Generate Your First Thesis Now",
+        subject: "Welcome to Thesis Generator — your first thesis in under a minute",
+        cta_text: "Open Thesis Generator",
         body_paragraphs: [
-          "I watched a student last week spend 8 hours staring at a blank page. Panic sweats, 3am, deadline in 6 hours. Sound familiar? I built Thesis Generator to stop that exact moment from ever happening again.",
-          "The secret is to stop trying to write the whole paper first. That's the mistake. The fastest win is to get a solid, arguable thesis statement down IMMEDIATELY. It gives your entire essay a backbone in 30 seconds. Everything else\u2014the outline, the citations, the humanized text\u2014flows from that one core idea.",
-          "Open the app. Right now. Don't overthink it. Tap 'Generate Thesis,' type your topic or paste your assignment prompt, and hit go. In 30 seconds, you'll have 3-5 viable thesis options. Pick one. Just like that, the blank page panic is gone. You're already ahead of 90% of your class.",
-          "Your first thesis is waiting. Open Thesis Generator and generate your first statement before you even finish this email. The clock is ticking, but now you have the hack. P.S. The first one who uses the 'Humanize' feature on their generated thesis bypasses AI detection 99% of the time. It's your secret weapon.",
+          "Thank you for joining Thesis Generator. Whether you're working on an essay, research paper, or dissertation, the strongest papers start with a clear, arguable thesis statement — it gives your entire argument structure before you write the first paragraph.",
+          "For your first session, open the app, enter your topic or paste your assignment prompt, and tap Generate Thesis. You'll receive several focused thesis options in under a minute — pick the one that best fits your angle, and you're ready to outline.",
+          "From there, you can build your outline, add citations, and refine your draft. When you're ready, the Humanize feature helps your writing read naturally and confidently.",
         ],
       },
       ar: {
@@ -891,6 +890,151 @@ const APP_CONFIG: Record<string, AppConfig> = {
   },
 };
 
+// ── THESIS WELCOME HTML (professional branded layout) ───────
+function buildThesisWelcomeHtml(
+  emailData: EmailTemplate,
+  appConfig: AppConfig,
+  language: string,
+  utmCtx?: { app: string; emailNum: string | number; cycle: number; language: string; ref: string; kind: string },
+  firstName?: string,
+): string {
+  const isRtl = language === "ar";
+  const dirAttr = isRtl ? ' dir="rtl"' : "";
+  const textAlign = isRtl ? "right" : "left";
+
+  const greetings: Record<string, (n?: string) => string> = {
+    en: (n) => (n ? `Hi ${n},` : "Hi there,"),
+    ar: (n) => (n ? `\u0645\u0631\u062d\u0628\u064b\u0627 ${n}\u060c` : "\u0645\u0631\u062d\u0628\u064b\u0627\u060c"),
+    es: (n) => (n ? `Hola ${n},` : "Hola,"),
+    fr: (n) => (n ? `Bonjour ${n},` : "Bonjour,"),
+    zh: (n) => (n ? `${n}\u60a8\u597d\uff0c` : "\u60a8\u597d\uff0c"),
+    hi: (n) => (n ? `\u0928\u092e\u0938\u094d\u0924\u0947 ${n},` : "\u0928\u092e\u0938\u094d\u0924\u0947,"),
+  };
+  const signoffs: Record<string, string> = {
+    en: "Best regards,",
+    ar: "\u0645\u0639 \u062a\u062d\u064a\u0627\u062a\u064a\u060c",
+    es: "Saludos cordiales,",
+    fr: "Cordialement,",
+    zh: "\u656c\u793c\u7684\u95ee\u5019\uff0c",
+    hi: "\u0938\u093e\u0926\u0930 \u0938\u094d\u0935\u093e\u0917\u0924\u093c\u093e\u0930\u094d\u092f\u0938\u0939\u093f\u0924,",
+  };
+  const footers: Record<string, string> = {
+    en: `You're receiving this because you signed up for ${appConfig.name}.`,
+    ar: `\u062a\u062a\u0644\u0642\u0649 \u0647\u0630\u0627 \u0627\u0644\u0628\u0631\u064a\u062f \u0644\u0623\u0646\u0643 \u0633\u062c\u0644\u062a \u0641\u064a ${appConfig.name}.`,
+    es: `Recibes esto porque te registraste en ${appConfig.name}.`,
+    fr: `Vous recevez ceci car vous vous \u00eates inscrit(e) \u00e0 ${appConfig.name}.`,
+    zh: `\u60a8\u6536\u5230\u6b64\u90ae\u4ef6\u662f\u56e0\u4e3a\u60a8\u6ce8\u518c\u4e86 ${appConfig.name}\u3002`,
+    hi: `\u0906\u092a\u0915\u094b \u092f\u0939 \u0907\u0938\u0932\u093f\u090f \u092e\u093f\u0932 \u0930\u0939\u093e \u0939\u0948 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0906\u092a\u0928\u0947 ${appConfig.name} \u092e\u0947\u0902 \u0938\u093e\u0907\u0928 \u0905\u092a \u0915\u093f\u092f\u093e\u0964`,
+  };
+  const stepLabels: Record<string, string[]> = {
+    en: ["Enter your topic or assignment prompt", "Tap Generate Thesis", "Choose a statement and start your outline"],
+    ar: ["\u0623\u062f\u062e\u0644 \u0645\u0648\u0636\u0648\u0639\u0643 \u0623\u0648 \u0646\u0635 \u0627\u0644\u0645\u0647\u0645\u0629", "\u0627\u0636\u063a\u0637 \u0639\u0644\u0649 \u062a\u0648\u0644\u064a\u062f \u0627\u0644\u0623\u0637\u0631\u0648\u062d\u0629", "\u0627\u062e\u062a\u0631 \u0628\u064a\u0627\u0646\u064b\u0627 \u0648\u0627\u0628\u062f\u0623 \u0627\u0644\u062e\u0637\u0629"],
+    es: ["Introduce tu tema o el enunciado", "Pulsa Generar Tesis", "Elige una opci\u00f3n y empieza tu esquema"],
+    fr: ["Saisissez votre sujet ou consigne", "Appuyez sur G\u00e9n\u00e9rer une th\u00e8se", "Choisissez une option et commencez votre plan"],
+    zh: ["\u8f93\u5165\u4e3b\u9898\u6216\u4f5c\u4e1a\u8981\u6c42", "\u70b9\u51fb\u751f\u6210\u8bba\u70b9", "\u9009\u62e9\u4e00\u4e2a\u5e76\u5f00\u59cb\u5927\u7eb2"],
+    hi: ["\u0905\u092a\u0928\u093e \u0935\u093f\u0937\u092f \u092f\u093e \u0905\u0938\u093e\u0907\u0928\u092e\u0947\u0902\u091f \u0921\u093e\u0932\u0947\u0902", "Generate Thesis \u0926\u092c\u093e\u090f\u0902", "\u090f\u0915 \u0935\u093f\u0915\u0932\u094d\u092a \u091a\u0941\u0928\u0947\u0902 \u0914\u0930 \u0906\u0909\u091f\u0932\u093e\u0907\u0928 \u0936\u0941\u0930\u0942 \u0915\u0930\u0947\u0902"],
+  };
+
+  const greeting = (greetings[language] || greetings.en)(firstName);
+  const signoff = signoffs[language] || signoffs.en;
+  const footerText = footers[language] || footers.en;
+  const steps = stepLabels[language] || stepLabels.en;
+
+  const bodyHtml = emailData.body_paragraphs
+    .map((p) =>
+      `<p style="margin:0 0 18px;font-size:15px;color:#475569;line-height:1.7;text-align:${textAlign};">${p.replace(/\n/g, "<br>")}</p>`
+    )
+    .join("");
+
+  const stepsHtml = steps
+    .map(
+      (step, i) => `
+      <tr>
+        <td style="padding:0 14px 14px 0;vertical-align:top;width:28px;">
+          <div style="width:24px;height:24px;border-radius:50%;background:#0f172a;color:#fff;font-size:12px;font-weight:600;line-height:24px;text-align:center;">${i + 1}</div>
+        </td>
+        <td style="padding:0 0 14px;vertical-align:top;font-size:14px;color:#334155;line-height:1.5;text-align:${textAlign};">${step}</td>
+      </tr>`,
+    )
+    .join("");
+
+  const appStoreHref = utmCtx ? withUtm(appConfig.appStoreUrl, utmCtx) : appConfig.appStoreUrl;
+  const googlePlayHref = utmCtx ? withUtm(appConfig.googlePlayUrl, utmCtx) : appConfig.googlePlayUrl;
+  const hasIos = !!appConfig.appStoreUrl;
+  const hasAndroid = !!appConfig.googlePlayUrl;
+  const ctaText = emailData.cta_text;
+
+  const iosBtn = hasIos
+    ? `<a href="${appStoreHref}" style="display:inline-block;background:#0f172a;color:#ffffff;padding:13px 24px;text-decoration:none;border-radius:6px;font-weight:600;font-size:14px;letter-spacing:0.01em;margin:4px 6px;">App Store</a>`
+    : "";
+  const androidBtn = hasAndroid
+    ? `<a href="${googlePlayHref}" style="display:inline-block;background:#ffffff;color:#0f172a;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:600;font-size:14px;letter-spacing:0.01em;border:1px solid #cbd5e1;margin:4px 6px;">Google Play</a>`
+    : "";
+
+  return `<!DOCTYPE html>
+<html${dirAttr}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <meta name="supported-color-schemes" content="light">
+</head>
+<body style="margin:0;padding:0;background:#f1f5f9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f1f5f9;padding:32px 16px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e2e8f0;">
+          <tr>
+            <td style="background:#0f172a;padding:28px 32px;text-align:center;">
+              <p style="margin:0 0 6px;font-size:20px;font-weight:700;color:#ffffff;letter-spacing:-0.02em;">Thesis Generator</p>
+              <p style="margin:0;font-size:13px;color:#94a3b8;letter-spacing:0.02em;">AI-powered academic writing</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:32px 32px 8px;">
+              <p style="margin:0 0 20px;font-size:16px;color:#1e293b;font-weight:500;text-align:${textAlign};">${greeting}</p>
+              ${bodyHtml}
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:8px 32px 24px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:18px 20px;">
+                <tr>
+                  <td style="padding-bottom:12px;font-size:12px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:0.06em;text-align:${textAlign};">Getting started</td>
+                </tr>
+                ${stepsHtml}
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 32px 32px;text-align:center;">
+              <p style="margin:0 0 14px;font-size:14px;color:#64748b;">${ctaText}</p>
+              ${iosBtn}
+              ${androidBtn}
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 32px 28px;">
+              <p style="margin:0;font-size:15px;color:#475569;line-height:1.6;text-align:${textAlign};">
+                ${signoff}<br>
+                <strong style="color:#1e293b;">The Thesis Generator Team</strong>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:20px 32px;background:#f8fafc;border-top:1px solid #e2e8f0;text-align:center;">
+              <p style="margin:0 0 6px;font-size:12px;color:#94a3b8;">San Francisco, CA 94117, United States</p>
+              <p style="margin:0;font-size:11px;color:#cbd5e1;">${footerText}</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+}
+
 // ── HTML BUILDER ────────────────────────────────────────────
 function buildHtml(
   emailData: EmailTemplate,
@@ -1105,7 +1249,9 @@ Deno.serve(async (req: Request) => {
       ref,
       kind: "welcome",
     };
-    const html = buildHtml(emailData, appConfig, lang, sender.name, utmCtx, firstName);
+    const html = app_id === "thesis_generator"
+      ? buildThesisWelcomeHtml(emailData, appConfig, lang, utmCtx, firstName)
+      : buildHtml(emailData, appConfig, lang, sender.name, utmCtx, firstName);
 
     const tags = [
       { name: "app", value: sanitizeTagValue(app_id) },
