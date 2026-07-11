@@ -1,6 +1,6 @@
 /**
  * Pluggable email transport for Firebase Cloud Functions.
- * EMAIL_PROVIDER: resend | mailgun | smtp2go
+ * EMAIL_PROVIDER: resend | mailgun | smtp2go | zeptomail
  */
 
 const https = require("https");
@@ -10,6 +10,7 @@ function emailProvider() {
   const p = (process.env.EMAIL_PROVIDER || "resend").toLowerCase();
   if (p === "mailgun") return "mailgun";
   if (p === "smtp2go") return "smtp2go";
+  if (p === "zeptomail") return "zeptomail";
   return "resend";
 }
 
@@ -26,18 +27,30 @@ function hasEmailCredentials(apiKey) {
   if (provider === "smtp2go") {
     return !!process.env.SMTP2GO_API_KEY;
   }
+  if (provider === "zeptomail") {
+    return !!process.env.ZEPTOMAIL_API_KEY;
+  }
   return !!apiKey;
 }
 
 function resolveSender(poolSender) {
-  if (emailProvider() !== "mailgun") return poolSender;
-  const isSelka = String(poolSender.email || "").toLowerCase().startsWith("selka@");
-  return {
-    email: isSelka
-      ? (process.env.MAILGUN_SELKA_SENDER_EMAIL || "selka@passedai.io")
-      : (process.env.MAILGUN_SENDER_EMAIL || "hello@passedai.io"),
-    name: poolSender.name,
-  };
+  const provider = emailProvider();
+  if (provider === "mailgun") {
+    const isSelka = String(poolSender.email || "").toLowerCase().startsWith("selka@");
+    return {
+      email: isSelka
+        ? (process.env.MAILGUN_SELKA_SENDER_EMAIL || "selka@passedai.io")
+        : (process.env.MAILGUN_SENDER_EMAIL || "hello@passedai.io"),
+      name: poolSender.name,
+    };
+  }
+  if (provider === "zeptomail") {
+    return {
+      email: process.env.ZEPTOMAIL_SENDER_EMAIL || "hello@thesisgenerator.io",
+      name: process.env.ZEPTOMAIL_SENDER_NAME || poolSender.name || "Thesis Generator",
+    };
+  }
+  return poolSender;
 }
 
 function sendViaResend(apiKey, fromEmail, fromName, toEmail, subject, html) {
@@ -165,6 +178,51 @@ function sendViaSmtp2go(fromEmail, fromName, toEmail, subject, html) {
   });
 }
 
+function sendViaZeptomail(fromEmail, fromName, toEmail, subject, html) {
+  return new Promise((resolve, reject) => {
+    const apiKey = process.env.ZEPTOMAIL_API_KEY;
+    const apiUrl = new URL(process.env.ZEPTOMAIL_API_URL || "https://api.zeptomail.eu/v1.1/email");
+    const sender = resolveSender({email: fromEmail, name: fromName});
+    const payload = JSON.stringify({
+      from: {address: sender.email, name: fromName || sender.name},
+      to: [{email_address: {address: toEmail, name: toEmail.split("@")[0] || "User"}}],
+      subject,
+      htmlbody: html,
+      track_clicks: false,
+      track_opens: false,
+      mime_headers: {"Reply-To": sender.email},
+    });
+
+    const options = {
+      hostname: apiUrl.hostname,
+      path: apiUrl.pathname,
+      method: "POST",
+      headers: {
+        Authorization: `Zoho-enczapikey ${apiKey}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Content-Length": Buffer.byteLength(payload),
+      },
+    };
+
+    const req = https.request(options, (res) => {
+      let data = "";
+      res.on("data", (chunk) => (data += chunk));
+      res.on("end", () => {
+        if (res.statusCode === 200 || res.statusCode === 201) {
+          resolve(JSON.parse(data || "{}"));
+        } else {
+          reject(new Error(`ZeptoMail ${res.statusCode}: ${data}`));
+        }
+      });
+    });
+
+    req.on("error", reject);
+    req.write(payload);
+    req.end();
+  });
+}
+
 async function sendEmail({apiKey, fromEmail, fromName, toEmail, subject, html}) {
   if (isEmailSendingPaused()) {
     throw new Error("Email sending paused (EMAIL_SENDING_PAUSED)");
@@ -175,6 +233,9 @@ async function sendEmail({apiKey, fromEmail, fromName, toEmail, subject, html}) 
   }
   if (provider === "smtp2go") {
     return sendViaSmtp2go(fromEmail, fromName, toEmail, subject, html);
+  }
+  if (provider === "zeptomail") {
+    throw new Error("ZeptoMail review mode — Firebase Selka sends disabled (thesis welcome only via Supabase)");
   }
   return sendViaResend(apiKey, fromEmail, fromName, toEmail, subject, html);
 }

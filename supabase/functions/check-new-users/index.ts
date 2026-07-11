@@ -6,9 +6,12 @@
 
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
+import { emailProvider, isZeptomailReviewMode } from "../_shared/email_transport.ts";
 
 // ── Config ──────────────────────────────────────────────────
 const MAX_EMAILS_PER_RUN = 60;
+const ZEPTOMAIL_MAX_PER_RUN = 10;
+const ZEPTOMAIL_DAILY_CAP = parseInt(Deno.env.get("ZEPTOMAIL_DAILY_CAP") || "50", 10);
 const DEADLINE_MS = 50_000; // Stop processing at 50 seconds
 
 // ── Firebase projects → app_id mapping ──────────────────────
@@ -105,7 +108,14 @@ const FIREBASE_PROJECTS: Record<
   },
 };
 
-const PROJECT_IDS = Object.keys(FIREBASE_PROJECTS);
+const ALL_PROJECT_IDS = Object.keys(FIREBASE_PROJECTS);
+
+function activeProjectIds(): string[] {
+  if (isZeptomailReviewMode()) {
+    return ["thesis-generator-web"];
+  }
+  return ALL_PROJECT_IDS;
+}
 
 // Google OAuth2 client for Firebase CLI token exchange
 const GOOGLE_CLIENT_ID =
@@ -309,10 +319,21 @@ Deno.serve(async (req) => {
     } catch { /* no body or invalid JSON — use round-robin */ }
 
     if (!targetProjectId) {
-      // Time-based round-robin: each 5-minute slot picks a different project
+      const projectIds = activeProjectIds();
       const fiveMinSlot = Math.floor(Date.now() / (5 * 60 * 1000));
-      const projectIndex = fiveMinSlot % PROJECT_IDS.length;
-      targetProjectId = PROJECT_IDS[projectIndex];
+      const projectIndex = fiveMinSlot % projectIds.length;
+      targetProjectId = projectIds[projectIndex];
+    }
+
+    if (isZeptomailReviewMode() && targetProjectId !== "thesis-generator-web") {
+      return new Response(
+        JSON.stringify({
+          paused: true,
+          message: "ZeptoMail review mode — thesis welcome only",
+          provider: emailProvider(),
+        }),
+        { status: 200, headers: { "Content-Type": "application/json" } },
+      );
     }
 
     const config = FIREBASE_PROJECTS[targetProjectId];
@@ -350,6 +371,41 @@ Deno.serve(async (req) => {
 
     results.push(`📊 ${welcomedSet.size} already welcomed for ${config.appId}`);
 
+    let zeptomailSentToday = 0;
+    let emailCap = MAX_EMAILS_PER_RUN;
+    if (isZeptomailReviewMode()) {
+      emailCap = ZEPTOMAIL_MAX_PER_RUN;
+      const todayStart = new Date();
+      todayStart.setUTCHours(0, 0, 0, 0);
+      const { count, error: countErr } = await supabase
+        .from("welcomed_users")
+        .select("email", { count: "exact", head: true })
+        .eq("app_id", "thesis_generator")
+        .gte("welcomed_at", todayStart.toISOString())
+        .or("bounced.is.null,bounced.eq.false");
+
+      if (countErr) {
+        results.push(`⚠️ ZeptoMail daily cap lookup failed: ${countErr.message}`);
+      } else {
+        zeptomailSentToday = count || 0;
+        results.push(`📬 ZeptoMail review: ${zeptomailSentToday}/${ZEPTOMAIL_DAILY_CAP} thesis welcomes sent today`);
+        if (zeptomailSentToday >= ZEPTOMAIL_DAILY_CAP) {
+          return new Response(
+            JSON.stringify({
+              success: true,
+              paused: true,
+              message: "ZeptoMail daily cap reached — thesis welcome only",
+              zeptomail_sent_today: zeptomailSentToday,
+              zeptomail_daily_cap: ZEPTOMAIL_DAILY_CAP,
+              details: results,
+            }),
+            { status: 200, headers: { "Content-Type": "application/json" } },
+          );
+        }
+        emailCap = Math.min(ZEPTOMAIL_MAX_PER_RUN, ZEPTOMAIL_DAILY_CAP - zeptomailSentToday);
+      }
+    }
+
     // 3. Language detection: per-user Firestore query (avoids bulk scan quota issues)
     // Individual queries cost 1 read per new user vs thousands for a full collection scan.
 
@@ -373,9 +429,9 @@ Deno.serve(async (req) => {
       }
 
       // Check email cap
-      if (totalSent >= MAX_EMAILS_PER_RUN) {
+      if (totalSent >= emailCap) {
         hitCap = true;
-        results.push(`📬 Hit email cap (${MAX_EMAILS_PER_RUN}) — stopping`);
+        results.push(`📬 Hit email cap (${emailCap}) — stopping`);
         break;
       }
 

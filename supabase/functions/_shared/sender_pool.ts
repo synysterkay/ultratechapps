@@ -5,8 +5,8 @@
  * SMTP2GO enabled senders: breakuprelief.com, kaynel.solutions, passedai.io.
  * predictifyfootball.com — unverified. predictify.fun — verified but disabled.
  *
- * When EMAIL_PROVIDER=mailgun, email_transport.ts pins all sends to
- * hello@passedai.io / selka@passedai.io regardless of pool rotation.
+ * When EMAIL_PROVIDER=zeptomail, email_transport.ts pins all sends to
+ * hello@thesisgenerator.io and allows thesis welcome sends only (review mode).
  * When EMAIL_PROVIDER=smtp2go, pool From addresses pass through as-is.
  */
 
@@ -34,10 +34,9 @@ export const SENDER_POOL_NBA: SenderIdentity[] = [
   { email: "hello@passedai.io", name: "Taylor" },
 ];
 
-/** Thesis Generator — thesisgenerator.io pending; use general pool. */
+/** Thesis Generator — thesisgenerator.io (ZeptoMail verified). */
 export const SENDER_POOL_THESIS: SenderIdentity[] = [
-  { email: "hello@passedai.io", name: "Taylor" },
-  { email: "hello@kaynel.solutions", name: "Alex" },
+  { email: "hello@thesisgenerator.io", name: "Thesis Generator" },
 ];
 
 /** Red Flag Scanner (Selka) — selka@ on enabled domains only. */

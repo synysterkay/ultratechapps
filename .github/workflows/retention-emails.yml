@@ -97,6 +97,9 @@ jobs:
         env:
           EMAIL_PROVIDER: ${{ secrets.EMAIL_PROVIDER }}
           SMTP2GO_API_KEY: ${{ secrets.SMTP2GO_API_KEY }}
+          ZEPTOMAIL_API_KEY: ${{ secrets.ZEPTOMAIL_API_KEY }}
+          ZEPTOMAIL_API_URL: https://api.zeptomail.eu/v1.1/email
+          EMAIL_SENDING_PAUSED: ${{ secrets.EMAIL_SENDING_PAUSED }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
           MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}

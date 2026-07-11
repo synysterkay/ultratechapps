@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-Email Sender — Resend (default), Mailgun, or SMTP2GO.
+Email Sender — Resend (default), Mailgun, SMTP2GO, or ZeptoMail.
 
+Set EMAIL_PROVIDER=zeptomail + ZEPTOMAIL_API_KEY for thesisgenerator.io (review mode).
 Set EMAIL_PROVIDER=smtp2go + SMTP2GO_API_KEY for multi-domain SMTP2GO sends.
 Set EMAIL_PROVIDER=mailgun + MAILGUN_* to pin to passedai.io (legacy bridge).
 
@@ -73,21 +74,28 @@ def _is_smtp2go():
     return _email_provider() == 'smtp2go'
 
 
+def _is_zeptomail():
+    return _email_provider() == 'zeptomail'
+
+
 def _api_key_env_name():
     if _is_mailgun():
         return 'MAILGUN_API_KEY'
     if _is_smtp2go():
         return 'SMTP2GO_API_KEY'
+    if _is_zeptomail():
+        return 'ZEPTOMAIL_API_KEY'
     return 'RESEND_API_KEY'
 
 
 # Keep class name GmailSender so nothing else needs to change
 class GmailSender:
-    """Resend, Mailgun, or SMTP2GO email sender — same interface as previous senders."""
+    """Resend, Mailgun, SMTP2GO, or ZeptoMail email sender — same interface as previous senders."""
 
     RESEND_API_URL = "https://api.resend.com/emails"
     MAILGUN_API_BASE = "https://api.mailgun.net/v3"
     SMTP2GO_API_URL = "https://api.smtp2go.com/v3/email/send"
+    ZEPTOMAIL_API_URL = os.getenv('ZEPTOMAIL_API_URL', 'https://api.zeptomail.eu/v1.1/email')
 
     # Process-wide dedup: never send the same recipient twice in one run.
     # The thesis orchestrator runs 11 senders in ONE process and each iterates
@@ -111,16 +119,20 @@ class GmailSender:
     def __init__(self, sender_email=None, sender_name=None):
         self._use_mailgun = _is_mailgun()
         self._use_smtp2go = _is_smtp2go()
+        self._use_zeptomail = _is_zeptomail()
         self.api_key = os.getenv(_api_key_env_name())
         self.mailgun_domain = os.getenv('MAILGUN_DOMAIN', 'passedai.io')
         self._explicit_sender_email = sender_email is not None
         self._explicit_sender_name = sender_name is not None
-        self.sender_email = sender_email or 'hello@passedai.io'
+        default_sender = 'hello@thesisgenerator.io' if self._use_zeptomail else 'hello@passedai.io'
+        self.sender_email = sender_email or default_sender
         self.sender_name = sender_name or 'Sam'
         if self._use_mailgun:
             delay_env = 'MAILGUN_SEND_DELAY_SECONDS'
         elif self._use_smtp2go:
             delay_env = 'SMTP2GO_SEND_DELAY_SECONDS'
+        elif self._use_zeptomail:
+            delay_env = 'ZEPTOMAIL_SEND_DELAY_SECONDS'
         else:
             delay_env = 'RESEND_SEND_DELAY_SECONDS'
         self.delay_between_emails = float(os.getenv(delay_env, '0.25'))
@@ -333,15 +345,27 @@ class GmailSender:
             return os.getenv('MAILGUN_SELKA_SENDER_EMAIL', 'selka@passedai.io')
         return os.getenv('MAILGUN_SENDER_EMAIL', 'hello@passedai.io')
 
+    def _zeptomail_pinned_email(self, sender_email):
+        """Pin all From addresses to thesisgenerator.io when ZeptoMail is active."""
+        return os.getenv('ZEPTOMAIL_SENDER_EMAIL', 'hello@thesisgenerator.io')
+
     def _effective_sender(self, app, from_name=None):
         sender_email = self.sender_email
         sender_name = from_name or self.sender_name
         if _is_thesis_app(app) and not self._explicit_sender_email:
-            sender_email = os.getenv('THESIS_SENDER_EMAIL', 'hello@passedai.io')
+            if self._use_zeptomail:
+                sender_email = os.getenv('ZEPTOMAIL_SENDER_EMAIL', 'hello@thesisgenerator.io')
+            else:
+                sender_email = os.getenv('THESIS_SENDER_EMAIL', 'hello@passedai.io')
             if not from_name and not self._explicit_sender_name:
-                sender_name = os.getenv('THESIS_SENDER_NAME', 'Thesis Generator')
+                sender_name = os.getenv(
+                    'ZEPTOMAIL_SENDER_NAME' if self._use_zeptomail else 'THESIS_SENDER_NAME',
+                    'Thesis Generator',
+                )
         if self._use_mailgun:
             sender_email = self._mailgun_pinned_email(sender_email)
+        if self._use_zeptomail:
+            sender_email = self._zeptomail_pinned_email(sender_email)
         return sender_email, sender_name
 
     def connect(self):
@@ -350,6 +374,8 @@ class GmailSender:
             return self._connect_mailgun()
         if self._use_smtp2go:
             return self._connect_smtp2go()
+        if self._use_zeptomail:
+            return self._connect_zeptomail()
         return self._connect_resend()
 
     def _connect_resend(self):
@@ -434,6 +460,12 @@ class GmailSender:
             print(f"❌ SMTP2GO connection failed: {e}")
             return False
 
+    def _connect_zeptomail(self):
+        pinned = self._zeptomail_pinned_email(self.sender_email)
+        print(f"✅ ZeptoMail configured — sending as {pinned} (thesisgenerator.io only, review mode)")
+        self.connected = True
+        return True
+
     def disconnect(self):
         """No-op — REST API, no persistent connection."""
         self.connected = False
@@ -479,6 +511,10 @@ class GmailSender:
         tag_values = _tag_dict(tags)
         app = tag_values.get('app', '')
 
+        if self._use_zeptomail and not _is_thesis_app(app):
+            print(f"   ⏸️ ZeptoMail review mode — skipping non-thesis app ({app or 'unknown'})")
+            return 'paused'
+
         if self._is_suppressed(to_email, app):
             print(f"   ⏭️ Suppressed — {to_email} is on the durable suppression list")
             return 'suppressed'
@@ -506,6 +542,11 @@ class GmailSender:
             )
         if self._use_smtp2go:
             return self._send_smtp2go(
+                to_email, subject_clean, html_body, sender_email, sender_name,
+                tags, ref_id, dedup_key, app,
+            )
+        if self._use_zeptomail:
+            return self._send_zeptomail(
                 to_email, subject_clean, html_body, sender_email, sender_name,
                 tags, ref_id, dedup_key, app,
             )
@@ -673,6 +714,55 @@ class GmailSender:
             return 'failed'
         except Exception as e:
             print(f"   ❌ SMTP2GO send error: {e}")
+            return 'failed'
+
+    def _send_zeptomail(self, to_email, subject, html_body, sender_email, sender_name,
+                        tags, ref_id, dedup_key, app):
+        mime_headers = {'Reply-To': sender_email}
+        if ref_id:
+            mime_headers['X-Entity-Ref-ID'] = str(ref_id)[:256]
+        if tags:
+            for t in tags:
+                if t.get('name') and t.get('value') is not None:
+                    mime_headers[f"X-Tag-{str(t['name'])[:64]}"] = _sanitize_tag(str(t['value']))[:256]
+
+        payload = {
+            'from': {'address': sender_email, 'name': sender_name},
+            'to': [{'email_address': {'address': to_email, 'name': to_email.split('@')[0] or 'User'}}],
+            'subject': subject,
+            'htmlbody': html_body,
+            'track_clicks': False,
+            'track_opens': False,
+            'mime_headers': mime_headers,
+        }
+        if ref_id:
+            payload['client_reference'] = str(ref_id)[:256]
+
+        try:
+            resp = requests.post(
+                self.ZEPTOMAIL_API_URL,
+                headers={
+                    'Authorization': f'Zoho-enczapikey {self.api_key}',
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                json=payload,
+                timeout=15,
+            )
+
+            if resp.status_code in (200, 201):
+                self._mark_sent(dedup_key, app)
+                return 'sent'
+
+            error_msg = resp.text[:200]
+            if self._is_bounce(resp.status_code, resp.text):
+                print(f"   🔴 BOUNCED: {to_email} — {error_msg}")
+                return 'bounced'
+
+            print(f"   ❌ ZeptoMail error [{resp.status_code}]: {error_msg}")
+            return 'failed'
+        except Exception as e:
+            print(f"   ❌ ZeptoMail send error: {e}")
             return 'failed'
 
     def send_batch(self, emails, progress_callback=None):

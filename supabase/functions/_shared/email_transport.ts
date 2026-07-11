@@ -1,6 +1,7 @@
 /**
- * Pluggable email transport — Resend, Mailgun, or SMTP2GO.
+ * Pluggable email transport — Resend, Mailgun, SMTP2GO, or ZeptoMail.
  *
+ * Set EMAIL_PROVIDER=zeptomail + ZEPTOMAIL_API_KEY for thesisgenerator.io (review mode).
  * Set EMAIL_PROVIDER=smtp2go + SMTP2GO_API_KEY for multi-domain SMTP2GO sends.
  * Set EMAIL_PROVIDER=mailgun + MAILGUN_* to pin to passedai.io (legacy bridge).
  * Unset EMAIL_PROVIDER (or set to "resend") for Resend.
@@ -8,7 +9,9 @@
 
 import type { SenderIdentity } from "./sender_pool.ts";
 
-export type EmailProviderName = "resend" | "mailgun" | "smtp2go";
+export type EmailProviderName = "resend" | "mailgun" | "smtp2go" | "zeptomail";
+
+const THESIS_APPS = new Set(["thesis", "thesis_generator"]);
 
 export interface EmailTag {
   name: string;
@@ -50,7 +53,23 @@ export function emailProvider(): EmailProviderName {
   const p = (Deno.env.get("EMAIL_PROVIDER") || "resend").toLowerCase();
   if (p === "mailgun") return "mailgun";
   if (p === "smtp2go") return "smtp2go";
+  if (p === "zeptomail") return "zeptomail";
   return "resend";
+}
+
+export function isZeptomailReviewMode(): boolean {
+  return emailProvider() === "zeptomail";
+}
+
+function tagApp(params: SendEmailParams): string {
+  for (const tag of params.tags || []) {
+    if (tag.name === "app") return String(tag.value || "").toLowerCase();
+  }
+  return "";
+}
+
+export function isThesisAppTag(app: string): boolean {
+  return THESIS_APPS.has(app.toLowerCase());
 }
 
 export function isEmailSendingPaused(): boolean {
@@ -66,19 +85,31 @@ export function hasEmailCredentials(): boolean {
   if (provider === "smtp2go") {
     return !!Deno.env.get("SMTP2GO_API_KEY");
   }
+  if (provider === "zeptomail") {
+    return !!Deno.env.get("ZEPTOMAIL_API_KEY");
+  }
   return !!Deno.env.get("RESEND_API_KEY");
 }
 
-/** Pin sender to passedai.io when Mailgun is active; pass through otherwise. */
+/** Pin sender when Mailgun or ZeptoMail is active; pass through otherwise. */
 export function resolveSender(poolSender: SenderIdentity): SenderIdentity {
-  if (emailProvider() !== "mailgun") return poolSender;
+  const provider = emailProvider();
 
-  const isSelka = poolSender.email.toLowerCase().startsWith("selka@");
-  const email = isSelka
-    ? (Deno.env.get("MAILGUN_SELKA_SENDER_EMAIL") || "selka@passedai.io")
-    : (Deno.env.get("MAILGUN_SENDER_EMAIL") || "hello@passedai.io");
+  if (provider === "mailgun") {
+    const isSelka = poolSender.email.toLowerCase().startsWith("selka@");
+    const email = isSelka
+      ? (Deno.env.get("MAILGUN_SELKA_SENDER_EMAIL") || "selka@passedai.io")
+      : (Deno.env.get("MAILGUN_SENDER_EMAIL") || "hello@passedai.io");
+    return { email, name: poolSender.name };
+  }
 
-  return { email, name: poolSender.name };
+  if (provider === "zeptomail") {
+    const email = Deno.env.get("ZEPTOMAIL_SENDER_EMAIL") || "hello@thesisgenerator.io";
+    const name = Deno.env.get("ZEPTOMAIL_SENDER_NAME") || poolSender.name || "Thesis Generator";
+    return { email, name };
+  }
+
+  return poolSender;
 }
 
 export function isSendFailureBounce(result: SendEmailResult): boolean {
@@ -241,12 +272,82 @@ async function sendViaSmtp2go(params: SendEmailParams): Promise<SendEmailResult>
   return { ok: true, status: res.status, id, details };
 }
 
+async function sendViaZeptomail(params: SendEmailParams): Promise<SendEmailResult> {
+  const apiKey = Deno.env.get("ZEPTOMAIL_API_KEY") || "";
+  const apiUrl = Deno.env.get("ZEPTOMAIL_API_URL") || "https://api.zeptomail.eu/v1.1/email";
+  const resolved = resolveSender({ email: params.fromEmail, name: params.fromName });
+
+  const mimeHeaders: Record<string, string> = {};
+  const replyTo = params.replyTo || resolved.email;
+  if (replyTo) mimeHeaders["Reply-To"] = replyTo;
+  if (params.refId) {
+    mimeHeaders["X-Entity-Ref-ID"] = String(params.refId).slice(0, 256);
+  }
+  for (const tag of params.tags || []) {
+    mimeHeaders[`X-Tag-${String(tag.name).slice(0, 64)}`] = sanitizeTag(String(tag.value)).slice(0, 256);
+  }
+
+  const body: Record<string, unknown> = {
+    from: { address: resolved.email, name: params.fromName || resolved.name },
+    to: [{ email_address: { address: params.to, name: params.to.split("@")[0] || "User" } }],
+    subject: params.subject,
+    htmlbody: params.html,
+    track_clicks: false,
+    track_opens: false,
+  };
+  if (params.text) body.textbody = params.text;
+  if (params.refId) body.client_reference = String(params.refId).slice(0, 256);
+  if (Object.keys(mimeHeaders).length) body.mime_headers = mimeHeaders;
+
+  const res = await fetch(apiUrl, {
+    method: "POST",
+    headers: {
+      Authorization: `Zoho-enczapikey ${apiKey}`,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+
+  let details: unknown;
+  try {
+    details = await res.json();
+  } catch {
+    details = { raw: await res.text() };
+  }
+
+  if (!res.ok) {
+    return { ok: false, status: res.status, details };
+  }
+
+  const data = (details as Record<string, unknown>).data as Record<string, unknown> | undefined;
+  const id = String(data?.message_id || data?.request_id || (details as Record<string, unknown>).request_id || "");
+  return { ok: true, status: res.status, id, details };
+}
+
 export async function sendEmail(params: SendEmailParams): Promise<SendEmailResult> {
   if (isEmailSendingPaused()) {
     return { ok: false, status: 503, details: { paused: true, message: "Email sending paused" } };
   }
+
+  if (isZeptomailReviewMode()) {
+    const app = tagApp(params);
+    if (!isThesisAppTag(app)) {
+      return {
+        ok: false,
+        status: 503,
+        details: {
+          paused: true,
+          message: "ZeptoMail review mode — thesis welcome sends only",
+          app: app || "(missing app tag)",
+        },
+      };
+    }
+  }
+
   const provider = emailProvider();
   if (provider === "mailgun") return sendViaMailgun(params);
   if (provider === "smtp2go") return sendViaSmtp2go(params);
+  if (provider === "zeptomail") return sendViaZeptomail(params);
   return sendViaResend(params);
 }
