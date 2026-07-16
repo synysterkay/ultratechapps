@@ -15,6 +15,7 @@
 
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
+import { recordComplaint, recordHardBounce } from "../_shared/email_suppressions.ts";
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL") || "";
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
@@ -226,6 +227,35 @@ Deno.serve(async (req) => {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  const appSlug = tagValue(tags, "app") || "unknown";
+  if (recipient && eventType === "email.bounced") {
+    await recordHardBounce(supabase, {
+      recipient,
+      app: appSlug,
+      eventId: svixId,
+      messageId: messageId || undefined,
+      occurredAt,
+      senderDomain: senderDomain || undefined,
+      kind: tagValue(tags, "kind") || undefined,
+      language: tagValue(tags, "language") || undefined,
+      refId: refId || undefined,
+      raw: payload,
+    });
+  } else if (recipient && eventType === "email.complained") {
+    await recordComplaint(supabase, {
+      recipient,
+      app: appSlug,
+      eventId: svixId,
+      messageId: messageId || undefined,
+      occurredAt,
+      senderDomain: senderDomain || undefined,
+      kind: tagValue(tags, "kind") || undefined,
+      language: tagValue(tags, "language") || undefined,
+      refId: refId || undefined,
+      raw: payload,
     });
   }
 

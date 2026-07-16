@@ -332,29 +332,29 @@ def _load_suppressed_emails() -> set[str]:
     except Exception as e:
         print(f'   ⚠️ bounce/complaint load failed: {e}')
 
-    # Source 2: explicit unsubscribes (table created by step 4). Tolerate
-    # absence so this is safe to deploy before the unsubscribe handler.
-    try:
-        r = requests.get(
-            f'{MARKETING_SUPABASE_URL}/rest/v1/email_suppressions',
-            params={
-                'select': 'recipient',
-                'app': 'eq.predictify',
-                'recipient': 'not.is.null',
-                'limit': '10000',
-            },
-            headers=headers, timeout=15,
-        )
-        if r.status_code == 200:
-            for row in r.json():
-                rec = row.get('recipient')
-                if rec:
-                    suppressed.add(rec.lower())
-        elif r.status_code != 404:
-            # 404 = table not created yet → fine. Other codes = log.
-            print(f'   ⚠️ email_suppressions read {r.status_code}: {r.text[:120]}')
-    except Exception as e:
-        print(f'   ⚠️ email_suppressions load failed: {e}')
+    # Source 2: email_suppressions (unsubscribes, webhook bounces, inline API bounces).
+    app_slug = _app_slug()
+    for scope in (app_slug, 'predictify', 'predictify_nba', 'horse_racing', '*', 'global'):
+        try:
+            r = requests.get(
+                f'{MARKETING_SUPABASE_URL}/rest/v1/email_suppressions',
+                params={
+                    'select': 'recipient',
+                    'app': f'eq.{scope}',
+                    'recipient': 'not.is.null',
+                    'limit': '10000',
+                },
+                headers=headers, timeout=15,
+            )
+            if r.status_code == 200:
+                for row in r.json():
+                    rec = row.get('recipient')
+                    if rec:
+                        suppressed.add(rec.lower())
+            elif r.status_code != 404:
+                print(f'   ⚠️ email_suppressions read {scope} {r.status_code}: {r.text[:120]}')
+        except Exception as e:
+            print(f'   ⚠️ email_suppressions load failed ({scope}): {e}')
 
     return suppressed
 

@@ -13,6 +13,7 @@ import time
 import os
 import re
 import json
+import hashlib
 import requests
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
@@ -232,7 +233,77 @@ class GmailSender:
             return True
         if _is_thesis_app(app) and ({'thesis', 'thesis_generator'} & apps):
             return True
+        if _is_predictify_app(app) and (
+            {'predictify', 'predictify_nba', 'horse_racing'} & apps
+        ):
+            return True
         return False
+
+    @classmethod
+    def _normalize_bounce_app(cls, app: str) -> str:
+        slug = (app or '').strip().lower()
+        if _is_thesis_app(slug):
+            return 'thesis_generator'
+        if slug in ('predictify_nba', 'horse_racing', 'predictify'):
+            return slug
+        if _is_predictify_app(slug):
+            return slug
+        return slug or 'unknown'
+
+    @classmethod
+    def _record_hard_bounce(cls, to_email, app, *, details=None):
+        """Persist inline API bounces so the next send skips immediately."""
+        url, key = cls._supabase_creds()
+        if not url or not key:
+            return
+
+        recipient = (to_email or '').lower().strip()
+        if not recipient:
+            return
+
+        app_slug = cls._normalize_bounce_app(app)
+        headers = {
+            'apikey': key,
+            'Authorization': f'Bearer {key}',
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal,resolution=merge-duplicates',
+        }
+        rows = [
+            {'recipient': recipient, 'app': app_slug, 'reason': 'bounce'},
+            {'recipient': recipient, 'app': '*', 'reason': 'bounce'},
+        ]
+        try:
+            requests.post(
+                f'{url}/rest/v1/email_suppressions',
+                headers=headers,
+                params={'on_conflict': 'recipient,app'},
+                json=rows,
+                timeout=15,
+            )
+        except Exception as e:
+            print(f'   ⚠️ bounce suppression write failed: {e}')
+
+        event_id = 'inline-' + hashlib.sha256(
+            f'{recipient}:{app_slug}'.encode('utf-8')
+        ).hexdigest()[:24]
+        try:
+            requests.post(
+                f'{url}/rest/v1/email_events',
+                headers=headers,
+                json={
+                    'svix_id': event_id,
+                    'event_type': 'email.bounced',
+                    'occurred_at': _utc_now().isoformat(),
+                    'recipient': recipient,
+                    'app': app_slug,
+                    'raw': {'inline_bounce': True, 'details': details or {}},
+                },
+                timeout=15,
+            )
+        except Exception as e:
+            print(f'   ⚠️ bounce event write failed: {e}')
+
+        cls._suppression_cache = None
 
     @classmethod
     def _thesis_cap_disabled(cls) -> bool:
@@ -657,6 +728,7 @@ class GmailSender:
             error_msg = resp.text[:200]
             if self._is_bounce(resp.status_code, resp.text):
                 print(f"   🔴 BOUNCED: {to_email} — {error_msg}")
+                self._record_hard_bounce(to_email, app, details=error_msg)
                 return 'bounced'
 
             print(f"   ❌ Resend error [{resp.status_code}]: {error_msg}")
@@ -697,6 +769,7 @@ class GmailSender:
             error_msg = resp.text[:200]
             if self._is_bounce(resp.status_code, resp.text):
                 print(f"   🔴 BOUNCED: {to_email} — {error_msg}")
+                self._record_hard_bounce(to_email, app, details=error_msg)
                 return 'bounced'
 
             print(f"   ❌ Mailgun error [{resp.status_code}]: {error_msg}")
@@ -751,6 +824,7 @@ class GmailSender:
             error_msg = resp.text[:200]
             if self._is_bounce(resp.status_code, resp.text):
                 print(f"   🔴 BOUNCED: {to_email} — {error_msg}")
+                self._record_hard_bounce(to_email, app, details=error_msg)
                 return 'bounced'
 
             print(f"   ❌ SMTP2GO error [{resp.status_code}]: {error_msg}")
@@ -800,6 +874,7 @@ class GmailSender:
             error_msg = resp.text[:200]
             if self._is_bounce(resp.status_code, resp.text):
                 print(f"   🔴 BOUNCED: {to_email} — {error_msg}")
+                self._record_hard_bounce(to_email, app, details=error_msg)
                 return 'bounced'
 
             print(f"   ❌ ZeptoMail error [{resp.status_code}]: {error_msg}")

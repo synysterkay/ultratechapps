@@ -9,17 +9,18 @@
 
 import type { SupabaseClient } from "jsr:@supabase/supabase-js@2";
 
-export async function upsertBounceSuppression(
+export async function upsertRecipientSuppression(
   supabase: SupabaseClient,
   recipient: string,
   app: string,
+  reason: "bounce" | "complaint",
 ): Promise<void> {
   const email = recipient.toLowerCase().trim();
   if (!email || !app) return;
 
   const rows = [
-    { recipient: email, app, reason: "bounce" },
-    { recipient: email, app: "*", reason: "bounce" },
+    { recipient: email, app, reason },
+    { recipient: email, app: "*", reason },
   ];
 
   const { error } = await supabase.from("email_suppressions").upsert(rows, {
@@ -27,8 +28,16 @@ export async function upsertBounceSuppression(
     ignoreDuplicates: false,
   });
   if (error) {
-    console.error("upsertBounceSuppression failed", error);
+    console.error("upsertRecipientSuppression failed", error);
   }
+}
+
+export async function upsertBounceSuppression(
+  supabase: SupabaseClient,
+  recipient: string,
+  app: string,
+): Promise<void> {
+  await upsertRecipientSuppression(supabase, recipient, app, "bounce");
 }
 
 export async function loadSuppressedRecipients(
@@ -100,5 +109,68 @@ export async function recordHardBounce(
 
   if (error && error.code !== "23505") {
     console.error("recordHardBounce email_events insert failed", error);
+  }
+}
+
+/** True when recipient must not be emailed (suppressions table or bounce/complaint events). */
+export async function isRecipientBlocked(
+  supabase: SupabaseClient,
+  recipient: string,
+  app: string,
+): Promise<boolean> {
+  const email = recipient.toLowerCase().trim();
+  if (!email) return false;
+
+  const suppressed = await loadSuppressedRecipients(supabase, app);
+  if (suppressed.has(email)) return true;
+
+  const { data, error } = await supabase
+    .from("email_events")
+    .select("recipient")
+    .eq("recipient", email)
+    .in("event_type", ["email.bounced", "email.complained"])
+    .limit(1);
+
+  if (error) {
+    console.error("isRecipientBlocked email_events lookup failed", error);
+    return false;
+  }
+
+  return (data?.length ?? 0) > 0;
+}
+
+export async function recordComplaint(
+  supabase: SupabaseClient,
+  opts: {
+    recipient: string;
+    app: string;
+    eventId: string;
+    messageId?: string;
+    occurredAt?: string;
+    senderDomain?: string;
+    kind?: string;
+    language?: string;
+    refId?: string;
+    raw?: unknown;
+  },
+): Promise<void> {
+  await upsertRecipientSuppression(supabase, opts.recipient, opts.app, "complaint");
+
+  const { error } = await supabase.from("email_events").insert({
+    svix_id: opts.eventId,
+    message_id: opts.messageId || null,
+    event_type: "email.complained",
+    occurred_at: opts.occurredAt || new Date().toISOString(),
+    recipient: opts.recipient.toLowerCase().trim(),
+    sender_domain: opts.senderDomain || null,
+    app: opts.app,
+    kind: opts.kind || null,
+    language: opts.language || null,
+    ref_id: opts.refId || null,
+    raw: opts.raw ?? {},
+  });
+
+  if (error && error.code !== "23505") {
+    console.error("recordComplaint email_events insert failed", error);
   }
 }

@@ -24,6 +24,7 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
 import { SENDER_POOL_PREDICTIFY as SENDER_POOL } from "../_shared/sender_pool.ts";
 import { hasEmailCredentials, resolveSender, sendEmail } from "../_shared/email_transport.ts";
+import { isRecipientBlocked } from "../_shared/email_suppressions.ts";
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL") || "";
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
@@ -181,13 +182,7 @@ Deno.serve(async (req) => {
     });
   }
 
-  const { data: suppressed } = await supabase
-    .from("email_suppressions")
-    .select("recipient")
-    .eq("recipient", email)
-    .eq("app", APP_SLUG)
-    .maybeSingle();
-  if (suppressed) {
+  if (await isRecipientBlocked(supabase, email, APP_SLUG)) {
     return new Response(JSON.stringify({ ok: true, skipped: "suppressed" }), {
       status: 200, headers: { "Content-Type": "application/json" },
     });

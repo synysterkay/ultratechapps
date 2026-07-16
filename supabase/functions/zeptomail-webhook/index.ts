@@ -2,10 +2,11 @@
 // Receives ZeptoMail bounce/open/click webhooks and writes email_events +
 // email_suppressions (hard bounces only) so bad addresses are skipped everywhere.
 //
-// Setup (ZeptoMail dashboard → Agents → thesisgenerator.io → Webhooks):
+// Setup (ZeptoMail dashboard → each verified domain → Webhooks):
+//   thesisgenerator.io + predictifyfootball.com
 //   URL:   https://jimcdgkwbbrxgakingtg.supabase.co/functions/v1/zeptomail-webhook
-//   Events: Hard bounced (required), Soft bounced (optional)
-//   Authentication Key → set same value as ZEPTOMAIL_WEBHOOK_AUTH_KEY secret
+//   Events: Hard bounced (required)
+//   Authentication Key → same value as ZEPTOMAIL_WEBHOOK_AUTH_KEY Supabase secret
 
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
@@ -15,6 +16,14 @@ const SUPABASE_URL = Deno.env.get("SUPABASE_URL") || "";
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
 const WEBHOOK_AUTH_KEY = Deno.env.get("ZEPTOMAIL_WEBHOOK_AUTH_KEY") || "";
 
+const KNOWN_APP_SLUGS = new Set([
+  "predictify",
+  "predictify_nba",
+  "horse_racing",
+  "thesis_generator",
+  "thesis",
+]);
+
 function parsePayload(rawBody: string): Record<string, unknown> {
   const trimmed = rawBody.trim();
   if (!trimmed) return {};
@@ -23,7 +32,6 @@ function parsePayload(rawBody: string): Record<string, unknown> {
     return JSON.parse(trimmed);
   }
 
-  // ZeptoMail test payloads may arrive as application/x-www-form-urlencoded.
   const params = new URLSearchParams(trimmed);
   const data = params.get("data") || params.get("payload");
   if (data) {
@@ -95,20 +103,62 @@ function extractSenderDomain(payload: Record<string, unknown>): string | null {
   return at >= 0 ? address.slice(at + 1) : null;
 }
 
+function extractMimeTag(payload: Record<string, unknown>, tagName: string): string | null {
+  const eventMessage = payload.event_message as Record<string, unknown> | undefined;
+  const emailInfo = eventMessage?.email_info as Record<string, unknown> | undefined;
+  const headers = emailInfo?.mime_headers || emailInfo?.headers;
+
+  if (headers && typeof headers === "object" && !Array.isArray(headers)) {
+    const key = `X-Tag-${tagName}`;
+    const direct = (headers as Record<string, unknown>)[key] ||
+      (headers as Record<string, unknown>)[key.toLowerCase()];
+    if (direct != null && String(direct).trim()) return String(direct).trim().toLowerCase();
+  }
+
+  if (Array.isArray(headers)) {
+    for (const h of headers) {
+      if (!h || typeof h !== "object") continue;
+      const obj = h as Record<string, unknown>;
+      const name = String(obj.header || obj.name || "").toLowerCase();
+      if (name === `x-tag-${tagName}` || name === tagName) {
+        const value = String(obj.value || "").trim().toLowerCase();
+        if (value) return value;
+      }
+    }
+  }
+
+  return null;
+}
+
+function normalizeAppSlug(raw: string | null): string | null {
+  if (!raw) return null;
+  const slug = raw.toLowerCase().trim();
+  if (slug === "thesis") return "thesis_generator";
+  if (KNOWN_APP_SLUGS.has(slug)) return slug;
+  return null;
+}
+
 function inferApp(payload: Record<string, unknown>, senderDomain: string | null): string {
+  const tagApp = normalizeAppSlug(extractMimeTag(payload, "app"));
+  if (tagApp) return tagApp;
+
   const clientRef = String(
     (payload.event_message as Record<string, unknown> | undefined)?.email_info &&
       ((payload.event_message as Record<string, unknown>).email_info as Record<string, unknown>)
         .client_reference ||
       payload.client_reference ||
       "",
-  );
+  ).toLowerCase();
 
-  if (clientRef.includes("thesis") || senderDomain === "thesisgenerator.io") {
-    return "thesis_generator";
-  }
+  if (clientRef.includes("predictify_nba") || clientRef.includes("nba")) return "predictify_nba";
+  if (clientRef.includes("horse_racing") || clientRef.includes("horse")) return "horse_racing";
+  if (clientRef.includes("thesis")) return "thesis_generator";
+  if (clientRef.includes("predictify")) return "predictify";
 
-  return "unknown";
+  if (senderDomain === "thesisgenerator.io") return "thesis_generator";
+  if (senderDomain === "predictifyfootball.com") return "predictify";
+
+  return "predictify";
 }
 
 Deno.serve(async (req) => {
@@ -118,7 +168,7 @@ Deno.serve(async (req) => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "POST, OPTIONS",
         "Access-Control-Allow-Headers":
-          "authorization, content-type, producer-signature",
+          "authorization, content-type, producer-signature, x-zeptomail-auth, x-authentication-key",
       },
     });
   }
@@ -165,6 +215,7 @@ Deno.serve(async (req) => {
 
   const senderDomain = extractSenderDomain(payload);
   const app = inferApp(payload, senderDomain);
+  const tagKind = extractMimeTag(payload, "kind");
   const eventId = String(
     payload.webhook_request_id ||
       payload.request_id ||
@@ -183,12 +234,12 @@ Deno.serve(async (req) => {
   const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
   await recordHardBounce(supabase, {
     recipient,
-    app: app === "unknown" ? "thesis_generator" : app,
+    app,
     eventId: `zm-${eventId}`,
     messageId,
     occurredAt,
     senderDomain: senderDomain || undefined,
-    kind: "welcome",
+    kind: tagKind || undefined,
     refId: clientRef || undefined,
     raw: payload,
   });
