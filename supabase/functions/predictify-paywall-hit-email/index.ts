@@ -197,7 +197,7 @@ Deno.serve(async (req) => {
   const subject = interpolate(tpl.subject, vars);
   const paragraphs = tpl.body.map((p) => interpolate(p, vars));
 
-  const sender = resolveSender(pickSender(uid));
+  const sender = resolveSender(pickSender(uid), APP_SLUG);
   const ref = await userRef(email);
   const deeplink = `https://predictifyfootball.com/?ref=email&kind=${KIND}`;
   const unsubUrl = await buildUnsubUrl(email);

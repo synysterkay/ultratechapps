@@ -99,7 +99,10 @@ jobs:
           SMTP2GO_API_KEY: ${{ secrets.SMTP2GO_API_KEY }}
           ZEPTOMAIL_API_KEY: ${{ secrets.ZEPTOMAIL_API_KEY }}
           ZEPTOMAIL_API_URL: https://api.zeptomail.eu/v1.1/email
-          ZEPTOMAIL_SENDER_EMAIL: hello@thesisgenerator.io
+          ZEPTOMAIL_THESIS_SENDER_EMAIL: hello@thesisgenerator.io
+          ZEPTOMAIL_THESIS_SENDER_NAME: Thesis Generator
+          PREDICTIFY_ZEPTOMAIL_SENDER_EMAIL: hello@predictifyfootball.com
+          PREDICTIFY_ZEPTOMAIL_SENDER_NAME: Predictify
           THESIS_SENDER_EMAIL: hello@thesisgenerator.io
           THESIS_SENDER_NAME: Thesis Generator
           EMAIL_SENDING_PAUSED: ${{ secrets.EMAIL_SENDING_PAUSED }}
@@ -117,6 +120,11 @@ jobs:
           # predictify_v2/* for behavioral trigger evaluation.
           PREDICTIFY_SUPABASE_URL: ${{ secrets.PREDICTIFY_SUPABASE_URL }}
           PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY }}
+          PREDICTIFY_UNSUBSCRIBE_SECRET: ${{ secrets.PREDICTIFY_UNSUBSCRIBE_SECRET }}
+          # Predictify v2 behavioral (P0/P1, predictifyfootball.com via ZeptoMail)
+          PREDICTIFY_ACTIVE_TRIGGERS: p0p1
+          PREDICTIFY_DISABLE_FOUNDER_FALLBACK: "1"
+          V2_DAILY_SEND_CAP: "250"
           # Founder-story backfill only (ignored by normal retention / v2 triggers).
           FOUNDER_STORY_SEND_CAP: "2000"
           FOUNDER_STORY_PASSES: "10"
@@ -172,19 +180,9 @@ jobs:
             python -u scripts/founder_story_thesis_2_sender.py
           else
             python -u scripts/app_retention_emailer.py
-            # Founder story is integrated into predictify_v2 (once-ever fallback).
+            # Founder story is integrated into predictify_v2 (manual catch-up only).
             # Manual catch-up: workflow_dispatch mode founder-story.
-            # Also run trigger-based senders during normal campaign runs.
-            # Each has its own cooldown / state file, so daily is safe.
-            echo "--- Running streak triggers ---"
-            python -u scripts/app_retention_emailer.py --streak || true
-            echo "--- Running matchday triggers ---"
-            python -u scripts/app_retention_emailer.py --matchday || true
-            echo "--- Running upsell triggers ---"
-            python -u scripts/app_retention_emailer.py --upsell || true
-            # ── Thesis Generator behavioral senders (ZeptoMail) ──
-            # 30-email drip disabled for Thesis. Welcome = Supabase.
-            # Orchestrator = P0/P1 triggers only from hello@thesisgenerator.io.
+            # ── Thesis Generator behavioral senders (ZeptoMail / thesisgenerator.io) ──
             echo "--- Running thesis orchestrator (P0/P1 behavioral) ---"
             python -u scripts/thesis_orchestrator.py || true
             # Other app orchestrators — ZeptoMail review mode skips non-thesis.

@@ -1,7 +1,8 @@
 /**
  * Pluggable email transport — Resend, Mailgun, SMTP2GO, or ZeptoMail.
  *
- * Set EMAIL_PROVIDER=zeptomail + ZEPTOMAIL_API_KEY for thesisgenerator.io (review mode).
+ * Set EMAIL_PROVIDER=zeptomail + ZEPTOMAIL_API_KEY.
+ * Routes by app tag: thesis → thesisgenerator.io, predictify → predictifyfootball.com.
  * Set EMAIL_PROVIDER=smtp2go + SMTP2GO_API_KEY for multi-domain SMTP2GO sends.
  * Set EMAIL_PROVIDER=mailgun + MAILGUN_* to pin to passedai.io (legacy bridge).
  * Unset EMAIL_PROVIDER (or set to "resend") for Resend.
@@ -12,6 +13,7 @@ import type { SenderIdentity } from "./sender_pool.ts";
 export type EmailProviderName = "resend" | "mailgun" | "smtp2go" | "zeptomail";
 
 const THESIS_APPS = new Set(["thesis", "thesis_generator"]);
+const PREDICTIFY_APPS = new Set(["predictify", "predictify_nba", "horse_racing"]);
 
 export interface EmailTag {
   name: string;
@@ -72,6 +74,40 @@ export function isThesisAppTag(app: string): boolean {
   return THESIS_APPS.has(app.toLowerCase());
 }
 
+export function isPredictifyAppTag(app: string): boolean {
+  return PREDICTIFY_APPS.has(app.toLowerCase());
+}
+
+export function isZeptomailAllowedApp(app: string): boolean {
+  return isThesisAppTag(app) || isPredictifyAppTag(app);
+}
+
+/** Resolve ZeptoMail From address for a given app slug. */
+export function zeptomailSenderForApp(app: string): SenderIdentity {
+  if (isThesisAppTag(app)) {
+    return {
+      email:
+        Deno.env.get("ZEPTOMAIL_THESIS_SENDER_EMAIL") ||
+        Deno.env.get("ZEPTOMAIL_SENDER_EMAIL") ||
+        "hello@thesisgenerator.io",
+      name:
+        Deno.env.get("ZEPTOMAIL_THESIS_SENDER_NAME") ||
+        Deno.env.get("ZEPTOMAIL_SENDER_NAME") ||
+        "Thesis Generator",
+    };
+  }
+  if (isPredictifyAppTag(app)) {
+    return {
+      email: Deno.env.get("PREDICTIFY_ZEPTOMAIL_SENDER_EMAIL") || "hello@predictifyfootball.com",
+      name: Deno.env.get("PREDICTIFY_ZEPTOMAIL_SENDER_NAME") || "Predictify",
+    };
+  }
+  return {
+    email: Deno.env.get("ZEPTOMAIL_SENDER_EMAIL") || "hello@thesisgenerator.io",
+    name: Deno.env.get("ZEPTOMAIL_SENDER_NAME") || "Predictify",
+  };
+}
+
 export function isEmailSendingPaused(): boolean {
   const v = (Deno.env.get("EMAIL_SENDING_PAUSED") || "").toLowerCase();
   return v === "1" || v === "true" || v === "yes";
@@ -92,7 +128,7 @@ export function hasEmailCredentials(): boolean {
 }
 
 /** Pin sender when Mailgun or ZeptoMail is active; pass through otherwise. */
-export function resolveSender(poolSender: SenderIdentity): SenderIdentity {
+export function resolveSender(poolSender: SenderIdentity, app?: string): SenderIdentity {
   const provider = emailProvider();
 
   if (provider === "mailgun") {
@@ -104,6 +140,10 @@ export function resolveSender(poolSender: SenderIdentity): SenderIdentity {
   }
 
   if (provider === "zeptomail") {
+    if (app && isZeptomailAllowedApp(app)) {
+      const pinned = zeptomailSenderForApp(app);
+      return { email: pinned.email, name: poolSender.name || pinned.name };
+    }
     const email = Deno.env.get("ZEPTOMAIL_SENDER_EMAIL") || "hello@thesisgenerator.io";
     const name = Deno.env.get("ZEPTOMAIL_SENDER_NAME") || poolSender.name || "Thesis Generator";
     return { email, name };
@@ -275,7 +315,8 @@ async function sendViaSmtp2go(params: SendEmailParams): Promise<SendEmailResult>
 async function sendViaZeptomail(params: SendEmailParams): Promise<SendEmailResult> {
   const apiKey = Deno.env.get("ZEPTOMAIL_API_KEY") || "";
   const apiUrl = Deno.env.get("ZEPTOMAIL_API_URL") || "https://api.zeptomail.eu/v1.1/email";
-  const resolved = resolveSender({ email: params.fromEmail, name: params.fromName });
+  const app = tagApp(params);
+  const resolved = resolveSender({ email: params.fromEmail, name: params.fromName }, app);
 
   const mimeHeaders: Record<string, string> = {};
   const replyTo = params.replyTo || resolved.email;
@@ -332,13 +373,13 @@ export async function sendEmail(params: SendEmailParams): Promise<SendEmailResul
 
   if (isZeptomailReviewMode()) {
     const app = tagApp(params);
-    if (!isThesisAppTag(app)) {
+    if (!isZeptomailAllowedApp(app)) {
       return {
         ok: false,
         status: 503,
         details: {
           paused: true,
-          message: "ZeptoMail review mode — thesisgenerator.io sends only",
+          message: "ZeptoMail — thesis + predictify apps only",
           app: app || "(missing app tag)",
         },
       };

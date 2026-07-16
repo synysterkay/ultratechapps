@@ -104,7 +104,7 @@ Deno.serve(async (req) => {
   // Accept both soccer Predictify ("predictify") and Predictify NBA
   // ("predictify_nba"). The app slug in parts[1] scopes the suppression
   // so unsubscribing from one app doesn't silence the other.
-  const ALLOWED_APPS = new Set(["predictify", "predictify_nba"]);
+  const ALLOWED_APPS = new Set(["predictify", "predictify_nba", "horse_racing"]);
   if (parts.length !== 2 || !ALLOWED_APPS.has(parts[1])) {
     return new Response(
       htmlPage("Predictify — Unsubscribe", `<p>This unsubscribe link is not valid for Predictify.</p>`),

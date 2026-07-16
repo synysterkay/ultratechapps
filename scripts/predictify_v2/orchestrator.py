@@ -44,7 +44,7 @@ try:
     from firebase_user_loader import FirebaseUserLoader  # noqa: E402
     from firestore_language_loader import FirestoreLanguageLoader  # noqa: E402
     from firestore_activity_loader import FirestoreActivityLoader  # noqa: E402
-    from gmail_sender import GmailSender  # noqa: E402
+    from gmail_sender import GmailSender, has_email_credentials  # noqa: E402
 except ImportError:
     print('⚠️ Could not import firebase loaders — run from scripts/ dir')
     raise
@@ -426,9 +426,23 @@ _EMAIL_SENDER: GmailSender | None = None
 
 
 def _email_configured() -> bool:
-    if (os.getenv('EMAIL_PROVIDER') or 'resend').lower() == 'mailgun':
-        return bool(os.getenv('MAILGUN_API_KEY') and os.getenv('MAILGUN_DOMAIN'))
-    return bool(RESEND_KEY)
+    return has_email_credentials()
+
+
+def _app_slug() -> str:
+    """Firestore / suppression app id for the active profile."""
+    app_name = os.environ.get('PREDICTIFY_APP_NAME', 'Predictify')
+    if 'NBA' in app_name:
+        return 'predictify_nba'
+    if 'Horse' in app_name:
+        return 'horse_racing'
+    return 'predictify'
+
+
+def _founder_fallback_disabled() -> bool:
+    return os.environ.get('PREDICTIFY_DISABLE_FOUNDER_FALLBACK', '1').lower() in (
+        '1', 'true', 'yes',
+    )
 
 
 def _get_email_sender() -> GmailSender:
@@ -454,13 +468,9 @@ UNSUBSCRIBE_SIGNING_SECRET = os.environ.get(
 
 
 def _build_unsub_url(email_addr: str) -> str:
-    """Per-recipient signed unsubscribe URL. Encoded as `?e=<b64>&s=<hex>`
-    where:
-      e = url-safe base64 of the lowercased email + '|predictify'
-      s = first 32 hex chars of HMAC-SHA256(secret, e)
-    Truncating to 32 chars keeps the URL short while leaving plenty of
-    bits for tamper resistance (128 bits)."""
-    payload = f'{email_addr.lower().strip()}|predictify'.encode('utf-8')
+    """Per-recipient signed unsubscribe URL. Encoded as `?e=<b64>&s=<hex>`."""
+    slug = _app_slug()
+    payload = f'{email_addr.lower().strip()}|{slug}'.encode('utf-8')
     e = base64.urlsafe_b64encode(payload).rstrip(b'=').decode('ascii')
     if UNSUBSCRIBE_SIGNING_SECRET:
         s = hmac.new(
@@ -493,7 +503,7 @@ def _pick_sender(uid: str) -> dict:
 
 def _send(to: str, uid: str, email: RenderedEmail, dry_run: bool = False) -> bool:
     if not _email_configured():
-        print('⚠️ email credentials missing (RESEND_API_KEY or MAILGUN_*)')
+        print('⚠️ email credentials missing (check EMAIL_PROVIDER + API key)')
         return False
     sender = _pick_sender(uid)
     unsub_url = _build_unsub_url(to)
@@ -511,7 +521,7 @@ def _send(to: str, uid: str, email: RenderedEmail, dry_run: bool = False) -> boo
             html_body=html,
             from_name=sender['name'],
             tags=[
-                {'name': 'app', 'value': 'predictify'},
+                {'name': 'app', 'value': _app_slug()},
                 {'name': 'kind', 'value': email.kind},
                 {'name': 'lang', 'value': email.language},
                 {'name': 'system', 'value': 'v2'},
@@ -602,7 +612,7 @@ def _build_text(e: RenderedEmail, unsub_url: str | None = None) -> str:
 #  no more than V2_DAILY_SEND_CAP emails go out in one run. With two
 #  daily crons (09:00 + 17:00 UTC) the realistic worst case is
 #  2 × V2_DAILY_SEND_CAP = 1000 emails/day.
-V2_DAILY_SEND_CAP = 500
+V2_DAILY_SEND_CAP = 250
 # Founder-story backfill uses a higher per-pass cap so one workflow run can
 # clear the backlog (~20k users) in a single job.
 FOUNDER_STORY_SEND_CAP = 2000
@@ -660,6 +670,8 @@ def _pick_kind(
     kind = select_trigger(ctx)
     if kind:
         return kind
+    if _founder_fallback_disabled():
+        return None
     return None if already else FOUNDER_STORY_KIND
 
 

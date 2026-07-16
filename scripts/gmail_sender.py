@@ -2,7 +2,8 @@
 """
 Email Sender — Resend (default), Mailgun, SMTP2GO, or ZeptoMail.
 
-Set EMAIL_PROVIDER=zeptomail + ZEPTOMAIL_API_KEY for thesisgenerator.io (review mode).
+Set EMAIL_PROVIDER=zeptomail + ZEPTOMAIL_API_KEY.
+Routes by app tag: thesis → thesisgenerator.io, predictify → predictifyfootball.com.
 Set EMAIL_PROVIDER=smtp2go + SMTP2GO_API_KEY for multi-domain SMTP2GO sends.
 Set EMAIL_PROVIDER=mailgun + MAILGUN_* to pin to passedai.io (legacy bridge).
 
@@ -60,6 +61,15 @@ def _parse_iso(value):
 
 def _is_thesis_app(app):
     return app in {'thesis', 'thesis_generator'}
+
+
+def _is_predictify_app(app):
+    return app in {'predictify', 'predictify_nba', 'horse_racing'}
+
+
+def _is_zeptomail_allowed_app(app):
+    """Apps permitted to send when EMAIL_PROVIDER=zeptomail."""
+    return _is_thesis_app(app) or _is_predictify_app(app)
 
 
 def _email_provider():
@@ -129,7 +139,12 @@ class GmailSender:
         self.mailgun_domain = os.getenv('MAILGUN_DOMAIN', 'passedai.io')
         self._explicit_sender_email = sender_email is not None
         self._explicit_sender_name = sender_name is not None
-        default_sender = 'hello@thesisgenerator.io' if self._use_zeptomail else 'hello@passedai.io'
+        if self._use_zeptomail:
+            default_sender = os.getenv(
+                'PREDICTIFY_ZEPTOMAIL_SENDER_EMAIL', 'hello@predictifyfootball.com'
+            )
+        else:
+            default_sender = 'hello@passedai.io'
         self.sender_email = sender_email or default_sender
         self.sender_name = sender_name or 'Sam'
         if self._use_mailgun:
@@ -350,8 +365,19 @@ class GmailSender:
             return os.getenv('MAILGUN_SELKA_SENDER_EMAIL', 'selka@passedai.io')
         return os.getenv('MAILGUN_SENDER_EMAIL', 'hello@passedai.io')
 
-    def _zeptomail_pinned_email(self, sender_email):
-        """Pin all From addresses to thesisgenerator.io when ZeptoMail is active."""
+    def _zeptomail_pinned_email(self, sender_email, app=None):
+        """Pin From address to the verified ZeptoMail domain for this app."""
+        if _is_predictify_app(app):
+            return os.getenv(
+                'PREDICTIFY_ZEPTOMAIL_SENDER_EMAIL', 'hello@predictifyfootball.com'
+            )
+        if _is_thesis_app(app):
+            return (
+                os.getenv('ZEPTOMAIL_THESIS_SENDER_EMAIL')
+                or os.getenv('ZEPTOMAIL_SENDER_EMAIL', 'hello@thesisgenerator.io')
+            )
+        if sender_email and '@predictifyfootball.com' in (sender_email or '').lower():
+            return sender_email
         return os.getenv('ZEPTOMAIL_SENDER_EMAIL', 'hello@thesisgenerator.io')
 
     def _effective_sender(self, app, from_name=None):
@@ -359,18 +385,26 @@ class GmailSender:
         sender_name = from_name or self.sender_name
         if _is_thesis_app(app) and not self._explicit_sender_email:
             sender_email = os.getenv(
-                'ZEPTOMAIL_SENDER_EMAIL' if self._use_zeptomail else 'THESIS_SENDER_EMAIL',
+                'ZEPTOMAIL_THESIS_SENDER_EMAIL'
+                if self._use_zeptomail
+                else 'THESIS_SENDER_EMAIL',
                 'hello@thesisgenerator.io',
             )
             if not from_name and not self._explicit_sender_name:
                 sender_name = os.getenv(
-                    'ZEPTOMAIL_SENDER_NAME' if self._use_zeptomail else 'THESIS_SENDER_NAME',
+                    'ZEPTOMAIL_THESIS_SENDER_NAME'
+                    if self._use_zeptomail
+                    else 'THESIS_SENDER_NAME',
                     'Thesis Generator',
                 )
+        elif _is_predictify_app(app) and self._use_zeptomail:
+            sender_email = self._zeptomail_pinned_email(sender_email, app)
+            if not from_name and not self._explicit_sender_name:
+                sender_name = os.getenv('PREDICTIFY_ZEPTOMAIL_SENDER_NAME', 'Predictify')
         if self._use_mailgun:
             sender_email = self._mailgun_pinned_email(sender_email)
         if self._use_zeptomail:
-            sender_email = self._zeptomail_pinned_email(sender_email)
+            sender_email = self._zeptomail_pinned_email(sender_email, app)
         return sender_email, sender_name
 
     def connect(self):
@@ -466,8 +500,12 @@ class GmailSender:
             return False
 
     def _connect_zeptomail(self):
-        pinned = self._zeptomail_pinned_email(self.sender_email)
-        print(f"✅ ZeptoMail configured — sending as {pinned} (thesisgenerator.io only, review mode)")
+        thesis = self._zeptomail_pinned_email(self.sender_email, 'thesis')
+        predictify = self._zeptomail_pinned_email(self.sender_email, 'predictify')
+        print(
+            f"✅ ZeptoMail configured — thesis: {thesis}, "
+            f"predictify: {predictify} (app-tagged routing)"
+        )
         self.connected = True
         return True
 
@@ -516,8 +554,8 @@ class GmailSender:
         tag_values = _tag_dict(tags)
         app = tag_values.get('app', '')
 
-        if self._use_zeptomail and not _is_thesis_app(app):
-            print(f"   ⏸️ ZeptoMail review mode — skipping non-thesis app ({app or 'unknown'})")
+        if self._use_zeptomail and not _is_zeptomail_allowed_app(app):
+            print(f"   ⏸️ ZeptoMail — skipping unsupported app ({app or 'unknown'})")
             return 'paused'
 
         if self._is_suppressed(to_email, app):

@@ -20,10 +20,40 @@ trigger matches and the user hasn't received it yet.
 """
 from __future__ import annotations
 
+import os
 from datetime import datetime, timezone
 from typing import Callable
 
 from .user_context import UserContext
+
+# ── P0/P1 active triggers (2026-07-16) ──
+# Deferred: founder_story, weekly_recap, referral, community, owner_*, pro_*,
+# login_streak_reward, winback_lapsed_pro.
+P0P1_KINDS: frozenset[str] = frozenset({
+    'streak_saver',
+    'match_day',
+    'welcome',
+    'win_back',
+    'upgrade_after_hot_week',
+})
+
+
+def active_trigger_kinds() -> frozenset[str] | None:
+    """Return allowed kinds, or None to allow all triggers (legacy / manual modes)."""
+    raw = os.environ.get('PREDICTIFY_ACTIVE_TRIGGERS', 'p0p1').strip().lower()
+    if raw in ('', 'all', '*'):
+        return None
+    if raw == 'p0p1':
+        return P0P1_KINDS
+    return frozenset(k.strip() for k in raw.split(',') if k.strip())
+
+
+def only_trigger_kinds() -> frozenset[str] | None:
+    """When set (e.g. hourly streak workflow), restrict to these kinds only."""
+    raw = os.environ.get('PREDICTIFY_ONLY_KINDS', '').strip()
+    if not raw:
+        return None
+    return frozenset(k.strip() for k in raw.split(',') if k.strip())
 
 
 # A trigger is (priority, kind, predicate). Lower priority = higher precedence.
@@ -137,7 +167,13 @@ TRIGGERS: list[tuple[int, str, Callable[[UserContext], bool]]] = [
 
 def select_trigger(ctx: UserContext) -> str | None:
     """First matching trigger wins. Returns kind or None."""
+    allowed = active_trigger_kinds()
+    only = only_trigger_kinds()
     for _prio, kind, pred in sorted(TRIGGERS):
+        if allowed is not None and kind not in allowed:
+            continue
+        if only is not None and kind not in only:
+            continue
         try:
             if pred(ctx):
                 return kind

@@ -42,7 +42,14 @@ jobs:
           SMTP2GO_API_KEY: ${{ secrets.SMTP2GO_API_KEY }}
           ZEPTOMAIL_API_KEY: ${{ secrets.ZEPTOMAIL_API_KEY }}
           ZEPTOMAIL_API_URL: https://api.zeptomail.eu/v1.1/email
+          PREDICTIFY_ZEPTOMAIL_SENDER_EMAIL: hello@predictifyfootball.com
+          PREDICTIFY_ZEPTOMAIL_SENDER_NAME: Predictify
+          PREDICTIFY_ONLY_KINDS: streak_saver
+          PREDICTIFY_ACTIVE_TRIGGERS: p0p1
+          PREDICTIFY_DISABLE_FOUNDER_FALLBACK: "1"
+          V2_DAILY_SEND_CAP: "75"
           EMAIL_SENDING_PAUSED: ${{ secrets.EMAIL_SENDING_PAUSED }}
+          EMAIL_REF_SALT: ${{ secrets.EMAIL_REF_SALT }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
           MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
@@ -53,7 +60,7 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           PREDICTIFY_SUPABASE_URL: ${{ secrets.PREDICTIFY_SUPABASE_URL }}
           PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY }}
-          EMAIL_REF_SALT: ${{ secrets.EMAIL_REF_SALT }}
+          PREDICTIFY_UNSUBSCRIBE_SECRET: ${{ secrets.PREDICTIFY_UNSUBSCRIBE_SECRET }}
         run: |
           DRY="${{ github.event.inputs.dry-run || 'false' }}"
           # The v2 orchestrator iterates all triggers; until --only is

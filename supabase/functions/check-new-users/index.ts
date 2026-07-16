@@ -13,6 +13,14 @@ import { loadSuppressedRecipients, upsertBounceSuppression } from "../_shared/em
 const MAX_EMAILS_PER_RUN = 60;
 const ZEPTOMAIL_MAX_PER_RUN = 10;
 const ZEPTOMAIL_DAILY_CAP = parseInt(Deno.env.get("ZEPTOMAIL_DAILY_CAP") || "100", 10);
+const PREDICTIFY_ZEPTOMAIL_MAX_PER_RUN = parseInt(
+  Deno.env.get("PREDICTIFY_ZEPTOMAIL_MAX_PER_RUN") || "15",
+  10,
+);
+const PREDICTIFY_ZEPTOMAIL_DAILY_CAP = parseInt(
+  Deno.env.get("PREDICTIFY_ZEPTOMAIL_DAILY_CAP") || "300",
+  10,
+);
 const DEADLINE_MS = 50_000; // Stop processing at 50 seconds
 
 // ── Firebase projects → app_id mapping ──────────────────────
@@ -111,9 +119,18 @@ const FIREBASE_PROJECTS: Record<
 
 const ALL_PROJECT_IDS = Object.keys(FIREBASE_PROJECTS);
 
+/** Firebase projects allowed when EMAIL_PROVIDER=zeptomail (verified domains only). */
+const ZEPTOMAIL_PROJECT_IDS = [
+  "thesis-generator-web",
+  "predictify-3f30d",
+  "horse-racing-f67e8",
+];
+
+const PREDICTIFY_WELCOME_APP_IDS = new Set(["predictify", "horse_racing"]);
+
 function activeProjectIds(): string[] {
   if (isZeptomailReviewMode()) {
-    return ["thesis-generator-web"];
+    return ZEPTOMAIL_PROJECT_IDS;
   }
   return ALL_PROJECT_IDS;
 }
@@ -326,11 +343,12 @@ Deno.serve(async (req) => {
       targetProjectId = projectIds[projectIndex];
     }
 
-    if (isZeptomailReviewMode() && targetProjectId !== "thesis-generator-web") {
+    if (isZeptomailReviewMode() && !ZEPTOMAIL_PROJECT_IDS.includes(targetProjectId)) {
       return new Response(
         JSON.stringify({
           paused: true,
-          message: "ZeptoMail review mode — thesis welcome only",
+          message: "ZeptoMail — project not on allowlist",
+          project: targetProjectId,
           provider: emailProvider(),
         }),
         { status: 200, headers: { "Content-Type": "application/json" } },
@@ -380,34 +398,45 @@ Deno.serve(async (req) => {
     let zeptomailSentToday = 0;
     let emailCap = MAX_EMAILS_PER_RUN;
     if (isZeptomailReviewMode()) {
-      emailCap = ZEPTOMAIL_MAX_PER_RUN;
       const todayStart = new Date();
       todayStart.setUTCHours(0, 0, 0, 0);
+      const isPredictifyWelcome = PREDICTIFY_WELCOME_APP_IDS.has(config.appId);
+      const dailyCap = isPredictifyWelcome
+        ? PREDICTIFY_ZEPTOMAIL_DAILY_CAP
+        : ZEPTOMAIL_DAILY_CAP;
+      const maxPerRun = isPredictifyWelcome
+        ? PREDICTIFY_ZEPTOMAIL_MAX_PER_RUN
+        : ZEPTOMAIL_MAX_PER_RUN;
+
+      emailCap = maxPerRun;
       const { count, error: countErr } = await supabase
         .from("welcomed_users")
         .select("email", { count: "exact", head: true })
-        .eq("app_id", "thesis_generator")
+        .eq("app_id", config.appId)
         .gte("welcomed_at", todayStart.toISOString());
 
       if (countErr) {
         results.push(`⚠️ ZeptoMail daily cap lookup failed: ${countErr.message}`);
       } else {
         zeptomailSentToday = count || 0;
-        results.push(`📬 ZeptoMail review: ${zeptomailSentToday}/${ZEPTOMAIL_DAILY_CAP} thesis welcomes sent today`);
-        if (zeptomailSentToday >= ZEPTOMAIL_DAILY_CAP) {
+        const label = isPredictifyWelcome ? "predictify" : "thesis";
+        results.push(
+          `📬 ZeptoMail ${label}: ${zeptomailSentToday}/${dailyCap} welcomes sent today`,
+        );
+        if (zeptomailSentToday >= dailyCap) {
           return new Response(
             JSON.stringify({
               success: true,
               paused: true,
-              message: "ZeptoMail daily cap reached — thesis welcome only",
+              message: `ZeptoMail daily cap reached — ${label} welcome only`,
               zeptomail_sent_today: zeptomailSentToday,
-              zeptomail_daily_cap: ZEPTOMAIL_DAILY_CAP,
+              zeptomail_daily_cap: dailyCap,
               details: results,
             }),
             { status: 200, headers: { "Content-Type": "application/json" } },
           );
         }
-        emailCap = Math.min(ZEPTOMAIL_MAX_PER_RUN, ZEPTOMAIL_DAILY_CAP - zeptomailSentToday);
+        emailCap = Math.min(maxPerRun, dailyCap - zeptomailSentToday);
       }
     }
 

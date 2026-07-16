@@ -10,7 +10,7 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
 import { BOYFRIEND_EMAILS } from "./boyfriend-emails.ts";
 import { GIRLFRIEND_EMAILS } from "./girlfriend-emails.ts";
-import { SENDER_POOL_FULL as SENDER_POOL } from "../_shared/sender_pool.ts";
+import { SENDER_POOL_FULL as SENDER_POOL, SENDER_POOL_PREDICTIFY, SENDER_POOL_THESIS } from "../_shared/sender_pool.ts";
 import { hasEmailCredentials, isSendFailureBounce, resolveSender, sendEmail } from "../_shared/email_transport.ts";
 import { recordHardBounce } from "../_shared/email_suppressions.ts";
 
@@ -49,8 +49,16 @@ function withUtm(
   }
 }
 
-function getRandomSender() {
-  return resolveSender(SENDER_POOL[Math.floor(Math.random() * SENDER_POOL.length)]);
+function getSenderForApp(appId: string) {
+  if (appId === "thesis_generator") {
+    return resolveSender(SENDER_POOL_THESIS[0], appId);
+  }
+  if (appId === "predictify" || appId === "horse_racing" || appId === "predictify_nba") {
+    const pick = SENDER_POOL_PREDICTIFY[Math.floor(Math.random() * SENDER_POOL_PREDICTIFY.length)];
+    return resolveSender(pick, appId);
+  }
+  const pick = SENDER_POOL[Math.floor(Math.random() * SENDER_POOL.length)];
+  return resolveSender(pick, appId);
 }
 
 // ── APP CONFIG (mapped by app_id passed from mobile apps) ───
@@ -1239,7 +1247,7 @@ Deno.serve(async (req: Request) => {
     }
 
     const emailData = appConfig.emails[lang];
-    const sender = getRandomSender();
+    const sender = getSenderForApp(app_id);
 
     // Attribution context — same shape as retention/streak/matchday sends
     const ref = await userRef(email);

@@ -53,8 +53,8 @@ HEALTH_CAPS = {
 # a send for hitting a per-day number. The only volume governors that remain
 # are (a) per-sender health caps for NON-priority apps — reputation protection,
 # summed into the dynamic limit below — and (b) the per-run wall-clock budget.
-# PRIORITY_APPS (Predictify Soccer, Thesis Generator) bypass both, so none of
-# their emails are ever dropped for a cap. (Previously clamped at 3,400/day.)
+# PRIORITY_APPS bypass daily cap + health throttle (empty set since 2026-07-16).
+# Previously Predictify Soccer was uncapped here.
 
 # Wall-clock budget for a single run. GitHub cancels the job at 6h and the
 # workflow step is capped at 300 min; we stop the send loop a bit before that
@@ -685,11 +685,14 @@ class AppRetentionEmailer:
     # user priority — a new user of any active app still beats a cycle-2
     # user of Predictify.
     ACTIVE_APPS = [
-        'Predictify',
+        # Predictify Soccer removed from 30-email drip (2026-07-16).
+        # Behavioral only via predictify_v2 + Supabase instant emails.
+        # See PREDICTIFY_EMAILS_PLAN.md.
         # Thesis Generator removed from 30-email drip (2026-07-16).
         # Thesis now uses instant welcome + scripts/thesis_orchestrator.py
         # behavioral triggers only — see THESIS_EMAILS_PLAN.md.
-        'Predictify: Horse Racing AI',
+        # Predictify: Horse Racing AI removed from drip (2026-07-16).
+        # Welcome via check-new-users; behavioral TBD — see PREDICTIFY_EMAILS_PLAN.md.
         'Crypto AI: Trading Analyzer',
         'Smart Notes - AI Meeting Summary',
         'Volume Booster - Sound Booster',
@@ -717,7 +720,7 @@ class AppRetentionEmailer:
     # genuinely broken senders rather than loop failures). Non-priority apps
     # keep the normal cap + health behavior and yield whatever capacity is
     # left after the priority apps are fully served.
-    PRIORITY_APPS = {'Predictify'}
+    PRIORITY_APPS: set[str] = set()
 
     # ─── CAMPAIGN LOGIC ────────────────────────────────────
     
