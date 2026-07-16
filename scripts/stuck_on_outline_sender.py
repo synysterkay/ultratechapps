@@ -19,7 +19,7 @@ from datetime import datetime, timezone, timedelta
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from gmail_sender import GmailSender, SKIP_RESULTS
+from gmail_sender import GmailSender, SKIP_RESULTS, has_email_credentials
 from thesis_users_loader import (
     get_access_token, load_users_dict, load_theses_by_status, is_paid,
 )
@@ -106,8 +106,8 @@ def main(dry_run=False):
         print('🏁 DRY RUN')
         return
 
-    if not os.getenv('RESEND_API_KEY'):
-        print('❌ RESEND_API_KEY not set')
+    if not has_email_credentials():
+        print('❌ Email API credentials not set (ZEPTOMAIL_API_KEY / RESEND_API_KEY / …)')
         return
 
     sender = GmailSender()

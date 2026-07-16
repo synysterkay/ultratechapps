@@ -686,7 +686,9 @@ class AppRetentionEmailer:
     # user of Predictify.
     ACTIVE_APPS = [
         'Predictify',
-        'Thesis Generator',
+        # Thesis Generator removed from 30-email drip (2026-07-16).
+        # Thesis now uses instant welcome + scripts/thesis_orchestrator.py
+        # behavioral triggers only — see THESIS_EMAILS_PLAN.md.
         'Predictify: Horse Racing AI',
         'Crypto AI: Trading Analyzer',
         'Smart Notes - AI Meeting Summary',
@@ -715,7 +717,7 @@ class AppRetentionEmailer:
     # genuinely broken senders rather than loop failures). Non-priority apps
     # keep the normal cap + health behavior and yield whatever capacity is
     # left after the priority apps are fully served.
-    PRIORITY_APPS = {'Predictify', 'Thesis Generator'}
+    PRIORITY_APPS = {'Predictify'}
 
     # ─── CAMPAIGN LOGIC ────────────────────────────────────
     

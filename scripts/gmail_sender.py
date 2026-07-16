@@ -88,6 +88,11 @@ def _api_key_env_name():
     return 'RESEND_API_KEY'
 
 
+def has_email_credentials() -> bool:
+    """True if the active EMAIL_PROVIDER has the required API key set."""
+    return bool(os.getenv(_api_key_env_name()))
+
+
 # Keep class name GmailSender so nothing else needs to change
 class GmailSender:
     """Resend, Mailgun, SMTP2GO, or ZeptoMail email sender — same interface as previous senders."""
@@ -353,10 +358,10 @@ class GmailSender:
         sender_email = self.sender_email
         sender_name = from_name or self.sender_name
         if _is_thesis_app(app) and not self._explicit_sender_email:
-            if self._use_zeptomail:
-                sender_email = os.getenv('ZEPTOMAIL_SENDER_EMAIL', 'hello@thesisgenerator.io')
-            else:
-                sender_email = os.getenv('THESIS_SENDER_EMAIL', 'hello@passedai.io')
+            sender_email = os.getenv(
+                'ZEPTOMAIL_SENDER_EMAIL' if self._use_zeptomail else 'THESIS_SENDER_EMAIL',
+                'hello@thesisgenerator.io',
+            )
             if not from_name and not self._explicit_sender_name:
                 sender_name = os.getenv(
                     'ZEPTOMAIL_SENDER_NAME' if self._use_zeptomail else 'THESIS_SENDER_NAME',

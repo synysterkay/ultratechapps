@@ -23,7 +23,7 @@ from datetime import datetime, timezone, timedelta
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from gmail_sender import GmailSender, SKIP_RESULTS
+from gmail_sender import GmailSender, SKIP_RESULTS, has_email_credentials
 from thesis_users_loader import (
     get_access_token, load_users_dict, load_theses_by_status, is_paid,
 )
@@ -40,10 +40,10 @@ _REF_SALT = os.getenv('EMAIL_REF_SALT', 'marketing-tool-v1')
 
 
 # (cadence_label, min_days_inactive, max_days_inactive)
+# stage_10d disabled 2026-07-16 — too naggy for ZeptoMail ramp; 2d + 5d only.
 STAGES = [
     ('stage_2d',  2,  4),
     ('stage_5d',  5,  9),
-    ('stage_10d', 10, 30),
 ]
 
 EN_SOURCES = {
@@ -155,8 +155,8 @@ def main(dry_run=False):
         print('🏁 DRY RUN')
         return
 
-    if not os.getenv('RESEND_API_KEY'):
-        print('❌ RESEND_API_KEY not set')
+    if not has_email_credentials():
+        print('❌ Email API credentials not set (ZEPTOMAIL_API_KEY / RESEND_API_KEY / …)')
         return
 
     sender = GmailSender()

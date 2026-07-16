@@ -338,7 +338,7 @@ export async function sendEmail(params: SendEmailParams): Promise<SendEmailResul
         status: 503,
         details: {
           paused: true,
-          message: "ZeptoMail review mode — thesis welcome sends only",
+          message: "ZeptoMail review mode — thesisgenerator.io sends only",
           app: app || "(missing app tag)",
         },
       };

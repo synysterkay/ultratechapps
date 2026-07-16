@@ -99,6 +99,9 @@ jobs:
           SMTP2GO_API_KEY: ${{ secrets.SMTP2GO_API_KEY }}
           ZEPTOMAIL_API_KEY: ${{ secrets.ZEPTOMAIL_API_KEY }}
           ZEPTOMAIL_API_URL: https://api.zeptomail.eu/v1.1/email
+          ZEPTOMAIL_SENDER_EMAIL: hello@thesisgenerator.io
+          THESIS_SENDER_EMAIL: hello@thesisgenerator.io
+          THESIS_SENDER_NAME: Thesis Generator
           EMAIL_SENDING_PAUSED: ${{ secrets.EMAIL_SENDING_PAUSED }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
@@ -118,10 +121,11 @@ jobs:
           FOUNDER_STORY_SEND_CAP: "2000"
           FOUNDER_STORY_PASSES: "10"
           RESEND_SEND_DELAY_SECONDS: "0.25"
-          # Thesis daily volume cap disabled — deliverability is guarded by the
-          # suppression list + per-sender health caps. Set
-          # THESIS_DAILY_SEND_CAP_DISABLED=0 to re-enable auto-ramp.
-          THESIS_DAILY_SEND_CAP_DISABLED: "1"
+          ZEPTOMAIL_SEND_DELAY_SECONDS: "0.35"
+          # Soft Thesis daily cap while ramping on ZeptoMail / thesisgenerator.io.
+          THESIS_DAILY_SEND_CAP_DISABLED: "0"
+          THESIS_DAILY_SEND_CAP_BASE: "200"
+          THESIS_DAILY_SEND_CAP_MAX: "400"
         run: |
           MODE="${{ github.event.inputs.mode || 'send' }}"
 
@@ -178,15 +182,12 @@ jobs:
             python -u scripts/app_retention_emailer.py --matchday || true
             echo "--- Running upsell triggers ---"
             python -u scripts/app_retention_emailer.py --upsell || true
-            # ── Thesis Generator v2 trigger senders ──
-            # Single entry point now — the orchestrator fires highest-intent
-            # Thesis senders first. Durable suppression list + per-sender caps
-            # guard deliverability (daily Thesis volume cap is disabled).
-            echo "--- Running thesis orchestrator (all thesis senders) ---"
+            # ── Thesis Generator behavioral senders (ZeptoMail) ──
+            # 30-email drip disabled for Thesis. Welcome = Supabase.
+            # Orchestrator = P0/P1 triggers only from hello@thesisgenerator.io.
+            echo "--- Running thesis orchestrator (P0/P1 behavioral) ---"
             python -u scripts/thesis_orchestrator.py || true
-            # ── PupShape behavioural senders ──
-            # Single entry point — orchestrator imports each sender lazily
-            # and reloads it per run. Per-sender state files dedupe.
+            # Other app orchestrators — ZeptoMail review mode skips non-thesis.
             echo "--- Running pupshape orchestrator (all pupshape senders) ---"
             python -u scripts/pupshape_orchestrator.py || true
             echo "--- Running kinbound orchestrator (all kinbound senders) ---"

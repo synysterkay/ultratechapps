@@ -12,7 +12,7 @@ import { loadSuppressedRecipients, upsertBounceSuppression } from "../_shared/em
 // ── Config ──────────────────────────────────────────────────
 const MAX_EMAILS_PER_RUN = 60;
 const ZEPTOMAIL_MAX_PER_RUN = 10;
-const ZEPTOMAIL_DAILY_CAP = parseInt(Deno.env.get("ZEPTOMAIL_DAILY_CAP") || "50", 10);
+const ZEPTOMAIL_DAILY_CAP = parseInt(Deno.env.get("ZEPTOMAIL_DAILY_CAP") || "100", 10);
 const DEADLINE_MS = 50_000; // Stop processing at 50 seconds
 
 // ── Firebase projects → app_id mapping ──────────────────────
