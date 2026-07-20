@@ -129,9 +129,15 @@ jobs:
           FOUNDER_STORY_LAPSED_DAYS: "14"
           FOUNDER_STORY_V2_GAP_DAYS: "7"
           V2_DAILY_SEND_CAP: "250"
-          # Founder-story backfill only (ignored by normal retention / v2 triggers).
-          FOUNDER_STORY_SEND_CAP: "2000"
-          FOUNDER_STORY_PASSES: "10"
+          # Daily chunked backfill — one pass per cron run until cohort is done.
+          FOUNDER_STORY_SEND_CAP: "250"
+          FOUNDER_STORY_V2_SEND_CAP: "100"
+          FOUNDER_STORY_HORSE_SEND_CAP: "50"
+          FOUNDER_STORY_THESIS_BACKFILL_DAILY_CAP: "150"
+          FOUNDER_STORY_THESIS_2_BACKFILL_DAILY_CAP: "100"
+          # Manual bulk backfill (workflow_dispatch only).
+          FOUNDER_STORY_BULK_SEND_CAP: "2000"
+          FOUNDER_STORY_PASSES: "1"
           RESEND_SEND_DELAY_SECONDS: "0.25"
           ZEPTOMAIL_SEND_DELAY_SECONDS: "0.35"
           # Soft Thesis daily cap while ramping on ZeptoMail / thesisgenerator.io.
@@ -165,14 +171,19 @@ jobs:
             python -u scripts/app_retention_emailer.py --upsell
           elif [ "$MODE" = "founder-story-non-sub" ]; then
             python -u scripts/founder_story_predictify_sender.py --v2 --non-subscribers-only --dry-run || true
-            python -u scripts/founder_story_predictify_sender.py --v2 --non-subscribers-only --passes "${FOUNDER_STORY_PASSES:-10}"
+            FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_BULK_SEND_CAP:-2000}" \
+              python -u scripts/founder_story_predictify_sender.py --v2 --non-subscribers-only --passes "${FOUNDER_STORY_PASSES:-10}"
           elif [ "$MODE" = "founder-story" ]; then
             python -u scripts/warm_founder_story_templates.py || true
-            python -u scripts/founder_story_predictify_sender.py --dry-run || true
-            python -u scripts/founder_story_predictify_sender.py --backfill --passes "${FOUNDER_STORY_PASSES:-10}"
+            python -u scripts/founder_story_predictify_sender.py --backfill --dry-run || true
+            FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_BULK_SEND_CAP:-2000}" \
+              python -u scripts/founder_story_predictify_sender.py --backfill --passes "${FOUNDER_STORY_PASSES:-10}"
           elif [ "$MODE" = "founder-story-horse" ]; then
             python -u scripts/founder_story_horse_sender.py --backfill --dry-run || true
-            python -u scripts/founder_story_horse_sender.py --backfill --passes "${FOUNDER_STORY_HORSE_PASSES:-5}"
+            FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_BULK_SEND_CAP:-2000}" \
+              PREDICTIFY_APP_NAME='Predictify: Horse Racing AI' \
+              PREDICTIFY_FIREBASE_PROJECT_ID='horse-racing-f67e8' \
+              python -u scripts/founder_story_predictify_sender.py --backfill --passes "${FOUNDER_STORY_HORSE_PASSES:-5}"
           elif [ "$MODE" = "predictify-warm-founder-templates" ]; then
             python -u scripts/warm_founder_story_templates.py
           elif [ "$MODE" = "thesis-warm-templates" ]; then
@@ -181,7 +192,8 @@ jobs:
           elif [ "$MODE" = "thesis-founder-story" ]; then
             python -u scripts/founder_story_thesis_sender.py --dry-run --fix-languages || true
             python -u scripts/founder_story_thesis_sender.py --warm --refresh-templates || true
-            python -u scripts/founder_story_thesis_sender.py --fix-languages --passes "${FOUNDER_STORY_THESIS_PASSES:-10}"
+            FOUNDER_STORY_THESIS_SEND_CAP="${FOUNDER_STORY_BULK_SEND_CAP:-2000}" \
+              python -u scripts/founder_story_thesis_sender.py --fix-languages --passes "${FOUNDER_STORY_THESIS_PASSES:-10}"
           elif [ "$MODE" = "thesis-founder-story-2" ]; then
             python -u scripts/founder_story_thesis_2_sender.py --dry-run || true
             python -u scripts/founder_story_thesis_2_sender.py --warm --refresh-templates || true
@@ -203,6 +215,17 @@ jobs:
             python -u scripts/pro_minimal_orchestrator.py || true
             echo "--- Horse Racing founder story catch-up ---"
             python -u scripts/founder_story_horse_sender.py || true
+            echo "--- Soccer FS1 daily backfill (unsent cohort) ---"
+            FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_SEND_CAP:-250}" \
+              python -u scripts/founder_story_predictify_sender.py --backfill --passes 1 || true
+            echo "--- Soccer FS2 daily backfill (v1 received, free users) ---"
+            FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_V2_SEND_CAP:-100}" \
+              python -u scripts/founder_story_predictify_sender.py --v2 --non-subscribers-only --passes 1 || true
+            echo "--- Horse FS1 daily backfill (unsent cohort) ---"
+            FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_HORSE_SEND_CAP:-50}" \
+              PREDICTIFY_APP_NAME='Predictify: Horse Racing AI' \
+              PREDICTIFY_FIREBASE_PROJECT_ID='horse-racing-f67e8' \
+              python -u scripts/founder_story_predictify_sender.py --backfill --passes 1 || true
           fi
       
       - name: Commit thesis founder story 2 templates

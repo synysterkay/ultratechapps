@@ -10,6 +10,7 @@ As of 2026-07-20 (ZeptoMail / thesisgenerator.io):
 - Welcome is handled by Supabase check-new-users → welcome-email.
 - This orchestrator runs high-value event triggers (P0 + P1).
 - Founder story v1/v2 runs daily as lapsed catch-up (≥14d inactive, 50/day cap).
+- Founder story backfill runs daily for never-emailed users (150 v1 + 100 v2/day).
 
 Order (highest intent / revenue first):
 1. Free-quota-hit upgrade 24h/72h/7d       (monetization) — P0
@@ -43,6 +44,10 @@ SENDERS = [
 ]
 
 FOUNDER_STORY_DAILY_CAP = int(os.environ.get('FOUNDER_STORY_THESIS_DAILY_CAP', '50'))
+FOUNDER_STORY_THESIS_BACKFILL_DAILY_CAP = int(
+    os.environ.get('FOUNDER_STORY_THESIS_BACKFILL_DAILY_CAP', '150'))
+FOUNDER_STORY_THESIS_2_BACKFILL_DAILY_CAP = int(
+    os.environ.get('FOUNDER_STORY_THESIS_2_BACKFILL_DAILY_CAP', '100'))
 
 
 def run_one(name, mod, dry_run):
@@ -97,6 +102,26 @@ def warm_all_translations():
     print(f'\n✅ Warm complete. {total_pairs} (kind, lang) pairs verified.')
 
 
+def run_founder_story_daily_backfill(dry_run: bool = False) -> None:
+    """Chunked backfill for users who never received founder story (no lapsed gate)."""
+    print('\n━━━ founder_story backfill (v1, all unsent) ━━━')
+    try:
+        from founder_story_thesis_sender import run_send as fs1
+        fs1(
+            dry_run=dry_run,
+            send_cap=FOUNDER_STORY_THESIS_BACKFILL_DAILY_CAP,
+            lapsed_only=False,
+        )
+    except Exception as e:
+        print(f'   ⚠️ founder_story v1 backfill crashed: {e}')
+    print('\n━━━ founder_story_2 backfill (FS1≥7d, unsent FS2) ━━━')
+    try:
+        from founder_story_thesis_2_sender import run_send as fs2
+        fs2(dry_run=dry_run, send_cap=FOUNDER_STORY_THESIS_2_BACKFILL_DAILY_CAP)
+    except Exception as e:
+        print(f'   ⚠️ founder_story v2 backfill crashed: {e}')
+
+
 def run_founder_story_catchup(dry_run: bool = False) -> None:
     """Lapsed-only founder story v1 + v2 catch-up (small daily cap)."""
     print('\n━━━ founder_story (lapsed v1) ━━━')
@@ -133,6 +158,7 @@ def main():
         time.sleep(0.5)
     if not only:
         run_founder_story_catchup(dry_run=dry_run)
+        run_founder_story_daily_backfill(dry_run=dry_run)
     print('\n🏁 Thesis orchestrator done.')
 
 

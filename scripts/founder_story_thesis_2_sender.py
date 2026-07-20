@@ -248,8 +248,8 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None) -> list[str]
         print('🏁 DRY RUN')
         return []
 
-    if not os.getenv('RESEND_API_KEY'):
-        print('❌ RESEND_API_KEY not set')
+    if not os.getenv('RESEND_API_KEY') and not os.getenv('ZEPTOMAIL_API_KEY'):
+        print('❌ Email credentials not configured (ZEPTOMAIL_API_KEY or RESEND_API_KEY)')
         return []
 
     senders = _connect_senders()

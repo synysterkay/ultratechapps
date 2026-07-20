@@ -59,6 +59,8 @@ jobs:
       PREDICTIFY_DISABLE_FOUNDER_FALLBACK: "0"
       FOUNDER_STORY_LAPSED_DAYS: "14"
       V2_DAILY_SEND_CAP: "150"
+      FOUNDER_STORY_SEND_CAP: "75"
+      FOUNDER_STORY_V2_SEND_CAP: "50"
       EMAIL_SENDING_PAUSED: ${{ secrets.EMAIL_SENDING_PAUSED }}
       RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
       MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
@@ -110,6 +112,15 @@ jobs:
             python -u -m predictify_v2.orchestrator --dry-run
           else
             python -u -m predictify_v2.orchestrator
+          fi
+          cd ..
+          if [ "$MODE" = "send" ] || [ -z "$MODE" ]; then
+            echo "--- NBA FS1 daily backfill (unsent cohort) ---"
+            FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_SEND_CAP:-75}" \
+              python -u scripts/founder_story_predictify_sender.py --backfill --passes 1 || true
+            echo "--- NBA FS2 daily backfill (v1 received, free users) ---"
+            FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_V2_SEND_CAP:-50}" \
+              python -u scripts/founder_story_predictify_sender.py --v2 --non-subscribers-only --passes 1 || true
           fi
 
       - name: Log completion
