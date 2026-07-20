@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, 오늘 밤 경기 일정이 이미 열렸어요",
+  "preview_text": "팁오프 전 한 경기에 30초면 충분해요 — 그게 전부예요.",
+  "body_paragraphs": [
+    "안녕하세요 {first_name},",
+    "며칠 전에 이어서 빠르게 알려드려요: Predictify NBA는 더 많은 베팅을 하라는 게 아니에요 — 추측을 검증 가능한 프로세스로 바꾸는 거예요.",
+    "꾸준히 사용하는 분들은 한 시간씩 리서치에 매달리지 않아요. 한 경기를 열고, 신뢰도 구간과 부상 컨텍스트를 읽고, 한 번 선택한 뒤 넘어가요. 꾸준함이 번뜩이는 직감을 이깁니다.",
+    "오늘 밤 게시판이 열렸어요. 한 경기를 골라 분석을 읽고 팁오프 전에 결정하세요.",
+    "P.S. 채팅에서 직감은 재미있어요. 하지만 공이 올라가기 전에는 숫자가 더 낫습니다."
+  ],
+  "cta_text": "오늘 밤 경기 일정 열기",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba_v2",
+  "language": "ko",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

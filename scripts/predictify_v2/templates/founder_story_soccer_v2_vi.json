@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, vẫn chọn theo cảm tính à?",
+  "preview_text": "Một lựa chọn hôm nay hơn mười ý kiến trong group chat ngày mai.",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "Tôi đã viết vài ngày trước về lý do chúng tôi xây dựng Predictify — số liệu thay vì ồn ào, kết quả công khai, không trốn sau màn 'nhìn lại'.",
+    "Những người dùng thực sự nhận được giá trị không dành cả giờ để nghiên cứu. Họ mở một trận đấu, đọc mức độ tin cậy, đưa ra một lựa chọn, và tiếp tục. Chọn một lần mỗi ngày trong năm ngày, bạn sẽ xây dựng được chuỗi. Người có chuỗi có khả năng phát hiện các lựa chọn giá trị cao gấp 3 lần — không phải vì họ thông minh hơn, mà vì họ kiên định.",
+    "Bạn đã có ứng dụng. Lịch thi đấu hôm nay đã có sẵn. Dành 30 giây cho một trận đấu trước giờ bóng lăn.",
+    "P.S. Một lựa chọn hôm nay hơn mười ý kiến trong group chat ngày mai."
+  ],
+  "cta_text": "Thực hiện lựa chọn đầu tiên của tôi hôm nay",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer_v2",
+  "language": "vi",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

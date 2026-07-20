@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, j'ai créé ça après avoir trop entendu \"fais confiance au tipster\"",
+  "preview_text": "Chaque résultat publié. Vérifiez-nous course par course.",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "Chaque jour de course, le même scénario : des conseils confiants fusent — \"ce cheval est dû,\" \"le jockey livre toujours ici,\" \"je le sens.\" Personne ne vérifie la forme, l'état de la piste, le numéro de corde ou ce que les chiffres disent vraiment.",
+    "J'ai créé Predictify Horse Racing parce que les débats sur les courses ne devraient pas être gagnés par celui qui crie le plus fort. Nous voulions des prévisions que vous pouvez mettre à l'épreuve : forme, jockey, piste, état du terrain, et un score de confiance calibré pour les paris gagnant, placé et chaque-way.",
+    "Un de nos amis l'a appris à ses dépens lors d'une réunion de festival. Le modèle a signalé un favori avec 59 % de confiance — plus proche d'un pile ou face que d'une certitude. Il l'a ignoré, a suivi le tipster, et a perdu. Deux semaines plus tard, il a ouvert un pick dans notre bande de confiance la plus élevée (tier 80 %+), a lu l'analyse, et a pronostiqué avant le départ. Même ami. Processus différent.",
+    "C'est pourquoi nous publions chaque résultat — gains et pertes — pour que vous puissiez vérifier vous-même notre bilan, course par course.",
+    "Votre prochaine étape prend environ 30 secondes : ouvrez le programme du jour, choisissez une course, et lisez le raisonnement avant le départ.",
+    "P.S. Nous ne sommes pas un bookmaker. Pas de gains garantis — juste des prévisions transparentes et un bilan que vous pouvez vérifier."
+  ],
+  "cta_text": "Voir le pick le plus fort du jour — gratuit",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse",
+  "language": "fr",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

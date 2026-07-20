@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}，我在受够了无数句“兄弟信我”之后建了这个",
+  "preview_text": "我们发布每一场预测。你可以逐场验证我们的记录。",
+  "body_paragraphs": [
+    "嘿 {first_name}，",
+    "每个比赛日，同样的场景都在上演：群聊里充斥着自信满满的言论——“他们该赢了”，“主场优势”，“我就是感觉会这样”。没人去查状态、伤病，或者数据到底怎么说。",
+    "我创建 Predictify，是因为足球争论不该由嗓门最大的人赢。我们想要的是你可以检验的预测：预期进球、近期状态、阵容消息，以及每个选项上经过校准的信心分数——胜平负、大小球、双方进球等等。",
+    "我们的一位朋友在某个欧冠之夜吃了大亏。模型标记了一个61%信心的热门——基本上就是披着确定性外衣的抛硬币。他没听，凭直觉下注，结果输掉了争论和赌注。两周后，他打开了我们最高信心区间（80%+层级）的一个选项，看了分析，在开球前就做出了判断。同一个人，不同的流程。",
+    "这就是为什么我们公布每一场结果——赢和输——这样你就可以亲自逐场验证我们的记录。没有隐藏的选项。没有在终场哨响后改写历史。",
+    "你的下一步只需30秒：打开今天的赛程，选一场比赛，在锁定你的判断前先读一下分析。如果你想看模型最强烈的信号，就从盘面上信心最高的选项开始。",
+    "附注：我们不是博彩公司。没有稳赢——只有透明的预测和你可以核对的记录。在群里凭直觉聊天很有趣。但开球前，数据更靠谱。"
+  ],
+  "cta_text": "查看今天最强的选项——免费",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer",
+  "language": "zh",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

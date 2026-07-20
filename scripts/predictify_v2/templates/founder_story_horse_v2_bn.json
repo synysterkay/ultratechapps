@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, আজকের কার্ড লাইভ",
+  "preview_text": "একটি রেস, ৩০ সেকেন্ড, পোস্ট টাইমের আগে।",
+  "body_paragraphs": [
+    "হ্যালো {first_name},",
+    "কয়েকদিন আগের কথায় ফিরে আসছি: Predictify Horse Racing তৈরি করা হয়েছে তাদের জন্য যারা যাচাইযোগ্য সংখ্যা চান — টিপস্টারের আওয়াজ নয়।",
+    "যে অভ্যাসটি কাজ করে তা সহজ: আজকের কার্ড থেকে একটি রেস খুলুন, কনফিডেন্স ব্যান্ড এবং ফর্ম ব্রেকডাউন পড়ুন, একটি পছন্দ করুন, এগিয়ে যান।",
+    "আজকের মিটিংগুলো আপলোড হয়েছে। অফের আগে একটি রেস বেছে নিন।",
+    "পি.এস. টিপস্টাররা জোরে কথা বলে। ফর্ম টেবিল সৎ।"
+  ],
+  "cta_text": "আজকের কার্ড খুলুন",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "bn",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

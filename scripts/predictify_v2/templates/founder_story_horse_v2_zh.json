@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}，今天的赛程已上线",
+  "preview_text": "一场比赛，30秒，就在开赛前。",
+  "body_paragraphs": [
+    "嘿 {first_name}，",
+    "前几天聊过：Predictify 赛马是为那些想要可验证数据而非内幕噪音的人打造的。",
+    "有效的习惯很简单：打开今天赛程中的一场比赛，查看信心区间和状态分析，做出一个选择，然后继续。",
+    "今天的赛会已更新。在开赛前选一场比赛吧。",
+    "附注：内幕人士很吵，但数据表格很诚实。"
+  ],
+  "cta_text": "打开今天的赛程",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "zh",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

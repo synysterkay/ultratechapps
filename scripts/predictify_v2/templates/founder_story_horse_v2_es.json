@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, la cartelera de hoy está disponible",
+  "preview_text": "Una carrera, 30 segundos, antes de la hora de salida.",
+  "body_paragraphs": [
+    "Hola {first_name},",
+    "Retomando el mensaje de hace unos días: Predictify Horse Racing está hecho para quienes quieren números que puedan verificar, no ruido de consejeros.",
+    "El hábito que funciona es simple: abre una carrera de la cartelera de hoy, lee la banda de confianza y el análisis de forma, toma una decisión, sigue adelante.",
+    "Las reuniones de hoy ya están disponibles. Elige una carrera antes de la salida.",
+    "P.D. Los consejeros son ruidosos. Las tablas de forma son honestas."
+  ],
+  "cta_text": "Abrir la cartelera de hoy",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "es",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

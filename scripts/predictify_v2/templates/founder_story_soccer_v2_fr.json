@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, tu choisis encore à l'instinct ?",
+  "preview_text": "Un seul pronostic aujourd'hui vaut mieux que dix avis dans le groupe demain.",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "Je t'ai écrit il y a quelques jours pour expliquer pourquoi nous avons créé Predictify — les chiffres plutôt que le bruit, des résultats publiés, sans se cacher derrière le recul.",
+    "Les utilisateurs qui en tirent vraiment profit ne passent pas une heure à faire des recherches. Ils ouvrent un match, lisent la bande de confiance, font un pronostic, et passent à autre chose. Fais un pronostic par jour pendant cinq jours et tu construis une série. Les utilisateurs qui enchaînent les séries ont 3 fois plus de chances de repérer des paris de valeur — non pas parce qu'ils sont plus intelligents, mais parce qu'ils sont constants.",
+    "Tu as déjà l'application. Le programme du jour est en ligne. Prends 30 secondes sur un match avant le coup d'envoi.",
+    "P.S. Un seul pronostic aujourd'hui vaut mieux que dix avis dans le groupe demain."
+  ],
+  "cta_text": "Faire mon premier pronostic aujourd'hui",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer_v2",
+  "language": "fr",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

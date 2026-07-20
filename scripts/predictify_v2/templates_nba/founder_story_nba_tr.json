@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, bunu \"artık kazanmalılar\" yorumlarından bıktığım için yaptım",
+  "preview_text": "Para hattı, spread ve toplam skor üzerinde kalibre edilmiş tahminler — her sonucu doğrulayın.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Her maç gecesi aynı sahne: grup sohbeti dolu dolu yorumlar — \"artık kazanmalılar,\" \"arka arkaya maç fark etmez,\" \"bence farklı bir maç olacak.\" Kimse sakatlıkları, dinlenme günlerini veya sayıların gerçekte ne söylediğini kontrol etmiyor.",
+    "Predictify NBA'i kurdum çünkü basketbol tartışmaları en yüksek sesle konuşanın kazandığı bir oyun olmamalı. Test edebileceğin tahminler istedik: sakatlıklar, tempo, arka arkaya maçlar ve para hattı, spread, toplam skor ve özel bahisler için kalibre edilmiş bir güven skoru.",
+    "Bir arkadaşımız bunu ulusal bir TV gecesinde zor yoldan öğrendi. Model bir favoriyi %58 güvenle işaretledi — neredeyse yazı tura. O görmezden geldi, içgüdüleriyle gitti ve hem tartışmayı hem de bahsi kaybetti. İki hafta sonra en yüksek güven bandımızdaki (%80+ seviye) bir tahmini açtı, analizi okudu ve maç başlamadan önce söyledi. Aynı arkadaş. Farklı süreç.",
+    "Bu yüzden her sonucu yayınlıyoruz — kazançlar ve kayıplar — böylece geçmiş performansı kendiniz maç maç doğrulayabilirsiniz. Gizli tahmin yok. Son düdükten sonra tarihi yeniden yazmak yok.",
+    "Bir sonraki adımınız yaklaşık 30 saniye sürüyor: bu geceki maçları açın, bir maç seçin ve tahmininizi yapmadan önce gerekçeyi okuyun.",
+    "Not: Biz bir bahis şirketi değiliz. Garanti kazanç yok — sadece şeffaf tahminler ve kontrol edebileceğiniz bir kayıt."
+  ],
+  "cta_text": "Bu gecenin en güçlü tahminini gör — ücretsiz",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba",
+  "language": "tr",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

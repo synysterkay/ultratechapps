@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}، هنوز هم بر اساس حس درونی انتخاب می‌کنی؟",
+  "preview_text": "یک انتخاب امروز بهتر از ده نظر در چت گروهی فرداست.",
+  "body_paragraphs": [
+    "سلام {first_name}،",
+    "چند روز پیش نوشتم که چرا Predictify را ساختیم — اعداد به جای سر و صدا، نتایج منتشر شده، بدون پنهان شدن پشت hindsight.",
+    "کاربرانی که واقعاً ارزش می‌گیرند یک ساعت تحقیق نمی‌کنند. آن‌ها یک مسابقه را باز می‌کنند، باند اطمینان را می‌خوانند، یک انتخاب می‌کنند و می‌روند. روزی یک بار به مدت پنج روز انتخاب کن تا یک streak بسازی. کاربران streak سه برابر بیشتر احتمال دارد که ارزش‌های واقعی را پیدا کنند — نه به خاطر باهوش‌تر بودن، بلکه به خاطر ثبات.",
+    "تو قبلاً اپلیکیشن را داری. برنامه امروز فعال است. ۳۰ ثانیه روی یک مسابقه قبل از شروع وقت بگذار.",
+    "P.S. یک انتخاب امروز بهتر از ده نظر در چت گروهی فرداست."
+  ],
+  "cta_text": "اولین انتخاب امروزم را انجام بده",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer_v2",
+  "language": "fa",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

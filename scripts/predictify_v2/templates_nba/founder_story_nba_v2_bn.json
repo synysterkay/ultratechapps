@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, আজ রাতের স্লেট ইতিমধ্যেই লাইভ",
+  "preview_text": "টিপঅফের আগে একটি ম্যাচে ৩০ সেকেন্ড — এটাই পুরো অভ্যাস।",
+  "body_paragraphs": [
+    "হ্যালো {first_name},",
+    "কয়েকদিন আগের কথায় ফিরে আসছি: Predictify NBA বেশি বাজি ধরার বিষয় নয় — এটি অনুমানকে একটি প্রক্রিয়া দিয়ে প্রতিস্থাপন করার বিষয় যা আপনি যাচাই করতে পারেন।",
+    "যে ব্যবহারকারীরা এটির সাথে লেগে থাকে তারা এক ঘন্টা গবেষণায় ঘাম ঝরায় না। তারা একটি ম্যাচ খোলে, কনফিডেন্স ব্যান্ড এবং ইনজুরি কনটেক্সট পড়ে, একটি কল করে এবং এগিয়ে যায়। ধারাবাহিকতা হট টেককে হারায়।",
+    "আজ রাতের বোর্ড প্রস্তুত। একটি ম্যাচ বেছে নিন, ব্রেকডাউন পড়ুন এবং টিপঅফের আগে সিদ্ধান্ত নিন।",
+    "পি.এস. চ্যাটে গাট ফিল মজার। বল ওপরে যাওয়ার আগে সংখ্যা ভালো।"
+  ],
+  "cta_text": "আজ রাতের স্লেট খুলুন",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba_v2",
+  "language": "bn",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}، هل ما زلت تختار بناءً على الحدس؟",
+  "preview_text": "اختيار واحد اليوم أفضل من عشرة آراء في محادثة المجموعة غدًا.",
+  "body_paragraphs": [
+    "مرحبًا {first_name}،",
+    "كتبت قبل بضعة أيام عن سبب بناء Predictify — الأرقام بدلاً من الضوضاء، نتائج منشورة، لا اختباء وراء التبريرات.",
+    "المستخدمون الذين يحصلون على قيمة حقيقية لا يقضون ساعة في البحث. يفتحون مباراة واحدة، يقرؤون نطاق الثقة، يتخذون قرارًا واحدًا، ويمضون قدمًا. اختر مرة واحدة يوميًا لمدة خمسة أيام وستبني سلسلة. مستخدمو السلاسل أكثر عرضة بنسبة 3 مرات لاكتشاف الفرص القيمة — ليس لأنهم أذكى، بل لأنهم منتظمون.",
+    "لديك التطبيق بالفعل. جدول اليوم متاح. خذ 30 ثانية على مباراة واحدة قبل انطلاقها.",
+    "ملاحظة: اختيار واحد اليوم أفضل من عشرة آراء في محادثة المجموعة غدًا."
+  ],
+  "cta_text": "قم باختياري الأول اليوم",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer_v2",
+  "language": "ar",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

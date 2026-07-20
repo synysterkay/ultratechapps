@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, ich habe das gebaut, nachdem ich einmal zu oft „Vertrau dem Tippgeber“ gehört habe",
+  "preview_text": "Jedes Ergebnis veröffentlicht. Überzeuge dich selbst, Rennen für Rennen.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Jeden Renntag dasselbe Bild: selbstbewusste Tipps fliegen herum – „dieses Pferd ist fällig“, „der Jockey liefert hier immer ab“, „ich habe einfach ein Gefühl dabei“. Niemand prüft Form, Bodenverhältnisse, Startposition oder was die Zahlen tatsächlich sagen.",
+    "Ich habe Predictify Horse Racing gebaut, weil Wettargumente nicht von dem gewonnen werden sollten, der am lautesten schreit. Wir wollten Vorhersagen, die du auf die Probe stellen kannst: Form, Jockey, Bahn, Boden und einen kalibrierten Konfidenzwert für Sieg, Platz und Each-Way-Tipps.",
+    "Ein Freund von uns hat das auf einem Festivaltreffen auf die harte Tour gelernt. Das Modell markierte einen Favoriten mit 59 % Konfidenz – näher an einem Münzwurf als an einer sicheren Sache. Er ignorierte es, folgte dem Tippgeber und verlor. Zwei Wochen später öffnete er einen Tipp in unserer höchsten Konfidenzstufe (80 %+), las die Analyse und setzte vor dem Start. Derselbe Freund. Anderer Prozess.",
+    "Deshalb veröffentlichen wir jedes Ergebnis – Siege und Niederlagen – damit du die Erfolgsbilanz selbst überprüfen kannst, Rennen für Rennen.",
+    "Dein nächster Schritt dauert etwa 30 Sekunden: Öffne die heutige Karte, wähle ein Rennen aus und lies die Begründung vor dem Start.",
+    "P.S. Wir sind kein Buchmacher. Keine garantierten Gewinne – nur transparente Vorhersagen und eine Bilanz, die du überprüfen kannst."
+  ],
+  "cta_text": "Sieh dir den stärksten Tipp von heute an – kostenlos",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse",
+  "language": "de",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

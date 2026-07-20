@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, fortfarande magkänslan som styr?",
+  "preview_text": "Ett tips idag slår tio åsikter i gruppchatten imorgon.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Jag skrev för några dagar sedan om varför vi byggde Predictify — siffror framför brus, publicerade resultat, inget gömma sig bakom efterklokhet.",
+    "Användarna som faktiskt får värde lägger inte en timme på research. De öppnar en match, läser förtroendebandet, gör ett val och går vidare. Välj en gång om dagen i fem dagar och du bygger en streak. Streak-användare är 3x mer benägna att hitta värdefulla val — inte för att de är smartare, utan för att de är konsekventa.",
+    "Du har redan appen. Dagens spel är live. Ta 30 sekunder på en match innan avspark.",
+    "P.S. Ett tips idag slår tio åsikter i gruppchatten imorgon."
+  ],
+  "cta_text": "Gör mitt första val idag",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer_v2",
+  "language": "sv",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

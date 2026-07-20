@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, ik bouwde dit na te veel \"vertrouw de tipgever\"-verhalen",
+  "preview_text": "Elk resultaat gepubliceerd. Controleer ons race voor race.",
+  "body_paragraphs": [
+    "Hoi {first_name},",
+    "Elke racedag hetzelfde tafereel: zelfverzekerde tips vliegen rond — \"dit paard staat op winst,\" \"de jockey levert hier altijd,\" \"ik voel het gewoon.\" Niemand controleert vorm, ondergrond, startpositie of wat de cijfers echt zeggen.",
+    "Ik bouwde Predictify Horse Racing omdat race-argumenten niet gewonnen moeten worden door wie het hardst roept. We wilden voorspellingen die je kunt testen: vorm, jockey, baan, ondergrond en een gekalibreerde vertrouwensscore voor win, place en each-way-picks.",
+    "Een vriend van ons leerde dit op de harde manier tijdens een festivalmeeting. Het model markeerde een favoriet met 59% vertrouwen — dichter bij een toss dan bij een zekerheidje. Hij negeerde het, volgde de tipgever en verloor. Twee weken later opende hij een pick in onze hoogste vertrouwensband (80%+ tier), las de uitleg en voorspelde het vóór de start. Dezelfde vriend. Ander proces.",
+    "Daarom publiceren we elk resultaat — winst en verlies — zodat je zelf het trackrecord kunt verifiëren, race voor race.",
+    "Je volgende stap duurt ongeveer 30 seconden: open de kaart van vandaag, kies één race en lees de onderbouwing vóór de start.",
+    "P.S. We zijn geen bookmaker. Geen gegarandeerde winsten — alleen transparante voorspellingen en een record dat je kunt controleren."
+  ],
+  "cta_text": "Bekijk de sterkste pick van vandaag — gratis",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse",
+  "language": "nl",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

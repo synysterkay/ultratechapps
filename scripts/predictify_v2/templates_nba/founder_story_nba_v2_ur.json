@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}، آج رات کا سلیٹ پہلے سے لائیو ہے",
+  "preview_text": "ایک کھیل پر 30 سیکنڈ ٹپ آف سے پہلے — یہی پوری عادت ہے۔",
+  "body_paragraphs": [
+    "ہیلو {first_name}،",
+    "کچھ دن پہلے کی ایک فوری فالو اپ: Predictify NBA زیادہ بیٹنگ کے بارے میں نہیں ہے — یہ اندازوں کو ایک ایسے عمل سے بدلنے کے بارے میں ہے جسے آپ تصدیق کر سکتے ہیں۔",
+    "جو صارفین اس پر قائم رہتے ہیں، وہ ایک گھنٹہ تحقیق میں نہیں لگاتے۔ وہ ایک کھیل کھولتے ہیں، کنفیڈنس بینڈ اور انجری کا سیاق پڑھتے ہیں، ایک فیصلہ کرتے ہیں، اور آگے بڑھ جاتے ہیں۔ مستقل مزاجی گرم جوشیوں کو شکست دیتی ہے۔",
+    "آج رات کا بورڈ تیار ہے۔ ایک کھیل چنیں، بریک ڈاؤن پڑھیں، اور ٹپ آف سے پہلے فیصلہ کریں۔",
+    "پی ایس: چیٹ میں گٹ فیل مزا دار ہے۔ لیکن نمبر گیند اچھلنے سے پہلے بہتر ہیں۔"
+  ],
+  "cta_text": "آج رات کا سلیٹ کھولیں",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba_v2",
+  "language": "ur",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

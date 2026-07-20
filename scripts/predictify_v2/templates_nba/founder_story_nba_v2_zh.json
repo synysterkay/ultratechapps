@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}，今晚的比赛已经上线",
+  "preview_text": "开赛前花30秒看一场比赛——这就是整个习惯。",
+  "body_paragraphs": [
+    "嘿 {first_name}，",
+    "前几天聊到的快速跟进：Predictify NBA 不是让你多下注——而是用可验证的流程取代瞎猜。",
+    "坚持使用的用户不会花一小时做研究。他们打开一场比赛，阅读信心区间和伤病背景，做出一次判断，然后继续。一致性胜过灵光一现。",
+    "今晚的赛程已更新。选一场比赛，阅读分析，在开赛前做出决定。",
+    "P.S. 在聊天室里靠直觉挺有趣。但在球飞起来之前，数据更靠谱。"
+  ],
+  "cta_text": "打开今晚赛程",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba_v2",
+  "language": "zh",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

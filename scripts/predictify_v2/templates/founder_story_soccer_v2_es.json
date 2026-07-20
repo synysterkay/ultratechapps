@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, ¿todavía eliges por instinto?",
+  "preview_text": "Una selección hoy vale más que diez opiniones en el grupo de chat mañana.",
+  "body_paragraphs": [
+    "Hola {first_name},",
+    "Hace unos días te escribí sobre por qué creamos Predictify — números sobre ruido, resultados publicados, sin esconderse detrás del hindsight.",
+    "Los usuarios que realmente obtienen valor no pasan una hora investigando. Abren un partido, leen la banda de confianza, hacen una selección y siguen adelante. Elige una vez al día durante cinco días y construirás una racha. Los usuarios con racha tienen 3 veces más probabilidades de detectar selecciones de valor — no porque sean más inteligentes, sino porque son consistentes.",
+    "Ya tienes la app. La cartelera de hoy está activa. Tómate 30 segundos en un partido antes del inicio.",
+    "P.D. Una selección hoy vale más que diez opiniones en el grupo de chat mañana."
+  ],
+  "cta_text": "Hacer mi primera selección hoy",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer_v2",
+  "language": "es",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

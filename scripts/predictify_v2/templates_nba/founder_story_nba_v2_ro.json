@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, programul de azi-noapte este deja live",
+  "preview_text": "30 de secunde pe un meci înainte de tip-off — ăsta e întregul obicei.",
+  "body_paragraphs": [
+    "Hei {first_name},",
+    "O scurtă completare de acum câteva zile: Predictify NBA nu înseamnă să pariezi mai mult — ci să înlocuiești ghicitul cu un proces pe care îl poți verifica.",
+    "Utilizatorii care rămân consecvenți nu pierd o oră să cerceteze. Deschid un meci, citesc banda de încredere și contextul accidentărilor, fac o alegere și trec mai departe. Consecvența bate pronosticurile senzaționale.",
+    "Tabla de azi-noapte este activă. Alege un meci, citește analiza și decide înainte de tip-off.",
+    "P.S. Intuiția e distractivă în chat. Cifrele sunt mai bune înainte ca mingea să sară."
+  ],
+  "cta_text": "Deschide programul de azi-noapte",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba_v2",
+  "language": "ro",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

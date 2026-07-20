@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}、本日のカードが公開されました",
+  "preview_text": "1レース、30秒、発走前まで。",
+  "body_paragraphs": [
+    "やあ {first_name}、",
+    "数日前の続きですが：Predictify Horse Racingは、検証可能な数字を求める人のために作られています——予想屋のノイズではありません。",
+    "効果的な習慣はシンプルです：本日のカードから1レースを開き、信頼度バンドとフォーム分析を読み、1つ予想をして、次に進む。",
+    "本日の開催が公開されました。発走前に1レースを選んでください。",
+    "追伸：予想屋は騒がしい。フォーム表は正直です。"
+  ],
+  "cta_text": "本日のカードを開く",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "ja",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

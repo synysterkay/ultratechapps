@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}、まだ直感で予想してる？",
+  "preview_text": "今日の1ピックが、明日のグループチャットでの10の意見に勝る。",
+  "body_paragraphs": [
+    "やあ {first_name}、",
+    "数日前に、なぜPredictifyを構築したかについて書きました——数字はノイズに勝ち、結果は公開され、後出しジャンケンはできません。",
+    "実際に価値を得ているユーザーは、1時間もリサーチに費やしません。彼らは1試合を開き、信頼度バンドを読み、1つの予想をして、次に進みます。1日1ピックを5日間続ければ、ストリークができます。ストリークユーザーは価値ある予想を見つける確率が3倍高い——彼らが賢いからではなく、一貫しているからです。",
+    "あなたはもうアプリを持っています。今日のスレートは公開中です。キックオフ前に1試合に30秒だけ使ってみてください。",
+    "追伸：今日の1ピックが、明日のグループチャットでの10の意見に勝ります。"
+  ],
+  "cta_text": "今日最初の予想をする",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer_v2",
+  "language": "ja",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

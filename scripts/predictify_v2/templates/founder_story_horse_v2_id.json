@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, kartu balapan hari ini sudah tayang",
+  "preview_text": "Satu balapan, 30 detik, sebelum waktu mulai.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Tindak lanjut dari beberapa hari lalu: Predictify Horse Racing dibuat untuk orang yang menginginkan angka yang bisa mereka verifikasi — bukan kebisingan tipster.",
+    "Kebiasaan yang berhasil itu sederhana: buka satu balapan di kartu hari ini, baca band kepercayaan dan rincian form, buat satu prediksi, lanjutkan.",
+    "Pertemuan hari ini sudah tersedia. Pilih satu balapan sebelum mulai.",
+    "P.S. Tipster itu berisik. Tabel form itu jujur."
+  ],
+  "cta_text": "Buka kartu hari ini",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "id",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

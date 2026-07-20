@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, construí esto después de demasiados \"confía en mí, bro\"",
+  "preview_text": "Publicamos cada predicción. Puedes verificarnos partido a partido.",
+  "body_paragraphs": [
+    "Hola {first_name},",
+    "Cada jornada se repite la misma escena: un grupo de chat lleno de opiniones seguras — \"ya les toca ganar,\" \"ventaja local,\" \"lo siento en el alma.\" Nadie revisa forma, lesiones o lo que realmente dicen los números.",
+    "Construí Predictify porque las discusiones de fútbol no deberían ganarlas quien habla más fuerte. Queríamos pronósticos que puedas poner a prueba: xG, forma reciente, noticias del plantel y una puntuación de confianza calibrada en cada pick — 1X2, O/U, BTTS y más.",
+    "Un amigo nuestro lo aprendió a la mala una noche de Champions. El modelo marcó un favorito con 61% de confianza — básicamente una moneda al aire disfrazada de certeza. Lo ignoró, fue con el instinto y perdió la discusión y la apuesta. Dos semanas después abrió un pick en nuestra banda de mayor confianza (tier 80%+), leyó el análisis y lo acertó antes del pitido inicial. El mismo amigo. Proceso diferente.",
+    "Por eso publicamos cada resultado — aciertos y fallos — para que puedas verificar el historial tú mismo, partido a partido. Sin picks ocultos. Sin reescribir la historia después del pitido final.",
+    "Tu próximo paso toma unos 30 segundos: abre la cartelera de hoy, elige un partido y lee el razonamiento antes de confirmar tu pronóstico. Si quieres la lectura más fuerte del modelo, empieza con el pick de mayor confianza en el tablero.",
+    "P.D. No somos una casa de apuestas. Sin victorias garantizadas — solo pronósticos transparentes y un historial que puedes revisar. El instinto es divertido en el chat. Los números son mejores antes del pitido inicial."
+  ],
+  "cta_text": "Ve el pick más fuerte de hoy — gratis",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer",
+  "language": "es",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, încă alegi pe baza instinctului?",
+  "preview_text": "O alegere azi valorează cât zece păreri în grupul de discuții mâine.",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "Am scris acum câteva zile despre motivul pentru care am construit Predictify — cifre în loc de zgomot, rezultate publicate, fără ascunzișuri după eveniment.",
+    "Utilizatorii care obțin cu adevărat valoare nu petrec o oră cercetând. Deschid un meci, citesc banda de încredere, fac o alegere și trec mai departe. Alege o dată pe zi timp de cinci zile și construiești o serie. Utilizatorii cu serie au de 3 ori mai multe șanse să identifice alegeri valoroase — nu pentru că sunt mai deștepți, ci pentru că sunt consecvenți.",
+    "Ai deja aplicația. Oferta de azi este activă. Ia-ți 30 de secunde pentru un meci înainte de start.",
+    "P.S. O alegere azi valorează cât zece păreri în grupul de discuții mâine."
+  ],
+  "cta_text": "Fă prima mea alegere azi",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer_v2",
+  "language": "ro",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

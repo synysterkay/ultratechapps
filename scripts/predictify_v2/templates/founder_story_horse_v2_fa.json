@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}، کارت امروز فعال است",
+  "preview_text": "یک مسابقه، ۳۰ ثانیه، قبل از شروع.",
+  "body_paragraphs": [
+    "سلام {first_name}،",
+    "دنبال‌کردن از چند روز پیش: Predictify Horse Racing برای افرادی ساخته شده که اعدادی می‌خواهند که بتوانند تأیید کنند، نه سر و صدای تیپسترها.",
+    "عادتی که جواب می‌دهد ساده است: یک مسابقه از کارت امروز را باز کن، باند اطمینان و تحلیل فرم را بخوان، یک پیش‌بینی کن، و برو جلو.",
+    "جلسات امروز آماده است. یک مسابقه را قبل از شروع انتخاب کن.",
+    "پ.ن.: تیپسترها پر سر و صدا هستند. جداول فرم صادقانه‌اند."
+  ],
+  "cta_text": "باز کردن کارت امروز",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "fa",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

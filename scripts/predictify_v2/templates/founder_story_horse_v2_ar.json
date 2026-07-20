@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}، بطاقة اليوم متاحة",
+  "preview_text": "سباق واحد، 30 ثانية، قبل موعد الانطلاق.",
+  "body_paragraphs": [
+    "مرحبًا {first_name}،",
+    "متابعة من بضعة أيام مضت: Predictify Horse Racing صُممت للأشخاص الذين يريدون أرقامًا يمكنهم التحقق منها — وليس ضجيج المتنبئين.",
+    "العادة التي تنجح بسيطة: افتح سباقًا واحدًا على بطاقة اليوم، اقرأ نطاق الثقة وتحليل النموذج، اتخذ قرارًا واحدًا، وانتقل للأمام.",
+    "سباقات اليوم متاحة. اختر سباقًا واحدًا قبل الانطلاق.",
+    "ملاحظة: المتنبئون صاخبون. جداول النموذج صادقة."
+  ],
+  "cta_text": "افتح بطاقة اليوم",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "ar",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

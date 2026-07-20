@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, il programma di oggi è live",
+  "preview_text": "Una corsa, 30 secondi, prima del via.",
+  "body_paragraphs": [
+    "Ciao {first_name},",
+    "Ti scrivo dopo qualche giorno: Predictify Horse Racing è pensato per chi vuole numeri verificabili, non il rumore dei tipster.",
+    "L'abitudine che funziona è semplice: apri una corsa del programma di oggi, leggi la fascia di confidenza e l'analisi della forma, fai una scelta, vai avanti.",
+    "Le riunioni di oggi sono disponibili. Scegli una corsa prima del via.",
+    "P.S. I tipster sono rumorosi. Le tabelle della forma sono oneste."
+  ],
+  "cta_text": "Apri il programma di oggi",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "it",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

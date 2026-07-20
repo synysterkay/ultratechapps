@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}，在听够了太多“相信内行推荐”的说法后，我做了这个",
+  "preview_text": "每场比赛结果都公开。逐场验证我们的表现。",
+  "body_paragraphs": [
+    "嘿 {first_name}，",
+    "每个比赛日，同样的场景：自信满满的推荐满天飞——“这匹马该赢了”，“这位骑师在这里从不失手”，“我就是有这种感觉。”没人去查状态、赛道情况、排位或数据到底怎么说。",
+    "我创建 Predictify 赛马预测，是因为赛马争论不该由嗓门最大的人获胜。我们想要的是你可以反复检验的预测：状态、骑师、赛道、场地状况，以及针对独赢、位置和每项投注的校准信心分数。",
+    "我们的一位朋友在一次赛马节上吃了亏。模型标记了一匹热门马，信心度只有59%——接近抛硬币的概率，远非稳赢。他没理会，跟着推荐走，结果输了。两周后，他在我们最高信心区间（80%+级别）打开一个推荐，看了分析，在开赛前就下了判断。同一个人。不同的方法。",
+    "这就是为什么我们公开每场比赛的结果——无论输赢——这样你就可以亲自逐场验证我们的记录。",
+    "你的下一步只需30秒：打开今天的赛程，选一场比赛，在开赛前阅读分析理由。",
+    "附注：我们不是博彩公司。不保证稳赢——只有透明的预测和你可以核实的记录。"
+  ],
+  "cta_text": "查看今天最强的推荐——免费",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse",
+  "language": "zh",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

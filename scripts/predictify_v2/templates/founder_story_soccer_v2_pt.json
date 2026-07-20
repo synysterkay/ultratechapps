@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, ainda está escolhendo no instinto?",
+  "preview_text": "Um palpite hoje vale mais que dez opiniões no grupo amanhã.",
+  "body_paragraphs": [
+    "Olá {first_name},",
+    "Escrevi há alguns dias sobre por que construímos o Predictify — números em vez de ruído, resultados publicados, sem se esconder atrás do retrovisor.",
+    "Os usuários que realmente obtêm valor não passam uma hora pesquisando. Eles abrem uma partida, leem a faixa de confiança, fazem uma escolha e seguem em frente. Escolha uma vez por dia durante cinco dias e você constrói uma sequência. Usuários com sequência têm 3x mais chances de identificar palpites de valor — não porque são mais inteligentes, mas porque são consistentes.",
+    "Você já tem o aplicativo. A programação de hoje está ao vivo. Tire 30 segundos em uma partida antes do pontapé inicial.",
+    "P.S. Um palpite hoje vale mais que dez opiniões no grupo amanhã."
+  ],
+  "cta_text": "Fazer minha primeira escolha hoje",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer_v2",
+  "language": "pt",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, ตารางคืนนี้เปิดให้เล่นแล้ว",
+  "preview_text": "30 วินาทีกับหนึ่งเกมก่อนเริ่มแข่ง — นั่นคือนิสัยที่แท้จริง",
+  "body_paragraphs": [
+    "สวัสดี {first_name},",
+    "ตามจากที่คุยกันไม่กี่วันก่อน: Predictify NBA ไม่ใช่เรื่องของการเดิมพันมากขึ้น — แต่เป็นการแทนที่การเดาด้วยกระบวนการที่คุณตรวจสอบได้",
+    "ผู้ใช้ที่เล่นต่อเนื่องไม่ได้ใช้เวลาหนึ่งชั่วโมงเพื่อค้นคว้า พวกเขาเปิดหนึ่งเกม อ่านระดับความมั่นใจและข้อมูลอาการบาดเจ็บ ตัดสินใจหนึ่งครั้ง แล้วไปต่อ ความสม่ำเสมอชนะความคิดร้อนแรง",
+    "บอร์ดคืนนี้พร้อมแล้ว เลือกหนึ่งเกม อ่านรายละเอียด และตัดสินใจก่อนเริ่มแข่ง",
+    "ป.ล. ความรู้สึกอาจสนุกในแชท แต่ตัวเลขดีกว่าเมื่อลูกบอลยังไม่ลอยขึ้น"
+  ],
+  "cta_text": "เปิดตารางคืนนี้",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba_v2",
+  "language": "th",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

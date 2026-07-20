@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}، آج کا کارڈ لائیو ہے",
+  "preview_text": "ایک ریس، 30 سیکنڈ، پوسٹ ٹائم سے پہلے۔",
+  "body_paragraphs": [
+    "ارے {first_name}،",
+    "کچھ دن پہلے کی بات کو آگے بڑھاتے ہوئے: Predictify Horse Racing ان لوگوں کے لیے بنایا گیا ہے جو ایسے نمبر چاہتے ہیں جن کی وہ تصدیق کر سکیں — نہ کہ ٹپسٹروں کا شور۔",
+    "وہ عادت جو کام کرتی ہے وہ سادہ ہے: آج کے کارڈ سے ایک ریس کھولیں، کنفیڈنس بینڈ اور فارم کا تجزیہ پڑھیں، ایک فیصلہ کریں، آگے بڑھیں۔",
+    "آج کی میٹنگیں اپ لوڈ ہیں۔ شروع ہونے سے پہلے ایک ریس چنیں۔",
+    "پی ایس: ٹپسٹر شور مچاتے ہیں۔ فارم ٹیبلز ایماندار ہوتی ہیں۔"
+  ],
+  "cta_text": "آج کا کارڈ کھولیں",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "ur",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

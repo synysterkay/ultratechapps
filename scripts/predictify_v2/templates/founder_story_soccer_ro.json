@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, am construit asta după prea multe păreri de genul „crede-mă pe cuvânt”",
+  "preview_text": "Publicăm fiecare predicție. Ne poți verifica meci cu meci.",
+  "body_paragraphs": [
+    "Hei {first_name},",
+    "În fiecare zi de meci, aceeași scenă: un grup plin de opinii încrezătoare — „merită o victorie”, „avantajul terenului propriu”, „doar simt eu”. Nimeni nu verifică forma, accidentările sau ce spun cifrele de fapt.",
+    "Am construit Predictify pentru că argumentele despre fotbal nu ar trebui câștigate de cine vorbește mai tare. Am vrut prognoze pe care să le poți testa: xG, formă recentă, știri despre lot și un scor de încredere calibrat pentru fiecare alegere — 1X2, O/U, BTTS și multe altele.",
+    "Un prieten de-al nostru a învățat asta pe propria piele într-o noapte de Champions League. Modelul a semnalat un favorit cu 61% încredere — practic o aruncare cu banul deghizată în certitudine. A ignorat, a mers pe intuiție și a pierdut și argumentul, și pariul. Două săptămâni mai târziu a deschis o alegere din banda noastră de încredere maximă (tier 80%+), a citit analiza și a prezis-o înainte de fluierul de start. Același prieten. Alt proces.",
+    "De asta publicăm fiecare rezultat — victorii și înfrângeri — ca să poți verifica singur palmaresul, meci cu meci. Fără alegeri ascunse. Fără rescrierea istoriei după fluierul final.",
+    "Următorul tău pas durează cam 30 de secunde: deschide programul de azi, alege un meci și citește raționamentul înainte să îți blochezi alegerea. Dacă vrei cea mai puternică recomandare a modelului, începe cu alegerea cu cea mai mare încredere din listă.",
+    "P.S. Nu suntem o casă de pariuri. Fără câștiguri garantate — doar prognoze transparente și un palmares pe care îl poți verifica. Intuiția e distractivă în chat. Cifrele sunt mai bune înainte de fluier."
+  ],
+  "cta_text": "Vezi cea mai puternică alegere de azi — gratuit",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer",
+  "language": "ro",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

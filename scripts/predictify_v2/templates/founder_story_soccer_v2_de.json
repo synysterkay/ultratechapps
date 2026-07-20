@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, entscheidest du immer noch aus dem Bauch heraus?",
+  "preview_text": "Ein Tipp heute schlägt zehn Meinungen im Gruppenchat morgen.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Ich habe vor ein paar Tagen darüber geschrieben, warum wir Predictify gebaut haben – Zahlen statt Lärm, veröffentlichte Ergebnisse, kein Verstecken hinter dem Hinterherwissen.",
+    "Die Nutzer, die wirklich Wert daraus ziehen, verbringen keine Stunde mit Recherche. Sie öffnen ein Match, lesen das Konfidenzband, geben einen Tipp ab und machen weiter. Einmal am Tag fünf Tage lang tippen und du baust eine Serie auf. Seriennutzer erkennen Werttipps 3x häufiger – nicht weil sie schlauer sind, sondern weil sie konsequent sind.",
+    "Du hast die App bereits. Das heutige Programm ist live. Nimm dir 30 Sekunden für eine Begegnung vor dem Anpfiff.",
+    "P.S. Ein Tipp heute schlägt zehn Meinungen im Gruppenchat morgen."
+  ],
+  "cta_text": "Meinen ersten Tipp heute abgeben",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer_v2",
+  "language": "de",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

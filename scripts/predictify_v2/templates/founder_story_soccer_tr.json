@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, bunu \"güven bana abi\" yorumlarından bıktığım için yaptım",
+  "preview_text": "Her tahminimizi yayınlıyoruz. Bizi maç maç doğrulayabilirsiniz.",
+  "body_paragraphs": [
+    "Merhaba {first_name},",
+    "Her maç günü aynı sahne oynanır: bir grup sohbeti, kendine güvenen yorumlarla dolu — \"kazanmaları gerekiyor,\" \"ev sahibi avantajı,\" \"içimden öyle geliyor.\" Kimse formu, sakatlıkları veya sayıların ne söylediğini kontrol etmez.",
+    "Predictify'i kurdum çünkü futbol tartışmaları en yüksek sesle konuşanın kazandığı bir oyun olmamalı. Test edebileceğiniz tahminler istedik: xG, son form, kadro haberleri ve her tahmin için kalibre edilmiş bir güven skoru — 1X2, Alt/Üst, KG/VG ve daha fazlası.",
+    "Bir arkadaşımız bunu bir Şampiyonlar Ligi gecesinde zor yoldan öğrendi. Model bir favoriyi %61 güvenle işaretlemişti — temelde kesinlik kılığına girmiş bir yazı tura. O görmezden geldi, içgüdüleriyle hareket etti ve hem tartışmayı hem de bahsi kaybetti. İki hafta sonra en yüksek güven bandımızdaki (%80+ kademe) bir tahmini açtı, analizi okudu ve maç başlamadan önce doğru bildi. Aynı arkadaş. Farklı süreç.",
+    "Bu yüzden her sonucu yayınlıyoruz — kazançlar ve kayıplar — böylece geçmiş performansı kendiniz maç maç doğrulayabilirsiniz. Gizli tahmin yok. Son düdükten sonra tarihi yeniden yazmak yok.",
+    "Bir sonraki adımınız yaklaşık 30 saniye sürüyor: bugünün maçlarını açın, bir maç seçin ve tahmininizi kilitlemeden önce gerekçeyi okuyun. Modelin en güçlü öngörüsünü istiyorsanız, panodaki en yüksek güvenli tahminle başlayın.",
+    "Dipnot: Biz bir bahis şirketi değiliz. Garanti kazanç yok — sadece şeffaf tahminler ve kontrol edebileceğiniz bir kayıt. İçgüdüler sohbette eğlencelidir. Sayılar maç başlamadan önce daha iyidir."
+  ],
+  "cta_text": "Bugünün en güçlü tahminini gör — ücretsiz",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer",
+  "language": "tr",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

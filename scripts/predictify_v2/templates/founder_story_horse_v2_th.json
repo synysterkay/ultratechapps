@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, บัตรวันนี้พร้อมแล้ว",
+  "preview_text": "หนึ่งการแข่งขัน 30 วินาทีก่อนถึงเวลาเริ่ม",
+  "body_paragraphs": [
+    "สวัสดี {first_name},",
+    "ตามที่ได้ติดต่อจากไม่กี่วันที่ผ่านมา: Predictify Horse Racing ถูกสร้างขึ้นสำหรับคนที่ต้องการตัวเลขที่ตรวจสอบได้ — ไม่ใช่เสียงรบกวนจากทิปสเตอร์",
+    "นิสัยที่ได้ผลนั้นง่าย: เปิดหนึ่งการแข่งขันในบัตรวันนี้ อ่านระดับความมั่นใจและการวิเคราะห์ฟอร์ม ตัดสินใจหนึ่งครั้ง แล้วเดินต่อ",
+    "การแข่งขันวันนี้พร้อมแล้ว เลือกหนึ่งการแข่งขันก่อนเริ่ม",
+    "ป.ล. ทิปสเตอร์เสียงดัง แต่ตารางฟอร์มซื่อสัตย์"
+  ],
+  "cta_text": "เปิดบัตรวันนี้",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "th",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

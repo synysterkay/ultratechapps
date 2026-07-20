@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, kvällens matchomgång är redan live",
+  "preview_text": "30 sekunder på en match innan avkast – det är hela vanan.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Snabb uppföljning från för några dagar sedan: Predictify NBA handlar inte om att satsa mer – det handlar om att ersätta gissningar med en process du kan verifiera.",
+    "Användare som håller sig till det maler inte forskning i en timme. De öppnar en match, läser förtroendebandet och skadekontexten, gör ett val och går vidare. Konsekvens slår heta tips.",
+    "Kvällens board är uppe. Välj en match, läs analysen och bestäm dig innan avkast.",
+    "P.S. Magkänsla är kul i chatten. Siffror är bättre innan bollen går upp."
+  ],
+  "cta_text": "Öppna kvällens matchomgång",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba_v2",
+  "language": "sv",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

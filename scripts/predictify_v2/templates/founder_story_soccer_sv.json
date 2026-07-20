@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, jag byggde det här efter alldeles för många \"lita på mig, jag har koll\"-påståenden",
+  "preview_text": "Vi publicerar varje förutsägelse. Du kan verifiera oss match för match.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Varje matchdag utspelar sig samma scenario: en gruppchatt full av självsäkra åsikter — \"de är skyldiga en vinst,\" \"hemmafördel,\" \"jag känner bara på mig.\" Ingen kollar form, skador eller vad siffrorna faktiskt säger.",
+    "Jag byggde Predictify för att fotbollsdiskussioner inte ska vinnas av den som pratar högst. Vi ville ha prognoser du kan stress-test: xG, senaste form, truppnyheter och en kalibrerad konfidenspoäng för varje tips — 1X2, Ö/U, BTTS och mer.",
+    "En vän till oss lärde sig detta den hårda vägen en Champions League-kväll. Modellen flaggade en favorit med 61% konfidens — i princip en slantsingling utklädd till säkerhet. Han ignorerade det, gick på magkänsla och förlorade både diskussionen och spelet. Två veckor senare öppnade han ett tips i vår högsta konfidensnivå (80%+-nivån), läste analysen och kallade den före avspark. Samma vän. Annan process.",
+    "Det är därför vi publicerar varje resultat — vinster och förluster — så att du kan verifiera facit själv, match för match. Inga dolda tips. Ingen omskrivning av historien efter slutsignalen.",
+    "Ditt nästa steg tar cirka 30 sekunder: öppna dagens omgång, välj en match och läs resonemanget innan du låser ditt val. Om du vill ha modellens starkaste analys, börja med tipset med högst konfidens på tavlan.",
+    "PS. Vi är ingen bookmaker. Inga garanterade vinster — bara transparenta prognoser och ett facit du kan kontrollera. Magkänsla är kul i chatten. Siffror är bättre före avspark."
+  ],
+  "cta_text": "Se dagens starkaste tips — gratis",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer",
+  "language": "sv",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

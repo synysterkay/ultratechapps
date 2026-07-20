@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}，还在凭直觉下注？",
+  "preview_text": "今天的一次选择，胜过明天群聊里的十个意见。",
+  "body_paragraphs": [
+    "嘿 {first_name}，",
+    "几天前我写过我们为什么打造 Predictify——用数据说话，而非噪音；公开结果，不靠事后诸葛亮。",
+    "真正获得价值的用户不会花一小时研究。他们打开一场比赛，阅读信心区间，做出一次选择，然后继续。每天选一次，坚持五天，你就建立了一个连胜记录。连续下注的用户发现价值选择的概率是普通用户的3倍——不是因为他们更聪明，而是因为他们更稳定。",
+    "你已经有了这个应用。今天的赛程已经上线。在开赛前花30秒选一场比赛。",
+    "P.S. 今天的一次选择，胜过明天群聊里的十个意见。"
+  ],
+  "cta_text": "今天做出我的第一次选择",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer_v2",
+  "language": "zh",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

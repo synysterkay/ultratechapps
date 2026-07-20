@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, сьогоднішня картка вже активна",
+  "preview_text": "Один забіг, 30 секунд до старту.",
+  "body_paragraphs": [
+    "Привіт {first_name},",
+    "Повертаюся до того, що писав кілька днів тому: Predictify Horse Racing створено для людей, які хочуть цифри, які можна перевірити, а не шум від \"тіпстерів\".",
+    "Звичка, яка працює, проста: відкрий один забіг із сьогоднішньої картки, прочитай рівень впевненості та аналіз форми, зроби один прогноз — і рухайся далі.",
+    "Сьогоднішні змагання вже доступні. Обери один забіг до старту.",
+    "P.S. Тіпстери галасують. Таблиці форми чесні."
+  ],
+  "cta_text": "Відкрити сьогоднішню картку",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "uk",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

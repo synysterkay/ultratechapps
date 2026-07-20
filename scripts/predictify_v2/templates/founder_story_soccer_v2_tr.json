@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, hâlâ içgüdülerine göre tahmin mi yapıyorsun?",
+  "preview_text": "Bugün yapacağın bir tahmin, yarın grup sohbetindeki on fikirden daha değerli.",
+  "body_paragraphs": [
+    "Merhaba {first_name},",
+    "Birkaç gün önce Predictify'i neden kurduğumuzu yazmıştım — sayılar gürültüye karşı, yayınlanan sonuçlar, arkadan akıl yok.",
+    "Gerçekten değer alan kullanıcılar saatlerce araştırma yapmıyor. Bir maç açıyorlar, güven bandını okuyorlar, bir tahmin yapıyorlar ve devam ediyorlar. Günde bir kez tahmin yap ve beş günde bir seri oluştur. Seri kullananlar, değerli tahminleri bulma olasılığı 3 kat daha fazla — daha zeki oldukları için değil, tutarlı oldukları için.",
+    "Uygulama zaten sende. Bugünün maçları canlı. Başlamadan önce bir maça 30 saniye ayır.",
+    "Not: Bugün yapacağın bir tahmin, yarın grup sohbetindeki on fikirden daha değerli."
+  ],
+  "cta_text": "Bugün ilk tahminimi yap",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer_v2",
+  "language": "tr",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

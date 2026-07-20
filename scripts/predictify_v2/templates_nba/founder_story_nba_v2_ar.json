@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}، جدول الليلة متاح بالفعل",
+  "preview_text": "30 ثانية على مباراة واحدة قبل انطلاقها — هذه هي العادة بأكملها.",
+  "body_paragraphs": [
+    "مرحبًا {first_name}،",
+    "متابعة سريعة لما قبل بضعة أيام: Predictify NBA لا يتعلق بالمراهنة أكثر — بل يتعلق باستبدال التخمين بعملية يمكنك التحقق منها.",
+    "المستخدمون الذين يلتزمون به لا يقضون ساعة في البحث. يفتحون مباراة واحدة، يقرؤون شريط الثقة وسياق الإصابات، يتخذون قرارًا واحدًا، ثم يمضون قدمًا. الاستمرارية تتفوق على التوقعات السريعة.",
+    "جدول الليلة جاهز. اختر مباراة واحدة، اقرأ التحليل، وقرر قبل انطلاق المباراة.",
+    "ملاحظة: الحدس ممتع في الدردشة. الأرقام أفضل قبل أن ترتفع الكرة."
+  ],
+  "cta_text": "افتح جدول الليلة",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba_v2",
+  "language": "ar",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

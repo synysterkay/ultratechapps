@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, आज का कार्ड लाइव है",
+  "preview_text": "एक रेस, 30 सेकंड, पोस्ट टाइम से पहले।",
+  "body_paragraphs": [
+    "नमस्ते {first_name},",
+    "कुछ दिन पहले की बात पर आगे बढ़ते हुए: Predictify Horse Racing उन लोगों के लिए बनाया गया है जो ऐसे आंकड़े चाहते हैं जिन्हें वे सत्यापित कर सकें — न कि टिपस्टर का शोर।",
+    "जो आदत काम करती है वह सरल है: आज के कार्ड पर एक रेस खोलें, कॉन्फिडेंस बैंड और फॉर्म ब्रेकडाउन पढ़ें, एक कॉल लगाएं, आगे बढ़ें।",
+    "आज की मीटिंग्स अपलोड हो चुकी हैं। ऑफ से पहले एक रेस चुनें।",
+    "P.S. टिपस्टर शोर मचाते हैं। फॉर्म टेबल ईमानदार होती हैं।"
+  ],
+  "cta_text": "आज का कार्ड खोलें",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "hi",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

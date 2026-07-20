@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, am construit asta după prea multe păreri de genul „sunt în formă”",
+  "preview_text": "Predicții calibrate pe moneyline, spread și totaluri — verifică fiecare rezultat.",
+  "body_paragraphs": [
+    "Hei {first_name},",
+    "În fiecare seară de meci, aceeași scenă: un grup plin de păreri — „sunt în formă”, „nu contează că au pierdut consecutiv”, „simt eu că o să fie o diferență mare”. Nimeni nu verifică accidentări, zilele de odihnă sau ce spun cifrele de fapt.",
+    "Am construit Predictify NBA pentru că argumentele despre baschet nu ar trebui să fie câștigate de cel care vorbește cel mai tare. Am vrut predicții pe care să le poți testa: accidentări, ritm, meciuri consecutive și un scor de încredere calibrat pe moneyline, spread, totaluri și propuneri.",
+    "Un prieten de-al nostru a învățat asta pe propria piele într-o seară de meciuri naționale. Modelul a semnalat o echipă favorită cu 58% încredere — practic o aruncare cu banul. A ignorat, a mers pe instinct și a pierdut și argumentul, și pariul. Două săptămâni mai târziu a deschis o predicție din banda noastră de încredere maximă (nivel 80%+), a citit analiza și a prezis rezultatul înainte de start. Același prieten. Alt proces.",
+    "De asta publicăm fiecare rezultat — câștiguri și pierderi — ca să poți verifica singur istoricul, meci cu meci. Fără predicții ascunse. Fără rescrierea istoriei după ultimul fluier.",
+    "Următorul tău pas durează cam 30 de secunde: deschide programul de azi, alege un meci și citește raționamentul înainte să îți faci alegerea.",
+    "P.S. Nu suntem o casă de pariuri. Fără câștiguri garantate — doar predicții transparente și un istoric pe care îl poți verifica."
+  ],
+  "cta_text": "Vezi cea mai puternică predicție de azi — gratuit",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba",
+  "language": "ro",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

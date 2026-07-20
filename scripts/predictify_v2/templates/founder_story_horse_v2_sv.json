@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, dagens tävlingskort är live",
+  "preview_text": "Ett lopp, 30 sekunder, före start.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "En uppföljning från för några dagar sedan: Predictify Horse Racing är byggt för personer som vill ha siffror de kan verifiera – inte tipsarbrus.",
+    "Vanan som fungerar är enkel: öppna ett lopp på dagens kort, läs förtroendebandet och formgenomgången, gör ett val, gå vidare.",
+    "Dagens tävlingar är uppe. Välj ett lopp före start.",
+    "P.S. Tipsare är högljudda. Formtabeller är ärliga."
+  ],
+  "cta_text": "Öppna dagens tävlingskort",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "sv",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

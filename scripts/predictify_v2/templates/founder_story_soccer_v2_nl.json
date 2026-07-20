@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, kies je nog steeds op gevoel?",
+  "preview_text": "Eén voorspelling vandaag verslaat tien meningen in de groepsapp morgen.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Ik schreef een paar dagen geleden over waarom we Predictify hebben gebouwd — cijfers boven ruis, gepubliceerde resultaten, geen schuilen achter achteraf gelijk hebben.",
+    "De gebruikers die er echt waarde uit halen, besteden geen uur aan onderzoek. Ze openen één wedstrijd, lezen de vertrouwensband, maken één keuze en gaan verder. Kies één keer per dag gedurende vijf dagen en je bouwt een streak. Streak-gebruikers hebben 3x meer kans om waardevolle calls te spotten — niet omdat ze slimmer zijn, maar omdat ze consistent zijn.",
+    "Je hebt de app al. Het programma van vandaag staat live. Neem 30 seconden voor één wedstrijd voor de aftrap.",
+    "P.S. Eén voorspelling vandaag verslaat tien meningen in de groepsapp morgen."
+  ],
+  "cta_text": "Maak mijn eerste keuze vandaag",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer_v2",
+  "language": "nl",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

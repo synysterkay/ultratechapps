@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, nadal wybierasz na podstawie przeczucia?",
+  "preview_text": "Jeden typ dzisiaj bije dziesięć opinii w grupowej rozmowie jutro.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Pisałem kilka dni temu o tym, dlaczego stworzyliśmy Predictify — liczby zamiast szumu, publikowane wyniki, bez chowania się za retrospekcją.",
+    "Użytkownicy, którzy faktycznie czerpią wartość, nie spędzają godziny na researchu. Otwierają jeden mecz, czytają przedział ufności, stawiają jeden typ i idą dalej. Wybieraj raz dziennie przez pięć dni, a zbudujesz passę. Użytkownicy z passą są 3 razy bardziej skłonni do trafiania wartościowych typów — nie dlatego, że są mądrzejsi, ale dlatego, że są konsekwentni.",
+    "Masz już aplikację. Dzisiejsza oferta jest aktywna. Poświęć 30 sekund na jeden mecz przed rozpoczęciem.",
+    "P.S. Jeden typ dzisiaj bije dziesięć opinii w grupowej rozmowie jutro."
+  ],
+  "cta_text": "Postaw mój pierwszy typ dzisiaj",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer_v2",
+  "language": "pl",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

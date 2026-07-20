@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, jag byggde det här efter att ha hört \"lita på tipset\" en gång för många gånger",
+  "preview_text": "Varje resultat publicerat. Verifiera oss lopp för lopp.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Varje tävlingsdag samma scen: självsäkra tips som flyger runt — \"den här hästen är redo,\" \"jockeyn levererar alltid här,\" \"jag känner bara på mig.\" Ingen kollar form, underlag, startposition eller vad siffrorna faktiskt säger.",
+    "Jag byggde Predictify Horse Racing för att kapplöpningsargument inte borde vinnas av den som skriker högst. Vi ville ha prognoser du kan testa: form, jockey, bana, underlag och en kalibrerad konfidenspoäng för vinst, plats och varje-vägs-spel.",
+    "En vän till oss lärde sig detta den hårda vägen på en festival. Modellen flaggade en favorit med 59% konfidens — närmare en slantsingling än en säker vinst. Han ignorerade det, följde tipset och förlorade. Två veckor senare öppnade han ett spel i vår högsta konfidensnivå (80%+ nivån), läste analysen och ringde in det före start. Samma vän. Annan process.",
+    "Det är därför vi publicerar varje resultat — vinster och förluster — så du kan verifiera resultatlistan själv, lopp för lopp.",
+    "Ditt nästa steg tar cirka 30 sekunder: öppna dagens kort, välj ett lopp och läs resonemanget före start.",
+    "P.S. Vi är ingen bookmaker. Inga garanterade vinster — bara transparenta prognoser och en resultatlista du kan kontrollera."
+  ],
+  "cta_text": "Se dagens starkaste spel — gratis",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse",
+  "language": "sv",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

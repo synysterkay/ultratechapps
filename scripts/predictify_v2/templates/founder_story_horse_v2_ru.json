@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, сегодняшняя карта уже доступна",
+  "preview_text": "Одна гонка, 30 секунд до старта.",
+  "body_paragraphs": [
+    "Привет {first_name},",
+    "Продолжая наш разговор: Predictify Horse Racing создан для тех, кто хочет проверяемые цифры, а не шум советчиков.",
+    "Привычка, которая работает, проста: открой одну гонку на сегодняшней карте, прочитай уровень уверенности и анализ формы, сделай один прогноз — и двигайся дальше.",
+    "Сегодняшние заезды уже загружены. Выбери одну гонку до старта.",
+    "P.S. Советчики шумят. Таблицы формы честны."
+  ],
+  "cta_text": "Открыть сегодняшнюю карту",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "ru",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

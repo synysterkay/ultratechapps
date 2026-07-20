@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, lịch thi đấu tối nay đã có sẵn",
+  "preview_text": "30 giây cho một trận trước giờ bóng lăn — đó là toàn bộ thói quen.",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "Nhắc nhanh từ vài ngày trước: Predictify NBA không phải là cá cược nhiều hơn — mà là thay thế phỏng đoán bằng một quy trình bạn có thể kiểm chứng.",
+    "Người dùng gắn bó không mất cả tiếng nghiên cứu. Họ mở một trận, đọc mức độ tin cậy và thông tin chấn thương, đưa ra một dự đoán, và chuyển sang việc khác. Sự nhất quán đánh bại những phán đoán bốc đồng.",
+    "Bảng đấu tối nay đã sẵn sàng. Chọn một trận, đọc phân tích, và quyết định trước giờ bóng lăn.",
+    "P.S. Cảm giác ruột thì vui trong chat. Nhưng con số thì tốt hơn trước khi bóng lên."
+  ],
+  "cta_text": "Mở lịch thi đấu tối nay",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba_v2",
+  "language": "vi",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

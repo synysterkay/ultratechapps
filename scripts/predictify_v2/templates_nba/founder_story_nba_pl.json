@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, zbudowałem to po zbyt wielu tekstach w stylu „oni są dojrzali”",
+  "preview_text": "Kalibrowane typy na moneyline, spread i sumy — zweryfikuj każdy wynik.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Każdy wieczór meczowy, ta sama scena: grupowy czat pełen gorących opinii — „oni są dojrzali”, „back-to-back nie ma znaczenia”, „po prostu czuję, że będzie pogrom”. Nikt nie sprawdza kontuzji, dni odpoczynku ani tego, co faktycznie mówią liczby.",
+    "Zbudowałem Predictify NBA, bo kłótnie o koszykówkę nie powinny być wygrywane przez tego, kto mówi najgłośniej. Chcieliśmy prognoz, które możesz sprawdzić: kontuzje, tempo, back-to-back i skalibrowany wynik pewności dla moneyline, spreadu, sum i zakładów dodatkowych.",
+    "Nasz znajomy przekonał się o tym na własnej skórze podczas meczu transmitowanego w ogólnokrajowej telewizji. Model wskazał faworyta z 58% pewnością — praktycznie rzut monetą. Zignorował to, poszedł za przeczuciem i przegrał zarówno kłótnię, jak i zakład. Dwa tygodnie później otworzył typ w naszym najwyższym przedziale pewności (80%+), przeczytał analizę i obstawił przed rozpoczęciem meczu. Ten sam znajomy. Inne podejście.",
+    "Dlatego publikujemy każdy wynik — wygrane i przegrane — abyś mógł samodzielnie zweryfikować nasze osiągnięcia, mecz po meczu. Żadnych ukrytych typów. Żadnego przepisywania historii po końcowej syrenie.",
+    "Twój następny krok zajmie około 30 sekund: otwórz dzisiejszą kolejkę, wybierz jeden mecz i przeczytaj uzasadnienie, zanim zatwierdzisz swój typ.",
+    "P.S. Nie jesteśmy bukmacherem. Żadnych gwarantowanych wygranych — tylko przejrzyste prognozy i rekord, który możesz sprawdzić."
+  ],
+  "cta_text": "Zobacz dzisiejszy najmocniejszy typ — za darmo",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba",
+  "language": "pl",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

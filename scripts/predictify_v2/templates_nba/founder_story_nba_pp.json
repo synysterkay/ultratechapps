@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, eu construí isso depois de um \"eles estão devendo\" a mais",
+  "preview_text": "Palpites calibrados em moneyline, spread e totais — verifique cada resultado.",
+  "body_paragraphs": [
+    "Ei {first_name},",
+    "Toda noite de jogo, a mesma cena: um grupo cheio de palpites quentes — \"eles estão devendo\", \"jogo seguido não importa\", \"só sinto que vai ser uma goleada\". Ninguém checando lesões, dias de descanso ou o que os números realmente dizem.",
+    "Eu construí o Predictify NBA porque discussões de basquete não deveriam ser vencidas por quem fala mais alto. Queríamos previsões que você pudesse testar: lesões, ritmo de jogo, jogos seguidos e uma pontuação de confiança calibrada em moneyline, spread, totais e props.",
+    "Um amigo nosso aprendeu isso do jeito difícil em uma noite de TV nacional. O modelo sinalizou um favorito com 58% de confiança — basicamente um cara ou coroa. Ele ignorou, foi no instinto e perdeu a discussão e a aposta. Duas semanas depois, ele abriu um palpite na nossa faixa de maior confiança (nível 80%+), leu a análise e acertou antes do tipoff. Mesmo amigo. Processo diferente.",
+    "É por isso que publicamos cada resultado — vitórias e derrotas — para que você mesmo possa verificar o histórico, jogo a jogo. Sem palpites escondidos. Sem reescrever a história depois da buzina final.",
+    "Seu próximo passo leva cerca de 30 segundos: abra a rodada de hoje, escolha um jogo e leia a justificativa antes de confirmar seu palpite.",
+    "P.S. Não somos uma casa de apostas. Sem vitórias garantidas — apenas previsões transparentes e um histórico que você pode conferir."
+  ],
+  "cta_text": "Veja o palpite mais forte de hoje — grátis",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba",
+  "language": "pp",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

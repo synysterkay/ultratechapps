@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, lịch đua hôm nay đã có",
+  "preview_text": "Một cuộc đua, 30 giây, trước giờ xuất phát.",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "Như đã nói từ vài ngày trước: Predictify Horse Racing được xây dựng cho những ai muốn con số có thể kiểm chứng — chứ không phải tiếng ồn từ tipster.",
+    "Thói quen hiệu quả rất đơn giản: mở một cuộc đua trong lịch hôm nay, đọc dải tin cậy và phân tích phong độ, đưa ra một lựa chọn, rồi chuyển sang việc khác.",
+    "Các cuộc đua hôm nay đã sẵn sàng. Chọn một cuộc đua trước giờ xuất phát.",
+    "P.S. Tipster thì ồn ào. Bảng phong độ mới là trung thực."
+  ],
+  "cta_text": "Mở lịch đua hôm nay",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "vi",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

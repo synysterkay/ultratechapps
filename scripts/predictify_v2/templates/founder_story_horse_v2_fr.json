@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, le programme du jour est en ligne",
+  "preview_text": "Une course, 30 secondes, avant le départ.",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "Je reviens vers toi après quelques jours : Predictify Horse Racing est fait pour ceux qui veulent des chiffres vérifiables, pas le bruit des pronostiqueurs.",
+    "L'habitude qui marche est simple : ouvre une course du programme du jour, lis la bande de confiance et l'analyse de forme, fais ton choix, et passe à autre chose.",
+    "Les réunions du jour sont disponibles. Choisis une course avant le départ.",
+    "P.S. Les pronostiqueurs parlent fort. Les tableaux de forme sont honnêtes."
+  ],
+  "cta_text": "Ouvrir le programme du jour",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "fr",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

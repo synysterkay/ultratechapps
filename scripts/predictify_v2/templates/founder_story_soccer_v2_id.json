@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, masih memilih pakai firasat?",
+  "preview_text": "Satu pilihan hari ini mengalahkan sepuluh opini di grup chat besok.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Beberapa hari lalu saya menulis tentang alasan kami membangun Predictify — angka lebih baik dari omongan, hasil yang dipublikasikan, tanpa bersembunyi di balik penyesalan.",
+    "Pengguna yang benar-benar mendapat manfaat tidak menghabiskan waktu satu jam untuk riset. Mereka buka satu pertandingan, baca band kepercayaan, buat satu pilihan, dan lanjut. Pilih sekali sehari selama lima hari dan kamu membangun streak. Pengguna streak 3x lebih mungkin menemukan pilihan bernilai — bukan karena mereka lebih pintar, tapi karena mereka konsisten.",
+    "Kamu sudah punya aplikasinya. Jadwal hari ini sudah aktif. Luangkan 30 detik untuk satu pertandingan sebelum kickoff.",
+    "P.S. Satu pilihan hari ini mengalahkan sepuluh opini di grup chat besok."
+  ],
+  "cta_text": "Buat pilihan pertamaku hari ini",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer_v2",
+  "language": "id",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

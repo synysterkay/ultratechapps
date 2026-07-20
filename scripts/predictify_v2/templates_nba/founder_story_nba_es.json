@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, construí esto después de demasiadas opiniones de \"ya les toca\"",
+  "preview_text": "Pronósticos calibrados en moneyline, spread y totales — verifica cada resultado.",
+  "body_paragraphs": [
+    "Hola {first_name},",
+    "Cada noche de partidos, la misma escena: un grupo lleno de opiniones — \"ya les toca\", \"no importa si son dos seguidas\", \"siento que será una paliza\". Nadie revisa lesiones, días de descanso ni lo que dicen los números.",
+    "Construí Predictify NBA porque las discusiones de baloncesto no deberían ganarlas quien grite más fuerte. Queríamos pronósticos que puedas poner a prueba: lesiones, ritmo de juego, partidos consecutivos y una puntuación de confianza calibrada en moneyline, spread, totales y apuestas de jugadores.",
+    "Un amigo nuestro lo aprendió a la mala en una noche de televisión nacional. El modelo marcó un favorito con 58% de confianza — básicamente un volado. Lo ignoró, siguió su instinto y perdió la discusión y la apuesta. Dos semanas después abrió un pronóstico en nuestro nivel de mayor confianza (tier 80%+), leyó el análisis y lo llamó antes del saque inicial. El mismo amigo. Proceso diferente.",
+    "Por eso publicamos cada resultado — ganancias y pérdidas — para que puedas verificar el historial tú mismo, partido por partido. Sin pronósticos ocultos. Sin reescribir la historia después de la chicharra final.",
+    "Tu próximo paso toma unos 30 segundos: abre la cartelera de esta noche, elige un partido y lee el razonamiento antes de confirmar tu pronóstico.",
+    "P.D. No somos una casa de apuestas. No hay ganancias garantizadas — solo pronósticos transparentes y un historial que puedes revisar."
+  ],
+  "cta_text": "Ve el pronóstico más fuerte de esta noche — gratis",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba",
+  "language": "es",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

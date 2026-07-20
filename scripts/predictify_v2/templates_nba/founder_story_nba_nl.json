@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, ik heb dit gebouwd na te veel \"ze zijn eraan toe\"-uitspraken",
+  "preview_text": "Gekalibreerde picks op moneyline, spread en totals — verifieer elk resultaat.",
+  "body_paragraphs": [
+    "Hoi {first_name},",
+    "Elke speelavond hetzelfde tafereel: een groepsapp vol hete uitspraken — \"ze zijn eraan toe,\" \"back-to-back maakt niet uit,\" \"ik voel gewoon een afstraffing.\" Niemand die blessures, rustdagen of wat de cijfers echt zeggen checkt.",
+    "Ik heb Predictify NBA gebouwd omdat basketbalargumenten niet gewonnen zouden moeten worden door wie het hardst praat. We wilden voorspellingen die je kunt testen: blessures, tempo, back-to-backs en een gekalibreerde vertrouwensscore op moneyline, spread, totals en props.",
+    "Een vriend van ons leerde dit op de harde manier tijdens een nationale tv-avond. Het model gaf een favoriet aan met 58% vertrouwen — eigenlijk een toss. Hij negeerde het, vertrouwde op zijn onderbuikgevoel en verloor zowel de discussie als de weddenschap. Twee weken later opende hij een pick in onze hoogste vertrouwensband (80%+ tier), las de uitleg en voorspelde het voor de tipoff. Dezelfde vriend. Ander proces.",
+    "Daarom publiceren we elk resultaat — winsten en verliezen — zodat je zelf de trackrecord kunt verifiëren, wedstrijd voor wedstrijd. Geen verborgen picks. Geen geschiedenis herschrijven na het eindsignaal.",
+    "Je volgende stap duurt ongeveer 30 seconden: open het avondprogramma, kies één wedstrijd en lees de onderbouwing voordat je je voorspelling vastlegt.",
+    "P.S. We zijn geen bookmaker. Geen gegarandeerde winsten — alleen transparante voorspellingen en een record dat je kunt controleren."
+  ],
+  "cta_text": "Bekijk de sterkste pick van vanavond — gratis",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba",
+  "language": "nl",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

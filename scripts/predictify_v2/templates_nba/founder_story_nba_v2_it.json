@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, il programma di stasera è già live",
+  "preview_text": "30 secondi su una partita prima del tipoff — questa è l'abitudine.",
+  "body_paragraphs": [
+    "Ciao {first_name},",
+    "Un breve follow-up da qualche giorno fa: Predictify NBA non riguarda scommettere di più — si tratta di sostituire le supposizioni con un processo che puoi verificare.",
+    "Gli utenti che ci restano non passano un'ora a fare ricerche. Aprono una partita, leggono la fascia di confidenza e il contesto degli infortuni, fanno una scelta e vanno avanti. La costanza batte le opinioni a caldo.",
+    "Il tabellone di stasera è pronto. Scegli una partita, leggi l'analisi e decidi prima del tipoff.",
+    "P.S. L'istinto è divertente in chat. I numeri sono meglio prima che la palla salga."
+  ],
+  "cta_text": "Apri il programma di stasera",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba_v2",
+  "language": "it",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

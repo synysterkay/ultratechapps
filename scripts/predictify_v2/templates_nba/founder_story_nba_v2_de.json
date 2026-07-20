@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, das heutige Spielprogramm ist bereits live",
+  "preview_text": "30 Sekunden für ein Spiel vor dem Tipoff – das ist die ganze Gewohnheit.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Kurze Nachfrage von vor ein paar Tagen: Predictify NBA geht nicht darum, mehr zu wetten – es geht darum, Rätselraten durch einen Prozess zu ersetzen, den du überprüfen kannst.",
+    "Nutzer, die dabei bleiben, verbringen keine Stunde mit Recherche. Sie öffnen ein Spiel, lesen das Vertrauensband und die Verletzungszusammenhänge, treffen eine Entscheidung und machen weiter. Beständigkeit schlägt heiße Tipps.",
+    "Das heutige Board ist online. Wähle ein Spiel aus, lies die Analyse und entscheide vor dem Tipoff.",
+    "P.S. Bauchgefühl macht im Chat Spaß. Zahlen sind besser, bevor der Ball hochgeht."
+  ],
+  "cta_text": "Öffne das heutige Spielprogramm",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba_v2",
+  "language": "de",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

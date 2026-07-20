@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}，我在听腻了无数句“他们该赢了”之后，做了这个",
+  "preview_text": "针对胜负盘、让分盘和总分盘的校准预测——每一条结果都可验证。",
+  "body_paragraphs": [
+    "嘿 {first_name}，",
+    "每个比赛夜都是同样的场景：群聊里充斥着各种直觉判断——“他们该赢了”“背靠背没关系”“我就觉得会是一场大胜”。没人去查伤病、休息天数，或者数据到底怎么说。",
+    "我创建 Predictify NBA，是因为篮球争论不该由嗓门最大的人赢。我们想要的是你可以反复检验的预测：伤病、节奏、背靠背，以及针对胜负盘、让分盘、总分盘和球员选项的校准信心分数。",
+    "我们有个朋友就在一个全国直播的夜晚吃了这个亏。模型标记了一个热门球队，信心度只有58%——基本就是抛硬币。他没听，跟着感觉走，结果输了争论也输了赌注。两周后，他在我们最高信心区间（80%+ 级别）里打开了一个预测，读了分析，然后在开赛前就做出了判断。同一个人。不同的流程。",
+    "这就是为什么我们公布每一条结果——无论输赢——这样你就可以亲自逐场验证我们的记录。没有隐藏的预测。没有终场哨响后改写历史。",
+    "你的下一步只需30秒：打开今晚的赛程，选一场比赛，在锁定你的判断之前先读一读推理过程。",
+    "附注：我们不是博彩公司。没有保证赢——只有透明的预测和你可以核实的记录。"
+  ],
+  "cta_text": "免费查看今晚最强预测",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba",
+  "language": "zh",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

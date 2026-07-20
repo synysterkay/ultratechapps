@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, saya buat ini setelah terlalu banyak omongan \"percaya deh, bro\"",
+  "preview_text": "Kami publikasikan setiap prediksi. Anda bisa verifikasi kami pertandingan demi pertandingan.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Setiap hari pertandingan, adegan yang sama terjadi: grup chat penuh dengan opini percaya diri — \"mereka sudah waktunya menang,\" \"keunggulan kandang,\" \"saya hanya merasa.\" Tidak ada yang mengecek performa, cedera, atau apa kata angka sebenarnya.",
+    "Saya buat Predictify karena argumen sepak bola seharusnya tidak dimenangkan oleh siapa pun yang bicara paling keras. Kami ingin ramalan yang bisa Anda uji: xG, performa terkini, berita skuad, dan skor kepercayaan yang terkalibrasi pada setiap pilihan — 1X2, O/U, BTTS, dan lainnya.",
+    "Seorang teman kami belajar ini dengan cara yang sulit pada suatu malam Liga Champions. Model tersebut menandai tim favorit dengan kepercayaan 61% — pada dasarnya lempar koin yang didandani sebagai kepastian. Dia mengabaikannya, mengikuti insting, dan kalah dalam argumen dan taruhan. Dua minggu kemudian dia membuka pilihan di band kepercayaan tertinggi kami (tier 80%+), membaca analisisnya, dan memprediksinya sebelum kickoff. Teman yang sama. Proses yang berbeda.",
+    "Itulah mengapa kami publikasikan setiap hasil — menang dan kalah — sehingga Anda bisa verifikasi rekam jejak sendiri, pertandingan demi pertandingan. Tidak ada pilihan tersembunyi. Tidak ada penulisan ulang sejarah setelah peluit akhir.",
+    "Langkah Anda selanjutnya memakan waktu sekitar 30 detik: buka jadwal hari ini, pilih satu pertandingan, dan baca alasannya sebelum Anda mengunci pilihan Anda. Jika Anda ingin bacaan terkuat dari model, mulailah dengan pilihan kepercayaan tertinggi di papan.",
+    "P.S. Kami bukan bandar taruhan. Tidak ada jaminan menang — hanya ramalan transparan dan catatan yang bisa Anda periksa. Insting itu menyenangkan di chat. Angka lebih baik sebelum kickoff."
+  ],
+  "cta_text": "Lihat pilihan terkuat hari ini — gratis",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer",
+  "language": "id",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

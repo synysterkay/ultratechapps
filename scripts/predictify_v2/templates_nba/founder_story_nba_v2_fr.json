@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, le programme de ce soir est déjà en ligne",
+  "preview_text": "30 secondes sur un match avant le coup d'envoi — c'est toute l'habitude.",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "Petit rappel de ce qu'on disait il y a quelques jours : Predictify NBA ne consiste pas à parier plus — il s'agit de remplacer les suppositions par un processus que tu peux vérifier.",
+    "Les utilisateurs qui s'y tiennent ne passent pas une heure à faire des recherches. Ils ouvrent un match, lisent la bande de confiance et le contexte des blessures, font un choix, et passent à autre chose. La régularité bat les intuitions.",
+    "Le tableau de ce soir est prêt. Choisis un match, lis l'analyse, et décide avant le coup d'envoi.",
+    "P.S. L'instinct, c'est sympa dans le chat. Les chiffres sont meilleurs avant que le ballon ne s'envole."
+  ],
+  "cta_text": "Ouvrir le programme de ce soir",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba_v2",
+  "language": "fr",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

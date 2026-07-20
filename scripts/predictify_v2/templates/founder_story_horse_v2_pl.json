@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, dzisiejsza karta jest już dostępna",
+  "preview_text": "Jeden wyścig, 30 sekund, przed startem.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Nawiązując do sprzed kilku dni: Predictify Horse Racing jest stworzone dla ludzi, którzy chcą liczb, które mogą zweryfikować – a nie tipsterskiego szumu.",
+    "Nawyk, który działa, jest prosty: otwórz jeden wyścig z dzisiejszej karty, przeczytaj przedział ufności i analizę formy, podejmij jedną decyzję, idź dalej.",
+    "Dzisiejsze spotkania są już dostępne. Wybierz jeden wyścig przed startem.",
+    "PS. Tipsterzy są głośni. Tabele formy są uczciwe."
+  ],
+  "cta_text": "Otwórz dzisiejszą kartę",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "pl",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

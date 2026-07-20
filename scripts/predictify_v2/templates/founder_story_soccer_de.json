@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, das habe ich nach zu vielen „Vertrau mir Bruder“-Aussagen gebaut",
+  "preview_text": "Wir veröffentlichen jede Vorhersage. Du kannst uns Spiel für Spiel überprüfen.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Jeden Spieltag das gleiche Szenario: ein Gruppenchat voller selbstbewusster Meinungen – „Die sind fällig für einen Sieg“, „Heimvorteil“, „Ich hab einfach ein Gefühl.“ Niemand überprüft Form, Verletzungen oder was die Zahlen tatsächlich sagen.",
+    "Ich habe Predictify gebaut, weil Fußballdiskussionen nicht von denen gewonnen werden sollten, die am lautesten reden. Wir wollten Prognosen, die du auf die Probe stellen kannst: xG, aktuelle Form, Kadernews und eine kalibrierte Konfidenzpunktzahl für jede Auswahl – 1X2, O/U, BTTS und mehr.",
+    "Ein Freund von uns hat das auf die harte Tour an einem Champions-League-Abend gelernt. Das Modell hat einen Favoriten mit 61 % Konfidenz markiert – im Grunde ein Münzwurf, der als Sicherheit getarnt war. Er ignorierte es, folgte seinem Bauchgefühl und verlor sowohl die Diskussion als auch die Wette. Zwei Wochen später öffnete er eine Auswahl in unserer höchsten Konfidenzstufe (80 %+ Stufe), las die Analyse und sagte es vor dem Anpfiff voraus. Derselbe Freund. Anderer Prozess.",
+    "Deshalb veröffentlichen wir jedes Ergebnis – Siege und Niederlagen –, damit du die Erfolgsbilanz selbst überprüfen kannst, Spiel für Spiel. Keine versteckten Tipps. Kein Umschreiben der Geschichte nach dem Abpfiff.",
+    "Dein nächster Schritt dauert etwa 30 Sekunden: Öffne die heutige Auswahl, wähle ein Spiel aus und lies die Begründung, bevor du deine Entscheidung triffst. Wenn du die stärkste Einschätzung des Modells haben möchtest, beginne mit der Auswahl mit der höchsten Konfidenz auf dem Board.",
+    "P.S. Wir sind kein Buchmacher. Keine garantierten Gewinne – nur transparente Prognosen und eine Bilanz, die du überprüfen kannst. Bauchgefühl macht Spaß im Chat. Zahlen sind besser vor dem Anpfiff."
+  ],
+  "cta_text": "Sieh dir die stärkste Auswahl von heute an – kostenlos",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer",
+  "language": "de",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

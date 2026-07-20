@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, आज रात का स्लेट पहले से लाइव है",
+  "preview_text": "एक गेम पर 30 सेकंड टिपऑफ से पहले — यही पूरी आदत है।",
+  "body_paragraphs": [
+    "नमस्ते {first_name},",
+    "कुछ दिन पहले की एक त्वरित फॉलो-अप: Predictify NBA अधिक सट्टा लगाने के बारे में नहीं है — यह अनुमान को एक प्रक्रिया से बदलने के बारे में है जिसे आप सत्यापित कर सकते हैं।",
+    "जो उपयोगकर्ता इस पर टिके रहते हैं, वे एक घंटे तक रिसर्च नहीं करते। वे एक गेम खोलते हैं, कॉन्फिडेंस बैंड और चोट का संदर्भ पढ़ते हैं, एक कॉल लगाते हैं, और आगे बढ़ जाते हैं। स्थिरता गर्म टिप्पणियों को हरा देती है।",
+    "आज रात का बोर्ड तैयार है। एक गेम चुनें, ब्रेकडाउन पढ़ें, और टिपऑफ से पहले फैसला करें।",
+    "पी.एस. चैट में गट फील मज़ेदार है। लेकिन गेंद उछलने से पहले नंबर बेहतर होते हैं।"
+  ],
+  "cta_text": "आज रात का स्लेट खोलें",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba_v2",
+  "language": "hi",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

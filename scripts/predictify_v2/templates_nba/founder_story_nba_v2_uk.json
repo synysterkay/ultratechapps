@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, сьогоднішній ігровий день уже активний",
+  "preview_text": "30 секунд на одну гру до початку — ось і вся звичка.",
+  "body_paragraphs": [
+    "Привіт {first_name},",
+    "Коротке нагадування з кількох днів тому: Predictify NBA — це не про більше ставок, а про заміну ворожіння на процес, який можна перевірити.",
+    "Користувачі, які залишаються з нами, не витрачають годину на дослідження. Вони відкривають одну гру, читають рівень впевненості та контекст травм, роблять один прогноз і йдуть далі. Послідовність перемагає гарячі думки.",
+    "Сьогоднішня дошка вже готова. Обери одну гру, прочитай аналіз і прийми рішення до початку.",
+    "P.S. Інтуїція — це весело в чаті. Цифри краще, поки м'яч не полетів у кошик."
+  ],
+  "cta_text": "Відкрити сьогоднішній ігровий день",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba_v2",
+  "language": "uk",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, bunu bir kereden fazla \"tipstere güven\" lafını duyduktan sonra yaptım",
+  "preview_text": "Her sonuç yayınlanır. Bizi yarış yarış doğrula.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Her yarış günü aynı sahne: kendine güvenen tüyolar havada uçuşuyor — \"bu atın zamanı geldi,\" \"jokey burada hep iş yapar,\" \"sadece hissediyorum.\" Kimse formu, pist durumunu, start pozisyonunu veya sayıların gerçekte ne söylediğini kontrol etmiyor.",
+    "Predictify Horse Racing'i kurdum çünkü yarış tartışmaları en yüksek sesle bağıranın kazandığı bir oyun olmamalı. Test edebileceğin tahminler istedik: form, jokey, pist, pist durumu ve kazanç, yer ve her yönlü bahisler için kalibre edilmiş bir güven skoru.",
+    "Bir arkadaşımız bunu bir festival buluşmasında acı bir şekilde öğrendi. Model, favoriyi %59 güvenle işaretledi — bir kilit olmaktan çok yazı tura atmaya yakındı. O görmezden geldi, tipsteri takip etti ve kaybetti. İki hafta sonra en yüksek güven bandımızdaki (%80+ seviye) bir tahmini açtı, detayları okudu ve starttan önce çağırdı. Aynı arkadaş. Farklı süreç.",
+    "Bu yüzden her sonucu yayınlıyoruz — kazançlar ve kayıplar — böylece geçmiş performansı kendin yarış yarış doğrulayabilirsin.",
+    "Bir sonraki adımın yaklaşık 30 saniye sürüyor: bugünün kartını aç, bir yarış seç ve starttan önce gerekçeyi oku.",
+    "Not: Biz bir bahis şirketi değiliz. Garanti kazanç yok — sadece şeffaf tahminler ve kontrol edebileceğin bir kayıt."
+  ],
+  "cta_text": "Bugünün en güçlü tahminini gör — ücretsiz",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse",
+  "language": "tr",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

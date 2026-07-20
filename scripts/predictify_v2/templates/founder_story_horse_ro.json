@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, am construit asta după prea multe „ai încredere în tipster”",
+  "preview_text": "Fiecare rezultat publicat. Verifică-ne cursă cu cursă.",
+  "body_paragraphs": [
+    "Hei {first_name},",
+    "În fiecare zi de curse, aceeași scenă: ponturi încrezătoare zboară în jur — „calul ăsta e pe punctul să câștige”, „jocheul livrează întotdeauna aici”, „doar simt asta.” Nimeni nu verifică forma, terenul, poziția la start sau ce spun de fapt cifrele.",
+    "Am construit Predictify Horse Racing pentru că argumentele despre curse nu ar trebui să fie câștigate de cine țipă mai tare. Am vrut prognoze pe care să le poți testa: formă, jocheu, pistă, teren și un scor de încredere calibrat pentru pick-uri win, place și each-way.",
+    "Un prieten de-al nostru a învățat asta pe calea grea la o întâlnire de festival. Modelul a semnalat un favorit cu 59% încredere — mai aproape de o aruncare de monedă decât de o certitudine. L-a ignorat, l-a urmat pe tipster și a pierdut. Două săptămâni mai târziu a deschis un pick în banda noastră de cea mai mare încredere (nivel 80%+), a citit analiza și l-a anunțat înainte de start. Același prieten. Alt proces.",
+    "De asta publicăm fiecare rezultat — câștiguri și pierderi — ca să poți verifica singur palmaresul, cursă cu cursă.",
+    "Următorul tău pas durează cam 30 de secunde: deschide cardul de azi, alege o cursă și citește raționamentul înainte de start.",
+    "P.S. Nu suntem o casă de pariuri. Fără câștiguri garantate — doar prognoze transparente și un palmares pe care îl poți verifica."
+  ],
+  "cta_text": "Vezi cel mai puternic pick de azi — gratuit",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse",
+  "language": "ro",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

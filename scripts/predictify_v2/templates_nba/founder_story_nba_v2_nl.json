@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, de avondwedstrijden staan al klaar",
+  "preview_text": "30 seconden voor één wedstrijd voor de aftrap — dat is de hele gewoonte.",
+  "body_paragraphs": [
+    "Hoi {first_name},",
+    "Korte follow-up van een paar dagen geleden: Predictify NBA gaat niet over meer inzetten — het gaat erom giswerk te vervangen door een proces dat je kunt controleren.",
+    "Gebruikers die het volhouden, besteden geen uur aan onderzoek. Ze openen één wedstrijd, lezen de vertrouwensband en blessurecontext, maken één keuze en gaan verder. Consistentie verslaat hete meningen.",
+    "De avondwedstrijden staan klaar. Kies één wedstrijd, lees de analyse en beslis voor de aftrap.",
+    "P.S. Onderbuikgevoel is leuk in de chat. Cijfers zijn beter voordat de bal omhoog gaat."
+  ],
+  "cta_text": "Open de avondwedstrijden",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba_v2",
+  "language": "nl",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

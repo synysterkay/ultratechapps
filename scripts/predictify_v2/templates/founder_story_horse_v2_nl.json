@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, de kaart van vandaag staat klaar",
+  "preview_text": "Eén race, 30 seconden, voor de starttijd.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Even een vervolg op een paar dagen geleden: Predictify Horse Racing is gemaakt voor mensen die cijfers willen die ze kunnen verifiëren — geen tipster-herrie.",
+    "De gewoonte die werkt is simpel: open één race op de kaart van vandaag, lees de vertrouwensband en de vormanalyse, maak één keuze, en ga verder.",
+    "De bijeenkomsten van vandaag staan klaar. Kies één race voor de start.",
+    "P.S. Tipsters zijn luidruchtig. Vormtabellen zijn eerlijk."
+  ],
+  "cta_text": "Open de kaart van vandaag",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "nl",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

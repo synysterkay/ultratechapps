@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, construí isto depois de ouvir \"confie no tipster\" uma vez de mais",
+  "preview_text": "Cada resultado publicado. Verifique-nos corrida a corrida.",
+  "body_paragraphs": [
+    "Olá {first_name},",
+    "Todos os dias de corrida, a mesma cena: dicas confiantes a voar — \"este cavalo está na altura,\" \"o jóquei entrega sempre aqui,\" \"sinto que vai acontecer.\" Ninguém a verificar a forma, o terreno, o sorteio ou o que os números realmente dizem.",
+    "Construí o Predictify Horse Racing porque as discussões sobre corridas não deviam ser ganhas por quem grita mais alto. Queríamos previsões que pudesses testar: forma, jóquei, pista, terreno e uma pontuação de confiança calibrada para vitória, lugar e cada-um.",
+    "Um amigo nosso aprendeu isto da pior forma numa reunião de festival. O modelo sinalizou um favorito com 59% de confiança — mais perto de um cara ou coroa do que de uma certeza. Ele ignorou, seguiu o tipster e perdeu. Duas semanas depois, abriu uma escolha na nossa faixa de confiança mais alta (nível 80%+), leu a análise e acertou antes da partida. O mesmo amigo. Processo diferente.",
+    "É por isso que publicamos cada resultado — vitórias e derrotas — para que possas verificar o histórico tu mesmo, corrida a corrida.",
+    "O teu próximo passo leva cerca de 30 segundos: abre o cartão de hoje, escolhe uma corrida e lê a justificação antes da partida.",
+    "P.S. Não somos uma casa de apostas. Sem vitórias garantidas — apenas previsões transparentes e um histórico que podes verificar."
+  ],
+  "cta_text": "Vê a escolha mais forte de hoje — grátis",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse",
+  "language": "pt",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

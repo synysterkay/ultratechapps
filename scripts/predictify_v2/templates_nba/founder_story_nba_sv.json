@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, jag byggde det här efter alldeles för många \"de är på gång\"-argument",
+  "preview_text": "Kalibrerade picks på moneyline, spread och totals — verifiera varje resultat.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Varje matchkväll, samma scen: en gruppchatt full av heta åsikter — \"de är på gång,\" \"back-to-back spelar ingen roll,\" \"jag känner bara på mig en utklassning.\" Ingen kollar skador, vilodagar eller vad siffrorna faktiskt säger.",
+    "Jag byggde Predictify NBA för att basketargument inte borde vinnas av den som pratar högst. Vi ville ha prognoser du kan stress-test: skador, tempo, back-to-back-matcher och en kalibrerad konfidenspoäng på moneyline, spread, totals och props.",
+    "En vän till oss lärde sig detta den hårda vägen en nationell TV-kväll. Modellen flaggade en favorit med 58% konfidens — i princip en slantsingling. Han ignorerade det, gick på magkänsla och förlorade både argumentet och vadet. Två veckor senare öppnade han en pick i vår högsta konfidensnivå (80%+ nivå), läste analysen och kallade den före avspark. Samma vän. Annan process.",
+    "Det är därför vi publicerar varje resultat — vinster och förluster — så att du kan verifiera meritlistan själv, match för match. Inga dolda picks. Ingen omskrivning av historien efter slutsignalen.",
+    "Ditt nästa steg tar ungefär 30 sekunder: öppna kvällens spelschema, välj en match och läs resonemanget innan du låser ditt val.",
+    "P.S. Vi är ingen bookmaker. Inga garanterade vinster — bara transparenta prognoser och en meritlista du kan kolla."
+  ],
+  "cta_text": "Se kvällens starkaste pick — gratis",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba",
+  "language": "sv",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

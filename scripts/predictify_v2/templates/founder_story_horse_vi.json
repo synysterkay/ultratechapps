@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, tôi xây dựng cái này sau quá nhiều lần \"tin tưởng tipster\"",
+  "preview_text": "Mọi kết quả đều được công bố. Hãy tự kiểm chứng chúng tôi từng cuộc đua.",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "Mỗi ngày đua, cùng một cảnh: những lời khuyên tự tin bay khắp nơi — \"con ngựa này sắp thắng,\" \"jockey luôn về đích tốt ở đây,\" \"tôi chỉ cảm thấy vậy.\" Không ai kiểm tra phong độ, mặt đường, vị trí xuất phát, hay những con số thực sự nói lên điều gì.",
+    "Tôi xây dựng Predictify Horse Racing vì những tranh luận về đua ngựa không nên được quyết định bởi ai la to nhất. Chúng tôi muốn những dự đoán bạn có thể kiểm tra: phong độ, jockey, đường đua, mặt đường, và điểm số tin cậy đã được hiệu chỉnh cho các lựa chọn thắng, về đích, và mỗi chiều.",
+    "Một người bạn của chúng tôi đã học được bài học này một cách khó khăn tại một cuộc họp hội. Mô hình đã cảnh báo một con ngựa yêu thích với độ tin cậy 59% — gần với tung đồng xu hơn là chắc chắn. Anh ấy bỏ qua, theo lời tipster, và thua. Hai tuần sau, anh ấy mở một lựa chọn trong nhóm tin cậy cao nhất của chúng tôi (bậc 80%+), đọc phân tích, và gọi tên trước giờ xuất phát. Cùng một người bạn. Quy trình khác.",
+    "Đó là lý do chúng tôi công bố mọi kết quả — thắng và thua — để bạn có thể tự kiểm tra thành tích, từng cuộc đua một.",
+    "Bước tiếp theo của bạn chỉ mất khoảng 30 giây: mở bảng đua hôm nay, chọn một cuộc đua, và đọc lý do trước giờ xuất phát.",
+    "P.S. Chúng tôi không phải nhà cái. Không có chiến thắng đảm bảo — chỉ có dự đoán minh bạch và một thành tích bạn có thể kiểm tra."
+  ],
+  "cta_text": "Xem lựa chọn mạnh nhất hôm nay — miễn phí",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse",
+  "language": "vi",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

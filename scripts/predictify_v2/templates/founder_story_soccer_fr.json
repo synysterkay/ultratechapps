@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, j'ai créé ça après avoir trop entendu \"fais-moi confiance, frère\"",
+  "preview_text": "Nous publions chaque pronostic. Vous pouvez nous vérifier match après match.",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "Chaque jour de match, le même scénario se répète : un groupe de discussion rempli d'opinions confiantes — \"ils méritent une victoire\", \"l'avantage du terrain\", \"je le sens\". Personne ne vérifie la forme, les blessures ou ce que les chiffres disent vraiment.",
+    "J'ai créé Predictify parce que les débats footballistiques ne devraient pas être gagnés par celui qui parle le plus fort. Nous voulions des prévisions que vous pouvez mettre à l'épreuve : xG, forme récente, infos sur l'effectif, et un score de confiance calibré sur chaque pronostic — 1X2, O/U, BTTS, et plus.",
+    "Un de nos amis l'a appris à ses dépens lors d'une soirée de Ligue des Champions. Le modèle signalait un favori à 61% de confiance — en gros un pile ou face déguisé en certitude. Il l'a ignoré, a suivi son instinct, et a perdu le débat et le pari. Deux semaines plus tard, il a ouvert un pronostic dans notre bande de confiance la plus élevée (tier 80%+), a lu l'analyse, et l'a annoncé avant le coup d'envoi. Le même ami. Un processus différent.",
+    "C'est pourquoi nous publions chaque résultat — victoires et défaites — pour que vous puissiez vérifier vous-même notre bilan, match après match. Pas de pronostics cachés. Pas de réécriture de l'histoire après le coup de sifflet final.",
+    "Votre prochaine étape prend environ 30 secondes : ouvrez le programme du jour, choisissez un match, et lisez le raisonnement avant de valider votre choix. Si vous voulez la lecture la plus forte du modèle, commencez par le pronostic avec la plus haute confiance sur le tableau.",
+    "P.S. Nous ne sommes pas un bookmaker. Pas de victoires garanties — juste des prévisions transparentes et un bilan que vous pouvez vérifier. L'instinct, c'est amusant dans le groupe. Les chiffres sont meilleurs avant le coup d'envoi."
+  ],
+  "cta_text": "Voir le pronostic le plus fort du jour — gratuit",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer",
+  "language": "fr",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

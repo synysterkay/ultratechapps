@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, 오늘의 경기 카드가 공개되었습니다",
+  "preview_text": "한 경기, 30초, 출발 전에 확인하세요.",
+  "body_paragraphs": [
+    "안녕하세요 {first_name},",
+    "며칠 전에 이어서: Predictify Horse Racing은 검증 가능한 숫자를 원하는 사람들을 위해 만들어졌습니다 — 팁스터의 잡음이 아닙니다.",
+    "효과적인 습관은 간단합니다: 오늘의 경기 카드에서 한 경기를 열고, 신뢰도 구간과 폼 분석을 읽고, 한 번 선택하고, 넘어가세요.",
+    "오늘의 경기가 시작되었습니다. 출발 전에 한 경기를 골라보세요.",
+    "P.S. 팁스터는 시끄럽습니다. 폼 테이블은 정직합니다."
+  ],
+  "cta_text": "오늘의 경기 카드 열기",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "ko",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

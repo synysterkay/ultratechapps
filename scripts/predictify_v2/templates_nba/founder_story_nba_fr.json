@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, j'ai créé ça après avoir trop entendu \"ils vont se rattraper\"",
+  "preview_text": "Pronostics calibrés sur moneyline, spread et totaux — vérifiez chaque résultat.",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "Chaque soir de match, le même scénario : un groupe WhatsApp rempli de pronostics à l'emporte-pièce — \"ils vont se rattraper\", \"un match nul de suite ça compte pas\", \"je sens un carton\". Personne ne vérifie les blessures, les jours de repos ou ce que disent vraiment les chiffres.",
+    "J'ai créé Predictify NBA parce que les débats de basket ne devraient pas être gagnés par celui qui parle le plus fort. Nous voulions des prévisions que tu peux mettre à l'épreuve : blessures, rythme, matchs consécutifs, et un score de confiance calibré sur moneyline, spread, totaux et props.",
+    "Un de nos amis l'a appris à ses dépens lors d'une soirée télé nationale. Le modèle a signalé un favori à 58% de confiance — pratiquement un pile ou face. Il a ignoré, suivi son instinct, et a perdu le débat et le pari. Deux semaines plus tard, il a ouvert un pronostic dans notre bande de confiance la plus élevée (tier 80%+), a lu l'analyse, et a annoncé le résultat avant le coup d'envoi. Le même ami. Une approche différente.",
+    "C'est pourquoi nous publions chaque résultat — victoires et défaites — pour que tu puisses vérifier toi-même notre bilan, match par match. Pas de pronostics cachés. Pas de réécriture de l'histoire après le buzzer final.",
+    "Ta prochaine étape prend environ 30 secondes : ouvre le programme de ce soir, choisis un match, et lis le raisonnement avant de valider ton pronostic.",
+    "P.S. Nous ne sommes pas un bookmaker. Pas de victoires garanties — juste des prévisions transparentes et un bilan que tu peux consulter."
+  ],
+  "cta_text": "Voir le pronostic le plus fort de ce soir — gratuit",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba",
+  "language": "fr",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

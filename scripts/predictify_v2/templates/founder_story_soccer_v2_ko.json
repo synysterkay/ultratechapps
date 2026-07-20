@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, 아직도 직감으로 픽을 고르고 계신가요?",
+  "preview_text": "오늘 하나의 픽이 내일 단톡방의 열 가지 의견보다 낫습니다.",
+  "body_paragraphs": [
+    "안녕하세요, {first_name}님,",
+    "며칠 전에 Predictify를 만든 이유에 대해 썼습니다 — 숫자는 소음보다 낫고, 결과는 공개되며, 결과론적 숨김은 없습니다.",
+    "실제로 가치를 얻는 사용자들은 한 시간씩 조사하지 않습니다. 그냥 하나의 경기를 열고, 신뢰 구간을 읽고, 한 번의 콜을 하고, 넘어갑니다. 하루에 한 번씩 5일 동안 픽을 하면 연속 기록이 쌓입니다. 연속 기록을 가진 사용자들은 가치 있는 콜을 찾을 확률이 3배 높습니다 — 똑똑해서가 아니라 꾸준하기 때문입니다.",
+    "이미 앱을 가지고 계십니다. 오늘의 경기 일정이 활성화되어 있습니다. 킥오프 전에 한 경기에 30초만 투자해 보세요.",
+    "P.S. 오늘 하나의 픽이 내일 단톡방의 열 가지 의견보다 낫습니다."
+  ],
+  "cta_text": "오늘 첫 픽 하러 가기",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer_v2",
+  "language": "ko",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

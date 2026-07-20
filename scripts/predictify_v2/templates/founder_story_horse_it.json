@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, l'ho creato dopo averne sentite fin sopra i capelli di \"fidati del tipster\"",
+  "preview_text": "Ogni risultato pubblicato. Verificaci corsa per corsa.",
+  "body_paragraphs": [
+    "Ciao {first_name},",
+    "Ogni giorno di corse, la stessa scena: consigli sicuri che volano — \"questo cavallo è in forma,\" \"il fantino qui non sbaglia mai,\" \"me lo sento.\" Nessuno controlla la forma, il terreno, la posizione in griglia o cosa dicono davvero i numeri.",
+    "Ho creato Predictify Horse Racing perché le discussioni sulle corse non dovrebbero essere vinte da chi urla più forte. Volevamo previsioni che puoi mettere alla prova: forma, fantino, pista, terreno e un punteggio di confidenza calibrato per le scommesse vincente, piazzato e ogni senso.",
+    "Un nostro amico l'ha imparato a sue spese durante un meeting di un festival. Il modello ha segnalato un favorito con il 59% di confidenza — più vicino a un lancio di moneta che a una certezza. Lui l'ha ignorato, ha seguito il tipster e ha perso. Due settimane dopo ha aperto una selezione nella nostra fascia di confidenza più alta (80%+), ha letto l'analisi e l'ha chiamata prima del via. Lo stesso amico. Processo diverso.",
+    "Ecco perché pubblichiamo ogni risultato — vittorie e sconfitte — così puoi verificare tu stesso il track record, corsa per corsa.",
+    "Il tuo prossimo passo richiede circa 30 secondi: apri il programma di oggi, scegli una corsa e leggi il ragionamento prima del via.",
+    "P.S. Non siamo un bookmaker. Nessuna vincita garantita — solo previsioni trasparenti e un track record che puoi controllare."
+  ],
+  "cta_text": "Vedi la selezione più forte di oggi — gratis",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse",
+  "language": "it",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

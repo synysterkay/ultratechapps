@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, tôi xây dựng cái này sau quá nhiều lần nghe kiểu \"tin tôi đi\"",
+  "preview_text": "Chúng tôi công bố mọi dự đoán. Bạn có thể kiểm chứng chúng tôi từng trận một.",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "Mỗi ngày thi đấu, cùng một cảnh tượng lặp lại: một group chat đầy những ý kiến tự tin — \"họ sắp thắng rồi,\" \"lợi thế sân nhà,\" \"tôi chỉ cảm thấy thế.\" Không ai kiểm tra phong độ, chấn thương, hay những con số thực sự nói lên điều gì.",
+    "Tôi xây dựng Predictify vì những cuộc tranh luận bóng đá không nên được quyết định bởi ai nói to nhất. Chúng tôi muốn những dự báo mà bạn có thể kiểm tra: xG, phong độ gần đây, tin tức đội hình, và điểm số tin cậy đã được hiệu chỉnh cho mọi lựa chọn — 1X2, Tài/Xỉu, BTTS, và nhiều hơn nữa.",
+    "Một người bạn của chúng tôi đã học được bài học này một cách khó khăn trong một đêm Champions League. Mô hình đã đánh dấu đội yêu thích với độ tin cậy 61% — về cơ bản là một đồng xu được ngụy trang thành sự chắc chắn. Anh ấy phớt lờ nó, đi theo cảm tính, và thua cả cuộc tranh luận lẫn vụ cược. Hai tuần sau, anh ấy mở một lựa chọn trong nhóm tin cậy cao nhất của chúng tôi (bậc 80%+), đọc phân tích, và gọi đúng trước khi trận đấu bắt đầu. Cùng một người bạn. Quy trình khác.",
+    "Đó là lý do chúng tôi công bố mọi kết quả — thắng và thua — để bạn có thể tự mình kiểm chứng thành tích, từng trận một. Không có lựa chọn ẩn. Không viết lại lịch sử sau tiếng còi kết thúc.",
+    "Bước tiếp theo của bạn chỉ mất khoảng 30 giây: mở danh sách hôm nay, chọn một trận, và đọc lý do trước khi bạn đưa ra quyết định. Nếu bạn muốn lựa chọn mạnh nhất của mô hình, hãy bắt đầu với lựa chọn có độ tin cậy cao nhất trên bảng.",
+    "P.S. Chúng tôi không phải nhà cái. Không có chiến thắng đảm bảo — chỉ có dự báo minh bạch và một thành tích bạn có thể kiểm tra. Cảm tính thì vui trong chat. Nhưng con số tốt hơn trước khi trận đấu bắt đầu."
+  ],
+  "cta_text": "Xem lựa chọn mạnh nhất hôm nay — miễn phí",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_soccer",
+  "language": "vi",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

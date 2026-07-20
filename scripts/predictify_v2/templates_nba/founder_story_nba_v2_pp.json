@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, a rodada de hoje já está no ar",
+  "preview_text": "30 segundos em um jogo antes da bola subir — esse é o hábito completo.",
+  "body_paragraphs": [
+    "Ei {first_name},",
+    "Um rápido lembrete do que falamos dias atrás: o Predictify NBA não é sobre apostar mais — é sobre substituir chutes por um processo que você pode verificar.",
+    "Quem mantém o hábito não passa uma hora pesquisando. Eles abrem um jogo, leem a faixa de confiança e o contexto de lesões, fazem uma escolha e seguem em frente. Consistência vence palpites.",
+    "O quadro de hoje já está disponível. Escolha um jogo, leia a análise e decida antes da bola subir.",
+    "P.S. Intuição é divertida no chat. Números são melhores antes da bola subir."
+  ],
+  "cta_text": "Abrir a rodada de hoje",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba_v2",
+  "language": "pp",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

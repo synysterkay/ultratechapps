@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, saya buat ini setelah terlalu sering mendengar \"percaya aja sama tipster\"",
+  "preview_text": "Setiap hasil dipublikasikan. Verifikasi kami balapan demi balapan.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Setiap hari balapan, pemandangannya sama: tip-tip percaya diri beterbangan — \"kuda ini sudah waktunya menang,\" \"jokinya selalu berhasil di sini,\" \"saya hanya merasa begitu.\" Tidak ada yang memeriksa form, kondisi lintasan, draw, atau apa yang sebenarnya dikatakan angka-angka.",
+    "Saya membangun Predictify Horse Racing karena argumen balapan seharusnya tidak dimenangkan oleh siapa pun yang berteriak paling keras. Kami menginginkan ramalan yang bisa Anda uji: form, joki, trek, kondisi lintasan, dan skor kepercayaan yang terkalibrasi untuk pilihan win, place, dan each-way.",
+    "Seorang teman kami belajar ini dengan cara yang sulit di sebuah pertemuan festival. Model tersebut menandai favorit dengan kepercayaan 59% — lebih dekat ke lemparan koin daripada kepastian. Dia mengabaikannya, mengikuti tipster, dan kalah. Dua minggu kemudian dia membuka pilihan di band kepercayaan tertinggi kami (tier 80%+), membaca rinciannya, dan menyebutnya sebelum waktu mulai. Teman yang sama. Proses yang berbeda.",
+    "Itulah mengapa kami mempublikasikan setiap hasil — menang dan kalah — sehingga Anda bisa memverifikasi rekam jejaknya sendiri, balapan demi balapan.",
+    "Langkah Anda selanjutnya memakan waktu sekitar 30 detik: buka kartu hari ini, pilih satu balapan, dan baca alasannya sebelum balapan dimulai.",
+    "P.S. Kami bukan bandar taruhan. Tidak ada jaminan menang — hanya ramalan transparan dan catatan yang bisa Anda periksa."
+  ],
+  "cta_text": "Lihat pilihan terkuat hari ini — gratis",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse",
+  "language": "id",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

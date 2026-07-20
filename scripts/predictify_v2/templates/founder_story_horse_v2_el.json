@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, η σημερινή κάρδα είναι ζωντανή",
+  "preview_text": "Μία κούρσα, 30 δευτερόλεπτα, πριν την ώρα εκκίνησης.",
+  "body_paragraphs": [
+    "Γεια σου {first_name},",
+    "Συνεχίζοντας από πριν λίγες μέρες: Το Predictify Horse Racing είναι φτιαγμένο για ανθρώπους που θέλουν αριθμούς που μπορούν να επαληθεύσουν — όχι θόρυβο από τσιπστερ.",
+    "Η συνήθεια που λειτουργεί είναι απλή: άνοιξε μία κούρσα από τη σημερινή κάρδα, διάβασε το confidence band και την ανάλυση φόρμας, κάνε μία επιλογή, προχώρα.",
+    "Οι σημερινές συναντήσεις είναι ανεβασμένες. Διάλεξε μία κούρσα πριν την εκκίνηση.",
+    "Υ.Γ. Οι τσιπστερ είναι θορυβώδεις. Οι πίνακες φόρμας είναι ειλικρινείς."
+  ],
+  "cta_text": "Άνοιξε τη σημερινή κάρδα",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "el",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

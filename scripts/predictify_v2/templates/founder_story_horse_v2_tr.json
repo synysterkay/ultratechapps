@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, bugünün kartı canlı",
+  "preview_text": "Bir yarış, 30 saniye, starttan önce.",
+  "body_paragraphs": [
+    "Merhaba {first_name},",
+    "Birkaç gün öncesinden devam ediyorum: Predictify Horse Racing, doğrulayabileceğin rakamlar isteyenler için yapıldı — tipster gürültüsü değil.",
+    "İşe yarayan alışkanlık basit: bugünkü karttan bir yarış aç, güven bandını ve form dökümünü oku, bir tahmin yap, devam et.",
+    "Bugünkü yarışlar yayında. Starttan önce bir yarış seç.",
+    "Not: Tipster'lar gürültücüdür. Form tabloları dürüsttür."
+  ],
+  "cta_text": "Bugünkü kartı aç",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "tr",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

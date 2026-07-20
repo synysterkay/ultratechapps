@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, zbudowałem to po zbyt wielu tekstach w stylu „zaufaj tipsterowi”",
+  "preview_text": "Każdy wynik opublikowany. Sprawdź nas wyścig po wyścigu.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Każdego dnia wyścigowego ta sama scena: pewne tipy latają w powietrzu – „ten koń jest gotowy”, „dżokej zawsze tu dostarcza”, „po prostu to czuję”. Nikt nie sprawdza formy, nawierzchni, pozycji startowej ani tego, co naprawdę mówią liczby.",
+    "Zbudowałem Predictify Horse Racing, ponieważ spory o wyścigi nie powinny być wygrywane przez tego, kto krzyczy najgłośniej. Chcieliśmy prognoz, które możesz sprawdzić: forma, dżokej, tor, nawierzchnia i skalibrowany wynik pewności dla typów na wygraną, miejsce i each-way.",
+    "Nasz znajomy przekonał się o tym na własnej skórze podczas festiwalowego spotkania. Model oznaczył faworyta z 59% pewnością – bliżej rzutu monetą niż pewniaka. Zignorował to, poszedł za tipsterem i przegrał. Dwa tygodnie później otworzył typ w naszym najwyższym przedziale pewności (80%+), przeczytał analizę i obstawił przed startem. Ten sam znajomy. Inne podejście.",
+    "Dlatego publikujemy każdy wynik – wygrane i przegrane – abyś mógł samodzielnie zweryfikować nasze osiągnięcia, wyścig po wyścigu.",
+    "Twój następny krok zajmie około 30 sekund: otwórz dzisiejszą kartę, wybierz jeden wyścig i przeczytaj uzasadnienie przed startem.",
+    "P.S. Nie jesteśmy bukmacherem. Żadnych gwarantowanych wygranych – tylko przejrzyste prognozy i historia, którą możesz sprawdzić."
+  ],
+  "cta_text": "Zobacz dzisiejszy najmocniejszy typ – za darmo",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse",
+  "language": "pl",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

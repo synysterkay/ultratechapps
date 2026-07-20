@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, dzisiejsza lista jest już dostępna",
+  "preview_text": "30 sekund na jeden mecz przed rozpoczęciem — to cały nawyk.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Szybkie przypomnienie sprzed kilku dni: Predictify NBA nie chodzi o obstawianie więcej — chodzi o zastąpienie zgadywania procesem, który możesz zweryfikować.",
+    "Użytkownicy, którzy trzymają się tego, nie spędzają godziny na analizach. Otwierają jeden mecz, czytają przedział ufności i kontekst kontuzji, podejmują jedną decyzję i idą dalej. Konsekwencja bije na głowę gorące typy.",
+    "Dzisiejsza lista jest już dostępna. Wybierz jeden mecz, przeczytaj analizę i zdecyduj przed rozpoczęciem.",
+    "P.S. Przeczucie jest fajne na czacie. Liczby są lepsze, zanim piłka pójdzie w górę."
+  ],
+  "cta_text": "Otwórz dzisiejszą listę",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba_v2",
+  "language": "pl",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

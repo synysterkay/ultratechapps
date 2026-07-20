@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, die heutige Karte ist live",
+  "preview_text": "Ein Rennen, 30 Sekunden, vor dem Start.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Ich melde mich nochmal von vor ein paar Tagen: Predictify Horse Racing ist für Leute gemacht, die Zahlen wollen, die sie überprüfen können – keinen Tipster-Lärm.",
+    "Die Gewohnheit, die funktioniert, ist einfach: Öffne ein Rennen auf der heutigen Karte, lies die Konfidenzbande und die Formanalyse, triff eine Entscheidung, mach weiter.",
+    "Die heutigen Meetings sind online. Such dir ein Rennen vor dem Start aus.",
+    "P.S. Tipster sind laut. Formtabellen sind ehrlich."
+  ],
+  "cta_text": "Heutige Karte öffnen",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "de",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

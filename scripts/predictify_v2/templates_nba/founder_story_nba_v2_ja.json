@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}、今夜のスレートはすでに公開されています",
+  "preview_text": "試合開始前に1試合に30秒 — それが習慣のすべてです。",
+  "body_paragraphs": [
+    "やあ {first_name}、",
+    "数日前のフォローアップです：Predictify NBAは、もっと賭けることではなく、推測を検証可能なプロセスに置き換えることです。",
+    "続けるユーザーは、1時間もリサーチに費やしません。1試合を開き、信頼度バンドと怪我の状況を読み、1つの予想をして、次に進みます。一貫性がホットテイクに勝ります。",
+    "今夜のボードは準備完了です。1試合を選び、分析を読み、試合開始前に決断してください。",
+    "追伸：直感はチャットでは楽しいですが、ボールが上がる前は数字の方が優れています。"
+  ],
+  "cta_text": "今夜のスレートを開く",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_nba_v2",
+  "language": "ja",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

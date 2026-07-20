@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, o card de hoje está no ar",
+  "preview_text": "Uma corrida, 30 segundos, antes da largada.",
+  "body_paragraphs": [
+    "Ei {first_name},",
+    "Retomando o papo de alguns dias atrás: o Predictify Horse Racing foi feito para quem quer números que pode verificar — sem barulho de tipster.",
+    "O hábito que funciona é simples: abra uma corrida do card de hoje, leia a faixa de confiança e a análise de forma, faça uma escolha, siga em frente.",
+    "As reuniões de hoje já estão no ar. Escolha uma corrida antes da largada.",
+    "P.S. Tipsters fazem barulho. Tabelas de forma são honestas."
+  ],
+  "cta_text": "Abrir o card de hoje",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_horse_v2",
+  "language": "pp",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}
