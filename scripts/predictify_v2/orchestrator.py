@@ -36,7 +36,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import requests  # noqa: E402
 
 from predictify_v2.user_context import fetch_user_context, prefetch_bulk_context  # noqa: E402
-from predictify_v2.template_engine import render_template, RenderedEmail  # noqa: E402
+from predictify_v2.template_engine import (  # noqa: E402
+    render_template,
+    RenderedEmail,
+    founder_story_kinds_for_app,
+    is_founder_story_kind,
+    LEGACY_FOUNDER_V1_KINDS,
+)
 from predictify_v2.triggers import select_trigger  # noqa: E402
 from predictify_v2.community_recommender import CommunityRecommender  # noqa: E402
 
@@ -367,14 +373,29 @@ def _load_suppressed_emails() -> set[str]:
 #
 #  Default cooldown for any kind not listed is 14 days.
 # ─────────────────────────────────────────────────────────
-FOUNDER_STORY_KIND = 'founder_story_wc2026'
-FOUNDER_STORY_V2_KIND = 'founder_story_wc2026_v2'
+FOUNDER_STORY_V2_GAP_DAYS = int(os.environ.get('FOUNDER_STORY_V2_GAP_DAYS', '7'))
+FOUNDER_STORY_LAPSED_DAYS = int(os.environ.get('FOUNDER_STORY_LAPSED_DAYS', '14'))
+
+
+def _founder_kinds() -> tuple[str, str]:
+    return founder_story_kinds_for_app()
+
+
+def _cooldown_days(kind: str) -> int:
+    if is_founder_story_kind(kind) or kind in LEGACY_FOUNDER_V1_KINDS:
+        return 9999
+    return COOLDOWN_DAYS.get(kind, DEFAULT_COOLDOWN_DAYS)
+
+
+def _founder_fallback_disabled() -> bool:
+    return os.environ.get('PREDICTIFY_DISABLE_FOUNDER_FALLBACK', '0').lower() in (
+        '1', 'true', 'yes',
+    )
+
 
 COOLDOWN_DAYS: dict[str, int] = {
-    'welcome': 9999,                  # once ever
-    'login_streak_reward': 9999,      # once ever — it's a one-shot reward
-    FOUNDER_STORY_KIND: 9999,        # once ever — World Cup 2026 founder letter
-    FOUNDER_STORY_V2_KIND: 9999,     # once ever — non-subscriber resend campaign
+    'welcome': 9999,
+    'login_streak_reward': 9999,
     'streak_saver': 5,
     'match_day': 1,
     'upgrade_after_hot_week': 14,
@@ -437,12 +458,6 @@ def _app_slug() -> str:
     if 'Horse' in app_name:
         return 'horse_racing'
     return 'predictify'
-
-
-def _founder_fallback_disabled() -> bool:
-    return os.environ.get('PREDICTIFY_DISABLE_FOUNDER_FALLBACK', '1').lower() in (
-        '1', 'true', 'yes',
-    )
 
 
 def _get_email_sender() -> GmailSender:
@@ -559,6 +574,23 @@ def _build_html(e: RenderedEmail, unsub_url: str | None = None) -> str:
         f'{p.replace(chr(10), "<br>")}</p>'
         for p in e.body_paragraphs
     )
+    store_links = ''
+    if e.app_store_url or e.google_play_url:
+        parts = []
+        if e.app_store_url:
+            parts.append(
+                f'<a href="{_html_escape(e.app_store_url)}" '
+                f'style="color:#64748b;margin:0 8px">{_html_escape(e.cta_ios_text or "App Store")}</a>'
+            )
+        if e.google_play_url:
+            parts.append(
+                f'<a href="{_html_escape(e.google_play_url)}" '
+                f'style="color:#64748b;margin:0 8px">{_html_escape(e.cta_android_text or "Google Play")}</a>'
+            )
+        store_links = (
+            f'<p style="margin:16px 0 0;font-size:12px;color:#94a3b8;text-align:center">'
+            f'{" · ".join(parts)}</p>'
+        )
     return f'''<!DOCTYPE html><html lang="{e.language}"{dir_attr}><head><meta charset="UTF-8">
 <title>{_html_escape(e.subject)}</title></head>
 <body style="margin:0;padding:0;background:#f3f4f6;font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif">
@@ -570,6 +602,7 @@ def _build_html(e: RenderedEmail, unsub_url: str | None = None) -> str:
 <div style="text-align:center;margin:28px 0">
 <a href="{_html_escape(_cta_href(e))}" style="display:inline-block;padding:14px 28px;background:#3B82F6;color:#fff;text-decoration:none;border-radius:10px;font-weight:700;font-size:15px">{_html_escape(e.cta_text)}</a>
 </div>
+{store_links}
 <div style="margin-top:32px;padding-top:16px;border-top:1px solid #e5e7eb;font-size:12px;color:#9ca3af;text-align:center">
 You're receiving this because you signed up for Predictify.
 <br><a href="{unsub}" style="color:#9ca3af">Unsubscribe</a>
@@ -633,15 +666,92 @@ V2_FETCH_CHUNK = 96
 
 
 def _legacy_founder_story_emails() -> set[str]:
-    """Emails already sent by the pre-v2 standalone script (if any)."""
-    path = Path(__file__).resolve().parents[2] / 'cache' / 'founder_story_wc2026_state.json'
-    if not path.exists():
-        return set()
+    """Emails already sent by legacy standalone founder-story scripts."""
+    cache = Path(__file__).resolve().parents[2] / 'cache'
+    emails: set[str] = set()
+    for name in (
+        'founder_story_wc2026_state.json',
+        'founder_story_soccer_mailjet_state.json',
+    ):
+        path = cache / name
+        if not path.exists():
+            continue
+        try:
+            data = json.loads(path.read_text())
+            emails.update(e.lower() for e in (data.get('sent') or {}))
+        except Exception:
+            pass
+    return emails
+
+
+def _parse_firebase_ms(raw) -> datetime | None:
+    if raw in (None, ''):
+        return None
     try:
-        data = json.loads(path.read_text())
-        return {e.lower() for e in (data.get('sent') or {})}
+        if isinstance(raw, str) and raw.isdigit():
+            ms = int(raw)
+        elif isinstance(raw, (int, float)):
+            ms = int(raw)
+        else:
+            return datetime.fromisoformat(str(raw).replace('Z', '+00:00'))
+        if ms > 1_000_000_000_000:
+            ms //= 1000
+        return datetime.fromtimestamp(ms, tz=timezone.utc)
     except Exception:
-        return set()
+        return None
+
+
+def _is_lapsed(ctx, created_at_raw=None) -> bool:
+    """True when user is inactive long enough for founder-story lapsed emails."""
+    lapsed_hours = FOUNDER_STORY_LAPSED_DAYS * 24
+    if ctx.last_pick_at:
+        return (ctx.hours_since_last_pick or 0) >= lapsed_hours
+    created = _parse_firebase_ms(created_at_raw)
+    if not created:
+        return False
+    age_hours = (datetime.now(timezone.utc) - created).total_seconds() / 3600
+    return age_hours >= lapsed_hours
+
+
+def _kind_sent_at(index: dict, uid: str, kind: str) -> datetime | None:
+    return index.get(uid, {}).get(kind)
+
+
+def _received_founder_v1(
+    index: dict,
+    uid: str,
+    email: str,
+    legacy_founder_sent: set[str],
+    v1_kind: str,
+) -> bool:
+    if email.lower() in legacy_founder_sent:
+        return True
+    for legacy in LEGACY_FOUNDER_V1_KINDS:
+        if _has_recent_in_index(index, uid, legacy, 9999):
+            return True
+    return _has_recent_in_index(index, uid, v1_kind, 9999)
+
+
+def _received_founder_v2(index: dict, uid: str, v2_kind: str) -> bool:
+    return _has_recent_in_index(index, uid, v2_kind, 9999)
+
+
+def _days_since_kind_sent(index: dict, uid: str, kind: str) -> float | None:
+    dt = _kind_sent_at(index, uid, kind)
+    if not dt:
+        return None
+    return (datetime.now(timezone.utc) - dt).total_seconds() / 86400
+
+
+def _days_since_any_founder_v1(
+    index: dict, uid: str, v1_kind: str,
+) -> float | None:
+    best: float | None = None
+    for kind in (v1_kind, *LEGACY_FOUNDER_V1_KINDS):
+        d = _days_since_kind_sent(index, uid, kind)
+        if d is not None and (best is None or d < best):
+            best = d
+    return best
 
 
 def _pick_kind(
@@ -653,26 +763,54 @@ def _pick_kind(
     founder_story_only: bool,
     founder_story_v2: bool,
     legacy_founder_sent: set[str],
+    created_at_raw=None,
+    require_lapsed: bool = True,
 ) -> str | None:
     """Select the v2 email kind for a user."""
-    if founder_story_v2:
-        if _has_recent_in_index(sends_index, uid, FOUNDER_STORY_V2_KIND, 9999):
-            return None
-        return FOUNDER_STORY_V2_KIND
+    v1_kind, v2_kind = _founder_kinds()
 
-    already = (
-        email.lower() in legacy_founder_sent
-        or _has_recent_in_index(sends_index, uid, FOUNDER_STORY_KIND, 9999)
-    )
+    if founder_story_v2:
+        if _received_founder_v2(sends_index, uid, v2_kind):
+            return None
+        if founder_story_only and not _received_founder_v1(
+            sends_index, uid, email, legacy_founder_sent, v1_kind,
+        ):
+            return None
+        if require_lapsed and not _is_lapsed(ctx, created_at_raw):
+            return None
+        return v2_kind
+
     if founder_story_only:
-        return None if already else FOUNDER_STORY_KIND
+        if _received_founder_v1(
+            sends_index, uid, email, legacy_founder_sent, v1_kind,
+        ):
+            return None
+        if require_lapsed and not _is_lapsed(ctx, created_at_raw):
+            return None
+        return v1_kind
 
     kind = select_trigger(ctx)
     if kind:
         return kind
+
     if _founder_fallback_disabled():
         return None
-    return None if already else FOUNDER_STORY_KIND
+
+    if not _is_lapsed(ctx, created_at_raw):
+        return None
+
+    if _received_founder_v2(sends_index, uid, v2_kind):
+        return None
+
+    if _received_founder_v1(
+        sends_index, uid, email, legacy_founder_sent, v1_kind,
+    ):
+        days = _days_since_any_founder_v1(sends_index, uid, v1_kind)
+        if days is not None and days >= FOUNDER_STORY_V2_GAP_DAYS:
+            return v2_kind
+        return None
+
+    return v1_kind
 
 
 def _is_subscriber(activity: dict | None) -> bool:
@@ -688,7 +826,11 @@ def run(
     founder_story_only: bool = False,
     founder_story_v2: bool = False,
     non_subscribers_only: bool = False,
+    require_lapsed: bool | None = None,
 ) -> list[tuple[str, str]]:
+    v1_kind, v2_kind = _founder_kinds()
+    if require_lapsed is None:
+        require_lapsed = not (founder_story_only or founder_story_v2)
     if founder_story_v2 and non_subscribers_only:
         mode = 'founder_story v2 non-subscriber resend'
     elif founder_story_only:
@@ -700,7 +842,11 @@ def run(
     if non_subscribers_only:
         print('   🎯 Audience: free users only (isPremium/isSubscribed=false)')
     if founder_story_v2:
-        print(f'   📨 Campaign kind: {FOUNDER_STORY_V2_KIND} (re-sends OK for prior v1)')
+        print(f'   📨 Campaign kind: {v2_kind}')
+    elif founder_story_only:
+        print(f'   📨 Campaign kind: {v1_kind}')
+    if not require_lapsed and (founder_story_only or founder_story_v2):
+        print('   📭 Backfill mode — lapsed filter OFF')
     _log_env_presence()
 
     fb = FirebaseUserLoader()
@@ -904,12 +1050,14 @@ def run(
                     founder_story_only=founder_story_only or founder_story_v2,
                     founder_story_v2=founder_story_v2,
                     legacy_founder_sent=legacy_founder_sent,
+                    created_at_raw=u.get('created_at') or u.get('createdAt'),
+                    require_lapsed=require_lapsed,
                 )
                 if not kind:
                     skipped_no_trigger += 1
                     continue
 
-                cooldown = COOLDOWN_DAYS.get(kind, DEFAULT_COOLDOWN_DAYS)
+                cooldown = _cooldown_days(kind)
                 if _has_recent_in_index(sends_index, uid, kind, cooldown):
                     skipped_cooldown += 1
                     continue
@@ -943,21 +1091,18 @@ def run(
 
 
 def run_founder_story_backfill(dry_run: bool = False) -> list[tuple[str, str]]:
-    """Send the World Cup founder letter to every user who hasn't received it.
-    Ignores behavioral triggers — use for manual catch-up / first rollout."""
-    return run(dry_run=dry_run, founder_story_only=True)
+    """Send founder story v1 to users who haven't received it (backfill — no lapsed gate)."""
+    return run(dry_run=dry_run, founder_story_only=True, require_lapsed=False)
 
 
 def run_founder_story_non_subscriber_resend(dry_run: bool = False) -> list[tuple[str, str]]:
-    """Re-send founder story to free users (no Superwall subscription).
-
-    Uses founder_story_wc2026_v2 for dedup so prior v1 recipients who never
-    subscribed are eligible again. New signups who never got v1 also qualify."""
+    """Send founder story v2 to free users who got v1 but never subscribed."""
     return run(
         dry_run=dry_run,
         founder_story_only=True,
         founder_story_v2=True,
         non_subscribers_only=True,
+        require_lapsed=False,
     )
 
 

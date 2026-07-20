@@ -1,0 +1,21 @@
+{
+  "kind": "founder_story_nba",
+  "language": "en",
+  "subject": "{first_name}, I built this after one too many \"they're due\" takes",
+  "preview_text": "Calibrated picks on moneyline, spread, and totals — verify every result.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Every game night, the same scene: a group chat full of hot takes — \"they're due,\" \"back-to-back doesn't matter,\" \"I just feel a blowout.\" Nobody checking injuries, rest days, or what the numbers actually say.",
+    "I built Predictify NBA because basketball arguments shouldn't be won by whoever talks loudest. We wanted forecasts you can pressure-test: injuries, pace, back-to-backs, and a calibrated confidence score on moneyline, spread, totals, and props.",
+    "A friend of ours learned this the hard way on a national TV night. The model flagged a favorite at 58% confidence — basically a coin flip. He ignored it, went with gut feel, and lost the argument and the bet. Two weeks later he opened a pick in our highest-confidence band (80%+ tier), read the breakdown, and called it before tipoff. Same friend. Different process.",
+    "That's why we publish every result — wins and losses — so you can verify the track record yourself, game by game. No hidden picks. No rewriting history after the final buzzer.",
+    "Your next step takes about 30 seconds: open tonight's slate, pick one game, and read the reasoning before you lock in your call.",
+    "P.S. We're not a bookmaker. No guaranteed wins — just transparent forecasts and a record you can check."
+  ],
+  "cta_text": "See tonight's strongest pick — free",
+  "cta_deeplink": "predictify://",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction"
+}

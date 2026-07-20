@@ -29,9 +29,11 @@ on:
           - upsell
           - founder-story
           - founder-story-non-sub
+          - founder-story-horse
           - thesis-founder-story
           - thesis-founder-story-2
           - thesis-warm-templates
+          - predictify-warm-founder-templates
 
 permissions:
   contents: write
@@ -123,7 +125,9 @@ jobs:
           PREDICTIFY_UNSUBSCRIBE_SECRET: ${{ secrets.PREDICTIFY_UNSUBSCRIBE_SECRET }}
           # Predictify v2 behavioral (P0/P1, predictifyfootball.com via ZeptoMail)
           PREDICTIFY_ACTIVE_TRIGGERS: p0p1
-          PREDICTIFY_DISABLE_FOUNDER_FALLBACK: "1"
+          PREDICTIFY_DISABLE_FOUNDER_FALLBACK: "0"
+          FOUNDER_STORY_LAPSED_DAYS: "14"
+          FOUNDER_STORY_V2_GAP_DAYS: "7"
           V2_DAILY_SEND_CAP: "250"
           # Founder-story backfill only (ignored by normal retention / v2 triggers).
           FOUNDER_STORY_SEND_CAP: "2000"
@@ -160,13 +164,17 @@ jobs:
           elif [ "$MODE" = "upsell" ]; then
             python -u scripts/app_retention_emailer.py --upsell
           elif [ "$MODE" = "founder-story-non-sub" ]; then
-            python -u scripts/founder_story_wc2026_sender.py --non-subscribers-only --dry-run || true
-            python -u scripts/founder_story_wc2026_sender.py --passes "${FOUNDER_STORY_PASSES:-10}" --non-subscribers-only
+            python -u scripts/founder_story_predictify_sender.py --v2 --non-subscribers-only --dry-run || true
+            python -u scripts/founder_story_predictify_sender.py --v2 --non-subscribers-only --passes "${FOUNDER_STORY_PASSES:-10}"
           elif [ "$MODE" = "founder-story" ]; then
-            python -u scripts/founder_story_wc2026_sender.py --dry-run || true
-            python -u scripts/founder_story_wc2026_sender.py --warm --refresh-templates || true
-            # 10 passes × 2000 cap = up to 20,000 founder-story sends per run.
-            python -u scripts/founder_story_wc2026_sender.py --passes "${FOUNDER_STORY_PASSES:-10}"
+            python -u scripts/warm_founder_story_templates.py || true
+            python -u scripts/founder_story_predictify_sender.py --dry-run || true
+            python -u scripts/founder_story_predictify_sender.py --backfill --passes "${FOUNDER_STORY_PASSES:-10}"
+          elif [ "$MODE" = "founder-story-horse" ]; then
+            python -u scripts/founder_story_horse_sender.py --backfill --dry-run || true
+            python -u scripts/founder_story_horse_sender.py --backfill --passes "${FOUNDER_STORY_HORSE_PASSES:-5}"
+          elif [ "$MODE" = "predictify-warm-founder-templates" ]; then
+            python -u scripts/warm_founder_story_templates.py
           elif [ "$MODE" = "thesis-warm-templates" ]; then
             python -u scripts/founder_story_thesis_sender.py --warm --refresh-templates
             python -u scripts/founder_story_thesis_2_sender.py --warm --refresh-templates
@@ -193,6 +201,8 @@ jobs:
             # ── Volume Booster Pro (pro-minimal) hooked senders ──
             echo "--- Running pro-minimal orchestrator (Volume Booster Pro) ---"
             python -u scripts/pro_minimal_orchestrator.py || true
+            echo "--- Horse Racing founder story catch-up ---"
+            python -u scripts/founder_story_horse_sender.py || true
           fi
       
       - name: Commit thesis founder story 2 templates
@@ -238,11 +248,13 @@ jobs:
           echo "⚠️ thesis founder story template push failed"
 
       - name: Commit founder story templates
-        if: always() && github.event.inputs.mode == 'founder-story'
+        if: always() && (github.event.inputs.mode == 'founder-story' || github.event.inputs.mode == 'predictify-warm-founder-templates')
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add -f scripts/predictify_v2/templates/founder_story_wc2026_*.json 2>/dev/null || true
+          git add -f scripts/predictify_v2/templates/founder_story_soccer_*.json 2>/dev/null || true
+          git add -f scripts/predictify_v2/templates/founder_story_horse_*.json 2>/dev/null || true
+          git add -f scripts/predictify_v2/templates_nba/founder_story_nba_*.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "No founder story template changes to push"
             exit 0

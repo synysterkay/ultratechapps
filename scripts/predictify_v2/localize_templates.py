@@ -116,6 +116,12 @@ def main():
             try:
                 print(f'  → translating {kind} → {lang} ({name}) …', flush=True)
                 t = translate_template(en, lang, name)
+                for extra in (
+                    'app_store_url', 'google_play_url',
+                    'cta_ios_text', 'cta_android_text',
+                ):
+                    if extra in en:
+                        t[extra] = en[extra]
                 with open(out_path, 'w', encoding='utf-8') as f:
                     json.dump(t, f, ensure_ascii=False, indent=2)
                 total_written += 1

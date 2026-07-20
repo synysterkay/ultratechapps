@@ -1,0 +1,19 @@
+{
+  "kind": "founder_story_nba_v2",
+  "language": "en",
+  "subject": "{first_name}, tonight's slate is already live",
+  "preview_text": "30 seconds on one game before tipoff — that's the whole habit.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Quick follow-up from a few days ago: Predictify NBA isn't about betting more — it's about replacing guesswork with a process you can verify.",
+    "Users who stick with it don't grind research for an hour. They open one game, read the confidence band and injury context, make one call, and move on. Consistency beats hot takes.",
+    "Tonight's board is up. Pick one game, read the breakdown, and decide before tipoff.",
+    "P.S. Gut feel is fun in the chat. Numbers are better before the ball goes up."
+  ],
+  "cta_text": "Open tonight's slate",
+  "cta_deeplink": "predictify://",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play",
+  "app_store_url": "https://apps.apple.com/app/predictify-nba-ai/id0000000000",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.nba.prediction"
+}

@@ -9,7 +9,7 @@ from __future__ import annotations
 import json
 import os
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -21,21 +21,45 @@ from .user_context import UserContext, UpcomingMatch
 TEMPLATES_DIR = Path(__file__).parent / os.environ.get(
     'PREDICTIFY_TEMPLATES_DIR', 'templates')
 
-# Languages we support. Falls back to English if a per-language file is
-# missing — the existing v1 system supports all of these.
 SUPPORTED_LANGS = [
     'en', 'ar', 'de', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'nl', 'pl',
     'pp', 'pt', 'tr',
 ]
 
-# Resend campaigns use a distinct Firestore kind but share the same JSON copy.
-FOUNDER_STORY_TEMPLATE_KIND = 'founder_story_wc2026'
-FOUNDER_STORY_V2_KIND = 'founder_story_wc2026_v2'
+# Legacy WC2026 kinds — still honored for dedup; templates map to evergreen copy.
+LEGACY_FOUNDER_V1_KINDS = frozenset({'founder_story_wc2026'})
+LEGACY_FOUNDER_V2_KINDS = frozenset({'founder_story_wc2026_v2'})
+
+FOUNDER_STORY_PREFIXES = (
+    'founder_story_soccer',
+    'founder_story_nba',
+    'founder_story_horse',
+    'founder_story_wc2026',
+)
 
 
-def _template_kind(kind: str) -> str:
-    if kind in (FOUNDER_STORY_TEMPLATE_KIND, FOUNDER_STORY_V2_KIND):
-        return FOUNDER_STORY_TEMPLATE_KIND
+def founder_story_kinds_for_app() -> tuple[str, str]:
+    """Return (v1_kind, v2_kind) for the active PREDICTIFY_APP_NAME profile."""
+    app_name = os.environ.get('PREDICTIFY_APP_NAME', 'Predictify')
+    if 'NBA' in app_name:
+        return 'founder_story_nba', 'founder_story_nba_v2'
+    if 'Horse' in app_name:
+        return 'founder_story_horse', 'founder_story_horse_v2'
+    return 'founder_story_soccer', 'founder_story_soccer_v2'
+
+
+def is_founder_story_kind(kind: str) -> bool:
+    return any(kind == p or kind == f'{p}_v2' for p in FOUNDER_STORY_PREFIXES)
+
+
+def _template_file_kind(kind: str) -> str:
+    """Map legacy send kinds to evergreen template files."""
+    if kind in LEGACY_FOUNDER_V2_KINDS:
+        _, v2 = founder_story_kinds_for_app()
+        return v2
+    if kind in LEGACY_FOUNDER_V1_KINDS:
+        v1, _ = founder_story_kinds_for_app()
+        return v1
     return kind
 
 
@@ -48,18 +72,19 @@ class RenderedEmail:
     body_paragraphs: list[str]
     cta_text: str
     cta_deeplink: str
+    app_store_url: str = ''
+    google_play_url: str = ''
+    cta_ios_text: str = ''
+    cta_android_text: str = ''
 
 
 def render_template(kind: str, ctx: UserContext) -> RenderedEmail | None:
-    """Load template by kind in user's language (fallback en) and render
-    with merge fields. Returns None if the template can't be satisfied
-    (e.g. a match_day template requested but the user has no upcoming match)."""
     tmpl = _load_template(kind, ctx.language)
     if not tmpl:
         return None
     fields = _build_merge_fields(kind, ctx)
     if fields is None:
-        return None  # template can't be rendered for this user
+        return None
 
     def fill(s: str) -> str:
         return _safe_format(s, fields)
@@ -72,32 +97,34 @@ def render_template(kind: str, ctx: UserContext) -> RenderedEmail | None:
         body_paragraphs=[fill(p) for p in tmpl.get('body_paragraphs', [])],
         cta_text=fill(tmpl.get('cta_text', 'Open Predictify')),
         cta_deeplink=fill(tmpl.get('cta_deeplink', 'predictify://')),
+        app_store_url=tmpl.get('app_store_url', ''),
+        google_play_url=tmpl.get('google_play_url', ''),
+        cta_ios_text=fill(tmpl.get('cta_ios_text', 'App Store')),
+        cta_android_text=fill(tmpl.get('cta_android_text', 'Google Play')),
     )
 
 
 def _load_template(kind: str, language: str) -> dict | None:
-    # Try user language first, then English fallback. Languages without their
-    # own file inherit English copy until they're translated — better than
-    # silently dropping the email.
-    candidates = [language, 'en']
-    seen = set()
-    for lang in candidates:
-        if lang in seen:
-            continue
-        seen.add(lang)
-        path = TEMPLATES_DIR / f'{_template_kind(kind)}_{lang}.json'
-        if path.exists():
-            try:
-                with open(path) as f:
-                    return json.load(f)
-            except Exception:
+    file_kind = _template_file_kind(kind)
+    # v2 templates have their own JSON when present (founder_story_soccer_v2_en.json)
+    candidates_kinds = [kind, file_kind] if kind != file_kind else [kind]
+    candidates_langs = [language, 'en']
+    seen: set[tuple[str, str]] = set()
+    for fk in candidates_kinds:
+        for lang in candidates_langs:
+            key = (fk, lang)
+            if key in seen:
                 continue
+            seen.add(key)
+            path = TEMPLATES_DIR / f'{fk}_{lang}.json'
+            if path.exists():
+                try:
+                    with open(path) as f:
+                        return json.load(f)
+                except Exception:
+                    continue
     return None
 
-
-# ─────────────────────────────────────────────────────────
-#  Merge field builder per template kind
-# ─────────────────────────────────────────────────────────
 
 def _build_merge_fields(kind: str, ctx: UserContext) -> dict[str, str] | None:
     base = _common_fields(ctx)
@@ -123,18 +150,15 @@ def _build_merge_fields(kind: str, ctx: UserContext) -> dict[str, str] | None:
             'today\'s slate — open the app to see.'
         if m:
             base['fixture_id'] = str(m.fixture_id)
-        # Use 30d numbers if we have them, else generic copy via 0
         if ctx.total_picks_30d > 0:
             base['recent_total'] = str(ctx.total_picks_30d)
             base['recent_correct'] = str(ctx.correct_picks_30d)
             base['recent_accuracy_pct'] = str(int(round(
                 (ctx.accuracy_30d or 0) * 100)))
         else:
-            return None  # no data → don't send
+            return None
         return base
     if kind == 'community_invite':
-        # Caller must have already populated recommended community fields
-        # via context overlay; if not present we can't render.
         rc_id = getattr(ctx, '_recommended_community_id', None)
         rc_name = getattr(ctx, '_recommended_community_name', None)
         rc_owner = getattr(ctx, '_recommended_community_owner', None) or 'a Predictify owner'
@@ -175,17 +199,14 @@ def _build_merge_fields(kind: str, ctx: UserContext) -> dict[str, str] | None:
             base['fixture_id'] = str(m.fixture_id)
         return base
     if kind == 'login_streak_reward':
-        # Only fires for free users (gated by trigger). Reward is the
-        # short Pro flag toggled by the in-app reward screen.
         return base
-    if kind in (FOUNDER_STORY_TEMPLATE_KIND, FOUNDER_STORY_V2_KIND):
+    if is_founder_story_kind(kind) or kind in LEGACY_FOUNDER_V1_KINDS | LEGACY_FOUNDER_V2_KINDS:
         return base
     if kind == 'upgrade_after_hot_week':
         if ctx.total_picks_30d < 5 or (ctx.accuracy_30d or 0) < 0.6:
             return None
         base['recent_total'] = str(ctx.total_picks_30d)
         base['accuracy_pct'] = str(int(round((ctx.accuracy_30d or 0) * 100)))
-        # Pro accuracy target shown comparatively. Conservative: 72%.
         base['pro_target_pct'] = '72'
         return base
     if kind == 'pro_power_tip':
@@ -204,13 +225,10 @@ def _build_merge_fields(kind: str, ctx: UserContext) -> dict[str, str] | None:
         base['community_id'] = ctx.owned_community_id
         base['member_count'] = str(ctx.owned_community_member_count)
         base['member_plural'] = '' if ctx.owned_community_member_count == 1 else 's'
-        # Pick the first followed-league name for the share-tease line.
         base['league_short'] = (ctx.followed_league_names[0]
                                 if ctx.followed_league_names else 'football')
         return base
     if kind == 'winback_lapsed_pro':
-        # Fires for premium-but-inactive users. The "free 30 days" is an
-        # admin-applied bonusProUntil window (no Stripe roundtrip needed).
         return base
     if kind == 'referral_invite':
         if ctx.total_picks_30d < 3:
@@ -263,8 +281,6 @@ def _hours_until(dt) -> int:
 
 
 def _hours_until_streak_break(ctx: UserContext) -> int:
-    """Streak window resets at midnight UTC — give a friendly remaining-hours
-    figure ('about 14 hours' etc)."""
     now = datetime.now(timezone.utc)
     end_of_day = now.replace(hour=23, minute=59, second=0, microsecond=0)
     return max(1, int((end_of_day - now).total_seconds() // 3600))
@@ -274,9 +290,6 @@ _FIELD_RE = re.compile(r'\{([a-z_][a-z0-9_]*)\}')
 
 
 def _safe_format(s: str, fields: dict[str, str]) -> str:
-    """Replace {placeholders} with field values, leaving unknown ones intact
-    rather than crashing — easier to debug than KeyError when a translator
-    introduces a typo."""
     return _FIELD_RE.sub(
         lambda m: str(fields.get(m.group(1), m.group(0))),
         s,

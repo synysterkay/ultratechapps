@@ -69,6 +69,9 @@ seed_welcomed_users.py
 test_volume_booster.py
 config/supabase_config.json
 
+# Generated user exports (PII — do not commit)
+exports/
+
 # Generated content (for review before commit)
 pending_review/
 .env.mailgun

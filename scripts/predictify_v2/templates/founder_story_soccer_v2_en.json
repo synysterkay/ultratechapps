@@ -1,0 +1,19 @@
+{
+  "kind": "founder_story_soccer_v2",
+  "language": "en",
+  "subject": "{first_name}, still picking from gut feel?",
+  "preview_text": "One pick today beats ten opinions in the group chat tomorrow.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "I wrote a few days ago about why we built Predictify — numbers over noise, published results, no hiding behind hindsight.",
+    "The users who actually get value don't spend an hour researching. They open one match, read the confidence band, make one call, and move on. Pick once a day for five days and you build a streak. Streak users are 3x more likely to spot value calls — not because they're smarter, but because they're consistent.",
+    "You already have the app. Today's slate is live. Take 30 seconds on one fixture before kickoff.",
+    "P.S. One pick today beats ten opinions in the group chat tomorrow."
+  ],
+  "cta_text": "Make my first pick today",
+  "cta_deeplink": "predictify://",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction"
+}

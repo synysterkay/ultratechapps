@@ -34,7 +34,6 @@ P0P1_KINDS: frozenset[str] = frozenset({
     'match_day',
     'welcome',
     'win_back',
-    'upgrade_after_hot_week',
 })
 
 
@@ -80,11 +79,10 @@ TRIGGERS: list[tuple[int, str, Callable[[UserContext], bool]]] = [
         and 2 <= _hours_until(c.next_match.kickoff_dt) <= 12
     )),
 
-    # ── 4. New user welcome ──
+    # ── 4. New user welcome (0 picks — top pick enriches CTA when available) ──
     (30, 'welcome', lambda c: (
         c.total_picks_30d == 0
         and (c.last_pick_at is None)
-        and c.todays_top_pick is not None
     )),
 
     # ── 5. Free user with a hot accuracy week — upgrade pitch ──

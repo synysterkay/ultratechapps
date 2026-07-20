@@ -1,0 +1,21 @@
+{
+  "kind": "founder_story_horse",
+  "language": "en",
+  "subject": "{first_name}, I built this after one too many \"trust the tipster\" takes",
+  "preview_text": "Every result published. Verify us race by race.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Every race day, the same scene: confident tips flying around — \"this horse is due,\" \"the jockey always delivers here,\" \"I just feel it.\" Nobody checking form, going, draw, or what the numbers actually say.",
+    "I built Predictify Horse Racing because racing arguments shouldn't be won by whoever shouts loudest. We wanted forecasts you can pressure-test: form, jockey, track, going, and a calibrated confidence score on win, place, and each-way picks.",
+    "A friend of ours learned this the hard way at a festival meeting. The model flagged a favorite at 59% confidence — closer to a coin flip than a lock. He ignored it, followed the tipster, and lost. Two weeks later he opened a pick in our highest-confidence band (80%+ tier), read the breakdown, and called it before post time. Same friend. Different process.",
+    "That's why we publish every result — wins and losses — so you can verify the track record yourself, race by race.",
+    "Your next step takes about 30 seconds: open today's card, pick one race, and read the reasoning before the off.",
+    "P.S. We're not a bookmaker. No guaranteed wins — just transparent forecasts and a record you can check."
+  ],
+  "cta_text": "See today's strongest pick — free",
+  "cta_deeplink": "predictify://",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction"
+}

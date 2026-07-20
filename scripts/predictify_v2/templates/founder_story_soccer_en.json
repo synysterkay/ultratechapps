@@ -1,0 +1,21 @@
+{
+  "kind": "founder_story_soccer",
+  "language": "en",
+  "subject": "{first_name}, I built this after one too many \"trust me bro\" takes",
+  "preview_text": "We publish every prediction. You can verify us match by match.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Every matchday, the same scene plays out: a group chat full of confident opinions — \"they're due a win,\" \"home advantage,\" \"I just feel it.\" Nobody checking form, injuries, or what the numbers actually say.",
+    "I built Predictify because football arguments shouldn't be won by whoever talks loudest. We wanted forecasts you can pressure-test: xG, recent form, squad news, and a calibrated confidence score on every pick — 1X2, O/U, BTTS, and more.",
+    "A friend of ours learned this the hard way on a Champions League night. The model flagged a favorite at 61% confidence — basically a coin flip dressed up as certainty. He ignored it, went with gut feel, and lost the argument and the bet. Two weeks later he opened a pick in our highest-confidence band (80%+ tier), read the breakdown, and called it before kickoff. Same friend. Different process.",
+    "That's why we publish every result — wins and losses — so you can verify the track record yourself, match by match. No hidden picks. No rewriting history after the final whistle.",
+    "Your next step takes about 30 seconds: open today's slate, pick one match, and read the reasoning before you lock in your call. If you want the model's strongest read, start with the highest-confidence pick on the board.",
+    "P.S. We're not a bookmaker. No guaranteed wins — just transparent forecasts and a record you can check. Gut feel is fun in the chat. Numbers are better before kickoff."
+  ],
+  "cta_text": "See today's strongest pick — free",
+  "cta_deeplink": "predictify://",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play",
+  "app_store_url": "https://apps.apple.com/app/predictify-football-ai/id6756571193",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction"
+}

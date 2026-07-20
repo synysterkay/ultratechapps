@@ -1,0 +1,19 @@
+{
+  "kind": "founder_story_horse_v2",
+  "language": "en",
+  "subject": "{first_name}, today's card is live",
+  "preview_text": "One race, 30 seconds, before post time.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Following up from a few days ago: Predictify Horse Racing is built for people who want numbers they can verify — not tipster noise.",
+    "The habit that works is simple: open one race on today's card, read the confidence band and form breakdown, make one call, move on.",
+    "Today's meetings are up. Pick one race before the off.",
+    "P.S. Tipsters are loud. Form tables are honest."
+  ],
+  "cta_text": "Open today's card",
+  "cta_deeplink": "predictify://",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction"
+}

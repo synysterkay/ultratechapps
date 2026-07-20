@@ -24,7 +24,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from gmail_sender import GmailSender, SKIP_RESULTS
+from gmail_sender import GmailSender, SKIP_RESULTS, has_email_credentials
 from firebase_user_loader import FirebaseUserLoader
 from firestore_language_loader import FirestoreLanguageLoader
 from thesis_users_loader import get_access_token, load_all_users, normalize_user_language
@@ -46,6 +46,7 @@ STATE_FILE = Path(__file__).parent.parent / 'cache' / 'founder_story_thesis_v2_s
 _REF_SALT = os.getenv('EMAIL_REF_SALT', 'marketing-tool-v1')
 BACKFILL_CAP = int(os.getenv('FOUNDER_STORY_THESIS_SEND_CAP', '2000'))
 DAILY_CATCHUP_CAP = int(os.getenv('FOUNDER_STORY_THESIS_DAILY_CAP', '50'))
+LAPSED_DAYS = int(os.getenv('FOUNDER_STORY_LAPSED_DAYS', '14'))
 
 EN_SOURCE = {
     'subject': '{{first_name}}, still staring at a blank page?',
@@ -275,7 +276,35 @@ def _fetch_language_map() -> dict[str, str]:
     return out
 
 
-def _load_candidates(token: str | None, lang_by_email: dict[str, str]) -> list[dict]:
+def _is_lapsed_user(user: dict) -> bool:
+    """Skip active users — founder story is for lapsed retention only (daily mode)."""
+    last = user.get('last_sign_in') or user.get('last_login') or user.get('lastSignInAt')
+    if not last:
+        created = user.get('created_at') or user.get('createdAt')
+        if not created:
+            return True
+        last = created
+    try:
+        if isinstance(last, str) and last.isdigit():
+            ts = int(last)
+        elif isinstance(last, (int, float)):
+            ts = int(last)
+        else:
+            from datetime import datetime, timezone
+            dt = datetime.fromisoformat(str(last).replace('Z', '+00:00'))
+            days = (datetime.now(timezone.utc) - dt).total_seconds() / 86400
+            return days >= LAPSED_DAYS
+        if ts > 1_000_000_000_000:
+            ts //= 1000
+        from datetime import datetime, timezone
+        dt = datetime.fromtimestamp(ts, tz=timezone.utc)
+        days = (datetime.now(timezone.utc) - dt).total_seconds() / 86400
+        return days >= LAPSED_DAYS
+    except Exception:
+        return True
+
+
+def _load_candidates(token: str | None, lang_by_email: dict[str, str], *, lapsed_only: bool = False) -> list[dict]:
     """All Thesis Generator auth users with language + Firestore plan when available."""
     auth_users = FirebaseUserLoader().load_users_by_app().get(APP_NAME, [])
     fs_by_email: dict[str, dict] = {}
@@ -310,6 +339,8 @@ def _load_candidates(token: str | None, lang_by_email: dict[str, str]) -> list[d
                 'plan': {},
             }
         out.append(user)
+    if lapsed_only:
+        out = [u for u in out if _is_lapsed_user(u)]
     return out
 
 
@@ -343,7 +374,7 @@ def _print_lang_distribution(users: list[dict]) -> None:
         print(f'      … +{len(counts) - 12} more languages')
 
 
-def run_send(*, dry_run: bool = False, send_cap: int | None = None, fix_languages: bool = False) -> list[str]:
+def run_send(*, dry_run: bool = False, send_cap: int | None = None, fix_languages: bool = False, lapsed_only: bool = False) -> list[str]:
     """Send founder story to users who haven't received it. Returns emails sent."""
     cap = send_cap if send_cap is not None else BACKFILL_CAP
     state = _load_state()
@@ -364,7 +395,7 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None, fix_language
     if suppressed:
         print(f'   🚫 {len(suppressed)} suppressed addresses')
 
-    all_users = _load_candidates(token, lang_by_email)
+    all_users = _load_candidates(token, lang_by_email, lapsed_only=lapsed_only)
     candidates = []
     for user in all_users:
         email = user['email']
@@ -389,8 +420,8 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None, fix_language
         print('🏁 DRY RUN')
         return []
 
-    if not os.getenv('RESEND_API_KEY'):
-        print('❌ RESEND_API_KEY not set')
+    if not has_email_credentials():
+        print('❌ Email credentials not configured (ZEPTOMAIL_API_KEY or RESEND_API_KEY)')
         return []
 
     senders = _connect_senders()
@@ -487,12 +518,13 @@ def main(dry_run: bool = False, warm_only: bool = False, passes: int = 1, daily:
 
     _write_en_cache()
     cap = DAILY_CATCHUP_CAP if daily else BACKFILL_CAP
+    lapsed_only = daily
     passes = int(os.environ.get('FOUNDER_STORY_THESIS_PASSES', passes))
     total = 0
     for n in range(1, passes + 1):
         if passes > 1 and not daily:
             print(f'\n=== Thesis founder story pass {n}/{passes} ===')
-        batch = run_send(dry_run=dry_run, send_cap=cap, fix_languages=fix_languages and n == 1)
+        batch = run_send(dry_run=dry_run, send_cap=cap, fix_languages=fix_languages and n == 1, lapsed_only=lapsed_only)
         total += len(batch)
         if dry_run:
             break
