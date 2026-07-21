@@ -47,6 +47,7 @@ from founder_story_thesis_sender import (
     _skip_email,
     _supabase_creds,
 )
+from thesis_users_loader import founder_story_audience_eligible
 
 KIND = 'founder_story_thesis_2'
 STATE_FILE = Path(__file__).parent.parent / 'cache' / 'founder_story_thesis_2_state.json'
@@ -229,11 +230,13 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None) -> list[str]
                 'language': fs1_rec.get('language') or lang_by_email.get(email) or 'en',
                 'plan': {},
             }
+        if not founder_story_audience_eligible(user):
+            continue
         candidates.append((user, fs1_rec))
 
     candidates.sort(key=lambda pair: pair[1].get('sent_at', ''))
 
-    print(f'📬 {len(candidates)} FS2 eligible (cap={cap}, already sent FS2={len(already_fs2)})')
+    print(f'📬 {len(candidates)} FS2 eligible (cap={cap}, already sent FS2={len(already_fs2)}, free/churned only)')
     if not candidates:
         return []
 

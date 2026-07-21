@@ -27,7 +27,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from gmail_sender import GmailSender, SKIP_RESULTS, has_email_credentials
 from firebase_user_loader import FirebaseUserLoader
 from firestore_language_loader import FirestoreLanguageLoader
-from thesis_users_loader import get_access_token, load_all_users, normalize_user_language
+from thesis_users_loader import get_access_token, load_all_users, normalize_user_language, founder_story_audience_eligible
 from thesis_template_translator import get_localized, warm_all, SUPPORTED, _read_cache
 from thesis_email_chrome import render as render_email
 from deliverability_monitor import DeliverabilityMonitor
@@ -338,6 +338,8 @@ def _load_candidates(token: str | None, lang_by_email: dict[str, str], *, lapsed
                 'language': lang,
                 'plan': {},
             }
+        if not founder_story_audience_eligible(user):
+            continue
         out.append(user)
     if lapsed_only:
         out = [u for u in out if _is_lapsed_user(u)]
@@ -405,7 +407,7 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None, fix_language
             continue
         candidates.append(user)
 
-    print(f'📬 {len(candidates)} users eligible (cap={cap}, already sent={len(already)})')
+    print(f'📬 {len(candidates)} users eligible (cap={cap}, already sent={len(already)}, free/churned only)')
     if candidates and not dry_run:
         _print_lang_distribution(candidates[:5000])
     if not candidates:

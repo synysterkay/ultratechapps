@@ -813,11 +813,43 @@ def _pick_kind(
     return v1_kind
 
 
-def _is_subscriber(activity: dict | None) -> bool:
+def _subscription_status_known(activity: dict | None) -> bool:
+    """True when Firestore activity includes an explicit subscription flag."""
+    if not activity:
+        return False
+    return 'isPremium' in activity or 'isSubscribed' in activity
+
+
+def _is_active_subscriber(activity: dict | None) -> bool:
     """True when Firestore shows an active Superwall / Pro subscription."""
     if not activity:
         return False
     return bool(activity.get('isPremium') or activity.get('isSubscribed'))
+
+
+def _is_subscriber(activity: dict | None) -> bool:
+    """Alias kept for callers that already use this name."""
+    return _is_active_subscriber(activity)
+
+
+def _eligible_founder_story_predictify(
+    uid: str,
+    email: str,
+    activity_by_uid: dict,
+    activity_by_email: dict,
+    activity_data_available: bool,
+) -> bool:
+    """Free + churned only; skip active subs and unknown subscription state."""
+    if not activity_data_available:
+        return False
+    activity = activity_by_uid.get(uid)
+    if activity is None:
+        activity = activity_by_email.get(email.lower())
+    if activity is None:
+        return False
+    if not _subscription_status_known(activity):
+        return False
+    return not _is_active_subscriber(activity)
 
 
 def run(
@@ -839,7 +871,9 @@ def run(
         mode = 'triggers'
     send_cap = _send_cap(founder_story_only or founder_story_v2)
     print(f'🚀 Predictify v2 {mode} (dry_run={dry_run}, cap={send_cap})')
-    if non_subscribers_only:
+    if founder_story_only or founder_story_v2:
+        print('   🎯 Founder story audience: free + churned only (active subs skipped)')
+    elif non_subscribers_only:
         print('   🎯 Audience: free users only (isPremium/isSubscribed=false)')
     if founder_story_v2:
         print(f'   📨 Campaign kind: {v2_kind}')
@@ -869,9 +903,15 @@ def run(
     except Exception:
         languages_by_uid = {}
     try:
-        activity_by_uid = activity_loader.load_activity(app_name)
+        activity_by_email, activity_by_uid = activity_loader.load_activity(
+            app_name, users,
+        )
     except Exception:
-        activity_by_uid = {}
+        activity_by_email, activity_by_uid = {}, {}
+    activity_data_available = bool(activity_by_email)
+    if (founder_story_only or founder_story_v2) and not activity_data_available:
+        print('   ⚠️ No subscription activity data — skipping founder story sends')
+        return []
 
     # Bulk-load the ENTIRE send history once → {uid: {kind: latest_sent_at}}.
     # This powers both the per-kind cooldown check (in-memory, see the loop)
@@ -922,6 +962,13 @@ def run(
     skipped_cooldown = 0
     skipped_suppressed = 0
     skipped_subscriber = 0
+    skipped_founder_audience = 0
+
+    def _skip_founder_story(uid: str, email: str) -> bool:
+        ok = _eligible_founder_story_predictify(
+            uid, email, activity_by_uid, activity_by_email, activity_data_available,
+        )
+        return not ok
 
     def _enrich(u):
         """Read-only: build a user's context and attach a community
@@ -1016,7 +1063,11 @@ def run(
                 if email.lower() in suppressed:
                     skipped_suppressed += 1
                     continue
-                if non_subscribers_only and _is_subscriber(activity_by_uid.get(uid)):
+                if founder_story_only or founder_story_v2:
+                    if _skip_founder_story(uid, email):
+                        skipped_founder_audience += 1
+                        continue
+                elif non_subscribers_only and _is_subscriber(activity_by_uid.get(uid)):
                     skipped_subscriber += 1
                     continue
                 if founder_story_only and not founder_story_v2 and email.lower() in legacy_founder_sent:
@@ -1057,6 +1108,10 @@ def run(
                     skipped_no_trigger += 1
                     continue
 
+                if is_founder_story_kind(kind) and _skip_founder_story(uid, email):
+                    skipped_founder_audience += 1
+                    continue
+
                 cooldown = _cooldown_days(kind)
                 if _has_recent_in_index(sends_index, uid, kind, cooldown):
                     skipped_cooldown += 1
@@ -1086,6 +1141,7 @@ def run(
           f'skipped_cooldown={skipped_cooldown} '
           f'skipped_suppressed={skipped_suppressed} '
           f'skipped_subscriber={skipped_subscriber} '
+          f'skipped_founder_audience={skipped_founder_audience} '
           f'skipped_no_trigger={skipped_no_trigger}{cap_note}')
     return sent
 

@@ -337,6 +337,21 @@ def is_paid(user_record) -> bool:
     return status in {'active', 'trial', 'past_due'}  # past_due still has access
 
 
+def founder_story_audience_eligible(user_record) -> bool:
+    """Founder story goes to free + churned users only — not active subs.
+
+    Skips users whose Firestore doc was never loaded (no `subscription`
+    key) so we don't email someone who might be paid but missing from cache.
+    """
+    if not user_record:
+        return False
+    if is_paid(user_record):
+        return False
+    if 'subscription' not in user_record:
+        return False
+    return True
+
+
 def hit_free_quota(user_record) -> bool:
     """Did this free user burn their lifetime free chapter?"""
     usage = (user_record or {}).get('usage') or {}

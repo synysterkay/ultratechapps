@@ -162,6 +162,23 @@ class FirestoreActivityLoader:
                 pass
         return {}
 
+    def load_activity(self, app_name='Predictify', users=None):
+        """Return {uid: activity_dict} keyed by Firebase uid.
+
+        Activity is fetched by email from Firestore then joined to the auth
+        export via the ``users`` list from FirebaseUserLoader.
+        """
+        by_email = self.fetch_user_activity(app_name)
+        if not users:
+            return by_email, {}
+        by_uid = {}
+        for u in users:
+            uid = u.get('localId') or u.get('uid')
+            email = (u.get('email') or '').lower().strip()
+            if uid and email in by_email:
+                by_uid[uid] = by_email[email]
+        return by_email, by_uid
+
 
 if __name__ == '__main__':
     loader = FirestoreActivityLoader()
