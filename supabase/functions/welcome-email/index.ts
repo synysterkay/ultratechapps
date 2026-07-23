@@ -53,7 +53,12 @@ function getSenderForApp(appId: string) {
   if (appId === "thesis_generator") {
     return resolveSender(SENDER_POOL_THESIS[0], appId);
   }
-  if (appId === "predictify" || appId === "horse_racing" || appId === "predictify_nba") {
+  if (
+    appId === "predictify" ||
+    appId === "horse_racing" ||
+    appId === "predictify_nba" ||
+    appId === "predictify_crypto"
+  ) {
     const pick = SENDER_POOL_PREDICTIFY[Math.floor(Math.random() * SENDER_POOL_PREDICTIFY.length)];
     return resolveSender(pick, appId);
   }
@@ -806,6 +811,26 @@ const APP_CONFIG: Record<string, AppConfig> = {
     },
   },
 
+  predictify_crypto: {
+    name: "Predictify Crypto",
+    multilingual: false,
+    appStoreUrl: "",
+    googlePlayUrl:
+      "https://play.google.com/store/apps/details?id=com.crypto.trading.ai.analyzer",
+    emails: {
+      en: {
+        subject: "Your first AI chart setup is waiting — here's what to do",
+        cta_text: "Open Command & Scan",
+        body_paragraphs: [
+          "Telegram is full of confident screenshots. Predictify Crypto exists so a chart becomes a setup you can verify — entry, stop, and targets — not another loud opinion.",
+          "Here's the edge: you don't just get a direction. You get levels and a confidence band you can journal. One clean process beats ten group-chat takes.",
+          "Open the app now. Go to Command. Unlock AI analysis and scan one chart you actually trade. It takes about 30 seconds. Read the stop before you size.",
+          "P.S. Users who complete their first scan on day one are far more likely to build an analysis streak. This is not financial advice — it's a habit: scan → setup → journal → streak.",
+        ],
+      },
+    },
+  },
+
   horse_racing: {
     name: "Horse Racing AI Predictor",
     multilingual: true,
@@ -1206,7 +1231,7 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
-    const { email, app_id: rawAppId, language, firstName } = await req.json();
+    const { email, app_id: rawAppId, language, firstName, uid } = await req.json();
 
     if (!email || !rawAppId) {
       return new Response(
@@ -1233,6 +1258,32 @@ Deno.serve(async (req: Request) => {
       );
     }
 
+    const emailNorm = String(email).toLowerCase().trim();
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL") || "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "",
+    );
+
+    // Dedup: Flutter + check-new-users may both call — only send once.
+    const { data: alreadyWelcomed } = await supabase
+      .from("welcomed_users")
+      .select("email")
+      .eq("email", emailNorm)
+      .eq("app_id", app_id)
+      .maybeSingle();
+    if (alreadyWelcomed) {
+      return new Response(
+        JSON.stringify({ success: true, duplicate: true }),
+        {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        },
+      );
+    }
+
     if (!hasEmailCredentials()) {
       return new Response(
         JSON.stringify({ error: "email credentials not configured" }),
@@ -1250,7 +1301,7 @@ Deno.serve(async (req: Request) => {
     const sender = getSenderForApp(app_id);
 
     // Attribution context — same shape as retention/streak/matchday sends
-    const ref = await userRef(email);
+    const ref = await userRef(emailNorm);
     const utmCtx = {
       app: app_id,
       emailNum: 1, // welcome is always email #1, cycle 1
@@ -1275,7 +1326,7 @@ Deno.serve(async (req: Request) => {
     const sendResult = await sendEmail({
       fromName: appConfig.name,
       fromEmail: sender.email,
-      to: email,
+      to: emailNorm,
       subject: emailData.subject,
       html,
       replyTo: sender.email,
@@ -1287,13 +1338,9 @@ Deno.serve(async (req: Request) => {
       console.error(`Email error [${sendResult.status}]:`, sendResult.details);
 
       if (isSendFailureBounce(sendResult)) {
-        console.log(`BOUNCED: ${email} — adding to suppression list`);
-        const supabase = createClient(
-          Deno.env.get("SUPABASE_URL") || "",
-          Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "",
-        );
+        console.log(`BOUNCED: ${emailNorm} — adding to suppression list`);
         await recordHardBounce(supabase, {
-          recipient: email,
+          recipient: emailNorm,
           app: app_id,
           eventId: `welcome-bounce-${ref}-${Date.now()}`,
           messageId: sendResult.id,
@@ -1315,7 +1362,18 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    console.log(`Welcome email sent: ${email} (${appConfig.name}, ${lang})`);
+    await supabase.from("welcomed_users").upsert(
+      {
+        email: emailNorm,
+        app_id,
+        firebase_uid: uid ? String(uid) : null,
+        language: lang,
+        welcomed_at: new Date().toISOString(),
+      },
+      { onConflict: "email,app_id" },
+    );
+
+    console.log(`Welcome email sent: ${emailNorm} (${appConfig.name}, ${lang})`);
 
     return new Response(
       JSON.stringify({

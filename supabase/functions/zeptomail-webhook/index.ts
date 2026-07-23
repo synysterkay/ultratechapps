@@ -6,7 +6,8 @@
 //   thesisgenerator.io + predictifyfootball.com
 //   URL:   https://jimcdgkwbbrxgakingtg.supabase.co/functions/v1/zeptomail-webhook
 //   Events: Hard bounced (required)
-//   Authentication Key → same value as ZEPTOMAIL_WEBHOOK_AUTH_KEY Supabase secret
+//   Agent → Webhooks → Authentication Key (top right) → same as ZEPTOMAIL_WEBHOOK_AUTH_KEY
+//   Verify/Send Test uses POST without auth — non-hard-bounce events return 200.
 
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
@@ -55,11 +56,28 @@ function authKeyFromPayload(payload: Record<string, unknown>): string {
   return "";
 }
 
+function eventNameStr(payload: Record<string, unknown>): string {
+  const raw = payload.event_name ?? payload.event ?? "";
+  if (Array.isArray(raw)) return raw.join(",").toLowerCase();
+  return String(raw).toLowerCase();
+}
+
+function firstEventMessage(payload: Record<string, unknown>): Record<string, unknown> | undefined {
+  const raw = payload.event_message;
+  if (Array.isArray(raw)) {
+    const first = raw[0];
+    return first && typeof first === "object" ? first as Record<string, unknown> : undefined;
+  }
+  if (raw && typeof raw === "object") return raw as Record<string, unknown>;
+  return undefined;
+}
+
 function isHardBounce(payload: Record<string, unknown>): boolean {
-  const eventName = String(payload.event_name || payload.event || "").toLowerCase();
+  const eventName = eventNameStr(payload);
+  const eventMessage = firstEventMessage(payload);
   const objectName = String(
     (payload.event_data as Record<string, unknown> | undefined)?.object ||
-      (payload.event_message as Record<string, unknown> | undefined)?.object ||
+      eventMessage?.object ||
       "",
   ).toLowerCase();
 
@@ -68,8 +86,77 @@ function isHardBounce(payload: Record<string, unknown>): boolean {
     objectName === "hardbounce";
 }
 
+function webhookAuthed(
+  req: Request,
+  payload: Record<string, unknown>,
+  rawBody: string,
+): Promise<boolean> {
+  if (!WEBHOOK_AUTH_KEY) return Promise.resolve(true);
+
+  const headerAuth = req.headers.get("x-zeptomail-auth") ||
+    req.headers.get("x-authentication-key") || "";
+  if (headerAuth === WEBHOOK_AUTH_KEY) return Promise.resolve(true);
+
+  const bodyAuth = authKeyFromPayload(payload);
+  if (bodyAuth === WEBHOOK_AUTH_KEY) return Promise.resolve(true);
+
+  const producerSignature = req.headers.get("producer-signature");
+  if (producerSignature) {
+    return verifyProducerSignature(producerSignature, rawBody, WEBHOOK_AUTH_KEY);
+  }
+
+  return Promise.resolve(false);
+}
+
+async function verifyProducerSignature(
+  producerSignature: string,
+  rawBody: string,
+  secretKey: string,
+): Promise<boolean> {
+  try {
+    const decoded = decodeURIComponent(producerSignature);
+    const parts: Record<string, string> = {};
+    for (const segment of decoded.split(";")) {
+      const eq = segment.indexOf("=");
+      if (eq <= 0) continue;
+      parts[segment.slice(0, eq).trim()] = segment.slice(eq + 1);
+    }
+    const algorithm = parts["s-algorithm"] || "HmacSHA256";
+    if (algorithm !== "HmacSHA256") return false;
+
+    const signatureReceived = parts.s;
+    if (!signatureReceived) return false;
+
+    // ZeptoMail signs the URL-decoded form value after the first '=' in the body.
+    let dataValue = rawBody;
+    const formEq = rawBody.indexOf("=");
+    if (formEq > 0 && !rawBody.trim().startsWith("{")) {
+      dataValue = decodeURIComponent(rawBody.slice(formEq + 1));
+    }
+
+    const key = await crypto.subtle.importKey(
+      "raw",
+      new TextEncoder().encode(secretKey),
+      { name: "HMAC", hash: "SHA-256" },
+      false,
+      ["sign"],
+    );
+    const sig = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(dataValue));
+    const constructed = btoa(String.fromCharCode(...new Uint8Array(sig)));
+
+    const a = Uint8Array.from(atob(signatureReceived), (c) => c.charCodeAt(0));
+    const b = Uint8Array.from(atob(constructed), (c) => c.charCodeAt(0));
+    if (a.length !== b.length) return false;
+    let diff = 0;
+    for (let i = 0; i < a.length; i++) diff |= a[i] ^ b[i];
+    return diff === 0;
+  } catch {
+    return false;
+  }
+}
+
 function extractRecipient(payload: Record<string, unknown>): string {
-  const eventMessage = payload.event_message as Record<string, unknown> | undefined;
+  const eventMessage = firstEventMessage(payload);
   const emailInfo = eventMessage?.email_info as Record<string, unknown> | undefined;
 
   const toField = emailInfo?.to;
@@ -95,7 +182,7 @@ function extractRecipient(payload: Record<string, unknown>): string {
 }
 
 function extractSenderDomain(payload: Record<string, unknown>): string | null {
-  const eventMessage = payload.event_message as Record<string, unknown> | undefined;
+  const eventMessage = firstEventMessage(payload);
   const emailInfo = eventMessage?.email_info as Record<string, unknown> | undefined;
   const from = emailInfo?.from as Record<string, unknown> | undefined;
   const address = String(from?.address || "").toLowerCase();
@@ -104,7 +191,7 @@ function extractSenderDomain(payload: Record<string, unknown>): string | null {
 }
 
 function extractMimeTag(payload: Record<string, unknown>, tagName: string): string | null {
-  const eventMessage = payload.event_message as Record<string, unknown> | undefined;
+  const eventMessage = firstEventMessage(payload);
   const emailInfo = eventMessage?.email_info as Record<string, unknown> | undefined;
   const headers = emailInfo?.mime_headers || emailInfo?.headers;
 
@@ -173,6 +260,14 @@ Deno.serve(async (req) => {
     });
   }
 
+  // ZeptoMail "Verify" may ping GET; actual events are POST.
+  if (req.method === "GET") {
+    return new Response(JSON.stringify({ ok: true, service: "zeptomail-webhook" }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
   if (req.method !== "POST") {
     return new Response("Method not allowed", { status: 405 });
   }
@@ -187,21 +282,19 @@ Deno.serve(async (req) => {
     return new Response("Invalid payload", { status: 400 });
   }
 
-  if (WEBHOOK_AUTH_KEY) {
-    const headerAuth = req.headers.get("x-zeptomail-auth") ||
-      req.headers.get("x-authentication-key") || "";
-    const bodyAuth = authKeyFromPayload(payload);
-    if (headerAuth !== WEBHOOK_AUTH_KEY && bodyAuth !== WEBHOOK_AUTH_KEY) {
-      console.error("ZeptoMail webhook auth mismatch");
-      return new Response("Unauthorized", { status: 401 });
-    }
-  }
-
   if (!isHardBounce(payload)) {
     return new Response(JSON.stringify({ ok: true, ignored: "not_hard_bounce" }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
+  }
+
+  if (WEBHOOK_AUTH_KEY) {
+    const authed = await webhookAuthed(req, payload, rawBody);
+    if (!authed) {
+      console.error("ZeptoMail webhook auth mismatch (hard bounce)");
+      return new Response("Unauthorized", { status: 401 });
+    }
   }
 
   const recipient = extractRecipient(payload);
@@ -226,9 +319,8 @@ Deno.serve(async (req) => {
   const details = eventData?.details as Record<string, unknown> | undefined;
   const occurredAt = String(details?.time || payload.processed_time || new Date().toISOString());
   const clientRef = String(
-    ((payload.event_message as Record<string, unknown> | undefined)?.email_info as
-      | Record<string, unknown>
-      | undefined)?.client_reference || "",
+    (firstEventMessage(payload)?.email_info as Record<string, unknown> | undefined)
+      ?.client_reference || "",
   );
 
   const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);

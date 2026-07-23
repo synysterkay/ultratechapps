@@ -94,6 +94,12 @@ const FIREBASE_PROJECTS: Record<
     defaultLang: "en",
     supportedLanguages: ["en", "ar", "es", "fr"],
   },
+  cryptopredictify: {
+    appId: "predictify_crypto",
+    multilingual: false,
+    defaultLang: "en",
+    supportedLanguages: ["en"],
+  },
   "boyfriend-ai-f1e5e": {
     appId: "ai_boyfriend",
     multilingual: true,
@@ -124,9 +130,14 @@ const ZEPTOMAIL_PROJECT_IDS = [
   "thesis-generator-web",
   "predictify-3f30d",
   "horse-racing-f67e8",
+  "cryptopredictify",
 ];
 
-const PREDICTIFY_WELCOME_APP_IDS = new Set(["predictify", "horse_racing"]);
+const PREDICTIFY_WELCOME_APP_IDS = new Set([
+  "predictify",
+  "horse_racing",
+  "predictify_crypto",
+]);
 
 function activeProjectIds(): string[] {
   if (isZeptomailReviewMode()) {

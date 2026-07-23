@@ -13,7 +13,12 @@ import type { SenderIdentity } from "./sender_pool.ts";
 export type EmailProviderName = "resend" | "mailgun" | "smtp2go" | "zeptomail";
 
 const THESIS_APPS = new Set(["thesis", "thesis_generator"]);
-const PREDICTIFY_APPS = new Set(["predictify", "predictify_nba", "horse_racing"]);
+const PREDICTIFY_APPS = new Set([
+  "predictify",
+  "predictify_nba",
+  "horse_racing",
+  "predictify_crypto",
+]);
 
 export interface EmailTag {
   name: string;

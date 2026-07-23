@@ -1,0 +1,19 @@
+{
+  "kind": "founder_story_crypto_v2",
+  "language": "en",
+  "subject": "{first_name}, still trading off the group chat?",
+  "preview_text": "One scan today beats ten opinions tomorrow.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "I wrote a few days ago about why we built Predictify Crypto — process over noise, setups you can journal, streaks you can keep.",
+    "The traders who get value don't stare at Twitter for an hour. They open one chart, run one scan, write the stop, and move on. Do that five days in a row and you build a streak. Streak users aren't luckier — they're consistent.",
+    "You already have the app. Take 30 seconds on one chart today.",
+    "P.S. One scan today beats ten opinions in the group chat tomorrow."
+  ],
+  "cta_text": "Scan one chart today",
+  "cta_deeplink": "predictifycrypto://",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play",
+  "app_store_url": "",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.crypto.trading.ai.analyzer"
+}

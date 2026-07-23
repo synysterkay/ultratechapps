@@ -5,6 +5,8 @@
 # API Keys and secrets
 secrets/
 credentials/
+.zeptomail_webhook_auth_key
+.resend_webhook_secret
 
 # Python
 __pycache__/

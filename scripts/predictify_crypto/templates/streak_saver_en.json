@@ -1,0 +1,16 @@
+{
+  "kind": "streak_saver",
+  "language": "en",
+  "subject": "{first_name}, your {streak}-day streak breaks in a few hours",
+  "preview_text": "One chart scan keeps it alive.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "You're on a {streak}-day analysis streak. That's rare — most people open a trading app once and disappear.",
+    "If you don't scan a chart before midnight, the streak resets. One upload is enough.",
+    "Open Command, scan the pair you actually care about, and keep the chain going.",
+    "P.S. Streaks aren't about grinding — they're about becoming the kind of trader who shows up with a process."
+  ],
+  "cta_text": "Keep my streak",
+  "cta_deeplink": "predictifycrypto://",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.crypto.trading.ai.analyzer"
+}

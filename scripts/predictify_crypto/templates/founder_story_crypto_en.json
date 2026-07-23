@@ -1,0 +1,21 @@
+{
+  "kind": "founder_story_crypto",
+  "language": "en",
+  "subject": "{first_name}, I built this after one too many Telegram \"sure things\"",
+  "preview_text": "A chart should become a setup — entry, stop, targets — not another opinion.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Every cycle, the same scene plays out: group chats full of screenshots and certainty — \"this is the bottom,\" \"easy 10x,\" \"trust me bro.\" Almost nobody writing down invalidation, size, or what would prove them wrong.",
+    "I built Predictify Crypto because trading arguments shouldn't be won by whoever posts the loudest chart. We wanted something you can pressure-test: structure from your screenshot, levels you can verify, and a confidence score you can compare against your journal.",
+    "A friend of ours learned this the hard way on a late-night pump. The model returned NO_TRADE with a mid confidence band — basically \"don't force it.\" He ignored it, chased the candle, and got stopped out twice. Two weeks later he scanned a clean setup, respected the stop, and logged the trade in the journal. Same friend. Different process.",
+    "That's why we care about the loop: scan → setup → journal → streak. Not hidden tips. Not rewriting history after the move.",
+    "Your next step takes about 30 seconds: open Command, unlock analysis if you haven't, and scan one chart you actually trade. Read the stop before you size.",
+    "P.S. This is not financial advice and we don't guarantee outcomes. Gut feel is fun in Telegram. A written stop is better before you click buy."
+  ],
+  "cta_text": "Open Predictify Crypto",
+  "cta_deeplink": "predictifycrypto://",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play",
+  "app_store_url": "",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.crypto.trading.ai.analyzer"
+}

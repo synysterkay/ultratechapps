@@ -7,7 +7,7 @@
  *
  * When EMAIL_PROVIDER=zeptomail, email_transport.ts routes by app tag:
  *   thesis → hello@thesisgenerator.io
- *   predictify / predictify_nba / horse_racing → hello@predictifyfootball.com
+ *   predictify / predictify_nba / horse_racing / predictify_crypto → hello@predictifyfootball.com
  * When EMAIL_PROVIDER=smtp2go, pool From addresses pass through as-is.
  */
 
@@ -27,6 +27,12 @@ export const SENDER_POOL_FULL: SenderIdentity[] = [
 export const SENDER_POOL_PREDICTIFY: SenderIdentity[] = [
   { email: "hello@predictifyfootball.com", name: "Predictify" },
   { email: "tips@predictifyfootball.com", name: "Sam" },
+];
+
+/** Predictify Crypto — same Zepto domain until a dedicated crypto sender is verified. */
+export const SENDER_POOL_CRYPTO: SenderIdentity[] = [
+  { email: "hello@predictifyfootball.com", name: "Predictify Crypto" },
+  { email: "tips@predictifyfootball.com", name: "Kay" },
 ];
 
 /** Predictify NBA — same domain as Soccer. */

@@ -1,0 +1,15 @@
+{
+  "kind": "win_back",
+  "language": "en",
+  "subject": "{first_name}, the market moved — your process didn't",
+  "preview_text": "Come back for one scan. That's it.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "It's been a few days since your last chart scan. The feeds didn't stop — the opinions got louder.",
+    "You don't need a full research session. Open Predictify Crypto, scan one chart, and leave with entry / stop / targets you can check later.",
+    "P.S. Consistency beats intensity. One clean setup beats a weekend of doomscrolling."
+  ],
+  "cta_text": "Scan one chart",
+  "cta_deeplink": "predictifycrypto://",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.crypto.trading.ai.analyzer"
+}
