@@ -84,6 +84,14 @@ class FirestoreActivityLoader:
             return float(field['doubleValue'])
         return None
 
+    def _doc_uid(self, doc):
+        """Extract Firebase uid from a Firestore document resource name."""
+        name = doc.get('name', '')
+        marker = '/documents/users/'
+        if marker in name:
+            return name.rsplit(marker, 1)[-1]
+        return None
+
     def fetch_user_activity(self, app_name='Predictify'):
         """
         Fetch activity fields from Firestore user documents.
@@ -105,6 +113,7 @@ class FirestoreActivityLoader:
         headers = {'Authorization': f'Bearer {token}'}
 
         user_activity = {}
+        uid_activity = {}
         page_token = None
         print(f"   🔍 Fetching {app_name} user activity from Firestore...")
 
@@ -116,16 +125,15 @@ class FirestoreActivityLoader:
             try:
                 resp = requests.get(url, headers=headers, params=params, timeout=30)
                 if resp.status_code != 200:
-                    print(f"   ❌ Firestore API error: {resp.status_code}")
+                    print(f"   ❌ Firestore API error: {resp.status_code} {resp.text[:120]}")
                     break
 
                 data = resp.json()
                 for doc in data.get('documents', []):
                     fields = doc.get('fields', {})
                     email = self._extract_field(fields, 'email')
-                    if not email:
-                        continue
-                    email = email.lower().strip()
+                    if email:
+                        email = email.lower().strip()
 
                     activity = {}
                     for field_name in config['fields']:
@@ -133,8 +141,12 @@ class FirestoreActivityLoader:
                         if val is not None:
                             activity[field_name] = val
 
-                    if activity:
+                    if email:
                         user_activity[email] = activity
+                    else:
+                        uid = self._doc_uid(doc)
+                        if uid:
+                            uid_activity[uid] = activity
 
                 page_token = data.get('nextPageToken')
                 if not page_token:
@@ -143,8 +155,17 @@ class FirestoreActivityLoader:
                 print(f"   ❌ Firestore fetch error: {e}")
                 break
 
-        print(f"   ✅ Got activity data for {len(user_activity)} users")
-        self._save_cache(user_activity, cache_file)
+        if user_activity:
+            print(f"   ✅ Got activity data for {len(user_activity)} users")
+            self._save_cache(user_activity, cache_file)
+        elif uid_activity:
+            print(f"   ✅ Got activity data for {len(uid_activity)} users (uid-keyed, no email field)")
+            self._save_cache(uid_activity, cache_file)
+            return uid_activity
+        else:
+            print(f"   ⚠️ Firestore returned 0 user docs — using cached activity if available")
+            return self._load_cache(cache_file)
+
         return user_activity
 
     def _save_cache(self, data, cache_file):
@@ -163,20 +184,37 @@ class FirestoreActivityLoader:
         return {}
 
     def load_activity(self, app_name='Predictify', users=None):
-        """Return {uid: activity_dict} keyed by Firebase uid.
+        """Return activity keyed by email and by Firebase uid.
 
-        Activity is fetched by email from Firestore then joined to the auth
-        export via the ``users`` list from FirebaseUserLoader.
+        Activity is fetched from Firestore then joined to the auth export via
+        ``users`` from FirebaseUserLoader. Auth users without a Firestore doc
+        get an empty activity dict so founder-story backfill can treat them as
+        free (missing isPremium/isSubscribed → not subscribed).
         """
-        by_email = self.fetch_user_activity(app_name)
+        fetched = self.fetch_user_activity(app_name)
+        by_email = {}
+        by_uid_from_fetch = {}
+        for key, activity in fetched.items():
+            if '@' in key:
+                by_email[key.lower().strip()] = activity
+            else:
+                by_uid_from_fetch[key] = activity
+
         if not users:
-            return by_email, {}
-        by_uid = {}
+            return by_email, by_uid_from_fetch
+
+        by_uid = dict(by_uid_from_fetch)
         for u in users:
             uid = u.get('localId') or u.get('uid')
             email = (u.get('email') or '').lower().strip()
-            if uid and email in by_email:
-                by_uid[uid] = by_email[email]
+            if not uid or not email:
+                continue
+            if uid in by_uid_from_fetch:
+                by_uid[uid] = by_uid_from_fetch[uid]
+                continue
+            if email not in by_email:
+                by_email[email] = {}
+            by_uid[uid] = by_email[email]
         return by_email, by_uid
 
 

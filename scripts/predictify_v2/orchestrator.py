@@ -813,13 +813,6 @@ def _pick_kind(
     return v1_kind
 
 
-def _subscription_status_known(activity: dict | None) -> bool:
-    """True when Firestore activity includes an explicit subscription flag."""
-    if not activity:
-        return False
-    return 'isPremium' in activity or 'isSubscribed' in activity
-
-
 def _is_active_subscriber(activity: dict | None) -> bool:
     """True when Firestore shows an active Superwall / Pro subscription."""
     if not activity:
@@ -839,16 +832,15 @@ def _eligible_founder_story_predictify(
     activity_by_email: dict,
     activity_data_available: bool,
 ) -> bool:
-    """Free + churned only; skip active subs and unknown subscription state."""
+    """Free + churned only; skip users with an explicit active subscription."""
     if not activity_data_available:
         return False
     activity = activity_by_uid.get(uid)
     if activity is None:
         activity = activity_by_email.get(email.lower())
-    if activity is None:
-        return False
-    if not _subscription_status_known(activity):
-        return False
+    # No Firestore profile (or empty doc) → treat as free, same as FS2 non-sub path.
+    if not activity:
+        return True
     return not _is_active_subscriber(activity)
 
 
@@ -908,7 +900,7 @@ def run(
         )
     except Exception:
         activity_by_email, activity_by_uid = {}, {}
-    activity_data_available = bool(activity_by_email)
+    activity_data_available = bool(activity_by_email) or bool(activity_by_uid)
     if (founder_story_only or founder_story_v2) and not activity_data_available:
         print('   ⚠️ No subscription activity data — skipping founder story sends')
         return []
