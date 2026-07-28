@@ -27,14 +27,6 @@
         "selka@breakuprelief.com"
       ],
       "seed_gmail": "anasblanew2@gmail.com"
-    },
-    "kaynel.solutions": {
-      "sender_addresses": ["hello@kaynel.solutions"],
-      "seed_gmail": "passedai@gmail.com"
-    },
-    "passedai.io": {
-      "sender_addresses": ["hello@passedai.io"],
-      "seed_gmail": "testkaynel@gmail.com"
     }
   }
 }

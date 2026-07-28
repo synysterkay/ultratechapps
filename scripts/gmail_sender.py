@@ -689,7 +689,8 @@ class GmailSender:
 
         # One email per recipient per process run — suppress duplicates so a
         # user never receives two emails of the same app at once.
-        dedup_key = (to_email or '').lower().strip()
+        # Warming intentionally sends many emails to the same seed inbox.
+        dedup_key = None if is_warming else (to_email or '').lower().strip()
         if dedup_key and dedup_key in GmailSender._emailed_recipients:
             print(f"   ⏭️ Duplicate suppressed — already emailed {to_email} this run")
             return 'duplicate'
