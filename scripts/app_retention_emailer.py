@@ -700,10 +700,10 @@ class AppRetentionEmailer:
         'Loud EQ',
         'Loudify',
         'Volume Booster Pro',
-        // Red Flag Scanner AI — behavioral via Firebase email_events (Selka), no 30-day drip.
-        // See BREAKUP_EMAILS_PLAN.md.
-        // Fresh Start: Breakup Therapy — welcome + behavioral TBD, no 30-day drip.
-        'SoulPlan: Plan Dates Together',
+        # Red Flag Scanner AI — behavioral via Firebase email_events (Selka), no 30-day drip.
+        # Fresh Start: Breakup Therapy — welcome + behavioral TBD, no 30-day drip.
+        # SoulPlan — welcome + behavioral edge functions, no 30-day drip.
+        # See BREAKUP_EMAILS_PLAN.md.
         'PupShape: Dog Weight Loss Plan',
         'Ai Boyfriend: Virtual Love',
         'Ai Girlfriend: Virtual Love',
