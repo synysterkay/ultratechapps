@@ -10,7 +10,7 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
 import { BOYFRIEND_EMAILS } from "./boyfriend-emails.ts";
 import { GIRLFRIEND_EMAILS } from "./girlfriend-emails.ts";
-import { SENDER_POOL_FULL as SENDER_POOL, SENDER_POOL_PREDICTIFY, SENDER_POOL_THESIS } from "../_shared/sender_pool.ts";
+import { SENDER_POOL_FULL as SENDER_POOL, SENDER_POOL_PREDICTIFY, SENDER_POOL_THESIS, SENDER_POOL_FRESH_START, SENDER_POOL_SELKA } from "../_shared/sender_pool.ts";
 import { hasEmailCredentials, isSendFailureBounce, resolveSender, sendEmail } from "../_shared/email_transport.ts";
 import { recordHardBounce } from "../_shared/email_suppressions.ts";
 
@@ -61,6 +61,12 @@ function getSenderForApp(appId: string) {
   ) {
     const pick = SENDER_POOL_PREDICTIFY[Math.floor(Math.random() * SENDER_POOL_PREDICTIFY.length)];
     return resolveSender(pick, appId);
+  }
+  if (appId === "breakup_therapy" || appId === "fresh_start") {
+    return resolveSender(SENDER_POOL_FRESH_START[0], "fresh_start");
+  }
+  if (appId === "red_flag_scanner") {
+    return resolveSender(SENDER_POOL_SELKA[0], "red_flag_scanner");
   }
   const pick = SENDER_POOL[Math.floor(Math.random() * SENDER_POOL.length)];
   return resolveSender(pick, appId);
@@ -1245,6 +1251,7 @@ Deno.serve(async (req: Request) => {
       redflag_scanner: "red_flag_scanner",
       fresh_start: "breakup_therapy",
     };
+    const welcomedAppId = rawAppId;
     const app_id = APP_ID_ALIASES[rawAppId] || rawAppId;
 
     const appConfig = APP_CONFIG[app_id];
@@ -1269,7 +1276,7 @@ Deno.serve(async (req: Request) => {
       .from("welcomed_users")
       .select("email")
       .eq("email", emailNorm)
-      .eq("app_id", app_id)
+      .eq("app_id", welcomedAppId)
       .maybeSingle();
     if (alreadyWelcomed) {
       return new Response(
@@ -1298,7 +1305,7 @@ Deno.serve(async (req: Request) => {
     }
 
     const emailData = appConfig.emails[lang];
-    const sender = getSenderForApp(app_id);
+    const sender = getSenderForApp(app_id === "breakup_therapy" ? "fresh_start" : app_id);
 
     // Attribution context — same shape as retention/streak/matchday sends
     const ref = await userRef(emailNorm);
@@ -1315,7 +1322,7 @@ Deno.serve(async (req: Request) => {
       : buildHtml(emailData, appConfig, lang, sender.name, utmCtx, firstName);
 
     const tags = [
-      { name: "app", value: sanitizeTagValue(app_id) },
+      { name: "app", value: sanitizeTagValue(welcomedAppId) },
       { name: "kind", value: "welcome" },
       { name: "email_num", value: "1" },
       { name: "cycle", value: "1" },
@@ -1365,7 +1372,7 @@ Deno.serve(async (req: Request) => {
     await supabase.from("welcomed_users").upsert(
       {
         email: emailNorm,
-        app_id,
+        app_id: welcomedAppId,
         firebase_uid: uid ? String(uid) : null,
         language: lang,
         welcomed_at: new Date().toISOString(),

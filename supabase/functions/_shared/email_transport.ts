@@ -19,6 +19,14 @@ const PREDICTIFY_APPS = new Set([
   "horse_racing",
   "predictify_crypto",
 ]);
+/** Fresh Start + Selka — breakuprelief.com (ZeptoMail Agent 2). */
+const BREAKUP_APPS = new Set([
+  "fresh_start",
+  "breakup_therapy",
+  "red_flag_scanner",
+  "redflag",
+]);
+const SELKA_APPS = new Set(["red_flag_scanner", "redflag"]);
 
 export interface EmailTag {
   name: string;
@@ -83,8 +91,28 @@ export function isPredictifyAppTag(app: string): boolean {
   return PREDICTIFY_APPS.has(app.toLowerCase());
 }
 
+export function isBreakupAppTag(app: string): boolean {
+  return BREAKUP_APPS.has(app.toLowerCase());
+}
+
+export function isSelkaAppTag(app: string): boolean {
+  return SELKA_APPS.has(app.toLowerCase());
+}
+
 export function isZeptomailAllowedApp(app: string): boolean {
-  return isThesisAppTag(app) || isPredictifyAppTag(app);
+  return isThesisAppTag(app) || isPredictifyAppTag(app) || isBreakupAppTag(app);
+}
+
+/** Agent 1 (thesis/predictify) vs Agent 2 (breakuprelief.com) send tokens. */
+export function zeptomailApiKeyForApp(app: string): string {
+  if (isBreakupAppTag(app)) {
+    return (
+      Deno.env.get("ZEPTOMAIL_BREAKUP_API_KEY") ||
+      Deno.env.get("ZEPTOMAIL_API_KEY") ||
+      ""
+    );
+  }
+  return Deno.env.get("ZEPTOMAIL_API_KEY") || "";
 }
 
 /** Resolve ZeptoMail From address for a given app slug. */
@@ -107,6 +135,18 @@ export function zeptomailSenderForApp(app: string): SenderIdentity {
       name: Deno.env.get("PREDICTIFY_ZEPTOMAIL_SENDER_NAME") || "Predictify",
     };
   }
+  if (isSelkaAppTag(app)) {
+    return {
+      email: Deno.env.get("ZEPTOMAIL_SELKA_SENDER_EMAIL") || "selka@breakuprelief.com",
+      name: Deno.env.get("ZEPTOMAIL_SELKA_SENDER_NAME") || "Selka",
+    };
+  }
+  if (isBreakupAppTag(app)) {
+    return {
+      email: Deno.env.get("ZEPTOMAIL_BREAKUP_SENDER_EMAIL") || "hello@breakuprelief.com",
+      name: Deno.env.get("ZEPTOMAIL_BREAKUP_SENDER_NAME") || "Casey",
+    };
+  }
   return {
     email: Deno.env.get("ZEPTOMAIL_SENDER_EMAIL") || "hello@thesisgenerator.io",
     name: Deno.env.get("ZEPTOMAIL_SENDER_NAME") || "Predictify",
@@ -127,7 +167,10 @@ export function hasEmailCredentials(): boolean {
     return !!Deno.env.get("SMTP2GO_API_KEY");
   }
   if (provider === "zeptomail") {
-    return !!Deno.env.get("ZEPTOMAIL_API_KEY");
+    return !!(
+      Deno.env.get("ZEPTOMAIL_API_KEY") ||
+      Deno.env.get("ZEPTOMAIL_BREAKUP_API_KEY")
+    );
   }
   return !!Deno.env.get("RESEND_API_KEY");
 }
@@ -318,9 +361,9 @@ async function sendViaSmtp2go(params: SendEmailParams): Promise<SendEmailResult>
 }
 
 async function sendViaZeptomail(params: SendEmailParams): Promise<SendEmailResult> {
-  const apiKey = Deno.env.get("ZEPTOMAIL_API_KEY") || "";
-  const apiUrl = Deno.env.get("ZEPTOMAIL_API_URL") || "https://api.zeptomail.eu/v1.1/email";
   const app = tagApp(params);
+  const apiKey = zeptomailApiKeyForApp(app);
+  const apiUrl = Deno.env.get("ZEPTOMAIL_API_URL") || "https://api.zeptomail.eu/v1.1/email";
   const resolved = resolveSender({ email: params.fromEmail, name: params.fromName }, app);
 
   const mimeHeaders: Record<string, string> = {};
@@ -384,7 +427,7 @@ export async function sendEmail(params: SendEmailParams): Promise<SendEmailResul
         status: 503,
         details: {
           paused: true,
-          message: "ZeptoMail — thesis + predictify apps only",
+          message: "ZeptoMail — app not on verified-domain allowlist",
           app: app || "(missing app tag)",
         },
       };

@@ -32,7 +32,10 @@ const SENDER_POOL = [
 ];
 
 // Pick a random sender for each welcome email (spreads reputation)
-function getRandomSender() {
+function getRandomSender(projectId) {
+  if (projectId === "breakuptherapy-e7dc0") {
+    return resolveSender({ email: "hello@breakuprelief.com", name: "Casey" }, "fresh_start");
+  }
   return resolveSender(SENDER_POOL[Math.floor(Math.random() * SENDER_POOL.length)]);
 }
 
@@ -387,6 +390,12 @@ exports.sendWelcomeEmail = onDocumentCreated(
     return null;
   }
 
+  // Fresh Start welcome on ZeptoMail goes through Supabase check-new-users
+  // (hello@breakuprelief.com). Skip Firebase instant send to avoid double welcome.
+  if (projectId === "breakuptherapy-e7dc0" && emailProviderName() === "zeptomail") {
+    return null;
+  }
+
   const appConfig = APP_CONFIG[projectId];
 
   if (!appConfig) {
@@ -394,8 +403,9 @@ exports.sendWelcomeEmail = onDocumentCreated(
     return null;
   }
 
-  const apiKey = (useMailgun || useSmtp2go) ? "" : resendApiKey.value();
-  if (!hasEmailCredentials(apiKey)) {
+  const apiKey = (useMailgun || useSmtp2go || emailProviderName() === "zeptomail") ? "" : resendApiKey.value();
+  const appTag = projectId === "breakuptherapy-e7dc0" ? "fresh_start" : undefined;
+  if (!hasEmailCredentials(apiKey, appTag)) {
     console.error("❌ Email credentials not set (RESEND_API_KEY, MAILGUN_API_KEY, or SMTP2GO_API_KEY)");
     return null;
   }
@@ -427,7 +437,7 @@ exports.sendWelcomeEmail = onDocumentCreated(
     return null;
   }
 
-  const sender = getRandomSender();
+  const sender = getRandomSender(projectId);
   const html = buildHtml(emailData, appConfig, language, sender.name);
 
   try {
@@ -438,6 +448,7 @@ exports.sendWelcomeEmail = onDocumentCreated(
       toEmail: userEmail,
       subject: emailData.subject,
       html,
+      appTag,
     });
     console.log(`✅ Welcome email sent to ${userEmail}`);
 

@@ -65,12 +65,26 @@ def _is_thesis_app(app):
 
 
 def _is_predictify_app(app):
-    return app in {'predictify', 'predictify_nba', 'horse_racing'}
+    return app in {'predictify', 'predictify_nba', 'horse_racing', 'predictify_crypto'}
+
+
+def _is_breakup_app(app):
+    return app in {'fresh_start', 'breakup_therapy', 'red_flag_scanner', 'redflag'}
+
+
+def _is_selka_app(app):
+    return app in {'red_flag_scanner', 'redflag'}
 
 
 def _is_zeptomail_allowed_app(app):
     """Apps permitted to send when EMAIL_PROVIDER=zeptomail."""
-    return _is_thesis_app(app) or _is_predictify_app(app)
+    return _is_thesis_app(app) or _is_predictify_app(app) or _is_breakup_app(app)
+
+
+def _zeptomail_api_key(app=None):
+    if _is_breakup_app(app):
+        return os.getenv('ZEPTOMAIL_BREAKUP_API_KEY') or os.getenv('ZEPTOMAIL_API_KEY', '')
+    return os.getenv('ZEPTOMAIL_API_KEY', '')
 
 
 def _email_provider():
@@ -101,6 +115,8 @@ def _api_key_env_name():
 
 def has_email_credentials() -> bool:
     """True if the active EMAIL_PROVIDER has the required API key set."""
+    if _is_zeptomail():
+        return bool(_zeptomail_api_key() or os.getenv('ZEPTOMAIL_BREAKUP_API_KEY'))
     return bool(os.getenv(_api_key_env_name()))
 
 
@@ -137,6 +153,8 @@ class GmailSender:
         self._use_smtp2go = _is_smtp2go()
         self._use_zeptomail = _is_zeptomail()
         self.api_key = os.getenv(_api_key_env_name())
+        if self._use_zeptomail and not self.api_key:
+            self.api_key = os.getenv('ZEPTOMAIL_BREAKUP_API_KEY', '')
         self.mailgun_domain = os.getenv('MAILGUN_DOMAIN', 'passedai.io')
         self._explicit_sender_email = sender_email is not None
         self._explicit_sender_name = sender_name is not None
@@ -159,7 +177,7 @@ class GmailSender:
         self.delay_between_emails = float(os.getenv(delay_env, '0.25'))
         self.connected = False
 
-        if not self.api_key:
+        if not self.api_key and not (self._use_zeptomail and os.getenv('ZEPTOMAIL_BREAKUP_API_KEY')):
             raise ValueError(f"{_api_key_env_name()} must be set")
 
     @classmethod
@@ -447,6 +465,10 @@ class GmailSender:
                 os.getenv('ZEPTOMAIL_THESIS_SENDER_EMAIL')
                 or os.getenv('ZEPTOMAIL_SENDER_EMAIL', 'hello@thesisgenerator.io')
             )
+        if _is_selka_app(app):
+            return os.getenv('ZEPTOMAIL_SELKA_SENDER_EMAIL', 'selka@breakuprelief.com')
+        if _is_breakup_app(app):
+            return os.getenv('ZEPTOMAIL_BREAKUP_SENDER_EMAIL', 'hello@breakuprelief.com')
         if sender_email and '@predictifyfootball.com' in (sender_email or '').lower():
             return sender_email
         return os.getenv('ZEPTOMAIL_SENDER_EMAIL', 'hello@thesisgenerator.io')
@@ -855,11 +877,12 @@ class GmailSender:
         if ref_id:
             payload['client_reference'] = str(ref_id)[:256]
 
+        zepto_key = _zeptomail_api_key(app) or self.api_key
         try:
             resp = requests.post(
                 self.ZEPTOMAIL_API_URL,
                 headers={
-                    'Authorization': f'Zoho-enczapikey {self.api_key}',
+                    'Authorization': f'Zoho-enczapikey {zepto_key}',
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },

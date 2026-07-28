@@ -1,10 +1,21 @@
 /**
  * Pluggable email transport for Firebase Cloud Functions.
  * EMAIL_PROVIDER: resend | mailgun | smtp2go | zeptomail
+ *
+ * ZeptoMail Agent 2 (breakuprelief.com): set ZEPTOMAIL_BREAKUP_API_KEY for
+ * Fresh Start + Selka Firebase sends. Agent 1 key stays on ZEPTOMAIL_API_KEY.
  */
 
 const https = require("https");
 const querystring = require("querystring");
+
+const BREAKUP_APPS = new Set([
+  "fresh_start",
+  "breakup_therapy",
+  "red_flag_scanner",
+  "redflag",
+]);
+const SELKA_APPS = new Set(["red_flag_scanner", "redflag"]);
 
 function emailProvider() {
   const p = (process.env.EMAIL_PROVIDER || "resend").toLowerCase();
@@ -14,12 +25,27 @@ function emailProvider() {
   return "resend";
 }
 
+function isBreakupApp(appTag) {
+  return BREAKUP_APPS.has(String(appTag || "").toLowerCase());
+}
+
+function isSelkaApp(appTag) {
+  return SELKA_APPS.has(String(appTag || "").toLowerCase());
+}
+
+function zeptomailApiKey(appTag) {
+  if (isBreakupApp(appTag)) {
+    return process.env.ZEPTOMAIL_BREAKUP_API_KEY || process.env.ZEPTOMAIL_API_KEY;
+  }
+  return process.env.ZEPTOMAIL_API_KEY;
+}
+
 function isEmailSendingPaused() {
   const v = (process.env.EMAIL_SENDING_PAUSED || "").toLowerCase();
   return v === "1" || v === "true" || v === "yes";
 }
 
-function hasEmailCredentials(apiKey) {
+function hasEmailCredentials(apiKey, appTag) {
   const provider = emailProvider();
   if (provider === "mailgun") {
     return !!(process.env.MAILGUN_API_KEY && process.env.MAILGUN_DOMAIN);
@@ -28,12 +54,12 @@ function hasEmailCredentials(apiKey) {
     return !!process.env.SMTP2GO_API_KEY;
   }
   if (provider === "zeptomail") {
-    return !!process.env.ZEPTOMAIL_API_KEY;
+    return !!zeptomailApiKey(appTag);
   }
   return !!apiKey;
 }
 
-function resolveSender(poolSender) {
+function resolveSender(poolSender, appTag) {
   const provider = emailProvider();
   if (provider === "mailgun") {
     const isSelka = String(poolSender.email || "").toLowerCase().startsWith("selka@");
@@ -45,6 +71,18 @@ function resolveSender(poolSender) {
     };
   }
   if (provider === "zeptomail") {
+    if (isSelkaApp(appTag)) {
+      return {
+        email: process.env.ZEPTOMAIL_SELKA_SENDER_EMAIL || "selka@breakuprelief.com",
+        name: poolSender.name || "Selka",
+      };
+    }
+    if (isBreakupApp(appTag)) {
+      return {
+        email: process.env.ZEPTOMAIL_BREAKUP_SENDER_EMAIL || "hello@breakuprelief.com",
+        name: poolSender.name || "Casey",
+      };
+    }
     return {
       email: process.env.ZEPTOMAIL_SENDER_EMAIL || "hello@thesisgenerator.io",
       name: process.env.ZEPTOMAIL_SENDER_NAME || poolSender.name || "Thesis Generator",
@@ -53,9 +91,9 @@ function resolveSender(poolSender) {
   return poolSender;
 }
 
-function sendViaResend(apiKey, fromEmail, fromName, toEmail, subject, html) {
+function sendViaResend(apiKey, fromEmail, fromName, toEmail, subject, html, appTag) {
   return new Promise((resolve, reject) => {
-    const sender = resolveSender({email: fromEmail, name: fromName});
+    const sender = resolveSender({email: fromEmail, name: fromName}, appTag);
     const payload = JSON.stringify({
       from: `${fromName} <${sender.email}>`,
       to: [toEmail],
@@ -93,11 +131,11 @@ function sendViaResend(apiKey, fromEmail, fromName, toEmail, subject, html) {
   });
 }
 
-function sendViaMailgun(fromEmail, fromName, toEmail, subject, html) {
+function sendViaMailgun(fromEmail, fromName, toEmail, subject, html, appTag) {
   return new Promise((resolve, reject) => {
     const apiKey = process.env.MAILGUN_API_KEY;
     const domain = process.env.MAILGUN_DOMAIN || "passedai.io";
-    const sender = resolveSender({email: fromEmail, name: fromName});
+    const sender = resolveSender({email: fromEmail, name: fromName}, appTag);
     const body = querystring.stringify({
       from: `${fromName} <${sender.email}>`,
       to: toEmail,
@@ -136,10 +174,10 @@ function sendViaMailgun(fromEmail, fromName, toEmail, subject, html) {
   });
 }
 
-function sendViaSmtp2go(fromEmail, fromName, toEmail, subject, html) {
+function sendViaSmtp2go(fromEmail, fromName, toEmail, subject, html, appTag) {
   return new Promise((resolve, reject) => {
     const apiKey = process.env.SMTP2GO_API_KEY;
-    const sender = resolveSender({email: fromEmail, name: fromName});
+    const sender = resolveSender({email: fromEmail, name: fromName}, appTag);
     const payload = JSON.stringify({
       sender: `${fromName} <${sender.email}>`,
       to: [toEmail],
@@ -178,11 +216,19 @@ function sendViaSmtp2go(fromEmail, fromName, toEmail, subject, html) {
   });
 }
 
-function sendViaZeptomail(fromEmail, fromName, toEmail, subject, html) {
+function sendViaZeptomail(fromEmail, fromName, toEmail, subject, html, appTag) {
   return new Promise((resolve, reject) => {
-    const apiKey = process.env.ZEPTOMAIL_API_KEY;
+    const apiKey = zeptomailApiKey(appTag);
+    if (!apiKey) {
+      reject(new Error("ZEPTOMAIL_BREAKUP_API_KEY not set"));
+      return;
+    }
     const apiUrl = new URL(process.env.ZEPTOMAIL_API_URL || "https://api.zeptomail.eu/v1.1/email");
-    const sender = resolveSender({email: fromEmail, name: fromName});
+    const sender = resolveSender({email: fromEmail, name: fromName}, appTag);
+    const mimeHeaders = {
+      "Reply-To": sender.email,
+      "X-Tag-app": String(appTag || "fresh_start"),
+    };
     const payload = JSON.stringify({
       from: {address: sender.email, name: fromName || sender.name},
       to: [{email_address: {address: toEmail, name: toEmail.split("@")[0] || "User"}}],
@@ -190,7 +236,7 @@ function sendViaZeptomail(fromEmail, fromName, toEmail, subject, html) {
       htmlbody: html,
       track_clicks: false,
       track_opens: false,
-      mime_headers: {"Reply-To": sender.email},
+      mime_headers: mimeHeaders,
     });
 
     const options = {
@@ -223,21 +269,31 @@ function sendViaZeptomail(fromEmail, fromName, toEmail, subject, html) {
   });
 }
 
-async function sendEmail({apiKey, fromEmail, fromName, toEmail, subject, html}) {
+async function sendEmail({apiKey, fromEmail, fromName, toEmail, subject, html, appTag}) {
   if (isEmailSendingPaused()) {
     throw new Error("Email sending paused (EMAIL_SENDING_PAUSED)");
   }
   const provider = emailProvider();
   if (provider === "mailgun") {
-    return sendViaMailgun(fromEmail, fromName, toEmail, subject, html);
+    return sendViaMailgun(fromEmail, fromName, toEmail, subject, html, appTag);
   }
   if (provider === "smtp2go") {
-    return sendViaSmtp2go(fromEmail, fromName, toEmail, subject, html);
+    return sendViaSmtp2go(fromEmail, fromName, toEmail, subject, html, appTag);
   }
   if (provider === "zeptomail") {
-    throw new Error("ZeptoMail review mode — Firebase Selka sends disabled (thesis welcome only via Supabase)");
+    if (!isBreakupApp(appTag)) {
+      throw new Error("ZeptoMail on Firebase — breakup/Selka apps only (use Supabase for thesis/predictify)");
+    }
+    return sendViaZeptomail(fromEmail, fromName, toEmail, subject, html, appTag);
   }
-  return sendViaResend(apiKey, fromEmail, fromName, toEmail, subject, html);
+  return sendViaResend(apiKey, fromEmail, fromName, toEmail, subject, html, appTag);
 }
 
-module.exports = {emailProvider, hasEmailCredentials, resolveSender, sendEmail, isEmailSendingPaused};
+module.exports = {
+  emailProvider,
+  hasEmailCredentials,
+  resolveSender,
+  sendEmail,
+  isEmailSendingPaused,
+  isBreakupApp,
+};

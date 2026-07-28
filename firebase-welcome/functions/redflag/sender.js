@@ -14,12 +14,11 @@ const {isRtl} = require("./translator");
 const {APP_STORE_URL, PLAY_STORE_URL} = require("./templates");
 
 const SENDER_POOL = [
-  {email: "selka@kaynel.solutions", name: "Selka"},
-  {email: "selka@passedai.io", name: "Selka"},
+  { email: "selka@breakuprelief.com", name: "Selka" },
 ];
 
 function pickSender() {
-  return resolveSender(SENDER_POOL[Math.floor(Math.random() * SENDER_POOL.length)]);
+  return resolveSender(SENDER_POOL[0], "red_flag_scanner");
 }
 
 /**
@@ -53,6 +52,7 @@ async function sendSelkaEmail({template, vars, toEmail, locale, resendApiKey}) {
     toEmail,
     subject,
     html,
+    appTag: "red_flag_scanner",
   });
   return res;
 }

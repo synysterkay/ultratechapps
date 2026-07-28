@@ -6,8 +6,10 @@
  * predictifyfootball.com — unverified. predictify.fun — verified but disabled.
  *
  * When EMAIL_PROVIDER=zeptomail, email_transport.ts routes by app tag:
- *   thesis → hello@thesisgenerator.io
- *   predictify / predictify_nba / horse_racing / predictify_crypto → hello@predictifyfootball.com
+ *   thesis → hello@thesisgenerator.io (Agent 1)
+ *   predictify / predictify_nba / horse_racing / predictify_crypto → hello@predictifyfootball.com (Agent 1)
+ *   fresh_start / breakup_therapy → hello@breakuprelief.com (Agent 2)
+ *   red_flag_scanner → selka@breakuprelief.com (Agent 2)
  * When EMAIL_PROVIDER=smtp2go, pool From addresses pass through as-is.
  */
 
@@ -46,10 +48,14 @@ export const SENDER_POOL_THESIS: SenderIdentity[] = [
   { email: "hello@thesisgenerator.io", name: "Thesis Generator" },
 ];
 
-/** Red Flag Scanner (Selka) — selka@ on enabled domains only. */
+/** Fresh Start — breakuprelief.com (ZeptoMail Agent 2). */
+export const SENDER_POOL_FRESH_START: SenderIdentity[] = [
+  { email: "hello@breakuprelief.com", name: "Casey" },
+];
+
+/** Red Flag Scanner (Selka) — breakuprelief.com (ZeptoMail Agent 2). */
 export const SENDER_POOL_SELKA: SenderIdentity[] = [
-  { email: "selka@kaynel.solutions", name: "Selka" },
-  { email: "selka@passedai.io", name: "Selka" },
+  { email: "selka@breakuprelief.com", name: "Selka" },
 ];
 
 /** Resend rejects newlines and subjects over 2000 characters. */

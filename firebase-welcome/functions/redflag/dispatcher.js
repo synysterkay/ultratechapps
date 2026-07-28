@@ -28,7 +28,8 @@ const deepseekApiKey = defineSecret("DEEPSEEK_API_KEY");
 
 const useMailgun = (process.env.EMAIL_PROVIDER || "resend").toLowerCase() === "mailgun";
 const useSmtp2go = (process.env.EMAIL_PROVIDER || "resend").toLowerCase() === "smtp2go";
-const selkaSecrets = useSmtp2go
+const useZeptomail = (process.env.EMAIL_PROVIDER || "resend").toLowerCase() === "zeptomail";
+const selkaSecrets = useZeptomail || useSmtp2go
   ? [deepseekApiKey]
   : useMailgun
     ? [mailgunApiKey, deepseekApiKey]
@@ -153,7 +154,7 @@ exports.onEmailEventCreated = onDocumentCreated(
           vars,
           toEmail: user.email,
           locale,
-          resendApiKey: (useMailgun || useSmtp2go) ? "" : resendApiKey.value(),
+          resendApiKey: (useMailgun || useSmtp2go || useZeptomail) ? "" : resendApiKey.value(),
         });
         await snap.ref.update({
           sent: true,

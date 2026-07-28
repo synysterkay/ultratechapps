@@ -131,6 +131,7 @@ const ZEPTOMAIL_PROJECT_IDS = [
   "predictify-3f30d",
   "horse-racing-f67e8",
   "cryptopredictify",
+  "breakuptherapy-e7dc0",
 ];
 
 const PREDICTIFY_WELCOME_APP_IDS = new Set([
@@ -138,6 +139,8 @@ const PREDICTIFY_WELCOME_APP_IDS = new Set([
   "horse_racing",
   "predictify_crypto",
 ]);
+
+const BREAKUP_WELCOME_APP_IDS = new Set(["fresh_start"]);
 
 function activeProjectIds(): string[] {
   if (isZeptomailReviewMode()) {
@@ -412,12 +415,17 @@ Deno.serve(async (req) => {
       const todayStart = new Date();
       todayStart.setUTCHours(0, 0, 0, 0);
       const isPredictifyWelcome = PREDICTIFY_WELCOME_APP_IDS.has(config.appId);
+      const isBreakupWelcome = BREAKUP_WELCOME_APP_IDS.has(config.appId);
       const dailyCap = isPredictifyWelcome
         ? PREDICTIFY_ZEPTOMAIL_DAILY_CAP
-        : ZEPTOMAIL_DAILY_CAP;
+        : isBreakupWelcome
+          ? parseInt(Deno.env.get("BREAKUP_ZEPTOMAIL_DAILY_CAP") || "200", 10)
+          : ZEPTOMAIL_DAILY_CAP;
       const maxPerRun = isPredictifyWelcome
         ? PREDICTIFY_ZEPTOMAIL_MAX_PER_RUN
-        : ZEPTOMAIL_MAX_PER_RUN;
+        : isBreakupWelcome
+          ? parseInt(Deno.env.get("BREAKUP_ZEPTOMAIL_MAX_PER_RUN") || "20", 10)
+          : ZEPTOMAIL_MAX_PER_RUN;
 
       emailCap = maxPerRun;
       const { count, error: countErr } = await supabase
@@ -430,7 +438,7 @@ Deno.serve(async (req) => {
         results.push(`⚠️ ZeptoMail daily cap lookup failed: ${countErr.message}`);
       } else {
         zeptomailSentToday = count || 0;
-        const label = isPredictifyWelcome ? "predictify" : "thesis";
+        const label = isPredictifyWelcome ? "predictify" : isBreakupWelcome ? "breakup" : "thesis";
         results.push(
           `📬 ZeptoMail ${label}: ${zeptomailSentToday}/${dailyCap} welcomes sent today`,
         );
