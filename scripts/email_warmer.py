@@ -4,8 +4,10 @@ Email Warming System
 Warms sender domains by exchanging emails with Gmail seed accounts.
 
 Two tiers:
-  - Full warming (Cloudflare domains): Send via Resend → Gmail opens via IMAP → Gmail replies
-  - Open-only (other domains): Send via Resend → Gmail opens via IMAP (no replies)
+  - Full warming (Cloudflare domains): Send → Gmail opens via IMAP → Gmail replies
+  - Open-only (ZeptoMail / SMTP2GO domains): Send → Gmail opens via IMAP (no replies)
+
+Product mail keeps track_opens=false; warmup engagement is simulated via IMAP opens.
 
 Usage:
   python3 scripts/email_warmer.py              # Run warming cycle
@@ -117,7 +119,7 @@ def _get_domain_health(domain):
 # ─── SEND VIA RESEND ────────────────────────────────────
 
 def send_warming_email(from_email, from_name, to_email, subject, body, dry_run=False):
-    """Send a warming email via configured provider (SMTP2GO / Resend)."""
+    """Send a warming email via configured provider (ZeptoMail / SMTP2GO / Resend)."""
     if dry_run:
         print(f"   [DRY RUN] Would send: {from_email} → {to_email}: '{subject}'")
         return True
@@ -128,18 +130,24 @@ def send_warming_email(from_email, from_name, to_email, subject, body, dry_run=F
 </div>"""
 
     provider = (os.getenv("EMAIL_PROVIDER") or "resend").lower()
-    if provider in ("smtp2go", "mailgun"):
-        from scripts.gmail_sender import GmailSender
+    if provider in ("smtp2go", "mailgun", "zeptomail"):
+        from scripts.gmail_sender import GmailSender, warming_app_for_sender
+        app = warming_app_for_sender(from_email)
         sender = GmailSender(sender_email=from_email, sender_name=from_name)
         if not sender.connect():
             return False
+        tags = [{"name": "kind", "value": "warming"}]
+        if app:
+            tags.append({"name": "app", "value": app})
         result = sender.send_email(
             to_email, subject, html_body,
-            tags=[{"name": "kind", "value": "warming"}],
+            tags=tags,
         )
         ok = result == "sent"
         if ok:
             print(f"   ✅ Sent: {from_email} → {to_email}: '{subject}'")
+        elif result == "paused" and provider == "zeptomail":
+            print(f"   ⚠️ ZeptoMail skipped warmup — unknown sender domain for {from_email}")
         return ok
 
     if not RESEND_API_KEY:

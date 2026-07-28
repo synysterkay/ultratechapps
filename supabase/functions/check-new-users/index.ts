@@ -132,6 +132,7 @@ const ZEPTOMAIL_PROJECT_IDS = [
   "horse-racing-f67e8",
   "cryptopredictify",
   "breakuptherapy-e7dc0",
+  "soulplan-dateplanner",
 ];
 
 const PREDICTIFY_WELCOME_APP_IDS = new Set([
@@ -140,7 +141,7 @@ const PREDICTIFY_WELCOME_APP_IDS = new Set([
   "predictify_crypto",
 ]);
 
-const BREAKUP_WELCOME_APP_IDS = new Set(["fresh_start"]);
+const BREAKUP_WELCOME_APP_IDS = new Set(["fresh_start", "soulplan"]);
 
 function activeProjectIds(): string[] {
   if (isZeptomailReviewMode()) {

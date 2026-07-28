@@ -4,7 +4,7 @@
 //
 // Setup (ZeptoMail dashboard → each verified domain → Webhooks):
 //   Agent 1: thesisgenerator.io + predictifyfootball.com
-//   Agent 2: breakuprelief.com (Fresh Start + Selka)
+//   Agent 2: breakuprelief.com (Fresh Start + Selka + SoulPlan)
 //   URL:   https://jimcdgkwbbrxgakingtg.supabase.co/functions/v1/zeptomail-webhook
 //   Events: Hard bounced (required)
 //   Agent → Webhooks → Authentication Key (top right) → same as ZEPTOMAIL_WEBHOOK_AUTH_KEY
@@ -28,6 +28,7 @@ const KNOWN_APP_SLUGS = new Set([
   "breakup_therapy",
   "red_flag_scanner",
   "redflag",
+  "soulplan",
 ]);
 
 function parsePayload(rawBody: string): Record<string, unknown> {
@@ -246,6 +247,7 @@ function inferApp(payload: Record<string, unknown>, senderDomain: string | null)
   if (clientRef.includes("horse_racing") || clientRef.includes("horse")) return "horse_racing";
   if (clientRef.includes("thesis")) return "thesis_generator";
   if (clientRef.includes("predictify")) return "predictify";
+  if (clientRef.includes("soulplan")) return "soulplan";
   if (clientRef.includes("fresh_start") || clientRef.includes("breakup")) return "fresh_start";
   if (clientRef.includes("red_flag") || clientRef.includes("redflag") || clientRef.includes("selka")) {
     return "red_flag_scanner";

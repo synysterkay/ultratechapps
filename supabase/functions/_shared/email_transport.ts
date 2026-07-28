@@ -19,13 +19,15 @@ const PREDICTIFY_APPS = new Set([
   "horse_racing",
   "predictify_crypto",
 ]);
-/** Fresh Start + Selka — breakuprelief.com (ZeptoMail Agent 2). */
+/** Fresh Start + Selka + SoulPlan — breakuprelief.com (ZeptoMail Agent 2). */
 const BREAKUP_APPS = new Set([
   "fresh_start",
   "breakup_therapy",
   "red_flag_scanner",
   "redflag",
+  "soulplan",
 ]);
+const SOULPLAN_APPS = new Set(["soulplan"]);
 const SELKA_APPS = new Set(["red_flag_scanner", "redflag"]);
 
 export interface EmailTag {
@@ -99,6 +101,10 @@ export function isSelkaAppTag(app: string): boolean {
   return SELKA_APPS.has(app.toLowerCase());
 }
 
+export function isSoulplanAppTag(app: string): boolean {
+  return SOULPLAN_APPS.has(app.toLowerCase());
+}
+
 export function isZeptomailAllowedApp(app: string): boolean {
   return isThesisAppTag(app) || isPredictifyAppTag(app) || isBreakupAppTag(app);
 }
@@ -139,6 +145,15 @@ export function zeptomailSenderForApp(app: string): SenderIdentity {
     return {
       email: Deno.env.get("ZEPTOMAIL_SELKA_SENDER_EMAIL") || "selka@breakuprelief.com",
       name: Deno.env.get("ZEPTOMAIL_SELKA_SENDER_NAME") || "Selka",
+    };
+  }
+  if (isSoulplanAppTag(app)) {
+    return {
+      email:
+        Deno.env.get("ZEPTOMAIL_SOULPLAN_SENDER_EMAIL") ||
+        Deno.env.get("ZEPTOMAIL_BREAKUP_SENDER_EMAIL") ||
+        "hello@breakuprelief.com",
+      name: Deno.env.get("ZEPTOMAIL_SOULPLAN_SENDER_NAME") || "SoulPlan",
     };
   }
   if (isBreakupAppTag(app)) {

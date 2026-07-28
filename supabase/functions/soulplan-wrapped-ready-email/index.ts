@@ -20,13 +20,13 @@
 // That trigger POSTs to this function; this function only renders + sends.
 
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
-import { SENDER_POOL_FULL as SENDER_POOL } from "../_shared/sender_pool.ts";
+import { SENDER_POOL_SOULPLAN as SENDER_POOL } from "../_shared/sender_pool.ts";
 import { hasEmailCredentials, resolveSender, sendEmail } from "../_shared/email_transport.ts";
 
 const FUNCTION_AUTH_KEY = Deno.env.get("FUNCTION_AUTH_KEY") || "";
 
 function pickSender() {
-  return resolveSender(SENDER_POOL[Math.floor(Math.random() * SENDER_POOL.length)]);
+  return resolveSender(SENDER_POOL[0], "soulplan");
 }
 
 // ── BCP-47 → base language (matches LANG_NORMALIZE in check-new-users) ──

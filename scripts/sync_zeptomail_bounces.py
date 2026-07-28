@@ -31,6 +31,12 @@ def parse_args():
     parser.add_argument("--days", type=int, default=7, help="Lookback window")
     parser.add_argument("--limit", type=int, default=500, help="Max logs to scan")
     parser.add_argument("--app", default="thesis_generator", help="App slug for suppressions")
+    parser.add_argument(
+        "--agent",
+        choices=["agent1", "agent2"],
+        default="agent1",
+        help="agent1=thesis/predictify token, agent2=breakuprelief token",
+    )
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args()
 
@@ -118,9 +124,20 @@ def extract_recipients(entry: dict) -> list[str]:
 
 def main():
     args = parse_args()
-    api_key = os.getenv("ZEPTOMAIL_API_KEY", "").strip()
+    if args.agent == "agent2":
+        api_key = os.getenv("ZEPTOMAIL_BREAKUP_API_KEY", "").strip()
+        if not api_key:
+            api_key = os.getenv("ZEPTOMAIL_API_KEY", "").strip()
+        default_app = args.app if args.app != "thesis_generator" else "fresh_start"
+    else:
+        api_key = os.getenv("ZEPTOMAIL_API_KEY", "").strip()
+        default_app = args.app
+    app_slug = args.app if args.app != "thesis_generator" or args.agent == "agent1" else default_app
+
     if not api_key:
-        raise SystemExit("Set ZEPTOMAIL_API_KEY")
+        raise SystemExit(
+            "Set ZEPTOMAIL_API_KEY (agent1) or ZEPTOMAIL_BREAKUP_API_KEY (agent2)"
+        )
 
     api_base = os.getenv("ZEPTOMAIL_API_URL", "https://api.zeptomail.eu/v1.1").rstrip("/email")
     if api_base.endswith("/email"):
@@ -142,12 +159,12 @@ def main():
         client_ref = info.get("client_reference") or ""
 
         for recipient in extract_recipients(entry):
-            dedupe = (recipient, args.app)
+            dedupe = (recipient, app_slug)
             if dedupe in seen:
                 continue
             seen.add(dedupe)
             suppressions.extend([
-                {"recipient": recipient, "app": args.app, "reason": "bounce"},
+                {"recipient": recipient, "app": app_slug, "reason": "bounce"},
                 {"recipient": recipient, "app": "*", "reason": "bounce"},
             ])
             events.append({
@@ -157,7 +174,7 @@ def main():
                 "occurred_at": occurred_at,
                 "recipient": recipient,
                 "sender_domain": sender_domain,
-                "app": args.app,
+                "app": app_slug,
                 "kind": "welcome",
                 "email_num": "1",
                 "cycle": "1",

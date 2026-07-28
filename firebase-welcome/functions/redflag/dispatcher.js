@@ -21,14 +21,16 @@ const admin = require("firebase-admin");
 const {TEMPLATES} = require("./templates");
 const {translateTemplate, normalizeLocale} = require("./translator");
 const {sendSelkaEmail} = require("./sender");
+const {isZeptomailProvider} = require("../zeptomail_env");
+const {isRecipientBlocked} = require("../suppression_check");
 
 const resendApiKey = defineSecret("RESEND_API_KEY");
 const mailgunApiKey = defineSecret("MAILGUN_API_KEY");
 const deepseekApiKey = defineSecret("DEEPSEEK_API_KEY");
 
-const useMailgun = (process.env.EMAIL_PROVIDER || "resend").toLowerCase() === "mailgun";
-const useSmtp2go = (process.env.EMAIL_PROVIDER || "resend").toLowerCase() === "smtp2go";
-const useZeptomail = (process.env.EMAIL_PROVIDER || "resend").toLowerCase() === "zeptomail";
+const useMailgun = (process.env.EMAIL_PROVIDER || "zeptomail").toLowerCase() === "mailgun";
+const useSmtp2go = (process.env.EMAIL_PROVIDER || "zeptomail").toLowerCase() === "smtp2go";
+const useZeptomail = isZeptomailProvider();
 const selkaSecrets = useZeptomail || useSmtp2go
   ? [deepseekApiKey]
   : useMailgun
@@ -126,6 +128,11 @@ exports.onEmailEventCreated = onDocumentCreated(
       const user = userSnap.data();
       if (!user.email) {
         await markSkipped(snap.ref, "no_email");
+        return null;
+      }
+
+      if (await isRecipientBlocked(user.email, "red_flag_scanner")) {
+        await markSkipped(snap.ref, "suppressed");
         return null;
       }
 

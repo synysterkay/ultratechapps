@@ -3,6 +3,7 @@ const { setGlobalOptions } = require("firebase-functions/v2");
 const { defineSecret } = require("firebase-functions/params");
 const admin = require("firebase-admin");
 const {sendEmail, resolveSender, hasEmailCredentials} = require("./email_transport");
+const {isZeptomailProvider} = require("./zeptomail_env");
 
 admin.initializeApp();
 
@@ -13,11 +14,12 @@ const resendApiKey = defineSecret("RESEND_API_KEY");
 const mailgunApiKey = defineSecret("MAILGUN_API_KEY");
 
 function emailProviderName() {
-  return (process.env.EMAIL_PROVIDER || "resend").toLowerCase();
+  return (process.env.EMAIL_PROVIDER || "zeptomail").toLowerCase();
 }
 const useMailgun = emailProviderName() === "mailgun";
 const useSmtp2go = emailProviderName() === "smtp2go";
-const welcomeEmailSecrets = useSmtp2go
+const useZeptomail = isZeptomailProvider();
+const welcomeEmailSecrets = useZeptomail || useSmtp2go
   ? []
   : useMailgun
     ? [mailgunApiKey]
@@ -35,6 +37,9 @@ const SENDER_POOL = [
 function getRandomSender(projectId) {
   if (projectId === "breakuptherapy-e7dc0") {
     return resolveSender({ email: "hello@breakuprelief.com", name: "Casey" }, "fresh_start");
+  }
+  if (projectId === "soulplan-dateplanner") {
+    return resolveSender({ email: "hello@breakuprelief.com", name: "SoulPlan" }, "soulplan");
   }
   return resolveSender(SENDER_POOL[Math.floor(Math.random() * SENDER_POOL.length)]);
 }
@@ -220,7 +225,7 @@ const APP_CONFIG = {
           "I need to tell you something before you even open the app. Most people download Red Flag Scanner AI, stare at the home screen, and then close it. They think they need a 'big' reason to use it. They wait until they're already crying on the bathroom floor. Don't be one of them.",
           "The magic isn't in waiting for a crisis. It's in the tiny, 30-second check. That gut feeling you had yesterday about a text that felt 'off'? That's the exact moment you should have opened the app. The value isn't in the big blow-up; it's in catching the small, quiet red flags before they become a screaming chorus.",
           "There's one button on the home screen: 'Scan a Conversation.' That's it. Don't overthink it. Don't save it for a 'real' fight. Screenshot the text that made your stomach twist. The one where the apology felt like another accusation. Let the AI look at the language for you. It takes 30 seconds. You get an instant toxicity score and a breakdown of what the words are actually doing.",
-          "Open the app right now. Before you finish this email. Don't wait for 'proof.' Your gut feeling IS the proof. Hit 'Scan a Conversation' with the last text that pinged your radar. Just do it. P.S. The first scan is always the hardest. The 800+ people who avoided major heartache all started with one 30-second scan of something 'small.'"
+          "Open the app right now. Before you finish this email. Don't wait for 'proof.' Your gut feeling IS the proof. Hit 'Scan a Conversation' with the last text that pinged your radar. Just do it. P.S. The first scan is always the hardest. The people who caught it early all started with one 30-second scan of something 'small.'"
         ],
       },
     },
@@ -390,9 +395,12 @@ exports.sendWelcomeEmail = onDocumentCreated(
     return null;
   }
 
-  // Fresh Start welcome on ZeptoMail goes through Supabase check-new-users
+  // Fresh Start + SoulPlan welcome on ZeptoMail goes through Supabase check-new-users
   // (hello@breakuprelief.com). Skip Firebase instant send to avoid double welcome.
-  if (projectId === "breakuptherapy-e7dc0" && emailProviderName() === "zeptomail") {
+  if (
+    (projectId === "breakuptherapy-e7dc0" || projectId === "soulplan-dateplanner") &&
+    emailProviderName() === "zeptomail"
+  ) {
     return null;
   }
 
@@ -404,7 +412,12 @@ exports.sendWelcomeEmail = onDocumentCreated(
   }
 
   const apiKey = (useMailgun || useSmtp2go || emailProviderName() === "zeptomail") ? "" : resendApiKey.value();
-  const appTag = projectId === "breakuptherapy-e7dc0" ? "fresh_start" : undefined;
+  const appTag =
+    projectId === "breakuptherapy-e7dc0"
+      ? "fresh_start"
+      : projectId === "soulplan-dateplanner"
+        ? "soulplan"
+        : undefined;
   if (!hasEmailCredentials(apiKey, appTag)) {
     console.error("❌ Email credentials not set (RESEND_API_KEY, MAILGUN_API_KEY, or SMTP2GO_API_KEY)");
     return null;

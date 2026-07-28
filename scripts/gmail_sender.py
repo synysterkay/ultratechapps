@@ -69,7 +69,11 @@ def _is_predictify_app(app):
 
 
 def _is_breakup_app(app):
-    return app in {'fresh_start', 'breakup_therapy', 'red_flag_scanner', 'redflag'}
+    return app in {'fresh_start', 'breakup_therapy', 'red_flag_scanner', 'redflag', 'soulplan'}
+
+
+def _is_soulplan_app(app):
+    return app in {'soulplan'}
 
 
 def _is_selka_app(app):
@@ -79,6 +83,20 @@ def _is_selka_app(app):
 def _is_zeptomail_allowed_app(app):
     """Apps permitted to send when EMAIL_PROVIDER=zeptomail."""
     return _is_thesis_app(app) or _is_predictify_app(app) or _is_breakup_app(app)
+
+
+def warming_app_for_sender(sender_email):
+    """Map a From address to the ZeptoMail app tag for domain warmup sends."""
+    addr = (sender_email or '').lower().strip()
+    if addr.startswith('selka@') or '@selka.' in addr:
+        return 'red_flag_scanner'
+    if 'breakuprelief.com' in addr:
+        return 'fresh_start'
+    if 'predictifyfootball.com' in addr:
+        return 'predictify'
+    if 'thesisgenerator.io' in addr:
+        return 'thesis_generator'
+    return ''
 
 
 def _zeptomail_api_key(app=None):
@@ -467,6 +485,11 @@ class GmailSender:
             )
         if _is_selka_app(app):
             return os.getenv('ZEPTOMAIL_SELKA_SENDER_EMAIL', 'selka@breakuprelief.com')
+        if _is_soulplan_app(app):
+            return (
+                os.getenv('ZEPTOMAIL_SOULPLAN_SENDER_EMAIL')
+                or os.getenv('ZEPTOMAIL_BREAKUP_SENDER_EMAIL', 'hello@breakuprelief.com')
+            )
         if _is_breakup_app(app):
             return os.getenv('ZEPTOMAIL_BREAKUP_SENDER_EMAIL', 'hello@breakuprelief.com')
         if sender_email and '@predictifyfootball.com' in (sender_email or '').lower():
@@ -646,6 +669,9 @@ class GmailSender:
 
         tag_values = _tag_dict(tags)
         app = tag_values.get('app', '')
+        is_warming = tag_values.get('kind') == 'warming'
+        if is_warming and not app:
+            app = warming_app_for_sender(self.sender_email)
 
         if self._use_zeptomail and not _is_zeptomail_allowed_app(app):
             print(f"   ⏸️ ZeptoMail — skipping unsupported app ({app or 'unknown'})")
@@ -655,7 +681,7 @@ class GmailSender:
             print(f"   ⏭️ Suppressed — {to_email} is on the durable suppression list")
             return 'suppressed'
 
-        if not self._under_thesis_cap(app):
+        if not is_warming and not self._under_thesis_cap(app):
             metrics = self._thesis_volume_metrics() or {}
             used = metrics.get('sent_24h', 0) + GmailSender._run_counts['thesis']
             print(f"   ⏭️ Thesis volume cap reached — {used}/{metrics.get('cap', 0)} sent in 24h")

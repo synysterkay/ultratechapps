@@ -10,9 +10,9 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
 import { BOYFRIEND_EMAILS } from "./boyfriend-emails.ts";
 import { GIRLFRIEND_EMAILS } from "./girlfriend-emails.ts";
-import { SENDER_POOL_FULL as SENDER_POOL, SENDER_POOL_PREDICTIFY, SENDER_POOL_THESIS, SENDER_POOL_FRESH_START, SENDER_POOL_SELKA } from "../_shared/sender_pool.ts";
+import { SENDER_POOL_FULL as SENDER_POOL, SENDER_POOL_PREDICTIFY, SENDER_POOL_THESIS, SENDER_POOL_FRESH_START, SENDER_POOL_SELKA, SENDER_POOL_SOULPLAN } from "../_shared/sender_pool.ts";
 import { hasEmailCredentials, isSendFailureBounce, resolveSender, sendEmail } from "../_shared/email_transport.ts";
-import { recordHardBounce } from "../_shared/email_suppressions.ts";
+import { recordHardBounce, isRecipientBlocked } from "../_shared/email_suppressions.ts";
 
 const REF_SALT = Deno.env.get("EMAIL_REF_SALT") || "marketing-tool-v1";
 
@@ -68,6 +68,9 @@ function getSenderForApp(appId: string) {
   if (appId === "red_flag_scanner") {
     return resolveSender(SENDER_POOL_SELKA[0], "red_flag_scanner");
   }
+  if (appId === "soulplan") {
+    return resolveSender(SENDER_POOL_SOULPLAN[0], "soulplan");
+  }
   const pick = SENDER_POOL[Math.floor(Math.random() * SENDER_POOL.length)];
   return resolveSender(pick, appId);
 }
@@ -77,6 +80,7 @@ interface EmailTemplate {
   subject: string;
   cta_text: string;
   body_paragraphs: string[];
+  preheader?: string;
 }
 
 interface AppConfig {
@@ -479,12 +483,13 @@ const APP_CONFIG: Record<string, AppConfig> = {
     googlePlayUrl: "https://play.google.com/store/apps/details?id=com.breakup.therapy.therapyforabreakup.therapistforbreakups",
     emails: {
       en: {
-        subject: "The one mistake 90% of users make at 3AM",
+        subject: "The one mistake most people make at 3AM",
+        preheader: "Emergency Mode is the 30-second exit when your brain won't stop at night.",
         cta_text: "Try Emergency Mode Now",
         body_paragraphs: [
           "It's 3:17 AM and you're staring at the ceiling again. Your brain is replaying that last conversation on a loop. You know you shouldn't check their socials, but your thumb is already hovering. Here's the truth: that moment isn't just pain\u2014it's a critical turning point most people waste.",
           "I used to do the same thing. I'd scroll through old photos until sunrise, then feel wrecked all day. Then I discovered something: the 3AM spiral has a secret exit door. It's not about willpower\u2014it's about having the right tool in your pocket when your brain turns against you.",
-          "Open the app right now and tap 'Emergency Mode' on the home screen. Don't wait until tonight. The first time is the hardest, and I want you to have it ready. It's a 30-second audio guide that literally interrupts the obsessive thought cycle\u2014600+ people use it to fall back asleep instead of falling apart.",
+          "Open the app right now and tap 'Emergency Mode' on the home screen. Don't wait until tonight. The first time is the hardest, and I want you to have it ready. It's a 30-second audio guide that literally interrupts the obsessive thought cycle\u2014many people use it to fall back asleep instead of falling apart.",
           "Tap the button below and try Emergency Mode once right now. Just once. So when 3AM hits tonight, you already know the escape route. P.S. The first user who tried this told me 'It felt like someone finally handed me a life raft in the middle of the ocean.' That someone is you, handing it to yourself.",
         ],
       },
@@ -499,12 +504,13 @@ const APP_CONFIG: Record<string, AppConfig> = {
     emails: {
       en: {
         subject: "Tonight's date is already waiting for you",
+        preheader: "One tap on a mood — tonight's date is ready to send to your partner.",
         cta_text: "Open Tonight's Date",
         body_paragraphs: [
           "You just downloaded SoulPlan, and the trap is the same for almost everyone: open the app, browse a few ideas, close it, mean to come back later. Three weeks pass and the spark is still on the to-do list. The trick to avoid that is also the simplest thing in the app — and it takes 30 seconds tonight.",
           "On the home screen, there's a single card that already has tonight's date pre-picked for the two of you. No questionnaire. No scrolling. Just one tap on a mood (cozy, adventurous, playful or healing) and the AI builds a date you can actually use this evening. The whole point is to remove the planning, not add another inbox.",
           "Open the app right now. Tap the mood that fits tonight. Read the card. If it doesn't quite land, hit \"Show another\" — the AI rotates through different vibes so the second one usually does. When you find the one you love, tap \"Send to partner\" and they get a beautiful celebration screen waiting for them. That's the whole loop.",
-          "Don't save this for the weekend. Tonight is the perfect first date because the bar is low and the surprise is high. Tap below, pick a mood, and watch your partner light up. P.S. The couples who use Tonight's Date in their first 24 hours plan 4x more dates over the next month than the ones who wait. Don't be the ones who wait.",
+          "Don't save this for the weekend. Tonight is the perfect first date because the bar is low and the surprise is high. Tap below, pick a mood, and watch your partner light up. P.S. Couples who try Tonight's Date in their first 24 hours tend to plan more dates over the next month than those who wait. Don't be the ones who wait.",
         ],
       },
       ar: {
@@ -1076,6 +1082,235 @@ function buildThesisWelcomeHtml(
 </html>`;
 }
 
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function welcomeGreeting(language: string, firstName?: string): string {
+  const greetings: Record<string, (n?: string) => string> = {
+    en: (n) => n ? `Hey ${n},` : "Hey there,",
+    ar: (n) => n ? `\u0645\u0631\u062d\u0628\u064b\u0627 ${n}\u060c` : "\u0645\u0631\u062d\u0628\u064b\u0627\u060c",
+    es: (n) => n ? `Hola ${n},` : "Hola,",
+    fr: (n) => n ? `Salut ${n},` : "Salut,",
+    zh: (n) => n ? `\u4f60\u597d ${n}\uff0c` : "\u4f60\u597d\uff0c",
+    hi: (n) => n ? `\u0928\u092e\u0938\u094d\u0924\u0947 ${n},` : "\u0928\u092e\u0938\u094d\u0924\u0947,",
+    pt: (n) => n ? `Ol\u00e1 ${n},` : "Ol\u00e1,",
+    ru: (n) => n ? `\u041f\u0440\u0438\u0432\u0435\u0442, ${n}!` : "\u041f\u0440\u0438\u0432\u0435\u0442,",
+    de: (n) => n ? `Hallo ${n},` : "Hallo,",
+    tr: (n) => n ? `Merhaba ${n},` : "Merhaba,",
+    it: (n) => n ? `Ciao ${n},` : "Ciao,",
+    pp: (n) => n ? `Ol\u00e1 ${n},` : "Ol\u00e1,",
+    id: (n) => n ? `Halo ${n},` : "Halo,",
+    nl: (n) => n ? `Hallo ${n},` : "Hallo,",
+    pl: (n) => n ? `Cze\u015b\u0107 ${n},` : "Cze\u015b\u0107,",
+    ja: (n) => n ? `${n}\u3055\u3093\u3001\u3053\u3093\u306b\u3061\u306f\u3001` : "\u3053\u3093\u306b\u3061\u306f\u3001",
+    ko: (n) => n ? `\uc548\ub155\ud558\uc138\uc694 ${n}\ub2d8,` : "\uc548\ub155\ud558\uc138\uc694,",
+  };
+  return (greetings[language] || greetings.en)(firstName);
+}
+
+function welcomeSignoff(language: string): string {
+  const signoffs: Record<string, string> = {
+    en: "Talk soon,",
+    ar: "\u0625\u0644\u0649 \u0627\u0644\u0644\u0642\u0627\u0621\u060c",
+    es: "Hasta pronto,",
+    fr: "\u00c0 bient\u00f4t,",
+    zh: "\u56de\u5934\u804a\uff0c",
+    hi: "\u091c\u0932\u094d\u0926 \u092c\u093e\u0924 \u0915\u0930\u0924\u0947 \u0939\u0948\u0902,",
+    pt: "At\u00e9 logo,",
+    ru: "\u0414\u043e \u0441\u043a\u043e\u0440\u043e\u0433\u043e,",
+    de: "Bis bald,",
+    tr: "G\u00f6r\u00fc\u015f\u00fcrz,",
+    it: "A presto,",
+    pp: "At\u00e9 breve,",
+    id: "Sampai jumpa,",
+    nl: "Tot snel,",
+    pl: "Do zobaczenia,",
+    ja: "\u307e\u305f\u306d\u3001",
+    ko: "\ub610 \ubd10\uc694,",
+  };
+  return signoffs[language] || signoffs.en;
+}
+
+function welcomeFooter(language: string, appName: string): string {
+  const footers: Record<string, string> = {
+    en: `You're receiving this because you signed up for ${appName}.`,
+    ar: `\u062a\u062a\u0644\u0642\u0649 \u0647\u0630\u0627 \u0627\u0644\u0628\u0631\u064a\u062f \u0644\u0623\u0646\u0643 \u0633\u062c\u0644\u062a \u0641\u064a ${appName}.`,
+    es: `Recibes esto porque te registraste en ${appName}.`,
+    fr: `Vous recevez ceci car vous vous \u00eates inscrit(e) \u00e0 ${appName}.`,
+    zh: `\u60a8\u6536\u5230\u6b64\u90ae\u4ef6\u662f\u56e0\u4e3a\u60a8\u6ce8\u518c\u4e86 ${appName}\u3002`,
+    hi: `\u0906\u092a\u0915\u094b \u092f\u0939 \u0907\u0938\u0932\u093f\u090f \u092e\u093f\u0932 \u0930\u0939\u093e \u0939\u0948 \u0915\u094d\u092f\u094b\u0902\u0915\u093f \u0906\u092a\u0928\u0947 ${appName} \u092e\u0947\u0902 \u0938\u093e\u0907\u0928 \u0905\u092a \u0915\u093f\u092f\u093e\u0964`,
+    pt: `Voc\u00ea est\u00e1 recebendo isso porque se cadastrou no ${appName}.`,
+    ru: `\u0412\u044b \u043f\u043e\u043b\u0443\u0447\u0438\u043b\u0438 \u044d\u0442\u043e \u043f\u0438\u0441\u044c\u043c\u043e, \u043f\u043e\u0442\u043e\u043c\u0443 \u0447\u0442\u043e \u0437\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043e\u0432\u0430\u043b\u0438\u0441\u044c \u0432 ${appName}.`,
+    de: `Du erh\u00e4ltst diese E-Mail, weil du dich bei ${appName} angemeldet hast.`,
+    tr: `Bu e-postay\u0131 ${appName} uygulamas\u0131na kay\u0131t oldu\u011funuz i\u00e7in al\u0131yorsunuz.`,
+    it: `Ricevi questa email perch\u00e9 ti sei registrato su ${appName}.`,
+    pp: `Recebe este email porque se registou no ${appName}.`,
+    id: `Anda menerima email ini karena mendaftar di ${appName}.`,
+    nl: `Je ontvangt dit bericht omdat je je hebt aangemeld voor ${appName}.`,
+    pl: `Otrzymujesz t\u0119 wiadomo\u015b\u0107, poniewa\u017c zarejestroawa\u0142e\u015b si\u0119 w ${appName}.`,
+    ja: `${appName}\u306b\u3054\u767b\u9332\u3044\u305f\u3060\u3044\u305f\u305f\u3081\u3001\u3053\u306e\u30e1\u30fc\u30eb\u3092\u304a\u9001\u308a\u3057\u3066\u3044\u307e\u3059\u3002`,
+    ko: `${appName}\uc5d0 \uac00\uc785\ud558\uc168\uae30 \ub54c\ubb38\uc5d0 \uc774 \uc774\uba54\uc77c\uc744 \ubc1b\uc73c\uc168\uc2b5\ub2c8\ub2e4.`,
+  };
+  return footers[language] || footers.en;
+}
+
+function renderWelcomeBodyParagraphs(
+  paragraphs: string[],
+  language: string,
+): string {
+  const isRtl = language === "ar";
+  const textAlign = isRtl ? "right" : "left";
+  let bodyHtml = "";
+  paragraphs.forEach((p: string, i: number) => {
+    const pHtml = p.replace(/\n/g, "<br>");
+    if (i === 0) {
+      bodyHtml += `<p style="margin:0 0 24px;font-size:18px;color:#1a202c;line-height:1.7;font-weight:500;text-align:${textAlign};">${pHtml}</p>`;
+    } else if (
+      p.includes("P.S.") ||
+      p.includes("P.S") ||
+      p.includes("P.D.") ||
+      p.includes("\u0645\u0644\u0627\u062d\u0638\u0629")
+    ) {
+      bodyHtml += `<div style="margin:28px 0 0;padding:16px 20px;background:#fffbeb;border-radius:10px;border:1px solid #fcd34d;"><p style="margin:0;font-size:15px;color:#92400e;line-height:1.7;text-align:${textAlign};">${pHtml}</p></div>`;
+    } else {
+      bodyHtml += `<p style="margin:0 0 20px;font-size:16px;color:#374151;line-height:1.75;text-align:${textAlign};">${pHtml}</p>`;
+    }
+  });
+  return bodyHtml;
+}
+
+interface BrandedWelcomeTheme {
+  brandLabel: string;
+  tagline: string;
+  pageBg: string;
+  primaryColor: string;
+  accentBg: string;
+  borderColor: string;
+  siteUrl: string;
+  siteLabel: string;
+}
+
+function buildBrandedWelcomeHtml(
+  emailData: EmailTemplate,
+  appConfig: AppConfig,
+  language: string,
+  senderName: string,
+  theme: BrandedWelcomeTheme,
+  utmCtx?: { app: string; emailNum: string | number; cycle: number; language: string; ref: string; kind: string },
+  firstName?: string,
+): string {
+  const isRtl = language === "ar";
+  const dirAttr = isRtl ? ' dir="rtl"' : "";
+  const langAttr = ` lang="${language}"`;
+  const textAlign = isRtl ? "right" : "left";
+  const preheader = emailData.preheader ||
+    emailData.body_paragraphs[0]?.replace(/<[^>]+>/g, "").slice(0, 120) ||
+    emailData.subject;
+
+  const greeting = welcomeGreeting(language, firstName);
+  const signoff = welcomeSignoff(language);
+  const footerText = welcomeFooter(language, appConfig.name);
+  const bodyHtml = renderWelcomeBodyParagraphs(emailData.body_paragraphs, language);
+
+  const appStoreHref = utmCtx ? withUtm(appConfig.appStoreUrl, utmCtx) : appConfig.appStoreUrl;
+  const googlePlayHref = utmCtx ? withUtm(appConfig.googlePlayUrl, utmCtx) : appConfig.googlePlayUrl;
+  const hasIos = !!appConfig.appStoreUrl;
+  const hasAndroid = !!appConfig.googlePlayUrl;
+  const ctaText = emailData.cta_text;
+  const iosLabel = hasIos && hasAndroid ? `${ctaText} (iOS)` : ctaText;
+  const androidLabel = hasIos && hasAndroid ? `${ctaText} (Android)` : ctaText;
+
+  const primaryBtn = (href: string, label: string) =>
+    `<a href="${href}" style="display:inline-block;background:${theme.primaryColor};color:#fff;padding:14px 28px;text-decoration:none;border-radius:999px;font-weight:700;font-size:16px;margin:4px 6px;">${label}</a>`;
+  const iosBtn = hasIos ? primaryBtn(appStoreHref, iosLabel) : "";
+  const androidBtn = hasAndroid
+    ? `<a href="${googlePlayHref}" style="display:inline-block;background:#ffffff;color:${theme.primaryColor};padding:13px 26px;text-decoration:none;border-radius:999px;font-weight:700;font-size:16px;border:2px solid ${theme.primaryColor};margin:4px 6px;">${androidLabel}</a>`
+    : "";
+
+  return `<!DOCTYPE html>
+<html${dirAttr}${langAttr}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="color-scheme" content="light only">
+</head>
+<body style="margin:0;padding:0;background:${theme.pageBg};font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',Roboto,sans-serif;">
+  <span style="display:none!important;visibility:hidden;opacity:0;color:transparent;height:0;width:0;font-size:1px;line-height:1px;">${escapeHtml(preheader)}</span>
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:${theme.pageBg};">
+    <tr><td align="center" style="padding:36px 16px;">
+      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:560px;background:#ffffff;border-radius:18px;box-shadow:0 2px 12px rgba(0,0,0,0.04);overflow:hidden;">
+        <tr><td style="padding:32px 32px 0;">
+          <div style="font-size:22px;font-weight:800;color:${theme.primaryColor};margin-bottom:6px;text-align:${textAlign};">${theme.brandLabel}</div>
+          <p style="margin:0 0 22px;font-size:13px;color:#64748b;text-align:${textAlign};">${theme.tagline}</p>
+          <p style="margin:0 0 20px;font-size:17px;color:#6b7280;text-align:${textAlign};">${greeting}</p>
+          ${bodyHtml}
+          <div style="text-align:center;margin:32px 0 8px;">
+            ${iosBtn}
+            ${androidBtn}
+          </div>
+          <p style="margin:0 0 24px;font-size:13px;color:#94a3b8;text-align:center;">
+            ${hasIos ? `<a href="${appStoreHref}" style="color:#94a3b8;text-decoration:underline;">iOS</a>` : ""}
+            ${hasIos && hasAndroid ? " &nbsp;·&nbsp; " : ""}
+            ${hasAndroid ? `<a href="${googlePlayHref}" style="color:#94a3b8;text-decoration:underline;">Android</a>` : ""}
+          </p>
+          <p style="margin:0 0 4px;font-size:15px;color:#374151;text-align:${textAlign};">${signoff}<br><strong style="color:#1e293b;">${senderName}</strong></p>
+        </td></tr>
+        <tr><td style="padding:22px 32px 32px;border-top:1px solid ${theme.borderColor};background:${theme.accentBg};text-align:center;">
+          <p style="margin:0 0 6px;font-size:12px;color:#94a3b8;">${theme.siteLabel} · <a href="${theme.siteUrl}" style="color:#94a3b8;text-decoration:underline;">${theme.siteUrl.replace(/^https?:\/\//, "")}</a></p>
+          <p style="margin:0;font-size:11px;color:#cbd5e1;">San Francisco, CA · ${footerText}</p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+}
+
+function buildBreakupWelcomeHtml(
+  emailData: EmailTemplate,
+  appConfig: AppConfig,
+  language: string,
+  senderName: string,
+  utmCtx?: { app: string; emailNum: string | number; cycle: number; language: string; ref: string; kind: string },
+  firstName?: string,
+): string {
+  return buildBrandedWelcomeHtml(emailData, appConfig, language, senderName, {
+    brandLabel: "\ud83c\udf19 Fresh Start",
+    tagline: "Breakup therapy in your pocket — when 3AM hits hardest.",
+    pageBg: "#f0f9ff",
+    primaryColor: "#0284c7",
+    accentBg: "#f8fafc",
+    borderColor: "#bae6fd",
+    siteUrl: "https://breakuprelief.com",
+    siteLabel: "Fresh Start",
+  }, utmCtx, firstName);
+}
+
+function buildSoulplanWelcomeHtml(
+  emailData: EmailTemplate,
+  appConfig: AppConfig,
+  language: string,
+  senderName: string,
+  utmCtx?: { app: string; emailNum: string | number; cycle: number; language: string; ref: string; kind: string },
+  firstName?: string,
+): string {
+  return buildBrandedWelcomeHtml(emailData, appConfig, language, senderName, {
+    brandLabel: "\ud83d\udc9b SoulPlan",
+    tagline: "Plan dates together — one tap tonight.",
+    pageBg: "#FFF7F8",
+    primaryColor: "#E91C40",
+    accentBg: "#FFF7F8",
+    borderColor: "#FAD2DC",
+    siteUrl: "https://soulplan.app",
+    siteLabel: "SoulPlan",
+  }, utmCtx, firstName);
+}
+
 // ── HTML BUILDER ────────────────────────────────────────────
 function buildHtml(
   emailData: EmailTemplate,
@@ -1298,6 +1533,20 @@ Deno.serve(async (req: Request) => {
       );
     }
 
+    const suppressionApp = app_id === "breakup_therapy" ? "fresh_start" : app_id;
+    if (await isRecipientBlocked(supabase, emailNorm, suppressionApp)) {
+      return new Response(
+        JSON.stringify({ success: true, skipped: true, reason: "suppressed" }),
+        {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        },
+      );
+    }
+
     // Pick language (with fallback to en)
     let lang = language || "en";
     if (!appConfig.emails[lang]) {
@@ -1319,6 +1568,10 @@ Deno.serve(async (req: Request) => {
     };
     const html = app_id === "thesis_generator"
       ? buildThesisWelcomeHtml(emailData, appConfig, lang, utmCtx, firstName)
+      : app_id === "breakup_therapy"
+      ? buildBreakupWelcomeHtml(emailData, appConfig, lang, sender.name, utmCtx, firstName)
+      : app_id === "soulplan"
+      ? buildSoulplanWelcomeHtml(emailData, appConfig, lang, sender.name, utmCtx, firstName)
       : buildHtml(emailData, appConfig, lang, sender.name, utmCtx, firstName);
 
     const tags = [

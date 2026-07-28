@@ -46,19 +46,29 @@ for PROJECT_ID in "${PROJECTS[@]}"; do
   echo ""
   echo "🚀 Deploying to ${PROJECT_ID}..."
 
-  # Need Resend, Mailgun, or SMTP2GO credentials (secret or functions/.env).
+  # Need Resend, Mailgun, SMTP2GO, or ZeptoMail credentials (secret or functions/.env).
   has_resend=0
   has_mailgun=0
   has_smtp2go=0
+  has_zeptomail=0
   firebase functions:secrets:access RESEND_API_KEY --project "$PROJECT_ID" > /dev/null 2>&1 && has_resend=1
   firebase functions:secrets:access MAILGUN_API_KEY --project "$PROJECT_ID" > /dev/null 2>&1 && has_mailgun=1
   firebase functions:secrets:access SMTP2GO_API_KEY --project "$PROJECT_ID" > /dev/null 2>&1 && has_smtp2go=1
+  firebase functions:secrets:access ZEPTOMAIL_BREAKUP_API_KEY --project "$PROJECT_ID" > /dev/null 2>&1 && has_zeptomail=1
   if [ -f "functions/.env" ] && grep -q '^SMTP2GO_API_KEY=' functions/.env 2>/dev/null; then
     has_smtp2go=1
   fi
-  if [ "$has_resend" -eq 0 ] && [ "$has_mailgun" -eq 0 ] && [ "$has_smtp2go" -eq 0 ]; then
-    echo "⚠️  No email API key for $PROJECT_ID (RESEND, MAILGUN, or SMTP2GO)."
-    echo "   Set functions/.env or: firebase functions:secrets:set SMTP2GO_API_KEY --project $PROJECT_ID"
+  if [ -f "functions/.env" ] && grep -q '^ZEPTOMAIL_BREAKUP_API_KEY=' functions/.env 2>/dev/null; then
+    has_zeptomail=1
+  fi
+  if [ -f "functions/.env" ] && grep -q '^EMAIL_PROVIDER=zeptomail' functions/.env 2>/dev/null; then
+    has_zeptomail=1
+    firebase functions:secrets:access ZEPTOMAIL_BREAKUP_API_KEY --project "$PROJECT_ID" > /dev/null 2>&1 && has_zeptomail=1
+    firebase functions:secrets:access ZEPTOMAIL_API_KEY --project "$PROJECT_ID" > /dev/null 2>&1 && has_zeptomail=1
+  fi
+  if [ "$has_resend" -eq 0 ] && [ "$has_mailgun" -eq 0 ] && [ "$has_smtp2go" -eq 0 ] && [ "$has_zeptomail" -eq 0 ]; then
+    echo "⚠️  No email API key for $PROJECT_ID (RESEND, MAILGUN, SMTP2GO, or ZEPTOMAIL_BREAKUP)."
+    echo "   Set functions/.env or: firebase functions:secrets:set ZEPTOMAIL_BREAKUP_API_KEY --project $PROJECT_ID"
     FAILED+=("$PROJECT_ID (missing secret)")
     continue
   fi

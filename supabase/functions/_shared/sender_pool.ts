@@ -8,7 +8,7 @@
  * When EMAIL_PROVIDER=zeptomail, email_transport.ts routes by app tag:
  *   thesis → hello@thesisgenerator.io (Agent 1)
  *   predictify / predictify_nba / horse_racing / predictify_crypto → hello@predictifyfootball.com (Agent 1)
- *   fresh_start / breakup_therapy → hello@breakuprelief.com (Agent 2)
+ *   fresh_start / breakup_therapy / soulplan → hello@breakuprelief.com (Agent 2)
  *   red_flag_scanner → selka@breakuprelief.com (Agent 2)
  * When EMAIL_PROVIDER=smtp2go, pool From addresses pass through as-is.
  */
@@ -56,6 +56,11 @@ export const SENDER_POOL_FRESH_START: SenderIdentity[] = [
 /** Red Flag Scanner (Selka) — breakuprelief.com (ZeptoMail Agent 2). */
 export const SENDER_POOL_SELKA: SenderIdentity[] = [
   { email: "selka@breakuprelief.com", name: "Selka" },
+];
+
+/** SoulPlan — breakuprelief.com (ZeptoMail Agent 2). */
+export const SENDER_POOL_SOULPLAN: SenderIdentity[] = [
+  { email: "hello@breakuprelief.com", name: "SoulPlan" },
 ];
 
 /** Resend rejects newlines and subjects over 2000 characters. */

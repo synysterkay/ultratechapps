@@ -3,7 +3,7 @@
  * EMAIL_PROVIDER: resend | mailgun | smtp2go | zeptomail
  *
  * ZeptoMail Agent 2 (breakuprelief.com): set ZEPTOMAIL_BREAKUP_API_KEY for
- * Fresh Start + Selka Firebase sends. Agent 1 key stays on ZEPTOMAIL_API_KEY.
+ * Fresh Start + Selka + SoulPlan Firebase sends. Agent 1 key stays on ZEPTOMAIL_API_KEY.
  */
 
 const https = require("https");
@@ -14,6 +14,7 @@ const BREAKUP_APPS = new Set([
   "breakup_therapy",
   "red_flag_scanner",
   "redflag",
+  "soulplan",
 ]);
 const SELKA_APPS = new Set(["red_flag_scanner", "redflag"]);
 
@@ -75,6 +76,15 @@ function resolveSender(poolSender, appTag) {
       return {
         email: process.env.ZEPTOMAIL_SELKA_SENDER_EMAIL || "selka@breakuprelief.com",
         name: poolSender.name || "Selka",
+      };
+    }
+    if (String(appTag || "").toLowerCase() === "soulplan") {
+      return {
+        email:
+          process.env.ZEPTOMAIL_SOULPLAN_SENDER_EMAIL ||
+          process.env.ZEPTOMAIL_BREAKUP_SENDER_EMAIL ||
+          "hello@breakuprelief.com",
+        name: poolSender.name || "SoulPlan",
       };
     }
     if (isBreakupApp(appTag)) {
@@ -220,7 +230,7 @@ function sendViaZeptomail(fromEmail, fromName, toEmail, subject, html, appTag) {
   return new Promise((resolve, reject) => {
     const apiKey = zeptomailApiKey(appTag);
     if (!apiKey) {
-      reject(new Error("ZEPTOMAIL_BREAKUP_API_KEY not set"));
+      reject(new Error("ZeptoMail API key not set (ZEPTOMAIL_BREAKUP_API_KEY or ZEPTOMAIL_API_KEY)"));
       return;
     }
     const apiUrl = new URL(process.env.ZEPTOMAIL_API_URL || "https://api.zeptomail.eu/v1.1/email");

@@ -21,14 +21,16 @@ const admin = require("firebase-admin");
 const {TEMPLATES} = require("./templates");
 const {translateTemplate, normalizeLocale} = require("./translator");
 const {sendSelkaEmail} = require("./sender");
+const {isZeptomailProvider} = require("../zeptomail_env");
+const {isRecipientBlocked} = require("../suppression_check");
 
 const resendApiKey = defineSecret("RESEND_API_KEY");
 const mailgunApiKey = defineSecret("MAILGUN_API_KEY");
 const deepseekApiKey = defineSecret("DEEPSEEK_API_KEY");
 
-const useMailgun = (process.env.EMAIL_PROVIDER || "resend").toLowerCase() === "mailgun";
-const useSmtp2go = (process.env.EMAIL_PROVIDER || "resend").toLowerCase() === "smtp2go";
-const useZeptomail = (process.env.EMAIL_PROVIDER || "resend").toLowerCase() === "zeptomail";
+const useMailgun = (process.env.EMAIL_PROVIDER || "zeptomail").toLowerCase() === "mailgun";
+const useSmtp2go = (process.env.EMAIL_PROVIDER || "zeptomail").toLowerCase() === "smtp2go";
+const useZeptomail = isZeptomailProvider();
 const selkaSecrets = useZeptomail || useSmtp2go
   ? [deepseekApiKey]
   : useMailgun
@@ -53,6 +55,12 @@ exports.sendSelkaWelcome = onDocumentCreated(
 
       if (!user.email) return null;
       if (user.welcome_email_sent === true) return null;
+
+      if (await isRecipientBlocked(user.email, "red_flag_scanner")) {
+        console.log(`Selka welcome skipped (suppressed): ${user.email}`);
+        await snap.ref.update({welcome_email_sent: true, welcome_skipped_suppressed: true});
+        return null;
+      }
 
       const locale = normalizeLocale(user.language);
       const template = TEMPLATES.welcome;

@@ -1,10 +1,31 @@
 {
   "warming_mode": "open_only",
-  "notes": "SMTP2GO active domains only (2026-07). Sends via SMTP2GO; Gmail seeds open via IMAP.",
+  "notes": "ZeptoMail Agent 1 (thesis + predictify) and Agent 2 (breakuprelief). Sends via EMAIL_PROVIDER; Gmail seeds open via IMAP. Open tracking stays OFF on product mail — warmup opens are real IMAP reads.",
+  "ramp_schedule": {
+    "week_1": { "warm_per_sender": 5 },
+    "week_2": { "warm_per_sender": 10 },
+    "week_3": { "warm_per_sender": 15 },
+    "week_4_plus": { "warm_per_sender": 20 }
+  },
+  "timing": {
+    "delay_between_sends_min_sec": 600,
+    "delay_between_sends_max_sec": 2700
+  },
   "full_warming_domains": {},
   "open_only_domains": {
+    "thesisgenerator.io": {
+      "sender_addresses": ["hello@thesisgenerator.io"],
+      "seed_gmail": "testkaynel@gmail.com"
+    },
+    "predictifyfootball.com": {
+      "sender_addresses": ["hello@predictifyfootball.com"],
+      "seed_gmail": "passedai@gmail.com"
+    },
     "breakuprelief.com": {
-      "sender_addresses": ["hello@breakuprelief.com"],
+      "sender_addresses": [
+        "hello@breakuprelief.com",
+        "selka@breakuprelief.com"
+      ],
       "seed_gmail": "anasblanew2@gmail.com"
     },
     "kaynel.solutions": {

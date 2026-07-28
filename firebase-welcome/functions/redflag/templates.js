@@ -47,7 +47,7 @@ const TEMPLATES = {
       "Open the app, tap 'Scan a Conversation', and paste a screenshot. I'll show you what I see in about 30 seconds.",
     ],
     cta: "Run my first scan",
-    ps: "Most people wait until something blows up. The 800+ who caught it early started with one small scan.",
+    ps: "Most people wait until something blows up. The ones who caught it early started with one small scan.",
   },
 
   first_scan_followup: {
