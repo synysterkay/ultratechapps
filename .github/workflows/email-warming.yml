@@ -38,15 +38,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      - name: Restore warming state cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            cache/warming_state.json
-          key: warming-state-${{ github.run_number }}
-          restore-keys: |
-            warming-state-
-
       - name: Run email warming
         env:
           EMAIL_PROVIDER: ${{ secrets.EMAIL_PROVIDER }}
@@ -87,7 +78,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add cache/warming_state.json 2>/dev/null || true
-          git diff --staged --quiet || git commit -m "Update warming state [skip ci]"
-          git pull --rebase origin main 2>/dev/null || true
-          git push || echo "Push failed — state will be cached"
+          git diff --staged --quiet && exit 0
+          git commit -m "Update warming state [skip ci]"
+          if ! git pull --rebase origin main; then
+            echo "Rebase failed — aborting push to avoid corrupting warming_state.json"
+            git rebase --abort 2>/dev/null || true
+            exit 0
+          fi
+          git push || echo "Push failed — state saved in workflow artifact only"
         continue-on-error: true

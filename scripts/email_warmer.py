@@ -56,9 +56,12 @@ def _get_gmail_password(gmail_address):
 
 def _load_json(path, default=None):
     if os.path.exists(path):
-        with open(path, "r") as f:
-            return json.load(f)
-    return default or {}
+        try:
+            with open(path, "r") as f:
+                return json.load(f)
+        except json.JSONDecodeError as exc:
+            print(f"   ⚠️  Corrupt JSON at {path}: {exc} — using defaults")
+    return default if default is not None else {}
 
 
 def _save_json(path, data):
