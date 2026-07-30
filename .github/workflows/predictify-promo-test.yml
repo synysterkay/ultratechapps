@@ -6,7 +6,7 @@ on:
       to:
         description: 'Recipient email address'
         required: true
-        default: 'anakay.13@gmail.com'
+        default: 'anaskay.13@gmail.com'
       first_name:
         description: 'First name for personalization'
         required: false
