@@ -1,0 +1,85 @@
+name: Predictify Promo Blast
+
+on:
+  schedule:
+    # One cohort per day: Jul 30 → part 1, Jul 31 → part 2, Aug 1 → part 3, Aug 2 → part 4
+    - cron: '0 11 * * *'
+
+  workflow_dispatch:
+    inputs:
+      part:
+        description: 'Cohort part (1-4). Leave empty for auto from campaign start.'
+        required: false
+        default: ''
+      dry_run:
+        description: 'Preview only — no sends'
+        required: false
+        type: boolean
+        default: false
+      limit:
+        description: 'Max sends this run (0 = full cohort)'
+        required: false
+        default: '0'
+
+permissions:
+  contents: write
+
+jobs:
+  send-promo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Refresh Firebase export
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          cd scripts && python3 firebase_user_loader.py --refresh || true
+
+      - name: Send promo cohort
+        env:
+          EMAIL_PROVIDER: zeptomail
+          ZEPTOMAIL_API_KEY: ${{ secrets.ZEPTOMAIL_API_KEY }}
+          ZEPTOMAIL_API_URL: https://api.zeptomail.eu/v1.1/email
+          PREDICTIFY_ZEPTOMAIL_SENDER_EMAIL: hello@predictifyfootball.com
+          PREDICTIFY_ZEPTOMAIL_SENDER_NAME: Predictify
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          PREDICTIFY_UNSUBSCRIBE_SECRET: ${{ secrets.PREDICTIFY_UNSUBSCRIBE_SECRET }}
+          EMAIL_SENDING_PAUSED: ${{ secrets.EMAIL_SENDING_PAUSED }}
+        run: |
+          PART="${{ github.event.inputs.part }}"
+          LIMIT="${{ github.event.inputs.limit || '0' }}"
+          EXTRA=""
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            EXTRA="--dry-run"
+          fi
+          if [ -n "$PART" ]; then
+            python3 scripts/predictify_pro_promo_sender.py --part "$PART" --limit "$LIMIT" $EXTRA
+          else
+            python3 scripts/predictify_pro_promo_sender.py --auto-part --limit "$LIMIT" $EXTRA
+          fi
+
+      - name: Commit promo state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add cache/predictify_pro_promo_state.json 2>/dev/null || true
+          git diff --staged --quiet && exit 0
+          git commit -m "Update predictify pro promo state [skip ci]"
+          if ! git pull --rebase origin main; then
+            git rebase --abort 2>/dev/null || true
+            exit 0
+          fi
+          git push || echo "Push failed — state cached for next run"
+        continue-on-error: true
