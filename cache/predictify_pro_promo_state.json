@@ -1,0 +1,26 @@
+{
+  "campaign": "yearly_promo_aug2026",
+  "started_at": "2026-07-30T10:05:28Z",
+  "parts": {
+    "1": {
+      "sent_count": 7447,
+      "completed_at": "2026-07-30T12:26:00Z",
+      "note": "Closed after CI runs 30533304360 (3942 sent) and 30539505334 (3505 sent, 431 credit failures). ~3505 overlap duplicates."
+    },
+    "2": {
+      "sent_count": 0,
+      "completed_at": null
+    },
+    "3": {
+      "sent_count": 0,
+      "completed_at": null
+    },
+    "4": {
+      "sent_count": 0,
+      "completed_at": null
+    }
+  },
+  "sent": {},
+  "failed": {},
+  "updated_at": "2026-07-30T12:40:00Z"
+}

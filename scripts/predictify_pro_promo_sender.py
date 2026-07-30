@@ -43,6 +43,12 @@ STATE_PATH = ROOT / 'cache' / 'predictify_pro_promo_state.json'
 CAMPAIGN_ID = 'yearly_promo_aug2026'
 KIND_PREFIX = 'pro_yearly_promo'
 NUM_PARTS = 4
+CAMPAIGN_DAY_PARTS = {
+    '2026-07-30': 1,
+    '2026-07-31': 2,
+    '2026-08-01': 3,
+    '2026-08-02': 4,
+}
 EMAIL_RE = re.compile(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
 
 UNSUB_BASE = os.environ.get(
@@ -210,6 +216,9 @@ def _load_recipients(refresh_activity: bool) -> tuple[list[dict], int]:
 
 
 def _auto_part(state: dict) -> int:
+    today = _today()
+    if today in CAMPAIGN_DAY_PARTS:
+        return CAMPAIGN_DAY_PARTS[today]
     started = state.get('started_at') or _utc_now()
     try:
         start_dt = datetime.fromisoformat(started.replace('Z', '+00:00'))
@@ -264,6 +273,11 @@ def run(
             'sent': {},
             'failed': {},
         }
+
+    pinfo = (state.get('parts') or {}).get(str(part), {})
+    if pinfo.get('completed_at') and not dry_run:
+        print(f'Part {part} already completed at {pinfo["completed_at"]} — skipping.')
+        return
 
     print(f'Loading Predictify free users (part {part}/{NUM_PARTS})…')
     recipients, activity_count = _load_recipients(refresh_activity=refresh_activity)
@@ -360,8 +374,10 @@ def run(
     parts = state.setdefault('parts', {})
     pinfo = parts.setdefault(str(part), {'sent_count': 0, 'completed_at': None})
     pinfo['sent_count'] = pinfo.get('sent_count', 0) + sent_n
-    if not dry_run and failed_n == 0 and len(cohort) > 0:
+    if not dry_run and len(cohort) > 0 and failed_n == 0:
         pinfo['completed_at'] = _utc_now()
+    elif not dry_run and len(cohort) > 0 and sent_n > 0 and failed_n > 0:
+        print(f'   ⚠️ Part {part} incomplete — {failed_n} failures (will resume on next run)')
     _save_state(state)
 
     print(f'\nDone part {part}: sent={sent_n}, failed={failed_n}, skipped={skipped_n}')
@@ -378,9 +394,25 @@ def main() -> None:
     parser.add_argument('--sleep', type=float, default=float(os.getenv('PROMO_SEND_DELAY', '0.3')))
     parser.add_argument('--no-refresh-activity', action='store_true')
     parser.add_argument('--status', action='store_true')
+    parser.add_argument(
+        '--mark-part-complete',
+        type=int,
+        choices=[1, 2, 3, 4],
+        help='Admin: mark a cohort finished without sending (recovery)',
+    )
     args = parser.parse_args()
 
     state = _load_state()
+    if args.mark_part_complete:
+        part = args.mark_part_complete
+        parts = state.setdefault('parts', {})
+        parts.setdefault(str(part), {'sent_count': 0, 'completed_at': None})
+        parts[str(part)]['completed_at'] = _utc_now()
+        parts[str(part)]['note'] = 'Marked complete manually'
+        _save_state(state)
+        print(f'Marked part {part} complete.')
+        return
+
     if args.status:
         try:
             recipients, _ = _load_recipients(refresh_activity=False)
