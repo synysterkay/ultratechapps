@@ -2,8 +2,6 @@
 from __future__ import annotations
 
 import html
-from datetime import datetime, timezone
-
 
 APP_STORE_URL = 'https://apps.apple.com/app/predictify-football-ai/id6756571193'
 GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction'
@@ -12,17 +10,11 @@ SITE_URL = 'https://predictifyfootball.com'
 
 SUBJECT = 'We weren\u2019t supposed to send this'
 PREVIEW = 'This month only \u2014 our plans at over 50% better value. Open before it ends.'
+PROMO_CLOSES = 'August 5'
 
 
 def _esc(s: str) -> str:
     return html.escape(s or '')
-
-
-def _month_end_label() -> str:
-    now = datetime.now(timezone.utc)
-    import calendar
-    last = calendar.monthrange(now.year, now.month)[1]
-    return now.strftime('%B ') + str(last)
 
 
 def build_pro_yearly_promo_html(
@@ -31,7 +23,7 @@ def build_pro_yearly_promo_html(
     *,
     test_banner: bool = False,
 ) -> str:
-    month_end = _month_end_label()
+    month_end = PROMO_CLOSES
     test_note = ''
     if test_banner:
         test_note = (
@@ -135,7 +127,7 @@ def build_pro_yearly_promo_html(
 
 
 def build_pro_yearly_promo_text(first_name: str = 'there', unsub_url: str = f'{SITE_URL}/unsubscribe') -> str:
-    month_end = _month_end_label()
+    month_end = PROMO_CLOSES
     return f'''PREDICTIFY — THIS MONTH ONLY
 
 We weren't supposed to send this.
