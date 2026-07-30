@@ -1,0 +1,39 @@
+name: Predictify Promo Test Send
+
+on:
+  workflow_dispatch:
+    inputs:
+      to:
+        description: 'Recipient email address'
+        required: true
+        default: 'anakay.13@gmail.com'
+      first_name:
+        description: 'First name for personalization'
+        required: false
+        default: 'Ana'
+
+jobs:
+  send-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Send promo preview
+        env:
+          EMAIL_PROVIDER: zeptomail
+          ZEPTOMAIL_API_KEY: ${{ secrets.ZEPTOMAIL_API_KEY }}
+          ZEPTOMAIL_API_URL: https://api.zeptomail.eu/v1.1/email
+          PREDICTIFY_ZEPTOMAIL_SENDER_EMAIL: hello@predictifyfootball.com
+          PREDICTIFY_ZEPTOMAIL_SENDER_NAME: Predictify
+          PREDICTIFY_UNSUBSCRIBE_SECRET: ${{ secrets.PREDICTIFY_UNSUBSCRIBE_SECRET }}
+        run: |
+          python scripts/test_predictify_pro_promo_send.py \
+            "${{ github.event.inputs.to }}" \
+            --first-name "${{ github.event.inputs.first_name }}"
