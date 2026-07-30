@@ -11,7 +11,7 @@ UPGRADE_DEEPLINK = 'predictify://upgrade?ref=yearly_promo_test'
 SITE_URL = 'https://predictifyfootball.com'
 
 SUBJECT = 'We weren\u2019t supposed to send this'
-PREVIEW = 'This month only \u2014 Pro at over 50% better value. Open before it ends.'
+PREVIEW = 'This month only \u2014 our plans at over 50% better value. Open before it ends.'
 
 
 def _esc(s: str) -> str:
@@ -71,10 +71,7 @@ def build_pro_yearly_promo_html(
 
 <tr><td style="padding:0 0 24px 0">
   <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;color:#FFBF24;text-transform:uppercase;margin-bottom:12px">THIS MONTH ONLY</div>
-  <div style="display:flex;align-items:center;gap:10px">
-    <span style="font-size:22px;font-weight:800;color:#F4F6F8">Predictify</span>
-    <span style="display:inline-block;padding:4px 10px;background:#FFBF24;color:#06080C;font-size:11px;font-weight:800;border-radius:999px;letter-spacing:0.06em">PRO</span>
-  </div>
+  <div style="font-size:22px;font-weight:800;color:#F4F6F8">Predictify</div>
   <div style="font-size:11px;color:#9AA4B2;margin-top:8px;letter-spacing:0.08em">MATCH DESK READY</div>
 </td></tr>
 
@@ -85,17 +82,17 @@ def build_pro_yearly_promo_html(
 </td></tr>
 
 <tr><td style="padding:0 0 24px 0">
-  <p style="margin:0;font-size:16px;line-height:1.6;color:#9AA4B2">Hey {_esc(first_name)} &mdash; this month only, yearly Pro is at over <strong style="color:#F4F6F8">50% better value</strong> than before. Same full match desk. Easier to unlock for a limited window.</p>
+  <p style="margin:0;font-size:16px;line-height:1.6;color:#9AA4B2">Hey {_esc(first_name)} &mdash; this month only, our plans are at over <strong style="color:#F4F6F8">50% better value</strong> than before. Same full match desk. Easier to unlock for a limited window.</p>
 </td></tr>
 
 <tr><td style="padding:0 0 28px 0">
   <div style="padding:16px 18px;background:#0E1218;border-radius:10px;border-left:4px solid #3B82F6">
-    <p style="margin:0;font-size:14px;line-height:1.55;color:#F4F6F8"><strong>Promo closes {month_end}.</strong> Then standard yearly pricing returns.</p>
+    <p style="margin:0;font-size:14px;line-height:1.55;color:#F4F6F8"><strong>Promo closes {month_end}.</strong> Then standard pricing returns.</p>
   </div>
 </td></tr>
 
 <tr><td style="padding:0 0 8px 0">
-  <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;color:#9AA4B2;text-transform:uppercase;margin-bottom:16px">What you get with Pro</div>
+  <div style="font-size:13px;font-weight:700;letter-spacing:0.06em;color:#9AA4B2;text-transform:uppercase;margin-bottom:16px">What you get</div>
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0">{benefit_rows}</table>
 </td></tr>
 
@@ -104,8 +101,8 @@ def build_pro_yearly_promo_html(
 </td></tr>
 
 <tr><td style="padding:0 0 20px 0;text-align:center">
-  <a href="{_esc(UPGRADE_DEEPLINK)}" style="display:inline-block;padding:16px 32px;background:#3B82F6;color:#ffffff;text-decoration:none;border-radius:12px;font-weight:700;font-size:16px">Open Predictify &rarr; Start yearly Pro</a>
-  <p style="margin:12px 0 0;font-size:13px;color:#9AA4B2">Yearly Pro trial starts in-app &mdash; cancel anytime</p>
+  <a href="{_esc(UPGRADE_DEEPLINK)}" style="display:inline-block;padding:16px 32px;background:#3B82F6;color:#ffffff;text-decoration:none;border-radius:12px;font-weight:700;font-size:16px">Open Predictify</a>
+  <p style="margin:12px 0 0;font-size:13px;color:#9AA4B2">See plans in-app &mdash; cancel anytime</p>
 </td></tr>
 
 <tr><td style="padding:0 0 32px 0;text-align:center">
@@ -120,7 +117,7 @@ def build_pro_yearly_promo_html(
 </td></tr>
 
 <tr><td style="padding:24px 0 0 0;border-top:1px solid #1a2030">
-  <p style="margin:0 0 8px 0;font-size:12px;line-height:1.6;color:#64748b;text-align:center">Cancel anytime. Live scores stay free &mdash; Pro unlocks the desk before kickoff.</p>
+  <p style="margin:0 0 8px 0;font-size:12px;line-height:1.6;color:#64748b;text-align:center">Cancel anytime. Live scores stay free &mdash; paid plans unlock the desk before kickoff.</p>
   <p style="margin:0 0 8px 0;font-size:12px;line-height:1.6;color:#64748b;text-align:center">Not a bookmaker. No guaranteed wins &mdash; transparent forecasts you can verify.</p>
   <p style="margin:0;font-size:12px;line-height:1.6;color:#64748b;text-align:center">
     <a href="{_esc(SITE_URL)}" style="color:#9AA4B2">predictifyfootball.com</a>
@@ -139,15 +136,15 @@ def build_pro_yearly_promo_html(
 
 def build_pro_yearly_promo_text(first_name: str = 'there', unsub_url: str = f'{SITE_URL}/unsubscribe') -> str:
     month_end = _month_end_label()
-    return f'''PREDICTIFY PRO — THIS MONTH ONLY
+    return f'''PREDICTIFY — THIS MONTH ONLY
 
 We weren't supposed to send this.
 
-Hey {first_name} — this month only, yearly Pro is at over 50% better value than before.
+Hey {first_name} — this month only, our plans are at over 50% better value than before.
 
-Promo closes {month_end}. Then standard yearly pricing returns.
+Promo closes {month_end}. Then standard pricing returns.
 
-What you get with Pro:
+What you get:
 • Full match desk: 1X2, goals, BTTS & specialist markets
 • Probabilities, xG & score projections
 • Evidence + confidence before kickoff
