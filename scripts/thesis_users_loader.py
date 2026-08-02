@@ -182,6 +182,129 @@ def _first_name(display_name, nickname, email):
     return ''
 
 
+def _parse_user_document(doc: dict) -> dict | None:
+    """Normalize one Firestore users/{uid} document."""
+    fields = doc.get('fields', {})
+    email = _f(fields, 'email', default='') or ''
+    email = email.lower().strip()
+    if not email:
+        return None
+    uid = doc.get('name', '').split('/')[-1]
+    display = _f(fields, 'displayName', default='') or ''
+    nickname = _f(fields, 'nickname', default='') or ''
+    raw_lang = (_f(fields, 'language', default='') or '').strip()
+    lang = normalize_user_language(raw_lang or 'en')
+    plan = _f_map(fields, 'plan')
+    subscription = _f_map(fields, 'subscription') or None
+    usage = _f_map(fields, 'usage') or None
+    streak = _f_map(fields, 'streak') or {}
+    return {
+        'uid':           uid,
+        'email':         email,
+        'first_name':    _first_name(display, nickname, email),
+        'display_name':  display or nickname,
+        'language':      lang,
+        'plan':          plan or {},
+        'subscription':  subscription,
+        'usage':         usage,
+        'streak':        streak,
+        'created_at':    _parse_ts(_f(fields, 'createdAt', kind='timestampValue')),
+        'last_sign_in':  _parse_ts(_f(fields, 'lastSignInAt', kind='timestampValue')),
+        'last_updated':  _parse_ts(_f(fields, 'lastUpdated', kind='timestampValue')),
+    }
+
+
+def load_users_by_uids(
+    token: str | None,
+    uids: Iterable[str],
+    *,
+    batch_size: int = 100,
+) -> list[dict]:
+    """Fetch Firestore user docs by uid via batchGet (lightweight vs full scan)."""
+    uid_list = [u for u in uids if u]
+    if not uid_list:
+        return []
+
+    access_token = token or get_access_token()
+    if not access_token:
+        print('   ❌ No Firestore access token')
+        return []
+
+    max_attempts, max_wait, page_delay = _firestore_retry_settings()
+    url = f"{FIRESTORE_BASE}/projects/{PROJECT_ID}/databases/(default)/documents:batchGet"
+    doc_prefix = f"projects/{PROJECT_ID}/databases/(default)/documents/users"
+    users: list[dict] = []
+
+    for i in range(0, len(uid_list), batch_size):
+        batch = uid_list[i:i + batch_size]
+        doc_paths = [f"{doc_prefix}/{uid}" for uid in batch]
+        data = None
+        for attempt in range(max_attempts):
+            try:
+                resp = requests.post(
+                    url,
+                    headers={
+                        'Authorization': f'Bearer {access_token}',
+                        'Content-Type': 'application/json',
+                    },
+                    json={'documents': doc_paths},
+                    timeout=120,
+                )
+                if resp.status_code == 200:
+                    data = resp.json()
+                    break
+                if resp.status_code == 401 and attempt < max_attempts - 1:
+                    refreshed = get_access_token()
+                    if refreshed:
+                        access_token = refreshed
+                        print('   🔄 Firestore 401 — refreshed access token')
+                        continue
+                if resp.status_code == 429 and attempt < max_attempts - 1:
+                    wait = min(max_wait, 5 * (2 ** attempt))
+                    print(f'   ⏳ Firestore batchGet 429 — retry in {wait}s (attempt {attempt + 1}/{max_attempts})')
+                    time.sleep(wait)
+                    continue
+                print(f'   ❌ Firestore batchGet error: {resp.status_code} {resp.text[:200]}')
+                break
+            except Exception as exc:
+                if attempt < max_attempts - 1:
+                    wait = min(max_wait, 2 ** attempt * 2)
+                    time.sleep(wait)
+                    continue
+                print(f'   ❌ Firestore batchGet failed: {exc}')
+                break
+
+        if not data:
+            continue
+        for item in data:
+            doc = item.get('found') or item.get('document')
+            if not doc:
+                continue
+            parsed = _parse_user_document(doc)
+            if parsed:
+                users.append(parsed)
+
+        done = min(i + batch_size, len(uid_list))
+        if done % 500 == 0 or done == len(uid_list):
+            print(f'   📥 Firestore batchGet: {len(users):,} profiles ({done:,}/{len(uid_list):,} uids)')
+        if page_delay > 0 and i + batch_size < len(uid_list):
+            time.sleep(page_delay)
+
+    return users
+
+
+def load_thesis_auth_firestore_users(token: str | None = None) -> list[dict]:
+    """Load Firestore profiles for Thesis Generator auth-export users only."""
+    from firebase_user_loader import FirebaseUserLoader
+
+    auth_users = FirebaseUserLoader().load_users_by_app().get('Thesis Generator', [])
+    uids = [u['uid'] for u in auth_users if u.get('uid')]
+    if not uids:
+        return []
+    print(f'   📥 Loading Firestore profiles for {len(uids):,} Thesis auth users (batchGet)…')
+    return load_users_by_uids(token, uids)
+
+
 def _firestore_retry_settings() -> tuple[int, int, float]:
     """(max_attempts, max_wait_sec, page_delay_sec) — extended when building snapshot."""
     building = os.getenv('THESIS_FIRESTORE_SNAPSHOT_BUILD', '').lower() in ('1', 'true', 'yes')
@@ -246,38 +369,9 @@ def load_all_users(token: str | None = None, page_size: int = 200):
             if refreshed:
                 access_token = refreshed
         for doc in data.get('documents', []):
-            fields = doc.get('fields', {})
-            email = _f(fields, 'email', default='') or ''
-            email = email.lower().strip()
-            if not email:
-                continue
-            uid = doc.get('name', '').split('/')[-1]
-            display = _f(fields, 'displayName', default='') or ''
-            nickname = _f(fields, 'nickname', default='') or ''
-            # Some legacy docs store `language` as the human-readable name
-            # ('English', 'Swedish'). Map those down to the canonical 2-letter
-            # code via `localize_phrase.normalize_language`, which also
-            # canonicalizes locale strings like 'en_US' / 'pt-BR'.
-            raw_lang = (_f(fields, 'language', default='') or '').strip()
-            lang = normalize_user_language(raw_lang or 'en')
-            plan = _f_map(fields, 'plan')
-            subscription = _f_map(fields, 'subscription') or None
-            usage = _f_map(fields, 'usage') or None
-            streak = _f_map(fields, 'streak') or {}
-            yield {
-                'uid':           uid,
-                'email':         email,
-                'first_name':    _first_name(display, nickname, email),
-                'display_name':  display or nickname,
-                'language':      lang,
-                'plan':          plan or {},
-                'subscription':  subscription,
-                'usage':         usage,
-                'streak':        streak,
-                'created_at':    _parse_ts(_f(fields, 'createdAt', kind='timestampValue')),
-                'last_sign_in':  _parse_ts(_f(fields, 'lastSignInAt', kind='timestampValue')),
-                'last_updated':  _parse_ts(_f(fields, 'lastUpdated', kind='timestampValue')),
-            }
+            parsed = _parse_user_document(doc)
+            if parsed:
+                yield parsed
         page_token = data.get('nextPageToken')
         if not page_token:
             break
@@ -343,14 +437,14 @@ def build_firestore_snapshot(
             print(f'   📦 Snapshot fresh enough ({len(cached):,} users) — skip live Firestore')
             return len(cached)
 
-    print('   🔄 Building Firestore user snapshot (extended retries)…')
+    print('   🔄 Building Firestore user snapshot (auth batchGet)…')
     os.environ['THESIS_FIRESTORE_SNAPSHOT_BUILD'] = '1'
     warmup = int(os.getenv('THESIS_FIRESTORE_WARMUP_SEC', '30'))
     if warmup > 0:
         print(f'   ⏳ Firestore warmup {warmup}s before first request…')
         time.sleep(warmup)
 
-    users = list(load_all_users(token))
+    users = load_thesis_auth_firestore_users(token)
     if len(users) >= min_users:
         _save_users_snapshot(users)
         print(f'   💾 Saved Firestore snapshot ({len(users):,} users)')

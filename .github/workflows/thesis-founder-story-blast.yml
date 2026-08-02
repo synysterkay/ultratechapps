@@ -56,7 +56,7 @@ jobs:
             thesis-users-snapshot-v1
 
       - name: Build Firestore user snapshot
-        if: github.event.inputs.mode != 'status' && github.event.inputs.mode != 'dry-run'
+        if: github.event.inputs.mode == 'build-snapshot'
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           THESIS_FIRESTORE_SNAPSHOT_BUILD: '1'
@@ -89,10 +89,7 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           EMAIL_SENDING_PAUSED: ${{ secrets.EMAIL_SENDING_PAUSED }}
-          THESIS_FIRESTORE_WARMUP_SEC: '30'
-          THESIS_FIRESTORE_SNAPSHOT_FIRST: '1'
-          THESIS_FIRESTORE_SNAPSHOT_MIN: '1000'
-          THESIS_FIRESTORE_SNAPSHOT_MAX_AGE_HOURS: '720'
+          THESIS_FIRESTORE_WARMUP_SEC: '5'
         run: |
           MODE="${{ github.event.inputs.mode || 'auto-part' }}"
           LIMIT="${{ github.event.inputs.limit || '0' }}"
