@@ -1,0 +1,43 @@
+name: Thesis Founder Story Test Send
+
+on:
+  workflow_dispatch:
+    inputs:
+      to:
+        description: 'Recipient email address'
+        required: true
+        default: 'anaskay.13@gmail.com'
+      first_name:
+        description: 'First name for personalization'
+        required: false
+        default: 'Ana'
+      topic:
+        description: 'Thesis topic for personalization'
+        required: false
+        default: 'climate change policy in urban planning'
+
+jobs:
+  send-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Send founder story preview
+        env:
+          EMAIL_PROVIDER: zeptomail
+          ZEPTOMAIL_API_KEY: ${{ secrets.ZEPTOMAIL_API_KEY }}
+          ZEPTOMAIL_API_URL: https://api.zeptomail.eu/v1.1/email
+          ZEPTOMAIL_THESIS_SENDER_EMAIL: hello@thesisgenerator.io
+          ZEPTOMAIL_THESIS_SENDER_NAME: Thesis Generator
+        run: |
+          python scripts/test_founder_story_thesis_send.py \
+            "${{ github.event.inputs.to }}" \
+            --first-name "${{ github.event.inputs.first_name }}" \
+            --topic "${{ github.event.inputs.topic }}"
