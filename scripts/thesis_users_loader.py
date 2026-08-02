@@ -257,12 +257,25 @@ def load_all_users(token: str, page_size: int = 200):
             break
 
 
+def _json_safe(value):
+    """Recursively convert datetimes for snapshot JSON."""
+    if isinstance(value, datetime):
+        if value.tzinfo is None:
+            value = value.replace(tzinfo=timezone.utc)
+        return value.astimezone(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+    if isinstance(value, dict):
+        return {k: _json_safe(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [_json_safe(v) for v in value]
+    return value
+
+
 def _save_users_snapshot(users: list[dict]) -> None:
     USERS_SNAPSHOT_CACHE.parent.mkdir(parents=True, exist_ok=True)
     payload = {
         'saved_at': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
         'count': len(users),
-        'users': users,
+        'users': [_json_safe(u) for u in users],
     }
     tmp = USERS_SNAPSHOT_CACHE.with_suffix('.tmp')
     tmp.write_text(json.dumps(payload), encoding='utf-8')
@@ -292,7 +305,11 @@ def load_all_users_list(token: str, *, use_cache_on_failure: bool = True) -> lis
     """Load all Firestore users with retry + optional snapshot fallback."""
     users = list(load_all_users(token))
     if users:
-        _save_users_snapshot(users)
+        try:
+            _save_users_snapshot(users)
+            print(f'   💾 Saved Firestore snapshot ({len(users):,} users)')
+        except Exception as exc:
+            print(f'   ⚠️ Could not save Firestore snapshot: {exc}')
         return users
     if use_cache_on_failure:
         cached = _load_users_snapshot()
