@@ -192,6 +192,7 @@ def _audience_stats(token: str | None) -> dict:
     fs_by_uid: dict[str, dict] = {}
     if token:
         print('   Loading Firestore users (Superwall subscription + language)…')
+        time.sleep(int(os.getenv('THESIS_FIRESTORE_WARMUP_SEC', '20')))
         for u in load_all_users_list(token):
             fs_by_email[u['email']] = u
             if u.get('uid'):

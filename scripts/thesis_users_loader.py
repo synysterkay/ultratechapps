@@ -182,7 +182,7 @@ def _first_name(display_name, nickname, email):
     return ''
 
 
-def load_all_users(token: str, page_size: int = 300):
+def load_all_users(token: str, page_size: int = 200):
     """Yields one normalized user dict per Firestore user doc. Skips any
     doc that has no email (those can't receive emails anyway)."""
     page_token = None
@@ -192,25 +192,28 @@ def load_all_users(token: str, page_size: int = 300):
         if page_token:
             params['pageToken'] = page_token
         data = None
-        for attempt in range(6):
+        for attempt in range(12):
             try:
                 resp = requests.get(
                     base_url,
                     headers={'Authorization': f'Bearer {token}'},
                     params=params,
-                    timeout=30,
+                    timeout=60,
                 )
                 if resp.status_code == 200:
                     data = resp.json()
                     break
-                if resp.status_code == 429 and attempt < 5:
-                    time.sleep(min(30, 2 ** attempt * 2))
+                if resp.status_code == 429 and attempt < 11:
+                    wait = min(180, 5 * (2 ** attempt))
+                    print(f'   ⏳ Firestore 429 — retry in {wait}s (attempt {attempt + 1}/12)')
+                    time.sleep(wait)
                     continue
                 print(f'   ❌ Firestore users page error: {resp.status_code} {resp.text[:200]}')
                 return
             except Exception as exc:
-                if attempt < 5:
-                    time.sleep(min(30, 2 ** attempt * 2))
+                if attempt < 11:
+                    wait = min(60, 2 ** attempt * 2)
+                    time.sleep(wait)
                     continue
                 print(f'   ❌ Firestore users page failed: {exc}')
                 return
@@ -266,7 +269,7 @@ def _save_users_snapshot(users: list[dict]) -> None:
     tmp.replace(USERS_SNAPSHOT_CACHE)
 
 
-def _load_users_snapshot(*, max_age_hours: int = 48) -> list[dict]:
+def _load_users_snapshot(*, max_age_hours: int = 168) -> list[dict]:
     if not USERS_SNAPSHOT_CACHE.exists():
         return []
     try:
