@@ -182,17 +182,28 @@ def _first_name(display_name, nickname, email):
     return ''
 
 
+def _firestore_retry_settings() -> tuple[int, int, float]:
+    """(max_attempts, max_wait_sec, page_delay_sec) — extended when building snapshot."""
+    building = os.getenv('THESIS_FIRESTORE_SNAPSHOT_BUILD', '').lower() in ('1', 'true', 'yes')
+    if building:
+        return 30, 300, 3.0
+    return 12, 180, 0.5
+
+
 def load_all_users(token: str, page_size: int = 200):
     """Yields one normalized user dict per Firestore user doc. Skips any
     doc that has no email (those can't receive emails anyway)."""
     page_token = None
+    max_attempts, max_wait, page_delay = _firestore_retry_settings()
     base_url = f"{FIRESTORE_BASE}/projects/{PROJECT_ID}/databases/(default)/documents/users"
+    page_num = 0
     while True:
+        page_num += 1
         params = {'pageSize': page_size}
         if page_token:
             params['pageToken'] = page_token
         data = None
-        for attempt in range(12):
+        for attempt in range(max_attempts):
             try:
                 resp = requests.get(
                     base_url,
@@ -203,16 +214,17 @@ def load_all_users(token: str, page_size: int = 200):
                 if resp.status_code == 200:
                     data = resp.json()
                     break
-                if resp.status_code == 429 and attempt < 11:
-                    wait = min(180, 5 * (2 ** attempt))
-                    print(f'   ⏳ Firestore 429 — retry in {wait}s (attempt {attempt + 1}/12)')
+                if resp.status_code == 429 and attempt < max_attempts - 1:
+                    wait = min(max_wait, 5 * (2 ** attempt))
+                    print(f'   ⏳ Firestore 429 — retry in {wait}s (attempt {attempt + 1}/{max_attempts})')
                     time.sleep(wait)
                     continue
                 print(f'   ❌ Firestore users page error: {resp.status_code} {resp.text[:200]}')
                 return
             except Exception as exc:
-                if attempt < 11:
-                    wait = min(60, 2 ** attempt * 2)
+                if attempt < max_attempts - 1:
+                    wait = min(max_wait, 2 ** attempt * 2)
+                    print(f'   ⏳ Firestore error — retry in {wait}s (attempt {attempt + 1}/{max_attempts}): {exc}')
                     time.sleep(wait)
                     continue
                 print(f'   ❌ Firestore users page failed: {exc}')
@@ -255,6 +267,8 @@ def load_all_users(token: str, page_size: int = 200):
         page_token = data.get('nextPageToken')
         if not page_token:
             break
+        if page_delay > 0:
+            time.sleep(page_delay)
 
 
 def _json_safe(value):
@@ -282,13 +296,13 @@ def _save_users_snapshot(users: list[dict]) -> None:
     tmp.replace(USERS_SNAPSHOT_CACHE)
 
 
-def _load_users_snapshot(*, max_age_hours: int = 168) -> list[dict]:
+def _load_users_snapshot(*, max_age_hours: int | None = 168) -> list[dict]:
     if not USERS_SNAPSHOT_CACHE.exists():
         return []
     try:
         payload = json.loads(USERS_SNAPSHOT_CACHE.read_text(encoding='utf-8'))
         saved_at = payload.get('saved_at') or ''
-        if saved_at:
+        if max_age_hours is not None and saved_at:
             dt = datetime.fromisoformat(saved_at.replace('Z', '+00:00'))
             age_h = (datetime.now(timezone.utc) - dt).total_seconds() / 3600
             if age_h > max_age_hours:
@@ -301,8 +315,52 @@ def _load_users_snapshot(*, max_age_hours: int = 168) -> list[dict]:
         return []
 
 
+def build_firestore_snapshot(
+    token: str,
+    *,
+    force: bool = False,
+    min_users: int = 100,
+    max_age_hours: int = 720,
+) -> int:
+    """Refresh cache/thesis_users_snapshot.json; fall back to stale cache on 429."""
+    if not force:
+        cached = _load_users_snapshot(max_age_hours=max_age_hours)
+        if len(cached) >= min_users:
+            print(f'   📦 Snapshot fresh enough ({len(cached):,} users) — skip live Firestore')
+            return len(cached)
+
+    print('   🔄 Building Firestore user snapshot (extended retries)…')
+    os.environ['THESIS_FIRESTORE_SNAPSHOT_BUILD'] = '1'
+    warmup = int(os.getenv('THESIS_FIRESTORE_WARMUP_SEC', '30'))
+    if warmup > 0:
+        print(f'   ⏳ Firestore warmup {warmup}s before first request…')
+        time.sleep(warmup)
+
+    users = list(load_all_users(token))
+    if len(users) >= min_users:
+        _save_users_snapshot(users)
+        print(f'   💾 Saved Firestore snapshot ({len(users):,} users)')
+        return len(users)
+
+    stale = _load_users_snapshot(max_age_hours=None)
+    if len(stale) >= min_users:
+        print(f'   ⚠️ Live Firestore failed — using stale snapshot ({len(stale):,} users)')
+        return len(stale)
+    return len(users) or len(stale)
+
+
 def load_all_users_list(token: str, *, use_cache_on_failure: bool = True) -> list[dict]:
     """Load all Firestore users with retry + optional snapshot fallback."""
+    prefer_snapshot = os.getenv('THESIS_FIRESTORE_SNAPSHOT_FIRST', '').lower() in ('1', 'true', 'yes')
+    min_users = int(os.getenv('THESIS_FIRESTORE_SNAPSHOT_MIN', '100'))
+    max_age = int(os.getenv('THESIS_FIRESTORE_SNAPSHOT_MAX_AGE_HOURS', '720'))
+
+    if prefer_snapshot:
+        cached = _load_users_snapshot(max_age_hours=max_age)
+        if len(cached) >= min_users:
+            print(f'   📦 Snapshot-first: {len(cached):,} users (skipping live Firestore)')
+            return cached
+
     users = list(load_all_users(token))
     if users:
         try:
@@ -312,7 +370,7 @@ def load_all_users_list(token: str, *, use_cache_on_failure: bool = True) -> lis
             print(f'   ⚠️ Could not save Firestore snapshot: {exc}')
         return users
     if use_cache_on_failure:
-        cached = _load_users_snapshot()
+        cached = _load_users_snapshot(max_age_hours=None)
         if cached:
             return cached
     return []

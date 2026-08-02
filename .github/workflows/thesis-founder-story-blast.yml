@@ -19,6 +19,7 @@ on:
           - part-1
           - part-2
           - part-3
+          - build-snapshot
       limit:
         description: 'Max sends this run (0 = full cohort)'
         required: false
@@ -54,13 +55,22 @@ jobs:
           restore-keys: |
             thesis-users-snapshot-v1
 
+      - name: Build Firestore user snapshot
+        if: github.event.inputs.mode != 'status' && github.event.inputs.mode != 'dry-run'
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          THESIS_FIRESTORE_SNAPSHOT_BUILD: '1'
+          THESIS_FIRESTORE_WARMUP_SEC: '60'
+          THESIS_FIRESTORE_SNAPSHOT_MIN: '100'
+        run: python3 scripts/thesis_build_firestore_snapshot.py
+
       - name: Refresh English founder story template
-        if: github.event.inputs.mode != 'status'
+        if: github.event.inputs.mode != 'status' && github.event.inputs.mode != 'build-snapshot'
         run: |
           python3 -c "import sys; sys.path.insert(0,'scripts'); from founder_story_thesis_sender import _write_en_cache; _write_en_cache(); print('EN template cache updated')"
 
       - name: Warm founder story translations (cache before send)
-        if: github.event.inputs.mode != 'status'
+        if: github.event.inputs.mode != 'status' && github.event.inputs.mode != 'build-snapshot'
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
         run: |
@@ -68,6 +78,7 @@ jobs:
           echo "Translation cache ready — send will use cached templates only"
 
       - name: Run blast
+        if: github.event.inputs.mode != 'build-snapshot'
         env:
           EMAIL_PROVIDER: zeptomail
           ZEPTOMAIL_API_KEY: ${{ secrets.ZEPTOMAIL_API_KEY }}
@@ -79,6 +90,9 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           EMAIL_SENDING_PAUSED: ${{ secrets.EMAIL_SENDING_PAUSED }}
           THESIS_FIRESTORE_WARMUP_SEC: '30'
+          THESIS_FIRESTORE_SNAPSHOT_FIRST: '1'
+          THESIS_FIRESTORE_SNAPSHOT_MIN: '100'
+          THESIS_FIRESTORE_SNAPSHOT_MAX_AGE_HOURS: '720'
         run: |
           MODE="${{ github.event.inputs.mode || 'auto-part' }}"
           LIMIT="${{ github.event.inputs.limit || '0' }}"
@@ -102,7 +116,7 @@ jobs:
           fi
 
       - name: Commit blast state
-        if: always() && (github.event.inputs.mode != 'status' && github.event.inputs.mode != 'dry-run' || github.event_name == 'schedule')
+        if: always() && (github.event.inputs.mode == 'build-snapshot' || github.event.inputs.mode != 'status' && github.event.inputs.mode != 'dry-run' || github.event_name == 'schedule')
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
