@@ -66,6 +66,8 @@ jobs:
         run: |
           python3 scripts/founder_story_thesis_sender.py --warm
           echo "Translation cache ready — send will use cached templates only"
+
+      - name: Run blast
         env:
           EMAIL_PROVIDER: zeptomail
           ZEPTOMAIL_API_KEY: ${{ secrets.ZEPTOMAIL_API_KEY }}
