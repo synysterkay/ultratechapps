@@ -1,0 +1,100 @@
+name: Thesis Founder Story Blast
+
+on:
+  schedule:
+    # One cohort per day: Aug 2 → part 1, Aug 3 → part 2, Aug 4 → part 3
+    - cron: '0 11 * * *'
+
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Run mode'
+        required: true
+        default: 'auto-part'
+        type: choice
+        options:
+          - status
+          - dry-run
+          - auto-part
+          - part-1
+          - part-2
+          - part-3
+      limit:
+        description: 'Max sends this run (0 = full cohort)'
+        required: false
+        default: '0'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: thesis-founder-story-blast
+  cancel-in-progress: false
+
+jobs:
+  blast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Refresh Firebase export
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          cd scripts && python3 firebase_user_loader.py --refresh || true
+
+      - name: Run blast
+        env:
+          EMAIL_PROVIDER: zeptomail
+          ZEPTOMAIL_API_KEY: ${{ secrets.ZEPTOMAIL_API_KEY }}
+          ZEPTOMAIL_API_URL: https://api.zeptomail.eu/v1.1/email
+          ZEPTOMAIL_THESIS_SENDER_EMAIL: hello@thesisgenerator.io
+          ZEPTOMAIL_THESIS_SENDER_NAME: Thesis Generator
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          EMAIL_SENDING_PAUSED: ${{ secrets.EMAIL_SENDING_PAUSED }}
+        run: |
+          MODE="${{ github.event.inputs.mode || 'auto-part' }}"
+          LIMIT="${{ github.event.inputs.limit || '0' }}"
+          case "$MODE" in
+            status)
+              python3 scripts/thesis_founder_story_blast_sender.py --status
+              ;;
+            dry-run)
+              python3 scripts/thesis_founder_story_blast_sender.py --auto-part --dry-run --limit "$LIMIT"
+              ;;
+            part-1) PART=1 ;;
+            part-2) PART=2 ;;
+            part-3) PART=3 ;;
+            auto-part)
+              python3 scripts/thesis_founder_story_blast_sender.py --auto-part --limit "$LIMIT"
+              exit 0
+              ;;
+          esac
+          if [ -n "${PART:-}" ]; then
+            python3 scripts/thesis_founder_story_blast_sender.py --part "$PART" --limit "$LIMIT"
+          fi
+
+      - name: Commit blast state
+        if: always() && github.event.inputs.mode != 'status' && github.event.inputs.mode != 'dry-run'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git stash push -u -m "pre-blast-state-push" -- cache/warming_state.json firebase_exports/ 2>/dev/null || true
+          git add cache/thesis_founder_story_blast_state.json 2>/dev/null || true
+          git diff --staged --quiet && { git stash pop 2>/dev/null || true; exit 0; }
+          git commit -m "Update thesis founder story blast state [skip ci]"
+          git pull --rebase origin main || { git rebase --abort 2>/dev/null || true; git stash pop 2>/dev/null || true; exit 0; }
+          git push origin main || echo "Push failed — retry on next run"
+          git stash pop 2>/dev/null || true
+        continue-on-error: true
