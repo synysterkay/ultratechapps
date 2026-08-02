@@ -53,7 +53,9 @@ jobs:
           cd scripts && python3 firebase_user_loader.py --refresh || true
 
       - name: Refresh English founder story template
-        run: python3 scripts/founder_story_thesis_sender.py --warm
+        if: github.event.inputs.mode != 'status'
+        run: |
+          python3 -c "import sys; sys.path.insert(0,'scripts'); from founder_story_thesis_sender import _write_en_cache; _write_en_cache(); print('EN template cache updated')"
 
       - name: Run blast
         env:
