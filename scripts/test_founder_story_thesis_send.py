@@ -17,7 +17,6 @@ from founder_story_thesis_sender import (
     GOOGLE_PLAY_URL,
     KIND,
     TEMPLATE_KIND,
-    WEB_APP_URL,
 )
 from gmail_sender import GmailSender
 from thesis_email_chrome import render as render_email
@@ -51,30 +50,32 @@ def main() -> None:
     lang = args.lang
     tpl = get_localized(TEMPLATE_KIND, lang, EN_SOURCE, allow_api=False)
     subject = localize_phrase.interpolate(lang, tpl.get('subject', EN_SOURCE['subject']), plan)
+    preview = localize_phrase.interpolate(
+        lang, tpl.get('preview', EN_SOURCE.get('preview', '')), plan,
+    )
     paragraphs = [
         localize_phrase.interpolate(lang, p, plan)
         for p in tpl.get('body', EN_SOURCE['body'])
     ]
-    cta_text = localize_phrase.interpolate(lang, tpl.get('cta', EN_SOURCE['cta']), plan)
-    cta_android = localize_phrase.interpolate(
-        lang, tpl.get('cta_android', EN_SOURCE['cta_android']), plan,
+    cta_ios = localize_phrase.interpolate(
+        lang, tpl.get('cta_ios', EN_SOURCE.get('cta_ios', 'App Store')), plan,
     )
-    cta_web = localize_phrase.interpolate(
-        lang, tpl.get('cta_web', EN_SOURCE['cta_web']), plan,
+    cta_android = localize_phrase.interpolate(
+        lang, tpl.get('cta_android', EN_SOURCE.get('cta_android', 'Google Play')), plan,
     )
 
     html_body = render_email(
         lang,
         paragraphs,
-        cta_text,
+        cta_ios,
         APP_STORE_URL,
         sender_name='Ana',
         app_name=APP_NAME,
         gradient='invite',
+        preview_text=preview or None,
         cta_links=[
-            {'text': cta_text, 'url': APP_STORE_URL, 'variant': 'primary'},
-            {'text': cta_android, 'url': GOOGLE_PLAY_URL, 'variant': 'play'},
-            {'text': cta_web, 'url': WEB_APP_URL, 'variant': 'web'},
+            {'url': APP_STORE_URL, 'variant': 'ios', 'line2': cta_ios},
+            {'url': GOOGLE_PLAY_URL, 'variant': 'android', 'line2': cta_android},
         ],
     )
 
@@ -85,6 +86,7 @@ def main() -> None:
             f.write(html_body)
         print(f'[DRY RUN] Wrote preview to {out}')
         print(f'Subject: {subject}')
+        print(f'Preview: {preview}')
         return
 
     sender = GmailSender(

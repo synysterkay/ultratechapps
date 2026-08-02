@@ -1,5 +1,6 @@
 {
-  "subject": "{{first_name}}, still staring at a blank page?",
+  "subject": "{{first_name}}, it's 2:14 AM — {{topic}} is still blank",
+  "preview": "48 hours left. She opened the app once — ten minutes later she had a full draft.",
   "body": [
     "Every semester, students promise themselves: \"This time I'll start early.\" Then a week becomes three days, three days become one night — and suddenly it's 2:14 AM with twenty tabs open and references everywhere.",
     "I built Thesis Generator because academic writing isn't laziness — it's overwhelming. Not something that thinks for you. Something that helps you think faster.",
@@ -8,7 +9,6 @@
     "Your next step takes about three minutes: enter what you already know about {{topic}}, tap generate, and work from a draft instead of a blank page. Your ideas deserve more time than formatting.",
     "P.S. A rough draft today beats a perfect plan next week. Start while you still have days — not hours."
   ],
-  "cta": "Generate my {{work_type}}",
-  "cta_android": "Get it on Android",
-  "cta_web": "Open the web app"
+  "cta_ios": "App Store",
+  "cta_android": "Google Play"
 }

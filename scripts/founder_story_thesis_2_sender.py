@@ -56,7 +56,8 @@ BACKFILL_CAP = int(os.getenv('FOUNDER_STORY_THESIS_2_SEND_CAP', '2000'))
 DAILY_CATCHUP_CAP = int(os.getenv('FOUNDER_STORY_THESIS_2_DAILY_CAP', '200'))
 
 EN_SOURCE = {
-    'subject': '{{first_name}}, {{topic}} — 3 minutes to a draft you can edit',
+    'subject': '{{first_name}}, {{topic}} — still zero words written?',
+    'preview': 'Three minutes to a draft you can edit. Your deadline did not move backward.',
     'body': [
         "{{first_name}}, I wrote to you a few days ago — and {{topic}} is still waiting.",
         "Students who opened Thesis Generator this week didn't find more time. They stopped negotiating with a blank page and generated a rough {{work_type}} in under three minutes. Editing a draft feels manageable. Dreading one for another week doesn't.",
@@ -64,9 +65,8 @@ EN_SOURCE = {
         "Day {{days_since_story}} since our first note. Your submission date didn't move backward.",
         "P.S. If {{topic}} is already in the app, open it and finish one section today. One section is enough to restart momentum.",
     ],
-    'cta': 'Draft my {{work_type}} in 3 minutes',
-    'cta_android': 'Open on Android',
-    'cta_web': 'Continue on web',
+    'cta_ios': 'App Store',
+    'cta_android': 'Google Play',
 }
 
 
@@ -281,23 +281,25 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None) -> list[str]
             localize_phrase.interpolate(lang, p, plan)
             for p in tpl.get('body', EN_SOURCE['body'])
         ]
-        cta_text = localize_phrase.interpolate(lang, tpl.get('cta', EN_SOURCE['cta']), plan)
-        cta_android = localize_phrase.interpolate(
-            lang, tpl.get('cta_android', EN_SOURCE['cta_android']), plan,
+        preview = localize_phrase.interpolate(
+            lang, tpl.get('preview', EN_SOURCE.get('preview', '')), plan,
         )
-        cta_web = localize_phrase.interpolate(
-            lang, tpl.get('cta_web', EN_SOURCE['cta_web']), plan,
+        cta_ios = localize_phrase.interpolate(
+            lang, tpl.get('cta_ios', EN_SOURCE.get('cta_ios', 'App Store')), plan,
+        )
+        cta_android = localize_phrase.interpolate(
+            lang, tpl.get('cta_android', EN_SOURCE.get('cta_android', 'Google Play')), plan,
         )
 
         html = render_email(
-            lang, paragraphs, cta_text, APP_STORE_URL,
+            lang, paragraphs, cta_ios, APP_STORE_URL,
             sender_name='Ana',
             app_name=APP_NAME,
             gradient='urgent',
+            preview_text=preview or None,
             cta_links=[
-                {'text': cta_text, 'url': APP_STORE_URL, 'variant': 'primary'},
-                {'text': cta_android, 'url': GOOGLE_PLAY_URL, 'variant': 'play'},
-                {'text': cta_web, 'url': WEB_APP_URL, 'variant': 'web'},
+                {'url': APP_STORE_URL, 'variant': 'ios', 'line2': cta_ios},
+                {'url': GOOGLE_PLAY_URL, 'variant': 'android', 'line2': cta_android},
             ],
         )
 

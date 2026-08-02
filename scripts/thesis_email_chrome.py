@@ -98,6 +98,63 @@ def _cta_button(text: str, url: str, *, bg: str, outline: bool = False) -> str:
     )
 
 
+def _ios_store_button(url: str, line1: str = 'Download on the', line2: str = 'App Store') -> str:
+    return (
+        f'<a href="{url}" style="display:block;text-decoration:none;background:#111827;'
+        f'border-radius:14px;padding:14px 18px;color:#ffffff;min-height:48px;'
+        f'box-shadow:0 4px 14px rgba(17,24,39,0.18);text-align:center;">'
+        f'<div style="font-size:10px;line-height:1.3;opacity:0.88;letter-spacing:0.04em;">'
+        f'{_esc(line1)}</div>'
+        f'<div style="font-size:17px;line-height:1.25;font-weight:700;letter-spacing:-0.01em;margin-top:2px;">'
+        f'{_esc(line2)}</div>'
+        f'</a>'
+    )
+
+
+def _android_store_button(url: str, line1: str = 'GET IT ON', line2: str = 'Google Play') -> str:
+    return (
+        f'<a href="{url}" style="display:block;text-decoration:none;background:{CARD};'
+        f'border-radius:14px;padding:14px 18px;color:{INK_PRIMARY};min-height:48px;'
+        f'border:1.5px solid {RECESSED};box-shadow:0 4px 14px rgba(17,24,39,0.06);text-align:center;">'
+        f'<div style="font-size:10px;line-height:1.3;color:{INK_SECONDARY};letter-spacing:0.08em;">'
+        f'{_esc(line1)}</div>'
+        f'<div style="font-size:17px;line-height:1.25;font-weight:700;color:{INK_PRIMARY};margin-top:2px;">'
+        f'{_esc(line2)}</div>'
+        f'</a>'
+    )
+
+
+def _store_buttons_row(links: list[dict]) -> str:
+    """Side-by-side App Store + Google Play badges."""
+    ios = android = ''
+    for link in links:
+        variant = link.get('variant', '')
+        if variant in {'ios', 'app_store', 'primary'} and not ios:
+            ios = _ios_store_button(
+                link['url'],
+                link.get('line1', 'Download on the'),
+                link.get('line2', link.get('text', 'App Store')),
+            )
+        elif variant in {'android', 'play', 'google_play'} and not android:
+            android = _android_store_button(
+                link['url'],
+                link.get('line1', 'GET IT ON'),
+                link.get('line2', link.get('text', 'Google Play')),
+            )
+    if not ios and not android:
+        return ''
+    if ios and android:
+        return (
+            f'<table role="presentation" width="100%" cellspacing="0" cellpadding="0" '
+            f'style="margin:32px 0 8px 0;"><tr>'
+            f'<td width="50%" style="padding:0 6px 0 0;vertical-align:top;">{ios}</td>'
+            f'<td width="50%" style="padding:0 0 0 6px;vertical-align:top;">{android}</td>'
+            f'</tr></table>'
+        )
+    single = ios or android
+    return f'<div style="margin:32px auto 8px auto;max-width:280px;">{single}</div>'
+
+
 def _cta_section(
     cta_text: str,
     cta_url: str,
@@ -106,21 +163,26 @@ def _cta_section(
     cta_links: list[dict] | None = None,
 ) -> str:
     primary_bg = f'linear-gradient(135deg,{c1} 0%,{c2} 100%)'
-    if not cta_links:
-        return (
-            f'<div style="text-align:center;margin:32px 0 8px 0;">'
-            f'{_cta_button(cta_text, cta_url, bg=primary_bg)}'
-            f'</div>'
-        )
-    buttons = []
-    for link in cta_links:
-        variant = link.get('variant', 'primary')
-        if variant == 'primary':
-            btn = _cta_button(link['text'], link['url'], bg=primary_bg)
-        else:
-            btn = _cta_button(link['text'], link['url'], bg='', outline=True)
-        buttons.append(f'<div style="margin:0 0 12px 0;">{btn}</div>')
-    return f'<div style="text-align:center;margin:32px 0 8px 0;">{"".join(buttons)}</div>'
+    if cta_links:
+        variants = {link.get('variant', 'primary') for link in cta_links}
+        if variants & {'ios', 'android', 'app_store', 'google_play', 'play'}:
+            store_html = _store_buttons_row(cta_links)
+            if store_html:
+                return store_html
+        buttons = []
+        for link in cta_links:
+            variant = link.get('variant', 'primary')
+            if variant == 'primary':
+                btn = _cta_button(link['text'], link['url'], bg=primary_bg)
+            else:
+                btn = _cta_button(link['text'], link['url'], bg='', outline=True)
+            buttons.append(f'<div style="margin:0 0 12px 0;">{btn}</div>')
+        return f'<div style="text-align:center;margin:32px 0 8px 0;">{"".join(buttons)}</div>'
+    return (
+        f'<div style="text-align:center;margin:32px 0 8px 0;">'
+        f'{_cta_button(cta_text, cta_url, bg=primary_bg)}'
+        f'</div>'
+    )
 
 
 def _header_html(app_name: str, text_align: str) -> str:

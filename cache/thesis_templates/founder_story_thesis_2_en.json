@@ -1,5 +1,6 @@
 {
-  "subject": "{{first_name}}, {{topic}} — 3 minutes to a draft you can edit",
+  "subject": "{{first_name}}, {{topic}} — still zero words written?",
+  "preview": "Three minutes to a draft you can edit. Your deadline did not move backward.",
   "body": [
     "{{first_name}}, I wrote to you a few days ago — and {{topic}} is still waiting.",
     "Students who opened Thesis Generator this week didn't find more time. They stopped negotiating with a blank page and generated a rough {{work_type}} in under three minutes. Editing a draft feels manageable. Dreading one for another week doesn't.",
@@ -7,7 +8,6 @@
     "Day {{days_since_story}} since our first note. Your submission date didn't move backward.",
     "P.S. If {{topic}} is already in the app, open it and finish one section today. One section is enough to restart momentum."
   ],
-  "cta": "Draft my {{work_type}} in 3 minutes",
-  "cta_android": "Open on Android",
-  "cta_web": "Continue on web"
+  "cta_ios": "App Store",
+  "cta_android": "Google Play"
 }

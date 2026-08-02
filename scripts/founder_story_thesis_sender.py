@@ -49,7 +49,8 @@ DAILY_CATCHUP_CAP = int(os.getenv('FOUNDER_STORY_THESIS_DAILY_CAP', '50'))
 LAPSED_DAYS = int(os.getenv('FOUNDER_STORY_LAPSED_DAYS', '14'))
 
 EN_SOURCE = {
-    'subject': '{{first_name}}, still staring at a blank page?',
+    'subject': "{{first_name}}, it's 2:14 AM — {{topic}} is still blank",
+    'preview': '48 hours left. She opened the app once — ten minutes later she had a full draft.',
     'body': [
         'Every semester, students promise themselves: "This time I\'ll start early." Then a week becomes three days, three days become one night — and suddenly it\'s 2:14 AM with twenty tabs open and references everywhere.',
         "I built Thesis Generator because academic writing isn't laziness — it's overwhelming. Not something that thinks for you. Something that helps you think faster.",
@@ -58,9 +59,8 @@ EN_SOURCE = {
         "Your next step takes about three minutes: enter what you already know about {{topic}}, tap generate, and work from a draft instead of a blank page. Your ideas deserve more time than formatting.",
         "P.S. A rough draft today beats a perfect plan next week. Start while you still have days — not hours.",
     ],
-    'cta': 'Generate my {{work_type}}',
-    'cta_android': 'Get it on Android',
-    'cta_web': 'Open the web app',
+    'cta_ios': 'App Store',
+    'cta_android': 'Google Play',
 }
 
 
@@ -451,23 +451,25 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None, fix_language
             localize_phrase.interpolate(lang, p, plan)
             for p in tpl.get('body', EN_SOURCE['body'])
         ]
-        cta_text = localize_phrase.interpolate(lang, tpl.get('cta', EN_SOURCE['cta']), plan)
-        cta_android = localize_phrase.interpolate(
-            lang, tpl.get('cta_android', EN_SOURCE['cta_android']), plan,
+        preview = localize_phrase.interpolate(
+            lang, tpl.get('preview', EN_SOURCE.get('preview', '')), plan,
         )
-        cta_web = localize_phrase.interpolate(
-            lang, tpl.get('cta_web', EN_SOURCE['cta_web']), plan,
+        cta_ios = localize_phrase.interpolate(
+            lang, tpl.get('cta_ios', EN_SOURCE.get('cta_ios', 'App Store')), plan,
+        )
+        cta_android = localize_phrase.interpolate(
+            lang, tpl.get('cta_android', EN_SOURCE.get('cta_android', 'Google Play')), plan,
         )
 
         html = render_email(
-            lang, paragraphs, cta_text, APP_STORE_URL,
+            lang, paragraphs, cta_ios, APP_STORE_URL,
             sender_name='Ana',
             app_name=APP_NAME,
             gradient='invite',
+            preview_text=preview or None,
             cta_links=[
-                {'text': cta_text, 'url': APP_STORE_URL, 'variant': 'primary'},
-                {'text': cta_android, 'url': GOOGLE_PLAY_URL, 'variant': 'play'},
-                {'text': cta_web, 'url': WEB_APP_URL, 'variant': 'web'},
+                {'url': APP_STORE_URL, 'variant': 'ios', 'line2': cta_ios},
+                {'url': GOOGLE_PLAY_URL, 'variant': 'android', 'line2': cta_android},
             ],
         )
 
