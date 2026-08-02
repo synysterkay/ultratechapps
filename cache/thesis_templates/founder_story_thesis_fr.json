@@ -1,14 +1,14 @@
 {
-  "subject": "{{first_name}}, vous fixez encore une page blanche ?",
+  "subject": "{{first_name}}, il est 2 h 14 — {{topic}} est toujours vide",
+  "preview": "Plus que 48 heures. Elle a ouvert l'application une fois — dix minutes plus tard, elle avait un brouillon complet.",
   "body": [
-    "Chaque semestre, les étudiants se promettent : \"Cette fois, je commencerai tôt.\" Puis une semaine devient trois jours, trois jours deviennent une nuit — et soudain il est 2h14 du matin avec vingt onglets ouverts et des références partout.",
-    "J'ai construit Thesis Generator parce que l'écriture académique n'est pas de la paresse — c'est accablant. Pas quelque chose qui pense à votre place. Quelque chose qui vous aide à penser plus vite.",
-    "Une de nos coéquipières a vraiment touché le fond : {{work_type}} à rendre dans 48 heures, sujet défini, recherche faite — puis des jours où taper normalement n'était pas une option. Elle a ouvert l'application que nous avions passé un an à construire. Dix minutes plus tard, elle avait un brouillon complet — plan, chapitres, références. Elle l'a édité, soumis, et a obtenu 5/5.",
-    "Voilà pourquoi Thesis Generator existe : transformer {{topic}} de quelque chose que vous évitez en quelque chose que vous pouvez ouvrir, éditer et soumettre.",
-    "Votre prochaine étape prend environ trois minutes : entrez ce que vous savez déjà sur {{topic}}, appuyez sur générer, et travaillez à partir d'un brouillon au lieu d'une page blanche. Vos idées méritent plus de temps que la mise en forme.",
-    "P.S. Un brouillon aujourd'hui vaut mieux qu'un plan parfait la semaine prochaine. Commencez pendant qu'il vous reste des jours — pas des heures."
+    "Chaque semestre, les étudiants se promettent : \"Cette fois, je commencerai tôt.\" Puis une semaine devient trois jours, trois jours deviennent une nuit — et soudain, il est 2 h 14 avec vingt onglets ouverts et des références partout.",
+    "J'ai créé Thesis Generator parce que l'écriture académique n'est pas de la paresse — c'est accablant. Pas quelque chose qui pense à votre place. Quelque chose qui vous aide à penser plus vite.",
+    "Une de nos coéquipières a vraiment vécu ce mur : {{work_type}} à rendre dans 48 heures, sujet choisi, recherche terminée — puis des jours où taper normalement n'était pas une option. Elle a ouvert l'application que nous avions passé un an à construire. Dix minutes plus tard, elle avait un brouillon complet — plan, chapitres, références. Elle l'a édité, soumis, et a obtenu 5/5.",
+    "C'est pour cela que Thesis Generator existe : transformer {{topic}} de quelque chose que vous évitez en quelque chose que vous pouvez ouvrir, éditer et soumettre.",
+    "Votre prochaine étape prend environ trois minutes : saisissez ce que vous savez déjà sur {{topic}}, appuyez sur générer, et travaillez à partir d'un brouillon au lieu d'une page blanche. Vos idées méritent plus de temps que la mise en forme.",
+    "P.S. Un brouillon approximatif aujourd'hui vaut mieux qu'un plan parfait la semaine prochaine. Commencez pendant que vous avez encore des jours — pas des heures."
   ],
-  "cta": "Générer mon {{work_type}}",
-  "cta_android": "Obtenez-le sur Android",
-  "cta_web": "Ouvrir l'application web"
+  "cta_ios": "App Store",
+  "cta_android": "Google Play"
 }

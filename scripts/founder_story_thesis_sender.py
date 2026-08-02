@@ -246,11 +246,13 @@ def warm_templates(refresh: bool = False) -> None:
     if refresh:
         cache_dir = Path(__file__).resolve().parents[1] / 'cache' / 'thesis_templates'
         removed = 0
-        for path in cache_dir.glob(f'{TEMPLATE_KIND}_*.json'):
-            if path.name.endswith('_en.json'):
+        for lang in SUPPORTED:
+            if lang == 'en':
                 continue
-            path.unlink(missing_ok=True)
-            removed += 1
+            path = cache_dir / f'{TEMPLATE_KIND}_{lang}.json'
+            if path.exists():
+                path.unlink()
+                removed += 1
         if removed:
             print(f'   🔄 Cleared {removed} cached {TEMPLATE_KIND} translations for refresh')
     _write_en_cache()

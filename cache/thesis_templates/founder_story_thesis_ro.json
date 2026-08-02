@@ -1,14 +1,14 @@
 {
-  "subject": "{{first_name}}, încă te uiți la o pagină goală?",
+  "subject": "{{first_name}}, este 2:14 dimineața — {{topic}} este încă gol",
+  "preview": "Au mai rămas 48 de ore. Ea a deschis aplicația o singură dată — zece minute mai târziu avea o schiță completă.",
   "body": [
-    "În fiecare semestru, studenții își promit: „De data asta încep devreme.” Apoi o săptămână devine trei zile, trei zile devin o noapte — și brusc e 2:14 dimineața cu douăzeci de file deschise și referințe peste tot.",
-    "Am construit Thesis Generator pentru că scrisul academic nu e lene — e copleșitor. Nu ceva care gândește pentru tine. Ceva care te ajută să gândești mai repede.",
-    "Una dintre colegele noastre a ajuns la acel blocaj real: {{work_type}} de predat în 48 de ore, subiect stabilit, cercetare făcută — apoi zile în care scrisul normal nu era o opțiune. A deschis aplicația pe care o construisem timp de un an. Zece minute mai târziu avea o schiță completă — structură, capitole, referințe. A editat-o, a trimis-o și a luat 5/5.",
-    "De asta există Thesis Generator: transformă {{topic}} din ceva ce eviți în ceva ce poți deschide, edita și trimite.",
-    "Următorul tău pas durează cam trei minute: introdu ce știi deja despre {{topic}}, apasă generează și lucrează de la o schiță, nu de la o pagină goală. Ideile tale merită mai mult timp decât formatarea.",
-    "P.S. O schiță brută azi bate un plan perfect săptămâna viitoare. Începe cât încă ai zile — nu ore."
+    "În fiecare semestru, studenții își promit: \"De data asta voi începe devreme.\" Apoi o săptămână devine trei zile, trei zile devin o noapte — și dintr-o dată este 2:14 dimineața, cu douăzeci de file deschise și referințe peste tot.",
+    "Am construit Thesis Generator pentru că scrierea academică nu este lene — este copleșitoare. Nu ceva care gândește în locul tău. Ceva care te ajută să gândești mai repede.",
+    "Una dintre colegele noastre a ajuns la acel punct critic: {{work_type}} de predat în 48 de ore, subiect stabilit, cercetare făcută — apoi zile în care scrisul normal nu era o opțiune. Ea a deschis aplicația pe care am petrecut un an construind-o. Zece minute mai târziu avea o schiță completă — structură, capitole, referințe. A editat-o, a predat-o și a luat 5/5.",
+    "De aceea există Thesis Generator: să transforme {{topic}} din ceva pe care îl eviți în ceva pe care îl poți deschide, edita și preda.",
+    "Următorul tău pas durează aproximativ trei minute: introdu ce știi deja despre {{topic}}, apasă generează și lucrează de la o schiță în loc de o pagină goală. Ideile tale merită mai mult timp decât formatarea.",
+    "P.S. O schiță brută astăzi bate un plan perfect săptămâna viitoare. Începe cât încă mai ai zile — nu ore."
   ],
-  "cta": "Generează-mi {{work_type}}",
-  "cta_android": "Obține-l pe Android",
-  "cta_web": "Deschide aplicația web"
+  "cta_ios": "App Store",
+  "cta_android": "Google Play"
 }

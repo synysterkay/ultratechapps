@@ -1,14 +1,14 @@
 {
-  "subject": "{{first_name}}, staar je nog steeds naar een lege pagina?",
+  "subject": "{{first_name}}, het is 2:14 uur — {{topic}} is nog steeds leeg",
+  "preview": "Nog 48 uur. Ze opende de app één keer — tien minuten later had ze een volledige conceptversie.",
   "body": [
-    "Elk semester beloven studenten zichzelf: \"Deze keer begin ik op tijd.\" Dan wordt een week drie dagen, drie dagen worden één nacht — en plotseling is het 2:14 uur met twintig tabbladen open en referenties overal.",
-    "Ik bouwde Thesis Generator omdat academisch schrijven geen luiheid is — het is overweldigend. Niet iets dat voor je denkt. Iets dat je helpt sneller te denken.",
-    "Een van onze teamleden kwam die muur echt tegen: {{work_type}} moest binnen 48 uur ingeleverd worden, onderwerp bepaald, onderzoek gedaan — maar dagen waarin normaal typen geen optie was. Ze opende de app waar we een jaar aan hadden gebouwd. Tien minuten later had ze een volledige draft — outline, hoofdstukken, referenties. Ze bewerkte het, diende het in en haalde een 5/5.",
-    "Daarom bestaat Thesis Generator: maak van {{topic}} iets dat je niet vermijdt, maar kunt openen, bewerken en indienen.",
-    "Je volgende stap duurt ongeveer drie minuten: voer in wat je al weet over {{topic}}, tik op genereren en werk vanuit een draft in plaats van een lege pagina. Je ideeën verdienen meer tijd dan opmaak.",
-    "P.S. Een ruwe draft vandaag is beter dan een perfect plan volgende week. Begin terwijl je nog dagen hebt — niet uren."
+    "Elk semester beloven studenten zichzelf: \"Deze keer begin ik op tijd.\" Dan wordt een week drie dagen, drie dagen worden één nacht — en plotseling is het 2:14 uur met twintig tabbladen open en overal referenties.",
+    "Ik heb Thesis Generator gebouwd omdat academisch schrijven geen luiheid is — het is overweldigend. Niet iets dat voor je denkt. Iets dat je helpt sneller te denken.",
+    "Een van onze teamgenoten kwam echt tegen die muur: {{work_type}} moest over 48 uur ingeleverd worden, onderwerp gekozen, onderzoek gedaan — maar dan dagen waarin normaal typen geen optie was. Ze opende de app waar we een jaar aan hadden gewerkt. Tien minuten later had ze een volledige conceptversie — outline, hoofdstukken, referenties. Ze bewerkte het, diende het in en haalde een 5/5.",
+    "Daarom bestaat Thesis Generator: om {{topic}} te veranderen van iets dat je vermijdt naar iets dat je kunt openen, bewerken en indienen.",
+    "Je volgende stap duurt ongeveer drie minuten: voer in wat je al weet over {{topic}}, tik op genereren en werk vanuit een concept in plaats van een lege pagina. Je ideeën verdienen meer tijd dan opmaak.",
+    "P.S. Een ruwe concept vandaag is beter dan een perfect plan volgende week. Begin terwijl je nog dagen hebt — geen uren."
   ],
-  "cta": "Genereer mijn {{work_type}}",
-  "cta_android": "Download op Android",
-  "cta_web": "Open de webapp"
+  "cta_ios": "App Store",
+  "cta_android": "Google Play"
 }

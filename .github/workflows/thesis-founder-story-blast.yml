@@ -59,7 +59,13 @@ jobs:
         run: |
           python3 -c "import sys; sys.path.insert(0,'scripts'); from founder_story_thesis_sender import _write_en_cache; _write_en_cache(); print('EN template cache updated')"
 
-      - name: Run blast
+      - name: Warm founder story translations (cache before send)
+        if: github.event.inputs.mode != 'status'
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: |
+          python3 scripts/founder_story_thesis_sender.py --warm
+          echo "Translation cache ready — send will use cached templates only"
         env:
           EMAIL_PROVIDER: zeptomail
           ZEPTOMAIL_API_KEY: ${{ secrets.ZEPTOMAIL_API_KEY }}

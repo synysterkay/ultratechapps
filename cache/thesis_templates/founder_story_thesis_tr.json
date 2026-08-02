@@ -1,14 +1,14 @@
 {
-  "subject": "{{first_name}}, hâlâ boş bir sayfaya mı bakıyorsun?",
+  "subject": "{{first_name}}, saat 02:14 — {{topic}} hâlâ boş",
+  "preview": "48 saat kaldı. Uygulamayı bir kez açtı — on dakika sonra tam bir taslağı vardı.",
   "body": [
-    "Her dönem öğrenciler kendilerine söz verir: \"Bu sefer erken başlayacağım.\" Sonra bir hafta üç güne, üç gün bir geceye dönüşür — ve aniden saat 2:14, yirmi sekme açık ve referanslar her yerde.",
-    "Thesis Generator'ı kurdum çünkü akademik yazı tembellik değil — bunaltıcı. Senin yerine düşünen bir şey değil. Daha hızlı düşünmene yardımcı olan bir şey.",
-    "Takım arkadaşlarımızdan biri gerçekten o duvara tosladı: {{work_type}} 48 saat içinde teslim edilecek, konu belirlenmiş, araştırma yapılmış — ama sonra günlerce normal şekilde yazamadı. Bir yıldır üzerinde çalıştığımız uygulamayı açtı. On dakika sonra tam bir taslağı vardı — ana hatlar, bölümler, referanslar. Düzenledi, teslim etti ve 5/5 ile geçti.",
-    "İşte bu yüzden Thesis Generator var: {{topic}}'yi kaçındığın bir şeyden, açıp düzenleyip teslim edebileceğin bir şeye dönüştürmek.",
-    "Bir sonraki adımın yaklaşık üç dakika sürüyor: {{topic}} hakkında zaten bildiklerini gir, oluştur'a dokun ve boş bir sayfa yerine bir taslak üzerinden çalış. Fikirlerin, biçimlendirmeden daha fazla zamanı hak ediyor.",
-    "Not: Bugünkü kaba bir taslak, gelecek haftaki mükemmel plandan iyidir. Günlerin varken başla — saatlerin değil."
+    "Her dönem öğrenciler kendilerine söz verir: \"Bu sefer erken başlayacağım.\" Sonra bir hafta üç güne, üç gün bir geceye dönüşür — ve aniden saat 02:14 olur, yirmi sekme açık ve referanslar her yerde.",
+    "Thesis Generator'ı akademik yazım tembellik olmadığı için kurdum — bunaltıcı. Sizin yerinize düşünen bir şey değil. Daha hızlı düşünmenize yardımcı olan bir şey.",
+    "Ekip arkadaşlarımızdan biri bu duvarı gerçekten yaşadı: {{work_type}} 48 saat sonra teslim edilecek, konu belirlenmiş, araştırma yapılmış — sonra normal yazmanın mümkün olmadığı günler. Bir yıldır üzerinde çalıştığımız uygulamayı açtı. On dakika sonra tam bir taslağı vardı — ana hatlar, bölümler, referanslar. Düzenledi, teslim etti ve 5/5 ile geçti.",
+    "Thesis Generator'ın var olma nedeni bu: {{topic}}'i kaçındığınız bir şeyden açabileceğiniz, düzenleyebileceğiniz ve teslim edebileceğiniz bir şeye dönüştürmek.",
+    "Bir sonraki adımınız yaklaşık üç dakika sürer: {{topic}} hakkında zaten bildiklerinizi girin, oluştur'a dokunun ve boş bir sayfa yerine bir taslaktan çalışın. Fikirleriniz biçimlendirmeden daha fazla zamanı hak ediyor.",
+    "N.S. Bugünkü kaba taslak, gelecek haftaki mükemmel plandan iyidir. Günleriniz varken başlayın — saatleriniz değil."
   ],
-  "cta": "{{work_type}}'imi oluştur",
-  "cta_android": "Android'de al",
-  "cta_web": "Web uygulamasını aç"
+  "cta_ios": "App Store",
+  "cta_android": "Google Play"
 }

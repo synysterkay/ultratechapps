@@ -1,14 +1,14 @@
 {
-  "subject": "{{first_name}}, masih menatap halaman kosong?",
+  "subject": "{{first_name}}, ini jam 2:14 pagi — {{topic}} masih kosong",
+  "preview": "Tersisa 48 jam. Dia membuka aplikasi sekali — sepuluh menit kemudian dia punya draf lengkap.",
   "body": [
-    "Setiap semester, mahasiswa berjanji pada diri sendiri: \"Kali ini aku akan mulai lebih awal.\" Lalu seminggu menjadi tiga hari, tiga hari menjadi satu malam — dan tiba-tiba sudah jam 2:14 pagi dengan dua puluh tab terbuka dan referensi berantakan.",
-    "Saya membangun Thesis Generator karena menulis akademis bukanlah kemalasan — ini luar biasa berat. Bukan sesuatu yang berpikir untuk Anda. Sesuatu yang membantu Anda berpikir lebih cepat.",
-    "Salah satu rekan tim kami benar-benar mengalami situasi sulit itu: {{work_type}} harus dikumpulkan dalam 48 jam, topik sudah ditentukan, riset sudah selesai — lalu hari-hari di mana mengetik secara normal bukanlah pilihan. Dia membuka aplikasi yang kami habiskan setahun untuk membangunnya. Sepuluh menit kemudian dia memiliki draf lengkap — kerangka, bab, referensi. Dia mengeditnya, mengumpulkannya, dan lulus dengan nilai 5/5.",
-    "Itulah mengapa Thesis Generator ada: mengubah {{topic}} dari sesuatu yang Anda hindari menjadi sesuatu yang bisa Anda buka, edit, dan kumpulkan.",
-    "Langkah Anda selanjutnya memakan waktu sekitar tiga menit: masukkan apa yang sudah Anda ketahui tentang {{topic}}, ketuk generate, dan kerjakan dari draf, bukan dari halaman kosong. Ide-ide Anda pantas mendapatkan lebih banyak waktu daripada urusan format.",
-    "P.S. Draf kasar hari ini lebih baik daripada rencana sempurna minggu depan. Mulailah selagi Anda masih punya hari — bukan jam."
+    "Setiap semester, mahasiswa berjanji pada diri sendiri: \"Kali ini aku akan mulai lebih awal.\" Lalu seminggu menjadi tiga hari, tiga hari menjadi satu malam — dan tiba-tiba sudah jam 2:14 pagi dengan dua puluh tab terbuka dan referensi di mana-mana.",
+    "Saya membangun Thesis Generator karena menulis akademis bukanlah kemalasan — itu hal yang membebani. Bukan sesuatu yang berpikir untukmu. Sesuatu yang membantumu berpikir lebih cepat.",
+    "Salah satu rekan tim kami benar-benar mengalami hal itu: {{work_type}} jatuh tempo dalam 48 jam, topik sudah ditentukan, riset sudah selesai — lalu hari-hari di mana mengetik secara normal bukanlah pilihan. Dia membuka aplikasi yang kami habiskan waktu setahun untuk membangunnya. Sepuluh menit kemudian dia punya draf lengkap — kerangka, bab, referensi. Dia mengeditnya, mengumpulkannya, dan lulus dengan nilai 5/5.",
+    "Itulah mengapa Thesis Generator ada: mengubah {{topic}} dari sesuatu yang kamu hindari menjadi sesuatu yang bisa kamu buka, edit, dan kumpulkan.",
+    "Langkah berikutnya memakan waktu sekitar tiga menit: masukkan apa yang sudah kamu ketahui tentang {{topic}}, ketuk generate, dan kerjakan dari draf, bukan dari halaman kosong. Ide-idemu layak mendapat lebih banyak waktu daripada sekadar format.",
+    "P.S. Draf kasar hari ini lebih baik daripada rencana sempurna minggu depan. Mulailah selagi kamu masih punya hari — bukan jam."
   ],
-  "cta": "Hasilkan {{work_type}} saya",
-  "cta_android": "Dapatkan di Android",
-  "cta_web": "Buka aplikasi web"
+  "cta_ios": "App Store",
+  "cta_android": "Google Play"
 }
