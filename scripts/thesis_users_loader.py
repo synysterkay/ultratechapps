@@ -190,11 +190,15 @@ def _firestore_retry_settings() -> tuple[int, int, float]:
     return 12, 180, 0.5
 
 
-def load_all_users(token: str, page_size: int = 200):
+def load_all_users(token: str | None = None, page_size: int = 200):
     """Yields one normalized user dict per Firestore user doc. Skips any
     doc that has no email (those can't receive emails anyway)."""
     page_token = None
     max_attempts, max_wait, page_delay = _firestore_retry_settings()
+    access_token = token or get_access_token()
+    if not access_token:
+        print('   ❌ No Firestore access token')
+        return
     base_url = f"{FIRESTORE_BASE}/projects/{PROJECT_ID}/databases/(default)/documents/users"
     page_num = 0
     while True:
@@ -207,13 +211,19 @@ def load_all_users(token: str, page_size: int = 200):
             try:
                 resp = requests.get(
                     base_url,
-                    headers={'Authorization': f'Bearer {token}'},
+                    headers={'Authorization': f'Bearer {access_token}'},
                     params=params,
                     timeout=60,
                 )
                 if resp.status_code == 200:
                     data = resp.json()
                     break
+                if resp.status_code == 401 and attempt < max_attempts - 1:
+                    refreshed = get_access_token()
+                    if refreshed:
+                        access_token = refreshed
+                        print('   🔄 Firestore 401 — refreshed access token')
+                        continue
                 if resp.status_code == 429 and attempt < max_attempts - 1:
                     wait = min(max_wait, 5 * (2 ** attempt))
                     print(f'   ⏳ Firestore 429 — retry in {wait}s (attempt {attempt + 1}/{max_attempts})')
@@ -231,6 +241,10 @@ def load_all_users(token: str, page_size: int = 200):
                 return
         if data is None:
             return
+        if page_num % 5 == 0:
+            refreshed = get_access_token()
+            if refreshed:
+                access_token = refreshed
         for doc in data.get('documents', []):
             fields = doc.get('fields', {})
             email = _f(fields, 'email', default='') or ''
@@ -319,7 +333,7 @@ def build_firestore_snapshot(
     token: str,
     *,
     force: bool = False,
-    min_users: int = 100,
+    min_users: int = 1000,
     max_age_hours: int = 720,
 ) -> int:
     """Refresh cache/thesis_users_snapshot.json; fall back to stale cache on 429."""
@@ -352,7 +366,7 @@ def build_firestore_snapshot(
 def load_all_users_list(token: str, *, use_cache_on_failure: bool = True) -> list[dict]:
     """Load all Firestore users with retry + optional snapshot fallback."""
     prefer_snapshot = os.getenv('THESIS_FIRESTORE_SNAPSHOT_FIRST', '').lower() in ('1', 'true', 'yes')
-    min_users = int(os.getenv('THESIS_FIRESTORE_SNAPSHOT_MIN', '100'))
+    min_users = int(os.getenv('THESIS_FIRESTORE_SNAPSHOT_MIN', '1000'))
     max_age = int(os.getenv('THESIS_FIRESTORE_SNAPSHOT_MAX_AGE_HOURS', '720'))
 
     if prefer_snapshot:

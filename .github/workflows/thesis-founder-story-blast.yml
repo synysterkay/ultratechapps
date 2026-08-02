@@ -61,7 +61,7 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           THESIS_FIRESTORE_SNAPSHOT_BUILD: '1'
           THESIS_FIRESTORE_WARMUP_SEC: '60'
-          THESIS_FIRESTORE_SNAPSHOT_MIN: '100'
+          THESIS_FIRESTORE_SNAPSHOT_MIN: '1000'
         run: python3 scripts/thesis_build_firestore_snapshot.py
 
       - name: Refresh English founder story template
@@ -91,7 +91,7 @@ jobs:
           EMAIL_SENDING_PAUSED: ${{ secrets.EMAIL_SENDING_PAUSED }}
           THESIS_FIRESTORE_WARMUP_SEC: '30'
           THESIS_FIRESTORE_SNAPSHOT_FIRST: '1'
-          THESIS_FIRESTORE_SNAPSHOT_MIN: '100'
+          THESIS_FIRESTORE_SNAPSHOT_MIN: '1000'
           THESIS_FIRESTORE_SNAPSHOT_MAX_AGE_HOURS: '720'
         run: |
           MODE="${{ github.event.inputs.mode || 'auto-part' }}"

@@ -15,7 +15,7 @@ from thesis_users_loader import USERS_SNAPSHOT_CACHE, build_firestore_snapshot, 
 def main() -> None:
     parser = argparse.ArgumentParser(description='Build Thesis Firestore user snapshot')
     parser.add_argument('--force', action='store_true', help='Ignore fresh snapshot and re-fetch')
-    parser.add_argument('--min-users', type=int, default=int(os.getenv('THESIS_FIRESTORE_SNAPSHOT_MIN', '100')))
+    parser.add_argument('--min-users', type=int, default=int(os.getenv('THESIS_FIRESTORE_SNAPSHOT_MIN', '1000')))
     args = parser.parse_args()
 
     token = get_access_token()

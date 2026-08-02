@@ -364,7 +364,7 @@ def run(
 
     print(f'Loading Thesis non-subscriber cohort (part {part}/{NUM_PARTS})…')
     stats = _audience_stats(token)
-    if stats['firestore_users'] < 100:
+    if stats['firestore_users'] < 1000:
         raise SystemExit(
             f'Firestore too sparse ({stats["firestore_users"]} users) — refusing live send.'
         )
