@@ -1,0 +1,21 @@
+{
+  "campaign": "founder_story_blast_aug2026",
+  "started_at": "2026-08-02T09:07:53Z",
+  "parts": {
+    "1": {
+      "sent_count": 0,
+      "completed_at": "2026-08-02T09:09:03Z"
+    },
+    "2": {
+      "sent_count": 0,
+      "completed_at": null
+    },
+    "3": {
+      "sent_count": 0,
+      "completed_at": null
+    }
+  },
+  "sent": {},
+  "failed": {},
+  "updated_at": "2026-08-02T09:09:03Z"
+}
