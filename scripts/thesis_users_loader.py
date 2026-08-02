@@ -39,11 +39,15 @@ For theses:
 """
 from __future__ import annotations
 
+import json
 import os
+import time
 import requests
 from pathlib import Path
 from datetime import datetime, timezone
 from typing import Iterable
+
+USERS_SNAPSHOT_CACHE = Path(__file__).resolve().parents[1] / 'cache' / 'thesis_users_snapshot.json'
 
 
 PROJECT_ID = 'thesis-generator-web'
@@ -187,13 +191,30 @@ def load_all_users(token: str, page_size: int = 300):
         params = {'pageSize': page_size}
         if page_token:
             params['pageToken'] = page_token
-        try:
-            resp = requests.get(base_url, headers={'Authorization': f'Bearer {token}'},
-                                params=params, timeout=30)
-            if resp.status_code != 200:
+        data = None
+        for attempt in range(6):
+            try:
+                resp = requests.get(
+                    base_url,
+                    headers={'Authorization': f'Bearer {token}'},
+                    params=params,
+                    timeout=30,
+                )
+                if resp.status_code == 200:
+                    data = resp.json()
+                    break
+                if resp.status_code == 429 and attempt < 5:
+                    time.sleep(min(30, 2 ** attempt * 2))
+                    continue
+                print(f'   ❌ Firestore users page error: {resp.status_code} {resp.text[:200]}')
                 return
-            data = resp.json()
-        except Exception:
+            except Exception as exc:
+                if attempt < 5:
+                    time.sleep(min(30, 2 ** attempt * 2))
+                    continue
+                print(f'   ❌ Firestore users page failed: {exc}')
+                return
+        if data is None:
             return
         for doc in data.get('documents', []):
             fields = doc.get('fields', {})
@@ -233,10 +254,54 @@ def load_all_users(token: str, page_size: int = 300):
             break
 
 
+def _save_users_snapshot(users: list[dict]) -> None:
+    USERS_SNAPSHOT_CACHE.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        'saved_at': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
+        'count': len(users),
+        'users': users,
+    }
+    tmp = USERS_SNAPSHOT_CACHE.with_suffix('.tmp')
+    tmp.write_text(json.dumps(payload), encoding='utf-8')
+    tmp.replace(USERS_SNAPSHOT_CACHE)
+
+
+def _load_users_snapshot(*, max_age_hours: int = 48) -> list[dict]:
+    if not USERS_SNAPSHOT_CACHE.exists():
+        return []
+    try:
+        payload = json.loads(USERS_SNAPSHOT_CACHE.read_text(encoding='utf-8'))
+        saved_at = payload.get('saved_at') or ''
+        if saved_at:
+            dt = datetime.fromisoformat(saved_at.replace('Z', '+00:00'))
+            age_h = (datetime.now(timezone.utc) - dt).total_seconds() / 3600
+            if age_h > max_age_hours:
+                return []
+        users = payload.get('users') or []
+        if users:
+            print(f'   📦 Using cached Firestore snapshot ({len(users):,} users, saved {saved_at})')
+        return users
+    except Exception:
+        return []
+
+
+def load_all_users_list(token: str, *, use_cache_on_failure: bool = True) -> list[dict]:
+    """Load all Firestore users with retry + optional snapshot fallback."""
+    users = list(load_all_users(token))
+    if users:
+        _save_users_snapshot(users)
+        return users
+    if use_cache_on_failure:
+        cached = _load_users_snapshot()
+        if cached:
+            return cached
+    return []
+
+
 def load_users_dict(token: str):
     """Build {email: user} and {uid: user} indexes for quick joins."""
     by_email, by_uid = {}, {}
-    for u in load_all_users(token):
+    for u in load_all_users_list(token):
         by_email[u['email']] = u
         by_uid[u['uid']] = u
     return by_email, by_uid

@@ -35,6 +35,7 @@ from thesis_users_loader import (  # noqa: E402
     normalize_user_language,
     is_paid,
     founder_story_audience_eligible,
+    load_all_users_list,
 )
 import localize_phrase  # noqa: E402
 
@@ -135,18 +136,22 @@ def _load_suppressed_bounces() -> set[str]:
 
 def _audience_stats(token: str | None) -> dict:
     """Break down eligible non-subscriber cohort before send."""
-    auth_users = __import__('firebase_user_loader', fromlist=['FirebaseUserLoader']).FirebaseUserLoader()
-    auth_users = auth_users.load_users_by_app().get(APP_NAME, [])
-    lang_by_email = _fetch_language_map()
+    from firebase_user_loader import FirebaseUserLoader
+
+    auth_users = FirebaseUserLoader().load_users_by_app().get(APP_NAME, [])
 
     fs_by_email: dict[str, dict] = {}
     fs_by_uid: dict[str, dict] = {}
     if token:
-        from thesis_users_loader import load_all_users
-        for u in load_all_users(token):
+        print('   Loading Firestore users (Superwall subscription)…')
+        for u in load_all_users_list(token):
             fs_by_email[u['email']] = u
             if u.get('uid'):
                 fs_by_uid[u['uid']] = u
+        time.sleep(2)
+        lang_by_email = _fetch_language_map()
+    else:
+        lang_by_email = {}
 
     stats = {
         'auth_users': len(auth_users),

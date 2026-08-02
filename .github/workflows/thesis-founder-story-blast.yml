@@ -86,7 +86,7 @@ jobs:
           fi
 
       - name: Commit blast state
-        if: always() && github.event.inputs.mode != 'status' && github.event.inputs.mode != 'dry-run'
+        if: always() && (github.event.inputs.mode != 'status' && github.event.inputs.mode != 'dry-run' || github.event_name == 'schedule')
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
