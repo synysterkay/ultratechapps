@@ -45,17 +45,17 @@ from founder_story_thesis_sender import (  # noqa: E402
     APP_STORE_URL,
     GOOGLE_PLAY_URL,
     EN_SOURCE,
-    KIND,
     TEMPLATE_KIND,
     _connect_senders,
-    _fetch_language_map,
-    _load_candidates,
     _load_suppressed_emails,
     _plan_for_user,
     _ref,
     _skip_email,
     load_combined_founder_story_state,
+    _write_en_cache,
 )
+
+LANG_CACHE_PATH = ROOT / 'firebase_exports' / 'thesis_generator_languages.json'
 
 STATE_PATH = ROOT / 'cache' / 'thesis_founder_story_blast_state.json'
 CAMPAIGN_ID = 'founder_story_blast_aug2026'
@@ -134,24 +134,70 @@ def _load_suppressed_bounces() -> set[str]:
     return out
 
 
+def _load_language_cache() -> dict[str, str]:
+    """Offline email→lang map (firebase_exports/thesis_generator_languages.json)."""
+    if not LANG_CACHE_PATH.exists():
+        return {}
+    try:
+        raw = json.loads(LANG_CACHE_PATH.read_text(encoding='utf-8'))
+        return {
+            email.lower().strip(): normalize_user_language(lang)
+            for email, lang in raw.items()
+            if email and lang
+        }
+    except Exception:
+        return {}
+
+
+def _resolve_language(email: str, fs_user: dict | None, lang_cache: dict[str, str]) -> str:
+    """Pick the best language for a user — Firestore profile first, then cache."""
+    email = email.lower().strip()
+    if fs_user and fs_user.get('language'):
+        return normalize_user_language(fs_user['language'])
+    if lang_cache.get(email):
+        return normalize_user_language(lang_cache[email])
+    return 'en'
+
+
+def _print_lang_distribution(users: list[dict], label: str = 'cohort') -> None:
+    from collections import Counter
+    counts = Counter(normalize_user_language(u.get('language') or 'en') for u in users)
+    print(f'   📊 Language distribution ({label}):')
+    for lang, n in counts.most_common(15):
+        print(f'      {lang}: {n:,}')
+    if len(counts) > 15:
+        print(f'      … +{len(counts) - 15} more languages')
+
+
+def _preflight_templates(users: list[dict]) -> None:
+    """Warn if any cohort language lacks a cached founder story template."""
+    langs = {normalize_user_language(u.get('language') or 'en') for u in users}
+    missing = sorted(lang for lang in langs if lang != 'en' and _read_cache(TEMPLATE_KIND, lang) is None)
+    if missing:
+        print(f'   ⚠️ Missing cached templates for: {", ".join(missing)} — those users get English copy')
+    else:
+        print(f'   ✅ Cached templates ready for all {len(langs)} languages in queue')
+
+
 def _audience_stats(token: str | None) -> dict:
     """Break down eligible non-subscriber cohort before send."""
     from firebase_user_loader import FirebaseUserLoader
 
     auth_users = FirebaseUserLoader().load_users_by_app().get(APP_NAME, [])
+    lang_cache = _load_language_cache()
+    if lang_cache:
+        print(f'   🌍 Language cache: {len(lang_cache):,} emails')
 
     fs_by_email: dict[str, dict] = {}
     fs_by_uid: dict[str, dict] = {}
     if token:
-        print('   Loading Firestore users (Superwall subscription)…')
+        print('   Loading Firestore users (Superwall subscription + language)…')
         for u in load_all_users_list(token):
             fs_by_email[u['email']] = u
             if u.get('uid'):
                 fs_by_uid[u['uid']] = u
-        time.sleep(2)
-        lang_by_email = _fetch_language_map()
     else:
-        lang_by_email = {}
+        lang_cache = lang_cache or {}
 
     stats = {
         'auth_users': len(auth_users),
@@ -180,9 +226,7 @@ def _audience_stats(token: str | None) -> dict:
         if not uid:
             continue
 
-        lang = lang_by_email.get(email)
-        if not lang:
-            lang = normalize_user_language(fs.get('language') or 'en')
+        lang = _resolve_language(email, fs, lang_cache)
         user = {**au, **fs, 'language': lang, 'email': email}
         part = _part_for_uid(uid)
         stats['by_part'][part] += 1
@@ -242,11 +286,13 @@ def _print_status(state: dict, stats: dict | None = None) -> None:
         print(f'  Already received founder story: {len(already):,}')
         print('  Remaining by part:')
         for p in range(1, NUM_PARTS + 1):
-            rem = sum(
-                1 for u in stats['eligible_list']
+            rem = [
+                u for u in stats['eligible_list']
                 if u['part'] == p and u['email'] not in already
-            )
-            print(f'    Part {p}: {rem:,}')
+            ]
+            print(f'    Part {p}: {len(rem):,}')
+            if rem and p == 1:
+                _print_lang_distribution(rem[:5000], f'part {p} remaining sample')
 
 
 def _render_html(user: dict, lang: str) -> tuple[str, str, str]:
@@ -298,6 +344,8 @@ def run(
     if not token:
         raise SystemExit('FIREBASE_TOKEN not set — cannot load Superwall subscription status')
 
+    _write_en_cache()
+
     state = _load_state()
     if state.get('campaign') != CAMPAIGN_ID:
         state = {
@@ -336,6 +384,9 @@ def run(
         cohort = cohort[:limit]
 
     print(f'Part {part} queue: {len(cohort):,} emails this run')
+    if cohort:
+        _print_lang_distribution(cohort)
+        _preflight_templates(cohort)
     if not cohort:
         print('Nothing to send.')
         if not dry_run:
