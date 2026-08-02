@@ -2,8 +2,9 @@
 """
 Thesis Generator founder story blast — non-subscribers only (Superwall), 3 cohorts.
 
-Sends founder_story_thesis_v2 copy via ZeptoMail to users where
-`users.subscription.status` is NOT active/trial/past_due.
+Sends redesigned founder story to all non-subscribers (Superwall), including
+users who already received founder_story_thesis v1/v2. Dedup is per this
+blast campaign only.
 
 Usage:
   python3 scripts/thesis_founder_story_blast_sender.py --status
@@ -239,10 +240,8 @@ def _audience_stats(token: str | None) -> dict:
 
 
 def _already_sent_emails(state: dict) -> set[str]:
-    sent = set((state.get('sent') or {}).keys())
-    prior = load_combined_founder_story_state().get('sent') or {}
-    sent |= {e.lower().strip() for e in prior.keys()}
-    return sent
+    """Emails already sent in this blast campaign (not prior v1/v2 founder story)."""
+    return {e.lower().strip() for e in (state.get('sent') or {}) if e}
 
 
 def _auto_part(state: dict) -> int:
@@ -266,7 +265,7 @@ def _print_status(state: dict, stats: dict | None = None) -> None:
     print(f'Blast sent: {len(sent):,}  |  Failed: {len(failed):,}')
 
     prior = load_combined_founder_story_state().get('sent') or {}
-    print(f'Prior founder story (v1/v2) sent: {len(prior):,}')
+    print(f'Prior founder story (v1/v2) — included in blast: {len(prior):,}')
 
     for p in range(1, NUM_PARTS + 1):
         ps = sum(1 for v in sent.values() if v.get('part') == p)
@@ -284,8 +283,8 @@ def _print_status(state: dict, stats: dict | None = None) -> None:
         print(f'  Missing subscription doc: {stats["no_subscription_key"]:,}')
         print(f'  Eligible total: {stats["eligible"]:,}')
         already = _already_sent_emails(state)
-        print(f'  Already received founder story: {len(already):,}')
-        print('  Remaining by part:')
+        print(f'  Already received this blast: {len(already):,}')
+        print('  Remaining by part (non-subs, incl. prior founder story recipients):')
         for p in range(1, NUM_PARTS + 1):
             rem = [
                 u for u in stats['eligible_list']
@@ -358,7 +357,7 @@ def run(
         }
 
     pinfo = (state.get('parts') or {}).get(str(part), {})
-    if pinfo.get('completed_at') and not dry_run:
+    if pinfo.get('completed_at') and pinfo.get('sent_count', 0) > 0 and not dry_run:
         print(f'Part {part} already completed at {pinfo["completed_at"]} — skipping.')
         return
 
@@ -390,10 +389,6 @@ def run(
         _preflight_templates(cohort)
     if not cohort:
         print('Nothing to send.')
-        if not dry_run:
-            parts = state.setdefault('parts', {})
-            parts.setdefault(str(part), {})['completed_at'] = _utc_now()
-            _save_state(state)
         return
 
     senders = None
