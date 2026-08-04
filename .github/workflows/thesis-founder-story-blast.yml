@@ -2,7 +2,7 @@ name: Thesis Founder Story Blast
 
 on:
   schedule:
-    # Price-change resend: Aug 4 → part 1, Aug 5 → part 2, Aug 6 → part 3
+    # One cohort per day: Aug 2 → part 1, Aug 3 → part 2, Aug 4 → part 3
     - cron: '0 11 * * *'
 
   workflow_dispatch:
