@@ -10,7 +10,7 @@ SITE_URL = 'https://predictifyfootball.com'
 
 SUBJECT = 'We weren\u2019t supposed to send this'
 PREVIEW = 'This month only \u2014 our plans at over 50% better value. Open before it ends.'
-PROMO_CLOSES = 'August 5'
+PROMO_CLOSES = 'August 15'
 
 
 def _esc(s: str) -> str:
