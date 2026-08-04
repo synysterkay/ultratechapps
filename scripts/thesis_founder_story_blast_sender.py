@@ -3,8 +3,8 @@
 Thesis Generator founder story blast — non-subscribers only (Superwall), 3 cohorts.
 
 Sends redesigned founder story to all non-subscribers (Superwall), including
-users who already received founder_story_thesis v1/v2. Dedup is per this
-blast campaign only.
+users who already received a prior founder story blast. Dedup is per campaign
+only (see CAMPAIGN_ID).
 
 Usage:
   python3 scripts/thesis_founder_story_blast_sender.py --status
@@ -59,13 +59,13 @@ from founder_story_thesis_sender import (  # noqa: E402
 LANG_CACHE_PATH = ROOT / 'firebase_exports' / 'thesis_generator_languages.json'
 
 STATE_PATH = ROOT / 'cache' / 'thesis_founder_story_blast_state.json'
-CAMPAIGN_ID = 'founder_story_blast_aug2026'
-KIND_PREFIX = 'founder_story_blast'
+CAMPAIGN_ID = 'founder_story_blast_pricechange_aug2026'
+KIND_PREFIX = 'founder_story_blast_pricechange'
 NUM_PARTS = 3
 CAMPAIGN_DAY_PARTS = {
-    '2026-08-02': 1,
-    '2026-08-03': 2,
-    '2026-08-04': 3,
+    '2026-08-04': 1,
+    '2026-08-05': 2,
+    '2026-08-06': 3,
 }
 
 
