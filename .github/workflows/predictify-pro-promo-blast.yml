@@ -2,7 +2,7 @@ name: Predictify Promo Blast
 
 on:
   schedule:
-    # One cohort per day: Jul 30 → part 1, Jul 31 → part 2, Aug 1 → part 3, Aug 2 → part 4
+    # Price-change resend: Aug 4 → part 1 … Aug 7 → part 4
     - cron: '0 11 * * *'
 
   workflow_dispatch:

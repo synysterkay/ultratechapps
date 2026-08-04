@@ -5,7 +5,7 @@ import html
 
 APP_STORE_URL = 'https://apps.apple.com/app/predictify-football-ai/id6756571193'
 GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/details?id=com.predictify.soccer.prediction'
-UPGRADE_DEEPLINK = 'predictify://upgrade?ref=yearly_promo_aug2026'
+UPGRADE_DEEPLINK = 'predictify://upgrade?ref=yearly_promo_pricechange_aug2026'
 SITE_URL = 'https://predictifyfootball.com'
 
 SUBJECT = 'We weren\u2019t supposed to send this'

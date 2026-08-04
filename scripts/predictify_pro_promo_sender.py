@@ -2,8 +2,8 @@
 """
 Predictify Soccer promo blast — free users only, 4 stable cohorts.
 
-Sends the dark-theme yearly promo (pro_yearly_promo_html) via ZeptoMail to
-users who are NOT currently subscribed (no isPremium / isSubscribed in Firestore).
+Resend uses a new CAMPAIGN_ID so every non-subscriber gets the promo again
+(e.g. after a price change). Dedup is per campaign only.
 
 Usage:
   python3 scripts/predictify_pro_promo_sender.py --dry-run --part 1 --limit 10
@@ -40,14 +40,14 @@ from predictify_v2.pro_yearly_promo_html import (  # noqa: E402
 )
 
 STATE_PATH = ROOT / 'cache' / 'predictify_pro_promo_state.json'
-CAMPAIGN_ID = 'yearly_promo_aug2026'
-KIND_PREFIX = 'pro_yearly_promo'
+CAMPAIGN_ID = 'yearly_promo_pricechange_aug2026'
+KIND_PREFIX = 'pro_yearly_promo_pricechange'
 NUM_PARTS = 4
 CAMPAIGN_DAY_PARTS = {
-    '2026-07-30': 1,
-    '2026-07-31': 2,
-    '2026-08-01': 3,
-    '2026-08-02': 4,
+    '2026-08-04': 1,
+    '2026-08-05': 2,
+    '2026-08-06': 3,
+    '2026-08-07': 4,
 }
 EMAIL_RE = re.compile(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
 
