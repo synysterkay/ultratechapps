@@ -59,13 +59,13 @@ from founder_story_thesis_sender import (  # noqa: E402
 LANG_CACHE_PATH = ROOT / 'firebase_exports' / 'thesis_generator_languages.json'
 
 STATE_PATH = ROOT / 'cache' / 'thesis_founder_story_blast_state.json'
-CAMPAIGN_ID = 'founder_story_blast_aug2026'
-KIND_PREFIX = 'founder_story_blast'
+CAMPAIGN_ID = 'founder_story_blast_pricechange_aug2026'
+KIND_PREFIX = 'founder_story_blast_pricechange'
 NUM_PARTS = 3
 CAMPAIGN_DAY_PARTS = {
-    '2026-08-02': 1,
-    '2026-08-03': 2,
-    '2026-08-04': 3,
+    '2026-08-05': 1,
+    '2026-08-06': 2,
+    '2026-08-07': 3,
 }
 
 
