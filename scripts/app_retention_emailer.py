@@ -684,29 +684,20 @@ class AppRetentionEmailer:
     # allocation WITHIN a user-priority tier. App priority does NOT trump
     # user priority — a new user of any active app still beats a cycle-2
     # user of Predictify.
-    ACTIVE_APPS = [
-        # Predictify Soccer removed from 30-email drip (2026-07-16).
-        # Behavioral only via predictify_v2 + Supabase instant emails.
-        # See PREDICTIFY_EMAILS_PLAN.md.
-        # Thesis Generator removed from 30-email drip (2026-07-16).
-        # Thesis now uses instant welcome + scripts/thesis_orchestrator.py
-        # behavioral triggers only — see THESIS_EMAILS_PLAN.md.
-        # Predictify: Horse Racing AI removed from drip (2026-07-16).
-        # Welcome via check-new-users; behavioral TBD — see PREDICTIFY_EMAILS_PLAN.md.
-        'Crypto AI: Trading Analyzer',
-        'Smart Notes - AI Meeting Summary',
-        'Volume Booster - Sound Booster',
-        'Bass Booster',
-        'Loud EQ',
-        'Loudify',
-        'Volume Booster Pro',
-        # Red Flag Scanner AI — behavioral via Firebase email_events (Selka), no 30-day drip.
-        # Fresh Start: Breakup Therapy — welcome + behavioral TBD, no 30-day drip.
-        # SoulPlan — welcome + behavioral edge functions, no 30-day drip.
-        # See BREAKUP_EMAILS_PLAN.md.
-        'PupShape: Dog Weight Loss Plan',
-        'Ai Boyfriend: Virtual Love',
-        'Ai Girlfriend: Virtual Love',
+    # 30-email drip PAUSED globally (2026-08-05). Behavioral senders, blasts,
+    # welcome paths, and orchestrators still run from retention-emails.yml.
+    # Re-enable by restoring app names below.
+    ACTIVE_APPS: list[str] = [
+        # 'Crypto AI: Trading Analyzer',
+        # 'Smart Notes - AI Meeting Summary',
+        # 'Volume Booster - Sound Booster',
+        # 'Bass Booster',
+        # 'Loud EQ',
+        # 'Loudify',
+        # 'Volume Booster Pro',
+        # 'PupShape: Dog Weight Loss Plan',
+        # 'Ai Boyfriend: Virtual Love',
+        # 'Ai Girlfriend: Virtual Love',
     ]
 
     # ─── PRIORITY APPS (uncapped, health-bypassed) ───────
