@@ -231,9 +231,12 @@ def load_users_by_uids(
         return []
 
     max_attempts, max_wait, page_delay = _firestore_retry_settings()
+    building = os.getenv('THESIS_FIRESTORE_SNAPSHOT_BUILD', '').lower() in ('1', 'true', 'yes')
     url = f"{FIRESTORE_BASE}/projects/{PROJECT_ID}/databases/(default)/documents:batchGet"
     doc_prefix = f"projects/{PROJECT_ID}/databases/(default)/documents/users"
     users: list[dict] = []
+    consecutive_batch_failures = 0
+    max_consecutive_failures = 3 if not building else 999
 
     for i in range(0, len(uid_list), batch_size):
         batch = uid_list[i:i + batch_size]
@@ -275,7 +278,15 @@ def load_users_by_uids(
                 break
 
         if not data:
+            consecutive_batch_failures += 1
+            if consecutive_batch_failures >= max_consecutive_failures:
+                print(
+                    f'   ⚠️ Firestore batchGet stopped after {consecutive_batch_failures} '
+                    f'consecutive batch failures ({len(users):,} profiles loaded)'
+                )
+                break
             continue
+        consecutive_batch_failures = 0
         for item in data:
             doc = item.get('found') or item.get('document')
             if not doc:
@@ -303,6 +314,37 @@ def load_thesis_auth_firestore_users(token: str | None = None) -> list[dict]:
         return []
     print(f'   📥 Loading Firestore profiles for {len(uids):,} Thesis auth users (batchGet)…')
     return load_users_by_uids(token, uids)
+
+
+def load_thesis_auth_firestore_users_resilient(token: str | None = None) -> list[dict]:
+    """Snapshot-first auth Firestore load — avoids live batchGet during quota pressure."""
+    prefer_snapshot = os.getenv('THESIS_FIRESTORE_SNAPSHOT_FIRST', '').lower() in ('1', 'true', 'yes')
+    min_users = int(os.getenv('THESIS_FIRESTORE_SNAPSHOT_MIN', '1000'))
+    max_age = int(os.getenv('THESIS_FIRESTORE_SNAPSHOT_MAX_AGE_HOURS', '720'))
+
+    if prefer_snapshot:
+        cached = _load_users_snapshot(max_age_hours=max_age)
+        if len(cached) >= min_users:
+            print(f'   📦 Snapshot-first: {len(cached):,} users (skipping live Firestore batchGet)')
+            return cached
+
+    users = load_thesis_auth_firestore_users(token)
+    if len(users) >= min_users:
+        try:
+            _save_users_snapshot(users)
+            print(f'   💾 Saved Firestore snapshot ({len(users):,} users)')
+        except Exception as exc:
+            print(f'   ⚠️ Could not save Firestore snapshot: {exc}')
+        return users
+
+    stale = _load_users_snapshot(max_age_hours=None)
+    if len(stale) >= min_users:
+        print(
+            f'   ⚠️ Live Firestore sparse ({len(users):,}) — '
+            f'using stale snapshot ({len(stale):,} users)'
+        )
+        return stale
+    return users or stale
 
 
 def _firestore_retry_settings() -> tuple[int, int, float]:

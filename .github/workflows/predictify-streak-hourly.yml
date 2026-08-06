@@ -23,9 +23,16 @@ on:
 permissions:
   contents: write
 
+# Drop stale queued hourly runs when a newer one is waiting — normal sends
+# finish in ~2 min; long queues usually mean runner pool pressure.
+concurrency:
+  group: predictify-streak-hourly
+  cancel-in-progress: true
+
 jobs:
   streak-check:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
 
@@ -37,6 +44,7 @@ jobs:
         run: pip install requests
 
       - name: Run v2 orchestrator with streak-saver filter
+        timeout-minutes: 10
         env:
           EMAIL_PROVIDER: ${{ secrets.EMAIL_PROVIDER }}
           SMTP2GO_API_KEY: ${{ secrets.SMTP2GO_API_KEY }}

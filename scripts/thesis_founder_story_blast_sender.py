@@ -36,7 +36,7 @@ from thesis_users_loader import (  # noqa: E402
     normalize_user_language,
     is_paid,
     founder_story_audience_eligible,
-    load_thesis_auth_firestore_users,
+    load_thesis_auth_firestore_users_resilient,
 )
 import localize_phrase  # noqa: E402
 
@@ -194,7 +194,7 @@ def _audience_stats(token: str | None) -> dict:
     if token:
         print('   Loading Firestore users (Superwall subscription + language)…')
         time.sleep(int(os.getenv('THESIS_FIRESTORE_WARMUP_SEC', '5')))
-        for u in load_thesis_auth_firestore_users(token):
+        for u in load_thesis_auth_firestore_users_resilient(token):
             fs_by_email[u['email']] = u
             if u.get('uid'):
                 fs_by_uid[u['uid']] = u

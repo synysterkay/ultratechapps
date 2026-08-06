@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import time
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -70,29 +71,42 @@ def fetch_bad_events(url: str, key: str, *, days: int, limit: int) -> list[dict]
     since = (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
     headers = {"apikey": key, "Authorization": f"Bearer {key}"}
     rows: list[dict] = []
-    page_size = min(1000, limit)
+    page_size = min(500, limit)
+    max_attempts = 3
 
     while len(rows) < limit:
         start = len(rows)
         end = min(start + page_size - 1, limit - 1)
-        resp = requests.get(
-            f"{url}/rest/v1/email_events",
-            headers={**headers, "Range": f"{start}-{end}"},
-            params={
-                "select": "recipient,app,event_type,occurred_at",
-                "event_type": "in.(email.bounced,email.complained)",
-                "recipient": "not.is.null",
-                "app": "not.is.null",
-                "occurred_at": f"gte.{since}",
-                "order": "occurred_at.desc",
-            },
-            timeout=45,
-        )
-        if resp.status_code >= 400:
-            raise RuntimeError(
-                f"email_events query failed: {resp.status_code} {resp.text[:500]}"
+        page = None
+        for attempt in range(max_attempts):
+            resp = requests.get(
+                f"{url}/rest/v1/email_events",
+                headers={**headers, "Range": f"{start}-{end}"},
+                params={
+                    "select": "recipient,app,event_type,occurred_at",
+                    "event_type": "in.(email.bounced,email.complained)",
+                    "recipient": "not.is.null",
+                    "app": "not.is.null",
+                    "occurred_at": f"gte.{since}",
+                    "order": "occurred_at.desc",
+                },
+                timeout=45,
             )
-        page = resp.json()
+            if resp.status_code < 400:
+                page = resp.json()
+                break
+            body = resp.text[:500]
+            is_timeout = resp.status_code == 500 and "57014" in body
+            if is_timeout and attempt < max_attempts - 1:
+                wait = 2 ** attempt
+                print(f"   ⏳ email_events query timeout — retry in {wait}s")
+                time.sleep(wait)
+                continue
+            raise RuntimeError(
+                f"email_events query failed: {resp.status_code} {body}"
+            )
+        if page is None:
+            break
         rows.extend(page)
         if len(page) < page_size:
             break

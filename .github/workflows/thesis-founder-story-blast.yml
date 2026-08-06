@@ -89,7 +89,10 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           EMAIL_SENDING_PAUSED: ${{ secrets.EMAIL_SENDING_PAUSED }}
-          THESIS_FIRESTORE_WARMUP_SEC: '5'
+          THESIS_FIRESTORE_SNAPSHOT_FIRST: '1'
+          THESIS_FIRESTORE_SNAPSHOT_MIN: '1000'
+          THESIS_FIRESTORE_SNAPSHOT_MAX_AGE_HOURS: '720'
+          THESIS_FIRESTORE_WARMUP_SEC: '0'
         run: |
           MODE="${{ github.event.inputs.mode || 'auto-part' }}"
           LIMIT="${{ github.event.inputs.limit || '0' }}"

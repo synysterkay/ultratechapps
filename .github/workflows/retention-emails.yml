@@ -48,6 +48,7 @@ concurrency:
 jobs:
   retention-emails:
     runs-on: ubuntu-latest
+    timeout-minutes: 330
 
     steps:
       - name: Checkout repository
@@ -88,7 +89,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-        run: python -u sync_suppressions.py --days 7
+        run: python -u sync_suppressions.py --days 7 --limit 10000
       
       - name: Run retention email campaign
         # Cap below GitHub's 6h job limit so that if the loading/send phase
