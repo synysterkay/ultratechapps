@@ -319,14 +319,25 @@ def load_thesis_auth_firestore_users(token: str | None = None) -> list[dict]:
 def load_thesis_auth_firestore_users_resilient(token: str | None = None) -> list[dict]:
     """Snapshot-first auth Firestore load — avoids live batchGet during quota pressure."""
     prefer_snapshot = os.getenv('THESIS_FIRESTORE_SNAPSHOT_FIRST', '').lower() in ('1', 'true', 'yes')
+    snapshot_only = os.getenv('THESIS_FIRESTORE_SNAPSHOT_ONLY', '').lower() in ('1', 'true', 'yes')
     min_users = int(os.getenv('THESIS_FIRESTORE_SNAPSHOT_MIN', '1000'))
     max_age = int(os.getenv('THESIS_FIRESTORE_SNAPSHOT_MAX_AGE_HOURS', '720'))
 
-    if prefer_snapshot:
-        cached = _load_users_snapshot(max_age_hours=max_age)
-        if len(cached) >= min_users:
+    cached = _load_users_snapshot(max_age_hours=max_age if prefer_snapshot else None)
+    if len(cached) >= min_users:
+        if prefer_snapshot:
             print(f'   📦 Snapshot-first: {len(cached):,} users (skipping live Firestore batchGet)')
-            return cached
+        return cached
+
+    if prefer_snapshot and snapshot_only:
+        stale = _load_users_snapshot(max_age_hours=None)
+        if len(stale) >= min_users:
+            print(f'   📦 Snapshot-only: using stale cache ({len(stale):,} users)')
+            return stale
+        raise SystemExit(
+            f'Snapshot too small ({len(stale)} users, need {min_users}). '
+            'Run workflow mode build-snapshot or wait for Ensure snapshot step.'
+        )
 
     users = load_thesis_auth_firestore_users(token)
     if len(users) >= min_users:

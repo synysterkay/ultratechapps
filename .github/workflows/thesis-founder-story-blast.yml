@@ -49,11 +49,52 @@ jobs:
 
       - name: Restore Firestore user snapshot cache
         uses: actions/cache@v4
+        id: thesis-snapshot-cache
         with:
           path: cache/thesis_users_snapshot.json
           key: thesis-users-snapshot-v1
           restore-keys: |
             thesis-users-snapshot-v1
+          save-always: true
+
+      - name: Ensure Firestore user snapshot
+        if: github.event.inputs.mode != 'status' && github.event.inputs.mode != 'dry-run'
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          THESIS_FIRESTORE_SNAPSHOT_BUILD: '1'
+          THESIS_FIRESTORE_WARMUP_SEC: '120'
+          THESIS_FIRESTORE_SNAPSHOT_MIN: '1000'
+        run: |
+          python3 - <<'PY'
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          path = Path('cache/thesis_users_snapshot.json')
+          min_users = int(__import__('os').environ.get('THESIS_FIRESTORE_SNAPSHOT_MIN', '1000'))
+          count = 0
+          saved_at = ''
+          if path.exists():
+              try:
+                  payload = json.loads(path.read_text(encoding='utf-8'))
+                  count = len(payload.get('users') or [])
+                  saved_at = payload.get('saved_at') or ''
+              except Exception as exc:
+                  print(f'   ⚠️ Could not read snapshot: {exc}')
+
+          print(f'   Snapshot check: {count:,} users (need {min_users:,}), saved_at={saved_at or "?"}')
+          if count >= min_users:
+              print('   ✅ Snapshot large enough — skip live Firestore build')
+              sys.exit(0)
+
+          print('   🔄 Snapshot too small — building from Firestore (may take several minutes)…')
+          subprocess.check_call([
+              'python3', 'scripts/thesis_build_firestore_snapshot.py',
+              '--force',
+              '--min-users', str(min_users),
+          ])
+          PY
 
       - name: Build Firestore user snapshot
         if: github.event.inputs.mode == 'build-snapshot'
@@ -90,6 +131,7 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           EMAIL_SENDING_PAUSED: ${{ secrets.EMAIL_SENDING_PAUSED }}
           THESIS_FIRESTORE_SNAPSHOT_FIRST: '1'
+          THESIS_FIRESTORE_SNAPSHOT_ONLY: '1'
           THESIS_FIRESTORE_SNAPSHOT_MIN: '1000'
           THESIS_FIRESTORE_SNAPSHOT_MAX_AGE_HOURS: '720'
           THESIS_FIRESTORE_WARMUP_SEC: '0'
