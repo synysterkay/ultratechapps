@@ -482,6 +482,46 @@ class DeliverabilityMonitor:
             healthy.append(sender)
         return healthy
 
+    def pick_healthy_sender(self, prefer='hello@kaynel.solutions', require_green=True):
+        """
+        Pick a Primed (green) pool sender for promotional volume.
+
+        Prefers `prefer` when it is active, not in cooldown, and green
+        (or unknown when require_green=False). Falls back to other green
+        pool senders. Returns None if no suitable sender (caller should skip).
+        """
+        now = datetime.now()
+        candidates = []
+        for sender in self.SENDER_POOL:
+            if not sender.get('active', True):
+                continue
+            email = sender['email']
+            state = self.health_state.get('senders', {}).get(email, {})
+            rotated_out = state.get('rotated_out_at')
+            if rotated_out:
+                try:
+                    rotated_time = datetime.fromisoformat(rotated_out)
+                    cooldown = timedelta(days=self.THRESHOLDS['cooldown_days'])
+                    if now - rotated_time < cooldown:
+                        continue
+                except ValueError:
+                    pass
+            status = (state.get('status') or 'unknown').lower()
+            if status == 'red':
+                continue
+            if require_green and status == 'yellow':
+                continue
+            # green + unknown allowed (unknown = new domain / low volume)
+            candidates.append({**sender, 'health_status': status})
+
+        if not candidates:
+            return None
+
+        for c in candidates:
+            if c['email'].lower() == prefer.lower():
+                return c
+        return candidates[0]
+
     def rotate_sender(self, reason="manual"):
         """
         Rotate to the next available sender identity.
@@ -745,6 +785,13 @@ class DeliverabilityMonitor:
                 print(f"   ... and {len(bounces) - 10} more")
 
         print(f"\n{'='*60}")
+
+
+def pick_healthy_sender(prefer='hello@kaynel.solutions', require_green=True):
+    """Module-level helper for crosspromo / promo senders."""
+    return DeliverabilityMonitor().pick_healthy_sender(
+        prefer=prefer, require_green=require_green,
+    )
 
 
 if __name__ == '__main__':

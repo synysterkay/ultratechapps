@@ -3,6 +3,8 @@
  * scripts/deliverability_monitor.py SENDER_POOL.
  *
  * SMTP2GO enabled senders: breakuprelief.com, kaynel.solutions, passedai.io.
+ * Crosspromotion (Thesis phase 1) prefers hello@kaynel.solutions via
+ * deliverability_monitor.pick_healthy_sender.
  * predictifyfootball.com — unverified. predictify.fun — verified but disabled.
  *
  * When EMAIL_PROVIDER=zeptomail, email_transport.ts routes by app tag:

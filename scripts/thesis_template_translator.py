@@ -74,8 +74,59 @@ def _write_cache(kind: str, lang: str, payload: dict):
     p.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding='utf-8')
 
 
-def _translate_via_deepseek(kind: str, lang: str, en_source: dict) -> dict:
-    """Single DeepSeek call that translates subject + body + cta in one shot.
+def _deepseek_prompts(kind: str, lang: str, en_source: dict, mode: str = 'translate'):
+    """Build system/user prompts + temperature for translate vs market-adapt."""
+    target = LANG_NAMES.get(lang)
+    if not target:
+        raise ValueError(f'unsupported language {lang!r}')
+
+    if mode == 'adapt':
+        system = (
+            "You are a senior email marketer localizing cross-promotion emails "
+            "for Thesis Generator (AI thesis/essay writing app). Rewrite the "
+            "English copy as NATIVE marketing for the target market — not a "
+            "word-by-word translation. Keep dopamine, curiosity, and urgency "
+            "intent; you may restructure sentences and subjects for local "
+            "clickbait norms. Preserve every {{placeholder}} token VERBATIM "
+            "(do not translate placeholder names). Keep emoji. Output STRICT "
+            "JSON with the exact same keys as the input. No commentary."
+        )
+        user = (
+            f"Adapt this email for {target}-speaking users (market rewrite). "
+            f"Email kind: {kind}.\n\n"
+            f"Input JSON:\n{json.dumps(en_source, ensure_ascii=False, indent=2)}\n\n"
+            f"Return JSON of the same shape, rewritten for {target}. "
+            f"For Arabic use natural MSA; for Portuguese use Brazilian; "
+            f"for Chinese use Simplified Chinese."
+        )
+        temperature = 0.55
+    else:
+        system = (
+            "You are translating marketing/retention emails for a thesis-writing "
+            "iOS app called Thesis Generator. The tone is warm, second-person, "
+            "and slightly informal — like a friendly mentor texting a student. "
+            "Translate ACCURATELY, preserving meaning, line breaks, and every "
+            "{{placeholder}} token VERBATIM (do not translate placeholder names, "
+            "do not add spaces inside the {{ }}). Keep emoji as-is. Output STRICT "
+            "JSON with the exact same keys as the input. Do not add commentary."
+        )
+        user = (
+            f"Translate the following email content from English to {target}. "
+            f"Email kind: {kind}.\n\n"
+            f"Input JSON:\n{json.dumps(en_source, ensure_ascii=False, indent=2)}\n\n"
+            f"Return JSON of the same shape, with strings translated to {target}. "
+            f"For Arabic, use natural Modern Standard Arabic. For Portuguese, "
+            f"use Brazilian Portuguese. For Chinese, use Simplified Chinese."
+        )
+        temperature = 0.2
+    return system, user, temperature
+
+
+def _translate_via_deepseek(kind: str, lang: str, en_source: dict, mode: str = 'translate') -> dict:
+    """Single DeepSeek call that translates or adapts subject + body + cta.
+
+    mode='translate' — accurate translation (default for lifecycle mail).
+    mode='adapt' — full-content market rewrite for crosspromo localization.
 
     Returns a dict with the same shape as `en_source`. Raises on failure so
     callers can fall back to the English source rather than send broken text.
@@ -84,28 +135,7 @@ def _translate_via_deepseek(kind: str, lang: str, en_source: dict) -> dict:
     if not api_key:
         raise RuntimeError('DEEPSEEK_API_KEY not set; cannot translate')
 
-    target = LANG_NAMES.get(lang)
-    if not target:
-        raise ValueError(f'unsupported language {lang!r}')
-
-    system = (
-        "You are translating marketing/retention emails for a thesis-writing "
-        "iOS app called Thesis Generator. The tone is warm, second-person, "
-        "and slightly informal — like a friendly mentor texting a student. "
-        "Translate ACCURATELY, preserving meaning, line breaks, and every "
-        "{{placeholder}} token VERBATIM (do not translate placeholder names, "
-        "do not add spaces inside the {{ }}). Keep emoji as-is. Output STRICT "
-        "JSON with the exact same keys as the input. Do not add commentary."
-    )
-
-    user = (
-        f"Translate the following email content from English to {target}. "
-        f"Email kind: {kind}.\n\n"
-        f"Input JSON:\n{json.dumps(en_source, ensure_ascii=False, indent=2)}\n\n"
-        f"Return JSON of the same shape, with strings translated to {target}. "
-        f"For Arabic, use natural Modern Standard Arabic. For Portuguese, "
-        f"use Brazilian Portuguese. For Chinese, use Simplified Chinese."
-    )
+    system, user, temperature = _deepseek_prompts(kind, lang, en_source, mode=mode)
 
     resp = requests.post(
         'https://api.deepseek.com/chat/completions',
@@ -119,7 +149,7 @@ def _translate_via_deepseek(kind: str, lang: str, en_source: dict) -> dict:
                 {'role': 'system', 'content': system},
                 {'role': 'user',   'content': user},
             ],
-            'temperature': 0.2,
+            'temperature': temperature,
             'response_format': {'type': 'json_object'},
         },
         timeout=60,
@@ -168,22 +198,26 @@ def get_localized(kind: str, lang: str, en_source: dict, allow_api: bool = True)
         return en_source
 
 
-def warm_all(kind: str, en_source: dict, languages=None):
+def warm_all(kind: str, en_source: dict, languages=None, mode: str = 'translate',
+             refresh: bool = False):
     """Pre-fill the cache for every supported language. Use this once before
     rolling out a new sender so production traffic never pays for a cold
     translation. Returns dict of {lang: 'cached' | 'translated' | 'failed'}.
+
+    mode='adapt' uses market-rewrite prompts (crosspromo full-content localization).
+    refresh=True overwrites existing cache entries.
     """
     result = {}
     targets = languages or [l for l in SUPPORTED if l != 'en']
     for lang in targets:
-        if _read_cache(kind, lang) is not None:
+        if not refresh and _read_cache(kind, lang) is not None:
             result[lang] = 'cached'
             continue
         try:
-            payload = _translate_via_deepseek(kind, lang, en_source)
+            payload = _translate_via_deepseek(kind, lang, en_source, mode=mode)
             _write_cache(kind, lang, payload)
-            result[lang] = 'translated'
-            print(f'   ✅ {kind}/{lang}: translated')
+            result[lang] = 'adapted' if mode == 'adapt' else 'translated'
+            print(f'   ✅ {kind}/{lang}: {result[lang]}')
             # Gentle pacing — DeepSeek tolerates burst but be polite.
             time.sleep(0.4)
         except Exception as e:

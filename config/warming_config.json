@@ -27,6 +27,10 @@
         "selka@breakuprelief.com"
       ],
       "seed_gmail": "anasblanew2@gmail.com"
+    },
+    "kaynel.solutions": {
+      "sender_addresses": ["hello@kaynel.solutions"],
+      "seed_gmail": "testkaynel@gmail.com"
     }
   }
 }

@@ -1,0 +1,50 @@
+name: Crosspromo Preview Test Send
+
+on:
+  workflow_dispatch:
+    inputs:
+      to:
+        description: 'Recipient email address'
+        required: true
+        default: 'anaskay.13@gmail.com'
+      first_name:
+        description: 'First name for personalization'
+        required: false
+        default: 'Ana'
+      stage:
+        description: 'Sequence stage to preview'
+        required: false
+        default: 'e1'
+        type: choice
+        options:
+          - e1
+          - e2
+          - e3
+          - e4
+          - e5
+
+jobs:
+  send-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Send crosspromo preview (ZeptoMail)
+        env:
+          EMAIL_PROVIDER: zeptomail
+          ZEPTOMAIL_API_KEY: ${{ secrets.ZEPTOMAIL_API_KEY }}
+          ZEPTOMAIL_API_URL: https://api.zeptomail.eu/v1.1/email
+          ZEPTOMAIL_THESIS_SENDER_EMAIL: hello@thesisgenerator.io
+          ZEPTOMAIL_THESIS_SENDER_NAME: Thesis Generator
+        run: |
+          python scripts/test_crosspromo_preview_send.py \
+            "${{ github.event.inputs.to }}" \
+            --first-name "${{ github.event.inputs.first_name }}" \
+            --stage "${{ github.event.inputs.stage }}"

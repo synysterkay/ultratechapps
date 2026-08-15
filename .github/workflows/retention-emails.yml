@@ -34,6 +34,7 @@ on:
           - thesis-founder-story-2
           - thesis-warm-templates
           - predictify-warm-founder-templates
+          - crosspromo
 
 permissions:
   contents: write
@@ -146,6 +147,11 @@ jobs:
           THESIS_DAILY_SEND_CAP_DISABLED: "0"
           THESIS_DAILY_SEND_CAP_BASE: "200"
           THESIS_DAILY_SEND_CAP_MAX: "400"
+          # Crosspromotion Thesis phase 1 (SMTP2GO / kaynel.solutions health pool)
+          CROSSPROMO_ENABLED: "1"
+          CROSSPROMO_DAILY_CAP: "150"
+          CROSSPROMO_ENROLL_CAP: "150"
+          CROSSPROMO_SEND_DELAY_SECONDS: "0.35"
         run: |
           MODE="${{ github.event.inputs.mode || 'send' }}"
 
@@ -200,6 +206,10 @@ jobs:
             python -u scripts/founder_story_thesis_2_sender.py --dry-run || true
             python -u scripts/founder_story_thesis_2_sender.py --warm --refresh-templates || true
             python -u scripts/founder_story_thesis_2_sender.py
+          elif [ "$MODE" = "crosspromo" ]; then
+            echo "--- Crosspromotion Thesis (kaynel / SMTP2GO) ---"
+            python -u scripts/crosspromo_orchestrator.py --status || true
+            python -u scripts/crosspromo_orchestrator.py
           else
             python -u scripts/app_retention_emailer.py
             # Founder story is integrated into predictify_v2 (manual catch-up only).
@@ -228,6 +238,8 @@ jobs:
               PREDICTIFY_APP_NAME='Predictify: Horse Racing AI' \
               PREDICTIFY_FIREBASE_PROJECT_ID='horse-racing-f67e8' \
               python -u scripts/founder_story_predictify_sender.py --backfill --passes 1 || true
+            echo "--- Crosspromotion Thesis (kaynel / SMTP2GO) ---"
+            python -u scripts/crosspromo_orchestrator.py || true
           fi
       
       - name: Commit thesis founder story 2 templates
@@ -298,7 +310,7 @@ jobs:
       - name: Save retention state
         if: always()
         run: |
-          STATE_PATHS="cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json cache/abandoned_thesis_state.json cache/free_quota_hit_state.json cache/trial_ending_state.json cache/winback_state.json cache/streak_milestone_state.json cache/weekly_progress_state.json cache/stuck_on_outline_state.json cache/cumulative_stats_state.json cache/founder_story_thesis_state.json cache/founder_story_thesis_v2_state.json cache/founder_story_thesis_2_state.json cache/pro_minimal_*_state.json cache/thesis_templates/ firebase_exports/"
+          STATE_PATHS="cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json cache/abandoned_thesis_state.json cache/free_quota_hit_state.json cache/trial_ending_state.json cache/winback_state.json cache/streak_milestone_state.json cache/weekly_progress_state.json cache/stuck_on_outline_state.json cache/cumulative_stats_state.json cache/founder_story_thesis_state.json cache/founder_story_thesis_v2_state.json cache/founder_story_thesis_2_state.json cache/crosspromo_thesis_state.json cache/pro_minimal_*_state.json cache/thesis_templates/ firebase_exports/"
           # Thesis-only / founder-story runs may not touch retention_state.json.
           has_state=0
           for path in $STATE_PATHS; do
