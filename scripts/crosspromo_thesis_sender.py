@@ -56,12 +56,14 @@ STAGES = [
 EN_SOURCES = {
     'e1': {
         'subject': "The 47-minute research trick nobody teaches in class",
-        'preview': "People using our other apps keep asking for this…",
+        'preview': "Blank page → research statement + outline in under 5 minutes.",
         'body': [
             "Hey {{first_name}} — quick one.",
-            "People who already use our apps keep hitting the same wall: the blank page when a research paper or essay is due. Not the reading. The starting.",
-            "There's a free tool that drafts a sharp research statement + outline in under 5 minutes. No login maze. No credit card.",
-            "I'm Alex from Kaynel. We build the apps you already use — this one is Research Generator.",
+            "People who already use our apps keep hitting the same wall:",
+            "The blank page when a research paper or essay is due.\nNot the reading.\nThe starting.",
+            "[[LEAD]]Start with your research question.",
+            "[[VALUE]]Research Generator turns it into a research statement + structured outline in under 5 minutes.",
+            "[[SUB]]Free to try. No login maze. No credit card.",
             "P.S. Open it once. If the outline sucks, delete it. If it doesn't… you just bought yourself a weekend.",
         ],
         'cta': 'Try Research Generator free',
@@ -74,21 +76,22 @@ EN_SOURCES = {
         'body': [
             "{{first_name}}, here's the move that actually feels good:",
             "1) Drop your topic into Research Generator\n2) Get a research statement + structured outline\n3) Start writing from a plan instead of panic",
-            "That first outline hitting your screen? Instant relief. That's the whole product.",
-            "Free to download. Works offline after install. No account required to peek.",
+            "[[VALUE]]That first outline hitting your screen? Instant relief.",
+            "[[SUB]]Free to download. No account required to peek.",
             "P.S. Pro tip: generate 2–3 research angles and pick the strongest. Takes another minute. Feels unfair in a good way.",
         ],
         'cta': 'Get my outline now',
-        'cta_ios': 'Download on App Store',
-        'cta_android': 'Get it on Google Play',
+        'cta_ios': 'App Store',
+        'cta_android': 'Google Play',
     },
     'e3': {
         'subject': "12,000+ students finished a research draft this month",
         'preview': "Not genius — just a better starting point.",
         'body': [
             "You're not behind because you're lazy. Most people stall because the first sentence feels impossible.",
-            "Research Generator users keep saying the same thing: once the outline exists, the rest moves. Chapters stop feeling random.",
-            "If you've got a paper, proposal, or dissertation hanging over you — this is the shortest path to a real first draft.",
+            "Research Generator users keep saying the same thing: once the outline exists, the rest moves.",
+            "[[VALUE]]Shortest path to a real first draft.",
+            "[[SUB]]Paper, proposal, or dissertation — start free.",
             "P.S. The free tier is enough to prove it. Upgrade later only if you want more chapters unlocked.",
         ],
         'cta': 'Start my free draft',
@@ -100,13 +103,13 @@ EN_SOURCES = {
         'preview': "The objections I hear — answered in 20 seconds.",
         'body': [
             "{{first_name}}, if you skipped the last emails, fair. Here's the honest pitch:",
-            "• Free download — no card to try\n• Built for real research assignments, not fluff blog posts\n• Outline + research statement before you spiral",
+            "• Free download — no card to try\n• Built for real research assignments\n• Outline + research statement before you spiral",
             "If writing isn't on your plate this week, ignore this. If it is — open the app before the deadline owns you.",
             "P.S. Worst case you spend 3 minutes and learn it isn't for you. Best case you sleep.",
         ],
         'cta': 'Download free',
-        'cta_ios': 'Get on App Store',
-        'cta_android': 'Get on Google Play',
+        'cta_ios': 'App Store',
+        'cta_android': 'Google Play',
     },
     'e5': {
         'subject': "Last note from me about Research Generator",
@@ -122,6 +125,31 @@ EN_SOURCES = {
         'cta_android': 'Google Play',
     },
 }
+
+# Crosspromo chrome: honest footer, Kaynel identity, compact layout, no double Hey
+CROSSPROMO_FOOTER = (
+    "You're receiving this because you use another Kaynel app. "
+    "We're sharing Research Generator in case it helps with writing."
+)
+CROSSPROMO_ADDRESS = 'Kaynel · Built for students & researchers'
+
+
+def crosspromo_render_kwargs(preview_text: str | None = None) -> dict:
+    return {
+        'sender_name': 'Alex',
+        'sender_org': 'Kaynel',
+        'app_name': APP_NAME,
+        'gradient': 'invite',
+        'greeting_override': '',
+        'footer_override': CROSSPROMO_FOOTER,
+        'address_override': CROSSPROMO_ADDRESS,
+        'compact': True,
+        'preview_text': preview_text,
+        'cta_links': [
+            {'url': APP_STORE_URL, 'variant': 'ios', 'line1': 'Download on the', 'line2': 'App Store'},
+            {'url': GOOGLE_PLAY_URL, 'variant': 'android', 'line1': 'GET IT ON', 'line2': 'Google Play'},
+        ],
+    }
 
 
 def _utc_now() -> str:
@@ -370,20 +398,11 @@ def run(*, dry_run: bool = False, limit: int = 0, enroll_cap: int | None = None)
             for p in tpl.get('body', en_src['body'])
         ]
         cta = tpl.get('cta', en_src['cta'])
-        cta_ios = tpl.get('cta_ios', en_src.get('cta_ios', 'App Store'))
-        cta_android = tpl.get('cta_android', en_src.get('cta_android', 'Google Play'))
         preview = tpl.get('preview', en_src.get('preview', ''))
 
         html = render_email(
             lang, paragraphs, cta, APP_STORE_URL,
-            sender_name=identity.get('name') or 'Alex',
-            app_name=APP_NAME,
-            gradient='invite',
-            preview_text=preview or None,
-            cta_links=[
-                {'url': APP_STORE_URL, 'variant': 'ios', 'line2': cta_ios},
-                {'url': GOOGLE_PLAY_URL, 'variant': 'android', 'line2': cta_android},
-            ],
+            **crosspromo_render_kwargs(preview_text=preview or None),
         )
         tags = [
             {'name': 'app', 'value': APP_SLUG},

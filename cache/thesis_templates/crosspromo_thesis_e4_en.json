@@ -3,11 +3,11 @@
   "preview": "The objections I hear — answered in 20 seconds.",
   "body": [
     "{{first_name}}, if you skipped the last emails, fair. Here's the honest pitch:",
-    "• Free download — no card to try\n• Built for real research assignments, not fluff blog posts\n• Outline + research statement before you spiral",
+    "• Free download — no card to try\n• Built for real research assignments\n• Outline + research statement before you spiral",
     "If writing isn't on your plate this week, ignore this. If it is — open the app before the deadline owns you.",
     "P.S. Worst case you spend 3 minutes and learn it isn't for you. Best case you sleep."
   ],
   "cta": "Download free",
-  "cta_ios": "Get on App Store",
-  "cta_android": "Get on Google Play"
+  "cta_ios": "App Store",
+  "cta_android": "Google Play"
 }

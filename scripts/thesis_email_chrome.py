@@ -113,26 +113,28 @@ def _cta_button(text: str, url: str, *, bg: str, outline: bool = False) -> str:
 
 
 def _ios_store_button(url: str, line1: str = 'Download on the', line2: str = 'App Store') -> str:
+    # Matched pair with Android — same height, dark fill, equal weight
     return (
         f'<a href="{url}" style="display:block;text-decoration:none;background:#111827;'
-        f'border-radius:14px;padding:14px 18px;color:#ffffff;min-height:48px;'
-        f'box-shadow:0 4px 14px rgba(17,24,39,0.18);text-align:center;">'
-        f'<div style="font-size:10px;line-height:1.3;opacity:0.88;letter-spacing:0.04em;">'
+        f'border-radius:12px;padding:12px 16px;color:#ffffff;min-height:52px;'
+        f'border:1.5px solid #111827;box-sizing:border-box;text-align:center;">'
+        f'<div style="font-size:9px;line-height:1.2;opacity:0.85;letter-spacing:0.04em;">'
         f'{_esc(line1)}</div>'
-        f'<div style="font-size:17px;line-height:1.25;font-weight:700;letter-spacing:-0.01em;margin-top:2px;">'
+        f'<div style="font-size:15px;line-height:1.25;font-weight:700;letter-spacing:-0.01em;margin-top:2px;">'
         f'{_esc(line2)}</div>'
         f'</a>'
     )
 
 
 def _android_store_button(url: str, line1: str = 'GET IT ON', line2: str = 'Google Play') -> str:
+    # Same visual weight as iOS (dark fill) for equal CTAs
     return (
-        f'<a href="{url}" style="display:block;text-decoration:none;background:{CARD};'
-        f'border-radius:14px;padding:14px 18px;color:{INK_PRIMARY};min-height:48px;'
-        f'border:1.5px solid {RECESSED};box-shadow:0 4px 14px rgba(17,24,39,0.06);text-align:center;">'
-        f'<div style="font-size:10px;line-height:1.3;color:{INK_SECONDARY};letter-spacing:0.08em;">'
+        f'<a href="{url}" style="display:block;text-decoration:none;background:#111827;'
+        f'border-radius:12px;padding:12px 16px;color:#ffffff;min-height:52px;'
+        f'border:1.5px solid #111827;box-sizing:border-box;text-align:center;">'
+        f'<div style="font-size:9px;line-height:1.2;opacity:0.85;letter-spacing:0.08em;">'
         f'{_esc(line1)}</div>'
-        f'<div style="font-size:17px;line-height:1.25;font-weight:700;color:{INK_PRIMARY};margin-top:2px;">'
+        f'<div style="font-size:15px;line-height:1.25;font-weight:700;letter-spacing:-0.01em;margin-top:2px;">'
         f'{_esc(line2)}</div>'
         f'</a>'
     )
@@ -199,29 +201,86 @@ def _cta_section(
     )
 
 
-def _header_html(app_name: str, text_align: str) -> str:
+def _header_html(app_name: str, text_align: str, logo_size: int = 52) -> str:
     logo = _logo_src()
     logo_cell = ''
     if logo:
         logo_cell = (
-            f'<td style="vertical-align:middle;padding:0 16px 0 0;width:56px">'
-            f'<img src="{logo}" alt="{_esc(app_name)}" width="48" height="48" '
-            f'style="display:block;border-radius:12px;width:48px;height:48px;'
+            f'<td style="vertical-align:middle;padding:0 14px 0 0;width:{logo_size + 8}px">'
+            f'<img src="{logo}" alt="{_esc(app_name)}" width="{logo_size}" height="{logo_size}" '
+            f'style="display:block;border-radius:12px;width:{logo_size}px;height:{logo_size}px;'
             f'border:1px solid rgba(17,24,39,0.06);" />'
             f'</td>'
         )
     return (
-        f'<tr><td style="padding:0 0 28px 0;text-align:{text_align}">'
+        f'<tr><td style="padding:0 0 20px 0;text-align:{text_align}">'
         f'<table role="presentation" cellspacing="0" cellpadding="0">'
         f'<tr>{logo_cell}'
         f'<td style="vertical-align:middle">'
-        f'<div style="font-size:20px;font-weight:700;color:{INK_PRIMARY};'
+        f'<div style="font-size:18px;font-weight:700;color:{INK_PRIMARY};'
         f'letter-spacing:-0.02em;line-height:1.2;">{_esc(app_name)}</div>'
-        f'<div style="font-size:11px;font-weight:500;color:{INK_SECONDARY};'
-        f'letter-spacing:0.14em;text-transform:uppercase;margin-top:6px;">'
+        f'<div style="font-size:10px;font-weight:500;color:{INK_SECONDARY};'
+        f'letter-spacing:0.14em;text-transform:uppercase;margin-top:5px;">'
         f'Research Operating System</div>'
         f'</td></tr></table>'
         f'</td></tr>'
+    )
+
+
+def _paragraph_html(p: str, index: int, text_align: str) -> str:
+    """Render one body paragraph; supports [[LEAD]] / [[VALUE]] / [[SUB]] markers."""
+    raw = p or ''
+    is_ps = any(marker in raw for marker in (
+        'P.S', 'P.D', 'ملاحظة', 'P.D.', 'P. S', 'P. D',
+        '附言', 'P.S.', 'PS:', 'PS：', 'تنبيه',
+    ))
+    if is_ps:
+        return (
+            f'<div style="margin:24px 0 0;padding:14px 18px;background:{GOLD_SOFT};'
+            f'border-radius:10px;border-left:3px solid {BRAND_GOLD};'
+            f'text-align:{text_align};">'
+            f'<p style="margin:0;font-size:15px;color:#78350F;line-height:1.6;font-style:italic;">'
+            f'{_esc(raw)}</p></div>'
+        )
+
+    style = 'body'
+    for marker, name in (
+        ('[[LEAD]]', 'lead'),
+        ('[[VALUE]]', 'value'),
+        ('[[SUB]]', 'sub'),
+    ):
+        if raw.startswith(marker):
+            style = name
+            raw = raw[len(marker):].lstrip()
+            break
+
+    # Preserve intentional line breaks in multi-line paragraphs
+    html_text = '<br>'.join(_esc(line) for line in raw.split('\n'))
+
+    if style == 'lead':
+        return (
+            f'<p style="margin:22px 0 8px;font-size:15px;color:{INK_SECONDARY};'
+            f'line-height:1.55;font-weight:500;text-align:{text_align};">{html_text}</p>'
+        )
+    if style == 'value':
+        return (
+            f'<p style="margin:0 0 10px;font-size:19px;color:{INK_PRIMARY};'
+            f'line-height:1.45;font-weight:700;letter-spacing:-0.01em;'
+            f'text-align:{text_align};">{html_text}</p>'
+        )
+    if style == 'sub':
+        return (
+            f'<p style="margin:0 0 8px;font-size:14px;color:{INK_SECONDARY};'
+            f'line-height:1.5;text-align:{text_align};">{html_text}</p>'
+        )
+    if index == 0:
+        return (
+            f'<p style="margin:0 0 16px;font-size:18px;color:{INK_PRIMARY};'
+            f'line-height:1.5;font-weight:600;text-align:{text_align};">{html_text}</p>'
+        )
+    return (
+        f'<p style="margin:0 0 14px;font-size:16px;color:#4B5563;'
+        f'line-height:1.6;text-align:{text_align};">{html_text}</p>'
     )
 
 
@@ -238,8 +297,21 @@ def render(
     signoff_override: str = None,
     cta_links: list[dict] | None = None,
     preview_text: str | None = None,
+    footer_override: str | None = None,
+    address_override: str | None = None,
+    sender_org: str | None = None,
+    max_width: int = 600,
+    compact: bool = False,
 ) -> str:
-    """Render the full HTML body for a retention email."""
+    """Render the full HTML body for a retention email.
+
+    Optional overrides (crosspromo / acquisition):
+      greeting_override=''  — hide chrome greeting (avoid double Hey)
+      footer_override       — honest receive reason
+      address_override      — company address line
+      sender_org            — e.g. Kaynel under the sign-off name
+      compact=True          — tighter outer padding + 560px card
+    """
     lang = normalize_language(language)
     is_rtl = lang in RTL_LANGUAGES
     dir_attr = ' dir="rtl"' if is_rtl else ''
@@ -260,36 +332,33 @@ def render(
     else:
         signoff = SIGNOFFS.get(lang, SIGNOFFS['en'])
 
-    footer = footer_text(lang, app_name)
+    footer = footer_override if footer_override is not None else footer_text(lang, app_name)
+    address = address_override if address_override is not None else 'San Francisco, CA 94117, United States'
     c1, c2 = GRADIENTS.get(gradient, GRADIENTS['invite'])
 
-    body_html_parts = []
-    for i, p in enumerate(paragraphs):
-        is_ps = any(marker in p for marker in (
-            'P.S', 'P.D', 'ملاحظة', 'P.D.', 'P. S', 'P. D',
-            '附言', 'P.S.', 'PS:', 'PS：', 'تنبيه',
-        ))
-        if is_ps:
-            body_html_parts.append(
-                f'<div style="margin:28px 0 0;padding:16px 20px;background:{GOLD_SOFT};'
-                f'border-radius:12px;border-left:4px solid {BRAND_GOLD};'
-                f'text-align:{text_align};">'
-                f'<p style="margin:0;font-size:15px;color:#92400E;line-height:1.65;">'
-                f'{_esc(p)}</p></div>'
-            )
-            continue
-        if i == 0:
-            body_html_parts.append(
-                f'<p style="margin:0 0 20px;font-size:20px;color:{INK_PRIMARY};'
-                f'line-height:1.55;font-weight:600;text-align:{text_align};">{_esc(p)}</p>'
-            )
-        else:
-            body_html_parts.append(
-                f'<p style="margin:0 0 18px;font-size:16px;color:{INK_SECONDARY};'
-                f'line-height:1.7;text-align:{text_align};">{_esc(p)}</p>'
-            )
-    body_html = ''.join(body_html_parts)
+    width = 560 if compact else max_width
+    outer_pad = '24px 12px 36px 12px' if compact else '36px 16px 48px 16px'
+    card_pad = '28px 26px' if compact else '32px 28px'
+    logo_size = 52 if compact else 48
+
+    body_html = ''.join(
+        _paragraph_html(p, i, text_align) for i, p in enumerate(paragraphs)
+    )
     cta_html = _cta_section(cta_text, cta_url, c1, c2, cta_links)
+
+    greeting_html = ''
+    if (greeting or '').strip():
+        greeting_html = (
+            f'<p style="margin:0 0 18px;font-size:15px;color:{INK_MUTED};'
+            f'text-align:{text_align};">{_esc(greeting)}</p>'
+        )
+
+    org_html = ''
+    if sender_org:
+        org_html = (
+            f'<br><span style="font-size:14px;font-weight:500;color:{INK_SECONDARY};">'
+            f'{_esc(sender_org)}</span>'
+        )
 
     preheader = ''
     if preview_text:
@@ -310,27 +379,27 @@ def render(
 <body style="margin:0;padding:0;background:{CANVAS};font-family:{FONT_STACK};color:{INK_PRIMARY};-webkit-font-smoothing:antialiased;">
 {preheader}
 <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:{CANVAS};">
-<tr><td align="center" style="padding:36px 16px 48px 16px;">
-<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:600px;">
+<tr><td align="center" style="padding:{outer_pad};">
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:{width}px;">
 
-{_header_html(app_name, text_align)}
+{_header_html(app_name, text_align, logo_size=logo_size)}
 
-<tr><td style="background:{CARD};border-radius:24px;padding:32px 28px;box-shadow:0 1px 3px rgba(17,24,39,0.06),0 8px 24px rgba(17,24,39,0.04);border:1px solid {RECESSED};">
-  <p style="margin:0 0 24px;font-size:17px;color:{INK_MUTED};text-align:{text_align};">{_esc(greeting)}</p>
+<tr><td style="background:{CARD};border-radius:20px;padding:{card_pad};box-shadow:0 1px 3px rgba(17,24,39,0.06),0 8px 24px rgba(17,24,39,0.04);border:1px solid {RECESSED};">
+  {greeting_html}
   {body_html}
   {cta_html}
-  <p style="margin:28px 0 0;font-size:16px;color:{INK_SECONDARY};text-align:{text_align};line-height:1.6;">{_esc(signoff)}<br><strong style="color:{INK_PRIMARY};">{_esc(sender_name)}</strong></p>
+  <p style="margin:24px 0 0;font-size:15px;color:{INK_SECONDARY};text-align:{text_align};line-height:1.55;">{_esc(signoff)}<br><strong style="color:{INK_PRIMARY};">{_esc(sender_name)}</strong>{org_html}</p>
 </td></tr>
 
-<tr><td style="padding:28px 8px 0 8px;text-align:center;">
-  <p style="margin:0 0 8px;font-size:12px;color:{INK_MUTED};line-height:1.6;">San Francisco, CA 94117, United States</p>
+<tr><td style="padding:22px 8px 0 8px;text-align:center;">
+  <p style="margin:0 0 8px;font-size:12px;color:{INK_MUTED};line-height:1.6;">{_esc(address)}</p>
   <p style="margin:0 0 8px;font-size:12px;color:{INK_MUTED};line-height:1.6;">{_esc(footer)}</p>
   <p style="margin:0;font-size:12px;color:{INK_MUTED};">
     <a href="https://thesisgenerator.io" style="color:{BRAND_NAVY};text-decoration:none;font-weight:500;">thesisgenerator.io</a>
     &nbsp;&middot;&nbsp;
     <a href="%mailing_list_unsubscribe_url%" style="color:{INK_SECONDARY};text-decoration:underline;">Unsubscribe</a>
   </p>
-  <p style="margin:14px 0 0;font-size:11px;color:{INK_MUTED};letter-spacing:0.06em;">&mdash; {_esc(app_name)}</p>
+  <p style="margin:14px 0 0;font-size:11px;color:{INK_MUTED};letter-spacing:0.06em;">&mdash; {_esc(sender_org or app_name)}</p>
 </td></tr>
 
 </table>

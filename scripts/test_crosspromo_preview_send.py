@@ -15,11 +15,10 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'scripts'))
 
 from crosspromo_thesis_sender import (
-    APP_NAME,
     APP_STORE_URL,
     EN_SOURCES,
-    GOOGLE_PLAY_URL,
     KIND_PREFIX,
+    crosspromo_render_kwargs,
 )
 from gmail_sender import GmailSender
 from thesis_email_chrome import render as render_email
@@ -40,8 +39,6 @@ def main() -> None:
         print('Usage: python scripts/test_crosspromo_preview_send.py you@example.com')
         sys.exit(1)
 
-    # Preview uses ZeptoMail (current ESP). Content matches crosspromo chrome;
-    # From is pinned to thesisgenerator.io on ZeptoMail.
     os.environ['EMAIL_PROVIDER'] = 'zeptomail'
     os.environ.setdefault('ZEPTOMAIL_THESIS_SENDER_EMAIL', 'hello@thesisgenerator.io')
     os.environ.setdefault('ZEPTOMAIL_THESIS_SENDER_NAME', 'Thesis Generator')
@@ -55,27 +52,17 @@ def main() -> None:
     plan = {'first_name': args.first_name}
     tpl = get_localized(kind, lang, en_src, allow_api=False)
     subject = localize_phrase.interpolate(lang, tpl.get('subject', en_src['subject']), plan)
-    # Mark as preview so it's obvious in the inbox
     subject = f'[PREVIEW] {subject}'
     paragraphs = [
         localize_phrase.interpolate(lang, p, plan)
         for p in tpl.get('body', en_src['body'])
     ]
     cta = tpl.get('cta', en_src['cta'])
-    cta_ios = tpl.get('cta_ios', en_src.get('cta_ios', 'App Store'))
-    cta_android = tpl.get('cta_android', en_src.get('cta_android', 'Google Play'))
     preview = tpl.get('preview', en_src.get('preview', ''))
 
     html = render_email(
         lang, paragraphs, cta, APP_STORE_URL,
-        sender_name='Alex',
-        app_name=APP_NAME,
-        gradient='invite',
-        preview_text=preview or None,
-        cta_links=[
-            {'url': APP_STORE_URL, 'variant': 'ios', 'line2': cta_ios},
-            {'url': GOOGLE_PLAY_URL, 'variant': 'android', 'line2': cta_android},
-        ],
+        **crosspromo_render_kwargs(preview_text=preview or None),
     )
 
     print(f'To: {args.to}')
@@ -85,7 +72,7 @@ def main() -> None:
 
     if args.dry_run:
         print('🏁 DRY RUN — not sent')
-        print(html[:500], '...')
+        print(html[:800], '...')
         return
 
     sender = GmailSender()
