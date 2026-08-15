@@ -44,7 +44,8 @@ CROSSPROMO_DAILY_CAP=50 python3 scripts/crosspromo_orchestrator.py
 ## CI
 
 - Workflow: `.github/workflows/retention-emails.yml`
-- Runs automatically on the Mon–Sat schedule (09:00 + 17:00 UTC) after other orchestrators
+- **Mon–Sat** 09:00 + 17:00 UTC: full retention suite (crosspromo runs at the end)
+- **Sunday** 09:00 + 17:00 UTC: **crosspromo-only** (Research Generator acquisition; other apps stay off Sunday)
 - Manual: `workflow_dispatch` mode **`crosspromo`**
 - Env: `CROSSPROMO_ENABLED=1`, `CROSSPROMO_DAILY_CAP=150`, `CROSSPROMO_ENROLL_CAP=150`
 - From: `ZEPTOMAIL_PASSED_AI_SENDER_EMAIL=hello@passedai.io` via `ZEPTOMAIL_BREAKUP_API_KEY` (Agent 2)

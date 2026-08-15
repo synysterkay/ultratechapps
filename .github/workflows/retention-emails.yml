@@ -2,13 +2,14 @@ name: App Retention Emails
 
 on:
   schedule:
-    # Run twice daily, Monday–Saturday only. Skipping Sunday based on
-    # 14-day engagement data — Sunday and early Monday had the worst
-    # open rates and the highest delivery-delay rates across all domains.
-    # Times are still 09:00 + 17:00 UTC; Saturday still runs since many
-    # behavioural triggers (match_day, weekend recap) peak then.
+    # Full retention suite: Monday–Saturday. Sunday was skipped for portfolio-wide
+    # engagement (worst opens / delivery delay). Times: 09:00 + 17:00 UTC.
     - cron: '0 9 * * 1-6'
     - cron: '0 17 * * 1-6'
+    # Crosspromo-only Sundays — Research Generator acquisition still performs
+    # on weekends; keep other apps off Sunday.
+    - cron: '0 9 * * 0'
+    - cron: '0 17 * * 0'
   
   workflow_dispatch:
     inputs:
@@ -159,10 +160,17 @@ jobs:
           CROSSPROMO_SEND_DELAY_SECONDS: "0.35"
         run: |
           MODE="${{ github.event.inputs.mode || 'send' }}"
+          # Sunday schedule crons are crosspromo-only (see on.schedule above).
+          SCHEDULE="${{ github.event.schedule }}"
+          if [ "$SCHEDULE" = "0 9 * * 0" ] || [ "$SCHEDULE" = "0 17 * * 0" ]; then
+            MODE=crosspromo
+            echo "📅 Sunday schedule → crosspromo-only mode"
+          fi
 
           # Skip full template localize on founder-story backfill — templates
           # are already warmed; this saves ~15 min per run.
-          if [ "$MODE" != "founder-story" ]; then
+          # Sunday crosspromo also skips Predictify localize (not needed).
+          if [ "$MODE" != "founder-story" ] && [ "$MODE" != "crosspromo" ]; then
             python -u scripts/predictify_v2/localize_templates.py || true
           fi
 
