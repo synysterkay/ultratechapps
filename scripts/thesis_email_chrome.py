@@ -28,9 +28,10 @@ from localize_phrase import (
 )
 
 # ─── Brand tokens (AppColors light theme) ───────────────────────────────────
-CANVAS = '#F7F5F0'
+# Canvas matched to app-icon cream (sampled from assets/thesis/icon-email.png)
+CANVAS = '#F9F1E3'
 CARD = '#FFFFFF'
-RECESSED = '#EFEBE3'
+RECESSED = '#F0E6D6'
 INK_PRIMARY = '#111827'
 INK_SECONDARY = '#6B7280'
 INK_MUTED = '#9CA3AF'
@@ -205,11 +206,12 @@ def _header_html(app_name: str, text_align: str) -> str:
         logo_cell = (
             f'<td style="vertical-align:middle;padding:0 16px 0 0;width:56px">'
             f'<img src="{logo}" alt="{_esc(app_name)}" width="48" height="48" '
-            f'style="display:block;border-radius:12px;width:48px;height:48px;border:0;" />'
+            f'style="display:block;border-radius:12px;width:48px;height:48px;'
+            f'border:1px solid rgba(17,24,39,0.06);" />'
             f'</td>'
         )
     return (
-        f'<tr><td style="padding:0 0 20px 0;text-align:{text_align}">'
+        f'<tr><td style="padding:0 0 28px 0;text-align:{text_align}">'
         f'<table role="presentation" cellspacing="0" cellpadding="0">'
         f'<tr>{logo_cell}'
         f'<td style="vertical-align:middle">'
