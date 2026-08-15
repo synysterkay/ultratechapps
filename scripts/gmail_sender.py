@@ -486,9 +486,8 @@ class GmailSender:
 
     def _zeptomail_pinned_email(self, sender_email, app=None):
         """Pin From address to the verified ZeptoMail domain for this app."""
-        if _is_crosspromo_app(app) or (
-            sender_email and 'passedai.io' in (sender_email or '').lower()
-        ):
+        # App tag wins — do not let an instance default From rewrite thesis/predictify.
+        if _is_crosspromo_app(app):
             return os.getenv('ZEPTOMAIL_PASSED_AI_SENDER_EMAIL', 'hello@passedai.io')
         if _is_predictify_app(app):
             return os.getenv(
@@ -508,6 +507,8 @@ class GmailSender:
             )
         if _is_breakup_app(app):
             return os.getenv('ZEPTOMAIL_BREAKUP_SENDER_EMAIL', 'hello@breakuprelief.com')
+        if sender_email and 'passedai.io' in (sender_email or '').lower():
+            return os.getenv('ZEPTOMAIL_PASSED_AI_SENDER_EMAIL', 'hello@passedai.io')
         if sender_email and '@predictifyfootball.com' in (sender_email or '').lower():
             return sender_email
         return os.getenv('ZEPTOMAIL_SENDER_EMAIL', 'hello@thesisgenerator.io')
@@ -638,9 +639,9 @@ class GmailSender:
             return False
 
     def _connect_zeptomail(self):
-        thesis = self._zeptomail_pinned_email(self.sender_email, 'thesis')
-        predictify = self._zeptomail_pinned_email(self.sender_email, 'predictify')
-        passedai = self._zeptomail_pinned_email(self.sender_email, 'crosspromo')
+        thesis = self._zeptomail_pinned_email(None, 'thesis')
+        predictify = self._zeptomail_pinned_email(None, 'predictify')
+        passedai = self._zeptomail_pinned_email(None, 'crosspromo')
         print(
             f"✅ ZeptoMail configured — thesis: {thesis}, "
             f"predictify: {predictify}, crosspromo: {passedai} (app-tagged routing)"
