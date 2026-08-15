@@ -1,14 +1,14 @@
 {
-  "subject": "The 47-minute thesis trick nobody teaches in class",
-  "preview": "Students using our other apps keep asking for this…",
+  "subject": "The 47-minute research trick nobody teaches in class",
+  "preview": "People using our other apps keep asking for this…",
   "body": [
     "Hey {{first_name}} — quick one.",
-    "People who already use our apps keep hitting the same wall: the blank page when a thesis or essay is due. Not the research. The starting.",
-    "There's a free tool that drafts a sharp thesis statement + outline in under 5 minutes. No login maze. No credit card.",
-    "I'm Alex from Kaynel. We build the apps you already use — this one is Thesis Generator.",
+    "People who already use our apps keep hitting the same wall: the blank page when a research paper or essay is due. Not the reading. The starting.",
+    "There's a free tool that drafts a sharp research statement + outline in under 5 minutes. No login maze. No credit card.",
+    "I'm Alex from Kaynel. We build the apps you already use — this one is Research Generator.",
     "P.S. Open it once. If the outline sucks, delete it. If it doesn't… you just bought yourself a weekend."
   ],
-  "cta": "Try Thesis Generator free",
+  "cta": "Try Research Generator free",
   "cta_ios": "App Store",
   "cta_android": "Google Play"
 }

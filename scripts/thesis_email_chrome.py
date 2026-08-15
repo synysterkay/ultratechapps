@@ -14,6 +14,7 @@ and footer with unsubscribe context.
 from __future__ import annotations
 
 import base64
+import os
 from pathlib import Path
 
 from localize_phrase import (
@@ -46,6 +47,11 @@ FONT_STACK = (
 )
 
 _ICON_PATH = Path(__file__).resolve().parents[1] / 'assets' / 'thesis' / 'icon-email.png'
+# Gmail / Apple Mail often block data: URIs — prefer a public HTTPS mark.
+_ICON_HTTPS = (
+    os.getenv('THESIS_EMAIL_ICON_URL')
+    or 'https://cdn.jsdelivr.net/gh/synysterkay/ultratechapps@main/assets/thesis/icon-email.png'
+)
 _LOGO_DATA_URI: str | None = None
 
 # Reusable colour ramps keyed by email intent. Primary CTAs use brand navy→gold.
@@ -60,7 +66,14 @@ GRADIENTS = {
 
 
 def _logo_src() -> str:
-    """Inline brand mark — avoids broken remote images in inbox clients."""
+    """Brand mark URL for email clients.
+
+    Prefer HTTPS (Gmail strips data: image URIs → empty square). Fall back to
+    an inlined data URI only if the remote URL env is explicitly cleared.
+    """
+    https = (_ICON_HTTPS or '').strip()
+    if https:
+        return https
     global _LOGO_DATA_URI
     if _LOGO_DATA_URI is None:
         try:
@@ -191,8 +204,8 @@ def _header_html(app_name: str, text_align: str) -> str:
     if logo:
         logo_cell = (
             f'<td style="vertical-align:middle;padding:0 16px 0 0;width:56px">'
-            f'<img src="{logo}" alt="" width="48" height="48" '
-            f'style="display:block;border-radius:12px;width:48px;height:48px;" />'
+            f'<img src="{logo}" alt="{_esc(app_name)}" width="48" height="48" '
+            f'style="display:block;border-radius:12px;width:48px;height:48px;border:0;" />'
             f'</td>'
         )
     return (

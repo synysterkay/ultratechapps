@@ -33,7 +33,7 @@ from deliverability_monitor import pick_healthy_sender
 from crosspromo_pool import build_pool, pool_stats
 import localize_phrase
 
-APP_NAME = 'Thesis Generator'
+APP_NAME = 'Research Generator'
 APP_SLUG = 'thesis'  # ZeptoMail allowlist + From pin
 TARGET = 'thesis'
 KIND_PREFIX = 'crosspromo_thesis'
@@ -55,39 +55,39 @@ STAGES = [
 
 EN_SOURCES = {
     'e1': {
-        'subject': "The 47-minute thesis trick nobody teaches in class",
-        'preview': "Students using our other apps keep asking for this…",
+        'subject': "The 47-minute research trick nobody teaches in class",
+        'preview': "People using our other apps keep asking for this…",
         'body': [
             "Hey {{first_name}} — quick one.",
-            "People who already use our apps keep hitting the same wall: the blank page when a thesis or essay is due. Not the research. The starting.",
-            "There's a free tool that drafts a sharp thesis statement + outline in under 5 minutes. No login maze. No credit card.",
-            "I'm Alex from Kaynel. We build the apps you already use — this one is Thesis Generator.",
+            "People who already use our apps keep hitting the same wall: the blank page when a research paper or essay is due. Not the reading. The starting.",
+            "There's a free tool that drafts a sharp research statement + outline in under 5 minutes. No login maze. No credit card.",
+            "I'm Alex from Kaynel. We build the apps you already use — this one is Research Generator.",
             "P.S. Open it once. If the outline sucks, delete it. If it doesn't… you just bought yourself a weekend.",
         ],
-        'cta': 'Try Thesis Generator free',
+        'cta': 'Try Research Generator free',
         'cta_ios': 'App Store',
         'cta_android': 'Google Play',
     },
     'e2': {
-        'subject': "I timed it: outline ready in 4 minutes 12 seconds",
+        'subject': "I timed it: research outline ready in 4 minutes 12 seconds",
         'preview': "The dopamine hit when the blank page disappears…",
         'body': [
             "{{first_name}}, here's the move that actually feels good:",
-            "1) Drop your topic into Thesis Generator\n2) Get a thesis statement + structured outline\n3) Start writing from a plan instead of panic",
+            "1) Drop your topic into Research Generator\n2) Get a research statement + structured outline\n3) Start writing from a plan instead of panic",
             "That first outline hitting your screen? Instant relief. That's the whole product.",
             "Free to download. Works offline after install. No account required to peek.",
-            "P.S. Pro tip: generate 2–3 thesis angles and pick the strongest. Takes another minute. Feels unfair in a good way.",
+            "P.S. Pro tip: generate 2–3 research angles and pick the strongest. Takes another minute. Feels unfair in a good way.",
         ],
         'cta': 'Get my outline now',
         'cta_ios': 'Download on App Store',
         'cta_android': 'Get it on Google Play',
     },
     'e3': {
-        'subject': "12,000+ students finished a draft this month (here's how)",
+        'subject': "12,000+ students finished a research draft this month",
         'preview': "Not genius — just a better starting point.",
         'body': [
             "You're not behind because you're lazy. Most people stall because the first sentence feels impossible.",
-            "Thesis Generator users keep saying the same thing: once the outline exists, the rest moves. Chapters stop feeling random.",
+            "Research Generator users keep saying the same thing: once the outline exists, the rest moves. Chapters stop feeling random.",
             "If you've got a paper, proposal, or dissertation hanging over you — this is the shortest path to a real first draft.",
             "P.S. The free tier is enough to prove it. Upgrade later only if you want more chapters unlocked.",
         ],
@@ -100,7 +100,7 @@ EN_SOURCES = {
         'preview': "The objections I hear — answered in 20 seconds.",
         'body': [
             "{{first_name}}, if you skipped the last emails, fair. Here's the honest pitch:",
-            "• Free download — no card to try\n• Built for real assignments, not fluff blog posts\n• Outline + thesis statement before you spiral",
+            "• Free download — no card to try\n• Built for real research assignments, not fluff blog posts\n• Outline + research statement before you spiral",
             "If writing isn't on your plate this week, ignore this. If it is — open the app before the deadline owns you.",
             "P.S. Worst case you spend 3 minutes and learn it isn't for you. Best case you sleep.",
         ],
@@ -109,15 +109,15 @@ EN_SOURCES = {
         'cta_android': 'Get on Google Play',
     },
     'e5': {
-        'subject': "Last note from me about Thesis Generator",
+        'subject': "Last note from me about Research Generator",
         'preview': "Closing this thread — link if you want it.",
         'body': [
             "{{first_name}}, I'll stop after this one.",
-            "If a paper is coming up and you want a clean starting point, Thesis Generator is here: free, fast, no pressure.",
+            "If a paper is coming up and you want a clean starting point, Research Generator is here: free, fast, no pressure.",
             "If not — all good. Mute or unsubscribe anytime. No hard feelings.",
             "P.S. Bookmark it for the next deadline. Future-you will thank present-you.",
         ],
-        'cta': 'Open Thesis Generator',
+        'cta': 'Open Research Generator',
         'cta_ios': 'App Store',
         'cta_android': 'Google Play',
     },

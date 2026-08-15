@@ -43,6 +43,8 @@ jobs:
           ZEPTOMAIL_API_URL: https://api.zeptomail.eu/v1.1/email
           ZEPTOMAIL_THESIS_SENDER_EMAIL: hello@thesisgenerator.io
           ZEPTOMAIL_THESIS_SENDER_NAME: Thesis Generator
+          # Pin icon to this commit so Gmail gets a fresh HTTPS mark (not data: URI)
+          THESIS_EMAIL_ICON_URL: https://raw.githubusercontent.com/synysterkay/ultratechapps/${{ github.sha }}/assets/thesis/icon-email.png
         run: |
           python scripts/test_crosspromo_preview_send.py \
             "${{ github.event.inputs.to }}" \
