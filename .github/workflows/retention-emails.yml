@@ -103,6 +103,7 @@ jobs:
           EMAIL_PROVIDER: ${{ secrets.EMAIL_PROVIDER }}
           SMTP2GO_API_KEY: ${{ secrets.SMTP2GO_API_KEY }}
           ZEPTOMAIL_API_KEY: ${{ secrets.ZEPTOMAIL_API_KEY }}
+          ZEPTOMAIL_BREAKUP_API_KEY: ${{ secrets.ZEPTOMAIL_BREAKUP_API_KEY }}
           ZEPTOMAIL_API_URL: https://api.zeptomail.eu/v1.1/email
           ZEPTOMAIL_THESIS_SENDER_EMAIL: hello@thesisgenerator.io
           ZEPTOMAIL_THESIS_SENDER_NAME: Thesis Generator
@@ -111,6 +112,8 @@ jobs:
           THESIS_SENDER_EMAIL: hello@thesisgenerator.io
           ZEPTOMAIL_PASSED_AI_SENDER_EMAIL: hello@passedai.io
           ZEPTOMAIL_PASSED_AI_SENDER_NAME: Alex
+          ZEPTOMAIL_BREAKUP_SENDER_EMAIL: hello@breakuprelief.com
+          ZEPTOMAIL_SELKA_SENDER_EMAIL: selka@breakuprelief.com
           THESIS_SENDER_NAME: Thesis Generator
           EMAIL_SENDING_PAUSED: ${{ secrets.EMAIL_SENDING_PAUSED }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}

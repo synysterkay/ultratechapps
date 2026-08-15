@@ -36,10 +36,11 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Send crosspromo preview (ZeptoMail / passedai.io)
+      - name: Send crosspromo preview (ZeptoMail / passedai.io Agent 2)
         env:
           EMAIL_PROVIDER: zeptomail
           ZEPTOMAIL_API_KEY: ${{ secrets.ZEPTOMAIL_API_KEY }}
+          ZEPTOMAIL_BREAKUP_API_KEY: ${{ secrets.ZEPTOMAIL_BREAKUP_API_KEY }}
           ZEPTOMAIL_API_URL: https://api.zeptomail.eu/v1.1/email
           ZEPTOMAIL_PASSED_AI_SENDER_EMAIL: hello@passedai.io
           ZEPTOMAIL_PASSED_AI_SENDER_NAME: Alex

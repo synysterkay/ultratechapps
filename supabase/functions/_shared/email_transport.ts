@@ -20,7 +20,7 @@ const PREDICTIFY_APPS = new Set([
   "horse_racing",
   "predictify_crypto",
 ]);
-/** Owned-list crosspromo — passedai.io (ZeptoMail Agent 1). */
+/** Owned-list crosspromo — passedai.io (ZeptoMail Agent 2). */
 const CROSSPROMO_APPS = new Set(["crosspromo", "crosspromotion", "passedai", "passed_ai"]);
 /** Fresh Start + Selka + SoulPlan — breakuprelief.com (ZeptoMail Agent 2). */
 const BREAKUP_APPS = new Set([
@@ -121,9 +121,9 @@ export function isZeptomailAllowedApp(app: string): boolean {
   );
 }
 
-/** Agent 1 (thesis/predictify) vs Agent 2 (breakuprelief.com) send tokens. */
+/** Agent 1 (thesis/predictify) vs Agent 2 (breakuprelief + passedai/crosspromo). */
 export function zeptomailApiKeyForApp(app: string): string {
-  if (isBreakupAppTag(app)) {
+  if (isBreakupAppTag(app) || isCrosspromoAppTag(app)) {
     return (
       Deno.env.get("ZEPTOMAIL_BREAKUP_API_KEY") ||
       Deno.env.get("ZEPTOMAIL_API_KEY") ||

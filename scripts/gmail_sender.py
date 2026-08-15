@@ -81,7 +81,7 @@ def _is_selka_app(app):
 
 
 def _is_crosspromo_app(app):
-    """Owned-list crosspromo (ZeptoMail via passedai.io)."""
+    """Owned-list crosspromo (ZeptoMail Agent 2 via passedai.io)."""
     return app in {'crosspromo', 'crosspromotion', 'passedai', 'passed_ai'}
 
 
@@ -112,7 +112,8 @@ def warming_app_for_sender(sender_email):
 
 
 def _zeptomail_api_key(app=None):
-    if _is_breakup_app(app):
+    # Agent 2: breakuprelief.com + passedai.io (crosspromo)
+    if _is_breakup_app(app) or _is_crosspromo_app(app):
         return os.getenv('ZEPTOMAIL_BREAKUP_API_KEY') or os.getenv('ZEPTOMAIL_API_KEY', '')
     return os.getenv('ZEPTOMAIL_API_KEY', '')
 

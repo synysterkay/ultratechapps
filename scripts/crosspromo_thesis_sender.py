@@ -282,7 +282,7 @@ def run(*, dry_run: bool = False, limit: int = 0, enroll_cap: int | None = None)
     )
     enroll_budget = int(os.getenv('CROSSPROMO_ENROLL_CAP', str(daily_cap)))
 
-    # Crosspromo via ZeptoMail Agent 1 — From pinned to passedai.io (not thesisgenerator.io).
+    # Crosspromo via ZeptoMail Agent 2 — From pinned to passedai.io (not thesisgenerator.io).
     os.environ['EMAIL_PROVIDER'] = 'zeptomail'
     os.environ.setdefault('ZEPTOMAIL_PASSED_AI_SENDER_EMAIL', CROSSPROMO_FROM)
     os.environ.setdefault('ZEPTOMAIL_PASSED_AI_SENDER_NAME', 'Alex')

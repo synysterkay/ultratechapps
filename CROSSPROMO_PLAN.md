@@ -6,11 +6,11 @@ Owned-list cross-sell from portfolio app users into **Research Generator** insta
 
 1. Builds a pool of Auth emails from all Firebase apps **except** Thesis Generator.
 2. Enrolls them in a **5-email sequence** (days 0 / 2 / 5 / 10 / 14).
-3. Sends via **ZeptoMail** from **`hello@passedai.io`** (Alex display name; Kaynel chrome).
+3. Sends via **ZeptoMail Agent 2** from **`hello@passedai.io`** (Alex display name; Kaynel chrome).
 4. Health gate prefers `hello@passedai.io`, then other green pool senders (`kaynel.solutions`, `breakuprelief.com`) as a volume brake.
 5. Skips the run entirely if no green/unknown pool sender is available.
 
-Product lifecycle mail for Thesis stays on ZeptoMail / `thesisgenerator.io`. Crosspromo **does not** use that pin — it uses `passedai.io`.
+Product lifecycle mail for Thesis stays on ZeptoMail Agent 1 / `thesisgenerator.io`. Crosspromo uses Agent 2 / `passedai.io` (same agent as `breakuprelief.com`).
 
 ## Sequence (EN)
 
@@ -47,7 +47,7 @@ CROSSPROMO_DAILY_CAP=50 python3 scripts/crosspromo_orchestrator.py
 - Runs automatically on the Mon–Sat schedule (09:00 + 17:00 UTC) after other orchestrators
 - Manual: `workflow_dispatch` mode **`crosspromo`**
 - Env: `CROSSPROMO_ENABLED=1`, `CROSSPROMO_DAILY_CAP=150`, `CROSSPROMO_ENROLL_CAP=150`
-- From: `ZEPTOMAIL_PASSED_AI_SENDER_EMAIL=hello@passedai.io`
+- From: `ZEPTOMAIL_PASSED_AI_SENDER_EMAIL=hello@passedai.io` via `ZEPTOMAIL_BREAKUP_API_KEY` (Agent 2)
 - State persisted: `cache/crosspromo_thesis_state.json`
 - Firebase Auth exports refreshed each run via `FIREBASE_TOKEN`
 

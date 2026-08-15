@@ -10,7 +10,7 @@
  * When EMAIL_PROVIDER=zeptomail, email_transport.ts routes by app tag:
  *   thesis → hello@thesisgenerator.io (Agent 1)
  *   predictify / predictify_nba / horse_racing / predictify_crypto → hello@predictifyfootball.com (Agent 1)
- *   crosspromo → hello@passedai.io (Agent 1)
+ *   crosspromo → hello@passedai.io (Agent 2)
  *   fresh_start / breakup_therapy / soulplan → hello@breakuprelief.com (Agent 2)
  *   red_flag_scanner → selka@breakuprelief.com (Agent 2)
  * When EMAIL_PROVIDER=smtp2go, pool From addresses pass through as-is.
