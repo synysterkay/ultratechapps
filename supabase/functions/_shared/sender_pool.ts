@@ -3,13 +3,14 @@
  * scripts/deliverability_monitor.py SENDER_POOL.
  *
  * SMTP2GO enabled senders: breakuprelief.com, kaynel.solutions, passedai.io.
- * Crosspromotion (Thesis phase 1) prefers hello@kaynel.solutions via
- * deliverability_monitor.pick_healthy_sender.
+ * Crosspromotion (Thesis phase 1) sends via ZeptoMail from hello@passedai.io
+ * (app tag `crosspromo`), with deliverability_monitor.pick_healthy_sender as a gate.
  * predictifyfootball.com — unverified. predictify.fun — verified but disabled.
  *
  * When EMAIL_PROVIDER=zeptomail, email_transport.ts routes by app tag:
  *   thesis → hello@thesisgenerator.io (Agent 1)
  *   predictify / predictify_nba / horse_racing / predictify_crypto → hello@predictifyfootball.com (Agent 1)
+ *   crosspromo → hello@passedai.io (Agent 1)
  *   fresh_start / breakup_therapy / soulplan → hello@breakuprelief.com (Agent 2)
  *   red_flag_scanner → selka@breakuprelief.com (Agent 2)
  * When EMAIL_PROVIDER=smtp2go, pool From addresses pass through as-is.

@@ -40,7 +40,8 @@ class DeliverabilityMonitor:
 
     # ── SENDER IDENTITIES (add new senders here) ───────────
     # Order matters: first = primary, rest = fallbacks.
-    # SMTP2GO enabled: breakuprelief.com, kaynel.solutions, passedai.io.
+    # SMTP2GO / health pool: breakuprelief.com, kaynel.solutions, passedai.io.
+    # Crosspromo ZeptoMail From is hello@passedai.io (app=crosspromo).
     # predictifyfootball.com unverified; predictify.fun verified but disabled.
     SENDER_POOL = [
         {

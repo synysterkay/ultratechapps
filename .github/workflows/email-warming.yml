@@ -50,6 +50,8 @@ jobs:
           PREDICTIFY_ZEPTOMAIL_SENDER_EMAIL: hello@predictifyfootball.com
           ZEPTOMAIL_BREAKUP_SENDER_EMAIL: hello@breakuprelief.com
           ZEPTOMAIL_SELKA_SENDER_EMAIL: selka@breakuprelief.com
+          ZEPTOMAIL_PASSED_AI_SENDER_EMAIL: hello@passedai.io
+          ZEPTOMAIL_PASSED_AI_SENDER_NAME: Alex
           EMAIL_SENDING_PAUSED: ${{ secrets.EMAIL_SENDING_PAUSED }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}

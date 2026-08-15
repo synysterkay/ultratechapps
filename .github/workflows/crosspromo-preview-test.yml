@@ -36,13 +36,13 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Send crosspromo preview (ZeptoMail)
+      - name: Send crosspromo preview (ZeptoMail / passedai.io)
         env:
           EMAIL_PROVIDER: zeptomail
           ZEPTOMAIL_API_KEY: ${{ secrets.ZEPTOMAIL_API_KEY }}
           ZEPTOMAIL_API_URL: https://api.zeptomail.eu/v1.1/email
-          ZEPTOMAIL_THESIS_SENDER_EMAIL: hello@thesisgenerator.io
-          ZEPTOMAIL_THESIS_SENDER_NAME: Thesis Generator
+          ZEPTOMAIL_PASSED_AI_SENDER_EMAIL: hello@passedai.io
+          ZEPTOMAIL_PASSED_AI_SENDER_NAME: Alex
           # Pin icon to this commit so Gmail gets a fresh HTTPS mark (not data: URI)
           THESIS_EMAIL_ICON_URL: https://raw.githubusercontent.com/synysterkay/ultratechapps/${{ github.sha }}/assets/thesis/icon-email.png
         run: |

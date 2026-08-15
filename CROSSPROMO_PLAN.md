@@ -1,16 +1,16 @@
 # Crosspromotion — Thesis Generator (phase 1)
 
-Owned-list cross-sell from portfolio app users into **Thesis Generator** installs.
+Owned-list cross-sell from portfolio app users into **Research Generator** installs.
 
 ## What it does
 
 1. Builds a pool of Auth emails from all Firebase apps **except** Thesis Generator.
 2. Enrolls them in a **5-email sequence** (days 0 / 2 / 5 / 10 / 14).
-3. Sends via **SMTP2GO** from the health-aware pool, preferring **`hello@kaynel.solutions`** (Alex).
-4. Falls back to other green pool senders (`passedai.io`, `breakuprelief.com`) if kaynel is yellow/red.
-5. Skips the run entirely if no green/unknown sender is available.
+3. Sends via **ZeptoMail** from **`hello@passedai.io`** (Alex display name; Kaynel chrome).
+4. Health gate prefers `hello@passedai.io`, then other green pool senders (`kaynel.solutions`, `breakuprelief.com`) as a volume brake.
+5. Skips the run entirely if no green/unknown pool sender is available.
 
-Product lifecycle mail for Thesis stays on ZeptoMail / `thesisgenerator.io`. Crosspromo never uses that pin.
+Product lifecycle mail for Thesis stays on ZeptoMail / `thesisgenerator.io`. Crosspromo **does not** use that pin — it uses `passedai.io`.
 
 ## Sequence (EN)
 
@@ -37,16 +37,19 @@ python3 scripts/crosspromo_orchestrator.py --dry-run --limit 20
 python3 scripts/crosspromo_thesis_sender.py --warm
 python3 scripts/crosspromo_thesis_sender.py --warm --adapt   # full-content rewrite, not word-by-word
 
-# Live send (SMTP2GO_API_KEY required)
+# Live send (ZEPTOMAIL_API_KEY required)
 CROSSPROMO_DAILY_CAP=50 python3 scripts/crosspromo_orchestrator.py
 ```
 
 ## CI
 
 - Workflow: `.github/workflows/retention-emails.yml`
-- Modes: default Mon–Sat send (after other orchestrators), or `workflow_dispatch` mode **`crosspromo`**
+- Runs automatically on the Mon–Sat schedule (09:00 + 17:00 UTC) after other orchestrators
+- Manual: `workflow_dispatch` mode **`crosspromo`**
 - Env: `CROSSPROMO_ENABLED=1`, `CROSSPROMO_DAILY_CAP=150`, `CROSSPROMO_ENROLL_CAP=150`
+- From: `ZEPTOMAIL_PASSED_AI_SENDER_EMAIL=hello@passedai.io`
 - State persisted: `cache/crosspromo_thesis_state.json`
+- Firebase Auth exports refreshed each run via `FIREBASE_TOKEN`
 
 ## Tags (analytics)
 
@@ -69,7 +72,7 @@ CROSSPROMO_DAILY_CAP=50 python3 scripts/crosspromo_orchestrator.py
 - Thesis Auth emails never enrolled.
 - After e5 → `completed_at`; no re-enroll for **90 days**.
 - Daily send cap default **150**; mid-run health re-check every 50 sends.
-- Warming: `kaynel.solutions` added to `config/warming_config.json`.
+- Warming: `passedai.io` in `config/warming_config.json` (ZeptoMail open-only).
 
 ## Files
 
@@ -79,7 +82,7 @@ CROSSPROMO_DAILY_CAP=50 python3 scripts/crosspromo_orchestrator.py
 | `scripts/crosspromo_thesis_sender.py` | Sequence + send |
 | `scripts/crosspromo_orchestrator.py` | Entrypoint |
 | `cache/crosspromo_thesis_state.json` | Enrollment / stage state |
-| `scripts/deliverability_monitor.py` | `pick_healthy_sender(prefer=kaynel)` |
+| `scripts/deliverability_monitor.py` | `pick_healthy_sender(prefer=passedai)` |
 | `scripts/thesis_template_translator.py` | `mode='adapt'` warm |
 
 ## Later phases

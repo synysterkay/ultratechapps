@@ -80,9 +80,19 @@ def _is_selka_app(app):
     return app in {'red_flag_scanner', 'redflag'}
 
 
+def _is_crosspromo_app(app):
+    """Owned-list crosspromo (ZeptoMail via passedai.io)."""
+    return app in {'crosspromo', 'crosspromotion', 'passedai', 'passed_ai'}
+
+
 def _is_zeptomail_allowed_app(app):
     """Apps permitted to send when EMAIL_PROVIDER=zeptomail."""
-    return _is_thesis_app(app) or _is_predictify_app(app) or _is_breakup_app(app)
+    return (
+        _is_thesis_app(app)
+        or _is_predictify_app(app)
+        or _is_breakup_app(app)
+        or _is_crosspromo_app(app)
+    )
 
 
 def warming_app_for_sender(sender_email):
@@ -96,6 +106,8 @@ def warming_app_for_sender(sender_email):
         return 'predictify'
     if 'thesisgenerator.io' in addr:
         return 'thesis_generator'
+    if 'passedai.io' in addr:
+        return 'crosspromo'
     return ''
 
 
@@ -474,6 +486,10 @@ class GmailSender:
 
     def _zeptomail_pinned_email(self, sender_email, app=None):
         """Pin From address to the verified ZeptoMail domain for this app."""
+        if _is_crosspromo_app(app) or (
+            sender_email and 'passedai.io' in (sender_email or '').lower()
+        ):
+            return os.getenv('ZEPTOMAIL_PASSED_AI_SENDER_EMAIL', 'hello@passedai.io')
         if _is_predictify_app(app):
             return os.getenv(
                 'PREDICTIFY_ZEPTOMAIL_SENDER_EMAIL', 'hello@predictifyfootball.com'
@@ -499,7 +515,13 @@ class GmailSender:
     def _effective_sender(self, app, from_name=None):
         sender_email = self.sender_email
         sender_name = from_name or self.sender_name
-        if _is_thesis_app(app) and not self._explicit_sender_email:
+        if _is_crosspromo_app(app) and not self._explicit_sender_email:
+            sender_email = os.getenv(
+                'ZEPTOMAIL_PASSED_AI_SENDER_EMAIL', 'hello@passedai.io'
+            )
+            if not from_name and not self._explicit_sender_name:
+                sender_name = os.getenv('ZEPTOMAIL_PASSED_AI_SENDER_NAME', 'Alex')
+        elif _is_thesis_app(app) and not self._explicit_sender_email:
             sender_email = os.getenv(
                 'ZEPTOMAIL_THESIS_SENDER_EMAIL'
                 if self._use_zeptomail
@@ -618,9 +640,10 @@ class GmailSender:
     def _connect_zeptomail(self):
         thesis = self._zeptomail_pinned_email(self.sender_email, 'thesis')
         predictify = self._zeptomail_pinned_email(self.sender_email, 'predictify')
+        passedai = self._zeptomail_pinned_email(self.sender_email, 'crosspromo')
         print(
             f"✅ ZeptoMail configured — thesis: {thesis}, "
-            f"predictify: {predictify} (app-tagged routing)"
+            f"predictify: {predictify}, crosspromo: {passedai} (app-tagged routing)"
         )
         self.connected = True
         return True

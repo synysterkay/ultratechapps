@@ -3,8 +3,8 @@
 Crosspromotion — Thesis Generator conversion sequence (phase 1).
 
 Pools Auth emails from all portfolio apps (excluding Thesis Auth users),
-enrolls them in a 5-email sequence, sends via SMTP2GO from a health-aware
-pool (prefer hello@kaynel.solutions).
+enrolls them in a 5-email sequence, sends via ZeptoMail from
+hello@passedai.io (health-aware gate prefers that domain).
 
 Usage:
   python3 scripts/crosspromo_thesis_sender.py --status
@@ -34,13 +34,14 @@ from crosspromo_pool import build_pool, pool_stats
 import localize_phrase
 
 APP_NAME = 'Research Generator'
-APP_SLUG = 'thesis'  # ZeptoMail allowlist + From pin
+APP_SLUG = 'crosspromo'  # ZeptoMail allowlist → passedai.io pin
 TARGET = 'thesis'
 KIND_PREFIX = 'crosspromo_thesis'
 STATE_FILE = Path(__file__).parent.parent / 'cache' / 'crosspromo_thesis_state.json'
 APP_STORE_URL = 'https://apps.apple.com/app/thesis-generator-essay-ai/id6739264844'
 GOOGLE_PLAY_URL = 'https://play.google.com/store/apps/details?id=com.thesis.generator.ai'
-PREFERRED_SENDER = 'hello@kaynel.solutions'
+PREFERRED_SENDER = 'hello@passedai.io'
+CROSSPROMO_FROM = os.getenv('ZEPTOMAIL_PASSED_AI_SENDER_EMAIL', 'hello@passedai.io')
 REENROLL_COOLDOWN_DAYS = 90
 _REF_SALT = os.getenv('EMAIL_REF_SALT', 'marketing-tool-v1')
 
@@ -281,10 +282,10 @@ def run(*, dry_run: bool = False, limit: int = 0, enroll_cap: int | None = None)
     )
     enroll_budget = int(os.getenv('CROSSPROMO_ENROLL_CAP', str(daily_cap)))
 
-    # Crosspromo content via ZeptoMail (current ESP). From pinned to thesisgenerator.io.
+    # Crosspromo via ZeptoMail Agent 1 — From pinned to passedai.io (not thesisgenerator.io).
     os.environ['EMAIL_PROVIDER'] = 'zeptomail'
-    os.environ.setdefault('ZEPTOMAIL_THESIS_SENDER_EMAIL', 'hello@thesisgenerator.io')
-    os.environ.setdefault('ZEPTOMAIL_THESIS_SENDER_NAME', 'Thesis Generator')
+    os.environ.setdefault('ZEPTOMAIL_PASSED_AI_SENDER_EMAIL', CROSSPROMO_FROM)
+    os.environ.setdefault('ZEPTOMAIL_PASSED_AI_SENDER_NAME', 'Alex')
 
     state = _load_state()
     state.setdefault('enrolled', {})
@@ -346,15 +347,17 @@ def run(*, dry_run: bool = False, limit: int = 0, enroll_cap: int | None = None)
 
     print(f'💌 Due sends this run: {len(due_queue):,} (cap={daily_cap})')
 
-    # Prefer kaynel when health allows; ZeptoMail still pins From to thesis domain.
+    # Health gate prefers passedai.io; ZeptoMail From always pins to that domain.
     identity = pick_healthy_sender(prefer=PREFERRED_SENDER, require_green=True)
     if not identity:
         print('🚨 No green/unknown pool sender available — skipping crosspromo run.')
         if not dry_run:
             _save_state(state)
         return
-    print(f'📤 Pool identity: {identity["email"]} ({identity.get("health_status")}) as {identity["name"]}')
-    print('   ZeptoMail From pin: hello@thesisgenerator.io')
+    from_email = CROSSPROMO_FROM
+    from_name = os.getenv('ZEPTOMAIL_PASSED_AI_SENDER_NAME') or identity.get('name') or 'Alex'
+    print(f'📤 Health gate: {identity["email"]} ({identity.get("health_status")})')
+    print(f'   ZeptoMail From: {from_email} as {from_name}')
 
     if dry_run:
         for email, record, stage in due_queue[:30]:
@@ -369,18 +372,14 @@ def run(*, dry_run: bool = False, limit: int = 0, enroll_cap: int | None = None)
         print('❌ ZEPTOMAIL_API_KEY / email credentials missing')
         return
 
-    # Use Thesis ZeptoMail sender; body chrome still signs as Alex.
-    sender = GmailSender(
-        sender_email=os.getenv('ZEPTOMAIL_THESIS_SENDER_EMAIL', 'hello@thesisgenerator.io'),
-        sender_name=identity.get('name') or 'Alex',
-    )
+    sender = GmailSender(sender_email=from_email, sender_name=from_name)
     if not sender.connect():
         print('❌ Failed to connect ZeptoMail sender')
         return
 
     sent_n = failed = skipped = 0
     for email, record, stage in due_queue:
-        # Re-check health mid-run every 50 sends (volume brake only — From stays Thesis Zepto)
+        # Re-check health mid-run every 50 sends (volume brake — From stays passedai.io)
         if sent_n and sent_n % 50 == 0:
             again = pick_healthy_sender(prefer=PREFERRED_SENDER, require_green=True)
             if not again:
@@ -416,7 +415,7 @@ def run(*, dry_run: bool = False, limit: int = 0, enroll_cap: int | None = None)
             to_email=email,
             subject=subject,
             html_body=html,
-            from_name=identity.get('name') or 'Alex',
+            from_name=from_name,
             tags=tags,
             ref_id=_ref(email),
         )
@@ -425,7 +424,7 @@ def run(*, dry_run: bool = False, limit: int = 0, enroll_cap: int | None = None)
             record.setdefault('stages', {})[stage] = {
                 'sent_at': _utc_now(),
                 'language': lang,
-                'from': identity['email'],
+                'from': from_email,
             }
             state['sent_counts'][stage] = state['sent_counts'].get(stage, 0) + 1
             if stage == 'e5' or set(record['stages'].keys()) >= {s for s, _ in STAGES}:

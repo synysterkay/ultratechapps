@@ -109,6 +109,8 @@ jobs:
           PREDICTIFY_ZEPTOMAIL_SENDER_EMAIL: hello@predictifyfootball.com
           PREDICTIFY_ZEPTOMAIL_SENDER_NAME: Predictify
           THESIS_SENDER_EMAIL: hello@thesisgenerator.io
+          ZEPTOMAIL_PASSED_AI_SENDER_EMAIL: hello@passedai.io
+          ZEPTOMAIL_PASSED_AI_SENDER_NAME: Alex
           THESIS_SENDER_NAME: Thesis Generator
           EMAIL_SENDING_PAUSED: ${{ secrets.EMAIL_SENDING_PAUSED }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
@@ -147,7 +149,7 @@ jobs:
           THESIS_DAILY_SEND_CAP_DISABLED: "0"
           THESIS_DAILY_SEND_CAP_BASE: "200"
           THESIS_DAILY_SEND_CAP_MAX: "400"
-          # Crosspromotion Thesis phase 1 (SMTP2GO / kaynel.solutions health pool)
+          # Crosspromotion Thesis phase 1 (ZeptoMail / passedai.io)
           CROSSPROMO_ENABLED: "1"
           CROSSPROMO_DAILY_CAP: "150"
           CROSSPROMO_ENROLL_CAP: "150"
@@ -207,7 +209,7 @@ jobs:
             python -u scripts/founder_story_thesis_2_sender.py --warm --refresh-templates || true
             python -u scripts/founder_story_thesis_2_sender.py
           elif [ "$MODE" = "crosspromo" ]; then
-            echo "--- Crosspromotion Thesis (kaynel / SMTP2GO) ---"
+            echo "--- Crosspromotion Thesis (ZeptoMail / passedai.io) ---"
             python -u scripts/crosspromo_orchestrator.py --status || true
             python -u scripts/crosspromo_orchestrator.py
           else
@@ -238,7 +240,7 @@ jobs:
               PREDICTIFY_APP_NAME='Predictify: Horse Racing AI' \
               PREDICTIFY_FIREBASE_PROJECT_ID='horse-racing-f67e8' \
               python -u scripts/founder_story_predictify_sender.py --backfill --passes 1 || true
-            echo "--- Crosspromotion Thesis (kaynel / SMTP2GO) ---"
+            echo "--- Crosspromotion Thesis (ZeptoMail / passedai.io) ---"
             python -u scripts/crosspromo_orchestrator.py || true
           fi
       

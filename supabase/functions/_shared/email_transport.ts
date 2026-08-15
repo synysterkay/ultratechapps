@@ -2,7 +2,8 @@
  * Pluggable email transport — Resend, Mailgun, SMTP2GO, or ZeptoMail.
  *
  * Set EMAIL_PROVIDER=zeptomail + ZEPTOMAIL_API_KEY.
- * Routes by app tag: thesis → thesisgenerator.io, predictify → predictifyfootball.com.
+ * Routes by app tag: thesis → thesisgenerator.io, predictify → predictifyfootball.com,
+ * crosspromo → passedai.io.
  * Set EMAIL_PROVIDER=smtp2go + SMTP2GO_API_KEY for multi-domain SMTP2GO sends.
  * Set EMAIL_PROVIDER=mailgun + MAILGUN_* to pin to passedai.io (legacy bridge).
  * Unset EMAIL_PROVIDER (or set to "resend") for Resend.
@@ -19,6 +20,8 @@ const PREDICTIFY_APPS = new Set([
   "horse_racing",
   "predictify_crypto",
 ]);
+/** Owned-list crosspromo — passedai.io (ZeptoMail Agent 1). */
+const CROSSPROMO_APPS = new Set(["crosspromo", "crosspromotion", "passedai", "passed_ai"]);
 /** Fresh Start + Selka + SoulPlan — breakuprelief.com (ZeptoMail Agent 2). */
 const BREAKUP_APPS = new Set([
   "fresh_start",
@@ -97,6 +100,10 @@ export function isBreakupAppTag(app: string): boolean {
   return BREAKUP_APPS.has(app.toLowerCase());
 }
 
+export function isCrosspromoAppTag(app: string): boolean {
+  return CROSSPROMO_APPS.has(app.toLowerCase());
+}
+
 export function isSelkaAppTag(app: string): boolean {
   return SELKA_APPS.has(app.toLowerCase());
 }
@@ -106,7 +113,12 @@ export function isSoulplanAppTag(app: string): boolean {
 }
 
 export function isZeptomailAllowedApp(app: string): boolean {
-  return isThesisAppTag(app) || isPredictifyAppTag(app) || isBreakupAppTag(app);
+  return (
+    isThesisAppTag(app) ||
+    isPredictifyAppTag(app) ||
+    isBreakupAppTag(app) ||
+    isCrosspromoAppTag(app)
+  );
 }
 
 /** Agent 1 (thesis/predictify) vs Agent 2 (breakuprelief.com) send tokens. */
@@ -123,6 +135,12 @@ export function zeptomailApiKeyForApp(app: string): string {
 
 /** Resolve ZeptoMail From address for a given app slug. */
 export function zeptomailSenderForApp(app: string): SenderIdentity {
+  if (isCrosspromoAppTag(app)) {
+    return {
+      email: Deno.env.get("ZEPTOMAIL_PASSED_AI_SENDER_EMAIL") || "hello@passedai.io",
+      name: Deno.env.get("ZEPTOMAIL_PASSED_AI_SENDER_NAME") || "Alex",
+    };
+  }
   if (isThesisAppTag(app)) {
     return {
       email:
