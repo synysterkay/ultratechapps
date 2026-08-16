@@ -11,8 +11,8 @@
       "completed_at": null
     },
     "3": {
-      "sent_count": 297,
-      "completed_at": null
+      "sent_count": 352,
+      "completed_at": "2026-08-16T11:09:07Z"
     }
   },
   "sent": {
@@ -3753,284 +3753,338 @@
       "part": 3,
       "language": "en",
       "sent_at": "2026-08-09T11:15:58Z"
-    }
-  },
-  "failed": {
+    },
     "djauyeung@msn.com": {
+      "uid": "qvsn6l2TI6cVAF9jUORmhf0lt6I2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:15:59Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:23Z"
     },
     "hanajailani14@gmail.com": {
+      "uid": "r1UMVbwNGcRWwUkKu3uXX0DpgER2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:00Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:24Z"
     },
     "martilstephanie@gmail.com": {
+      "uid": "r3caNyAbmihP3roc9mQrBbApZkx1",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:00Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:24Z"
     },
     "nazimaslanov67@gmail.com": {
+      "uid": "rCGeTxMmMdSmPkX89Zxxt16tOD72",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:01Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:25Z"
     },
     "meda0158@gmail.com": {
+      "uid": "rDz8CkZRDnPjS9OrVS7JZmVFLiF3",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:02Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:26Z"
     },
     "tlale5@yahoo.com": {
+      "uid": "rNpARS18dONqn96oKDGuwlQTUDC3",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:03Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:27Z"
     },
     "disalarodrigo@gmail.com": {
+      "uid": "rQH5QnJoFIgmM9HOSowkYFg4O0V2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:03Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:28Z"
     },
     "sahirgur.sg@gmail.com": {
+      "uid": "ranS3H2gLZVw8qFQX08hfRLbO7s1",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:04Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:29Z"
     },
     "sbchoi@kangwon.ac.kr": {
+      "uid": "rp02oO61RyPQswC5ZluB55W5eck2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:05Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:29Z"
     },
     "omercanayten@gmail.com": {
+      "uid": "sMqQTH0U4ngj4cPGj8L9KOOtqkH2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:05Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:30Z"
     },
     "nzegangetoundi@gmail.com": {
+      "uid": "skmnXQxOkSPdhWvSANoyMCQwGOH2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:06Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:31Z"
     },
     "loisadoboe@gmail.com": {
+      "uid": "t3NHzninznZpK8AYuNkQClebQ0P2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:07Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:32Z"
     },
     "anaskay.13@gmail.com": {
+      "uid": "t7UA4d0gp0gmKKDPFicroIk93Gy2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:08Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:33Z"
     },
     "hanaalevi1@gmail.com": {
+      "uid": "tCmJcYW4RNYGFZGIDBFhiFFocuq2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:09Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:34Z"
     },
     "cattapreta74@gmail.com": {
+      "uid": "u1gdneCPUcdTiZEI86FD0Bn6DHD2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:09Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:34Z"
     },
     "aly.britta1@gmail.com": {
+      "uid": "uVazDa2FwDRIcxzhXk8NSdcOFth1",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:10Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:35Z"
     },
     "bobamponsah@gmail.com": {
+      "uid": "uaOCGWn9m7VAF0k8uh31gksdSYn2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:11Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:36Z"
     },
     "emmamkamba.stanley@gmail.com": {
+      "uid": "ul5zzvgnwOb8PARgZpBBa48Wkpg2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:11Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:37Z"
     },
     "milanfacar147@gmail.com": {
+      "uid": "v0BPLHpj3EN2MHTmaGyVbmhFI373",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:12Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:38Z"
     },
     "ahiakah.richard@yahoo.com": {
+      "uid": "v24EBbnn7vc4bEZulnT0szAJeEs1",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:13Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:38Z"
     },
     "kasundesilva.g@gmail.com": {
+      "uid": "v44Fwe9djNQjtlvaa1CNNwTkOiH3",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:13Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:39Z"
     },
     "diegogaona173@gmail.com": {
+      "uid": "vAZEbuhk5nf6D8zeqKkTNdWpkey2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:14Z"
+      "language": "es",
+      "sent_at": "2026-08-16T11:08:40Z"
     },
     "x.nestoras@yahoo.gr": {
+      "uid": "vIXcZMWwxCZTJ2itJ1YCEWcsrVi2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:15Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:41Z"
     },
     "faneleokuhle074@gmail.com": {
+      "uid": "vKD8dCRl6rRgTb8sqgcRj2d4Jyx2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:16Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:42Z"
     },
     "pearlwillie2023@gmail.com": {
+      "uid": "vQQvABIzVMOG3Rxk9ORjJE9s7dC2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:16Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:43Z"
     },
     "anfrisiocb@hotmail.com": {
+      "uid": "vULQ1UhxALOMPI50TocZovjZuBr2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:17Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:43Z"
     },
     "sirisapathak15@gmail.com": {
+      "uid": "vZYARjtArpecUpiGWQwtMkNHRdy1",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:18Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:44Z"
     },
     "misygwen@gmail.com": {
+      "uid": "vjAh32mbDSZ4RK6epUqVaImLYTk2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:18Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:45Z"
     },
     "ruatfeladacck@gmail.com": {
+      "uid": "vlN7lBTmTIgssVIsIZGxRfpscI03",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:19Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:46Z"
     },
     "manhosoproducoes@gmail.com": {
+      "uid": "vyqlJYTQI5W0We38AeQhqajjPG23",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:20Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:47Z"
     },
     "degirmencizumrut808@gmail.com": {
+      "uid": "w0CrPi6LI8hglAdzwFluF9cr7Jd2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:21Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:47Z"
     },
     "vlako45@gmail.com": {
+      "uid": "w2q3N7NgIPYV6vNtiMe4p45NBsH3",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:21Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:48Z"
     },
     "veronicatshekiso502@gmail.com": {
+      "uid": "wH6B016WDNS9MfAOkHQYezhX68I3",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:22Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:49Z"
     },
     "greisymelanysanchezsanomamani@gmail.com": {
+      "uid": "wI92FLxjlwdRnKfe1SmRlyjJmRb2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:23Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:50Z"
     },
     "maropengmanyama@outlook.com": {
+      "uid": "wdSEVqPvaNe3B83ILopseZXRCsR2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:23Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:51Z"
     },
     "amoako184@gmail.com": {
+      "uid": "xMelzTM1frZnpm7Yz2p3tF55hsD2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:24Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:51Z"
     },
     "tuweibaabass@gmail.com": {
+      "uid": "xVeaDtMqnsYmfata1ArFEFgdFWH3",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:25Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:52Z"
     },
     "elli.padeli29@gmail.com": {
+      "uid": "xWPDbSiH9pNXnkNyT49ZVSGD6nS2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:26Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:53Z"
     },
     "menenadane222@gmail.com": {
+      "uid": "xgA8KxmJcCZMMoDL7EsWwlhPU412",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:26Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:54Z"
     },
     "maritakhoueiry1@gmail.com": {
+      "uid": "xk2INvXYI9TodZQxm6AGYwGZHWv1",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:27Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:55Z"
     },
     "timolagh@gmail.com": {
+      "uid": "xnEduMlWcVMcF1o5PGzZYhu9wfd2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:28Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:56Z"
     },
     "gnjeromekadouno@gmail.com": {
+      "uid": "xsIJDMAwa3YBzbbGbFVbnN6QqYk2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:28Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:56Z"
     },
     "suzankartal98@gmail.com": {
+      "uid": "yBWf8v9r9YaP0uBEvIKXosqZKQi2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:29Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:57Z"
     },
     "weiketuoltd@gmail.com": {
+      "uid": "yFx29iWYQiT3j4RMfEIZackKORd2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:30Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:58Z"
     },
     "zahraakareem362@gmail.com": {
+      "uid": "yO1B3ERagEaf91iA4qq2lnv3uaJ2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:30Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:08:59Z"
     },
     "anwarusadat90@gmail.com": {
+      "uid": "yRD50yjampfByaiVx6Y7rS67lp32",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:31Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:09:00Z"
     },
     "abdullayevaffotima@gmail.com": {
+      "uid": "yWBPUf7TRhVy3vu44VKX80CtdAy2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:32Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:09:00Z"
     },
     "tumfuopatricia@gmail.com": {
+      "uid": "yfu3RB4To6gTUx7gtHQJQ1yv8lA3",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:33Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:09:01Z"
     },
     "jhanielledelavega@gmail.com": {
+      "uid": "ygCJvNB0VqRnYm56n2MRxHQ0cgn1",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:33Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:09:02Z"
     },
     "silmariofisio@gmail.com": {
+      "uid": "ynX5tN6BDXaGX00aMb2As4m8hlk2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:34Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:09:03Z"
     },
     "tobijunior92001@gmail.com": {
+      "uid": "ypBcOYKdDQX2Vcvz9z5ViKOqLpj1",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:35Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:09:04Z"
     },
     "selene.bajorat@hotmail.it": {
+      "uid": "ythsH3v5SDO5YnYj82vwOeqXnLk2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:35Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:09:04Z"
     },
     "dharmojiraoty@gmail.com": {
+      "uid": "yx44kFG52ndrIUO8izSxhRoMWY63",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:36Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:09:05Z"
     },
     "csmanjeetdhillon25@gmail.com": {
+      "uid": "yxyHQ8HyMfUrOURo5JmxRSzWVPX2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:37Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:09:06Z"
     },
     "limnyuybimela93@gmail.com": {
+      "uid": "zT92JvcbVeNA2i4Z45jrHMzTfbh2",
       "part": 3,
-      "result": "failed",
-      "at": "2026-08-09T11:16:37Z"
+      "language": "en",
+      "sent_at": "2026-08-16T11:09:07Z"
     }
   },
-  "updated_at": "2026-08-09T11:16:38Z"
+  "failed": {},
+  "updated_at": "2026-08-16T11:09:07Z"
 }
