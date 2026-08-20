@@ -34,8 +34,31 @@ function isSelkaApp(appTag) {
   return SELKA_APPS.has(String(appTag || "").toLowerCase());
 }
 
+function isOngApp(appTag) {
+  const a = String(appTag || "").toLowerCase();
+  return a === "ong" || a === "sealed";
+}
+
+const KAYNEL_CATCHALL_APPS = new Set([
+  "pupshape",
+  "kinbound",
+  "volume_booster",
+  "volume_booster_pro",
+  "bass_booster",
+  "loud_eq",
+  "loudify",
+  "ai_boyfriend",
+  "ai_girlfriend",
+  "smart_notes",
+]);
+
+function isKaynelApp(appTag) {
+  const a = String(appTag || "").toLowerCase();
+  return isOngApp(a) || KAYNEL_CATCHALL_APPS.has(a);
+}
+
 function zeptomailApiKey(appTag) {
-  if (isBreakupApp(appTag)) {
+  if (isBreakupApp(appTag) || isKaynelApp(appTag)) {
     return process.env.ZEPTOMAIL_BREAKUP_API_KEY || process.env.ZEPTOMAIL_API_KEY;
   }
   return process.env.ZEPTOMAIL_API_KEY;
@@ -85,6 +108,28 @@ function resolveSender(poolSender, appTag) {
           process.env.ZEPTOMAIL_BREAKUP_SENDER_EMAIL ||
           "hello@breakuprelief.com",
         name: poolSender.name || "SoulPlan",
+      };
+    }
+    if (isKaynelApp(appTag)) {
+      const names = {
+        ong: "ONG",
+        sealed: "ONG",
+        pupshape: "PupShape",
+        kinbound: "Kinbound",
+        volume_booster: "Volume Booster",
+        smart_notes: "Smart Notes",
+        ai_boyfriend: "AI Boyfriend",
+        ai_girlfriend: "AI Girlfriend",
+      };
+      return {
+        email: process.env.ZEPTOMAIL_ONG_SENDER_EMAIL || "hello@kaynel.solutions",
+        name: poolSender.name || names[String(appTag || "").toLowerCase()] || "ONG",
+      };
+    }
+    if (isOngApp(appTag)) {
+      return {
+        email: process.env.ZEPTOMAIL_ONG_SENDER_EMAIL || "hello@kaynel.solutions",
+        name: poolSender.name || "ONG",
       };
     }
     if (isBreakupApp(appTag)) {

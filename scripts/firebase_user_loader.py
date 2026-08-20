@@ -61,6 +61,15 @@ FIREBASE_APPS = {
             'ar', 'hi', 'id', 'pl', 'ru', 'tr',
         ],
     },
+    'sealed-cce0a': {
+        'name': 'ONG',
+        'export_file': 'ong_fresh.json',
+        'description': 'Lock it in. Find out who called it. Social predictions with friends — blind answers, wax-seal reveal.',
+        'app_store_url': 'https://apps.apple.com/search?term=ONG%20Predict%20with%20Friends',
+        'google_play_url': 'https://play.google.com/store/apps/details?id=app.ong.predict',
+        'multilingual': False,
+        'supported_languages': ['en'],
+    },
     'predictify-3f30d': {
         'name': 'Predictify',
         'export_file': 'predictify_fresh.json',

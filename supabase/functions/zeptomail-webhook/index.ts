@@ -29,6 +29,18 @@ const KNOWN_APP_SLUGS = new Set([
   "red_flag_scanner",
   "redflag",
   "soulplan",
+  "ong",
+  "sealed",
+  "pupshape",
+  "kinbound",
+  "volume_booster",
+  "volume_booster_pro",
+  "bass_booster",
+  "loud_eq",
+  "loudify",
+  "ai_boyfriend",
+  "ai_girlfriend",
+  "smart_notes",
 ]);
 
 function parsePayload(rawBody: string): Record<string, unknown> {
@@ -246,6 +258,13 @@ function inferApp(payload: Record<string, unknown>, senderDomain: string | null)
   if (clientRef.includes("predictify_nba") || clientRef.includes("nba")) return "predictify_nba";
   if (clientRef.includes("horse_racing") || clientRef.includes("horse")) return "horse_racing";
   if (clientRef.includes("thesis")) return "thesis_generator";
+  if (clientRef.includes("ong") || clientRef.includes("sealed")) return "ong";
+  if (clientRef.includes("pupshape")) return "pupshape";
+  if (clientRef.includes("kinbound")) return "kinbound";
+  if (clientRef.includes("volume_booster")) return "volume_booster";
+  if (clientRef.includes("smart_notes")) return "smart_notes";
+  if (clientRef.includes("ai_boyfriend") || clientRef.includes("boyfriend")) return "ai_boyfriend";
+  if (clientRef.includes("ai_girlfriend") || clientRef.includes("girlfriend")) return "ai_girlfriend";
   if (clientRef.includes("predictify")) return "predictify";
   if (clientRef.includes("soulplan")) return "soulplan";
   if (clientRef.includes("fresh_start") || clientRef.includes("breakup")) return "fresh_start";
@@ -255,6 +274,7 @@ function inferApp(payload: Record<string, unknown>, senderDomain: string | null)
 
   if (senderDomain === "thesisgenerator.io") return "thesis_generator";
   if (senderDomain === "predictifyfootball.com") return "predictify";
+  if (senderDomain === "kaynel.solutions") return "ong";
   if (senderDomain === "breakuprelief.com") {
     const fromAddr = String(
       (firstEventMessage(payload)?.email_info as Record<string, unknown> | undefined)

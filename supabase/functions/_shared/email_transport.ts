@@ -3,7 +3,7 @@
  *
  * Set EMAIL_PROVIDER=zeptomail + ZEPTOMAIL_API_KEY.
  * Routes by app tag: thesis → thesisgenerator.io, predictify → predictifyfootball.com,
- * crosspromo → passedai.io.
+ * crosspromo → passedai.io, ong + leftover apps → kaynel.solutions.
  * Set EMAIL_PROVIDER=smtp2go + SMTP2GO_API_KEY for multi-domain SMTP2GO sends.
  * Set EMAIL_PROVIDER=mailgun + MAILGUN_* to pin to passedai.io (legacy bridge).
  * Unset EMAIL_PROVIDER (or set to "resend") for Resend.
@@ -32,6 +32,34 @@ const BREAKUP_APPS = new Set([
 ]);
 const SOULPLAN_APPS = new Set(["soulplan"]);
 const SELKA_APPS = new Set(["red_flag_scanner", "redflag"]);
+const ONG_APPS = new Set(["ong", "sealed"]);
+/** Leftover product apps on kaynel.solutions (Agent 2). */
+const KAYNEL_CATCHALL_APPS = new Set([
+  "pupshape",
+  "kinbound",
+  "volume_booster",
+  "volume_booster_pro",
+  "bass_booster",
+  "loud_eq",
+  "loudify",
+  "ai_boyfriend",
+  "ai_girlfriend",
+  "smart_notes",
+]);
+const KAYNEL_SENDER_NAMES: Record<string, string> = {
+  ong: "ONG",
+  sealed: "ONG",
+  pupshape: "PupShape",
+  kinbound: "Kinbound",
+  volume_booster: "Volume Booster",
+  volume_booster_pro: "Volume Booster Pro",
+  bass_booster: "Bass Booster",
+  loud_eq: "Loud EQ",
+  loudify: "Loudify",
+  ai_boyfriend: "AI Boyfriend",
+  ai_girlfriend: "AI Girlfriend",
+  smart_notes: "Smart Notes",
+};
 
 export interface EmailTag {
   name: string;
@@ -112,18 +140,28 @@ export function isSoulplanAppTag(app: string): boolean {
   return SOULPLAN_APPS.has(app.toLowerCase());
 }
 
+export function isOngAppTag(app: string): boolean {
+  return ONG_APPS.has(app.toLowerCase());
+}
+
+export function isKaynelAppTag(app: string): boolean {
+  const a = app.toLowerCase();
+  return ONG_APPS.has(a) || KAYNEL_CATCHALL_APPS.has(a);
+}
+
 export function isZeptomailAllowedApp(app: string): boolean {
   return (
     isThesisAppTag(app) ||
     isPredictifyAppTag(app) ||
     isBreakupAppTag(app) ||
-    isCrosspromoAppTag(app)
+    isCrosspromoAppTag(app) ||
+    isKaynelAppTag(app)
   );
 }
 
-/** Agent 1 (thesis/predictify) vs Agent 2 (breakuprelief + passedai/crosspromo). */
+/** Agent 1 (thesis/predictify) vs Agent 2 (breakuprelief + passedai/crosspromo + kaynel). */
 export function zeptomailApiKeyForApp(app: string): string {
-  if (isBreakupAppTag(app) || isCrosspromoAppTag(app)) {
+  if (isBreakupAppTag(app) || isCrosspromoAppTag(app) || isKaynelAppTag(app)) {
     return (
       Deno.env.get("ZEPTOMAIL_BREAKUP_API_KEY") ||
       Deno.env.get("ZEPTOMAIL_API_KEY") ||
@@ -135,6 +173,16 @@ export function zeptomailApiKeyForApp(app: string): string {
 
 /** Resolve ZeptoMail From address for a given app slug. */
 export function zeptomailSenderForApp(app: string): SenderIdentity {
+  if (isKaynelAppTag(app)) {
+    const slug = app.toLowerCase();
+    const name = isOngAppTag(slug)
+      ? (Deno.env.get("ZEPTOMAIL_ONG_SENDER_NAME") || "ONG")
+      : (KAYNEL_SENDER_NAMES[slug] || "ONG");
+    return {
+      email: Deno.env.get("ZEPTOMAIL_ONG_SENDER_EMAIL") || "hello@kaynel.solutions",
+      name,
+    };
+  }
   if (isCrosspromoAppTag(app)) {
     return {
       email: Deno.env.get("ZEPTOMAIL_PASSED_AI_SENDER_EMAIL") || "hello@passedai.io",

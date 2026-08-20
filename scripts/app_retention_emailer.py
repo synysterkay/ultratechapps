@@ -980,6 +980,10 @@ class AppRetentionEmailer:
         print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M')}")
         print("=" * 60)
 
+        if not self.ACTIVE_APPS:
+            print("⏸️  30-email drip is retired (ACTIVE_APPS empty).")
+            print("   Behavioral senders run from retention-emails.yml orchestrators.")
+
         # 0. v2 trigger pass first (Predictify only). Personalized,
         # behavior-driven emails fire before the static v1 sequence so
         # high-priority sends (streak savers, match-day) land at the right
@@ -993,6 +997,9 @@ class AppRetentionEmailer:
         except Exception as e:
             print(f"   ⚠️ v2 pass failed (continuing with v1): {e}")
             self._v2_handled_emails = set()
+
+        if not self.ACTIVE_APPS:
+            return
 
         # 1. Auto-refresh Firebase exports to pick up new signups
         print("\n🔄 Refreshing Firebase user exports...")
@@ -2031,9 +2038,10 @@ if __name__ == '__main__':
     emailer = AppRetentionEmailer()
     
     if '--generate' in sys.argv:
-        # Pre-generate all emails
-        generator = RetentionEmailGenerator()
-        generator.generate_all_emails()
+        print('⏸️  30-email drip generation is retired. Use behavioral orchestrators')
+        print('   (thesis / predictify / ONG / pupshape / kinbound). DeepSeek drip')
+        print('   cache is no longer refreshed.')
+        raise SystemExit(0)
     
     elif '--status' in sys.argv:
         emailer.show_status()

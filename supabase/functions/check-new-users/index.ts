@@ -72,6 +72,12 @@ const FIREBASE_PROJECTS: Record<
       "ar", "hi", "id", "pl", "ru", "tr",
     ],
   },
+  "sealed-cce0a": {
+    appId: "ong",
+    multilingual: false,
+    defaultLang: "en",
+    supportedLanguages: ["en"],
+  },
   "predictify-3f30d": {
     appId: "predictify",
     multilingual: true,
@@ -133,6 +139,13 @@ const ZEPTOMAIL_PROJECT_IDS = [
   "cryptopredictify",
   "breakuptherapy-e7dc0",
   "soulplan-dateplanner",
+  "sealed-cce0a",
+  "petmealai",
+  "parents-ai-e49a8",
+  "volume-booster-2f7bf",
+  "boyfriend-ai-f1e5e",
+  "apb412---ai-girlfriend-app",
+  "audio-recorder-microphone",
 ];
 
 const PREDICTIFY_WELCOME_APP_IDS = new Set([
@@ -142,6 +155,16 @@ const PREDICTIFY_WELCOME_APP_IDS = new Set([
 ]);
 
 const BREAKUP_WELCOME_APP_IDS = new Set(["fresh_start", "soulplan"]);
+const ONG_WELCOME_APP_IDS = new Set(["ong"]);
+const KAYNEL_WELCOME_APP_IDS = new Set([
+  "ong",
+  "pupshape",
+  "kinbound",
+  "volume_booster",
+  "ai_boyfriend",
+  "ai_girlfriend",
+  "smart_notes",
+]);
 
 function activeProjectIds(): string[] {
   if (isZeptomailReviewMode()) {
@@ -417,16 +440,26 @@ Deno.serve(async (req) => {
       todayStart.setUTCHours(0, 0, 0, 0);
       const isPredictifyWelcome = PREDICTIFY_WELCOME_APP_IDS.has(config.appId);
       const isBreakupWelcome = BREAKUP_WELCOME_APP_IDS.has(config.appId);
+      const isOngWelcome = ONG_WELCOME_APP_IDS.has(config.appId);
+      const isKaynelWelcome = KAYNEL_WELCOME_APP_IDS.has(config.appId);
       const dailyCap = isPredictifyWelcome
         ? PREDICTIFY_ZEPTOMAIL_DAILY_CAP
         : isBreakupWelcome
           ? parseInt(Deno.env.get("BREAKUP_ZEPTOMAIL_DAILY_CAP") || "200", 10)
-          : ZEPTOMAIL_DAILY_CAP;
+          : isOngWelcome
+            ? parseInt(Deno.env.get("ONG_ZEPTOMAIL_DAILY_CAP") || "30", 10)
+            : isKaynelWelcome
+              ? parseInt(Deno.env.get("KAYNEL_ZEPTOMAIL_DAILY_CAP") || "10", 10)
+            : ZEPTOMAIL_DAILY_CAP;
       const maxPerRun = isPredictifyWelcome
         ? PREDICTIFY_ZEPTOMAIL_MAX_PER_RUN
         : isBreakupWelcome
           ? parseInt(Deno.env.get("BREAKUP_ZEPTOMAIL_MAX_PER_RUN") || "20", 10)
-          : ZEPTOMAIL_MAX_PER_RUN;
+          : isOngWelcome
+            ? parseInt(Deno.env.get("ONG_ZEPTOMAIL_MAX_PER_RUN") || "10", 10)
+            : isKaynelWelcome
+              ? parseInt(Deno.env.get("KAYNEL_ZEPTOMAIL_MAX_PER_RUN") || "5", 10)
+            : ZEPTOMAIL_MAX_PER_RUN;
 
       emailCap = maxPerRun;
       const { count, error: countErr } = await supabase
@@ -439,7 +472,15 @@ Deno.serve(async (req) => {
         results.push(`⚠️ ZeptoMail daily cap lookup failed: ${countErr.message}`);
       } else {
         zeptomailSentToday = count || 0;
-        const label = isPredictifyWelcome ? "predictify" : isBreakupWelcome ? "breakup" : "thesis";
+        const label = isPredictifyWelcome
+          ? "predictify"
+          : isBreakupWelcome
+            ? "breakup"
+            : isOngWelcome
+              ? "ong"
+              : isKaynelWelcome
+                ? "kaynel"
+              : "thesis";
         results.push(
           `📬 ZeptoMail ${label}: ${zeptomailSentToday}/${dailyCap} welcomes sent today`,
         );

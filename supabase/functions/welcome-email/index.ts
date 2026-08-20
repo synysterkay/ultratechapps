@@ -10,7 +10,7 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
 import { BOYFRIEND_EMAILS } from "./boyfriend-emails.ts";
 import { GIRLFRIEND_EMAILS } from "./girlfriend-emails.ts";
-import { SENDER_POOL_FULL as SENDER_POOL, SENDER_POOL_PREDICTIFY, SENDER_POOL_THESIS, SENDER_POOL_FRESH_START, SENDER_POOL_SELKA, SENDER_POOL_SOULPLAN } from "../_shared/sender_pool.ts";
+import { SENDER_POOL_FULL as SENDER_POOL, SENDER_POOL_PREDICTIFY, SENDER_POOL_THESIS, SENDER_POOL_FRESH_START, SENDER_POOL_SELKA, SENDER_POOL_SOULPLAN, SENDER_POOL_ONG, SENDER_POOL_KAYNEL } from "../_shared/sender_pool.ts";
 import { hasEmailCredentials, isSendFailureBounce, resolveSender, sendEmail } from "../_shared/email_transport.ts";
 import { recordHardBounce, isRecipientBlocked } from "../_shared/email_suppressions.ts";
 
@@ -70,6 +70,24 @@ function getSenderForApp(appId: string) {
   }
   if (appId === "soulplan") {
     return resolveSender(SENDER_POOL_SOULPLAN[0], "soulplan");
+  }
+  if (appId === "ong" || appId === "sealed") {
+    return resolveSender(SENDER_POOL_ONG[0], "ong");
+  }
+  const kaynelNames: Record<string, string> = {
+    pupshape: "PupShape",
+    kinbound: "Kinbound",
+    volume_booster: "Volume Booster",
+    volume_booster_pro: "Volume Booster Pro",
+    bass_booster: "Bass Booster",
+    loud_eq: "Loud EQ",
+    loudify: "Loudify",
+    ai_boyfriend: "AI Boyfriend",
+    ai_girlfriend: "AI Girlfriend",
+    smart_notes: "Smart Notes",
+  };
+  if (kaynelNames[appId]) {
+    return resolveSender({ email: SENDER_POOL_KAYNEL[0].email, name: kaynelNames[appId] }, appId);
   }
   const pick = SENDER_POOL[Math.floor(Math.random() * SENDER_POOL.length)];
   return resolveSender(pick, appId);
@@ -671,6 +689,25 @@ const APP_CONFIG: Record<string, AppConfig> = {
           "Op het startscherm staat één enkele kaart met een date die al voor jullie is klaargezet. Geen vragenlijst. Geen scrollen. Gewoon één tik op een stemming (gezellig, avontuurlijk, speels of helend) en de AI bouwt een date die jullie vanavond echt kunnen doen. Het hele punt is om het plannen weg te nemen, niet om er een extra inbox bij te maken.",
           "Open de app nu. Tik op de stemming die bij vanavond past. Lees de kaart. Als het niet helemaal klikt, tik dan op \"Show another\" — de AI draait door verschillende sferen, dus de tweede past meestal wel. Zodra je de perfecte hebt gevonden, tik je op \"Send to partner\" en zij krijgen een prachtig feestelijk scherm te zien. Dat is de hele cyclus.",
           "Bewaar dit niet voor het weekend. Vanavond is de perfecte eerste date, omdat de drempel laag is en de verrassing groot. Tik hieronder, kies een stemming, en kijk hoe je partner oplicht. P.S. De stellen die Tonight's Date binnen de eerste 24 uur gebruiken, plannen de maand erop 4x vaker een date dan degenen die wachten. Wees niet degenen die wachten.",
+        ],
+      },
+    },
+  },
+
+  ong: {
+    name: "ONG",
+    multilingual: false,
+    appStoreUrl: "https://apps.apple.com/search?term=ONG%20Predict%20with%20Friends",
+    googlePlayUrl: "https://play.google.com/store/apps/details?id=app.ong.predict",
+    emails: {
+      en: {
+        subject: "Lock it in. Nobody sees yours until you do.",
+        cta_text: "Make my first prediction",
+        body_paragraphs: [
+          "You just opened ONG. The whole game is one move: send a question to 3 friends. They lock in blind. Then you crack the seal and see who called it.",
+          "Don't overthink the first one. \"Will they be late?\" \"Who texts first?\" That's enough. Tap make a prediction, type it, text the link. Thirty seconds.",
+          "They can't see each other's answers until they've submitted their own. That's the point. The reveal is the fun — real names, no money, just who was right.",
+          "Open the app and send one now, while it's still in your head. P.S. People who lock in a first prediction on day one actually come back for the reveal. Waiting usually means it never happens.",
         ],
       },
     },
@@ -1485,6 +1522,7 @@ Deno.serve(async (req: Request) => {
     const APP_ID_ALIASES: Record<string, string> = {
       redflag_scanner: "red_flag_scanner",
       fresh_start: "breakup_therapy",
+      sealed: "ong",
     };
     const welcomedAppId = rawAppId;
     const app_id = APP_ID_ALIASES[rawAppId] || rawAppId;

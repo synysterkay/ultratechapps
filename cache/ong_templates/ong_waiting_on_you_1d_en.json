@@ -1,0 +1,9 @@
+{
+  "subject": "{{first_name}}, someone locked a question about you",
+  "body": [
+    "{{first_name}} — a friend sent you a prediction on ONG. They already locked in. You haven't.",
+    "Nobody sees your answer until you submit. That's the whole game. Open the app, tap the invite, lock it in.",
+    "P.S. If you wait until after the reveal, you don't get a call. That's the rule."
+  ],
+  "cta": "Lock in my answer"
+}

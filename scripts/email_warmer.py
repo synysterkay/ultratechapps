@@ -307,6 +307,9 @@ def run_warming_cycle(dry_run=False):
         print(f"\n📧 Domain: {domain}")
         health = _get_domain_health(domain)
         print(f"   Health: {health}")
+        if health == "red":
+            print(f"   ⏸️  Skipping {domain} — sender health is red")
+            continue
 
         warmer_addresses = info.get("warmer_addresses", [])
         forwarding = info.get("forwarding", {})
@@ -374,6 +377,9 @@ def run_warming_cycle(dry_run=False):
         print(f"\n📧 Domain: {domain}")
         health = _get_domain_health(domain)
         print(f"   Health: {health}")
+        if health == "red":
+            print(f"   ⏸️  Skipping {domain} — sender health is red")
+            continue
 
         sender_addresses = info.get("sender_addresses", [])
         seed_gmail = info.get("seed_gmail", "")

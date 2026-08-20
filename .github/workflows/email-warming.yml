@@ -52,6 +52,8 @@ jobs:
           ZEPTOMAIL_SELKA_SENDER_EMAIL: selka@breakuprelief.com
           ZEPTOMAIL_PASSED_AI_SENDER_EMAIL: hello@passedai.io
           ZEPTOMAIL_PASSED_AI_SENDER_NAME: Alex
+          ZEPTOMAIL_ONG_SENDER_EMAIL: hello@kaynel.solutions
+          ZEPTOMAIL_ONG_SENDER_NAME: ONG
           EMAIL_SENDING_PAUSED: ${{ secrets.EMAIL_SENDING_PAUSED }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}

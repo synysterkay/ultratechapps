@@ -1,0 +1,9 @@
+{
+  "subject": "Your week on ONG",
+  "body": [
+    "{{first_name}} — quick recap, not a lecture:",
+    "{{week_summary}}",
+    "One more lock-in this weekend and next Sunday looks better. P.S. We only send this if you actually opened the app recently."
+  ],
+  "cta": "Open ONG"
+}

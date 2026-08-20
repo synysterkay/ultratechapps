@@ -1,0 +1,9 @@
+{
+  "subject": "Your {{streak}}-day streak dies at midnight",
+  "body": [
+    "{{first_name}} — you're on a {{streak}}-day ONG streak. One lock-in tonight keeps it alive.",
+    "Doesn't have to be a new question. Answer a friend's. That's enough.",
+    "P.S. We only send this once per close call."
+  ],
+  "cta": "Keep my streak"
+}

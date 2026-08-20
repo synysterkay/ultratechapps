@@ -1,0 +1,9 @@
+{
+  "subject": "Should we go quiet, {{first_name}}?",
+  "body": [
+    "{{first_name}}, ten days away. We can welcome you back or stop nudging.",
+    "ONG is still the same: lock it in, nobody sees, then you find out who called it.",
+    "P.S. If now isn't the time, ignore this. We won't send another on this thread."
+  ],
+  "cta": "Reopen ONG"
+}

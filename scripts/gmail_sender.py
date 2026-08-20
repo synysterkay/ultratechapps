@@ -3,7 +3,8 @@
 Email Sender — Resend (default), Mailgun, SMTP2GO, or ZeptoMail.
 
 Set EMAIL_PROVIDER=zeptomail + ZEPTOMAIL_API_KEY.
-Routes by app tag: thesis → thesisgenerator.io, predictify → predictifyfootball.com.
+Routes by app tag: thesis → thesisgenerator.io, predictify → predictifyfootball.com,
+kaynel leftover apps + ONG → hello@kaynel.solutions (Agent 2).
 Set EMAIL_PROVIDER=smtp2go + SMTP2GO_API_KEY for multi-domain SMTP2GO sends.
 Set EMAIL_PROVIDER=mailgun + MAILGUN_* to pin to passedai.io (legacy bridge).
 
@@ -80,6 +81,47 @@ def _is_selka_app(app):
     return app in {'red_flag_scanner', 'redflag'}
 
 
+def _is_ong_app(app):
+    return app in {'ong', 'sealed'}
+
+
+# Leftover apps (not thesis/predictify/breakup/crosspromo) send from kaynel.solutions.
+KAYNEL_CATCHALL_APPS = {
+    'pupshape',
+    'kinbound',
+    'volume_booster',
+    'volume_booster_pro',
+    'bass_booster',
+    'loud_eq',
+    'loudify',
+    'ai_boyfriend',
+    'ai_girlfriend',
+    'smart_notes',
+}
+KAYNEL_SENDER_NAMES = {
+    'ong': 'ONG',
+    'sealed': 'ONG',
+    'pupshape': 'PupShape',
+    'kinbound': 'Kinbound',
+    'volume_booster': 'Volume Booster',
+    'volume_booster_pro': 'Volume Booster Pro',
+    'bass_booster': 'Bass Booster',
+    'loud_eq': 'Loud EQ',
+    'loudify': 'Loudify',
+    'ai_boyfriend': 'AI Boyfriend',
+    'ai_girlfriend': 'AI Girlfriend',
+    'smart_notes': 'Smart Notes',
+}
+
+
+def _is_kaynel_catchall_app(app):
+    return app in KAYNEL_CATCHALL_APPS
+
+
+def _is_kaynel_app(app):
+    return _is_ong_app(app) or _is_kaynel_catchall_app(app)
+
+
 def _is_crosspromo_app(app):
     """Owned-list crosspromo (ZeptoMail Agent 2 via passedai.io)."""
     return app in {'crosspromo', 'crosspromotion', 'passedai', 'passed_ai'}
@@ -92,6 +134,7 @@ def _is_zeptomail_allowed_app(app):
         or _is_predictify_app(app)
         or _is_breakup_app(app)
         or _is_crosspromo_app(app)
+        or _is_kaynel_app(app)
     )
 
 
@@ -108,12 +151,14 @@ def warming_app_for_sender(sender_email):
         return 'thesis_generator'
     if 'passedai.io' in addr:
         return 'crosspromo'
+    if 'kaynel.solutions' in addr:
+        return 'ong'
     return ''
 
 
 def _zeptomail_api_key(app=None):
-    # Agent 2: breakuprelief.com + passedai.io (crosspromo)
-    if _is_breakup_app(app) or _is_crosspromo_app(app):
+    # Agent 2: breakuprelief.com + passedai.io (crosspromo) + kaynel.solutions
+    if _is_breakup_app(app) or _is_crosspromo_app(app) or _is_kaynel_app(app):
         return os.getenv('ZEPTOMAIL_BREAKUP_API_KEY') or os.getenv('ZEPTOMAIL_API_KEY', '')
     return os.getenv('ZEPTOMAIL_API_KEY', '')
 
@@ -488,6 +533,8 @@ class GmailSender:
     def _zeptomail_pinned_email(self, sender_email, app=None):
         """Pin From address to the verified ZeptoMail domain for this app."""
         # App tag wins — do not let an instance default From rewrite thesis/predictify.
+        if _is_kaynel_app(app):
+            return os.getenv('ZEPTOMAIL_ONG_SENDER_EMAIL', 'hello@kaynel.solutions')
         if _is_crosspromo_app(app):
             return os.getenv('ZEPTOMAIL_PASSED_AI_SENDER_EMAIL', 'hello@passedai.io')
         if _is_predictify_app(app):
@@ -517,7 +564,14 @@ class GmailSender:
     def _effective_sender(self, app, from_name=None):
         sender_email = self.sender_email
         sender_name = from_name or self.sender_name
-        if _is_crosspromo_app(app) and not self._explicit_sender_email:
+        if _is_kaynel_app(app) and not self._explicit_sender_email:
+            sender_email = os.getenv('ZEPTOMAIL_ONG_SENDER_EMAIL', 'hello@kaynel.solutions')
+            if not from_name and not self._explicit_sender_name:
+                sender_name = (
+                    KAYNEL_SENDER_NAMES.get(app)
+                    or os.getenv('ZEPTOMAIL_ONG_SENDER_NAME', 'ONG')
+                )
+        elif _is_crosspromo_app(app) and not self._explicit_sender_email:
             sender_email = os.getenv(
                 'ZEPTOMAIL_PASSED_AI_SENDER_EMAIL', 'hello@passedai.io'
             )
@@ -723,6 +777,14 @@ class GmailSender:
         sender_email, sender_name = self._effective_sender(app, from_name)
         subject_clean = _sanitize_subject(subject)
 
+        if not is_warming and self._health_blocks(sender_email):
+            print(f"   ⏸️ Sender health red — skipping {sender_email}")
+            return 'paused'
+
+        if not is_warming and _is_kaynel_app(app) and not self._under_kaynel_cap():
+            print('   ⏭️ kaynel.solutions daily cap reached')
+            return 'throttled'
+
         if self._use_mailgun:
             return self._send_mailgun(
                 to_email, subject_clean, html_body, sender_email, sender_name,
@@ -748,6 +810,68 @@ class GmailSender:
             GmailSender._emailed_recipients.add(dedup_key)
         if _is_thesis_app(app):
             GmailSender._run_counts['thesis'] += 1
+        if _is_kaynel_app(app):
+            self._consume_kaynel_cap()
+
+    @staticmethod
+    def _health_blocks(sender_email: str) -> bool:
+        gate = (os.getenv('EMAIL_HEALTH_GATE') or '1').lower()
+        if gate in {'0', 'false', 'no', 'off'}:
+            return False
+        email = (sender_email or '').lower().strip()
+        if not email:
+            return False
+        path = Path(__file__).resolve().parent.parent / 'cache' / 'sender_health.json'
+        try:
+            data = json.loads(path.read_text())
+        except Exception:
+            return False
+        senders = data.get('senders') or {}
+        state = senders.get(email) or senders.get(sender_email) or {}
+        if not state:
+            domain = email.split('@')[-1]
+            for key, info in senders.items():
+                if domain and domain in str(key).lower():
+                    state = info or {}
+                    break
+        return (state.get('status') or 'unknown').lower() == 'red'
+
+    @classmethod
+    def _kaynel_quota_path(cls):
+        return Path(__file__).resolve().parent.parent / 'cache' / 'kaynel_daily_quota.json'
+
+    @classmethod
+    def _kaynel_today(cls):
+        n = datetime.now(timezone.utc)
+        return f'{n.year}-{n.month:02d}-{n.day:02d}'
+
+    @classmethod
+    def _kaynel_used_today(cls) -> int:
+        path = cls._kaynel_quota_path()
+        try:
+            data = json.loads(path.read_text()) if path.exists() else {}
+        except Exception:
+            data = {}
+        used = int((data.get('days') or {}).get(cls._kaynel_today(), 0))
+        return used
+
+    @classmethod
+    def _under_kaynel_cap(cls) -> bool:
+        cap = int(os.getenv('KAYNEL_DAILY_SEND_CAP', '50'))
+        return cls._kaynel_used_today() < cap
+
+    @classmethod
+    def _consume_kaynel_cap(cls):
+        path = cls._kaynel_quota_path()
+        try:
+            data = json.loads(path.read_text()) if path.exists() else {}
+        except Exception:
+            data = {}
+        days = data.setdefault('days', {})
+        today = cls._kaynel_today()
+        days[today] = int(days.get(today, 0)) + 1
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(data, indent=2))
 
     def _send_resend(self, to_email, subject, html_body, sender_email, sender_name,
                      tags, ref_id, dedup_key, app):

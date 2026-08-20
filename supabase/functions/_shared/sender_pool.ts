@@ -13,6 +13,7 @@
  *   crosspromo → hello@passedai.io (Agent 2)
  *   fresh_start / breakup_therapy / soulplan → hello@breakuprelief.com (Agent 2)
  *   red_flag_scanner → selka@breakuprelief.com (Agent 2)
+ *   ong + leftover apps → hello@kaynel.solutions (Agent 2)
  * When EMAIL_PROVIDER=smtp2go, pool From addresses pass through as-is.
  */
 
@@ -64,6 +65,15 @@ export const SENDER_POOL_SELKA: SenderIdentity[] = [
 /** SoulPlan — breakuprelief.com (ZeptoMail Agent 2). */
 export const SENDER_POOL_SOULPLAN: SenderIdentity[] = [
   { email: "hello@breakuprelief.com", name: "SoulPlan" },
+];
+
+/** ONG + leftover apps — kaynel.solutions (ZeptoMail Agent 2). */
+export const SENDER_POOL_ONG: SenderIdentity[] = [
+  { email: "hello@kaynel.solutions", name: "ONG" },
+];
+
+export const SENDER_POOL_KAYNEL: SenderIdentity[] = [
+  { email: "hello@kaynel.solutions", name: "Alex" },
 ];
 
 /** Resend rejects newlines and subjects over 2000 characters. */
