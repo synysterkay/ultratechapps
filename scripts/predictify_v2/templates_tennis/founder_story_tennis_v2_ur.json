@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}، آج کے میچز پہلے ہی لائیو ہیں",
+  "preview_text": "ایک میچ پر پہلی سروس سے پہلے 30 سیکنڈ — یہی پوری عادت ہے۔",
+  "body_paragraphs": [
+    "ہائے {first_name}،",
+    "چند دن پہلے والی بات کا فوری تعاقب: Predictify Tennis زیادہ بیٹنگ لگانے کے بارے میں نہیں ہے — یہ اندازوں کو ایک ایسے عمل سے بدلنے کے بارے میں ہے جسے آپ خود جانچ سکتے ہیں۔",
+    "جو صارفین اس پر قائم رہتے ہیں، وہ ایک گھنٹہ تحقیق میں نہیں جلاتے۔ وہ ایک میچ کھولتے ہیں، اعتماد کی سطح اور سیاق و سباق پڑھتے ہیں، ایک فیصلہ کرتے ہیں، اور آگے بڑھ جاتے ہیں۔ مستقل مزاجی گرم جوشی سے بہتر ہے۔",
+    "آج کا بورڈ تیار ہے۔ ایک میچ چنیں، تفصیل پڑھیں، اور پہلی سروس سے پہلے فیصلہ کریں۔",
+    "پوسٹ اسکرپٹ: چہچہاہٹ میں جذباتی اندازہ مزہ دیتا ہے۔ لیکن نمبرز بہتر ہیں، اس سے پہلے کہ وہ کورٹ پر آئیں۔"
+  ],
+  "cta_text": "آج کا شیڈول کھولیں",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis_v2",
+  "language": "ur",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

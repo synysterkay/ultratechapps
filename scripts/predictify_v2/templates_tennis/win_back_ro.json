@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify a nimerit {recent_correct} din ultimele {recent_total} predicții — fără tine",
+  "preview_text": "Ai fost tăcut. Iată ce a prezis AI-ul tău.",
+  "body_paragraphs": [
+    "Hei {first_name},",
+    "Actualizare rapidă: în timp ce ai fost plecat, Predictify a făcut ce știe mai bine. Ultimele {recent_total} predicții: {recent_correct} corecte — adică {recent_accuracy_pct}%, pe pilot automat.",
+    "Și partea cea mai bună: cea mai tare recomandare de azi este {top_match_line}",
+    "Deschide aplicația, acordă-ți 30 de secunde să vezi raționamentul complet și decide dacă AI-ul tău merită o a doua șansă."
+  ],
+  "cta_text": "Vezi cea mai tare recomandare de azi",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "ro"
+}

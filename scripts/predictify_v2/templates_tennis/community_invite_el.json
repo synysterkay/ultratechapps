@@ -1,0 +1,14 @@
+{
+  "subject": "Προβλέψτε μαζί — το {recommended_community_name} είναι για φαν σαν εσένα",
+  "preview_text": "{member_count} μέλη. {league_short}. Δωρεάν συμμετοχή.",
+  "body_paragraphs": [
+    "Γεια σου {first_name},",
+    "Το να διαλέγεις αγώνες μόνος σου είναι εντάξει. Το να διαλέγεις με ανθρώπους που ακολουθούν τα ίδια τουρνουά; Πολύ καλύτερο.",
+    "Το {recommended_community_name} είναι μια κοινότητα Predictify για φαν του {league_short} — {member_count} μέλη, με ιδιοκτήτη τον/την {owner_name}, και καθημερινές προβλέψεις με τη βοήθεια AI. Θα βλέπεις τι προβλέπουν οι άλλοι και πώς αντιδρά η παρέα.",
+    "Γίνε μέλος δωρεάν. Δεν πληρώνεις τίποτα — απλώς έλα και προβλέψε."
+  ],
+  "cta_text": "Γίνε μέλος στο {recommended_community_name}",
+  "cta_deeplink": "predictify://community/{community_id}",
+  "kind": "community_invite",
+  "language": "el"
+}

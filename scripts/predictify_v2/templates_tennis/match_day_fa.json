@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} مقابل {away_team} — پیش‌بینی با {confidence_pct}٪ اطمینان",
+  "preview_text": "{league_name} تا {hours_to_kickoff} ساعت دیگر شروع می‌شود. پیش‌بینی هوش مصنوعی شما آماده است.",
+  "body_paragraphs": [
+    "سلام {first_name}،",
+    "{home_team} و {away_team} حدود {hours_to_kickoff} ساعت دیگر به میدان می‌روند. هوش مصنوعی شما تمام سیگنال‌ها را بررسی کرده — الو، سطح زمین، فرم اخیر، رویارویی‌های قبلی و آمار سرویس — و یک پیش‌بینی قطعی انجام داده است.",
+    "📊 پیش‌بینی: {pick_label}\n🎯 اطمینان کالیبره‌شده: {confidence_pct}٪\n🎾 سطح: {tier_label}",
+    "این دقیقاً همان چیزی است که Predictify را برای آن ساخته‌ایم. اپ را باز کن، استدلال کامل را ببین و پیش‌بینی‌ات را قبل از شروع بازی ثبت کن."
+  ],
+  "cta_text": "مشاهده پیش‌بینی کامل",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "fa"
+}

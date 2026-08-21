@@ -1,0 +1,14 @@
+{
+  "subject": "Revino la Pro din partea noastră — 30 de zile gratuite, fără card",
+  "preview_text": "Ce s-a întâmplat? A fost prețul, funcțiile sau altceva?",
+  "body_paragraphs": [
+    "Hei {first_name},",
+    "Abonamentul tău Pro a expirat și am observat. Nu o să ți-l lăudăm în exces — știi exact ce face Pro. Vrem doar să știm dacă ceva anume nu a funcționat pentru tine.",
+    "Dacă ne spui (doar răspunde la acest email — îl citește o persoană reală), îți adăugăm 30 de zile de Pro înapoi în cont, fără condiții, fără card. O ofertă reală, nu o frază de marketing.",
+    "Fie că te întorci sau nu, îți mulțumim pentru timpul petrecut cu noi. Feedback-ul tău ne ajută cu adevărat să construim următoarea versiune."
+  ],
+  "cta_text": "Reactivează Pro gratuit pentru 30 de zile",
+  "cta_deeplink": "predictify://winback",
+  "kind": "winback_lapsed_pro",
+  "language": "ro"
+}

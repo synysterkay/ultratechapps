@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify আপনার ছাড়াই {recent_correct}টি সঠিক ভবিষ্যদ্বাণী করেছে — {recent_total}টির মধ্যে",
+  "preview_text": "আপনি চুপ করে আছেন। আপনার AI কী বলছে তা এখানে দেখুন।",
+  "body_paragraphs": [
+    "হ্যালো {first_name},",
+    "দ্রুত আপডেট: আপনি দূরে থাকাকালীন, Predictify তার কাজ করছে। শেষ {recent_total}টি ভবিষ্যদ্বাণীর মধ্যে {recent_correct}টি সঠিক — অর্থাৎ {recent_accuracy_pct}%, সম্পূর্ণ অটোপাইলটে।",
+    "এবারের মজার বিষয়: আজকের সেরা কলটি হল {top_match_line}",
+    "অ্যাপটি খুলুন, সম্পূর্ণ যুক্তি দেখতে ৩০ সেকেন্ড সময় নিন, এবং সিদ্ধান্ত নিন আপনার AI আবার দেখার যোগ্য কিনা।"
+  ],
+  "cta_text": "আজকের সবচেয়ে শক্তিশালী পিক দেখুন",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "bn"
+}

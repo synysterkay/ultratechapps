@@ -1,0 +1,14 @@
+{
+  "subject": "{accuracy_pct}% träffsäkerhet denna vecka — Pro-användare ligger i snitt på {pro_target_pct}%",
+  "preview_text": "Här är vad modellen döljer för din gratistjänst.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Dina senaste {recent_total} tips träffade {accuracy_pct}% — klart över snittet för gratistjänsten. Du läser modellen bättre än de flesta.",
+    "Pro-användare ser den Starkaste signalen för varje match — det enda tipset som konsekvent träffar {pro_target_pct}%+ — plus kalibrerad konfidens för varje marknad och spelarprojektioner (ess, dubbelfel, första serve %). Det är så de bästa träffsäkerhetsnivåerna håller sig i toppen.",
+    "Vill du prova det i 7 dagar, gratis? Inget kort krävs, ingen automatisk förnyelse. Om det inte förbättrar dina siffror, går du vidare."
+  ],
+  "cta_text": "Starta 7-dagars Pro-test",
+  "cta_deeplink": "predictify://upgrade?ref=hot_week",
+  "kind": "upgrade_after_hot_week",
+  "language": "sv"
+}

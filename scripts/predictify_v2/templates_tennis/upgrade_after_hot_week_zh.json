@@ -1,0 +1,14 @@
+{
+  "subject": "本周准确率 {accuracy_pct}% — Pro 用户平均 {pro_target_pct}%",
+  "preview_text": "这是模型在免费版中隐藏的内容。",
+  "body_paragraphs": [
+    "嘿，{first_name}，",
+    "你最近的 {recent_total} 次预测命中率为 {accuracy_pct}% — 远高于免费版平均水平。你比大多数人更懂这个模型。",
+    "Pro 用户可以看到每场比赛的最强信号 — 那个持续命中 {pro_target_pct}%+ 的关键预测 — 以及每个市场的校准置信度和球员属性预测（ACE 球、双误、一发得分率）。这就是顶级准确率用户保持领先的方式。",
+    "想免费试用 7 天吗？无需信用卡，不会自动续费。如果它没有提升你的数据，你可以直接离开。"
+  ],
+  "cta_text": "开始 7 天 Pro 试用",
+  "cta_deeplink": "predictify://upgrade?ref=hot_week",
+  "kind": "upgrade_after_hot_week",
+  "language": "zh"
+}

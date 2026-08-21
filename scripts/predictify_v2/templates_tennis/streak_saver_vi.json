@@ -1,0 +1,14 @@
+{
+  "subject": "Chuỗi {streak_days} ngày của bạn sắp kết thúc trong {hours_to_break} giờ nữa",
+  "preview_text": "Một lựa chọn sẽ giữ chuỗi sống. AI của bạn đã sẵn sàng.",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "Bạn đang có chuỗi dự đoán {streak_days} ngày. Hầu hết người dùng không bao giờ vượt qua 5 ngày — bạn đang làm điều hiếm có.",
+    "Nhưng chuỗi của bạn sẽ kết thúc trong khoảng {hours_to_break} giờ nữa nếu bạn không chốt một lựa chọn hôm nay. Một chạm. Chỉ vậy thôi.",
+    "AI của bạn đã làm xong phần việc: {top_match_line}"
+  ],
+  "cta_text": "Giữ chuỗi {streak_days} ngày của tôi",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "vi"
+}

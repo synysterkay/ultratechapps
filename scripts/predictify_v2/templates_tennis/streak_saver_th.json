@@ -1,0 +1,14 @@
+{
+  "subject": "สตรีค {streak_days} วันของคุณจะจบลงในอีก {hours_to_break} ชั่วโมง",
+  "preview_text": "อีกหนึ่งทายก็ยังรักษาไว้ได้ AI ของคุณเตรียมคำแนะนำไว้แล้ว",
+  "body_paragraphs": [
+    "เฮ้ {first_name},",
+    "คุณกำลังทำสตรีคทายผล {streak_days} วันติดต่อกัน ผู้ใช้ส่วนใหญ่ไม่เคยผ่าน 5 วันเลย — คุณกำลังทำสิ่งที่หายาก",
+    "แต่สตรีคของคุณจะจบลงในอีกประมาณ {hours_to_break} ชั่วโมง หากคุณไม่ล็อกทายวันนี้ แค่แตะครั้งเดียวเท่านั้นเอง",
+    "AI ของคุณทำงานไว้แล้ว: {top_match_line}"
+  ],
+  "cta_text": "บันทึกสตรีค {streak_days} วันของฉัน",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "th"
+}

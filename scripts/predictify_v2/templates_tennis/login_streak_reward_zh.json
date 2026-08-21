@@ -1,0 +1,14 @@
+{
+  "subject": "🎁 连续3天 — 你已解锁1周Pro会员",
+  "preview_text": "打开应用即可领取。无需银行卡，不会自动续费。",
+  "body_paragraphs": [
+    "嘿，{first_name}，",
+    "你已经连续三天打开Predictify了。这很少见——大多数用户坚持不到两天。",
+    "你的奖励：7天Predictify Pro会员，完全解锁，无需付费。你将看到每场比赛的最强信号，每个市场（胜者、总局数、让分、首盘）的校准信心，以及完整的预测历史。",
+    "点击下方领取。立即激活，持续一周——继续每天使用应用，随着连续天数的增长，你还能获得更多奖励。"
+  ],
+  "cta_text": "领取7天Pro会员",
+  "cta_deeplink": "predictify://reward/streak3",
+  "kind": "login_streak_reward",
+  "language": "zh"
+}

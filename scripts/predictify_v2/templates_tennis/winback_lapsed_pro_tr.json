@@ -1,0 +1,14 @@
+{
+  "subject": "Pro'ya bizimle geri dön — 30 gün ücretsiz, kart gerekmez",
+  "preview_text": "Ne oldu? Fiyat mı, özellikler mi, yoksa başka bir şey mi?",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Pro aboneliğin sona erdi ve bunu fark ettik. Bunu abartmayacağız — Pro'nun ne yaptığını tam olarak biliyorsun. Sadece senin için özel olarak bir şeyin çalışmadığını bilmek istiyoruz.",
+    "Eğer bize söylersen (sadece bu e-postaya yanıt ver — bir insan okuyor), hesabına 30 gün Pro'yu geri ekleyeceğiz, koşulsuz, kartsız. Gerçek bir teklif, pazarlama cümlesi değil.",
+    "Geri dönsen de dönmesen de, bizimle geçirdiğin zaman için teşekkürler. Geri bildirimin gerçekten bir sonraki sürümü oluşturmamıza yardımcı oluyor."
+  ],
+  "cta_text": "Pro'yu 30 gün ücretsiz yeniden başlat",
+  "cta_deeplink": "predictify://winback",
+  "kind": "winback_lapsed_pro",
+  "language": "tr"
+}

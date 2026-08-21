@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, pertandingan hari ini sudah live",
+  "preview_text": "30 detik untuk satu pertandingan sebelum servis pertama — itu kebiasaan yang cukup.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Tindak lanjut singkat dari beberapa hari lalu: Predictify Tennis bukan tentang bertaruh lebih banyak — ini tentang mengganti tebakan dengan proses yang bisa kamu verifikasi.",
+    "Pengguna yang konsisten tidak menghabiskan waktu satu jam untuk riset. Mereka membuka satu pertandingan, membaca confidence band dan konteks permukaan, membuat satu keputusan, lalu lanjut. Konsistensi mengalahkan tebakan panas.",
+    "Papan hari ini sudah tersedia. Pilih satu pertandingan, baca analisisnya, dan putuskan sebelum servis pertama.",
+    "P.S. Firasat itu seru di chat. Angka lebih baik sebelum mereka masuk lapangan."
+  ],
+  "cta_text": "Buka daftar pertandingan hari ini",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis_v2",
+  "language": "id",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

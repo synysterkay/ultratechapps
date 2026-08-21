@@ -1,0 +1,14 @@
+{
+  "subject": "مل کر پیشین گوئی کریں — {recommended_community_name} آپ جیسے مداحوں کے لیے ہے",
+  "preview_text": "{member_count} اراکین۔ {league_short}۔ شامل ہونا مفت ہے۔",
+  "body_paragraphs": [
+    "ہیلو {first_name}،",
+    "اکیلے میچ چننا ٹھیک ہے۔ لیکن ان لوگوں کے ساتھ چننا جو ایک ہی ٹور کی پیروی کرتے ہیں؟ کہیں بہتر۔",
+    "{recommended_community_name} ایک Predictify کمیونٹی ہے {league_short} کے مداحوں کے لیے — {member_count} اراکین، {owner_name} کی ملکیت، روزانہ AI کی مدد سے پیشین گوئیاں۔ آپ دیکھیں گے کہ دوسرے کیا کہہ رہے ہیں اور کمرہ کیسے ردعمل دیتا ہے۔",
+    "مفت میں شامل ہوں۔ آپ کو کچھ ادا نہیں کرنا — بس آئیں اور پیشین گوئی کریں۔"
+  ],
+  "cta_text": "{recommended_community_name} میں شامل ہوں",
+  "cta_deeplink": "predictify://community/{community_id}",
+  "kind": "community_invite",
+  "language": "ur"
+}

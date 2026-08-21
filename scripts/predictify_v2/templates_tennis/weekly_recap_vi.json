@@ -1,0 +1,14 @@
+{
+  "subject": "Tuần của bạn: {recent_correct}/{recent_total} dự đoán chính xác",
+  "preview_text": "Độ chính xác {accuracy_pct}%. Lựa chọn hàng đầu đã sẵn sàng cho tuần tới.",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "Tóm tắt nhanh tuần của bạn trên Predictify:",
+    "✅ {recent_correct} trên {recent_total} dự đoán đúng\n📊 Độ chính xác {accuracy_pct}% trong 30 ngày qua\n🔥 Chuỗi {streak_days} ngày (kỷ lục của bạn đến nay)",
+    "Nhìn về phía trước: dự đoán mạnh nhất của mô hình tuần này là {top_match_line}. Đáng để xem — mở ứng dụng và chúng tôi sẽ cho bạn thấy chính xác lý do."
+  ],
+  "cta_text": "Xem lựa chọn hàng đầu tuần tới",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "vi"
+}

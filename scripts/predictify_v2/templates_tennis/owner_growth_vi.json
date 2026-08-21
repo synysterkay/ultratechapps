@@ -1,0 +1,14 @@
+{
+  "subject": "Cộng đồng {community_name} của bạn cần thêm thành viên",
+  "preview_text": "Đây là hành động 30 giây giúp tăng gấp 3 lần tỷ lệ tham gia của bạn.",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "{community_name} đã hoạt động được một thời gian và bạn đã có {member_count} thành viên{member_plural} cho đến nay. Cộng đồng không tự phát triển — nhưng 24 giờ tới có thể thay đổi điều đó.",
+    "Đòn bẩy nhanh nhất của bạn: gửi link mời vào các nhóm chat của bạn. Cộng đồng có ảnh bìa và 5+ thành viên phát triển nhanh gấp 3 lần — và link của bạn trông rất tuyệt khi bạn có những thứ đó.",
+    "Chúng tôi đã tạo sẵn hình ảnh chia sẻ cho bạn. Một chạm là sẵn sàng cho WhatsApp, Discord, hoặc bất cứ nơi nào dân tennis của bạn tụ tập."
+  ],
+  "cta_text": "Mở bộ công cụ chia sẻ",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_growth",
+  "language": "vi"
+}

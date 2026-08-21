@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, meciurile de azi sunt deja live",
+  "preview_text": "30 de secunde pe un meci înainte de primul serviciu — ăsta e tot obiceiul.",
+  "body_paragraphs": [
+    "Hei {first_name},",
+    "O scurtă completare de acum câteva zile: Predictify Tennis nu înseamnă să pariezi mai mult — înseamnă să înlocuiești ghicitul cu un proces pe care îl poți verifica.",
+    "Utilizatorii care rămân consecvenți nu pierd o oră cercetând. Deschid un meci, citesc banda de încredere și contextul de suprafață, iau o decizie și merg mai departe. Consecvența bate intuițiile de moment.",
+    "Panoul de azi e disponibil. Alege un meci, citește analiza și decide înainte de primul serviciu.",
+    "P.S. Intuiția e distractivă în chat. Numerele sunt mai bune înainte să intre pe teren."
+  ],
+  "cta_text": "Deschide programul de azi",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis_v2",
+  "language": "ro",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

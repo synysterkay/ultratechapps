@@ -1,0 +1,14 @@
+{
+  "subject": "Dự đoán tennis đầu tiên của bạn bắt đầu từ đây, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "Chào mừng đến với Predictify. Hướng dẫn nhanh: mọi trận đấu ATP và WTA trong ứng dụng đều có điểm số tin cậy AI được hiệu chỉnh — dựa trên Elo, mặt sân, phong độ gần đây và đối đầu — cho bạn biết chính xác mức độ đáng tin của dự đoán. Con số, không phải cảm tính.",
+    "Thử ngay: {top_match_line}. Chạm vào trận đấu, xem phân tích đầy đủ — đội thắng, tổng số game, chấp game — và chốt dự đoán của bạn.",
+    "Mẹo chuyên nghiệp: thực hiện một dự đoán mỗi ngày trong 5 ngày để tạo chuỗi. Người dùng có chuỗi có khả năng phát hiện các dự đoán giá trị trước khi giao bóng cao gấp 3 lần."
+  ],
+  "cta_text": "Tạo dự đoán đầu tiên của tôi",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "vi"
+}

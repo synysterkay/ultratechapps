@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, आज के मैच पहले से ही लाइव हैं",
+  "preview_text": "पहली सर्व से पहले एक मैच पर 30 सेकंड — यही पूरी आदत है।",
+  "body_paragraphs": [
+    "हे {first_name},",
+    "कुछ दिन पहले वाली बात का त्वरित अनुसरण: Predictify Tennis ज़्यादा सट्टा लगाने के बारे में नहीं है — यह अनुमान को एक ऐसी प्रक्रिया से बदलने के बारे में है जिसे आप सत्यापित कर सकते हैं।",
+    "जो उपयोगकर्ता इस पर टिके रहते हैं, वे एक घंटे तक शोध नहीं करते। वे एक मैच खोलते हैं, कॉन्फिडेंस बैंड और सतही संदर्भ पढ़ते हैं, एक कॉल करते हैं, और आगे बढ़ जाते हैं। निरंतरता गर्म टिप्पणियों से बेहतर है।",
+    "आज का बोर्ड तैयार है। एक मैच चुनें, विश्लेषण पढ़ें, और पहली सर्व से पहले निर्णय लें।",
+    "P.S. अंतर्ज्ञान चैट में मज़ेदार है। लेकिन कोर्ट पर उतरने से पहले संख्याएँ बेहतर हैं।"
+  ],
+  "cta_text": "आज का स्लेट खोलें",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis_v2",
+  "language": "hi",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

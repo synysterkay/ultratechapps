@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} vs {away_team} — panggilan dengan keyakinan {confidence_pct}%",
+  "preview_text": "{league_name} dimulai dalam {hours_to_kickoff} jam. Pilihan AI Anda sudah siap.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "{home_team} vs {away_team} akan bertanding dalam sekitar {hours_to_kickoff} jam. AI Anda telah menganalisis semua sinyal — Elo, permukaan lapangan, performa terkini, head-to-head, dan statistik servis — dan telah mengunci pilihan.",
+    "📊 Pilihan: {pick_label}\n🎯 Keyakinan terkalibrasi: {confidence_pct}%\n🎾 Tier: {tier_label}",
+    "Inilah yang kami bangun Predictify untuk hal ini. Buka aplikasi, lihat alasan lengkapnya, dan kunci prediksi Anda sebelum servis pertama."
+  ],
+  "cta_text": "Lihat prediksi lengkap",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "id"
+}

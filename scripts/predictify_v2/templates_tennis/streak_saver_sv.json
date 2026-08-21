@@ -1,0 +1,14 @@
+{
+  "subject": "Din {streak_days}-dagars streak slutar om {hours_to_break} timmar",
+  "preview_text": "Ett val håller den vid liv. Din AI:s rekommendation är redo.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Du är på en {streak_days}-dagars prediktionsstreak. De flesta användare kommer aldrig förbi 5 — du gör något sällsynt.",
+    "Men din streak slutar om cirka {hours_to_break} timmar om du inte låser in ett val idag. Ett tryck. Det är allt som krävs.",
+    "Din AI har redan gjort jobbet: {top_match_line}"
+  ],
+  "cta_text": "Rädda min {streak_days}-dagars streak",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "sv"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify ha azzeccato {recent_correct} delle ultime {recent_total} previsioni — senza di te",
+  "preview_text": "Sei stato/a in silenzio. Ecco cosa ha previsto la tua IA.",
+  "body_paragraphs": [
+    "Ciao {first_name},",
+    "Aggiornamento rapido: mentre eri via, Predictify ha fatto ciò che sa fare meglio. Ultime {recent_total} previsioni: {recent_correct} corrette — ovvero il {recent_accuracy_pct}%, in modalità autopilota.",
+    "Ecco il punto: la chiamata migliore di oggi è {top_match_line}",
+    "Apri l'app, prenditi 30 secondi per vedere il ragionamento completo e decidi se la tua IA merita un'altra occasione."
+  ],
+  "cta_text": "Vedi la previsione più forte di oggi",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "it"
+}

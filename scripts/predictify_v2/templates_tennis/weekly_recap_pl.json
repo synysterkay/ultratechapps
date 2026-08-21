@@ -1,0 +1,14 @@
+{
+  "subject": "Twój tydzień: {recent_correct}/{recent_total} poprawnych typów",
+  "preview_text": "Skuteczność {accuracy_pct}%. Najlepszy typ na następny tydzień już czeka.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Szybkie podsumowanie Twojego tygodnia w Predictify:",
+    "✅ {recent_correct} z {recent_total} typów trafionych\n📊 {accuracy_pct}% skuteczności w ciągu ostatnich 30 dni\n🔥 {streak_days}-dniowa seria (Twój rekord do tej pory)",
+    "Patrząc w przyszłość: najmocniejszy typ modelu na ten tydzień to {top_match_line}. Warto rzucić okiem — otwórz aplikację, a pokażemy Ci dokładnie, dlaczego."
+  ],
+  "cta_text": "Zobacz typ na następny tydzień",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "pl"
+}

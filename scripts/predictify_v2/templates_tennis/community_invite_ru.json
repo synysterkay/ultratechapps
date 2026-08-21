@@ -1,0 +1,14 @@
+{
+  "subject": "Предсказывайте вместе — {recommended_community_name} для таких фанатов, как вы",
+  "preview_text": "{member_count} участников. {league_short}. Бесплатно.",
+  "body_paragraphs": [
+    "Привет, {first_name},",
+    "Выбирать матчи в одиночку — нормально. Но выбирать с людьми, которые следят за теми же турнирами? Гораздо лучше.",
+    "{recommended_community_name} — это сообщество Predictify для фанатов {league_short} — {member_count} участников, владелец {owner_name}, ежедневные прогнозы с поддержкой ИИ. Вы увидите, что выбирают другие, и как реагирует комната.",
+    "Присоединяйтесь бесплатно. Вы ничего не платите — просто приходите и предсказывайте."
+  ],
+  "cta_text": "Вступить в {recommended_community_name}",
+  "cta_deeplink": "predictify://community/{community_id}",
+  "kind": "community_invite",
+  "language": "ru"
+}

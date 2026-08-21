@@ -1,0 +1,14 @@
+{
+  "subject": "Twój pierwszy typ tenisowy zaczyna się tutaj, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Witaj w Predictify. Krótka orientacja: każdy mecz ATP i WTA w aplikacji ma skalibrowany wskaźnik pewności AI — oparty na Elo, nawierzchni, aktualnej formie i bezpośrednich starciach — który dokładnie pokazuje, jak wiarygodny jest typ. Liczby, nie opinie.",
+    "Wypróbuj teraz: {top_match_line}. Kliknij mecz, zobacz pełną analizę — zwycięzcę, liczbę gemów, handicap gemów — i zatwierdź swój typ.",
+    "Wskazówka: zrób jeden typ dziennie przez 5 dni, a zbudujesz passę. Użytkownicy z passą 3x częściej znajdują wartościowe typy przed pierwszym serwisem."
+  ],
+  "cta_text": "Wybieram mój pierwszy typ",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "pl"
+}

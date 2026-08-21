@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} 需要成员 — 这是顶级创建者如何增长的秘诀",
+  "preview_text": "我们发现的5个创建者发帖真正有效的位置。",
+  "body_paragraphs": [
+    "嘿 {first_name}，",
+    "你的社区 {community_name} 目前有 {member_count} 位成员{member_plural}。在第一周达到25+成员的创建者都使用了相同的策略 — 这就是它。",
+    "1. WhatsApp/Telegram 群聊：附上链接，配上一句吸引人的话（\"AI预测每场ATP比赛，免费加入\"）\n2. X / Twitter：发布你当天最有信心的预测，并在回复中附上加入链接\n3. Reddit 上的 r/tennis、r/sportsbook：置顶每日讨论帖\n4. TikTok 网球预览/串关视频下的评论\n5. 你覆盖的巡回赛的 Discord 服务器",
+    "Predictify 会为你生成封面图片（有了它，你的分享链接看起来好3倍 — 仅此一点就能提升加入率）。打开分享工具包，复制链接，粘贴到网球爱好者聚集的地方。"
+  ],
+  "cta_text": "打开分享工具包",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "zh"
+}

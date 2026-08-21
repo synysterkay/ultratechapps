@@ -1,0 +1,14 @@
+{
+  "subject": "Din första tennisspelning börjar här, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Välkommen till Predictify. Snabb orientering: varje ATP- och WTA-match i appen kommer med ett kalibrerat AI-konfidenspoäng – byggt på Elo, underlag, senaste form och inbördes möten – som berättar exakt hur pålitlig spelningen är. Siffror, inte tyckanden.",
+    "Prova nu: {top_match_line}. Tryck på matchen, se hela analysen – vinnare, totala game, game-handicap – och lås din spelning.",
+    "Proffstips: gör en spelning om dagen i 5 dagar så bygger du en streak. Streak-användare är 3 gånger mer benägna att hitta värdespelningar innan första serve."
+  ],
+  "cta_text": "Gör min första spelning",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "sv"
+}

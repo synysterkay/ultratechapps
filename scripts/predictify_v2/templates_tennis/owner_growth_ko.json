@@ -1,0 +1,14 @@
+{
+  "subject": "커뮤니티 {community_name}에 멤버가 필요해요",
+  "preview_text": "가입률을 3배로 높일 수 있는 30초 액션이 여기 있어요.",
+  "body_paragraphs": [
+    "안녕하세요, {first_name}님,",
+    "{community_name}이(가) 시작된 지 조금 됐고, 지금까지 {member_count}명의 멤버{member_plural}가 모였어요. 커뮤니티는 스스로 성장하지 않아요 — 하지만 다음 24시간이 그걸 바꿀 수 있어요.",
+    "가장 빠른 방법: 그룹 채팅에 초대 링크를 공유하세요. 커버 이미지와 5명 이상의 멤버가 있는 커뮤니티는 3배 더 빠르게 성장해요 — 그 조건을 갖추면 링크도 훨씬 좋아 보이고요.",
+    "공유용 이미지를 이미 만들어 두었어요. 한 번 탭하면 WhatsApp, Discord, 또는 테니스 친구들이 모이는 어디든 바로 공유할 수 있어요."
+  ],
+  "cta_text": "공유 키트 열기",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_growth",
+  "language": "ko"
+}

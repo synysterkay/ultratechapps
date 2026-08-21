@@ -1,0 +1,14 @@
+{
+  "subject": "Wróć do Pro na nasz koszt — 30 dni za darmo, bez karty",
+  "preview_text": "Co się stało? Cena, funkcje, czy coś innego?",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Twoja subskrypcja Pro wygasła i to zauważyliśmy. Nie będziemy cię przekonywać — wiesz dokładnie, co daje Pro. Chcemy tylko wiedzieć, czy coś konkretnie nie zadziałało dla Ciebie.",
+    "Jeśli nam powiesz (wystarczy odpowiedzieć na tego maila — czyta go człowiek), dodamy Ci 30 dni Pro z powrotem na konto, bez haczyków, bez karty. Prawdziwa oferta, nie chwyt marketingowy.",
+    "Niezależnie od tego, czy wrócisz, czy nie, dzięki za czas spędzony z nami. Twoja opinia naprawdę pomaga nam budować kolejną wersję."
+  ],
+  "cta_text": "Uruchom Pro za darmo na 30 dni",
+  "cta_deeplink": "predictify://winback",
+  "kind": "winback_lapsed_pro",
+  "language": "pl"
+}

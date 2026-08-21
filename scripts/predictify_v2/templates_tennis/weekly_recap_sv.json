@@ -1,0 +1,14 @@
+{
+  "subject": "Din vecka: {recent_correct}/{recent_total} korrekta tips",
+  "preview_text": "{accuracy_pct}% träffsäkerhet. Toppval inför nästa vecka.",
+  "body_paragraphs": [
+    "Hej {first_name}!",
+    "Här är en snabb sammanfattning av din vecka på Predictify:",
+    "✅ {recent_correct} av {recent_total} tips satt\n📊 {accuracy_pct}% träffsäkerhet de senaste 30 dagarna\n🔥 {streak_days} dagars streak (ditt hittillsvarande rekord)",
+    "Framöver: modellens starkaste drag denna vecka är {top_match_line}. Värt att kolla — öppna appen så visar vi dig exakt varför."
+  ],
+  "cta_text": "Se nästa veckas toppval",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "sv"
+}

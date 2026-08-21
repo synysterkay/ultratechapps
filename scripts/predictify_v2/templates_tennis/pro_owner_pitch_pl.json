@@ -1,0 +1,14 @@
+{
+  "subject": "Pro użytkownicy mogą zarabiać na społecznościach — zatrzymaj 70%",
+  "preview_text": "Niektórzy właściciele zarabiają teraz tyle, że wielokrotnie pokrywają koszty Pro.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Jesteś Pro od jakiegoś czasu, a Twoje typy są stabilne. Czas odwrócić model: załóż własną społeczność tenisową na Predictify, ustaw niewielką miesięczną opłatę i zatrzymuj 70% z każdej subskrypcji.",
+    "Najlepsi właściciele społeczności zamieniają swoje typy w powtarzalny dochód — a Predictify zajmuje się całą płatnością, hostingiem i zarządzaniem członkami. Ty po prostu typujesz jak dotychczas.",
+    "Konfiguracja zajmuje 90 sekund: wybierz nazwę, wybierz swój kąt (turniej, gracz, styl obstawiania), ustaw cenę lub pozostaw za darmo. Właściciele ze zdjęciem okładkowym rozwijają się 3x szybciej — my wygenerujemy je dla Ciebie jednym dotknięciem."
+  ],
+  "cta_text": "Utwórz moją społeczność",
+  "cta_deeplink": "predictify://community/create",
+  "kind": "pro_owner_pitch",
+  "language": "pl"
+}

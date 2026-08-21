@@ -1,0 +1,14 @@
+{
+  "subject": "Ваша серия из {streak_days} дней заканчивается через {hours_to_break} часов",
+  "preview_text": "Один прогноз сохранит её. Ваш ИИ уже готов.",
+  "body_paragraphs": [
+    "Привет, {first_name},",
+    "У вас серия из {streak_days} дней подряд. Большинство пользователей не проходят дальше 5 — вы делаете что-то редкое.",
+    "Но ваша серия закончится примерно через {hours_to_break} часов, если вы не сделаете прогноз сегодня. Один тап — и всё.",
+    "Ваш ИИ уже всё сделал: {top_match_line}"
+  ],
+  "cta_text": "Сохранить мою серию из {streak_days} дней",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "ru"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "{accuracy_pct}%の的中率今週 — Proユーザーの平均は{pro_target_pct}%",
+  "preview_text": "モデルが無料プランで隠しているものはこちら。",
+  "body_paragraphs": [
+    "こんにちは、{first_name}さん、",
+    "直近の{recent_total}件の予想で{accuracy_pct}%の的中率 — 無料プランの平均を大きく上回っています。あなたはモデルをほとんどの人よりうまく読んでいます。",
+    "Proユーザーは、全試合の「最強シグナル」— 一貫して{pro_target_pct}%以上の的中率を叩き出す唯一の予想 — に加え、各マーケットの調整済み信頼度、選手プロップ予想（エース、ダブルフォールト、ファーストサーブ率）も見られます。それがトップの的中率層が上位をキープできる理由です。",
+    "7日間無料で試してみませんか？カード不要、自動更新なし。数字が変わらなければ、そのまま離脱できます。"
+  ],
+  "cta_text": "7日間Proトライアルを開始",
+  "cta_deeplink": "predictify://upgrade?ref=hot_week",
+  "kind": "upgrade_after_hot_week",
+  "language": "ja"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify نے آپ کے بغیر پچھلے {recent_total} میں سے {recent_correct} پیشین گوئیاں درست کیں",
+  "preview_text": "آپ خاموش تھے۔ یہ رہا جو آپ کی AI نے پیش گوئی کیا ہے۔",
+  "body_paragraphs": [
+    "ارے {first_name}،",
+    "فوری اپ ڈیٹ: جب آپ دور تھے، Predictify وہی کر رہا تھا جو وہ بہترین کرتا ہے۔ پچھلے {recent_total} پیشین گوئیاں: {recent_correct} درست — یعنی {recent_accuracy_pct}%، خودکار طریقے سے۔",
+    "سب سے دلچسپ بات: آج کی سب سے مضبوط پیشین گوئی ہے {top_match_line}",
+    "ایپ کھولیں، 30 سیکنڈ لیں مکمل تجزیہ دیکھنے کے لیے، اور فیصلہ کریں کہ کیا آپ کی AI دوبارہ دیکھنے کے قابل ہے۔"
+  ],
+  "cta_text": "آج کی سب سے مضبوط پیشین گوئی دیکھیں",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "ur"
+}

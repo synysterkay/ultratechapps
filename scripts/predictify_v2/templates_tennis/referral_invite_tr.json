@@ -1,0 +1,14 @@
+{
+  "subject": "Bir tenis arkadaşını davet ederek ücretsiz Pro kazan",
+  "preview_text": "1 davet = ikiniz için de 1 ay ücretsiz.",
+  "body_paragraphs": [
+    "Merhaba {first_name},",
+    "Tahminlerini düzenli olarak yapıyorsun — çoğu kullanıcının atladığı kısım. Şimdi kolay bonus: seninle aynı maçları izleyen bir arkadaşını davet et, kaydoldukları anda ikiniz de bir ay ücretsiz Predictify Pro kazanın.",
+    "Bunu neden yapıyoruz: birlikte tahmin yapan arkadaşlar, tek başına kullananlardan 4 kat daha uzun süre kalıyor. Herkes için daha iyi — bizim için de dahil.",
+    "Aşağıya dokunarak benzersiz davet bağlantını al. Grup sohbetindeki bir kişiye gönder. Tamam."
+  ],
+  "cta_text": "Davet bağlantımı al",
+  "cta_deeplink": "predictify://referral",
+  "kind": "referral_invite",
+  "language": "tr"
+}

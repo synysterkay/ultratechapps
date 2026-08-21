@@ -1,0 +1,14 @@
+{
+  "subject": "Pro-Nutzer können mit Communities verdienen — behalte 70%",
+  "preview_text": "Einige Besitzer verdienen inzwischen genug, um ihr Pro-Abo mehrfach zu decken.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Du bist schon eine Weile Pro und deine Tipps sind konstant. Zeit, das Modell umzudrehen: Eröffne deine eigene Tennis-Community auf Predictify, setze einen kleinen monatlichen Preis und behalte 70% von jedem Abo.",
+    "Top-Community-Besitzer verwandeln ihre Tipps in wiederkehrendes Einkommen — und Predictify übernimmt die gesamte Zahlungsabwicklung, das Hosting und das Mitgliedermanagement. Du machst einfach weiter mit deinen Prognosen, wie bisher.",
+    "Die Einrichtung dauert 90 Sekunden: Wähle einen Namen, wähle deinen Schwerpunkt (eine Tour, einen Spieler, einen Wettstil), setze einen Preis oder lass es kostenlos. Besitzer mit einem Titelbild wachsen 3x schneller — wir generieren dir eines mit einem Tipp."
+  ],
+  "cta_text": "Community erstellen",
+  "cta_deeplink": "predictify://community/create",
+  "kind": "pro_owner_pitch",
+  "language": "de"
+}

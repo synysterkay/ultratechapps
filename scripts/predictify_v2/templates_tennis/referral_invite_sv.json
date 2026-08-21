@@ -1,0 +1,14 @@
+{
+  "subject": "Få Pro gratis genom att bjuda in en tennisvän",
+  "preview_text": "1 värvning = 1 månad gratis för er båda.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Du har lagt tips konsekvent — den delen som de flesta användare hoppar över. Nu kommer den enkla bonusen: bjud in en vän som tittar på samma matcher som du, och ni båda får en gratis månad av Predictify Pro så fort de registrerar sig.",
+    "Varför vi gör detta: vänner som tippar tillsammans stannar 4 gånger längre än enskilda användare. Bättre för alla — inklusive oss.",
+    "Tryck nedan för att hämta din unika inbjudningslänk. Skicka den till en person i din gruppchatt. Klart."
+  ],
+  "cta_text": "Hämta min inbjudningslänk",
+  "cta_deeplink": "predictify://referral",
+  "kind": "referral_invite",
+  "language": "sv"
+}

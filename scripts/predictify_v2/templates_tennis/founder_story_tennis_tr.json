@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, bunu birçok \"bu sefer olacak\" lafından sonra ben yaptım",
+  "preview_text": "Maç kazananı, toplam oyun ve handikap üzerine kalibre edilmiş tahminler — her sonucu doğrula.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Her maç günü aynı sahne: bir grup sohbeti dolu dolu iddialar — \"bu sefer olacak,\" \"toprak önemli değil,\" \"içimden bir bagel geliyor.\" Kimse formu, zemini ya da sayıların gerçekte ne söylediğini kontrol etmiyor.",
+    "Predictify Tennis'i kurdum çünkü tenis tartışmaları en yüksek sesle konuşanın kazandığı işler olmamalı. Test edebileceğin tahminler istedik: Elo, zemin, son form, H2H ve maç kazananı, toplam oyun, oyun handikapı, ilk set ve düz set üzerine kalibre edilmiş bir güven skoru.",
+    "Bir arkadaşımız bunu bir slam gecesinde zor yoldan öğrendi. Model bir favoriyi %58 güvenle işaretledi — neredeyse yazı tura. O bunu görmezden geldi, içgüdüsüyle gitti ve hem tartışmayı hem bahsi kaybetti. İki hafta sonra en yüksek güven bandımızdaki (%80+ seviye) bir tahmini açtı, analizi okudu ve ilk servisten önce tahminini yaptı. Aynı arkadaş. Farklı süreç.",
+    "Bu yüzden her sonucu yayınlıyoruz — kazançlar ve kayıplar — böylece sicili kendin maç maç doğrulayabilirsin. Gizli tahmin yok. Maç puanından sonra tarihi yeniden yazmak yok.",
+    "Bir sonraki adımın yaklaşık 30 saniye sürer: bugünün programını aç, bir maç seç ve tahminini kilitlemeden önce gerekçeyi oku.",
+    "Dipnot: Biz bir bahis şirketi değiliz. Garanti kazanç yok — sadece şeffaf tahminler ve kontrol edebileceğin bir sicil."
+  ],
+  "cta_text": "Bugünün en güçlü tahminini gör — ücretsiz",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis",
+  "language": "tr",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

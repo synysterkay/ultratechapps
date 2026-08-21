@@ -1,0 +1,14 @@
+{
+  "subject": "你的社区 {community_name} 需要更多成员",
+  "preview_text": "这里有一个30秒的操作，能让你的加入率提升3倍。",
+  "body_paragraphs": [
+    "嘿 {first_name}，",
+    "{community_name} 已经上线一段时间了，目前你有 {member_count} 位成员。社区不会自己成长——但接下来的24小时可以改变这一切。",
+    "最快的杠杆：把你的邀请链接发到群聊里。有封面图和5个以上成员的社区成长速度快3倍——一旦你有了这些，你的链接看起来就很棒。",
+    "我们已经为你准备好了分享图片。一键即可用于 WhatsApp、Discord 或任何你的网球伙伴聚集的地方。"
+  ],
+  "cta_text": "打开分享工具包",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_growth",
+  "language": "zh"
+}

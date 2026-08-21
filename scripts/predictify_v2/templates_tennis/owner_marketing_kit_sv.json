@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} behöver medlemmar — så här växer toppägare",
+  "preview_text": "5 ställen där vi sett ägare posta som faktiskt konverterar.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Din community {community_name} har {member_count} medlem{member_plural}. Ägare som når 25+ medlemmar inom vecka ett använder alla samma spelbok — här är den.",
+    "1. WhatsApp/Telegram-gruppchattar: dela länken med en enradig teaser (\"AI-tips för varje ATP-match, gratis att gå med\")\n2. X / Twitter: posta ditt mest självsäkra tips för dagen med join-länken i svaret\n3. r/tennis, r/sportsbook på Reddit: en pinnad daglig tråd\n4. TikTok-kommentarer under tennispreview-/parlay-videor\n5. Discord-servrar för tourerna du täcker",
+    "Predictify skapar omslagsbilden åt dig (din delningslänk ser 3x bättre ut med en — det ensamt ökar join-frekvensen). Öppna delningskitet, kopiera länken, klistra in den där tennisentusiaster samlas."
+  ],
+  "cta_text": "Öppna delningskit",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "sv"
+}

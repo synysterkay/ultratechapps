@@ -1,0 +1,14 @@
+{
+  "subject": "Comunitatea ta {community_name} are nevoie de membri",
+  "preview_text": "Iată o acțiune de 30 de secunde care îți triplează rata de alăturare.",
+  "body_paragraphs": [
+    "Hei {first_name},",
+    "{community_name} este activă de ceva timp și ai {member_count} membru{member_plural} până acum. Comunitățile nu cresc singure — dar următoarele 24 de ore pot schimba asta.",
+    "Cea mai rapidă pârghie: trimite linkul tău de invitație în chaturile de grup. Comunitățile cu imagini de copertă și 5+ membri cresc de 3 ori mai repede — iar linkul tău arată grozav odată ce le ai.",
+    "Am pregătit imaginea de distribuire pentru tine. Un singur tap și e gata pentru WhatsApp, Discord sau oriunde își petrec timpul prietenii tăi tenismeni."
+  ],
+  "cta_text": "Deschide kitul de distribuire",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_growth",
+  "language": "ro"
+}

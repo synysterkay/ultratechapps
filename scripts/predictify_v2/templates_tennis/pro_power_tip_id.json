@@ -1,0 +1,14 @@
+{
+  "subject": "Kartu Sinyal Terkuat — yang sebenarnya dilihat para Pro",
+  "preview_text": "Paling kuat di pertandingan level Elite. Kebanyakan pengguna tidak pernah membukanya.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Tips Pro singkat yang mungkin kamu lewatkan: di setiap layar prediksi, gulir melewati proyeksi skor dan temukan kartu 'Sinyal Terkuat'. Itu adalah pilihan dengan tingkat keyakinan tertinggi dan terkalibrasi untuk pertandingan tersebut — dan di laga level Elite, secara historis itu adalah panggilan teraman di papan.",
+    "Cara menggunakannya: ketika lencana tier menunjukkan Elite atau Premium, Sinyal Terkuat adalah jangkar kamu. Ketika menunjukkan Standar, anggap itu sebagai titik awal dan pertimbangkan juga pasar lainnya.",
+    "Contoh hari ini: {top_match_line}. Buka dan kamu akan langsung paham maksudku."
+  ],
+  "cta_text": "Buka pilihan terbaik hari ini",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "pro_power_tip",
+  "language": "id"
+}

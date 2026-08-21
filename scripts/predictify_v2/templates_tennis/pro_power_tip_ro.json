@@ -1,0 +1,14 @@
+{
+  "subject": "Cardul „Cel mai puternic semnal” — ce se uită de fapt profesioniștii",
+  "preview_text": "Lovește cel mai tare în meciurile de nivel Elite. Majoritatea utilizatorilor nu îl deschid niciodată.",
+  "body_paragraphs": [
+    "Hei {first_name},",
+    "Un pont rapid de profesionist pe care s-ar putea să-l fi ratat: pe fiecare ecran de predicție, derulează peste proiecția scorului setat și găsește cardul „Cel mai puternic semnal”. Este alegerea calibrată cu cea mai mare încredere pentru acel meci — iar la meciurile de nivel Elite a fost istoric cea mai sigură alegere de pe listă.",
+    "Cum să-l folosești: când insigna de nivel spune Elite sau Premium, Cel mai puternic semnal este ancora ta. Când spune Standard, tratează-l ca pe un punct de plecare și cântărește și celelalte piețe.",
+    "Exemplul de azi: {top_match_line}. Deschide-l și vei vedea exact ce vreau să spun."
+  ],
+  "cta_text": "Deschide alegerea de top de azi",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "pro_power_tip",
+  "language": "ro"
+}

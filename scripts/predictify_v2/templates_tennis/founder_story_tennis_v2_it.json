@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, le partite di oggi sono già live",
+  "preview_text": "30 secondi su una partita prima del primo servizio — è tutta qui l'abitudine.",
+  "body_paragraphs": [
+    "Ciao {first_name},",
+    "Un rapido follow-up da qualche giorno fa: Predictify Tennis non riguarda scommettere di più — riguarda sostituire le congetture con un processo che puoi verificare.",
+    "Chi lo usa con costanza non passa un'ora a fare ricerche. Apre una partita, legge la fascia di confidenza e il contesto di superficie, fa una scelta e va avanti. La costanza batte le opinioni a caldo.",
+    "Il tabellone di oggi è aggiornato. Scegli una partita, leggi l'analisi e decidi prima del primo servizio.",
+    "P.S. L'istinto è divertente in chat. I numeri sono meglio prima che scendano in campo."
+  ],
+  "cta_text": "Apri il programma di oggi",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis_v2",
+  "language": "it",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} vs {away_team} — chiamata con {confidence_pct}% di confidenza",
+  "preview_text": "{league_name} inizia tra {hours_to_kickoff}h. La scelta della tua IA è pronta.",
+  "body_paragraphs": [
+    "Ciao {first_name},",
+    "{home_team} vs {away_team} scende in campo tra circa {hours_to_kickoff} ore. La tua IA ha analizzato ogni segnale — Elo, superficie, forma recente, scontri diretti e statistiche al servizio — e ha bloccato una chiamata.",
+    "📊 La scelta: {pick_label}\n🎯 Confidenza calibrata: {confidence_pct}%\n🎾 Livello: {tier_label}",
+    "È esattamente ciò per cui abbiamo creato Predictify. Apri l'app, vedi il ragionamento completo e blocca la tua previsione prima del primo servizio."
+  ],
+  "cta_text": "Vedi la previsione completa",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "it"
+}

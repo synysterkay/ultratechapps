@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, as partidas de hoje já estão ao vivo",
+  "preview_text": "30 segundos em uma partida antes do primeiro saque — esse é o hábito inteiro.",
+  "body_paragraphs": [
+    "Ei {first_name},",
+    "Um rápido acompanhamento de alguns dias atrás: Predictify Tennis não é sobre apostar mais — é sobre substituir suposições por um processo que você pode verificar.",
+    "Usuários que mantêm o hábito não passam uma hora pesquisando. Eles abrem uma partida, leem a faixa de confiança e o contexto superficial, fazem uma escolha e seguem em frente. Consistência vence palpites.",
+    "O quadro de hoje está no ar. Escolha uma partida, leia a análise e decida antes do primeiro saque.",
+    "P.S. Intuição é divertida no chat. Números são melhores antes de eles entrarem em quadra."
+  ],
+  "cta_text": "Abrir a programação de hoje",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis_v2",
+  "language": "pt",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "{accuracy_pct}% chính xác tuần này — người dùng Pro trung bình đạt {pro_target_pct}%",
+  "preview_text": "Đây là những gì mô hình đang giấu bạn ở gói miễn phí.",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "{recent_total} lựa chọn gần nhất của bạn đạt {accuracy_pct}% — cao hơn hẳn mức trung bình của gói miễn phí. Bạn đang đọc mô hình tốt hơn hầu hết mọi người.",
+    "Người dùng Pro thấy Tín hiệu Mạnh Nhất cho mỗi trận đấu — lựa chọn duy nhất luôn đạt {pro_target_pct}%+ — cùng với độ tin cậy được hiệu chỉnh trên mọi thị trường và dự đoán chỉ số cầu thủ (ace, lỗi kép, tỷ lệ giao bóng 1). Đó là cách các nhóm chính xác hàng đầu duy trì vị trí dẫn đầu.",
+    "Muốn dùng thử 7 ngày miễn phí? Không cần thẻ, không tự gia hạn. Nếu nó không cải thiện chỉ số của bạn, bạn cứ rời đi."
+  ],
+  "cta_text": "Bắt đầu dùng thử Pro 7 ngày",
+  "cta_deeplink": "predictify://upgrade?ref=hot_week",
+  "kind": "upgrade_after_hot_week",
+  "language": "vi"
+}

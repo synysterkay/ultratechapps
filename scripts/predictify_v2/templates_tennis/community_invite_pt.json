@@ -1,0 +1,14 @@
+{
+  "subject": "Preveja junto — {recommended_community_name} é para fãs como você",
+  "preview_text": "{member_count} membros. {league_short}. Grátis para participar.",
+  "body_paragraphs": [
+    "Ei {first_name},",
+    "Escolher partidas sozinho é legal. Escolher com pessoas que acompanham os mesmos campeonatos? Muito melhor.",
+    "{recommended_community_name} é uma comunidade Predictify para fãs de {league_short} — {member_count} membros, gerenciada por {owner_name}, com palpites diários assistidos por IA. Você verá o que os outros estão prevendo e como o grupo reage.",
+    "Participe grátis. Você não paga nada — é só aparecer e prever."
+  ],
+  "cta_text": "Entrar em {recommended_community_name}",
+  "cta_deeplink": "predictify://community/{community_id}",
+  "kind": "community_invite",
+  "language": "pt"
+}

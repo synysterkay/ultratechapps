@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify prickade {recent_correct} av senaste {recent_total} tipsen — utan dig",
+  "preview_text": "Du har varit tyst. Här är vad din AI har tippat.",
+  "body_paragraphs": [
+    "Hej {first_name}!",
+    "Snabb uppdatering: medan du varit borta har Predictify gjort det vi gör bäst. Senaste {recent_total} tipsen: {recent_correct} rätt — det är {recent_accuracy_pct}%, på autopilot.",
+    "Och här är grejen: dagens hetaste tips är {top_match_line}",
+    "Öppna appen, ta 30 sekunder för att se hela resonemanget, och bestäm om din AI förtjänar en andra chans."
+  ],
+  "cta_text": "Se dagens starkaste tips",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "sv"
+}

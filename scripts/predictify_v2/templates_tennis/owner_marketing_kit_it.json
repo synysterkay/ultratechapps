@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} ha bisogno di membri — ecco come crescono i top owner",
+  "preview_text": "5 posti dove abbiamo visto owner pubblicare e che convertono davvero.",
+  "body_paragraphs": [
+    "Ciao {first_name},",
+    "La tua community {community_name} ha {member_count} membro{member_plural}. Gli owner che raggiungono 25+ membri nella prima settimana usano tutti lo stesso playbook — eccolo.",
+    "1. Chat di gruppo WhatsApp/Telegram: condividi il link con una frase teaser (\"AI calls per ogni match ATP, gratis da seguire\")\n2. X / Twitter: pubblica il tuo pick più sicuro del giorno con il link di invito nella risposta\n3. r/tennis, r/sportsbook su Reddit: un thread giornaliero pinnato\n4. Commenti TikTok sotto video di preview tennis / parlay\n5. Server Discord per i tour che copri",
+    "Predictify crea l'immagine di copertina per te (il tuo link di condivisione ha un aspetto 3 volte migliore con quella — da sola aumenta il tasso di iscrizione). Apri il kit di condivisione, copia il link, incollalo dove si riuniscono i fan del tennis."
+  ],
+  "cta_text": "Apri il kit di condivisione",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "it"
+}

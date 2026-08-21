@@ -1,0 +1,14 @@
+{
+  "subject": "Prediktera tillsammans — {recommended_community_name} är för fans som du",
+  "preview_text": "{member_count} medlemmar. {league_short}. Gratis att gå med.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Att tippa matcher själv är okej. Att tippa med människor som följer samma turneringar? Mycket bättre.",
+    "{recommended_community_name} är en Predictify-community för {league_short}-fans — {member_count} medlemmar, ägd av {owner_name}, dagliga AI-assisterade tips. Du ser vad andra tippar och hur rummet reagerar.",
+    "Gå med gratis. Du betalar ingenting — bara dyker upp och tippar."
+  ],
+  "cta_text": "Gå med i {recommended_community_name}",
+  "cta_deeplink": "predictify://community/{community_id}",
+  "kind": "community_invite",
+  "language": "sv"
+}

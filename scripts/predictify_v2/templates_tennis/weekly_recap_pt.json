@@ -1,0 +1,14 @@
+{
+  "subject": "Sua semana: {recent_correct}/{recent_total} previsões corretas",
+  "preview_text": "{accuracy_pct}% de precisão. Melhor palpite alinhado para a próxima semana.",
+  "body_paragraphs": [
+    "Oi {first_name},",
+    "Resumo rápido da sua semana no Predictify:",
+    "✅ {recent_correct} de {recent_total} previsões acertaram\n📊 {accuracy_pct}% de precisão nos últimos 30 dias\n🔥 Sequência de {streak_days} dias (seu recorde até agora)",
+    "Olhando para frente: a chamada mais forte do modelo esta semana é {top_match_line}. Vale a pena dar uma olhada — abra o app e a gente te mostra exatamente o porquê."
+  ],
+  "cta_text": "Ver o melhor palpite da próxima semana",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "pt"
+}

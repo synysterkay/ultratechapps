@@ -1,0 +1,14 @@
+{
+  "subject": "{accuracy_pct}% 정확도 이번 주 — 프로 사용자 평균 {pro_target_pct}%",
+  "preview_text": "모델이 무료 티어에서 숨기고 있는 것을 확인하세요.",
+  "body_paragraphs": [
+    "안녕하세요, {first_name}님,",
+    "최근 {recent_total}개의 픽에서 {accuracy_pct}%의 정확도를 기록하셨습니다 — 무료 티어 평균을 훨씬 웃도는 수치입니다. 모델을 대부분의 사용자보다 잘 읽고 계십니다.",
+    "프로 사용자는 모든 경기에 대한 가장 강력한 신호(Strongest Signal)를 볼 수 있습니다 — 일관되게 {pro_target_pct}% 이상의 적중률을 보이는 단 하나의 콜 — 그리고 모든 마켓에 대한 보정된 신뢰도와 선수별 예상 수치(에이스, 더블 폴트, 퍼스트 서브 %)도 제공됩니다. 그래서 최상위 정확도 티어가 그 자리를 유지하는 것입니다.",
+    "7일 동안 무료로 체험해보시겠어요? 카드 필요 없고, 자동 갱신도 없습니다. 수치가 개선되지 않으면 그냥 떠나시면 됩니다."
+  ],
+  "cta_text": "7일 프로 체험 시작",
+  "cta_deeplink": "predictify://upgrade?ref=hot_week",
+  "kind": "upgrade_after_hot_week",
+  "language": "ko"
+}

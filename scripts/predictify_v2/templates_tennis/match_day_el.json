@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} εναντίον {away_team} — πρόβλεψη με {confidence_pct}% σιγουριά",
+  "preview_text": "Το {league_name} ξεκινά σε {hours_to_kickoff} ώρες. Η πρόβλεψη του AI σου είναι έτοιμη.",
+  "body_paragraphs": [
+    "Γεια σου {first_name},",
+    "Ο αγώνας {home_team} εναντίον {away_team} ξεκινά σε περίπου {hours_to_kickoff} ώρες. Το AI σου έχει αναλύσει κάθε σήμα — Elo, επιφάνεια, πρόσφατη φόρμα, μεταξύ τους αναμετρήσεις και στατιστικά σερβίς — και έχει καταλήξει σε μια πρόβλεψη.",
+    "📊 Η επιλογή: {pick_label}\n🎯 Βαθμονομημένη σιγουριά: {confidence_pct}%\n🎾 Επίπεδο: {tier_label}",
+    "Αυτό ακριβώς φτιάξαμε το Predictify για να κάνει. Άνοιξε την εφαρμογή, δες το πλήρες σκεπτικό και κλείδωσε την πρόβλεψή σου πριν από το πρώτο σερβίς."
+  ],
+  "cta_text": "Δες την πλήρη πρόβλεψη",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "el"
+}

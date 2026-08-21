@@ -1,0 +1,14 @@
+{
+  "subject": "{accuracy_pct}% acuratețe săptămâna aceasta — utilizatorii Pro au în medie {pro_target_pct}%",
+  "preview_text": "Iată ce ascunde modelul de la nivelul tău gratuit.",
+  "body_paragraphs": [
+    "Hei {first_name},",
+    "Ultimele tale {recent_total} pronosticuri au avut o acuratețe de {accuracy_pct}% — mult peste media nivelului gratuit. Citești modelul mai bine decât majoritatea.",
+    "Utilizatorii Pro văd Semnalul Cel Mai Puternic pentru fiecare meci — singura predicție care lovește constant peste {pro_target_pct}% — plus încredere calibrată pe fiecare piață și proiecții pentru jucători (ași, duble greșeli, procentaj de primul serviciu). Așa rămân topurile de acuratețe în frunte.",
+    "Vrei să încerci 7 zile gratuit? Nu e nevoie de card, fără reînnoire automată. Dacă nu îți îmbunătățește numerele, pleci oricând."
+  ],
+  "cta_text": "Începe perioada de probă Pro de 7 zile",
+  "cta_deeplink": "predictify://upgrade?ref=hot_week",
+  "kind": "upgrade_after_hot_week",
+  "language": "ro"
+}

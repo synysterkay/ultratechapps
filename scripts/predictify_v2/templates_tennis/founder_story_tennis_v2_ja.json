@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}、今日の試合はもうライブ配信中です",
+  "preview_text": "1試合に30秒、ファーストサーブ前に確認するだけ。それが習慣のすべてです。",
+  "body_paragraphs": [
+    "こんにちは、{first_name}さん。",
+    "数日前のフォローアップです：Predictify Tennisは、もっと賭けるためのものではありません。当て推量を、検証できるプロセスに置き換えるためのものです。",
+    "続けているユーザーは、1時間もリサーチに費やしたりしません。1試合を開き、信頼区間と表面のコンテキストを読み、1つの予想をして、次に進みます。一貫性が、その場限りのひらめきに勝ります。",
+    "今日のボードは更新済みです。1試合を選び、分析を読んで、ファーストサーブ前に決めましょう。",
+    "追伸：直感はチャットでは楽しいですが、コートに立つ前は数字の方が優れています。"
+  ],
+  "cta_text": "今日のスレートを開く",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis_v2",
+  "language": "ja",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "La tarjeta de Señal Más Fuerte — lo que los Pros realmente miran",
+  "preview_text": "Impacta más en los partidos de nivel Elite. La mayoría de los usuarios nunca la abren.",
+  "body_paragraphs": [
+    "Hola {first_name},",
+    "Un consejo Pro rápido que quizás te hayas perdido: en cada pantalla de predicción, desplázate más allá de la proyección de marcador y encuentra la tarjeta de 'Señal Más Fuerte'. Es la selección calibrada de mayor confianza para ese partido — y en enfrentamientos de nivel Elite, históricamente ha sido la llamada más segura en el tablero.",
+    "Cómo usarla: cuando la insignia de nivel diga Elite o Premium, la Señal Más Fuerte es tu ancla. Cuando diga Estándar, trátala como un punto de partida y también pondera los otros mercados.",
+    "Ejemplo de hoy: {top_match_line}. Ábrelo y verás exactamente a lo que me refiero."
+  ],
+  "cta_text": "Abrir la mejor selección de hoy",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "pro_power_tip",
+  "language": "es"
+}

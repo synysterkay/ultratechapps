@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} ضد {away_team} — نداء بثقة {confidence_pct}%",
+  "preview_text": "يبدأ {league_name} خلال {hours_to_kickoff} ساعة. اختيار الذكاء الاصطناعي جاهز.",
+  "body_paragraphs": [
+    "مرحبًا {first_name}،",
+    "يلعب {home_team} ضد {away_team} على الملعب خلال حوالي {hours_to_kickoff} ساعة. قام ذكاءك الاصطناعي بتحليل كل الإشارات — Elo، السطح، الأداء الأخير، المواجهات المباشرة، وإحصائيات الإرسال — وحدد اختيارًا.",
+    "📊 الاختيار: {pick_label}\n🎯 الثقة المعايرة: {confidence_pct}%\n🎾 المستوى: {tier_label}",
+    "هذا بالضبط ما بنينا Predictify من أجله. افتح التطبيق، شاهد التحليل الكامل، وثبّت توقعك قبل الإرسال الأول."
+  ],
+  "cta_text": "شاهد التوقع الكامل",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "ar"
+}

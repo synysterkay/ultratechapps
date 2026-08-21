@@ -1,0 +1,14 @@
+{
+  "subject": "En Güçlü Sinyal kartı — Profesyonellerin asıl baktığı şey",
+  "preview_text": "Elit seviye maçlarda en güçlü etkiyi yapar. Çoğu kullanıcı onu hiç açmaz.",
+  "body_paragraphs": [
+    "Merhaba {first_name},",
+    "Kaçırmış olabileceğin hızlı bir Profesyonel ipucu: her tahmin ekranında, set skoru tahminini geçip 'En Güçlü Sinyal' kartını bul. Bu, o maç için en yüksek güvenilirlikte, kalibre edilmiş tahmindir — ve Elit seviye maçlarda tarihsel olarak en güvenli seçim olmuştur.",
+    "Nasıl kullanılır: seviye rozeti Elite veya Premium olduğunda, En Güçlü Sinyal senin referans noktandır. Standard olduğunda, onu bir başlangıç noktası olarak kabul et ve diğer piyasaları da değerlendir.",
+    "Bugünün örneği: {top_match_line}. Aç ve tam olarak ne demek istediğimi göreceksin."
+  ],
+  "cta_text": "Bugünün en iyi seçimini aç",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "pro_power_tip",
+  "language": "tr"
+}

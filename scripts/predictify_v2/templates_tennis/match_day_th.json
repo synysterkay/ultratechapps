@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} พบ {away_team} — การคาดการณ์ด้วยความมั่นใจ {confidence_pct}%",
+  "preview_text": "{league_name} เริ่มในอีก {hours_to_kickoff} ชั่วโมง AI ของคุณเตรียมคำแนะนำไว้แล้ว",
+  "body_paragraphs": [
+    "สวัสดี {first_name},",
+    "{home_team} พบ {away_team} ลงสนามในอีกประมาณ {hours_to_kickoff} ชั่วโมง AI ของคุณได้วิเคราะห์ทุกสัญญาณแล้ว — ทั้ง Elo, พื้นผิวสนาม, ฟอร์มล่าสุด, สถิติการพบกัน และสถิติการเสิร์ฟ — และได้ข้อสรุปมาแล้ว",
+    "📊 คำแนะนำ: {pick_label}\n🎯 ความมั่นใจที่ปรับเทียบแล้ว: {confidence_pct}%\n🎾 ระดับ: {tier_label}",
+    "นี่คือสิ่งที่เราสร้าง Predictify ขึ้นมาเพื่อสิ่งนี้ เปิดแอป ดูเหตุผลทั้งหมด และล็อกคำทำนายของคุณก่อนการเสิร์ฟครั้งแรก"
+  ],
+  "cta_text": "ดูคำทำนายทั้งหมด",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "th"
+}

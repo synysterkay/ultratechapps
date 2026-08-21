@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, 오늘 경기가 이미 시작되었습니다",
+  "preview_text": "첫 서브 전 한 경기에 30초 — 그게 전부입니다.",
+  "body_paragraphs": [
+    "안녕하세요, {first_name},",
+    "며칠 전에 보낸 이메일의 후속입니다: Predictify Tennis는 더 많이 베팅하는 것이 아니라, 검증 가능한 프로세스로 추측을 대체하는 것입니다.",
+    "꾸준히 사용하는 분들은 한 시간 동안 리서치를 하지 않습니다. 그들은 한 경기를 열고, 신뢰 구간과 표면 컨텍스트를 읽고, 한 번의 선택을 하고, 다음으로 넘어갑니다. 일관성이 뜨거운 논평보다 낫습니다.",
+    "오늘의 보드가 올라왔습니다. 한 경기를 선택하고, 분석을 읽고, 첫 서브 전에 결정하세요.",
+    "P.S. 직감은 채팅에서 재미있습니다. 숫자는 그들이 코트에 나서기 전에 더 좋습니다."
+  ],
+  "cta_text": "오늘의 경기 일정 열기",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis_v2",
+  "language": "ko",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

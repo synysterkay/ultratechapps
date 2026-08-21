@@ -1,0 +1,14 @@
+{
+  "subject": "🎁 3 dagen op rij — je hebt zojuist 1 week Pro vrijgespeeld",
+  "preview_text": "Open de app om te claimen. Geen kaart, geen automatische verlenging.",
+  "body_paragraphs": [
+    "Hoi {first_name},",
+    "Je hebt Predictify drie dagen op rij geopend. Dat is zeldzaam — de meeste gebruikers halen niet eens twee dagen.",
+    "Jouw beloning: 7 dagen Predictify Pro, volledig ontgrendeld, zonder betaling. Je ziet het Sterkste Signaal bij elke wedstrijd, gekalibreerde betrouwbaarheid bij elke markt (winnaar, totaal aantal games, handicap, eerste set), en de volledige voorspellingsgeschiedenis.",
+    "Tik hieronder om te claimen. Het wordt direct geactiveerd en duurt een week — blijf de app dagelijks gebruiken en je kunt meer verdienen naarmate de streak groeit."
+  ],
+  "cta_text": "Claim 7 dagen Pro",
+  "cta_deeplink": "predictify://reward/streak3",
+  "kind": "login_streak_reward",
+  "language": "nl"
+}

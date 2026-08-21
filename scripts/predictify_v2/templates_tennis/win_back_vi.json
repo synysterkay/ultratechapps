@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify đã dự đoán đúng {recent_correct} trong {recent_total} lần gần nhất — mà không có bạn",
+  "preview_text": "Bạn đã im lặng một thời gian. Đây là những gì AI của bạn đã dự đoán.",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "Cập nhật nhanh: trong khi bạn vắng mặt, Predictify vẫn đang làm điều nó giỏi nhất. {recent_total} dự đoán gần nhất: {recent_correct} chính xác — đạt {recent_accuracy_pct}%, hoàn toàn tự động.",
+    "Điểm nhấn đây: dự đoán hàng đầu hôm nay là {top_match_line}",
+    "Mở ứng dụng, dành 30 giây để xem toàn bộ lý do, và quyết định xem AI của bạn có đáng để xem lại không."
+  ],
+  "cta_text": "Xem dự đoán mạnh nhất hôm nay",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "vi"
+}

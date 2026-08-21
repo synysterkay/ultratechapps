@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, die heutigen Spiele sind bereits live",
+  "preview_text": "30 Sekunden bei einem Spiel vor dem ersten Aufschlag – das ist die ganze Gewohnheit.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Kurze Erinnerung an das, was ich vor ein paar Tagen geschrieben habe: Bei Predictify Tennis geht es nicht darum, mehr zu wetten – sondern darum, Raten durch einen Prozess zu ersetzen, den du überprüfen kannst.",
+    "Nutzer, die dabei bleiben, verbringen keine Stunde mit Recherche. Sie öffnen ein Spiel, lesen die Konfidenzspanne und den Kontext, treffen eine Entscheidung und gehen weiter. Beständigkeit schlägt heiße Tipps.",
+    "Die heutige Auswahl ist online. Wähle ein Spiel, lies die Analyse und entscheide vor dem ersten Aufschlag.",
+    "P.S. Bauchgefühl ist im Chat unterhaltsam. Zahlen sind besser, bevor sie auf den Platz gehen."
+  ],
+  "cta_text": "Heutige Spiele öffnen",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis_v2",
+  "language": "de",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

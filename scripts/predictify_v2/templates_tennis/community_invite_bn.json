@@ -1,0 +1,14 @@
+{
+  "subject": "একসাথে প্রেডিক্ট করুন — {recommended_community_name} আপনার মতো ফ্যানদের জন্য",
+  "preview_text": "{member_count} সদস্য। {league_short}। যোগদান ফ্রি।",
+  "body_paragraphs": [
+    "হেই {first_name},",
+    "একা ম্যাচ পিক করা ঠিক আছে। কিন্তু যারা একই টুর্নামেন্ট ফলো করেন তাদের সাথে পিক করা? অনেক বেশি মজার।",
+    "{recommended_community_name} হলো {league_short} ফ্যানদের জন্য একটি Predictify কমিউনিটি — {member_count} সদস্য, {owner_name} এর মালিকানাধীন, প্রতিদিন AI-সহায়ক পিক। আপনি দেখতে পাবেন অন্যরা কী কল করছে এবং রুমে কী প্রতিক্রিয়া হচ্ছে।",
+    "ফ্রিতে যোগ দিন। আপনাকে কিছুই দিতে হবে না — শুধু আসুন এবং প্রেডিক্ট করুন।"
+  ],
+  "cta_text": "{recommended_community_name} এ যোগ দিন",
+  "cta_deeplink": "predictify://community/{community_id}",
+  "kind": "community_invite",
+  "language": "bn"
+}

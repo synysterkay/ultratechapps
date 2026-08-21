@@ -1,0 +1,14 @@
+{
+  "subject": "一起预测 — {recommended_community_name} 是为你这样的球迷准备的",
+  "preview_text": "{member_count} 位成员。{league_short}。免费加入。",
+  "body_paragraphs": [
+    "嘿，{first_name}，",
+    "独自预测比赛也不错。但和关注同一赛事的人一起预测？那感觉好多了。",
+    "{recommended_community_name} 是 Predictify 上为 {league_short} 球迷打造的社区 — 已有 {member_count} 位成员，由 {owner_name} 管理，每天提供 AI 辅助预测。你可以看到别人在预测什么，以及群里的反应。",
+    "免费加入。你不需要付任何费用 — 只需参与并预测。"
+  ],
+  "cta_text": "加入 {recommended_community_name}",
+  "cta_deeplink": "predictify://community/{community_id}",
+  "kind": "community_invite",
+  "language": "zh"
+}

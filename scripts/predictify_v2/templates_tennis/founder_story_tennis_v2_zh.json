@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}，今天的比赛已经开打了",
+  "preview_text": "在一场比赛开球前花30秒——这就是全部习惯。",
+  "body_paragraphs": [
+    "嘿，{first_name}，",
+    "前几天聊过的快速跟进：Predictify Tennis 不是让你多下注——而是用可验证的流程取代瞎猜。",
+    "坚持使用的用户不会花一小时埋头研究。他们打开一场比赛，看看信心区间和表面背景，做出一个选择，然后继续。一致性胜过一时热度。",
+    "今天的赛程已经上线。挑一场比赛，读读分析，在开球前做决定。",
+    "P.S. 在聊天里凭感觉挺好玩。但上场前，数字更靠谱。"
+  ],
+  "cta_text": "打开今日赛程",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis_v2",
+  "language": "zh",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

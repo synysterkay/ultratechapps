@@ -1,0 +1,14 @@
+{
+  "subject": "Thẻ Strongest Signal — điều mà các chuyên gia thực sự xem",
+  "preview_text": "Nó mạnh nhất ở các trận đấu hạng Elite. Hầu hết người dùng không bao giờ mở nó.",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "Mẹo Pro nhanh mà bạn có thể đã bỏ lỡ: trên mỗi màn hình dự đoán, cuộn qua phần dự đoán tỷ số và tìm thẻ 'Strongest Signal'. Đó là lựa chọn có độ tin cậy cao nhất, được hiệu chỉnh cho trận đấu đó — và trong các trận đấu hạng Elite, về mặt lịch sử, nó là lựa chọn an toàn nhất trên bảng.",
+    "Cách sử dụng: khi huy hiệu hạng hiển thị Elite hoặc Premium, Strongest Signal là điểm neo của bạn. Khi nó hiển thị Standard, hãy coi nó là điểm khởi đầu và cân nhắc cả các thị trường khác.",
+    "Ví dụ hôm nay: {top_match_line}. Mở nó ra và bạn sẽ thấy chính xác ý tôi."
+  ],
+  "cta_text": "Mở lựa chọn hàng đầu hôm nay",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "pro_power_tip",
+  "language": "vi"
+}

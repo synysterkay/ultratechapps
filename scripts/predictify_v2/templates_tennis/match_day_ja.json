@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} vs {away_team} — {confidence_pct}% の自信度コール",
+  "preview_text": "{league_name} は {hours_to_kickoff} 時間後に開始。AIのピックが準備できました。",
+  "body_paragraphs": [
+    "こんにちは、{first_name}さん、",
+    "{home_team} vs {away_team} は約 {hours_to_kickoff} 時間後にコートに登場します。AIはElo、サーフェス、最近のフォーム、H2H、サーブ統計など、あらゆるシグナルを分析し、コールを確定しました。",
+    "📊 ピック: {pick_label}\n🎯 調整済み自信度: {confidence_pct}%\n🎾 ティア: {tier_label}",
+    "これはまさにPredictifyを構築した目的です。アプリを開いて、完全な根拠を確認し、ファーストサーブ前に予測を確定してください。"
+  ],
+  "cta_text": "完全な予測を見る",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "ja"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "{first_name}님, 첫 테니스 픽이 여기서 시작됩니다",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "안녕하세요, {first_name}님,",
+    "Predictify에 오신 것을 환영합니다. 간단히 안내드릴게요: 앱의 모든 ATP 및 WTA 경기에는 Elo, 코트 표면, 최근 폼, 맞대결 기록을 기반으로 한 보정된 AI 신뢰도 점수가 제공됩니다. 이 점수는 해당 픽이 얼마나 신뢰할 만한지 정확히 알려줍니다. 감정적인 의견이 아닌, 숫자로 판단하세요.",
+    "지금 바로 시도해보세요: {top_match_line}. 경기를 탭하면 승자, 총 게임 수, 게임 핸디캡 등 전체 분석을 확인하고 픽을 확정할 수 있습니다.",
+    "프로 팁: 5일 동안 하루에 하나씩 픽을 하면 스트릭을 만들 수 있습니다. 스트릭 사용자는 첫 서브 전에 가치 있는 픽을 찾아낼 확률이 3배 더 높습니다."
+  ],
+  "cta_text": "첫 픽 만들기",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "ko"
+}

@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, de wedstrijden van vandaag zijn al live",
+  "preview_text": "30 seconden over één wedstrijd vóór de eerste service — dat is de hele gewoonte.",
+  "body_paragraphs": [
+    "Hé {first_name},",
+    "Korte follow-up van een paar dagen geleden: Predictify Tennis gaat niet over meer wedden — het gaat over het vervangen van giswerk door een proces dat je kunt verifiëren.",
+    "Gebruikers die het volhouden, besteden geen uur aan onderzoek. Ze openen één wedstrijd, lezen de vertrouwensband en de context, maken één keuze en gaan verder. Consistentie verslaat snelle meningen.",
+    "Het bord van vandaag staat klaar. Kies één wedstrijd, lees de analyse en beslis vóór de eerste service.",
+    "P.S. Onderbuikgevoel is leuk in de chat. Cijfers zijn beter voordat ze de baan op gaan."
+  ],
+  "cta_text": "Open het programma van vandaag",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis_v2",
+  "language": "nl",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

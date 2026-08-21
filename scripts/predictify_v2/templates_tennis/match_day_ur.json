@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} بمقابل {away_team} — {confidence_pct}% اعتماد کا کال",
+  "preview_text": "{league_name} {hours_to_kickoff} گھنٹوں میں شروع ہوگا۔ آپ کا AI پک تیار ہے۔",
+  "body_paragraphs": [
+    "ہائے {first_name}،",
+    "{home_team} بمقابل {away_team} تقریباً {hours_to_kickoff} گھنٹوں میں کورٹ پر آئے گا۔ آپ کے AI نے ہر سگنل کا جائزہ لیا ہے — ایلو، سطح، حالیہ فارم، ہیڈ ٹو ہیڈ، اور سرو کے اعداد و شمار — اور ایک کال طے کر دی ہے۔",
+    "📊 پک: {pick_label}\n🎯 کیلیبریٹڈ اعتماد: {confidence_pct}%\n🎾 ٹیئر: {tier_label}",
+    "یہ بالکل وہی ہے جس کے لیے ہم نے Predictify بنایا تھا۔ ایپ کھولیں، مکمل استدلال دیکھیں، اور پہلی سروس سے پہلے اپنی پیشین گوئی طے کریں۔"
+  ],
+  "cta_text": "مکمل پیشین گوئی دیکھیں",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "ur"
+}

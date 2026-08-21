@@ -1,0 +1,14 @@
+{
+  "subject": "Det starkaste signal-kortet — vad proffsen faktiskt tittar på",
+  "preview_text": "Det träffar hårdast på Elite-matcher. De flesta användare öppnar det aldrig.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Snabb proffstips du kanske missat: på varje förutsägelseskärm, scrolla förbi set-projektionen och hitta 'Strongest Signal'-kortet. Det är det högsta förtroendet, kalibrerat val för den matchen — och på Elite-matcher har det historiskt varit det säkraste valet på tavlan.",
+    "Så här använder du det: när nivåmärket säger Elite eller Premium, är Strongest Signal din ankar. När det säger Standard, behandla det som en utgångspunkt och väg även de andra marknaderna.",
+    "Dagens exempel: {top_match_line}. Öppna det så ser du exakt vad jag menar."
+  ],
+  "cta_text": "Öppna dagens toppval",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "pro_power_tip",
+  "language": "sv"
+}

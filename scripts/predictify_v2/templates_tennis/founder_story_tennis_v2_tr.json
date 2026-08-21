@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, bugünün maçları yayında",
+  "preview_text": "İlk servisten önce tek maça 30 saniye — alışkanlığın tamamı bu.",
+  "body_paragraphs": [
+    "Merhaba {first_name},",
+    "Birkaç gün önceki takipten hızlı bir hatırlatma: Predictify Tennis daha fazla bahis oynamakla ilgili değil — tahmin yürütmeyi doğrulayabileceğin bir süreçle değiştirmekle ilgili.",
+    "Buna bağlı kalan kullanıcılar bir saat araştırma yapmaz. Tek maç açarlar, güven bandını ve yüzey bağlamını okurlar, tek tahmin yaparlar ve devam ederler. Tutarlılık, ani çıkışları yener.",
+    "Bugünün panosu yayında. Bir maç seç, analizi oku ve ilk servisten önce karar ver.",
+    "Not: İçgüdü sohbette eğlencelidir. Raket sahaya çıkmadan önce sayılar daha iyidir."
+  ],
+  "cta_text": "Bugünün listesini aç",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis_v2",
+  "language": "tr",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

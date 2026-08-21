@@ -1,0 +1,14 @@
+{
+  "subject": "Die Strongest-Signal-Karte – worauf Profis wirklich achten",
+  "preview_text": "Sie trifft am härtesten bei Elite-Spielen. Die meisten Nutzer öffnen sie nie.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Kurzer Pro-Tipp, den du vielleicht verpasst hast: Scrolle auf jedem Vorhersagebildschirm an der Satzvorhersage vorbei und finde die Karte 'Strongest Signal'. Sie ist die Auswahl mit der höchsten Konfidenz und Kalibrierung für dieses Spiel – und bei Elite-Spielen war sie historisch gesehen der sicherste Tipp auf dem Board.",
+    "So nutzt du sie: Wenn das Stufen-Badge Elite oder Premium zeigt, ist das Strongest Signal dein Anker. Wenn es Standard zeigt, behandle es als Ausgangspunkt und berücksichtige auch die anderen Märkte.",
+    "Das heutige Beispiel: {top_match_line}. Öffne es und du wirst genau sehen, was ich meine."
+  ],
+  "cta_text": "Öffne den heutigen Top-Tipp",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "pro_power_tip",
+  "language": "de"
+}

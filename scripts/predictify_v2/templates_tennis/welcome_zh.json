@@ -1,0 +1,14 @@
+{
+  "subject": "你的首个网球预测从这里开始，{first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "嘿，{first_name}，",
+    "欢迎来到 Predictify。快速说明：应用中的每场 ATP 和 WTA 比赛都附带一个经过校准的 AI 置信度评分——基于 Elo 评级、场地类型、近期状态和交手记录——告诉你这个预测有多可靠。看数据，不靠感觉。",
+    "现在就试试：{top_match_line}。点击比赛，查看完整分析——胜者、总局数、让局盘——然后锁定你的预测。",
+    "小贴士：连续 5 天每天做一个预测，就能建立连胜。连胜用户发现价值预测的概率是普通用户的 3 倍，而且往往在开球前就能锁定。"
+  ],
+  "cta_text": "做出我的首个预测",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "zh"
+}

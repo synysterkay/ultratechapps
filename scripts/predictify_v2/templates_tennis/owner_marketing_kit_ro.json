@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} are nevoie de membri — iată cum cresc proprietarii de top",
+  "preview_text": "5 locuri unde am văzut proprietari postând care chiar convertesc.",
+  "body_paragraphs": [
+    "Hei {first_name},",
+    "Comunitatea ta {community_name} are {member_count} de membru{member_plural}. Proprietarii care au atins 25+ membri în prima săptămână folosesc toți aceeași strategie — iat-o.",
+    "1. Grupuri WhatsApp/Telegram: pune linkul cu o scurtă tentativă (\"Predicții AI pentru fiecare meci ATP, gratuit de intrat\")\n2. X / Twitter: postează cea mai sigură alegere a zilei cu linkul de alăturare în comentarii\n3. r/tenis, r/sportsbook pe Reddit: un thread zilnic fixat\n4. Comentarii pe TikTok sub videoclipuri cu previzualizări / pariuri tenis\n5. Servere Discord pentru turneele pe care le acoperi",
+    "Predictify îți face imaginea de copertă (linkul tău de distribuire arată de 3 ori mai bine cu una — asta singură crește rata de alăturare). Deschide kitul de distribuire, copiază linkul, lipește-l unde se adună fanii tenisului."
+  ],
+  "cta_text": "Deschide kitul de distribuire",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "ro"
+}
