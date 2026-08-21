@@ -88,6 +88,8 @@ const FIREBASE_PROJECTS: Record<
   // (predictify-nba-emails workflow) now owns welcome / win-back / match-day
   // with proper cooldowns + bounce suppression. Keeping it here would double
   // welcome new NBA signups.
+  // Tennis Predictify is the same: predictify-tennis-emails.yml owns welcome
+  // (tenis-b5d4e). Do not add it here.
   "volume-booster-2f7bf": {
     appId: "volume_booster",
     multilingual: true,

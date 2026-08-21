@@ -21,6 +21,7 @@ const WEBHOOK_AUTH_KEY = Deno.env.get("ZEPTOMAIL_WEBHOOK_AUTH_KEY") || "";
 const KNOWN_APP_SLUGS = new Set([
   "predictify",
   "predictify_nba",
+  "predictify_tennis",
   "horse_racing",
   "thesis_generator",
   "thesis",
@@ -257,6 +258,9 @@ function inferApp(payload: Record<string, unknown>, senderDomain: string | null)
   ).toLowerCase();
 
   if (clientRef.includes("predictify_nba") || clientRef.includes("nba")) return "predictify_nba";
+  if (clientRef.includes("predictify_tennis") || clientRef.includes("tennis") || clientRef.includes("tenis")) {
+    return "predictify_tennis";
+  }
   if (clientRef.includes("horse_racing") || clientRef.includes("horse")) return "horse_racing";
   if (clientRef.includes("thesis")) return "thesis_generator";
   if (clientRef.includes("onbrief")) return "onbrief";

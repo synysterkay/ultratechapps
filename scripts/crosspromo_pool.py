@@ -35,6 +35,7 @@ AFFINITY_RANK: dict[str, int] = {
     'Volume Booster Pro': 48,
     'Predictify': 55,
     'Predictify: NBA AI': 55,
+    'Predictify: Tennis AI': 55,
     'Predictify: Horse Racing AI': 55,
     'Crypto AI: Trading Analyzer': 60,
     'Ai Boyfriend: Virtual Love': 65,

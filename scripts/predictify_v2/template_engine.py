@@ -16,8 +16,8 @@ from datetime import datetime, timezone
 from .user_context import UserContext, UpcomingMatch
 
 
-# Soccer uses `templates/`; the NBA app profile sets
-# PREDICTIFY_TEMPLATES_DIR=templates_nba so the same engine renders NBA copy.
+# Soccer uses `templates/`; NBA/Tennis profiles set
+# PREDICTIFY_TEMPLATES_DIR=templates_nba or templates_tennis.
 TEMPLATES_DIR = Path(__file__).parent / os.environ.get(
     'PREDICTIFY_TEMPLATES_DIR', 'templates')
 
@@ -33,6 +33,7 @@ LEGACY_FOUNDER_V2_KINDS = frozenset({'founder_story_wc2026_v2'})
 FOUNDER_STORY_PREFIXES = (
     'founder_story_soccer',
     'founder_story_nba',
+    'founder_story_tennis',
     'founder_story_horse',
     'founder_story_wc2026',
 )
@@ -43,6 +44,8 @@ def founder_story_kinds_for_app() -> tuple[str, str]:
     app_name = os.environ.get('PREDICTIFY_APP_NAME', 'Predictify')
     if 'NBA' in app_name:
         return 'founder_story_nba', 'founder_story_nba_v2'
+    if 'Tennis' in app_name:
+        return 'founder_story_tennis', 'founder_story_tennis_v2'
     if 'Horse' in app_name:
         return 'founder_story_horse', 'founder_story_horse_v2'
     return 'founder_story_soccer', 'founder_story_soccer_v2'

@@ -9,7 +9,7 @@
  *
  * When EMAIL_PROVIDER=zeptomail, email_transport.ts routes by app tag:
  *   thesis → hello@thesisgenerator.io (Agent 1)
- *   predictify / predictify_nba / horse_racing / predictify_crypto → hello@predictifyfootball.com (Agent 1)
+ *   predictify / predictify_nba / predictify_tennis / horse_racing / predictify_crypto → hello@predictifyfootball.com (Agent 1)
  *   crosspromo → hello@passedai.io (Agent 2)
  *   fresh_start / breakup_therapy / soulplan → hello@breakuprelief.com (Agent 2)
  *   red_flag_scanner → selka@breakuprelief.com (Agent 2)
@@ -44,6 +44,12 @@ export const SENDER_POOL_CRYPTO: SenderIdentity[] = [
 /** Predictify NBA — same domain as Soccer. */
 export const SENDER_POOL_NBA: SenderIdentity[] = [
   { email: "hello@predictifyfootball.com", name: "Predictify NBA" },
+  { email: "tips@predictifyfootball.com", name: "Sam" },
+];
+
+/** Predictify Tennis — same ZeptoMail domain (predictifyfootball.com). */
+export const SENDER_POOL_TENNIS: SenderIdentity[] = [
+  { email: "hello@predictifyfootball.com", name: "Predictify Tennis" },
   { email: "tips@predictifyfootball.com", name: "Sam" },
 ];
 

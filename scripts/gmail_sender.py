@@ -66,7 +66,13 @@ def _is_thesis_app(app):
 
 
 def _is_predictify_app(app):
-    return app in {'predictify', 'predictify_nba', 'horse_racing', 'predictify_crypto'}
+    return app in {
+        'predictify',
+        'predictify_nba',
+        'predictify_tennis',
+        'horse_racing',
+        'predictify_crypto',
+    }
 
 
 def _is_breakup_app(app):
@@ -342,7 +348,7 @@ class GmailSender:
         if _is_thesis_app(app) and ({'thesis', 'thesis_generator'} & apps):
             return True
         if _is_predictify_app(app) and (
-            {'predictify', 'predictify_nba', 'horse_racing'} & apps
+            {'predictify', 'predictify_nba', 'predictify_tennis', 'horse_racing'} & apps
         ):
             return True
         return False
@@ -352,7 +358,7 @@ class GmailSender:
         slug = (app or '').strip().lower()
         if _is_thesis_app(slug):
             return 'thesis_generator'
-        if slug in ('predictify_nba', 'horse_racing', 'predictify'):
+        if slug in ('predictify_nba', 'predictify_tennis', 'horse_racing', 'predictify'):
             return slug
         if _is_predictify_app(slug):
             return slug

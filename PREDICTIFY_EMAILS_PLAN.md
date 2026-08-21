@@ -1,7 +1,7 @@
 # Predictify + Thesis Email Plan (2026-07-20)
 
 Four-app email system: **no 30-day drip**. ZeptoMail on **thesisgenerator.io** (Thesis)
-and **predictifyfootball.com** (Predictify Soccer, NBA, Horse).
+and **predictifyfootball.com** (Predictify Soccer, NBA, Tennis, Horse).
 
 ## Layers (every app)
 
@@ -27,6 +27,16 @@ and **predictifyfootball.com** (Predictify Soccer, NBA, Horse).
 - **Lapsed:** `founder_story_nba` → `founder_story_nba_v2`
 - **Templates:** `scripts/predictify_v2/templates_nba/founder_story_nba_*.json`
 - **Env:** `PREDICTIFY_APP_NAME`, `PREDICTIFY_FIREBASE_PROJECT_ID=nba-predictify`, `PREDICTIFY_TEMPLATES_DIR=templates_nba`
+
+## Tennis (`Predictify: Tennis AI`)
+
+- **Welcome + behavioral:** `predictify-tennis-emails.yml` (v2 Tennis profile)
+- **Lapsed:** `founder_story_tennis` → `founder_story_tennis_v2`
+- **Templates:** `scripts/predictify_v2/templates_tennis/founder_story_tennis_*.json`
+- **Instant:** `predictify-tennis-first-win-email`, `predictify-tennis-streak-broken-email`, `predictify-tennis-paywall-hit-email`, `predictify-tennis-leaderboard-email`
+- **Env:** `PREDICTIFY_APP_NAME='Predictify: Tennis AI'`, `PREDICTIFY_FIREBASE_PROJECT_ID=tenis-b5d4e`, `PREDICTIFY_TEMPLATES_DIR=templates_tennis`
+- **From:** `hello@predictifyfootball.com` (same ZeptoMail domain as Soccer/NBA)
+- **GitHub secrets:** `TENNIS_PREDICTIFY_SUPABASE_URL` / `TENNIS_PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY` (app project `ozkenbwfdkmtmfvddbti`)
 
 ## Horse (`Predictify: Horse Racing AI`)
 

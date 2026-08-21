@@ -340,7 +340,7 @@ def _load_suppressed_emails() -> set[str]:
 
     # Source 2: email_suppressions (unsubscribes, webhook bounces, inline API bounces).
     app_slug = _app_slug()
-    for scope in (app_slug, 'predictify', 'predictify_nba', 'horse_racing', '*', 'global'):
+    for scope in (app_slug, 'predictify', 'predictify_nba', 'predictify_tennis', 'horse_racing', '*', 'global'):
         try:
             r = requests.get(
                 f'{MARKETING_SUPABASE_URL}/rest/v1/email_suppressions',
@@ -455,6 +455,8 @@ def _app_slug() -> str:
     app_name = os.environ.get('PREDICTIFY_APP_NAME', 'Predictify')
     if 'NBA' in app_name:
         return 'predictify_nba'
+    if 'Tennis' in app_name:
+        return 'predictify_tennis'
     if 'Horse' in app_name:
         return 'horse_racing'
     return 'predictify'

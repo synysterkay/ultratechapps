@@ -15,7 +15,7 @@ import requests
 
 
 # Which template folder to localize. Defaults to the soccer `templates/` dir;
-# set PREDICTIFY_TEMPLATES_DIR=templates_nba to localize the NBA templates.
+# set PREDICTIFY_TEMPLATES_DIR=templates_nba or templates_tennis.
 TEMPLATES_DIR = Path(__file__).parent / os.environ.get(
     'PREDICTIFY_TEMPLATES_DIR', 'templates')
 TARGET_LANGS = {

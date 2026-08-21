@@ -323,6 +323,7 @@ jobs:
           git add -f scripts/predictify_v2/templates/founder_story_soccer_*.json 2>/dev/null || true
           git add -f scripts/predictify_v2/templates/founder_story_horse_*.json 2>/dev/null || true
           git add -f scripts/predictify_v2/templates_nba/founder_story_nba_*.json 2>/dev/null || true
+          git add -f scripts/predictify_v2/templates_tennis/founder_story_tennis_*.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "No founder story template changes to push"
             exit 0

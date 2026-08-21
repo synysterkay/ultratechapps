@@ -88,6 +88,15 @@ FIREBASE_APPS = {
         'multilingual': True,
         'supported_languages': ['en', 'ar', 'de', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'nl', 'pl', 'pp', 'pt', 'tr'],
     },
+    'tenis-b5d4e': {
+        'name': 'Predictify: Tennis AI',
+        'export_file': 'predictify_tennis_fresh.json',
+        'description': 'AI-powered tennis predictions with calibrated confidence — match winner, total games, games handicap, first set and straight sets for ATP, WTA and Grand Slams',
+        'app_store_url': 'https://apps.apple.com/app/predictify-tennis',
+        'google_play_url': 'https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction',
+        'multilingual': True,
+        'supported_languages': ['en', 'ar', 'de', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'nl', 'pl', 'pp', 'pt', 'tr'],
+    },
     'volume-booster-2f7bf': {
         'name': 'Volume Booster - Sound Booster',
         'export_file': 'volume_booster_fresh.json',

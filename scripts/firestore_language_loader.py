@@ -42,6 +42,11 @@ MULTILINGUAL_PROJECTS = {
         'supported_languages': ['en', 'ar', 'es', 'fr', 'pt', 'de', 'tr', 'it', 'pp', 'hi', 'id', 'nl', 'pl', 'ja'],
         'cache_file': 'predictify_nba_languages.json',
     },
+    'Predictify: Tennis AI': {
+        'project_id': 'tenis-b5d4e',
+        'supported_languages': ['en', 'ar', 'es', 'fr', 'pt', 'de', 'tr', 'it', 'pp', 'hi', 'id', 'nl', 'pl', 'ja'],
+        'cache_file': 'predictify_tennis_languages.json',
+    },
     'Thesis Generator': {
         'project_id': 'thesis-generator-web',
         # Full 34-language picker set — matches thesis_template_translator + app.

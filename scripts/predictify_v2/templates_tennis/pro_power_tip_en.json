@@ -1,0 +1,14 @@
+{
+  "kind": "pro_power_tip",
+  "language": "en",
+  "subject": "The Strongest Signal card — what Pros actually look at",
+  "preview_text": "It hits hardest on Elite-tier matches. Most users never open it.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Quick Pro tip you may have missed: on every prediction screen, scroll past the set-score projection and find the 'Strongest Signal' card. It's the highest-confidence, calibrated pick for that match — and on Elite-tier matchups it's historically been the safest call on the board.",
+    "How to use it: when the tier badge says Elite or Premium, the Strongest Signal is your anchor. When it says Standard, treat it as a starting point and weigh the other markets too.",
+    "Today's example: {top_match_line}. Open it and you'll see exactly what I mean."
+  ],
+  "cta_text": "Open today's top pick",
+  "cta_deeplink": "predictify://prediction/{fixture_id}"
+}

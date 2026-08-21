@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Predictify founder-story sender — Soccer (default), NBA, or Horse via env profile.
+Predictify founder-story sender — Soccer (default), NBA, Tennis, or Horse via env profile.
 
 Replaces the World Cup 2026 one-off. Uses evergreen founder_story_{app} templates
 and predictify_v2 orchestrator lapsed fallback / backfill modes.
@@ -10,6 +10,7 @@ Usage:
   python3 scripts/founder_story_predictify_sender.py --backfill --passes 10
   python3 scripts/founder_story_predictify_sender.py --v2 --non-subscribers-only
   PREDICTIFY_APP_NAME='Predictify: NBA AI' python3 scripts/founder_story_predictify_sender.py --backfill
+  PREDICTIFY_APP_NAME='Predictify: Tennis AI' PREDICTIFY_TEMPLATES_DIR=templates_tennis python3 scripts/founder_story_predictify_sender.py --backfill
 """
 from __future__ import annotations
 

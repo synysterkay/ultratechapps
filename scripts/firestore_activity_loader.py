@@ -26,6 +26,11 @@ ACTIVITY_PROJECTS = {
         'cache_file': 'predictify_nba_activity.json',
         'fields': ['streak', 'favoriteLeague', 'isSubscribed', 'lastPredictionAt', 'isPremium'],
     },
+    'Predictify: Tennis AI': {
+        'project_id': 'tenis-b5d4e',
+        'cache_file': 'predictify_tennis_activity.json',
+        'fields': ['streak', 'favoriteLeague', 'isSubscribed', 'lastPredictionAt', 'isPremium'],
+    },
     'Predictify: Horse Racing AI': {
         'project_id': 'horse-racing-f67e8',
         'cache_file': 'horse_racing_activity.json',

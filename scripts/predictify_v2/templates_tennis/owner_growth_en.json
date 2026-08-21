@@ -1,0 +1,14 @@
+{
+  "kind": "owner_growth",
+  "language": "en",
+  "subject": "Your community {community_name} needs members",
+  "preview_text": "Here's a 30-second action that 3x's your join rate.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "{community_name} has been live for a bit and you've got {member_count} member{member_plural} so far. Communities don't grow themselves — but the next 24 hours can change that.",
+    "Your fastest lever: drop your invite link in your group chats. Communities with cover images and 5+ members grow 3x faster — and your link looks great once you have those.",
+    "We've made the share image for you. One tap and it's ready for WhatsApp, Discord, or wherever your tennis people hang out."
+  ],
+  "cta_text": "Open share kit",
+  "cta_deeplink": "predictify://community/{community_id}/share"
+}

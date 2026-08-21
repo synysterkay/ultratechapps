@@ -1,0 +1,14 @@
+{
+  "kind": "welcome",
+  "language": "en",
+  "subject": "Your first tennis call starts here, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Welcome to Predictify. Quick orientation: every ATP and WTA match in the app comes with a calibrated AI confidence score — built from Elo, surface, recent form, and head-to-head — that tells you exactly how reliable the call is. Numbers, not hot takes.",
+    "Try it now: {top_match_line}. Tap the match, see the full breakdown — winner, total games, games handicap — and lock in your call.",
+    "Pro tip: make one pick a day for 5 days and you build a streak. Streak users are 3x more likely to spot the value calls before first serve."
+  ],
+  "cta_text": "Make my first pick",
+  "cta_deeplink": "predictify://prediction/{fixture_id}"
+}

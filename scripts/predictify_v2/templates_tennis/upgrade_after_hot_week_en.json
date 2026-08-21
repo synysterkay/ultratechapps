@@ -1,0 +1,14 @@
+{
+  "kind": "upgrade_after_hot_week",
+  "language": "en",
+  "subject": "{accuracy_pct}% accuracy this week — Pro users average {pro_target_pct}%",
+  "preview_text": "Here's what the model is hiding from your free tier.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Your last {recent_total} picks hit {accuracy_pct}% — well above the free-tier average. You're reading the model better than most.",
+    "Pro users see the Strongest Signal for every match — the one call that consistently hits {pro_target_pct}%+ — plus calibrated confidence on every market and player-prop projections (aces, double faults, first-serve %). That's how the top accuracy tiers stay on top.",
+    "Want to try it for 7 days, free? No card required, no auto-renew. If it doesn't move your numbers, you walk away."
+  ],
+  "cta_text": "Start 7-day Pro trial",
+  "cta_deeplink": "predictify://upgrade?ref=hot_week"
+}

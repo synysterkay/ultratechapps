@@ -1,0 +1,19 @@
+{
+  "kind": "founder_story_tennis_v2",
+  "language": "en",
+  "subject": "{first_name}, today's matches are already live",
+  "preview_text": "30 seconds on one match before first serve — that's the whole habit.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Quick follow-up from a few days ago: Predictify Tennis isn't about betting more — it's about replacing guesswork with a process you can verify.",
+    "Users who stick with it don't grind research for an hour. They open one match, read the confidence band and surface context, make one call, and move on. Consistency beats hot takes.",
+    "Today's board is up. Pick one match, read the breakdown, and decide before first serve.",
+    "P.S. Gut feel is fun in the chat. Numbers are better before they walk on court."
+  ],
+  "cta_text": "Open today's slate",
+  "cta_deeplink": "predictify://",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction"
+}

@@ -1,0 +1,141 @@
+name: Predictify Tennis Emails (v2 Hooked)
+
+# Behavioral, multilingual lifecycle emails for Predictify: Tennis AI.
+# Reuses the same predictify_v2 engine as Soccer/NBA, but the env vars below
+# point it at Tennis's Firebase project (tenis-b5d4e), Tennis's Supabase, and
+# the templates_tennis/ folder. Soccer and NBA workflows are untouched.
+#
+# Sends from hello@predictifyfootball.com (ZeptoMail Agent 1) — same verified
+# domain as Soccer / NBA / Horse.
+#
+# Required GitHub secrets:
+#   DEEPSEEK_API_KEY                       (one-time + ongoing template localization)
+#   FIREBASE_TOKEN                         (a CI token with access to tenis-b5d4e)
+#   SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY            (marketing-tool Supabase)
+#   TENNIS_PREDICTIFY_SUPABASE_URL / TENNIS_PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY
+#                                          (Tennis app Supabase ozkenbwfdkmtmfvddbti)
+
+on:
+  schedule:
+    # Offset from Soccer (09:00/17:00) and NBA (10:00/18:00).
+    - cron: '0 11 * * *'
+    - cron: '0 19 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Run mode'
+        required: false
+        default: 'send'
+        type: choice
+        options:
+          - send
+          - dry-run
+          - status
+
+permissions:
+  contents: write
+
+concurrency:
+  group: predictify-tennis-emails
+  cancel-in-progress: false
+
+jobs:
+  tennis-emails:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    env:
+      PREDICTIFY_APP_NAME: 'Predictify: Tennis AI'
+      PREDICTIFY_FIREBASE_PROJECT_ID: 'tenis-b5d4e'
+      PREDICTIFY_TEMPLATES_DIR: 'templates_tennis'
+      EMAIL_PROVIDER: ${{ secrets.EMAIL_PROVIDER }}
+      SMTP2GO_API_KEY: ${{ secrets.SMTP2GO_API_KEY }}
+      ZEPTOMAIL_API_KEY: ${{ secrets.ZEPTOMAIL_API_KEY }}
+      ZEPTOMAIL_API_URL: https://api.zeptomail.eu/v1.1/email
+      PREDICTIFY_ZEPTOMAIL_SENDER_EMAIL: hello@predictifyfootball.com
+      PREDICTIFY_ZEPTOMAIL_SENDER_NAME: Predictify Tennis
+      PREDICTIFY_ACTIVE_TRIGGERS: p0p1
+      PREDICTIFY_DISABLE_FOUNDER_FALLBACK: "0"
+      FOUNDER_STORY_LAPSED_DAYS: "14"
+      V2_DAILY_SEND_CAP: "150"
+      FOUNDER_STORY_SEND_CAP: "75"
+      FOUNDER_STORY_V2_SEND_CAP: "50"
+      EMAIL_SENDING_PAUSED: ${{ secrets.EMAIL_SENDING_PAUSED }}
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
+      MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+      MAILGUN_SENDER_EMAIL: ${{ secrets.MAILGUN_SENDER_EMAIL }}
+      MAILGUN_SELKA_SENDER_EMAIL: ${{ secrets.MAILGUN_SELKA_SENDER_EMAIL }}
+      DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      PREDICTIFY_SUPABASE_URL: ${{ secrets.TENNIS_PREDICTIFY_SUPABASE_URL }}
+      PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.TENNIS_PREDICTIFY_SUPABASE_SERVICE_ROLE_KEY }}
+      PREDICTIFY_UNSUBSCRIBE_SECRET: ${{ secrets.PREDICTIFY_UNSUBSCRIBE_SECRET }}
+      EMAIL_ONE_PER_DAY: "1"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Refresh Tennis Firebase user export
+        run: python -c "from scripts.firebase_user_loader import FirebaseUserLoader; FirebaseUserLoader().refresh_exports()"
+
+      - name: Localize Tennis templates (idempotent — skips existing)
+        run: python -u scripts/predictify_v2/localize_templates.py || true
+
+      - name: Commit Tennis localized templates
+        if: always()
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add -f scripts/predictify_v2/templates_tennis/*.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "No tennis template changes"
+            exit 0
+          fi
+          git commit -m "Add localized Predictify Tennis templates [skip ci]"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then exit 0; fi
+            git pull --rebase --autostash origin main || true
+            sleep $((attempt * 5))
+          done
+          echo "⚠️ tennis template push failed"
+
+      - name: Run Tennis v2 email orchestrator
+        timeout-minutes: 120
+        run: |
+          MODE="${{ github.event.inputs.mode || 'send' }}"
+          cd scripts
+          if [ "$MODE" = "status" ]; then
+            python -u -m predictify_v2.orchestrator --status
+          elif [ "$MODE" = "dry-run" ]; then
+            python -u -m predictify_v2.orchestrator --dry-run
+          else
+            python -u -m predictify_v2.orchestrator
+          fi
+          cd ..
+          if [ "$MODE" = "send" ] || [ -z "$MODE" ]; then
+            echo "--- Tennis FS1 daily backfill (unsent cohort) ---"
+            FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_SEND_CAP:-75}" \
+              python -u scripts/founder_story_predictify_sender.py --backfill --passes 1 || true
+            echo "--- Tennis FS2 daily backfill (v1 received, free users) ---"
+            FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_V2_SEND_CAP:-50}" \
+              python -u scripts/founder_story_predictify_sender.py --v2 --non-subscribers-only --passes 1 || true
+          fi
+
+      - name: Log completion
+        run: echo "✅ Predictify Tennis email run completed at $(date)"

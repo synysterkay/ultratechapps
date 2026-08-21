@@ -17,6 +17,7 @@ const THESIS_APPS = new Set(["thesis", "thesis_generator"]);
 const PREDICTIFY_APPS = new Set([
   "predictify",
   "predictify_nba",
+  "predictify_tennis",
   "horse_racing",
   "predictify_crypto",
 ]);

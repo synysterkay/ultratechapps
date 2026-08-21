@@ -1,0 +1,14 @@
+{
+  "kind": "pro_owner_pitch",
+  "language": "en",
+  "subject": "Pro users can earn from communities — keep 70%",
+  "preview_text": "Some owners now earn enough to cover their Pro many times over.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "You've been Pro for a while and your picks are consistent. Time to flip the model: open your own tennis community on Predictify, set a small monthly price, and keep 70% of every subscription.",
+    "Top community owners are turning their picks into recurring income — and Predictify handles all the payment, hosting, and member management. You just keep predicting like you already do.",
+    "Setup is 90 seconds: pick a name, pick your angle (a tour, a player, a betting style), set a price or keep it free. Owners with a cover image grow 3x faster — we generate one for you in a tap."
+  ],
+  "cta_text": "Create my community",
+  "cta_deeplink": "predictify://community/create"
+}

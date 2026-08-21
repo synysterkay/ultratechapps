@@ -436,3 +436,28 @@ verify_jwt = false
 import_map = "./functions/onbrief-quota-hit-email/deno.json"
 entrypoint = "./functions/onbrief-quota-hit-email/index.ts"
 
+# Predictify Tennis instant emails — Flutter posts with the anon key.
+[functions.predictify-tennis-first-win-email]
+enabled = true
+verify_jwt = false
+import_map = "./functions/predictify-tennis-first-win-email/deno.json"
+entrypoint = "./functions/predictify-tennis-first-win-email/index.ts"
+
+[functions.predictify-tennis-streak-broken-email]
+enabled = true
+verify_jwt = false
+import_map = "./functions/predictify-tennis-streak-broken-email/deno.json"
+entrypoint = "./functions/predictify-tennis-streak-broken-email/index.ts"
+
+[functions.predictify-tennis-paywall-hit-email]
+enabled = true
+verify_jwt = false
+import_map = "./functions/predictify-tennis-paywall-hit-email/deno.json"
+entrypoint = "./functions/predictify-tennis-paywall-hit-email/index.ts"
+
+[functions.predictify-tennis-leaderboard-email]
+enabled = true
+verify_jwt = false
+import_map = "./functions/predictify-tennis-leaderboard-email/deno.json"
+entrypoint = "./functions/predictify-tennis-leaderboard-email/index.ts"
+

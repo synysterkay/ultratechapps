@@ -57,6 +57,7 @@ function getSenderForApp(appId: string) {
     appId === "predictify" ||
     appId === "horse_racing" ||
     appId === "predictify_nba" ||
+    appId === "predictify_tennis" ||
     appId === "predictify_crypto"
   ) {
     const pick = SENDER_POOL_PREDICTIFY[Math.floor(Math.random() * SENDER_POOL_PREDICTIFY.length)];
@@ -411,6 +412,46 @@ const APP_CONFIG: Record<string, AppConfig> = {
       },
     },
   },
+
+  predictify_tennis: {
+    name: "Predictify Tennis",
+    multilingual: true,
+    appStoreUrl: "https://apps.apple.com/app/predictify-tennis",
+    googlePlayUrl: "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+    emails: {
+      en: {
+        subject: "Your first tennis prediction is ready — here's the edge",
+        cta_text: "Open My First Prediction",
+        body_paragraphs: [
+          "Today's ATP and WTA slate is live and everyone has a take. Your friends, the commentators, the group chat. But you? You'll already know what the data says. Predictify just crunched thousands of variables for every match — Elo, surface, recent form, H2H, serve stats — and your first prediction is ready.",
+          "Here's what makes this different from every other app: you don't just see who wins. You see HOW confident the AI is. That confidence score is the secret. It's the difference between 'Alcaraz might win' and 'Alcaraz wins 78% of the time under these exact conditions.' One number, built from more data than you could process in a whole season. That's not a hot take — it's an edge.",
+          "Open the app right now. Tap any match on the home screen. Look at the prediction and the confidence score right below it. Then lock in your first pick to start your streak. It takes 30 seconds. When they walk on court, you'll know something the rest of the group chat doesn't.",
+          "Join communities of fans who break down picks daily. P.S. Users who make a prediction on day one are 4x more likely to build a winning streak. Don't just watch tennis — know tennis. \u{1F3BE}",
+        ],
+      },
+      es: {
+        subject: "Tu primera predicción de tenis está lista — esta es tu ventaja",
+        cta_text: "Abrir Mi Primera Predicción",
+        body_paragraphs: [
+          "Hoy hay ATP y WTA y todos tienen una opinión. Tus amigos, los comentaristas, el grupo de chat. ¿Pero tú? Tú ya sabrás lo que dicen los datos. Predictify acaba de analizar miles de variables para cada partido — Elo, superficie, forma reciente, H2H, servicio — y tu primera predicción está lista.",
+          "Esto es lo que lo hace diferente: no solo ves quién gana. Ves CUÁN segura está la IA. Ese score de confianza es el secreto. Es la diferencia entre 'Alcaraz podría ganar' y 'Alcaraz gana el 78% de las veces en estas condiciones exactas'.",
+          "Abre la app ahora. Toca cualquier partido. Mira la predicción y el score de confianza justo debajo. Luego confirma tu primera predicción para iniciar tu racha. Tarda 30 segundos.",
+          "P.D. Los usuarios que predicen el primer día tienen 4 veces más probabilidades de armar una racha. No solo veas tenis — conoce el tenis. \u{1F3BE}",
+        ],
+      },
+      fr: {
+        subject: "Votre premier pronostic tennis est prêt — voici l'avantage",
+        cta_text: "Ouvrir mon premier pronostic",
+        body_paragraphs: [
+          "Les tableaux ATP et WTA du jour sont en ligne et tout le monde a un avis. Tes amis, les commentateurs, le groupe. Toi ? Tu sauras déjà ce que disent les données. Predictify vient d'analyser des milliers de variables pour chaque match — Elo, surface, forme, H2H, service — et ton premier pronostic est prêt.",
+          "La différence : tu ne vois pas seulement qui gagne. Tu vois à quel point l'IA est sûre. Ce score de confiance, c'est le secret. La différence entre « Alcaraz peut gagner » et « Alcaraz gagne 78 % du temps dans ces conditions exactes ».",
+          "Ouvre l'app maintenant. Tape n'importe quel match. Regarde le pronostic et le score de confiance juste en dessous. Puis valide ton premier pick pour lancer ta série. 30 secondes.",
+          "P.-S. Ceux qui pronostiquent dès le premier jour ont 4× plus de chances de construire une série. Ne te contente pas de regarder le tennis — connais-le. \u{1F3BE}",
+        ],
+      },
+    },
+  },
+
   thesis_generator: {
     name: "Thesis Generator",
     multilingual: true,

@@ -59,6 +59,11 @@ def main() -> None:
         ['founder_story_nba', 'founder_story_nba_v2'],
         refresh=refresh,
     )
+    total += warm_dir(
+        BASE / 'templates_tennis',
+        ['founder_story_tennis', 'founder_story_tennis_v2'],
+        refresh=refresh,
+    )
     print(f'\n✅ Wrote {total} founder-story translation files.')
 
 
