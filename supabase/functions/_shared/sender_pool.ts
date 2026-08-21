@@ -13,7 +13,7 @@
  *   crosspromo → hello@passedai.io (Agent 2)
  *   fresh_start / breakup_therapy / soulplan → hello@breakuprelief.com (Agent 2)
  *   red_flag_scanner → selka@breakuprelief.com (Agent 2)
- *   ong + leftover apps → hello@kaynel.solutions (Agent 2)
+ *   ong + leftover apps + onbrief → hello@kaynel.solutions (Agent 2)
  * When EMAIL_PROVIDER=smtp2go, pool From addresses pass through as-is.
  */
 
@@ -70,6 +70,11 @@ export const SENDER_POOL_SOULPLAN: SenderIdentity[] = [
 /** ONG + leftover apps — kaynel.solutions (ZeptoMail Agent 2). */
 export const SENDER_POOL_ONG: SenderIdentity[] = [
   { email: "hello@kaynel.solutions", name: "ONG" },
+];
+
+/** Onbrief — kaynel.solutions until a dedicated onbrief domain is verified. */
+export const SENDER_POOL_ONBRIEF: SenderIdentity[] = [
+  { email: "hello@kaynel.solutions", name: "Onbrief" },
 ];
 
 export const SENDER_POOL_KAYNEL: SenderIdentity[] = [

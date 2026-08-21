@@ -21,6 +21,8 @@ DEFAULT_APPS = [
     "pupshape",
     "volume_booster",
     "horse_racing",
+    "onbrief",
+    "ong",
 ]
 
 EVENT_TYPES = [

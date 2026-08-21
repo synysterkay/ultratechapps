@@ -1,0 +1,9 @@
+{
+  "subject": "Last note on {{topic}}",
+  "body": [
+    "It's been a week. Your {{work_type}} on {{topic}} is still an outline in Onbrief.",
+    "If you still need it, open the app and finish the generation. If you don't, we'll go quiet after this.",
+    "P.S. This is the last upgrade nudge on this brief."
+  ],
+  "cta": "Open Onbrief"
+}

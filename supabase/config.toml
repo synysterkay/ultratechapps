@@ -421,3 +421,18 @@ entrypoint = "./functions/zeptomail-webhook/index.ts"
 [functions.predictify-unsubscribe]
 enabled = true
 verify_jwt = false
+
+# Onbrief instant emails — Flutter posts with the Supabase anon key
+# (same as thesis-complete-email / free-quota-hit-email).
+[functions.onbrief-complete-email]
+enabled = true
+verify_jwt = false
+import_map = "./functions/onbrief-complete-email/deno.json"
+entrypoint = "./functions/onbrief-complete-email/index.ts"
+
+[functions.onbrief-quota-hit-email]
+enabled = true
+verify_jwt = false
+import_map = "./functions/onbrief-quota-hit-email/deno.json"
+entrypoint = "./functions/onbrief-quota-hit-email/index.ts"
+

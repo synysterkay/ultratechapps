@@ -1,0 +1,9 @@
+{
+  "subject": "Five days. {{topic}} still isn't a PDF.",
+  "body": [
+    "{{first_name}} — your {{work_type}} has been sitting in Onbrief for five days. The outline didn't write itself.",
+    "Open it once. Generate what's missing. Export. That's it.",
+    "P.S. If this one is dead, start a new brief. Don't keep a zombie outline."
+  ],
+  "cta": "Finish or start clean"
+}

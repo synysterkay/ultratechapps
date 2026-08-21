@@ -85,6 +85,10 @@ def _is_ong_app(app):
     return app in {'ong', 'sealed'}
 
 
+def _is_onbrief_app(app):
+    return app in {'onbrief'}
+
+
 # Leftover apps (not thesis/predictify/breakup/crosspromo) send from kaynel.solutions.
 KAYNEL_CATCHALL_APPS = {
     'pupshape',
@@ -97,6 +101,7 @@ KAYNEL_CATCHALL_APPS = {
     'ai_boyfriend',
     'ai_girlfriend',
     'smart_notes',
+    'onbrief',
 }
 KAYNEL_SENDER_NAMES = {
     'ong': 'ONG',
@@ -111,6 +116,7 @@ KAYNEL_SENDER_NAMES = {
     'ai_boyfriend': 'AI Boyfriend',
     'ai_girlfriend': 'AI Girlfriend',
     'smart_notes': 'Smart Notes',
+    'onbrief': 'Onbrief',
 }
 
 
@@ -541,6 +547,11 @@ class GmailSender:
     def _zeptomail_pinned_email(self, sender_email, app=None):
         """Pin From address to the verified ZeptoMail domain for this app."""
         # App tag wins — do not let an instance default From rewrite thesis/predictify.
+        if _is_onbrief_app(app):
+            return (
+                os.getenv('ZEPTOMAIL_ONBRIEF_SENDER_EMAIL')
+                or os.getenv('ZEPTOMAIL_ONG_SENDER_EMAIL', 'hello@kaynel.solutions')
+            )
         if _is_kaynel_app(app):
             return os.getenv('ZEPTOMAIL_ONG_SENDER_EMAIL', 'hello@kaynel.solutions')
         if _is_crosspromo_app(app):
@@ -572,7 +583,14 @@ class GmailSender:
     def _effective_sender(self, app, from_name=None):
         sender_email = self.sender_email
         sender_name = from_name or self.sender_name
-        if _is_kaynel_app(app) and not self._explicit_sender_email:
+        if _is_onbrief_app(app) and not self._explicit_sender_email:
+            sender_email = (
+                os.getenv('ZEPTOMAIL_ONBRIEF_SENDER_EMAIL')
+                or os.getenv('ZEPTOMAIL_ONG_SENDER_EMAIL', 'hello@kaynel.solutions')
+            )
+            if not from_name and not self._explicit_sender_name:
+                sender_name = os.getenv('ZEPTOMAIL_ONBRIEF_SENDER_NAME', 'Onbrief')
+        elif _is_kaynel_app(app) and not self._explicit_sender_email:
             sender_email = os.getenv('ZEPTOMAIL_ONG_SENDER_EMAIL', 'hello@kaynel.solutions')
             if not from_name and not self._explicit_sender_name:
                 sender_name = (

@@ -1,0 +1,9 @@
+{
+  "subject": "{{first_name}}, your brief on {{topic}} is still waiting",
+  "body": [
+    "Yesterday you started a {{work_type}} in Onbrief. The outline is still there. The rest of the sections are one unlock away.",
+    "Open the app, unlock writing, tap Generate all. Don't start over — finish the one that's already on the desk.",
+    "P.S. Most people who wait a week never come back to that outline. Twenty-four hours is still recoverable."
+  ],
+  "cta": "Finish this brief"
+}

@@ -10,7 +10,7 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
 import { BOYFRIEND_EMAILS } from "./boyfriend-emails.ts";
 import { GIRLFRIEND_EMAILS } from "./girlfriend-emails.ts";
-import { SENDER_POOL_FULL as SENDER_POOL, SENDER_POOL_PREDICTIFY, SENDER_POOL_THESIS, SENDER_POOL_FRESH_START, SENDER_POOL_SELKA, SENDER_POOL_SOULPLAN, SENDER_POOL_ONG, SENDER_POOL_KAYNEL } from "../_shared/sender_pool.ts";
+import { SENDER_POOL_FULL as SENDER_POOL, SENDER_POOL_PREDICTIFY, SENDER_POOL_THESIS, SENDER_POOL_FRESH_START, SENDER_POOL_SELKA, SENDER_POOL_SOULPLAN, SENDER_POOL_ONG, SENDER_POOL_ONBRIEF, SENDER_POOL_KAYNEL } from "../_shared/sender_pool.ts";
 import { hasEmailCredentials, isSendFailureBounce, resolveSender, sendEmail } from "../_shared/email_transport.ts";
 import { recordHardBounce, isRecipientBlocked } from "../_shared/email_suppressions.ts";
 
@@ -74,6 +74,9 @@ function getSenderForApp(appId: string) {
   if (appId === "ong" || appId === "sealed") {
     return resolveSender(SENDER_POOL_ONG[0], "ong");
   }
+  if (appId === "onbrief") {
+    return resolveSender(SENDER_POOL_ONBRIEF[0], "onbrief");
+  }
   const kaynelNames: Record<string, string> = {
     pupshape: "PupShape",
     kinbound: "Kinbound",
@@ -85,6 +88,7 @@ function getSenderForApp(appId: string) {
     ai_boyfriend: "AI Boyfriend",
     ai_girlfriend: "AI Girlfriend",
     smart_notes: "Smart Notes",
+    onbrief: "Onbrief",
   };
   if (kaynelNames[appId]) {
     return resolveSender({ email: SENDER_POOL_KAYNEL[0].email, name: kaynelNames[appId] }, appId);
@@ -470,6 +474,26 @@ const APP_CONFIG: Record<string, AppConfig> = {
           "\u79d8\u8bc0\u662f\u522b\u60f3\u7740\u5148\u628a\u6574\u7bc7\u8bba\u6587\u5199\u5b8c\u3002\u8fd9\u5c31\u662f\u9519\u8bef\u3002\u6700\u5feb\u7684\u80dc\u5229\u662f\u7acb\u523b\u5199\u51fa\u4e00\u4e2a\u6709\u529b\u4e14\u53ef\u8fa9\u8bba\u7684\u8bba\u70b9\u58f0\u660e\u3002\u5b83\u80fd\u572830\u79d2\u5185\u4e3a\u6574\u7bc7\u6587\u7ae0\u5efa\u7acb\u9aa8\u67b6\u3002\u5176\u4f59\u4e00\u5207\u2014\u2014\u5927\u7eb2\u3001\u5f15\u7528\u3001\u4eba\u6027\u5316\u6587\u672c\u2014\u2014\u90fd\u4ece\u8fd9\u4e00\u4e2a\u6838\u5fc3\u60f3\u6cd5\u6d41\u51fa\u3002",
           "\u6253\u5f00\u5e94\u7528\u3002\u73b0\u5728\u3002\u522b\u60f3\u592a\u591a\u3002\u70b9\u51fb'\u751f\u6210\u8bba\u70b9'\uff0c\u8f93\u5165\u4f60\u7684\u4e3b\u9898\u6216\u7c98\u8d34\u4f5c\u4e1a\u8981\u6c42\uff0c\u6309\u5f00\u59cb\u300230\u79d2\u5185\u4f60\u4f1a\u5f97\u52303-5\u4e2a\u53ef\u884c\u7684\u8bba\u70b9\u9009\u9879\u3002\u9009\u4e00\u4e2a\u3002\u5c31\u8fd9\u6837\uff0c\u767d\u7eb8\u6050\u614c\u6d88\u5931\u4e86\u3002\u4f60\u5df2\u7ecf\u9886\u5148\u73ed\u91cc90%\u7684\u4eba\u4e86\u3002",
           "\u4f60\u7684\u7b2c\u4e00\u7bc7\u8bba\u70b9\u6b63\u5728\u7b49\u4f60\u3002\u5728\u4f60\u8bfb\u5b8c\u8fd9\u5c01\u90ae\u4ef6\u4e4b\u524d\u6253\u5f00Thesis Generator\u751f\u6210\u7b2c\u4e00\u53e5\u8bba\u70b9\u3002\u65f6\u949f\u5728\u8d70\uff0c\u4f46\u73b0\u5728\u4f60\u6709\u8fd9\u4e2a\u79d8\u8bc0\u4e86\u3002P.S. \u7b2c\u4e00\u6279\u4f7f\u7528'\u4eba\u6027\u5316'\u529f\u80fd\u5904\u7406\u751f\u6210\u8bba\u70b9\u7684\u7528\u6237\uff0c\u80fd99%\u7ed5\u8fc7AI\u68c0\u6d4b\u3002\u8fd9\u662f\u4f60\u7684\u79d8\u5bc6\u6b66\u5668\u3002",
+        ],
+      },
+    },
+  },
+
+  onbrief: {
+    name: "Onbrief",
+    multilingual: false,
+    appStoreUrl: "",
+    googlePlayUrl: "https://play.google.com/store/apps/details?id=com.onbrief.research",
+    emails: {
+      en: {
+        subject: "Your outline is on the desk. 30 seconds to a full brief.",
+        preheader: "Open the brief, tap Generate all, export the PDF. That's the whole product.",
+        cta_text: "Generate all",
+        body_paragraphs: [
+          "You opened Onbrief. The trap is the same for almost everyone: type a title, glance at the outline, close the app, mean to finish it after the next meeting. Three days later the desk is empty and the deadline is not.",
+          "The fastest win is not writing the whole thing. Open the brief that's already sitting there, tap Generate all, and let the workspace fill. That's the whole product \u2014 a finished memo you can export, not another notes app.",
+          "Don't save this for Friday. Open Onbrief now, stay on that one brief, tap Generate all. You'll have a draft before this email is closed.",
+          "P.S. People who generate the first brief on day one actually export it. Waiting usually means it never leaves the outline.",
         ],
       },
     },
@@ -1119,6 +1143,114 @@ function buildThesisWelcomeHtml(
 </html>`;
 }
 
+function buildOnbriefWelcomeHtml(
+  emailData: EmailTemplate,
+  appConfig: AppConfig,
+  language: string,
+  utmCtx?: { app: string; emailNum: string | number; cycle: number; language: string; ref: string; kind: string },
+  firstName?: string,
+): string {
+  const greeting = firstName ? `Hi ${firstName},` : "Hi there,";
+  const steps = [
+    "Open the brief on your desk",
+    "Tap Generate all — don't edit the outline again",
+    "Export the PDF so it leaves the phone",
+  ];
+  const bodyHtml = emailData.body_paragraphs
+    .map((p, i) => {
+      const isPs = p.includes("P.S.");
+      if (isPs) {
+        return `<div style="margin:8px 0 0;padding:14px 18px;background:#CCFBF1;border-radius:10px;border:1px solid #99F6E4;"><p style="margin:0;font-size:15px;color:#0F766E;line-height:1.7;">${p.replace(/\n/g, "<br>")}</p></div>`;
+      }
+      const color = i === 0 ? "#0A0A0A" : "#52525B";
+      const weight = i === 0 ? "font-weight:600;" : "";
+      return `<p style="margin:0 0 18px;font-size:16px;color:${color};line-height:1.7;${weight}">${p.replace(/\n/g, "<br>")}</p>`;
+    })
+    .join("");
+  const stepsHtml = steps
+    .map(
+      (step, i) => `
+      <tr>
+        <td style="padding:0 14px 14px 0;vertical-align:top;width:28px;">
+          <div style="width:24px;height:24px;border-radius:50%;background:#0F766E;color:#fff;font-size:12px;font-weight:600;line-height:24px;text-align:center;">${i + 1}</div>
+        </td>
+        <td style="padding:0 0 14px;vertical-align:top;font-size:14px;color:#334155;line-height:1.5;">${step}</td>
+      </tr>`,
+    )
+    .join("");
+  const playHref = utmCtx ? withUtm(appConfig.googlePlayUrl, utmCtx) : appConfig.googlePlayUrl;
+  const iosHref = appConfig.appStoreUrl
+    ? (utmCtx ? withUtm(appConfig.appStoreUrl, utmCtx) : appConfig.appStoreUrl)
+    : "";
+  const iosBtn = iosHref
+    ? `<a href="${iosHref}" style="display:inline-block;background:#0A0A0A;color:#ffffff;padding:13px 24px;text-decoration:none;border-radius:8px;font-weight:600;font-size:14px;margin:4px 6px;">App Store</a>`
+    : "";
+  const androidBtn = playHref
+    ? `<a href="${playHref}" style="display:inline-block;background:#0F766E;color:#ffffff;padding:13px 24px;text-decoration:none;border-radius:8px;font-weight:600;font-size:14px;margin:4px 6px;">${emailData.cta_text}</a>`
+    : "";
+  void language;
+
+  return `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+</head>
+<body style="margin:0;padding:0;background:#FAFAFA;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#FAFAFA;padding:32px 16px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #E4E4E7;">
+          <tr>
+            <td style="padding:28px 32px 8px;text-align:center;">
+              <p style="margin:0;font-size:20px;font-weight:700;color:#0A0A0A;letter-spacing:-0.02em;">Onbrief</p>
+              <p style="margin:6px 0 0;font-size:13px;color:#52525B;">Research writer for work</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:24px 32px 8px;">
+              <p style="margin:0 0 20px;font-size:16px;color:#52525B;">${greeting}</p>
+              ${bodyHtml}
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:8px 32px 24px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F4F4F5;border:1px solid #E4E4E7;border-radius:8px;padding:18px 20px;">
+                <tr>
+                  <td style="padding-bottom:12px;font-size:12px;font-weight:600;color:#0F766E;text-transform:uppercase;letter-spacing:0.06em;">On the desk</td>
+                </tr>
+                ${stepsHtml}
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 32px 32px;text-align:center;">
+              ${androidBtn}
+              ${iosBtn}
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 32px 28px;">
+              <p style="margin:0;font-size:15px;color:#52525B;line-height:1.6;">
+                Best,<br>
+                <strong style="color:#0A0A0A;">Onbrief</strong>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:20px 32px;background:#FAFAFA;border-top:1px solid #E4E4E7;text-align:center;">
+              <p style="margin:0;font-size:11px;color:#A1A1AA;">You're receiving this because you signed up for ${appConfig.name}.</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+}
+
 function escapeHtml(s: string): string {
   return s
     .replace(/&/g, "&amp;")
@@ -1606,6 +1738,8 @@ Deno.serve(async (req: Request) => {
     };
     const html = app_id === "thesis_generator"
       ? buildThesisWelcomeHtml(emailData, appConfig, lang, utmCtx, firstName)
+      : app_id === "onbrief"
+      ? buildOnbriefWelcomeHtml(emailData, appConfig, lang, utmCtx, firstName)
       : app_id === "breakup_therapy"
       ? buildBreakupWelcomeHtml(emailData, appConfig, lang, sender.name, utmCtx, firstName)
       : app_id === "soulplan"

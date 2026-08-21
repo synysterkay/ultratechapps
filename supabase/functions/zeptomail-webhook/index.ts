@@ -41,6 +41,7 @@ const KNOWN_APP_SLUGS = new Set([
   "ai_boyfriend",
   "ai_girlfriend",
   "smart_notes",
+  "onbrief",
 ]);
 
 function parsePayload(rawBody: string): Record<string, unknown> {
@@ -258,6 +259,7 @@ function inferApp(payload: Record<string, unknown>, senderDomain: string | null)
   if (clientRef.includes("predictify_nba") || clientRef.includes("nba")) return "predictify_nba";
   if (clientRef.includes("horse_racing") || clientRef.includes("horse")) return "horse_racing";
   if (clientRef.includes("thesis")) return "thesis_generator";
+  if (clientRef.includes("onbrief")) return "onbrief";
   if (clientRef.includes("ong") || clientRef.includes("sealed")) return "ong";
   if (clientRef.includes("pupshape")) return "pupshape";
   if (clientRef.includes("kinbound")) return "kinbound";

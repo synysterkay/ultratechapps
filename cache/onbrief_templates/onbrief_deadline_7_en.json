@@ -1,0 +1,9 @@
+{
+  "subject": "7 days until your deadline — the brief isn't exported yet",
+  "body": [
+    "{{first_name}}, you set a deadline in Onbrief for {{topic}}. One week out.",
+    "Open the workspace today. If sections are empty, tap Generate all. If they're written, export the PDF so you're not doing this the night before.",
+    "P.S. A finished PDF on day −7 beats a scramble on day 0."
+  ],
+  "cta": "Work the brief"
+}

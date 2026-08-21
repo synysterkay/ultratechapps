@@ -1,0 +1,9 @@
+{
+  "subject": "Last ping on {{topic}}",
+  "body": [
+    "Ten days. We'll stop after this.",
+    "If you still need the {{work_type}}, it's in Onbrief. Open, generate, export. If you don't, archive it and we'll stay out of your inbox.",
+    "P.S. This is the last reminder on this document."
+  ],
+  "cta": "Open Onbrief"
+}

@@ -1,0 +1,9 @@
+{
+  "subject": "Tomorrow. Export {{topic}} tonight.",
+  "body": [
+    "{{first_name}} — the deadline is tomorrow. The brief is still on the phone.",
+    "Open Onbrief, tap Generate all on anything empty, export the PDF before you sleep.",
+    "P.S. This is the last useful hour. Use it."
+  ],
+  "cta": "Export tonight"
+}

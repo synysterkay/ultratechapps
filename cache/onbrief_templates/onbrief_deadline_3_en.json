@@ -1,0 +1,9 @@
+{
+  "subject": "3 days. {{topic}} still needs a PDF.",
+  "body": [
+    "Three days until the deadline you set. Your {{work_type}} is still in Onbrief.",
+    "Generate what's missing, skim it, export. Don't wait for tomorrow's calendar to eat this.",
+    "P.S. Export now even if you'll edit later. A file in Files is a file you can send."
+  ],
+  "cta": "Export a draft today"
+}

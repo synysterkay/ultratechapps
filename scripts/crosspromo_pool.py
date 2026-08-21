@@ -16,6 +16,7 @@ from firestore_language_loader import MULTILINGUAL_PROJECTS
 import localize_phrase
 
 THESIS_APP_NAME = 'Thesis Generator'
+ONBRIEF_APP_NAME = 'Onbrief'
 EXPORTS_DIR = Path(__file__).parent.parent / 'firebase_exports'
 
 # Lower rank = higher affinity for Thesis Generator installs.
@@ -140,7 +141,7 @@ def build_pool(
 
     by_email: dict[str, dict] = {}
     for app_name, users in users_by_app.items():
-        if app_name == THESIS_APP_NAME:
+        if app_name == THESIS_APP_NAME or app_name == ONBRIEF_APP_NAME:
             continue
         for u in users:
             email = (u.get('email') or '').lower().strip()
@@ -181,7 +182,7 @@ def pool_stats(pool: list[dict] | None = None) -> dict:
         'by_affinity_band': by_affinity,
         'apps_in_loader': [
             info['name'] for info in FIREBASE_APPS.values()
-            if info['name'] != THESIS_APP_NAME
+            if info['name'] not in {THESIS_APP_NAME, ONBRIEF_APP_NAME}
         ],
     }
 

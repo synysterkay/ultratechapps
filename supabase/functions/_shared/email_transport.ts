@@ -45,6 +45,7 @@ const KAYNEL_CATCHALL_APPS = new Set([
   "ai_boyfriend",
   "ai_girlfriend",
   "smart_notes",
+  "onbrief",
 ]);
 const KAYNEL_SENDER_NAMES: Record<string, string> = {
   ong: "ONG",
@@ -59,6 +60,7 @@ const KAYNEL_SENDER_NAMES: Record<string, string> = {
   ai_boyfriend: "AI Boyfriend",
   ai_girlfriend: "AI Girlfriend",
   smart_notes: "Smart Notes",
+  onbrief: "Onbrief",
 };
 
 export interface EmailTag {
@@ -175,6 +177,15 @@ export function zeptomailApiKeyForApp(app: string): string {
 export function zeptomailSenderForApp(app: string): SenderIdentity {
   if (isKaynelAppTag(app)) {
     const slug = app.toLowerCase();
+    if (slug === "onbrief") {
+      return {
+        email:
+          Deno.env.get("ZEPTOMAIL_ONBRIEF_SENDER_EMAIL") ||
+          Deno.env.get("ZEPTOMAIL_ONG_SENDER_EMAIL") ||
+          "hello@kaynel.solutions",
+        name: Deno.env.get("ZEPTOMAIL_ONBRIEF_SENDER_NAME") || "Onbrief",
+      };
+    }
     const name = isOngAppTag(slug)
       ? (Deno.env.get("ZEPTOMAIL_ONG_SENDER_NAME") || "ONG")
       : (KAYNEL_SENDER_NAMES[slug] || "ONG");

@@ -1,0 +1,9 @@
+{
+  "subject": "{{first_name}}, the outline is done. Generate all is the next tap.",
+  "body": [
+    "You have an outline sitting in Onbrief for {{topic}}. That's the setup. The brief itself starts when you tap Generate all — not when you edit the outline again.",
+    "Open the workspace. Stay on that one document. Tap Generate all and let it write. Come back to a full draft instead of another empty section.",
+    "P.S. People who tap Generate all the same day they build the outline are the ones who actually export a PDF."
+  ],
+  "cta": "Generate all"
+}

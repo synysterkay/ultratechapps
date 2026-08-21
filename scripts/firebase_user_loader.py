@@ -176,6 +176,15 @@ FIREBASE_APPS = {
         'multilingual': True,
         'supported_languages': ['en', 'es', 'fr', 'de', 'pt', 'it', 'ar', 'hi'],
     },
+    'onbrief-185c5': {
+        'name': 'Onbrief',
+        'export_file': 'onbrief_fresh.json',
+        'description': 'Research writer for work — briefs, memos, and reports',
+        'app_store_url': '',
+        'google_play_url': 'https://play.google.com/store/apps/details?id=com.onbrief.research',
+        'multilingual': False,
+        'supported_languages': ['en'],
+    },
 }
 
 

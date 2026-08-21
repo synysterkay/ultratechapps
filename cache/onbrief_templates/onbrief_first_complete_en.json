@@ -1,0 +1,9 @@
+{
+  "subject": "{{first_name}}, the brief is done — export the PDF",
+  "body": [
+    "{{first_name}} — your {{work_type}} on {{topic}} is finished. That's the hard part.",
+    "Now get it off the phone. Open Onbrief, go to Export, save the PDF. A brief that only lives in the app is a draft your team never sees.",
+    "P.S. Save a copy to Files while you're there. Future-you will not want to regenerate this under a deadline."
+  ],
+  "cta": "Export my PDF"
+}

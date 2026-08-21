@@ -127,6 +127,12 @@ const FIREBASE_PROJECTS: Record<
     // Mirrors Smart Notes app-localization codes.
     supportedLanguages: ["en", "es", "fr", "de", "pt", "it", "ar", "hi"],
   },
+  "onbrief-185c5": {
+    appId: "onbrief",
+    multilingual: false,
+    defaultLang: "en",
+    supportedLanguages: ["en"],
+  },
 };
 
 const ALL_PROJECT_IDS = Object.keys(FIREBASE_PROJECTS);
@@ -146,6 +152,7 @@ const ZEPTOMAIL_PROJECT_IDS = [
   "boyfriend-ai-f1e5e",
   "apb412---ai-girlfriend-app",
   "audio-recorder-microphone",
+  "onbrief-185c5",
 ];
 
 const PREDICTIFY_WELCOME_APP_IDS = new Set([
@@ -156,6 +163,7 @@ const PREDICTIFY_WELCOME_APP_IDS = new Set([
 
 const BREAKUP_WELCOME_APP_IDS = new Set(["fresh_start", "soulplan"]);
 const ONG_WELCOME_APP_IDS = new Set(["ong"]);
+const ONBRIEF_WELCOME_APP_IDS = new Set(["onbrief"]);
 const KAYNEL_WELCOME_APP_IDS = new Set([
   "ong",
   "pupshape",
@@ -441,6 +449,7 @@ Deno.serve(async (req) => {
       const isPredictifyWelcome = PREDICTIFY_WELCOME_APP_IDS.has(config.appId);
       const isBreakupWelcome = BREAKUP_WELCOME_APP_IDS.has(config.appId);
       const isOngWelcome = ONG_WELCOME_APP_IDS.has(config.appId);
+      const isOnbriefWelcome = ONBRIEF_WELCOME_APP_IDS.has(config.appId);
       const isKaynelWelcome = KAYNEL_WELCOME_APP_IDS.has(config.appId);
       const dailyCap = isPredictifyWelcome
         ? PREDICTIFY_ZEPTOMAIL_DAILY_CAP
@@ -448,6 +457,8 @@ Deno.serve(async (req) => {
           ? parseInt(Deno.env.get("BREAKUP_ZEPTOMAIL_DAILY_CAP") || "200", 10)
           : isOngWelcome
             ? parseInt(Deno.env.get("ONG_ZEPTOMAIL_DAILY_CAP") || "30", 10)
+          : isOnbriefWelcome
+            ? parseInt(Deno.env.get("ONBRIEF_ZEPTOMAIL_DAILY_CAP") || "30", 10)
             : isKaynelWelcome
               ? parseInt(Deno.env.get("KAYNEL_ZEPTOMAIL_DAILY_CAP") || "10", 10)
             : ZEPTOMAIL_DAILY_CAP;
@@ -457,6 +468,8 @@ Deno.serve(async (req) => {
           ? parseInt(Deno.env.get("BREAKUP_ZEPTOMAIL_MAX_PER_RUN") || "20", 10)
           : isOngWelcome
             ? parseInt(Deno.env.get("ONG_ZEPTOMAIL_MAX_PER_RUN") || "10", 10)
+          : isOnbriefWelcome
+            ? parseInt(Deno.env.get("ONBRIEF_ZEPTOMAIL_MAX_PER_RUN") || "10", 10)
             : isKaynelWelcome
               ? parseInt(Deno.env.get("KAYNEL_ZEPTOMAIL_MAX_PER_RUN") || "5", 10)
             : ZEPTOMAIL_MAX_PER_RUN;

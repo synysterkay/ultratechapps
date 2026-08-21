@@ -50,6 +50,7 @@ const KAYNEL_CATCHALL_APPS = new Set([
   "ai_boyfriend",
   "ai_girlfriend",
   "smart_notes",
+  "onbrief",
 ]);
 
 function isKaynelApp(appTag) {
@@ -120,6 +121,7 @@ function resolveSender(poolSender, appTag) {
         smart_notes: "Smart Notes",
         ai_boyfriend: "AI Boyfriend",
         ai_girlfriend: "AI Girlfriend",
+        onbrief: "Onbrief",
       };
       return {
         email: process.env.ZEPTOMAIL_ONG_SENDER_EMAIL || "hello@kaynel.solutions",
