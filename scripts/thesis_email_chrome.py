@@ -141,34 +141,41 @@ def _android_store_button(url: str, line1: str = 'GET IT ON', line2: str = 'Goog
 
 
 def _store_buttons_row(links: list[dict]) -> str:
-    """Side-by-side App Store + Google Play badges."""
-    ios = android = ''
+    """Store badges in the order given (Play first for Android-only lists)."""
+    buttons = []
+    seen = set()
     for link in links:
         variant = link.get('variant', '')
-        if variant in {'ios', 'app_store', 'primary'} and not ios:
-            ios = _ios_store_button(
-                link['url'],
+        url = link.get('url') or ''
+        if not url:
+            continue
+        if variant in {'ios', 'app_store'} and 'ios' not in seen:
+            seen.add('ios')
+            buttons.append(_ios_store_button(
+                url,
                 link.get('line1', 'Download on the'),
                 link.get('line2', link.get('text', 'App Store')),
-            )
-        elif variant in {'android', 'play', 'google_play'} and not android:
-            android = _android_store_button(
-                link['url'],
+            ))
+        elif variant in {'android', 'play', 'google_play'} and 'android' not in seen:
+            seen.add('android')
+            buttons.append(_android_store_button(
+                url,
                 link.get('line1', 'GET IT ON'),
                 link.get('line2', link.get('text', 'Google Play')),
-            )
-    if not ios and not android:
+            ))
+    if not buttons:
         return ''
-    if ios and android:
-        return (
-            f'<table role="presentation" width="100%" cellspacing="0" cellpadding="0" '
-            f'style="margin:32px 0 8px 0;"><tr>'
-            f'<td width="50%" style="padding:0 6px 0 0;vertical-align:top;">{ios}</td>'
-            f'<td width="50%" style="padding:0 0 0 6px;vertical-align:top;">{android}</td>'
-            f'</tr></table>'
-        )
-    single = ios or android
-    return f'<div style="margin:32px auto 8px auto;max-width:280px;">{single}</div>'
+    if len(buttons) == 1:
+        return f'<div style="margin:32px auto 8px auto;max-width:280px;">{buttons[0]}</div>'
+    cells = ''.join(
+        f'<td width="50%" style="padding:{("0 6px 0 0" if i == 0 else "0 0 0 6px")};'
+        f'vertical-align:top;">{btn}</td>'
+        for i, btn in enumerate(buttons[:2])
+    )
+    return (
+        f'<table role="presentation" width="100%" cellspacing="0" cellpadding="0" '
+        f'style="margin:32px 0 8px 0;"><tr>{cells}</tr></table>'
+    )
 
 
 def _cta_section(

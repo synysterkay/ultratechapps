@@ -30,7 +30,7 @@ from gmail_sender import GmailSender, SKIP_RESULTS, has_email_credentials
 from thesis_template_translator import get_localized, warm_all, _write_cache
 from thesis_email_chrome import render as render_email
 from deliverability_monitor import pick_healthy_sender
-from crosspromo_pool import build_pool, pool_stats
+from crosspromo_pool import build_pool, pool_stats, source_is_android_first
 import localize_phrase
 
 APP_NAME = 'Research Generator'
@@ -135,7 +135,13 @@ CROSSPROMO_FOOTER = (
 CROSSPROMO_ADDRESS = 'Kaynel · Built for students & researchers'
 
 
-def crosspromo_render_kwargs(preview_text: str | None = None) -> dict:
+def crosspromo_render_kwargs(
+    preview_text: str | None = None,
+    *,
+    android_first: bool = False,
+) -> dict:
+    ios = {'url': APP_STORE_URL, 'variant': 'ios', 'line1': 'Download on the', 'line2': 'App Store'}
+    play = {'url': GOOGLE_PLAY_URL, 'variant': 'android', 'line1': 'GET IT ON', 'line2': 'Google Play'}
     return {
         'sender_name': 'Alex',
         'sender_org': 'Kaynel',
@@ -146,10 +152,7 @@ def crosspromo_render_kwargs(preview_text: str | None = None) -> dict:
         'address_override': CROSSPROMO_ADDRESS,
         'compact': True,
         'preview_text': preview_text,
-        'cta_links': [
-            {'url': APP_STORE_URL, 'variant': 'ios', 'line1': 'Download on the', 'line2': 'App Store'},
-            {'url': GOOGLE_PLAY_URL, 'variant': 'android', 'line1': 'GET IT ON', 'line2': 'Google Play'},
-        ],
+        'cta_links': [play, ios] if android_first else [ios, play],
     }
 
 
@@ -340,6 +343,16 @@ def run(*, dry_run: bool = False, limit: int = 0, enroll_cap: int | None = None)
         due_queue.append((email, record, stage))
     due_queue.sort(key=lambda t: (t[1].get('affinity', 50), t[0]))
 
+    before_daily = len(due_queue)
+    due_queue = [
+        (email, record, stage)
+        for email, record, stage in due_queue
+        if not GmailSender.already_emailed_today(email)
+    ]
+    skipped_today = before_daily - len(due_queue)
+    if skipped_today:
+        print(f'   ⏭️ Already emailed today: {skipped_today:,} (product mail wins)')
+
     if limit > 0:
         due_queue = due_queue[:limit]
     else:
@@ -398,10 +411,15 @@ def run(*, dry_run: bool = False, limit: int = 0, enroll_cap: int | None = None)
         ]
         cta = tpl.get('cta', en_src['cta'])
         preview = tpl.get('preview', en_src.get('preview', ''))
+        android_first = source_is_android_first(record.get('source_apps') or [])
+        fallback_url = GOOGLE_PLAY_URL if android_first else APP_STORE_URL
 
         html = render_email(
-            lang, paragraphs, cta, APP_STORE_URL,
-            **crosspromo_render_kwargs(preview_text=preview or None),
+            lang, paragraphs, cta, fallback_url,
+            **crosspromo_render_kwargs(
+                preview_text=preview or None,
+                android_first=android_first,
+            ),
         )
         tags = [
             {'name': 'app', 'value': APP_SLUG},

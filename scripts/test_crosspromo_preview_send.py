@@ -65,7 +65,7 @@ def main() -> None:
 
     html = render_email(
         lang, paragraphs, cta, APP_STORE_URL,
-        **crosspromo_render_kwargs(preview_text=preview or None),
+        **crosspromo_render_kwargs(preview_text=preview or None, android_first=False),
     )
 
     print(f'To: {args.to}')

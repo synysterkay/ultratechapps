@@ -130,13 +130,15 @@ def load_all_users(token: str, page_size: int = 300) -> Iterable[dict]:
             fields = doc.get('fields', {})
             email = (_f(fields, 'email', default='') or '').lower().strip()
             username = (_f(fields, 'username', default='') or '').strip().lower()
+            usage = _f_map(fields, 'usage') or {}
             if not email:
                 continue
             if username.startswith('guest'):
                 continue
+            if usage.get('isGuest') is True:
+                continue
             uid = doc.get('name', '').split('/')[-1]
             display = _f(fields, 'displayName', default='') or ''
-            usage = _f_map(fields, 'usage') or {}
             subscription = _f_map(fields, 'subscription') or {}
             streak = int(usage.get('streak') or _f_int(fields, 'streak') or 0)
             language = (_f(fields, 'language', default='') or 'en').split('-')[0].lower()

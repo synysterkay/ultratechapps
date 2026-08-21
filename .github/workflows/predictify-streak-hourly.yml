@@ -58,6 +58,7 @@ jobs:
           FOUNDER_STORY_LAPSED_DAYS: "14"
           V2_DAILY_SEND_CAP: "75"
           EMAIL_SENDING_PAUSED: ${{ secrets.EMAIL_SENDING_PAUSED }}
+          EMAIL_ONE_PER_DAY: "1"
           EMAIL_REF_SALT: ${{ secrets.EMAIL_REF_SALT }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
@@ -86,16 +87,14 @@ jobs:
       - name: Save predictify_v2_state
         if: always()
         run: |
-          if [ -f cache/predictify_v2_state.json ]; then
-            git config user.name "GitHub Actions"
-            git config user.email "actions@github.com"
-            git add cache/predictify_v2_state.json -f 2>/dev/null || true
-            if ! git diff --staged --quiet; then
-              git commit -m "Update predictify v2 state (hourly streak) [skip ci]"
-              for attempt in 1 2 3; do
-                if git push origin HEAD:main; then break; fi
-                git pull --rebase --autostash origin main || true
-                sleep $((attempt * 5))
-              done
-            fi
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add -f cache/predictify_v2_state.json cache/daily_recipient_sends.json 2>/dev/null || true
+          if ! git diff --staged --quiet; then
+            git commit -m "Update predictify v2 state (hourly streak) [skip ci]"
+            for attempt in 1 2 3; do
+              if git push origin HEAD:main; then break; fi
+              git pull --rebase --autostash origin main || true
+              sleep $((attempt * 5))
+            done
           fi

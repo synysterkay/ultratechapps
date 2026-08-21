@@ -214,15 +214,23 @@ class GmailSender:
     # .reload, which only reloads the sender module, not gmail_sender), so the
     # first successful email to an address wins and the rest are suppressed.
     # v1 retention sends each user at most once per run, so it never trips this.
+    #
+    # Daily ledger (EMAIL_ONE_PER_DAY, default on): the same set is hydrated
+    # from cache/daily_recipient_sends.json so separate cron processes
+    # (Predictify → founder story → crosspromo, or 09:00 vs 17:00 UTC) also
+    # share one-email-per-inbox-per-UTC-day. Product mail that runs first wins.
     _emailed_recipients: set = set()
+    _daily_ledger_date = None
     _suppression_cache = None
     _volume_cache = None
     _run_counts = Counter()
 
     @classmethod
     def reset_dedup(cls):
-        """Clear the per-run dedup set (call at the start of a fresh run)."""
+        """Clear the in-memory dedup set, then reload today's daily ledger."""
         cls._emailed_recipients = set()
+        cls._daily_ledger_date = None
+        cls._hydrate_daily_dedup()
 
     def __init__(self, sender_email=None, sender_name=None):
         self._use_mailgun = _is_mailgun()
@@ -766,13 +774,14 @@ class GmailSender:
             print(f"   ⏭️ Thesis volume cap reached — {used}/{metrics.get('cap', 0)} sent in 24h")
             return 'throttled'
 
-        # One email per recipient per process run — suppress duplicates so a
-        # user never receives two emails of the same app at once.
-        # Warming intentionally sends many emails to the same seed inbox.
+        # One email per recipient per UTC day (and per process). Warming
+        # intentionally sends many emails to the same seed inbox.
         dedup_key = None if is_warming else (to_email or '').lower().strip()
-        if dedup_key and dedup_key in GmailSender._emailed_recipients:
-            print(f"   ⏭️ Duplicate suppressed — already emailed {to_email} this run")
-            return 'duplicate'
+        if dedup_key:
+            self._hydrate_daily_dedup()
+            if dedup_key in GmailSender._emailed_recipients:
+                print(f"   ⏭️ Duplicate suppressed — already emailed {to_email} today")
+                return 'duplicate'
 
         sender_email, sender_name = self._effective_sender(app, from_name)
         subject_clean = _sanitize_subject(subject)
@@ -808,10 +817,83 @@ class GmailSender:
     def _mark_sent(self, dedup_key, app):
         if dedup_key:
             GmailSender._emailed_recipients.add(dedup_key)
+            self._persist_daily_recipient(dedup_key)
         if _is_thesis_app(app):
             GmailSender._run_counts['thesis'] += 1
         if _is_kaynel_app(app):
             self._consume_kaynel_cap()
+
+    @staticmethod
+    def _one_per_day_enabled() -> bool:
+        v = (os.getenv('EMAIL_ONE_PER_DAY') or '1').strip().lower()
+        return v not in {'0', 'false', 'no', 'off'}
+
+    @classmethod
+    def _daily_ledger_path(cls):
+        return Path(__file__).resolve().parent.parent / 'cache' / 'daily_recipient_sends.json'
+
+    @classmethod
+    def _utc_today(cls) -> str:
+        n = datetime.now(timezone.utc)
+        return f'{n.year}-{n.month:02d}-{n.day:02d}'
+
+    @classmethod
+    def _hydrate_daily_dedup(cls):
+        """Load today's already-mailed addresses from disk into the in-memory set."""
+        if not cls._one_per_day_enabled():
+            return
+        today = cls._utc_today()
+        if cls._daily_ledger_date == today:
+            return
+        emails = set()
+        path = cls._daily_ledger_path()
+        try:
+            data = json.loads(path.read_text()) if path.exists() else {}
+        except Exception:
+            data = {}
+        if (data.get('date') or '') == today:
+            emails = {
+                str(e).lower().strip()
+                for e in (data.get('emails') or [])
+                if e
+            }
+        cls._emailed_recipients |= emails
+        cls._daily_ledger_date = today
+        if emails:
+            print(f'   📬 Daily recipient ledger: {len(emails)} already emailed {today}')
+
+    @classmethod
+    def _persist_daily_recipient(cls, email: str):
+        if not cls._one_per_day_enabled() or not email:
+            return
+        today = cls._utc_today()
+        path = cls._daily_ledger_path()
+        try:
+            data = json.loads(path.read_text()) if path.exists() else {}
+        except Exception:
+            data = {}
+        if (data.get('date') or '') != today:
+            data = {'date': today, 'emails': []}
+        emails = {str(e).lower().strip() for e in (data.get('emails') or []) if e}
+        emails.add(email.lower().strip())
+        payload = {
+            'date': today,
+            'emails': sorted(emails),
+            'count': len(emails),
+            'updated_at': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
+        }
+        path.parent.mkdir(parents=True, exist_ok=True)
+        tmp = path.with_suffix('.json.tmp')
+        tmp.write_text(json.dumps(payload, indent=2), encoding='utf-8')
+        tmp.replace(path)
+
+    @classmethod
+    def already_emailed_today(cls, email: str) -> bool:
+        key = (email or '').lower().strip()
+        if not key:
+            return True
+        cls._hydrate_daily_dedup()
+        return key in cls._emailed_recipients
 
     @staticmethod
     def _health_blocks(sender_email: str) -> bool:

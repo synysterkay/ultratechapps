@@ -47,6 +47,38 @@ def _best_affinity(source_apps: list[str]) -> int:
     return min(AFFINITY_RANK.get(a, 50) for a in source_apps)
 
 
+def _real_store_url(url: str | None) -> bool:
+    u = (url or '').strip()
+    if not u:
+        return False
+    # Placeholder / search pages are not a live store listing.
+    if 'id0000000000' in u or '/search?' in u:
+        return False
+    return True
+
+
+def source_is_android_first(source_apps: list[str] | None) -> bool:
+    """True when every known source app is Play-live and has no real iOS listing.
+
+    Volume / bass apps and ONG (iOS still in review) should see Play first on
+    Research Generator crosspromo. Dual-platform sources keep App Store first.
+    """
+    if not source_apps:
+        return False
+    by_name = {info['name']: info for info in FIREBASE_APPS.values()}
+    known = 0
+    for name in source_apps:
+        info = by_name.get(name)
+        if not info:
+            continue
+        known += 1
+        has_ios = _real_store_url(info.get('app_store_url'))
+        has_play = _real_store_url(info.get('google_play_url'))
+        if has_ios or not has_play:
+            return False
+    return known > 0
+
+
 def _load_language_maps() -> dict[str, str]:
     """Best-effort email → language from on-disk Firestore language caches."""
     out: dict[str, str] = {}

@@ -81,6 +81,9 @@ jobs:
             cache/retention_state.json
             cache/sender_health.json
             cache/*_state.json
+            cache/daily_recipient_sends.json
+            cache/ong_daily_quota.json
+            cache/kaynel_daily_quota.json
             cache/thesis_templates/
           key: retention-state-${{ github.run_number }}
           restore-keys: |
@@ -120,6 +123,7 @@ jobs:
           ONG_DAILY_SEND_CAP: "30"
           KAYNEL_DAILY_SEND_CAP: "50"
           EMAIL_HEALTH_GATE: "1"
+          EMAIL_ONE_PER_DAY: "1"
           THESIS_SENDER_NAME: Thesis Generator
           EMAIL_SENDING_PAUSED: ${{ secrets.EMAIL_SENDING_PAUSED }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
@@ -330,7 +334,7 @@ jobs:
       - name: Save retention state
         if: always()
         run: |
-          STATE_PATHS="cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json cache/abandoned_thesis_state.json cache/free_quota_hit_state.json cache/trial_ending_state.json cache/winback_state.json cache/streak_milestone_state.json cache/weekly_progress_state.json cache/stuck_on_outline_state.json cache/cumulative_stats_state.json cache/founder_story_thesis_state.json cache/founder_story_thesis_v2_state.json cache/founder_story_thesis_2_state.json cache/crosspromo_thesis_state.json cache/pro_minimal_*_state.json cache/ong_*_state.json cache/ong_daily_quota.json cache/kaynel_daily_quota.json cache/ong_templates/ cache/thesis_templates/ firebase_exports/"
+          STATE_PATHS="cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json cache/abandoned_thesis_state.json cache/free_quota_hit_state.json cache/trial_ending_state.json cache/winback_state.json cache/streak_milestone_state.json cache/weekly_progress_state.json cache/stuck_on_outline_state.json cache/cumulative_stats_state.json cache/founder_story_thesis_state.json cache/founder_story_thesis_v2_state.json cache/founder_story_thesis_2_state.json cache/crosspromo_thesis_state.json cache/pro_minimal_*_state.json cache/ong_*_state.json cache/ong_daily_quota.json cache/kaynel_daily_quota.json cache/daily_recipient_sends.json cache/ong_templates/ cache/thesis_templates/ firebase_exports/"
           # Thesis-only / founder-story runs may not touch retention_state.json.
           has_state=0
           for path in $STATE_PATHS; do
