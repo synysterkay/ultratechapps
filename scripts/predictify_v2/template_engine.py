@@ -293,7 +293,10 @@ _FIELD_RE = re.compile(r'\{([a-z_][a-z0-9_]*)\}')
 
 
 def _safe_format(s: str, fields: dict[str, str]) -> str:
-    return _FIELD_RE.sub(
-        lambda m: str(fields.get(m.group(1), m.group(0))),
-        s,
-    )
+    """Fill {field} tokens. Unknown fields become empty so they never ship."""
+    def repl(m):
+        key = m.group(1)
+        if key in fields:
+            return str(fields[key])
+        return ''
+    return _FIELD_RE.sub(repl, s)

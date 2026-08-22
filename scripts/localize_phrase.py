@@ -16,6 +16,7 @@ Why hand-curated vs DeepSeek-translated:
 LANGUAGES is the canonical list of locales the Flutter app exposes in
 `language_selection_screen.dart`. Keep these in sync.
 """
+import re
 
 # Canonical 20-language list. Order matches the language picker in the app.
 LANGUAGES = [
@@ -501,10 +502,72 @@ def normalize_language(lang):
     return code if code in LANGUAGES else 'en'
 
 
+_PLACEHOLDER_RE = re.compile(r'\{\{([a-zA-Z_][a-zA-Z0-9_]*)\}\}')
+
+# Phrase helpers — always run through the localized formatters first.
+_FORMATTED_KEYS = (
+    'first_name', 'topic', 'days_left', 'streak', 'progress',
+    'work_type', 'pain_hook', 'app_name',
+)
+
+# Never copy these into mail even if a template accidentally uses them.
+_SKIP_EXTRA_KEYS = {
+    'email', 'uid', 'user_id', 'userid', 'id', 'password',
+    'token', 'id_token', 'refresh_token', 'access_token',
+    'api_key', 'apikey', 'fcm_token', 'push_token',
+}
+
+
+def _looks_secret(key):
+    k = (key or '').lower()
+    if k in _SKIP_EXTRA_KEYS:
+        return True
+    return any(part in k for part in (
+        'token', 'secret', 'password', 'api_key', 'apikey', 'service_role',
+    ))
+
+
+def _scalar_text(value):
+    """Stringify a plan value for mail, or None to skip (leftover strip)."""
+    if value is None:
+        return ''
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, int):
+        return str(value)
+    if isinstance(value, float):
+        return str(int(value)) if value == int(value) else str(value)
+    if isinstance(value, str):
+        return value.replace('\n', '<br>') if '\n' in value else value
+    return None
+
+
+def _apply_token(text, key, value):
+    token = '{{' + key + '}}'
+    if token not in text:
+        return text
+    if value:
+        return text.replace(token, str(value))
+    # Empty: drop a neighboring space so "Hi {{first_name}}," → "Hi,".
+    text = text.replace(' ' + token, '')
+    text = text.replace(token + ' ', '')
+    return text.replace(token, '')
+
+
+def strip_unreplaced_placeholders(text):
+    """Remove leftover {{tokens}} so a missing field never ships."""
+    if not text or '{{' not in text:
+        return text or ''
+    out = text
+    for key in _PLACEHOLDER_RE.findall(out):
+        out = _apply_token(out, key, '')
+    return out
+
+
 def interpolate(language, text, plan):
     """Replace {{placeholder}} tokens in `text` using the user's plan.
 
-    Supported placeholders:
+    Formatted placeholders (localized phrases):
         {{first_name}}     → plan.first_name (fallback "")
         {{topic}}          → plan.topic
         {{days_left}}      → localized days-left phrase
@@ -515,12 +578,18 @@ def interpolate(language, text, plan):
         {{pain_hook}}      → empathy sentence based on plan.pain
         {{app_name}}       → plan.app_name (fallback "Thesis Generator")
 
+    Any other {{key}} whose value is a string/number on `plan` is filled
+    as-is ({{days_since_story}}, {{dog_name}}, {{struggle}}, …). Leftover
+    tokens after that are stripped so a typo never reaches the inbox.
+
     Empty placeholders collapse cleanly: trailing/leading whitespace removed
     when a value resolves to '' so the email doesn't show "Hi , ..." for a
     user without a first name.
     """
-    if not text or not plan:
-        return text or ''
+    if not text:
+        return ''
+    if not plan:
+        return strip_unreplaced_placeholders(text)
 
     repl = {
         'first_name':  plan.get('first_name', '') or '',
@@ -535,17 +604,17 @@ def interpolate(language, text, plan):
 
     out = text
     for key, value in repl.items():
-        token = '{{' + key + '}}'
-        if token in out:
-            if value:
-                out = out.replace(token, value)
-            else:
-                # Empty value: try to remove a leading/trailing space too so
-                # the sentence still reads naturally.
-                out = out.replace(' ' + token, '')
-                out = out.replace(token + ' ', '')
-                out = out.replace(token, '')
-    return out
+        out = _apply_token(out, key, value)
+
+    for key in _PLACEHOLDER_RE.findall(out):
+        if key in _FORMATTED_KEYS or _looks_secret(key) or key not in plan:
+            continue
+        rendered = _scalar_text(plan.get(key))
+        if rendered is None:
+            continue
+        out = _apply_token(out, key, rendered)
+
+    return strip_unreplaced_placeholders(out)
 
 
 if __name__ == '__main__':
@@ -557,7 +626,36 @@ if __name__ == '__main__':
         'progress': 60,
         'work_type': 'fullThesis',
         'pain': 'deadline',
+        'days_since_story': '3',
+        'dog_name': 'Mochi',
+        'email': 'secret@example.com',
     }
+    checks = [
+        (
+            interpolate('en', "Day {{days_since_story}} since our first note.", sample_plan),
+            'Day 3 since our first note.',
+        ),
+        (
+            interpolate('en', "Hi {{first_name}} — {{dog_name}} is waiting.", sample_plan),
+            'Hi María — Mochi is waiting.',
+        ),
+        (
+            interpolate('en', 'Leak {{email}} and {{missing_field}} here.', sample_plan),
+            'Leak and here.',
+        ),
+        (
+            interpolate('en', 'Hi {{first_name}},', {'first_name': ''}),
+            'Hi,',
+        ),
+    ]
+    failed = 0
+    for got, want in checks:
+        if got != want:
+            failed += 1
+            print(f'FAIL\n  got:  {got!r}\n  want: {want!r}')
+    if failed:
+        raise SystemExit(f'{failed} interpolate check(s) failed')
+    print('interpolate checks passed')
     for lang in LANGUAGES:
         print(f"\n--- {lang} ---")
         print(interpolate(lang, 'Hi {{first_name}}, {{pain_hook}} Your {{work_type}} on "{{topic}}" — {{days_left}}.', sample_plan))

@@ -5,6 +5,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from localize_phrase import strip_unreplaced_placeholders
+
 CACHE_DIR = Path(__file__).parent.parent / 'cache' / 'onbrief_templates'
 
 TEMPLATES: dict[str, dict] = {
@@ -195,6 +197,9 @@ def fill(tpl: dict, **replacements) -> dict:
         out['subject'] = out['subject'].replace(token, text)
         out['body'] = [p.replace(token, text) for p in out['body']]
         out['cta'] = out['cta'].replace(token, text)
+    out['subject'] = strip_unreplaced_placeholders(out['subject'])
+    out['body'] = [strip_unreplaced_placeholders(p) for p in out['body']]
+    out['cta'] = strip_unreplaced_placeholders(out['cta'])
     return out
 
 
