@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify угадал {recent_correct} из последних {recent_total} прогнозов — без вас",
+  "preview_text": "Вы молчали. Вот что ваш ИИ предсказывал.",
+  "body_paragraphs": [
+    "Привет, {first_name}!",
+    "Короткое обновление: пока вас не было, Predictify делал то, что умеет лучше всего. Последние {recent_total} прогнозов: {recent_correct} верных — это {recent_accuracy_pct}% на автопилоте.",
+    "Вот в чем фишка: сегодняшний топ-прогноз — {top_match_line}",
+    "Откройте приложение, потратьте 30 секунд, чтобы увидеть полную аргументацию, и решите, стоит ли вашему ИИ дать второй шанс."
+  ],
+  "cta_text": "Посмотреть самый сильный прогноз на сегодня",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "ru"
+}

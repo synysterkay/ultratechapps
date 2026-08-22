@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, eu construí isso depois de um \"ele tá devido\" demais",
+  "preview_text": "Palpites calibrados em vencedor da partida, total de games e handicap — verifique cada resultado.",
+  "body_paragraphs": [
+    "Ei {first_name},",
+    "Todo dia de jogo, a mesma cena: um grupo cheio de palpites quentes — \"ele tá devido\", \"saibro não importa\", \"eu só sinto que vai ser pneu\". Ninguém checando forma, superfície ou o que os números realmente dizem.",
+    "Eu construí o Predictify Tennis porque discussões de tênis não deveriam ser vencidas por quem fala mais alto. A gente queria previsões que você pudesse testar: Elo, superfície, forma recente, confronto direto e uma pontuação de confiança calibrada em vencedor da partida, total de games, handicap de games, primeiro set e sets diretos.",
+    "Um amigo nosso aprendeu isso do jeito difícil numa noite de Grand Slam. O modelo sinalizou um favorito com 58% de confiança — basicamente um cara ou coroa. Ele ignorou, foi na intuição e perdeu a discussão e a aposta. Duas semanas depois, ele abriu um palpite na nossa faixa de maior confiança (tier de 80%+), leu a análise e acertou antes do primeiro saque. Mesmo amigo. Processo diferente.",
+    "É por isso que a gente publica cada resultado — vitórias e derrotas — pra você verificar o histórico você mesmo, jogo a jogo. Sem palpites escondidos. Sem reescrever a história depois do match point.",
+    "Seu próximo passo leva uns 30 segundos: abra a rodada de hoje, escolha uma partida e leia a análise antes de travar seu palpite.",
+    "P.S. A gente não é casa de apostas. Sem vitórias garantidas — só previsões transparentes e um histórico que você pode conferir."
+  ],
+  "cta_text": "Veja o palpite mais forte de hoje — grátis",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis",
+  "language": "pp",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

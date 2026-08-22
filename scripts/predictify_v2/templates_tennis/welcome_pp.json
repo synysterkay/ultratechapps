@@ -1,0 +1,14 @@
+{
+  "subject": "Sua primeira chamada de tênis começa aqui, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Ei {first_name},",
+    "Bem-vindo ao Predictify. Orientação rápida: cada partida de ATP e WTA no app vem com uma pontuação de confiança de IA calibrada — construída a partir de Elo, superfície, forma recente e confronto direto — que te diz exatamente o quão confiável é a chamada. Números, não opiniões.",
+    "Experimente agora: {top_match_line}. Toque na partida, veja a análise completa — vencedor, total de games, handicap de games — e trave sua chamada.",
+    "Dica de pro: faça uma escolha por dia durante 5 dias e você constrói uma sequência. Usuários com sequência têm 3x mais chances de identificar as chamadas de valor antes do primeiro saque."
+  ],
+  "cta_text": "Fazer minha primeira escolha",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "pp"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "🎁 3 dagar i rad — du har precis låst upp 1 vecka av Pro",
+  "preview_text": "Öppna appen för att hämta. Inget kort, ingen automatisk förnyelse.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Du har öppnat Predictify tre dagar i rad. Det är ovanligt — de flesta användare kommer inte förbi två.",
+    "Din belöning: 7 dagar av Predictify Pro, helt upplåst, utan betalning. Du ser den starkaste signalen på varje match, kalibrerad säkerhet på varje marknad (vinnare, totala games, handicap, första set), och fullständig prediktionshistorik.",
+    "Tryck nedan för att hämta. Det aktiveras direkt och varar i en vecka — fortsätt använda appen dagligen så kan du tjäna mer när streaket växer."
+  ],
+  "cta_text": "Hämta 7-dagars Pro",
+  "cta_deeplink": "predictify://reward/streak3",
+  "kind": "login_streak_reward",
+  "language": "sv"
+}

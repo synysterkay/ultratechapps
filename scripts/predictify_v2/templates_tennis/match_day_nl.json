@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} vs {away_team} — {confidence_pct}% vertrouwenscall",
+  "preview_text": "{league_name} begint over {hours_to_kickoff}u. De keuze van je AI is klaar.",
+  "body_paragraphs": [
+    "Hoi {first_name},",
+    "{home_team} vs {away_team} gaat over ongeveer {hours_to_kickoff} uur de baan op. Je AI heeft elk signaal geanalyseerd — Elo, ondergrond, recente vorm, onderlinge duels en serveerstats — en een keuze vastgelegd.",
+    "📊 De keuze: {pick_label}\n🎯 Gekalibreerd vertrouwen: {confidence_pct}%\n🎾 Niveau: {tier_label}",
+    "Dit is precies waar we Predictify voor hebben gebouwd. Open de app, bekijk de volledige onderbouwing en leg je voorspelling vast vóór de eerste service."
+  ],
+  "cta_text": "Bekijk de volledige voorspelling",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "nl"
+}

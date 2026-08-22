@@ -1,0 +1,14 @@
+{
+  "subject": "Tu primera llamada de tenis comienza aquí, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Hola {first_name},",
+    "Bienvenido a Predictify. Orientación rápida: cada partido ATP y WTA en la app viene con un puntaje de confianza de IA calibrado — construido a partir de Elo, superficie, forma reciente y enfrentamientos directos — que te dice exactamente qué tan confiable es la llamada. Números, no opiniones.",
+    "Pruébalo ahora: {top_match_line}. Toca el partido, ve el desglose completo — ganador, total de juegos, hándicap de juegos — y asegura tu llamada.",
+    "Consejo de experto: haz una selección al día durante 5 días y construirás una racha. Los usuarios con racha tienen 3 veces más probabilidades de detectar las llamadas de valor antes del primer saque."
+  ],
+  "cta_text": "Hacer mi primera selección",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "es"
+}

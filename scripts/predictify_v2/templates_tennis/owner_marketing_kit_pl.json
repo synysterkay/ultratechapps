@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} potrzebuje członków — oto jak rozwijają się najlepsi właściciele",
+  "preview_text": "5 miejsc, w których widzieliśmy, że posty właścicieli faktycznie przynoszą nowych członków.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Twoja społeczność {community_name} ma {member_count} członk{member_plural}. Właściciele, którzy w pierwszym tygodniu osiągnęli 25+ członków, wszyscy korzystają z tego samego planu — oto on.",
+    "1. Grupy WhatsApp/Telegram: wrzuć link z jednolinijkową zachętą (\"AI typuje każdy mecz ATP, dołącz za darmo\")\n2. X / Twitter: opublikuj swój najpewniejszy typ dnia z linkiem dołączenia w odpowiedzi\n3. r/tennis, r/sportsbook na Reddicie: przypięty codzienny wątek\n4. Komentarze na TikToku pod filmami z zapowiedziami / zakładami tenisowymi\n5. Serwery Discord dla turniejów, które relacjonujesz",
+    "Predictify przygotowuje za Ciebie obrazek okładkowy (Twój link do udostępniania wygląda z nim 3x lepiej — to samo zwiększa wskaźnik dołączeń). Otwórz zestaw udostępniania, skopiuj link, wklej go tam, gdzie gromadzą się fani tenisa."
+  ],
+  "cta_text": "Otwórz zestaw udostępniania",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "pl"
+}

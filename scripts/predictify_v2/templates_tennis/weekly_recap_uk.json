@@ -1,0 +1,14 @@
+{
+  "subject": "Твій тиждень: {recent_correct}/{recent_total} прогнозів вірно",
+  "preview_text": "Точність {accuracy_pct}%. Топ-ставка на наступний тиждень вже готова.",
+  "body_paragraphs": [
+    "Привіт, {first_name}!",
+    "Короткий підсумок твого тижня на Predictify:",
+    "✅ {recent_correct} з {recent_total} прогнозів справдилися\n📊 Точність {accuracy_pct}% за останні 30 днів\n🔥 Серія з {streak_days} днів (твій рекорд наразі)",
+    "Зазирни вперед: найсильніший прогноз моделі цього тижня — {top_match_line}. Варто глянути — відкрий застосунок, і ми покажемо, чому саме."
+  ],
+  "cta_text": "Подивитися топ-ставку на наступний тиждень",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "uk"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "{accuracy_pct}% doğruluk bu hafta — Pro kullanıcılar ortalama {pro_target_pct}%",
+  "preview_text": "Modelin ücretsiz katmanda senden gizlediği şey bu.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Son {recent_total} tahminin {accuracy_pct}% ile isabetli — ücretsiz katman ortalamasının çok üzerinde. Modeli çoğu kişiden daha iyi okuyorsun.",
+    "Pro kullanıcılar her maç için En Güçlü Sinyal'i görür — sürekli {pro_target_pct}%+ isabet sağlayan o tek tahmin — ayrıca her piyasa için kalibre edilmiş güven ve oyuncu prop projeksiyonları (as, çift hata, ilk servis %). En iyi doğruluk katmanları böyle zirvede kalıyor.",
+    "7 gün boyunca ücretsiz denemek ister misin? Kart gerekmez, otomatik yenileme yok. Sayılarını değiştirmezse, çekip gidersin."
+  ],
+  "cta_text": "7 günlük Pro denemesini başlat",
+  "cta_deeplink": "predictify://upgrade?ref=hot_week",
+  "kind": "upgrade_after_hot_week",
+  "language": "tr"
+}

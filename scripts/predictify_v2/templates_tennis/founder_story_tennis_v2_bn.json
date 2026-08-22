@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, আজকের ম্যাচগুলো ইতিমধ্যে লাইভ",
+  "preview_text": "একটি ম্যাচে ৩০ সেকেন্ড, প্রথম সার্ভের আগে — এটাই পুরো অভ্যাস।",
+  "body_paragraphs": [
+    "হ্যালো {first_name},",
+    "কয়েকদিন আগের কথার পর দ্রুত আপডেট: Predictify Tennis মানে বেশি বাজি ধরা নয় — এটা হলো অনুমানকে বাদ দিয়ে একটি প্রক্রিয়া যা আপনি যাচাই করতে পারেন।",
+    "যারা এটা ধরে রাখে, তারা ঘণ্টার পর ঘণ্টা গবেষণা করে না। তারা একটি ম্যাচ খোলে, কনফিডেন্স ব্যান্ড এবং সারফেস কনটেক্সট পড়ে, একটি সিদ্ধান্ত নেয়, এবং এগিয়ে যায়। ধারাবাহিকতা গরম মতামতকে হারায়।",
+    "আজকের বোর্ড প্রস্তুত। একটি ম্যাচ বেছে নিন, বিশ্লেষণ পড়ুন, এবং প্রথম সার্ভের আগে সিদ্ধান্ত নিন।",
+    "পি.এস. চ্যাটে অন্ত্রের অনুভূতি মজার। কিন্তু কোর্টে নামার আগে সংখ্যা ভালো।"
+  ],
+  "cta_text": "আজকের স্লেট খুলুন",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis_v2",
+  "language": "bn",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

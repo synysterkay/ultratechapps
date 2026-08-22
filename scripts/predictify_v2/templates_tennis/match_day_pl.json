@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} vs {away_team} — {confidence_pct}% pewny typ",
+  "preview_text": "{league_name} zaczyna się za {hours_to_kickoff}h. Twój AI ma gotowy typ.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "{home_team} vs {away_team} wychodzi na kort za około {hours_to_kickoff} godzin. Twój AI przeanalizował każdy sygnał — Elo, nawierzchnię, ostatnią formę, bezpośrednie mecze i statystyki serwisowe — i postawił na swój typ.",
+    "📊 Typ: {pick_label}\n🎯 Kalibrowana pewność: {confidence_pct}%\n🎾 Poziom: {tier_label}",
+    "To jest dokładnie to, po co stworzyliśmy Predictify. Otwórz aplikację, zobacz pełne uzasadnienie i zatwierdź swój typ przed pierwszym serwisem."
+  ],
+  "cta_text": "Zobacz pełny typ",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "pl"
+}

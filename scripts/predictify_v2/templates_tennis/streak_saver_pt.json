@@ -1,0 +1,14 @@
+{
+  "subject": "Sua sequência de {streak_days} dias termina em {hours_to_break} horas",
+  "preview_text": "Uma escolha mantém viva. A chamada da sua IA está pronta.",
+  "body_paragraphs": [
+    "Ei {first_name},",
+    "Você está em uma sequência de {streak_days} dias de previsões. A maioria dos usuários nunca passa de 5 — você está fazendo algo raro.",
+    "Mas sua sequência termina em cerca de {hours_to_break} horas se você não garantir uma escolha hoje. Um toque. É só isso.",
+    "Sua IA já fez o trabalho: {top_match_line}"
+  ],
+  "cta_text": "Salvar minha sequência de {streak_days} dias",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "pt"
+}

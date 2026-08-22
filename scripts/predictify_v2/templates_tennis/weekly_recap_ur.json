@@ -1,0 +1,14 @@
+{
+  "subject": "آپ کا ہفتہ: {recent_correct}/{recent_total} پیشین گوئیاں درست",
+  "preview_text": "{accuracy_pct}% درستگی۔ اگلے ہفتے کے لیے ٹاپ پک تیار ہے۔",
+  "body_paragraphs": [
+    "ارے {first_name}،",
+    "Predictify پر آپ کے ہفتے کا فوری جائزہ:",
+    "✅ {recent_correct} میں سے {recent_total} پیشین گوئیاں درست تھیں\n📊 پچھلے 30 دنوں میں {accuracy_pct}% درستگی\n🔥 {streak_days} دن کی لگاتار کامیابی (آپ کا اب تک کا ریکارڈ)",
+    "آگے دیکھتے ہوئے: اس ہفتے ماڈل کی سب سے مضبوط پیشین گوئی {top_match_line} ہے۔ ایک نظر ڈالیں — ایپ کھولیں اور ہم آپ کو بالکل وہی وجہ دکھائیں گے۔"
+  ],
+  "cta_text": "اگلے ہفتے کا ٹاپ پک دیکھیں",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "ur"
+}

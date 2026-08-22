@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} üye arıyor — işte en iyi sahiplerin büyüme yöntemi",
+  "preview_text": "Sahiplerin paylaşım yapıp gerçekten dönüşüm aldığı 5 yer.",
+  "body_paragraphs": [
+    "Merhaba {first_name},",
+    "Topluluğun {community_name} şu anda {member_count} üyeye sahip{member_plural}. İlk haftada 25+ üyeye ulaşan sahiplerin hepsi aynı oyun planını kullanıyor — işte bu.",
+    "1. WhatsApp/Telegram grup sohbetleri: linki tek satırlık bir merak uyandırmayla paylaş (\"Her ATP maçı için AI tahminleri, katılmak ücretsiz\")\n2. X / Twitter: günün en güvenilir tahminini paylaş ve yanıta katılım linkini ekle\n3. Reddit'te r/tennis, r/sportsbook: günlük sabitlenmiş bir başlık aç\n4. Tenis önizleme / parlay videolarının altına TikTok yorumları\n5. Takip ettiğin turlar için Discord sunucuları",
+    "Predictify kapak görselini senin için hazırlar (paylaşım linkin onunla 3 kat daha iyi görünür — bu tek başına katılım oranını artırır). Paylaşım kitini aç, linki kopyala, tenis hayranlarının toplandığı yere yapıştır."
+  ],
+  "cta_text": "Paylaşım kitini aç",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "tr"
+}

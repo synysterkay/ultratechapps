@@ -1,0 +1,14 @@
+{
+  "subject": "{accuracy_pct}% di precisione questa settimana — gli utenti Pro raggiungono in media {pro_target_pct}%",
+  "preview_text": "Ecco cosa il modello nasconde al tuo piano gratuito.",
+  "body_paragraphs": [
+    "Ciao {first_name},",
+    "Le tue ultime {recent_total} previsioni hanno centrato il {accuracy_pct}% — ben sopra la media del piano gratuito. Stai leggendo il modello meglio della maggior parte.",
+    "Gli utenti Pro vedono il Segnale Più Forte per ogni partita — la chiamata che centra costantemente il {pro_target_pct}%+ — oltre alla fiducia calibrata su ogni mercato e alle proiezioni sui giocatori (ace, doppi falli, percentuale di prime di servizio). È così che le fasce di precisione più alte restano in cima.",
+    "Vuoi provarlo per 7 giorni, gratis? Nessuna carta richiesta, nessun rinnovo automatico. Se non migliora i tuoi numeri, te ne vai."
+  ],
+  "cta_text": "Inizia la prova Pro di 7 giorni",
+  "cta_deeplink": "predictify://upgrade?ref=hot_week",
+  "kind": "upgrade_after_hot_week",
+  "language": "it"
+}

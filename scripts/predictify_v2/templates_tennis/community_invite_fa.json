@@ -1,0 +1,14 @@
+{
+  "subject": "با هم پیشبینی کنید — {recommended_community_name} برای طرفدارانی مثل شماست",
+  "preview_text": "{member_count} عضو. {league_short}. عضویت رایگان.",
+  "body_paragraphs": [
+    "سلام {first_name}،",
+    "پیشبینی مسابقات به تنهایی خوبه، ولی پیشبینی با کسایی که دنبال همون تورها هستن؟ خیلی بهتره.",
+    "{recommended_community_name} یک انجمن Predictify برای طرفداران {league_short} است — {member_count} عضو، با مدیریت {owner_name}، پیشبینیهای روزانه با کمک هوش مصنوعی. میبینی دیگران چه پیشبینیهایی میکنن و واکنش جمع چطوره.",
+    "رایگان عضو شو. هیچ هزینهای پرداخت نمیکنی — فقط بیا و پیشبینی کن."
+  ],
+  "cta_text": "عضویت در {recommended_community_name}",
+  "cta_deeplink": "predictify://community/{community_id}",
+  "kind": "community_invite",
+  "language": "fa"
+}

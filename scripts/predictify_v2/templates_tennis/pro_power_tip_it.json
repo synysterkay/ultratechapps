@@ -1,0 +1,14 @@
+{
+  "subject": "La carta Segnale più Forte — cosa guardano davvero i Pro",
+  "preview_text": "Colpisce più forte nelle partite Elite. La maggior parte degli utenti non la apre mai.",
+  "body_paragraphs": [
+    "Ciao {first_name},",
+    "Un consiglio da Pro che potresti esserti perso: su ogni schermata di previsione, scorri oltre la proiezione del punteggio e trova la carta 'Segnale più Forte'. È la scelta calibrata con la massima fiducia per quella partita — e negli scontri di livello Elite è stata storicamente la chiamata più sicura in campo.",
+    "Come usarla: quando il badge di livello dice Elite o Premium, il Segnale più Forte è la tua ancora. Quando dice Standard, trattalo come punto di partenza e valuta anche gli altri mercati.",
+    "Esempio di oggi: {top_match_line}. Aprilo e vedrai esattamente cosa intendo."
+  ],
+  "cta_text": "Apri la scelta top di oggi",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "pro_power_tip",
+  "language": "it"
+}

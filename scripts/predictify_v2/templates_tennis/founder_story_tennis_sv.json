@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, jag byggde det här efter alldeles för många \"han är på gång\"-analyser",
+  "preview_text": "Kalibrerade tips på matchvinnare, totala game och handicap – verifiera varje resultat.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Varje matchdag, samma scen: en gruppchatt full av heta analyser – \"han är på gång\", \"underlaget spelar ingen roll\", \"jag känner bara att det blir en bagel\". Ingen kollar form, underlag eller vad siffrorna faktiskt säger.",
+    "Jag byggde Predictify Tennis för att tennisargument inte ska vinnas av den som pratar högst. Vi ville ha prognoser du kan testa: Elo, underlag, senaste form, inbördes möten och en kalibrerad konfidenspoäng på matchvinnare, totala game, gamehandicap, första set och raka set.",
+    "En vän till oss lärde sig detta den hårda vägen en slam-kväll. Modellen flaggade en favorit med 58% konfidens – i princip en slantsingling. Han ignorerade det, gick på magkänsla och förlorade både argumentet och spelet. Två veckor senare öppnade han ett tips i vår högsta konfidensnivå (80%+-nivån), läste analysen och ringde in det innan första serve. Samma vän. Annan process.",
+    "Därför publicerar vi varje resultat – vinster och förluster – så att du kan verifiera statistiken själv, match för match. Inga dolda tips. Ingen omskrivning av historien efter matchpoint.",
+    "Ditt nästa steg tar ungefär 30 sekunder: öppna dagens program, välj en match och läs resonemanget innan du låser ditt val.",
+    "P.S. Vi är inte en bookmaker. Inga garanterade vinster – bara transparenta prognoser och en statistik du kan kontrollera."
+  ],
+  "cta_text": "Se dagens starkaste tips – gratis",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis",
+  "language": "sv",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

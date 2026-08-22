@@ -1,0 +1,14 @@
+{
+  "subject": "Utilizatorii Pro pot câștiga din comunități — păstrezi 70%",
+  "preview_text": "Unii proprietari câștigă acum suficient cât să-și acopere abonamentul Pro de multe ori.",
+  "body_paragraphs": [
+    "Hei {first_name},",
+    "Ești Pro de ceva timp și predicțiile tale sunt constante. E timpul să inversezi modelul: deschide propria comunitate de tenis pe Predictify, stabilește un preț lunar mic și păstrează 70% din fiecare abonament.",
+    "Cei mai buni proprietari de comunități își transformă predicțiile în venituri recurente — iar Predictify se ocupă de toate plățile, găzduirea și gestionarea membrilor. Tu doar continui să faci predicții ca până acum.",
+    "Configurarea durează 90 de secunde: alege un nume, alege unghiul tău (un turneu, un jucător, un stil de pariere), stabilește un preț sau lasă-l gratuit. Proprietarii cu o imagine de copertă cresc de 3 ori mai repede — noi ți-o generăm într-o singură atingere."
+  ],
+  "cta_text": "Creează-mi comunitatea",
+  "cta_deeplink": "predictify://community/create",
+  "kind": "pro_owner_pitch",
+  "language": "ro"
+}

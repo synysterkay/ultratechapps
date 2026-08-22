@@ -1,0 +1,14 @@
+{
+  "subject": "🎁 3 zile la rând — tocmai ai deblocat 1 săptămână de Pro",
+  "preview_text": "Deschide aplicația pentru a revendica. Fără card, fără reînnoire automată.",
+  "body_paragraphs": [
+    "Hei {first_name},",
+    "Ai deschis Predictify trei zile la rând. Asta e rar — majoritatea utilizatorilor nu trec de două.",
+    "Recompensa ta: 7 zile de Predictify Pro, complet deblocat, fără plată. Vei vedea Semnalul Cel Mai Puternic pe fiecare meci, încredere calibrată pe fiecare piață (câștigător, total game-uri, handicap, primul set) și istoricul complet al predicțiilor.",
+    "Apasă mai jos pentru a revendica. Se activează instant și durează o săptămână — continuă să folosești aplicația zilnic și poți câștiga mai mult pe măsură ce seria crește."
+  ],
+  "cta_text": "Revendică 7 zile de Pro",
+  "cta_deeplink": "predictify://reward/streak3",
+  "kind": "login_streak_reward",
+  "language": "ro"
+}

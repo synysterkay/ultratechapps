@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, dagens matcher är redan live",
+  "preview_text": "30 sekunder på en match innan första serve – det är hela vanan.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Snabb uppföljning från för några dagar sedan: Predictify Tennis handlar inte om att satsa mer – det handlar om att ersätta gissningar med en process du kan verifiera.",
+    "Användare som håller sig till det maler inte forskning i en timme. De öppnar en match, läser förtroendebandet och ytkontexten, gör ett val och går vidare. Konsistens slår heta tips.",
+    "Dagens board är uppe. Välj en match, läs genomgången och bestäm dig innan första serve.",
+    "P.S. Magkänsla är kul i chatten. Siffror är bättre innan de går ut på banan."
+  ],
+  "cta_text": "Öppna dagens slate",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis_v2",
+  "language": "sv",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, am construit asta după prea multe păreri de genul „e rândul lui”",
+  "preview_text": "Predicții calibrate pe câștigătorul meciului, total game-uri și handicap — verifică fiecare rezultat.",
+  "body_paragraphs": [
+    "Hei {first_name},",
+    "În fiecare zi de meci, aceeași scenă: un grup de chat plin de păreri fierbinți — „e rândul lui”, „argila nu contează”, „simt eu că vine un bagel”. Nimeni nu verifică forma, suprafața sau ce spun de fapt numerele.",
+    "Am construit Predictify Tennis pentru că argumentele despre tenis nu ar trebui câștigate de cine vorbește mai tare. Am vrut predicții pe care să le poți testa: Elo, suprafață, formă recentă, H2H și un scor de încredere calibrat pe câștigătorul meciului, total game-uri, handicap game-uri, primul set și seturi drepte.",
+    "Un prieten de-al nostru a învățat asta pe calea grea într-o noapte de slam. Modelul a semnalat un favorit cu 58% încredere — practic o aruncare cu banul. El a ignorat, a mers pe instinct și a pierdut și argumentul, și pariul. Două săptămâni mai târziu a deschis o predicție din banda noastră de cea mai mare încredere (tier 80%+), a citit detaliile și a prezis înainte de primul serviciu. Același prieten. Alt proces.",
+    "De asta publicăm fiecare rezultat — victorii și înfrângeri — ca să poți verifica singur istoricul, meci cu meci. Fără predicții ascunse. Fără rescrierea istoriei după punctul de meci.",
+    "Următorul tău pas durează cam 30 de secunde: deschide programul de azi, alege un meci și citește raționamentul înainte să îți blochezi alegerea.",
+    "P.S. Nu suntem o casă de pariuri. Fără victorii garantate — doar predicții transparente și un istoric pe care îl poți verifica."
+  ],
+  "cta_text": "Vezi cea mai tare predicție de azi — gratuit",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis",
+  "language": "ro",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

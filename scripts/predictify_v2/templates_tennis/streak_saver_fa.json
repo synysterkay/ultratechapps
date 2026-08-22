@@ -1,0 +1,14 @@
+{
+  "subject": "سری {streak_days} روزه‌ات تا {hours_to_break} ساعت دیگر تمام می‌شود",
+  "preview_text": "یک پیش‌بینی آن را زنده نگه می‌دارد. نظر AI آماده است.",
+  "body_paragraphs": [
+    "سلام {first_name}،",
+    "تو در حال حاضر یک سری پیش‌بینی {streak_days} روزه داری. بیشتر کاربران هرگز از ۵ روز فراتر نمی‌روند — تو داری کاری نادر انجام می‌دهی.",
+    "اما سری تو تا حدود {hours_to_break} ساعت دیگر تمام می‌شود اگر امروز یک پیش‌بینی ثبت نکنی. یک ضربه. همین کافی است.",
+    "AI تو قبلاً کار را انجام داده: {top_match_line}"
+  ],
+  "cta_text": "سری {streak_days} روزه‌ام را نجات بده",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "fa"
+}

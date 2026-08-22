@@ -1,0 +1,14 @@
+{
+  "subject": "Previziuni împreună — {recommended_community_name} este pentru fani ca tine",
+  "preview_text": "{member_count} membri. {league_short}. Gratuit de alăturat.",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "Să alegi meciuri singur e ok. Să alegi cu oameni care urmăresc aceleași turnee? Mult mai bine.",
+    "{recommended_community_name} este o comunitate Predictify pentru fanii {league_short} — {member_count} membri, deținută de {owner_name}, cu previziuni zilnice asistate de AI. Vei vedea ce aleg alții și cum reacționează grupul.",
+    "Alătură-te gratuit. Nu plătești nimic — doar vino și fă previziuni."
+  ],
+  "cta_text": "Alătură-te {recommended_community_name}",
+  "cta_deeplink": "predictify://community/{community_id}",
+  "kind": "community_invite",
+  "language": "ro"
+}

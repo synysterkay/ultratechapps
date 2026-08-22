@@ -1,0 +1,14 @@
+{
+  "subject": "Săptămâna ta: {recent_correct}/{recent_total} predicții corecte",
+  "preview_text": "Acuratețe de {accuracy_pct}%. Pick-ul de top e pregătit pentru săptămâna viitoare.",
+  "body_paragraphs": [
+    "Hei {first_name},",
+    "Recapitulare rapidă a săptămânii tale pe Predictify:",
+    "✅ {recent_correct} din {recent_total} predicții au nimerit\n📊 {accuracy_pct}% acuratețe în ultimele 30 de zile\n🔥 Serie de {streak_days} zile (recordul tău până acum)",
+    "Privind înainte: cea mai puternică recomandare a modelului săptămâna aceasta este {top_match_line}. Merită o privire — deschide aplicația și îți arătăm exact de ce."
+  ],
+  "cta_text": "Vezi pick-ul de top pentru săptămâna viitoare",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "ro"
+}

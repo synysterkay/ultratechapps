@@ -1,0 +1,14 @@
+{
+  "subject": "Primul tău pont de tenis începe aici, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Hei {first_name},",
+    "Bine ai venit la Predictify. Orientare rapidă: fiecare meci ATP și WTA din aplicație vine cu un scor de încredere AI calibrat — construit din Elo, suprafață, formă recentă și meciuri directe — care îți spune exact cât de fiabil este pontul. Numere, nu păreri subiective.",
+    "Încearcă acum: {top_match_line}. Atinge meciul, vezi analiza completă — câștigător, total game-uri, handicap game-uri — și blochează-ți alegerea.",
+    "Sfat de profesionist: fă un pont pe zi timp de 5 zile și construiești o serie. Utilizatorii cu serie au de 3 ori mai multe șanse să identifice ponturile valoroase înainte de primul serviciu."
+  ],
+  "cta_text": "Fă primul meu pont",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "ro"
+}

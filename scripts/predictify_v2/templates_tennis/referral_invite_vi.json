@@ -1,0 +1,14 @@
+{
+  "subject": "Mời một người bạn chơi tennis để nhận Pro miễn phí",
+  "preview_text": "1 lời giới thiệu = 1 tháng miễn phí cho cả hai.",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "Bạn đã chọn kèo đều đặn — phần mà hầu hết người dùng bỏ qua. Giờ đến phần thưởng dễ dàng: mời một người bạn cũng xem các trận đấu giống bạn, và cả hai sẽ nhận một tháng miễn phí Predictify Pro ngay khi họ đăng ký.",
+    "Lý do chúng tôi làm điều này: những người bạn cùng dự đoán sẽ gắn bó lâu hơn 4 lần so với người dùng đơn lẻ. Tốt cho tất cả mọi người — kể cả chúng tôi.",
+    "Nhấn vào bên dưới để lấy link giới thiệu độc quyền của bạn. Gửi cho một người trong nhóm chat của bạn. Xong."
+  ],
+  "cta_text": "Lấy link giới thiệu của tôi",
+  "cta_deeplink": "predictify://referral",
+  "kind": "referral_invite",
+  "language": "vi"
+}

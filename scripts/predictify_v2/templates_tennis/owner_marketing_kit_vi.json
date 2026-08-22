@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} cần thêm thành viên — đây là cách các chủ sở hữu hàng đầu phát triển",
+  "preview_text": "5 nơi chúng tôi thấy chủ sở hữu đăng bài thực sự chuyển đổi.",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "Cộng đồng {community_name} của bạn hiện có {member_count} thành viên{member_plural}. Những chủ sở hữu đạt 25+ thành viên trong tuần đầu tiên đều dùng chung một chiến thuật — đây là nó.",
+    "1. Nhóm chat WhatsApp/Telegram: gửi link kèm một dòng giới thiệu ngắn gọn (\"AI dự đoán cho mọi trận ATP, miễn phí tham gia\")\n2. X / Twitter: đăng bài về lựa chọn tự tin nhất trong ngày kèm link tham gia ở phần trả lời\n3. r/tennis, r/sportsbook trên Reddit: một chủ đề hàng ngày được ghim\n4. Bình luận trên TikTok dưới các video preview tennis / parlay\n5. Máy chủ Discord cho các giải đấu bạn phủ sóng",
+    "Predictify tạo ảnh bìa cho bạn (link chia sẻ của bạn trông đẹp hơn 3 lần với ảnh bìa — chỉ riêng điều đó đã tăng tỷ lệ tham gia). Mở bộ công cụ chia sẻ, sao chép link, dán vào nơi người hâm mộ tennis tụ tập."
+  ],
+  "cta_text": "Mở bộ công cụ chia sẻ",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "vi"
+}

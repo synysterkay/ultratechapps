@@ -1,0 +1,14 @@
+{
+  "subject": "邀请一位网球好友，免费获得 Pro",
+  "preview_text": "1 位推荐 = 双方各得 1 个月免费。",
+  "body_paragraphs": [
+    "嘿，{first_name}，",
+    "你一直在持续做出预测——这是大多数用户跳过的一步。现在有个简单的奖励：邀请一位和你观看相同比赛的好友，他们一注册，你们俩就都能免费获得一个月的 Predictify Pro。",
+    "我们为什么这么做：一起预测的好友留存时间比单独用户长 4 倍。这对所有人都有好处——包括我们。",
+    "点击下方获取你的专属邀请链接，发送给群聊中的一个人，搞定。"
+  ],
+  "cta_text": "获取我的邀请链接",
+  "cta_deeplink": "predictify://referral",
+  "kind": "referral_invite",
+  "language": "zh"
+}

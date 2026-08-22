@@ -1,0 +1,14 @@
+{
+  "subject": "Karta Najmocniejszego Sygnału — na co naprawdę patrzą Pro",
+  "preview_text": "Najmocniej działa na meczach z elity. Większość użytkowników nigdy jej nie otwiera.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Szybka pro-tipa, którą mogłeś przegapić: na każdym ekranie przewidywania przewiń poniżej projekcji wyniku i znajdź kartę 'Najmocniejszy Sygnał'. To wybór o najwyższym poziomie ufności, skalibrowany dla danego meczu — a w starciach z elity historycznie był najbezpieczniejszym typem na tablicy.",
+    "Jak go używać: gdy odznaka poziomu mówi Elite lub Premium, Najmocniejszy Sygnał jest twoim punktem odniesienia. Gdy mówi Standard, traktuj go jako punkt wyjścia i rozważ też inne rynki.",
+    "Dzisiejszy przykład: {top_match_line}. Otwórz go, a zobaczysz dokładnie, co mam na myśli."
+  ],
+  "cta_text": "Otwórz dzisiejszy top typ",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "pro_power_tip",
+  "language": "pl"
+}

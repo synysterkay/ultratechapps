@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, การแข่งขันวันนี้เริ่มแล้ว",
+  "preview_text": "ใช้เวลา 30 วินาทีกับหนึ่งแมตช์ก่อนเริ่มเสิร์ฟแรก — นั่นคือนิสัยที่แท้จริง",
+  "body_paragraphs": [
+    "สวัสดี {first_name},",
+    "ตามมาจากสองสามวันที่แล้ว: Predictify Tennis ไม่ได้เกี่ยวกับการเดิมพันมากขึ้น — แต่เกี่ยวกับการแทนที่การเดาด้วยกระบวนการที่คุณตรวจสอบได้",
+    "ผู้ใช้ที่ใช้ต่อเนื่องไม่ได้ใช้เวลาหนึ่งชั่วโมงกับการวิจัย พวกเขาเปิดหนึ่งแมตช์ อ่านช่วงความมั่นใจและบริบทพื้นผิว ตัดสินใจหนึ่งครั้ง แล้วไปต่อ ความสม่ำเสมอชนะความคิดเห็นชั่ววูบ",
+    "กระดานวันนี้พร้อมแล้ว เลือกหนึ่งแมตช์ อ่านรายละเอียด และตัดสินใจก่อนเริ่มเสิร์ฟแรก",
+    "ป.ล. ความรู้สึกในแชทสนุก แต่ตัวเลขดีกว่า ก่อนที่พวกเขาจะลงสนาม"
+  ],
+  "cta_text": "เปิดรายการวันนี้",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis_v2",
+  "language": "th",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

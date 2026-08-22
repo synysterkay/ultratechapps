@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, l'ho costruito dopo fin troppe frasi del tipo \"è il suo momento\"",
+  "preview_text": "Pronostici calibrati su vincitore, totale giochi e handicap — verifica ogni risultato.",
+  "body_paragraphs": [
+    "Ciao {first_name},",
+    "Ogni giorno di partita, la stessa scena: una chat di gruppo piena di opinioni a caldo — \"è il suo momento\", \"la terra non conta\", \"sento che farà un bagel\". Nessuno che controlla la forma, la superficie o cosa dicono davvero i numeri.",
+    "Ho creato Predictify Tennis perché le discussioni sul tennis non dovrebbero essere vinte da chi parla più forte. Volevamo previsioni che puoi mettere alla prova: Elo, superficie, forma recente, scontri diretti e un punteggio di confidenza calibrato su vincitore, totale giochi, handicap giochi, primo set e set secchi.",
+    "Un nostro amico l'ha imparato a sue spese in una notte di uno Slam. Il modello segnalava un favorito con il 58% di confidenza — praticamente un lancio della moneta. Lui l'ha ignorato, ha seguito l'istinto e ha perso sia la discussione che la scommessa. Due settimane dopo ha aperto un pick nella nostra fascia di confidenza più alta (livello 80%+), ha letto l'analisi e l'ha chiamato prima del primo servizio. Lo stesso amico. Processo diverso.",
+    "Ecco perché pubblichiamo ogni risultato — vittorie e sconfitte — così puoi verificare tu stesso il track record, partita per partita. Nessun pick nascosto. Nessuna riscrittura della storia dopo il match point.",
+    "Il tuo prossimo passo richiede circa 30 secondi: apri il programma di oggi, scegli una partita e leggi il ragionamento prima di bloccare la tua chiamata.",
+    "P.S. Non siamo un bookmaker. Nessuna vittoria garantita — solo previsioni trasparenti e un record che puoi controllare."
+  ],
+  "cta_text": "Vedi il pick più forte di oggi — gratis",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis",
+  "language": "it",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

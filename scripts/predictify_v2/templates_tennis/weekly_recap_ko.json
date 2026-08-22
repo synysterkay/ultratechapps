@@ -1,0 +1,14 @@
+{
+  "subject": "이번 주: {recent_correct}/{recent_total} 예측 적중",
+  "preview_text": "정확도 {accuracy_pct}%. 다음 주 최고의 픽이 준비되어 있습니다.",
+  "body_paragraphs": [
+    "안녕하세요, {first_name}님,",
+    "Predictify에서의 한 주를 간단히 요약해 드립니다:",
+    "✅ {recent_correct}개 중 {recent_total}개 예측 적중\n📊 지난 30일 동안 정확도 {accuracy_pct}%\n🔥 {streak_days}일 연속 적중 (현재까지의 기록)",
+    "앞으로: 이번 주 모델의 가장 강력한 추천은 {top_match_line}입니다. 한번 확인해 보세요 — 앱을 열면 그 이유를 정확히 보여드릴게요."
+  ],
+  "cta_text": "다음 주 최고의 픽 보기",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "ko"
+}

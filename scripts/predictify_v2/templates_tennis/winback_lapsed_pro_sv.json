@@ -1,0 +1,14 @@
+{
+  "subject": "Kom tillbaka till Pro på vår bekostnad — 30 dagar gratis, inget kort behövs",
+  "preview_text": "Vad hände? Var det priset, funktionerna eller något annat?",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Din Pro-prenumeration har gått ut och vi märkte det. Vi ska inte överdriva — du vet precis vad Pro gör. Vi vill bara veta om det var något specifikt som inte fungerade för dig.",
+    "Om du berättar för oss (svara bara på det här mejlet — en människa läser det), lägger vi till 30 dagars Pro på ditt konto, utan villkor, utan kort. Ett riktigt erbjudande, inte en marknadsföringsfras.",
+    "Oavsett om du kommer tillbaka eller inte, tack för tiden du spenderade med oss. Din feedback hjälper oss verkligen att bygga nästa version."
+  ],
+  "cta_text": "Starta Pro gratis i 30 dagar",
+  "cta_deeplink": "predictify://winback",
+  "kind": "winback_lapsed_pro",
+  "language": "sv"
+}

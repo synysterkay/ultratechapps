@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify heeft {recent_correct} van de laatste {recent_total} picks goed — zonder jou",
+  "preview_text": "Je bent stil geweest. Dit is wat jouw AI heeft voorspeld.",
+  "body_paragraphs": [
+    "Hé {first_name},",
+    "Korte update: terwijl jij weg was, deed Predictify wat het het beste kan. Laatste {recent_total} voorspellingen: {recent_correct} goed — dat is {recent_accuracy_pct}%, op de automatische piloot.",
+    "En nu het belangrijkste: de beste keuze van vandaag is {top_match_line}",
+    "Open de app, neem 30 seconden om de volledige onderbouwing te bekijken en besluit of jouw AI een tweede kans verdient."
+  ],
+  "cta_text": "Bekijk de sterkste keuze van vandaag",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "nl"
+}

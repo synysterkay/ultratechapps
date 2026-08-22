@@ -1,0 +1,14 @@
+{
+  "subject": "您的{streak_days}天连胜将在{hours_to_break}小时后结束",
+  "preview_text": "一个选择就能保住它。您的AI已准备好预测。",
+  "body_paragraphs": [
+    "嘿，{first_name}，",
+    "您正处于{streak_days}天的预测连胜中。大多数用户从未超过5天——您正在做一件罕见的事。",
+    "但如果您今天不锁定一个选择，您的连胜将在约{hours_to_break}小时后结束。只需点击一下，就这么简单。",
+    "您的AI已经完成了工作：{top_match_line}"
+  ],
+  "cta_text": "保住我的{streak_days}天连胜",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "zh"
+}

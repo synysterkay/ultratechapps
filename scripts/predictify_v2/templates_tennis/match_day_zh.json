@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} vs {away_team} — {confidence_pct}% 信心预测",
+  "preview_text": "{league_name} 将在 {hours_to_kickoff} 小时后开始。你的 AI 已准备好预测。",
+  "body_paragraphs": [
+    "嘿，{first_name}，",
+    "{home_team} vs {away_team} 将在约 {hours_to_kickoff} 小时后开赛。你的 AI 已经分析了所有信号——Elo 评级、场地、近期状态、历史交锋和发球数据——并锁定了预测。",
+    "📊 预测：{pick_label}\n🎯 校准信心：{confidence_pct}%\n🎾 级别：{tier_label}",
+    "这正是我们打造 Predictify 的目的。打开应用，查看完整分析，并在开赛前锁定你的预测。"
+  ],
+  "cta_text": "查看完整预测",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "zh"
+}

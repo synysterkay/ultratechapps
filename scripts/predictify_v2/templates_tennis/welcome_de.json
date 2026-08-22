@@ -1,0 +1,14 @@
+{
+  "subject": "Dein erster Tennis-Tipp beginnt hier, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Willkommen bei Predictify. Kurze Einführung: Jedes ATP- und WTA-Match in der App hat einen kalibrierten KI-Konfidenzwert – basierend auf Elo, Belag, aktueller Form und direkten Duellen – der dir genau sagt, wie zuverlässig der Tipp ist. Zahlen, keine Bauchgefühle.",
+    "Probier es jetzt aus: {top_match_line}. Tippe auf das Match, sieh die komplette Analyse – Sieger, Gesamtspiele, Games-Handicap – und sichere dir deinen Tipp.",
+    "Profi-Tipp: Mach 5 Tage lang einen Tipp pro Tag und du baust eine Serie auf. Nutzer mit Serien erkennen die besten Tipps 3x eher vor dem ersten Aufschlag."
+  ],
+  "cta_text": "Meinen ersten Tipp abgeben",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "de"
+}

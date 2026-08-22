@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} vs {away_team} — {confidence_pct}% 확신도 콜",
+  "preview_text": "{league_name}이(가) {hours_to_kickoff}시간 후 시작됩니다. AI의 픽이 준비됐어요.",
+  "body_paragraphs": [
+    "안녕하세요, {first_name}님,",
+    "{home_team} vs {away_team} 경기가 약 {hours_to_kickoff}시간 후에 시작됩니다. AI가 모든 신호(Elo, 서피스, 최근 폼, H2H, 서브 통계)를 분석해 콜을 확정했어요.",
+    "📊 픽: {pick_label}\n🎯 보정된 확신도: {confidence_pct}%\n🎾 티어: {tier_label}",
+    "이것이 바로 우리가 Predictify를 만든 이유입니다. 앱을 열어 전체 분석을 확인하고, 첫 서브 전에 예측을 확정하세요."
+  ],
+  "cta_text": "전체 예측 보기",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "ko"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} butuh anggota — ini cara owner top berkembang",
+  "preview_text": "5 tempat yang kami lihat owner posting yang benar-benar menghasilkan.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Komunitas Anda {community_name} punya {member_count} anggota{member_plural}. Owner yang mencapai 25+ anggota di minggu pertama semua pakai playbook yang sama — ini dia.",
+    "1. Grup chat WhatsApp/Telegram: bagikan link dengan teaser satu baris (\"Prediksi AI untuk setiap pertandingan ATP, gratis join\")\n2. X / Twitter: posting prediksi paling yakin Anda hari ini dengan link join di balasan\n3. r/tennis, r/sportsbook di Reddit: thread harian yang dipin\n4. Komentar TikTok di bawah video preview / parlay tenis\n5. Server Discord untuk tur yang Anda liput",
+    "Predictify membuat gambar sampul untuk Anda (link share Anda terlihat 3x lebih baik dengan gambar itu — itu saja sudah meningkatkan tingkat join). Buka kit share, salin link, tempel di tempat para penggemar tenis berkumpul."
+  ],
+  "cta_text": "Buka kit share",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "id"
+}

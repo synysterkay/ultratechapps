@@ -1,0 +1,14 @@
+{
+  "subject": "สัปดาห์ของคุณ: ทายถูก {recent_correct}/{recent_total} รายการ",
+  "preview_text": "ความแม่นยำ {accuracy_pct}% ทายเด็ดสำหรับสัปดาห์หน้าพร้อมแล้ว",
+  "body_paragraphs": [
+    "สวัสดี {first_name},",
+    "สรุปผลงานของคุณบน Predictify ในสัปดาห์นี้:",
+    "✅ ทายถูก {recent_correct} จาก {recent_total} รายการ\n📊 ความแม่นยำ {accuracy_pct}% ใน 30 วันที่ผ่านมา\n🔥 สตรีค {streak_days} วัน (สถิติสูงสุดของคุณ)",
+    "มองไปข้างหน้า: การทายที่แข็งแกร่งที่สุดของโมเดลในสัปดาห์นี้คือ {top_match_line} ลองดูสิ — เปิดแอปแล้วเราจะแสดงให้เห็นว่าทำไม"
+  ],
+  "cta_text": "ดูทายเด็ดสำหรับสัปดาห์หน้า",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "th"
+}

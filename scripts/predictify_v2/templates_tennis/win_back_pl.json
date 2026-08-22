@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify trafił {recent_correct} z ostatnich {recent_total} typów — bez Ciebie",
+  "preview_text": "Byłeś cicho. Oto, co Twoja AI typowała pod Twoją nieobecność.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Szybka aktualizacja: gdy Cię nie było, Predictify robił to, co umie najlepiej. Ostatnie {recent_total} typów: {recent_correct} trafionych — to {recent_accuracy_pct}%, na autopilocie.",
+    "A teraz sedno: dzisiejszy najpewniejszy typ to {top_match_line}",
+    "Otwórz aplikację, poświęć 30 sekund na pełne uzasadnienie i zdecyduj, czy Twoja AI zasługuje na drugą szansę."
+  ],
+  "cta_text": "Zobacz dzisiejszy najmocniejszy typ",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "pl"
+}

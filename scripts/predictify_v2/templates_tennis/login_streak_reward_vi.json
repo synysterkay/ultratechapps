@@ -1,0 +1,14 @@
+{
+  "subject": "🎁 3 ngày liên tiếp — bạn vừa mở khóa 1 tuần Pro",
+  "preview_text": "Mở ứng dụng để nhận. Không cần thẻ, không tự gia hạn.",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "Bạn đã mở Predictify ba ngày liên tiếp. Điều đó hiếm lắm — hầu hết người dùng không vượt qua được hai ngày.",
+    "Phần thưởng của bạn: 7 ngày Predictify Pro, mở khóa toàn bộ, không cần thanh toán. Bạn sẽ thấy Tín hiệu Mạnh nhất trên mọi trận đấu, độ tin cậy được hiệu chỉnh trên mọi thị trường (thắng, tổng game, chấp, set đầu), và toàn bộ lịch sử dự đoán.",
+    "Nhấn bên dưới để nhận. Nó kích hoạt ngay lập tức và kéo dài một tuần — tiếp tục dùng ứng dụng mỗi ngày để kiếm thêm khi chuỗi ngày dài hơn."
+  ],
+  "cta_text": "Nhận 7 ngày Pro",
+  "cta_deeplink": "predictify://reward/streak3",
+  "kind": "login_streak_reward",
+  "language": "vi"
+}

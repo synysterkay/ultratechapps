@@ -1,0 +1,14 @@
+{
+  "subject": "ร่วมทายด้วยกัน — {recommended_community_name} คือชุมชนสำหรับแฟนๆ อย่างคุณ",
+  "preview_text": "สมาชิก {member_count} คน. {league_short}. เข้าร่วมฟรี.",
+  "body_paragraphs": [
+    "สวัสดี {first_name},",
+    "การทายแมตช์คนเดียวก็ดีอยู่หรอก แต่การทายกับคนที่ติดตามทัวร์นาเมนต์เดียวกัน? ดีกว่ามาก",
+    "{recommended_community_name} คือชุมชน Predictify สำหรับแฟนๆ {league_short} — สมาชิก {member_count} คน, เป็นเจ้าของโดย {owner_name}, มีทายผลที่ใช้ AI ช่วยทุกวัน คุณจะเห็นว่าคนอื่นทายอะไรและบรรยากาศในห้องเป็นยังไง",
+    "เข้าร่วมฟรี ไม่เสียเงินสักบาท — แค่เข้ามาและทายผล"
+  ],
+  "cta_text": "เข้าร่วม {recommended_community_name}",
+  "cta_deeplink": "predictify://community/{community_id}",
+  "kind": "community_invite",
+  "language": "th"
+}

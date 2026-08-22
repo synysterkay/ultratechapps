@@ -1,0 +1,14 @@
+{
+  "subject": "Jouw community {community_name} heeft leden nodig",
+  "preview_text": "Hier is een actie van 30 seconden die je join-rate verdrievoudigt.",
+  "body_paragraphs": [
+    "Hoi {first_name},",
+    "{community_name} is al een tijdje live en je hebt tot nu toe {member_count} lid{member_plural}. Communities groeien niet vanzelf — maar de komende 24 uur kunnen dat veranderen.",
+    "Je snelste hefboom: deel je uitnodigingslink in je groepsapps. Communities met een coverafbeelding en 5+ leden groeien 3x sneller — en jouw link ziet er geweldig uit zodra je die hebt.",
+    "We hebben de deelafbeelding voor je gemaakt. Eén tik en hij is klaar voor WhatsApp, Discord, of waar jouw tennisvrienden ook rondhangen."
+  ],
+  "cta_text": "Open deelpakket",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_growth",
+  "language": "nl"
+}

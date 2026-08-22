@@ -1,0 +1,14 @@
+{
+  "subject": "Kembali ke Pro gratis untukmu — 30 hari gratis, tanpa kartu",
+  "preview_text": "Apa yang terjadi? Apakah harganya, fiturnya, atau ada hal lain?",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Langganan Pro kamu sudah kedaluwarsa dan kami menyadarinya. Kami tidak akan berlebihan menawarkannya — kamu tahu persis apa yang Pro lakukan. Kami hanya ingin tahu apakah ada sesuatu yang secara khusus tidak cocok untukmu.",
+    "Jika kamu memberi tahu kami (cukup balas email ini — ada manusia yang membacanya), kami akan menambahkan 30 hari Pro kembali ke akunmu, tanpa syarat, tanpa kartu. Tawaran nyata, bukan sekadar kalimat pemasaran.",
+    "Baik kamu kembali atau tidak, terima kasih atas waktu yang kamu habiskan bersama kami. Masukanmu benar-benar membantu kami membangun versi berikutnya."
+  ],
+  "cta_text": "Aktifkan Pro gratis selama 30 hari",
+  "cta_deeplink": "predictify://winback",
+  "kind": "winback_lapsed_pro",
+  "language": "id"
+}

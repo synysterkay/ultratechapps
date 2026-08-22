@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} にはメンバーが必要です — トップオーナーがどう成長させているか",
+  "preview_text": "オーナーが実際にコンバージョンにつながる投稿をしている5つの場所。",
+  "body_paragraphs": [
+    "こんにちは、{first_name}さん、",
+    "あなたのコミュニティ {community_name} には現在 {member_count} 人のメンバー{member_plural}がいます。1週間で25人以上のメンバーを達成したオーナーは、皆同じプレイブックを使っています — それがこちらです。",
+    "1. WhatsApp/Telegram グループチャット: リンクを一言のティーザーと一緒に貼る（例：「ATP全試合のAI予想、無料参加」）\n2. X / Twitter: その日の最も自信のある予想を投稿し、返信に参加リンクを添える\n3. Reddit の r/tennis、r/sportsbook: 毎日ピン留めされるスレッドを作る\n4. TikTok のテニスプレビューやパーレー動画のコメント欄\n5. カバーしているツアーのDiscordサーバー",
+    "Predictify がカバー画像を自動生成します（シェアリンクに画像があると見栄えが3倍良くなり、それだけで参加率が上がります）。シェアキットを開いて、リンクをコピーし、テニスファンが集まる場所に貼り付けてください。"
+  ],
+  "cta_text": "シェアキットを開く",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "ja"
+}

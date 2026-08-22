@@ -1,0 +1,14 @@
+{
+  "subject": "Din community {community_name} behöver medlemmar",
+  "preview_text": "Här är en 30-sekunders åtgärd som tredubblar din anslutningsfrekvens.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "{community_name} har varit live ett tag och du har {member_count} medlem{member_plural} hittills. Communities växer inte av sig själva – men de kommande 24 timmarna kan ändra på det.",
+    "Din snabbaste hävstång: dela din inbjudningslänk i dina gruppchattar. Communities med omslagsbilder och 5+ medlemmar växer 3x snabbare – och din länk ser bra ut när du har det.",
+    "Vi har gjort delningsbilden åt dig. Ett tryck och den är redo för WhatsApp, Discord, eller var dina tennisvänner hänger."
+  ],
+  "cta_text": "Öppna delningspaketet",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_growth",
+  "language": "sv"
+}

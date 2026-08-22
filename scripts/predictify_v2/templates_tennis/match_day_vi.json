@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} vs {away_team} — Dự đoán với độ tin cậy {confidence_pct}%",
+  "preview_text": "{league_name} bắt đầu trong {hours_to_kickoff}h. AI của bạn đã sẵn sàng dự đoán.",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "{home_team} vs {away_team} sẽ ra sân trong khoảng {hours_to_kickoff} giờ nữa. AI của bạn đã phân tích mọi tín hiệu — Elo, mặt sân, phong độ gần đây, đối đầu, và thống kê giao bóng — và đã chốt dự đoán.",
+    "📊 Dự đoán: {pick_label}\n🎯 Độ tin cậy đã hiệu chỉnh: {confidence_pct}%\n🎾 Hạng: {tier_label}",
+    "Đây chính xác là điều chúng tôi xây dựng Predictify để làm. Mở ứng dụng, xem toàn bộ lý do, và chốt dự đoán của bạn trước khi trận đấu bắt đầu."
+  ],
+  "cta_text": "Xem dự đoán đầy đủ",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "vi"
+}

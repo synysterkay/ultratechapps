@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, tôi xây cái này sau quá nhiều lần nghe kiểu \"anh ấy sắp thắng rồi\"",
+  "preview_text": "Dự đoán đã hiệu chỉnh về người thắng trận, tổng game, và kèo chấp — kiểm chứng từng kết quả.",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "Mỗi ngày thi đấu, cùng một cảnh: group chat đầy những nhận định nóng — \"anh ấy sắp thắng rồi,\" \"sân đất nện không quan trọng,\" \"tôi có linh cảm là sẽ có set trắng.\" Chẳng ai kiểm tra phong độ, mặt sân, hay con số thực sự nói lên điều gì.",
+    "Tôi tạo Predictify Tennis vì tranh luận về tennis không nên được quyết định bởi người nói to nhất. Chúng tôi muốn có những dự đoán bạn có thể kiểm chứng: Elo, mặt sân, phong độ gần đây, đối đầu trực tiếp, và điểm số tin cậy đã hiệu chỉnh cho người thắng trận, tổng game, kèo chấp game, set 1, và thắng thẳng.",
+    "Một người bạn của chúng tôi đã học được điều này một cách khó khăn trong một đêm slam. Mô hình chỉ ra đội yêu thích với độ tin cậy 58% — về cơ bản là tung đồng xu. Anh ấy bỏ qua, theo cảm tính, và thua cả cuộc tranh luận lẫn cược. Hai tuần sau, anh ấy mở một dự đoán trong nhóm độ tin cậy cao nhất của chúng tôi (mức 80%+), đọc phân tích, và gọi đúng trước khi giao bóng đầu tiên. Cùng một người bạn. Quy trình khác.",
+    "Đó là lý do chúng tôi công bố mọi kết quả — thắng và thua — để bạn tự kiểm chứng thành tích, từng trận một. Không có dự đoán ẩn. Không viết lại lịch sử sau khi trận đấu kết thúc.",
+    "Bước tiếp theo của bạn chỉ mất khoảng 30 giây: mở danh sách trận đấu hôm nay, chọn một trận, và đọc lý do trước khi bạn chốt lựa chọn.",
+    "P.S. Chúng tôi không phải nhà cái. Không có thắng chắc chắn — chỉ có dự đoán minh bạch và thành tích bạn có thể kiểm tra."
+  ],
+  "cta_text": "Xem lựa chọn mạnh nhất hôm nay — miễn phí",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis",
+  "language": "vi",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

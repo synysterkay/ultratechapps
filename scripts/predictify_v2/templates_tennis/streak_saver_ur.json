@@ -1,0 +1,14 @@
+{
+  "subject": "آپ کی {streak_days} دن کی سٹریک {hours_to_break} گھنٹوں میں ختم ہو رہی ہے",
+  "preview_text": "ایک پک اسے زندہ رکھ سکتا ہے۔ آپ کے AI کی پیشن گوئی تیار ہے۔",
+  "body_paragraphs": [
+    "ہیلو {first_name}،",
+    "آپ {streak_days} دن کی پیشن گوئی کی سٹریک پر ہیں۔ زیادہ تر صارفین کبھی 5 سے آگے نہیں بڑھ پاتے — آپ کچھ نایاب کر رہے ہیں۔",
+    "لیکن آپ کی سٹریک تقریباً {hours_to_break} گھنٹوں میں ختم ہو جائے گی اگر آپ آج پک لاک نہیں کرتے۔ ایک ٹیپ۔ بس اتنا ہی کافی ہے۔",
+    "آپ کے AI نے پہلے ہی کام کر لیا ہے: {top_match_line}"
+  ],
+  "cta_text": "میری {streak_days} دن کی سٹریک بچائیں",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "ur"
+}

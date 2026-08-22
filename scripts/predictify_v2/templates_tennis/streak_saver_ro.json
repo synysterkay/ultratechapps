@@ -1,0 +1,14 @@
+{
+  "subject": "Serialul tău de {streak_days} zile se termină în {hours_to_break} ore",
+  "preview_text": "O singură alegere îl menține în viață. Recomandarea AI-ului tău este gata.",
+  "body_paragraphs": [
+    "Hei {first_name},",
+    "Ești pe un serial de predicții de {streak_days} zile. Majoritatea utilizatorilor nu trec niciodată de 5 — tu faci ceva rar.",
+    "Dar serialul tău se termină în aproximativ {hours_to_break} ore dacă nu blochezi o alegere astăzi. Un singur tap. Asta e tot ce trebuie.",
+    "AI-ul tău a făcut deja treaba: {top_match_line}"
+  ],
+  "cta_text": "Salvează-mi serialul de {streak_days} zile",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "ro"
+}

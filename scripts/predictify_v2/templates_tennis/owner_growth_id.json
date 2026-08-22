@@ -1,0 +1,14 @@
+{
+  "subject": "Komunitas {community_name} Anda membutuhkan anggota",
+  "preview_text": "Berikut aksi 30 detik yang melipatgandakan tingkat bergabung Anda 3x.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "{community_name} sudah aktif beberapa saat dan Anda sudah memiliki {member_count} anggota{member_plural} sejauh ini. Komunitas tidak tumbuh dengan sendirinya — tetapi 24 jam ke depan bisa mengubah itu.",
+    "Lever tercepat Anda: bagikan tautan undangan Anda di grup chat. Komunitas dengan gambar sampul dan 5+ anggota tumbuh 3x lebih cepat — dan tautan Anda terlihat bagus setelah Anda memilikinya.",
+    "Kami sudah menyiapkan gambar berbagi untuk Anda. Satu ketukan dan siap untuk WhatsApp, Discord, atau di mana pun penggemar tenis Anda berkumpul."
+  ],
+  "cta_text": "Buka paket berbagi",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_growth",
+  "language": "id"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "Ваша неделя: {recent_correct}/{recent_total} прогнозов верных",
+  "preview_text": "Точность {accuracy_pct}%. Топ-ставка на следующую неделю уже готова.",
+  "body_paragraphs": [
+    "Привет, {first_name}!",
+    "Краткий итог вашей недели на Predictify:",
+    "✅ {recent_correct} из {recent_total} прогнозов сбылись\n📊 Точность {accuracy_pct}% за последние 30 дней\n🔥 Серия из {streak_days} дней (ваш рекорд на данный момент)",
+    "Заглядывая вперед: самый сильный прогноз модели на этой неделе — {top_match_line}. Стоит взглянуть — откройте приложение, и мы покажем, почему именно он."
+  ],
+  "cta_text": "Смотреть топ-ставку на следующую неделю",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "ru"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "Votre premier pronostic tennis commence ici, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Salut {first_name},",
+    "Bienvenue sur Predictify. Petite orientation : chaque match ATP et WTA dans l'app est accompagné d'un score de confiance IA calibré — basé sur l'Elo, la surface, la forme récente et les confrontations directes — qui vous indique précisément la fiabilité du pronostic. Des chiffres, pas des intuitions.",
+    "Essayez maintenant : {top_match_line}. Touchez le match, voyez l'analyse complète — vainqueur, total de jeux, handicap de jeux — et verrouillez votre pronostic.",
+    "Astuce de pro : faites un pronostic par jour pendant 5 jours et vous construisez une série. Les utilisateurs avec une série sont 3 fois plus susceptibles de repérer les bons pronostics avant le premier service."
+  ],
+  "cta_text": "Faire mon premier pronostic",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "fr"
+}

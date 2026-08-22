@@ -1,0 +1,14 @@
+{
+  "subject": "Người dùng Pro có thể kiếm tiền từ cộng đồng — giữ 70%",
+  "preview_text": "Một số chủ sở hữu hiện kiếm đủ để trang trải phí Pro nhiều lần.",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "Bạn đã dùng Pro một thời gian và các dự đoán của bạn rất ổn định. Đã đến lúc đổi mô hình: mở cộng đồng tennis của riêng bạn trên Predictify, đặt mức giá hàng tháng nhỏ và giữ 70% doanh thu từ mỗi gói đăng ký.",
+    "Các chủ sở hữu cộng đồng hàng đầu đang biến dự đoán của họ thành thu nhập định kỳ — và Predictify lo toàn bộ phần thanh toán, lưu trữ và quản lý thành viên. Bạn chỉ cần tiếp tục dự đoán như bạn vẫn làm.",
+    "Thiết lập chỉ mất 90 giây: chọn tên, chọn góc nhìn (một giải đấu, một tay vợt, một phong cách cá cược), đặt giá hoặc giữ miễn phí. Chủ sở hữu có ảnh bìa phát triển nhanh gấp 3 lần — chúng tôi tạo cho bạn chỉ trong một chạm."
+  ],
+  "cta_text": "Tạo cộng đồng của tôi",
+  "cta_deeplink": "predictify://community/create",
+  "kind": "pro_owner_pitch",
+  "language": "vi"
+}

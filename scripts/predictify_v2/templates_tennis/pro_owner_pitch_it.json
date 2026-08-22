@@ -1,0 +1,14 @@
+{
+  "subject": "Gli utenti Pro possono guadagnare dalle community — tieni il 70%",
+  "preview_text": "Alcuni proprietari ora guadagnano abbastanza da coprire il loro Pro molte volte.",
+  "body_paragraphs": [
+    "Ciao {first_name},",
+    "Sei Pro da un po' e i tuoi pronostici sono costanti. È il momento di ribaltare il modello: apri la tua community di tennis su Predictify, imposta un piccolo prezzo mensile e tieni il 70% di ogni abbonamento.",
+    "I migliori proprietari di community stanno trasformando i loro pronostici in entrate ricorrenti — e Predictify gestisce tutti i pagamenti, l'hosting e la gestione dei membri. Tu continua solo a fare pronostici come già fai.",
+    "La configurazione richiede 90 secondi: scegli un nome, scegli la tua angolazione (un tour, un giocatore, uno stile di scommessa), imposta un prezzo o lascialo gratuito. I proprietari con un'immagine di copertina crescono 3 volte più velocemente — noi te ne generiamo una in un tocco."
+  ],
+  "cta_text": "Crea la mia community",
+  "cta_deeplink": "predictify://community/create",
+  "kind": "pro_owner_pitch",
+  "language": "it"
+}

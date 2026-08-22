@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}, saya membuat ini setelah terlalu sering mendengar alasan \"dia memang waktunya menang\"",
+  "preview_text": "Prediksi terkalibrasi untuk pemenang pertandingan, total game, dan handicap — verifikasi setiap hasilnya.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Setiap hari pertandingan, pemandangannya sama: grup chat penuh opini panas — \"dia memang waktunya menang,\" \"tanah liat tidak masalah,\" \"aku rasa akan ada bagel.\" Tidak ada yang memeriksa performa, permukaan lapangan, atau apa kata angka sebenarnya.",
+    "Saya membuat Predictify Tennis karena argumen tenis seharusnya tidak dimenangkan oleh siapa pun yang paling keras bicaranya. Kami ingin memberikan prediksi yang bisa kamu uji: Elo, permukaan, performa terkini, head-to-head, dan skor kepercayaan terkalibrasi untuk pemenang pertandingan, total game, handicap game, set pertama, dan straight set.",
+    "Seorang teman kami belajar hal ini dengan cara yang sulit pada malam grand slam. Model menunjukkan favorit dengan kepercayaan 58% — pada dasarnya seperti lempar koin. Dia mengabaikannya, mengikuti intuisi, dan kalah dalam argumen serta taruhan. Dua minggu kemudian dia membuka prediksi di tingkat kepercayaan tertinggi kami (kategori 80%+), membaca analisisnya, dan menebaknya sebelum servis pertama. Teman yang sama. Proses yang berbeda.",
+    "Itulah mengapa kami mempublikasikan setiap hasil — menang dan kalah — sehingga kamu bisa memverifikasi rekam jejak kami sendiri, pertandingan demi pertandingan. Tidak ada prediksi tersembunyi. Tidak ada penulisan ulang sejarah setelah match point.",
+    "Langkah berikutnya hanya butuh sekitar 30 detik: buka jadwal hari ini, pilih satu pertandingan, dan baca alasannya sebelum kamu mengunci prediksimu.",
+    "P.S. Kami bukan bandar taruhan. Tidak ada kemenangan yang dijamin — hanya prediksi transparan dan rekam jejak yang bisa kamu periksa."
+  ],
+  "cta_text": "Lihat prediksi terkuat hari ini — gratis",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis",
+  "language": "id",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

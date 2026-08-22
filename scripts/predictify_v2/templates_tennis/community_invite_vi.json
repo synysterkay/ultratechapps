@@ -1,0 +1,14 @@
+{
+  "subject": "Dự đoán cùng nhau — {recommended_community_name} dành cho fan như bạn",
+  "preview_text": "{member_count} thành viên. {league_short}. Miễn phí tham gia.",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "Tự dự đoán trận đấu một mình cũng ổn. Nhưng dự đoán cùng những người theo dõi cùng giải đấu? Tuyệt hơn nhiều.",
+    "{recommended_community_name} là cộng đồng Predictify dành cho fan {league_short} — {member_count} thành viên, do {owner_name} sở hữu, với các dự đoán hỗ trợ bởi AI hàng ngày. Bạn sẽ thấy người khác đang dự đoán gì và phản ứng của cả phòng.",
+    "Tham gia miễn phí. Bạn không phải trả gì cả — chỉ cần xuất hiện và dự đoán."
+  ],
+  "cta_text": "Tham gia {recommended_community_name}",
+  "cta_deeplink": "predictify://community/{community_id}",
+  "kind": "community_invite",
+  "language": "vi"
+}

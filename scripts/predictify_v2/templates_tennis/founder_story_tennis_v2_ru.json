@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}, сегодняшние матчи уже начались",
+  "preview_text": "30 секунд на один матч до первой подачи — вот и вся привычка.",
+  "body_paragraphs": [
+    "Привет, {first_name},",
+    "Короткое напоминание из прошлых дней: Predictify Tennis — это не про то, чтобы ставить больше, а про то, чтобы заменить угадывание процессом, который можно проверить.",
+    "Пользователи, которые остаются с нами, не тратят час на исследования. Они открывают один матч, читают уровень уверенности и контекст, делают один прогноз и идут дальше. Постоянство бьёт горячие идеи.",
+    "Сегодняшняя доска уже готова. Выбери один матч, прочитай разбор и реши до первой подачи.",
+    "P.S. В чате интуиция — это весело. Но цифры лучше, когда они выходят на корт."
+  ],
+  "cta_text": "Открыть сегодняшние матчи",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis_v2",
+  "language": "ru",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

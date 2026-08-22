@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify {recent_correct} مورد از {recent_total} پیش‌بینی اخیر را درست زده — بدون تو",
+  "preview_text": "چند وقتیه ساکت بودی. ببین هوش مصنوعیت چی پیش‌بینی کرده.",
+  "body_paragraphs": [
+    "سلام {first_name}،",
+    "یه خبر سریع: وقتی تو نبودی، Predictify داشت همون کاری رو می‌کرد که بهترینه. {recent_total} پیش‌بینی اخیر: {recent_correct} تا درست — یعنی {recent_accuracy_pct}٪، کاملاً خودکار.",
+    "نکته جالب اینه: بهترین پیش‌بینی امروز {top_match_line} است.",
+    "اپ رو باز کن، ۳۰ ثانیه وقت بذار تا دلیل کامل رو ببینی، و تصمیم بگیر که آیا هوش مصنوعیت یه نگاه دوباره می‌خواد یا نه."
+  ],
+  "cta_text": "مشاهده قوی‌ترین پیش‌بینی امروز",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "fa"
+}

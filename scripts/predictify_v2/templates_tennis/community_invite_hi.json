@@ -1,0 +1,14 @@
+{
+  "subject": "साथ मिलकर भविष्यवाणी करें — {recommended_community_name} आप जैसे फैंस के लिए है",
+  "preview_text": "{member_count} सदस्य। {league_short}। जुड़ना मुफ़्त है।",
+  "body_paragraphs": [
+    "हे {first_name},",
+    "अकेले मैच चुनना ठीक है। लेकिन उन लोगों के साथ चुनना जो उसी टूर को फॉलो करते हैं? कहीं बेहतर।",
+    "{recommended_community_name} {league_short} फैंस के लिए एक Predictify समुदाय है — {member_count} सदस्य, {owner_name} द्वारा संचालित, रोज़ाना AI-सहायता वाली पिक्स। आप देखेंगे कि दूसरे क्या कह रहे हैं और कमरे का रिएक्शन क्या है।",
+    "मुफ़्त में जुड़ें। आपको कुछ भी नहीं देना — बस आएं और भविष्यवाणी करें।"
+  ],
+  "cta_text": "{recommended_community_name} से जुड़ें",
+  "cta_deeplink": "predictify://community/{community_id}",
+  "kind": "community_invite",
+  "language": "hi"
+}

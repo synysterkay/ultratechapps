@@ -1,0 +1,14 @@
+{
+  "subject": "Predictifyが直近{recent_total}件のうち{recent_correct}件を的中 — あなたなしで",
+  "preview_text": "最近静かですね。あなたのAIが何を予測していたか、こちらです。",
+  "body_paragraphs": [
+    "やあ {first_name}、",
+    "ちょっとしたアップデート：あなたが離れている間も、Predictifyは得意なことをやっていました。直近{recent_total}件の予測：{recent_correct}件的中 — それは{recent_accuracy_pct}%、オートパイロットで。",
+    "ここがポイント：今日のトップ予測は {top_match_line} です。",
+    "アプリを開いて、30秒だけ全体の根拠を見て、あなたのAIをもう一度見直す価値があるか判断してください。"
+  ],
+  "cta_text": "今日の最強ピックを見る",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "ja"
+}

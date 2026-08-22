@@ -1,0 +1,14 @@
+{
+  "subject": "Panggilan tenis pertamamu dimulai di sini, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Selamat datang di Predictify. Orientasi singkat: setiap pertandingan ATP dan WTA di aplikasi ini dilengkapi dengan skor keyakinan AI yang terkalibrasi — dibangun dari Elo, permukaan lapangan, performa terkini, dan head-to-head — yang memberi tahu kamu seberapa andal prediksi tersebut. Angka, bukan opini.",
+    "Coba sekarang: {top_match_line}. Ketuk pertandingannya, lihat analisis lengkapnya — pemenang, total game, handicap game — dan kunci prediksimu.",
+    "Tips pro: buat satu prediksi sehari selama 5 hari dan kamu akan membangun streak. Pengguna streak 3x lebih mungkin melihat prediksi bernilai sebelum servis pertama."
+  ],
+  "cta_text": "Buat prediksi pertamaku",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "id"
+}

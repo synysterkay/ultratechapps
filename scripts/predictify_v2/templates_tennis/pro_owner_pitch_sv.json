@@ -1,0 +1,14 @@
+{
+  "subject": "Pro-användare kan tjäna på communities — behåll 70%",
+  "preview_text": "Vissa ägare tjänar nu tillräckligt för att täcka sitt Pro många gånger om.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Du har varit Pro ett tag och dina picks är konsekventa. Dags att vända på modellen: starta din egen tenniscommunity på Predictify, sätt ett lågt månadspris och behåll 70% av varje prenumeration.",
+    "Toppcommunityägare förvandlar sina picks till återkommande inkomst — och Predictify sköter all betalning, hosting och medlemshantering. Du fortsätter bara att tippa som du redan gör.",
+    "Uppsättningen tar 90 sekunder: välj ett namn, välj din vinkel (en tour, en spelare, en bettingstil), sätt ett pris eller håll det gratis. Ägare med omslagsbild växer 3x snabbare — vi genererar en åt dig med ett tryck."
+  ],
+  "cta_text": "Skapa min community",
+  "cta_deeplink": "predictify://community/create",
+  "kind": "pro_owner_pitch",
+  "language": "sv"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "आपका {streak_days}-दिन का स्ट्रीक {hours_to_break} घंटे में खत्म हो रहा है",
+  "preview_text": "एक पिक इसे जीवित रख सकता है। आपका AI का कॉल तैयार है।",
+  "body_paragraphs": [
+    "अरे {first_name},",
+    "आप {streak_days}-दिन की भविष्यवाणी स्ट्रीक पर हैं। अधिकांश उपयोगकर्ता कभी भी 5 से आगे नहीं जाते — आप कुछ दुर्लभ कर रहे हैं।",
+    "लेकिन अगर आप आज पिक लॉक नहीं करते हैं, तो आपकी स्ट्रीक लगभग {hours_to_break} घंटे में खत्म हो जाएगी। एक टैप। बस इतना ही चाहिए।",
+    "आपके AI ने पहले ही काम कर दिया है: {top_match_line}"
+  ],
+  "cta_text": "मेरी {streak_days}-दिन की स्ट्रीक बचाएं",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "hi"
+}

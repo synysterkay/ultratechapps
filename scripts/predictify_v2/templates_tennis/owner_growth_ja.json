@@ -1,0 +1,14 @@
+{
+  "subject": "あなたのコミュニティ {community_name} にはメンバーが必要です",
+  "preview_text": "参加率を3倍にする30秒のアクションをご紹介します。",
+  "body_paragraphs": [
+    "こんにちは、{first_name}さん、",
+    "{community_name} は開始して少し経ちましたが、現在 {member_count} 人のメンバー{member_plural}がいます。コミュニティは自動で成長しませんが、次の24時間で状況を変えられます。",
+    "最も効果的な方法：招待リンクをグループチャットに貼り付けましょう。カバー画像と5人以上のメンバーがいるコミュニティは3倍速く成長します。それらを揃えれば、あなたのリンクも魅力的に見えます。",
+    "共有用の画像を用意しました。タップひとつでWhatsApp、Discord、またはテニス仲間が集まる場所で使えます。"
+  ],
+  "cta_text": "共有キットを開く",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_growth",
+  "language": "ja"
+}

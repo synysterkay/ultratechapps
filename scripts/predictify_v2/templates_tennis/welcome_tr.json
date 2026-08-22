@@ -1,0 +1,14 @@
+{
+  "subject": "İlk tenis tahminin burada başlıyor, {first_name}",
+  "preview_text": "{top_match_line}",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Predictify'ye hoş geldin. Hızlı bir başlangıç rehberi: uygulamadaki her ATP ve WTA maçı, Elo, zemin, son form ve karşılıklı maçlardan oluşturulan kalibre edilmiş bir AI güven skoruyla gelir — bu skor, tahminin ne kadar güvenilir olduğunu tam olarak söyler. Sayılar, abartılı yorumlar değil.",
+    "Şimdi dene: {top_match_line}. Maça dokun, tam analizi gör — kazanan, toplam oyun sayısı, oyun handikapı — ve tahminini kilitle.",
+    "Profesyonel ipucu: 5 gün boyunca günde bir tahmin yap ve bir seri oluştur. Seri kullananlar, ilk servisten önce değerli tahminleri fark etme olasılığı 3 kat daha fazla."
+  ],
+  "cta_text": "İlk tahminimi yap",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "welcome",
+  "language": "tr"
+}

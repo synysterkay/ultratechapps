@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify가 최근 {recent_total}개 픽 중 {recent_correct}개를 맞췄어요 — 당신 없이도",
+  "preview_text": "요즘 조용하시네요. 당신의 AI가 뭘 예측했는지 알려드릴게요.",
+  "body_paragraphs": [
+    "안녕하세요, {first_name}님,",
+    "간단한 업데이트: 당신이 자리를 비운 동안 Predictify는 제가 가장 잘하는 일을 하고 있었어요. 최근 {recent_total}개 예측 중 {recent_correct}개가 맞았어요 — 정확도 {recent_accuracy_pct}%, 완전 자동으로요.",
+    "여기서 중요한 건: 오늘의 최고 픽은 {top_match_line}입니다.",
+    "앱을 열고 30초만 투자해서 전체 분석을 확인해보세요. 당신의 AI가 다시 볼 가치가 있는지 결정해보세요."
+  ],
+  "cta_text": "오늘의 가장 강력한 픽 보기",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "ko"
+}

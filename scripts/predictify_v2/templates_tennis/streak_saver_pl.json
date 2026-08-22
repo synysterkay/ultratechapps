@@ -1,0 +1,14 @@
+{
+  "subject": "Twoja {streak_days}-dniowa seria kończy się za {hours_to_break} godzin",
+  "preview_text": "Jeden typ utrzyma ją przy życiu. Twój AI ma gotową rekomendację.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "Masz serię {streak_days} dni z rzędu z poprawnymi typami. Większość użytkowników nigdy nie przekracza 5 — robisz coś naprawdę wyjątkowego.",
+    "Ale Twoja seria zakończy się za około {hours_to_break} godzin, jeśli nie postawisz typu dzisiaj. Jedno dotknięcie. Tylko tyle potrzeba.",
+    "Twój AI już wykonał pracę: {top_match_line}"
+  ],
+  "cta_text": "Uratuj moją serię {streak_days} dni",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "pl"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify 命中了最近 {recent_total} 个预测中的 {recent_correct} 个——而你不在场",
+  "preview_text": "你最近很安静。来看看你的 AI 一直在预测什么。",
+  "body_paragraphs": [
+    "嘿，{first_name}，",
+    "快速更新：在你离开的这段时间里，Predictify 一直在做它最擅长的事。最近 {recent_total} 个预测：{recent_correct} 个正确——准确率 {recent_accuracy_pct}%，全自动运行。",
+    "重点来了：今天的顶级推荐是 {top_match_line}",
+    "打开应用，花 30 秒看看完整的分析，然后决定你的 AI 是否值得你再给一次机会。"
+  ],
+  "cta_text": "查看今天的最强推荐",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "zh"
+}

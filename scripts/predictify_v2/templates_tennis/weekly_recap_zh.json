@@ -1,0 +1,14 @@
+{
+  "subject": "你的一周：{recent_correct}/{recent_total} 次预测正确",
+  "preview_text": "{accuracy_pct}% 准确率。下周的顶级推荐已备好。",
+  "body_paragraphs": [
+    "嘿，{first_name}，",
+    "快速回顾一下你在 Predictify 上的这一周：",
+    "✅ {recent_total} 次预测中对了 {recent_correct} 次\n📊 过去 30 天准确率 {accuracy_pct}%\n🔥 连续 {streak_days} 天（这是你目前的纪录）",
+    "展望未来：本周模型最强的推荐是 {top_match_line}。值得一看——打开应用，我们会告诉你为什么。"
+  ],
+  "cta_text": "查看下周的顶级推荐",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "zh"
+}

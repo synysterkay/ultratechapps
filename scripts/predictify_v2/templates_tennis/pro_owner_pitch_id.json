@@ -1,0 +1,14 @@
+{
+  "subject": "Pengguna Pro bisa dapat penghasilan dari komunitas — simpan 70%",
+  "preview_text": "Beberapa pemilik kini menghasilkan cukup untuk menutup biaya Pro berkali-kali lipat.",
+  "body_paragraphs": [
+    "Hai {first_name},",
+    "Kamu sudah Pro cukup lama dan prediksimu konsisten. Saatnya membalik model: buka komunitas tenis kamu sendiri di Predictify, tetapkan harga bulanan yang kecil, dan simpan 70% dari setiap langganan.",
+    "Pemilik komunitas teratas mengubah prediksi mereka menjadi penghasilan berulang — dan Predictify menangani semua pembayaran, hosting, dan manajemen anggota. Kamu cukup terus memprediksi seperti yang sudah kamu lakukan.",
+    "Pengaturannya cuma 90 detik: pilih nama, pilih sudut pandangmu (tur, pemain, gaya taruhan), tetapkan harga atau biarkan gratis. Pemilik dengan gambar sampul tumbuh 3x lebih cepat — kami buatkan untukmu dalam satu ketukan."
+  ],
+  "cta_text": "Buat komunitasku",
+  "cta_deeplink": "predictify://community/create",
+  "kind": "pro_owner_pitch",
+  "language": "id"
+}

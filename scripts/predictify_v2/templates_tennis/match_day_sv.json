@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} mot {away_team} — {confidence_pct}% säkerhetsspel",
+  "preview_text": "{league_name} börjar om {hours_to_kickoff}h. Din AI:s val är redo.",
+  "body_paragraphs": [
+    "Hej {first_name},",
+    "{home_team} mot {away_team} går på banan om cirka {hours_to_kickoff} timmar. Din AI har analyserat varje signal — Elo, underlag, senaste form, inbördes möten och serve-statistik — och låst ett val.",
+    "📊 Valet: {pick_label}\n🎯 Kalibrerad säkerhet: {confidence_pct}%\n🎾 Nivå: {tier_label}",
+    "Det här är exakt vad vi byggde Predictify för. Öppna appen, se hela resonemanget och lås din förutsägelse innan första serve."
+  ],
+  "cta_text": "Se hela förutsägelsen",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "sv"
+}

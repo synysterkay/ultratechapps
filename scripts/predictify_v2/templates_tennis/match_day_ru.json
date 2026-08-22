@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} против {away_team} — прогноз с уверенностью {confidence_pct}%",
+  "preview_text": "{league_name} начнется через {hours_to_kickoff} ч. Прогноз вашего ИИ готов.",
+  "body_paragraphs": [
+    "Привет, {first_name},",
+    "{home_team} против {away_team} выходят на корт примерно через {hours_to_kickoff} часов. Ваш ИИ проанализировал все сигналы — Эло, покрытие, текущую форму, личные встречи и статистику подач — и сделал ставку.",
+    "📊 Прогноз: {pick_label}\n🎯 Калиброванная уверенность: {confidence_pct}%\n🎾 Уровень: {tier_label}",
+    "Именно для этого мы создали Predictify. Откройте приложение, посмотрите полное обоснование и зафиксируйте свой прогноз до первой подачи."
+  ],
+  "cta_text": "Посмотреть полный прогноз",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "ru"
+}

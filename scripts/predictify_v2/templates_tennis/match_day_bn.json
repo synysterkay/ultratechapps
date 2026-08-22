@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} বনাম {away_team} — {confidence_pct}% আত্মবিশ্বাসের কল",
+  "preview_text": "{league_name} শুরু হতে {hours_to_kickoff} ঘণ্টা বাকি। আপনার AI-এর পিক প্রস্তুত।",
+  "body_paragraphs": [
+    "হেই {first_name},",
+    "{home_team} বনাম {away_team} ম্যাচ শুরু হতে প্রায় {hours_to_kickoff} ঘণ্টা বাকি। আপনার AI প্রতিটি সিগন্যাল বিশ্লেষণ করেছে — এলো, সারফেস, সাম্প্রতিক ফর্ম, হেড-টু-হেড এবং সার্ভ পরিসংখ্যান — এবং একটি কল লক করেছে।",
+    "📊 পিক: {pick_label}\n🎯 ক্যালিব্রেটেড আত্মবিশ্বাস: {confidence_pct}%\n🎾 টিয়ার: {tier_label}",
+    "আমরা Predictify ঠিক এজন্যই তৈরি করেছি। অ্যাপ খুলুন, সম্পূর্ণ যুক্তি দেখুন এবং প্রথম সার্ভের আগে আপনার পূর্বাভাস লক করুন।"
+  ],
+  "cta_text": "সম্পূর্ণ পূর্বাভাস দেখুন",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "bn"
+}

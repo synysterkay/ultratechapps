@@ -1,0 +1,14 @@
+{
+  "subject": "Το σερί {streak_days} ημερών λήγει σε {hours_to_break} ώρες",
+  "preview_text": "Μία επιλογή το κρατάει ζωντανό. Η πρόβλεψη του AI σου είναι έτοιμη.",
+  "body_paragraphs": [
+    "Γεια σου {first_name},",
+    "Είσαι σε σερί προβλέψεων {streak_days} ημερών. Οι περισσότεροι χρήστες δεν ξεπερνούν ποτέ τις 5 — κάνεις κάτι σπάνιο.",
+    "Αλλά το σερί σου λήγει σε περίπου {hours_to_break} ώρες αν δεν κλειδώσεις μια επιλογή σήμερα. Ένα πάτημα. Μόνο αυτό χρειάζεται.",
+    "Το AI σου έχει ήδη κάνει τη δουλειά: {top_match_line}"
+  ],
+  "cta_text": "Σώσε το σερί {streak_days} ημερών",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "el"
+}

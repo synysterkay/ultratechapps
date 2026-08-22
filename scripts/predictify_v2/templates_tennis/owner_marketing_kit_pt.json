@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} precisa de membros — veja como os melhores donos crescem",
+  "preview_text": "5 lugares onde vimos donos postarem que realmente convertem.",
+  "body_paragraphs": [
+    "Ei {first_name},",
+    "Sua comunidade {community_name} tem {member_count} membro{member_plural}. Os donos que atingem 25+ membros na primeira semana usam todos o mesmo manual — aqui está.",
+    "1. Grupos de WhatsApp/Telegram: compartilhe o link com uma chamada de uma linha (\"Previsões de IA para cada partida de ATP, grátis para entrar\")\n2. X / Twitter: poste sua escolha mais confiante do dia com o link de entrada na resposta\n3. r/tennis, r/sportsbook no Reddit: um tópico diário fixado\n4. Comentários no TikTok sob vídeos de prévia / parlay de tênis\n5. Servidores no Discord para os torneios que você cobre",
+    "O Predictify cria a imagem de capa para você (seu link de compartilhamento fica 3x melhor com uma — isso sozinho aumenta a taxa de entrada). Abra o kit de compartilhamento, copie o link, cole onde os fãs de tênis se reúnem."
+  ],
+  "cta_text": "Abrir kit de compartilhamento",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "pt"
+}

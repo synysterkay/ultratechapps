@@ -1,0 +1,14 @@
+{
+  "subject": "{community_name} heeft leden nodig — zo laten top-eigenaren hun community groeien",
+  "preview_text": "5 plekken waar we hebben gezien dat eigenaren posten die daadwerkelijk converteren.",
+  "body_paragraphs": [
+    "Hoi {first_name},",
+    "Jouw community {community_name} heeft {member_count} lid{member_plural}. Eigenaren die in week één 25+ leden halen, gebruiken allemaal dezelfde aanpak — hier is die.",
+    "1. WhatsApp/Telegram-groepen: deel de link met een one-liner teaser (\"AI-voorspellingen voor elke ATP-wedstrijd, gratis om mee te doen\")\n2. X / Twitter: post je meest zelfverzekerde keuze van de dag met de join-link in het antwoord\n3. r/tennis, r/sportsbook op Reddit: een vast dagelijks draadje\n4. TikTok-reacties onder tennispreview- of parlay-video's\n5. Discord-servers voor de tours die je behandelt",
+    "Predictify maakt de coverafbeelding voor je (je share-link ziet er 3x beter uit met een — dat alleen al verhoogt het join-percentage). Open de share-kit, kopieer de link, plak hem waar tennisfans samenkomen."
+  ],
+  "cta_text": "Open share-kit",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_marketing_kit",
+  "language": "nl"
+}

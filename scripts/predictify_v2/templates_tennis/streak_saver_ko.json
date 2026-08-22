@@ -1,0 +1,14 @@
+{
+  "subject": "당신의 {streak_days}일 연속 예측이 {hours_to_break}시간 후에 끝납니다",
+  "preview_text": "한 번의 선택이 연속 기록을 살립니다. AI의 추천이 준비되어 있습니다.",
+  "body_paragraphs": [
+    "{first_name}님,",
+    "당신은 {streak_days}일 연속 예측 기록을 세우고 있습니다. 대부분의 사용자는 5일을 넘기지 못합니다 — 당신은 특별한 일을 하고 있어요.",
+    "하지만 오늘 선택을 확정하지 않으면 약 {hours_to_break}시간 후에 연속 기록이 끝납니다. 한 번의 탭이면 됩니다. 그게 전부예요.",
+    "AI가 이미 준비를 마쳤습니다: {top_match_line}"
+  ],
+  "cta_text": "내 {streak_days}일 연속 기록 지키기",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "streak_saver",
+  "language": "ko"
+}

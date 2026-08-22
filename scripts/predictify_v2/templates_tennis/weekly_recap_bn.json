@@ -1,0 +1,14 @@
+{
+  "subject": "আপনার সপ্তাহ: {recent_correct}/{recent_total}টি ভবিষ্যদ্বাণী সঠিক",
+  "preview_text": "{accuracy_pct}% নির্ভুলতা। পরের সপ্তাহের জন্য সেরা পিক লাইন আপ।",
+  "body_paragraphs": [
+    "হাই {first_name},",
+    "Predictify-তে আপনার সপ্তাহের দ্রুত রিক্যাপ:",
+    "✅ {recent_correct}টি {recent_total}টি ভবিষ্যদ্বাণী সঠিক\n📊 গত ৩০ দিনে {accuracy_pct}% নির্ভুলতা\n🔥 {streak_days} দিনের স্ট্রিক (এখন পর্যন্ত আপনার রেকর্ড)",
+    "সামনে তাকিয়ে: এই সপ্তাহে মডেলের সবচেয়ে শক্তিশালী কল হলো {top_match_line}। একবার দেখুন — অ্যাপ খুলুন, আমরা আপনাকে ঠিক কেন দেখাব।"
+  ],
+  "cta_text": "পরের সপ্তাহের সেরা পিক দেখুন",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "bn"
+}

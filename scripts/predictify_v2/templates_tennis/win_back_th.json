@@ -1,0 +1,14 @@
+{
+  "subject": "Predictify ทำนายถูก {recent_correct} จาก {recent_total} อันหลังสุด — โดยไม่มีคุณ",
+  "preview_text": "คุณเงียบไปนาน นี่คือสิ่งที่ AI ของคุณกำลังทายไว้",
+  "body_paragraphs": [
+    "สวัสดี {first_name},",
+    "อัปเดตสั้นๆ: ในขณะที่คุณไม่อยู่ Predictify ยังคงทำสิ่งที่มันถนัด ผลทาย {recent_total} อันหลังสุด: ถูก {recent_correct} อัน — คิดเป็น {recent_accuracy_pct}% แบบอัตโนมัติ",
+    "จุดสำคัญ: ทายเด่นของวันนี้คือ {top_match_line}",
+    "เปิดแอป ใช้เวลา 30 วินาทีดูเหตุผลเต็มๆ แล้วตัดสินใจว่า AI ของคุณสมควรได้รับโอกาสอีกครั้งหรือไม่"
+  ],
+  "cta_text": "ดูทายที่แข็งแกร่งที่สุดของวันนี้",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "win_back",
+  "language": "th"
+}

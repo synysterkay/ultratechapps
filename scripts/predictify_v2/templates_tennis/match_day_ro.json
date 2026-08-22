@@ -1,0 +1,14 @@
+{
+  "subject": "{home_team} vs {away_team} — apel cu {confidence_pct}% încredere",
+  "preview_text": "{league_name} începe în {hours_to_kickoff}h. Selecția AI-ului tău este gata.",
+  "body_paragraphs": [
+    "Hei {first_name},",
+    "{home_team} vs {away_team} intră pe teren în aproximativ {hours_to_kickoff} ore. AI-ul tău a analizat fiecare semnal — Elo, suprafață, formă recentă, H2H și statistici de serviciu — și a stabilit o selecție.",
+    "📊 Selecția: {pick_label}\n🎯 Încredere calibrată: {confidence_pct}%\n🎾 Nivel: {tier_label}",
+    "Exact pentru asta am construit Predictify. Deschide aplicația, vezi raționamentul complet și blochează-ți predicția înainte de primul serviciu."
+  ],
+  "cta_text": "Vezi predicția completă",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "match_day",
+  "language": "ro"
+}

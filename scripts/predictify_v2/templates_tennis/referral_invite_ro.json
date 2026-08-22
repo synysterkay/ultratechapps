@@ -1,0 +1,14 @@
+{
+  "subject": "Primește Pro gratuit invitând un prieten de tenis",
+  "preview_text": "1 recomandare = 1 lună gratuită pentru amândoi.",
+  "body_paragraphs": [
+    "Hei {first_name},",
+    "Ai făcut pronosticuri constant — partea pe care majoritatea utilizatorilor o sar. Acum bonusul ușor: invită un prieten care urmărește aceleași meciuri ca tine și amândoi primiți o lună gratuită de Predictify Pro imediat ce se înscrie.",
+    "De ce facem asta: prietenii care pronostichează împreună rămân de 4 ori mai mult decât utilizatorii singuri. Mai bine pentru toți — inclusiv pentru noi.",
+    "Apasă mai jos pentru a-ți lua linkul unic de invitație. Trimite-l unei persoane din chatul tău de grup. Gata."
+  ],
+  "cta_text": "Obține linkul meu de invitație",
+  "cta_deeplink": "predictify://referral",
+  "kind": "referral_invite",
+  "language": "ro"
+}

@@ -1,0 +1,21 @@
+{
+  "subject": "{first_name}，我在听腻了太多“他该赢了”的说法之后，做了这个",
+  "preview_text": "对比赛胜者、总局数和让分盘进行校准的预测——每一条结果都可验证。",
+  "body_paragraphs": [
+    "嘿，{first_name}，",
+    "每个比赛日，都是同样的场景：群聊里全是情绪化的说法——“他该赢了”，“红土不重要”，“我就是感觉会送蛋”。没人去查状态、场地类型，或者数据到底怎么说。",
+    "我创建 Predictify Tennis，是因为网球争论不应该由嗓门最大的人获胜。我们想要的是你可以反复检验的预测：Elo 评分、场地、近期状态、交手记录，以及针对比赛胜者、总局数、让分盘、首盘和直落两盘的校准置信度分数。",
+    "我们有个朋友在大满贯之夜吃了亏。模型标记了一个胜率 58% 的热门——基本上就是抛硬币。他无视了这一点，凭直觉下注，结果争论和赌注都输了。两周后，他打开了我们最高置信度区间（80%+ 档）的一个预测，读了分析，然后在第一发球前就做出了判断。同一个朋友，不同的流程。",
+    "这就是为什么我们公布每一条结果——赢的和输的——这样你可以自己逐场验证我们的战绩。没有隐藏的预测。没有在赛点后改写历史。",
+    "你的下一步只需大约 30 秒：打开今天的赛程，选一场比赛，在锁定你的选择之前读一下分析。",
+    "P.S. 我们不是博彩公司。没有保证的胜利——只有透明的预测和你可以查证的记录。"
+  ],
+  "cta_text": "查看今天最强的预测——免费",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis",
+  "language": "zh",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}

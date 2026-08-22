@@ -1,0 +1,14 @@
+{
+  "subject": "Topluluğun {community_name} üyelere ihtiyaç duyuyor",
+  "preview_text": "İşte katılım oranını 3 katına çıkaran 30 saniyelik bir aksiyon.",
+  "body_paragraphs": [
+    "Merhaba {first_name},",
+    "{community_name} bir süredir aktif ve şu ana kadar {member_count} üye{member_plural} var. Topluluklar kendi kendine büyümez — ama önümüzdeki 24 saat bunu değiştirebilir.",
+    "En hızlı kaldıraç: davet linkini grup sohbetlerine at. Kapak fotoğrafı ve 5+ üyesi olan topluluklar 3 kat daha hızlı büyüyor — ve linkin bunlara sahip olduğunda harika görünüyor.",
+    "Paylaşım görselini senin için hazırladık. Tek dokunuşla WhatsApp, Discord veya tenis arkadaşlarının takıldığı her yerde paylaşıma hazır."
+  ],
+  "cta_text": "Paylaşım kitini aç",
+  "cta_deeplink": "predictify://community/{community_id}/share",
+  "kind": "owner_growth",
+  "language": "tr"
+}

@@ -1,0 +1,14 @@
+{
+  "subject": "Quay lại Pro với chúng tôi — miễn phí 30 ngày, không cần thẻ",
+  "preview_text": "Điều gì đã xảy ra? Là giá cả, tính năng, hay điều gì khác?",
+  "body_paragraphs": [
+    "Chào {first_name},",
+    "Gói Pro của bạn đã hết hạn và chúng tôi nhận thấy điều đó. Chúng tôi sẽ không phóng đại — bạn biết rõ Pro làm được gì. Chúng tôi chỉ muốn biết liệu có điều gì cụ thể không phù hợp với bạn.",
+    "Nếu bạn cho chúng tôi biết (chỉ cần trả lời email này — có người thật đọc nó), chúng tôi sẽ cộng thêm 30 ngày Pro vào tài khoản của bạn, không ràng buộc, không cần thẻ. Một lời đề nghị thật sự, không phải chiêu trò tiếp thị.",
+    "Dù bạn có quay lại hay không, cảm ơn bạn đã dành thời gian với chúng tôi. Phản hồi của bạn thực sự giúp chúng tôi xây dựng phiên bản tiếp theo."
+  ],
+  "cta_text": "Khởi động lại Pro miễn phí 30 ngày",
+  "cta_deeplink": "predictify://winback",
+  "kind": "winback_lapsed_pro",
+  "language": "vi"
+}

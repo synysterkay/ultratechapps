@@ -1,0 +1,14 @@
+{
+  "subject": "هفته‌ی شما: {recent_correct}/{recent_total} پیش‌بینی درست",
+  "preview_text": "دقت {accuracy_pct}٪. بهترین انتخاب برای هفته‌ی آینده آماده است.",
+  "body_paragraphs": [
+    "سلام {first_name}،",
+    "خلاصه‌ی سریع هفته‌ی شما در Predictify:",
+    "✅ {recent_correct} از {recent_total} پیش‌بینی درست بود\n📊 دقت {accuracy_pct}٪ در ۳۰ روز گذشته\n🔥 {streak_days} روز پیاپی (رکورد شما تا الان)",
+    "نگاه به آینده: قوی‌ترین پیشنهاد مدل این هفته {top_match_line} است. ارزش دیدن دارد — اپ را باز کنید تا دقیقاً ببینید چرا."
+  ],
+  "cta_text": "دیدن بهترین انتخاب هفته‌ی آینده",
+  "cta_deeplink": "predictify://prediction/{fixture_id}",
+  "kind": "weekly_recap",
+  "language": "fa"
+}

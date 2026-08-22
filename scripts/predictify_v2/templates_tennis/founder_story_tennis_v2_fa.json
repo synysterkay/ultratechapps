@@ -1,0 +1,19 @@
+{
+  "subject": "{first_name}، مسابقات امروز از حالا زنده‌اند",
+  "preview_text": "۳۰ ثانیه روی یک مسابقه قبل از سرویس اول — این تمام عادتی است که لازم داری.",
+  "body_paragraphs": [
+    "سلام {first_name}،",
+    "یک پیگیری کوتاه از چند روز پیش: Predictify Tennis درباره شرط‌بندی بیشتر نیست — بلکه درباره جایگزین کردن حدس‌وگمان با یک فرایند قابل بررسی است.",
+    "کاربرانی که به آن پایبند می‌مانند، یک ساعت تحقیق نمی‌کنند. آن‌ها یک مسابقه را باز می‌کنند، باند اطمینان و زمینه را می‌خوانند، یک تصمیم می‌گیرند و ادامه می‌دهند. ثبات از شانس‌های لحظه‌ای بهتر است.",
+    "تابلوی امروز آماده است. یک مسابقه انتخاب کن، تحلیل را بخوان و قبل از سرویس اول تصمیم بگیر.",
+    "پ.ن: حس درونی در چت سرگرم‌کننده است. اما اعداد قبل از ورود به زمین بهترند."
+  ],
+  "cta_text": "مشاهده مسابقات امروز",
+  "cta_deeplink": "predictify://",
+  "kind": "founder_story_tennis_v2",
+  "language": "fa",
+  "app_store_url": "https://apps.apple.com/app/predictify-tennis",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction",
+  "cta_ios_text": "Download on the App Store",
+  "cta_android_text": "Get it on Google Play"
+}
