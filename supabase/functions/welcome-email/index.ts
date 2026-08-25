@@ -78,6 +78,12 @@ function getSenderForApp(appId: string) {
   if (appId === "onbrief") {
     return resolveSender(SENDER_POOL_ONBRIEF[0], "onbrief");
   }
+  if (appId === "vowcraft") {
+    return resolveSender(
+      { email: SENDER_POOL_KAYNEL[0].email, name: "Vowcraft" },
+      "vowcraft",
+    );
+  }
   const kaynelNames: Record<string, string> = {
     pupshape: "PupShape",
     kinbound: "Kinbound",
@@ -90,6 +96,7 @@ function getSenderForApp(appId: string) {
     ai_girlfriend: "AI Girlfriend",
     smart_notes: "Smart Notes",
     onbrief: "Onbrief",
+    vowcraft: "Vowcraft",
   };
   if (kaynelNames[appId]) {
     return resolveSender({ email: SENDER_POOL_KAYNEL[0].email, name: kaynelNames[appId] }, appId);
@@ -535,6 +542,26 @@ const APP_CONFIG: Record<string, AppConfig> = {
           "The fastest win is not writing the whole thing. Open the brief that's already sitting there, tap Generate all, and let the workspace fill. That's the whole product \u2014 a finished memo you can export, not another notes app.",
           "Don't save this for Friday. Open Onbrief now, stay on that one brief, tap Generate all. You'll have a draft before this email is closed.",
           "P.S. People who generate the first brief on day one actually export it. Waiting usually means it never leaves the outline.",
+        ],
+      },
+    },
+  },
+
+  vowcraft: {
+    name: "Vowcraft",
+    multilingual: false,
+    appStoreUrl: "",
+    googlePlayUrl: "https://play.google.com/store/apps/details?id=com.vowcraft.wedding.speech",
+    emails: {
+      en: {
+        subject: "Your speech draft is waiting. Rehearse it once.",
+        preheader: "Open the speech, tap Rehearse, say the first minute aloud.",
+        cta_text: "Rehearse my speech",
+        body_paragraphs: [
+          "You opened Vowcraft. The trap is the same for almost everyone: generate a draft, feel relief, close the app, mean to practice later. The wedding arrives and you're reading cold.",
+          "The fastest win is not rewriting everything. Open the speech that's already there, tap Rehearse, and say the first minute aloud. That's the product \u2014 a toast you can mean, not another notes app.",
+          "Don't save practice for the night before. Open Vowcraft now, stay on that one speech, rehearse once. You'll sound like yourself before this email is closed.",
+          "P.S. People who rehearse on day one actually deliver. Waiting usually means a phone screen on the day.",
         ],
       },
     },

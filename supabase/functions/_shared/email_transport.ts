@@ -47,6 +47,7 @@ const KAYNEL_CATCHALL_APPS = new Set([
   "ai_girlfriend",
   "smart_notes",
   "onbrief",
+  "vowcraft",
 ]);
 const KAYNEL_SENDER_NAMES: Record<string, string> = {
   ong: "ONG",
@@ -62,6 +63,7 @@ const KAYNEL_SENDER_NAMES: Record<string, string> = {
   ai_girlfriend: "AI Girlfriend",
   smart_notes: "Smart Notes",
   onbrief: "Onbrief",
+  vowcraft: "Vowcraft",
 };
 
 export interface EmailTag {
@@ -185,6 +187,15 @@ export function zeptomailSenderForApp(app: string): SenderIdentity {
           Deno.env.get("ZEPTOMAIL_ONG_SENDER_EMAIL") ||
           "hello@kaynel.solutions",
         name: Deno.env.get("ZEPTOMAIL_ONBRIEF_SENDER_NAME") || "Onbrief",
+      };
+    }
+    if (slug === "vowcraft") {
+      return {
+        email:
+          Deno.env.get("ZEPTOMAIL_VOWCRAFT_SENDER_EMAIL") ||
+          Deno.env.get("ZEPTOMAIL_ONG_SENDER_EMAIL") ||
+          "hello@kaynel.solutions",
+        name: Deno.env.get("ZEPTOMAIL_VOWCRAFT_SENDER_NAME") || "Vowcraft",
       };
     }
     const name = isOngAppTag(slug)

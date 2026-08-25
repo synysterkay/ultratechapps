@@ -1,0 +1,9 @@
+{
+  "subject": "{{first_name}}, your speech for {{couple}} is still waiting",
+  "body": [
+    "Yesterday you started a {{role}} speech in Vowcraft. The draft is still there. The rest is one unlock away.",
+    "Open the app, unlock writing, finish the toast. Don't start over — finish the one that's already open.",
+    "P.S. Most people who wait a week never come back. Twenty-four hours is still recoverable."
+  ],
+  "cta": "Finish this speech"
+}

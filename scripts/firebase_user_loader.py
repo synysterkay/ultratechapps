@@ -194,6 +194,15 @@ FIREBASE_APPS = {
         'multilingual': False,
         'supported_languages': ['en'],
     },
+    'vowcraft-e4498': {
+        'name': 'Vowcraft',
+        'export_file': 'vowcraft_fresh.json',
+        'description': 'Wedding Speeches AI — write, rehearse, mean it',
+        'app_store_url': '',
+        'google_play_url': 'https://play.google.com/store/apps/details?id=com.vowcraft.wedding.speech',
+        'multilingual': True,
+        'supported_languages': ['en'],
+    },
 }
 
 

@@ -1,0 +1,9 @@
+{
+  "subject": "Last note on your {{role}} speech",
+  "body": [
+    "It's been a week. Your speech for {{couple}} is still unfinished in Vowcraft.",
+    "If you still need it, open the app and finish. If you don't, we'll go quiet after this.",
+    "P.S. This is the last upgrade nudge on this speech."
+  ],
+  "cta": "Open Vowcraft"
+}

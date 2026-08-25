@@ -1,0 +1,9 @@
+{
+  "subject": "Five days. {{couple}} still needs your toast.",
+  "body": [
+    "{{first_name}} — your {{role}} speech has been sitting in Vowcraft for five days. The draft didn't rehearse itself.",
+    "Open it once. Finish what's missing. Rehearse. That's it.",
+    "P.S. If this one is dead, start a new speech. Don't keep a zombie draft."
+  ],
+  "cta": "Finish or start clean"
+}

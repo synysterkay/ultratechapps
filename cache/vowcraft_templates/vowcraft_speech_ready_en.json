@@ -1,0 +1,9 @@
+{
+  "subject": "{{first_name}}, your speech is ready — rehearse it",
+  "body": [
+    "{{first_name}} — your {{role}} speech for {{couple}} is written. That's the hard part.",
+    "Now make it yours. Open Vowcraft, tap Rehearse, and say it aloud once. A short pass beats a cold read at the mic.",
+    "P.S. Copy it to Notes after you rehearse. Future-you will thank you."
+  ],
+  "cta": "Rehearse now"
+}

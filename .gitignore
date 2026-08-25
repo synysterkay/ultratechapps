@@ -41,6 +41,7 @@ cache/*
 !cache/thesis_templates/
 !cache/ong_templates/
 !cache/onbrief_templates/
+!cache/vowcraft_templates/
 !cache/*_state.json
 !cache/retention_state.json
 !cache/sender_health.json

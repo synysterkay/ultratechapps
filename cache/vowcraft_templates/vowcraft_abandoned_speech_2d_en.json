@@ -1,0 +1,9 @@
+{
+  "subject": "{{first_name}}, your {{role}} speech is still open",
+  "body": [
+    "It's been two days. The speech for {{couple}} is still in Vowcraft — not rehearsed, not ready.",
+    "Open the app, finish any empty lines, tap Rehearse once. Then you're done arguing with a blank page.",
+    "P.S. Unfinished toasts almost never get easier on day five. Day two is the cheap save."
+  ],
+  "cta": "Continue this speech"
+}

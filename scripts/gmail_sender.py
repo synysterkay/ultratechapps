@@ -108,6 +108,7 @@ KAYNEL_CATCHALL_APPS = {
     'ai_girlfriend',
     'smart_notes',
     'onbrief',
+    'vowcraft',
 }
 KAYNEL_SENDER_NAMES = {
     'ong': 'ONG',
@@ -123,6 +124,7 @@ KAYNEL_SENDER_NAMES = {
     'ai_girlfriend': 'AI Girlfriend',
     'smart_notes': 'Smart Notes',
     'onbrief': 'Onbrief',
+    'vowcraft': 'Vowcraft',
 }
 
 
