@@ -330,6 +330,10 @@ def run_send(*, dry_run: bool = False, send_cap: int | None = None) -> list[str]
             if len(sent_emails) % 25 == 0:
                 _save_state(state)
             print(f'   ✅ [{len(sent_emails)}] {email} ({lang}) +{fs1_rec.get("days_since")}d')
+        elif result == 'throttled':
+            skipped += 1
+            print('   🛑 Thesis volume cap — stopping this sender')
+            break
         elif result in SKIP_RESULTS:
             skipped += 1
             print(f'   ⏭️ {email} result={result}')

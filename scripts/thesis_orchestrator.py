@@ -50,6 +50,11 @@ FOUNDER_STORY_THESIS_2_BACKFILL_DAILY_CAP = int(
     os.environ.get('FOUNDER_STORY_THESIS_2_BACKFILL_DAILY_CAP', '100'))
 
 
+def _thesis_volume_open() -> bool:
+    from gmail_sender import GmailSender
+    return GmailSender._under_thesis_cap('thesis')
+
+
 def run_one(name, mod, dry_run):
     """Run a single sender's `main()` with the given dry-run flag.
     Catches exceptions so one broken sender doesn't take down the rest."""
@@ -154,11 +159,20 @@ def main():
     for name, mod in SENDERS:
         if only and only != name:
             continue
+        if not only and not _thesis_volume_open():
+            print(f'⏭️ Thesis daily volume cap reached — skipping {name} and remaining senders')
+            break
         run_one(name, mod, dry_run)
         time.sleep(0.5)
     if not only:
-        run_founder_story_catchup(dry_run=dry_run)
-        run_founder_story_daily_backfill(dry_run=dry_run)
+        if _thesis_volume_open():
+            run_founder_story_catchup(dry_run=dry_run)
+        else:
+            print('⏭️ Skipping founder-story catch-up — Thesis volume cap already hit')
+        if _thesis_volume_open():
+            run_founder_story_daily_backfill(dry_run=dry_run)
+        else:
+            print('⏭️ Skipping founder-story backfill — Thesis volume cap already hit')
     print('\n🏁 Thesis orchestrator done.')
 
 

@@ -236,6 +236,7 @@ class GmailSender:
     _suppression_cache = None
     _volume_cache = None
     _run_counts = Counter()
+    _thesis_cap_notice_shown = False
 
     @classmethod
     def reset_dedup(cls):
@@ -793,9 +794,11 @@ class GmailSender:
             return 'suppressed'
 
         if not is_warming and not self._under_thesis_cap(app):
-            metrics = self._thesis_volume_metrics() or {}
-            used = metrics.get('sent_24h', 0) + GmailSender._run_counts['thesis']
-            print(f"   ⏭️ Thesis volume cap reached — {used}/{metrics.get('cap', 0)} sent in 24h")
+            if not GmailSender._thesis_cap_notice_shown:
+                metrics = self._thesis_volume_metrics() or {}
+                used = metrics.get('sent_24h', 0) + GmailSender._run_counts['thesis']
+                print(f"   ⏭️ Thesis volume cap reached — {used}/{metrics.get('cap', 0)} sent in 24h")
+                GmailSender._thesis_cap_notice_shown = True
             return 'throttled'
 
         # One email per recipient per UTC day (and per process). Warming
