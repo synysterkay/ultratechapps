@@ -13,6 +13,7 @@ import requests
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
+from firestore_quota import is_exhausted, mark_exhausted
 from localize_phrase import LANGUAGES as THESIS_APP_LANGUAGES
 
 
@@ -152,6 +153,10 @@ class FirestoreLanguageLoader:
         supported = project_config['supported_languages']
         cache_file = self.cache_dir / project_config['cache_file']
 
+        if is_exhausted(project_id):
+            print(f"   ⏭️ Firestore quota exhausted — using cached languages for {app_name}")
+            return self._load_cache(cache_file)
+
         token = self._get_access_token()
         if not token:
             return self._load_cache(cache_file)
@@ -171,6 +176,10 @@ class FirestoreLanguageLoader:
 
             try:
                 resp = requests.get(url, headers=headers, params=params, timeout=30)
+                if resp.status_code == 429:
+                    mark_exhausted(project_id)
+                    print(f"   ❌ Firestore API error: {resp.status_code} {resp.text[:200]}")
+                    break
                 if resp.status_code != 200:
                     print(f"   ❌ Firestore API error: {resp.status_code} {resp.text[:200]}")
                     break
@@ -244,6 +253,8 @@ class FirestoreLanguageLoader:
 
         token = self._get_access_token()
         if not token:
+            return 'en'
+        if is_exhausted(project_id):
             return 'en'
 
         url = f"{FIRESTORE_BASE}/projects/{project_id}/databases/(default)/documents:runQuery"

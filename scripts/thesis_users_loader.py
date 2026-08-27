@@ -47,6 +47,8 @@ from pathlib import Path
 from datetime import datetime, timezone
 from typing import Iterable
 
+from firestore_quota import is_exhausted, mark_exhausted
+
 USERS_SNAPSHOT_CACHE = Path(__file__).resolve().parents[1] / 'cache' / 'thesis_users_snapshot.json'
 
 
@@ -230,8 +232,12 @@ def load_users_by_uids(
         print('   ❌ No Firestore access token')
         return []
 
-    max_attempts, max_wait, page_delay = _firestore_retry_settings()
     building = os.getenv('THESIS_FIRESTORE_SNAPSHOT_BUILD', '').lower() in ('1', 'true', 'yes')
+    if is_exhausted(PROJECT_ID) and not building:
+        print('   ⏭️ Firestore quota exhausted — skip batchGet')
+        return []
+
+    max_attempts, max_wait, page_delay = _firestore_retry_settings()
     url = f"{FIRESTORE_BASE}/projects/{PROJECT_ID}/databases/(default)/documents:batchGet"
     doc_prefix = f"projects/{PROJECT_ID}/databases/(default)/documents/users"
     users: list[dict] = []
@@ -262,11 +268,15 @@ def load_users_by_uids(
                         access_token = refreshed
                         print('   🔄 Firestore 401 — refreshed access token')
                         continue
-                if resp.status_code == 429 and attempt < max_attempts - 1:
-                    wait = min(max_wait, 5 * (2 ** attempt))
-                    print(f'   ⏳ Firestore batchGet 429 — retry in {wait}s (attempt {attempt + 1}/{max_attempts})')
-                    time.sleep(wait)
-                    continue
+                if resp.status_code == 429:
+                    mark_exhausted(PROJECT_ID)
+                    if attempt < max_attempts - 1:
+                        wait = min(max_wait, 5 * (2 ** attempt))
+                        print(f'   ⏳ Firestore batchGet 429 — retry in {wait}s (attempt {attempt + 1}/{max_attempts})')
+                        time.sleep(wait)
+                        continue
+                    print(f'   ❌ Firestore batchGet error: {resp.status_code} {resp.text[:200]}')
+                    break
                 print(f'   ❌ Firestore batchGet error: {resp.status_code} {resp.text[:200]}')
                 break
             except Exception as exc:
@@ -279,6 +289,12 @@ def load_users_by_uids(
 
         if not data:
             consecutive_batch_failures += 1
+            if is_exhausted(PROJECT_ID) and not building:
+                print(
+                    f'   ⏭️ Stopping remaining batchGet — quota exhausted '
+                    f'({len(users):,} profiles loaded)'
+                )
+                break
             if consecutive_batch_failures >= max_consecutive_failures:
                 print(
                     f'   ⚠️ Firestore batchGet stopped after {consecutive_batch_failures} '
@@ -339,13 +355,15 @@ def load_thesis_auth_firestore_users_resilient(token: str | None = None) -> list
             'Run workflow mode build-snapshot or wait for Ensure snapshot step.'
         )
 
+    if is_exhausted(PROJECT_ID):
+        stale = _load_users_snapshot(max_age_hours=None)
+        if len(stale) >= min_users:
+            print(f'   📦 Quota exhausted — using snapshot ({len(stale):,} users)')
+            return stale
+
     users = load_thesis_auth_firestore_users(token)
     if len(users) >= min_users:
-        try:
-            _save_users_snapshot(users)
-            print(f'   💾 Saved Firestore snapshot ({len(users):,} users)')
-        except Exception as exc:
-            print(f'   ⚠️ Could not save Firestore snapshot: {exc}')
+        _maybe_save_users_snapshot(users)
         return users
 
     stale = _load_users_snapshot(max_age_hours=None)
@@ -363,12 +381,23 @@ def _firestore_retry_settings() -> tuple[int, int, float]:
     building = os.getenv('THESIS_FIRESTORE_SNAPSHOT_BUILD', '').lower() in ('1', 'true', 'yes')
     if building:
         return 30, 300, 3.0
-    return 12, 180, 0.5
+    # Retention cron: a few short retries, then snapshot / skip. 12×180s
+    # per page is what burned the 300-minute GitHub step on 26 Aug.
+    return 3, 15, 0.25
 
 
 def load_all_users(token: str | None = None, page_size: int = 200):
+    """Yield Thesis users, preferring snapshot / fail-fast on 429."""
+    for u in load_all_users_list(token, page_size=page_size):
+        yield u
+
+
+def _iter_all_users_live(token: str | None = None, page_size: int = 200):
     """Yields one normalized user dict per Firestore user doc. Skips any
     doc that has no email (those can't receive emails anyway)."""
+    if is_exhausted(PROJECT_ID):
+        print('   ⏭️ Firestore quota exhausted — skip live user scan')
+        return
     page_token = None
     max_attempts, max_wait, page_delay = _firestore_retry_settings()
     access_token = token or get_access_token()
@@ -400,11 +429,15 @@ def load_all_users(token: str | None = None, page_size: int = 200):
                         access_token = refreshed
                         print('   🔄 Firestore 401 — refreshed access token')
                         continue
-                if resp.status_code == 429 and attempt < max_attempts - 1:
-                    wait = min(max_wait, 5 * (2 ** attempt))
-                    print(f'   ⏳ Firestore 429 — retry in {wait}s (attempt {attempt + 1}/{max_attempts})')
-                    time.sleep(wait)
-                    continue
+                if resp.status_code == 429:
+                    mark_exhausted(PROJECT_ID)
+                    if attempt < max_attempts - 1:
+                        wait = min(max_wait, 5 * (2 ** attempt))
+                        print(f'   ⏳ Firestore 429 — retry in {wait}s (attempt {attempt + 1}/{max_attempts})')
+                        time.sleep(wait)
+                        continue
+                    print(f'   ❌ Firestore users page error: {resp.status_code} {resp.text[:200]}')
+                    return
                 print(f'   ❌ Firestore users page error: {resp.status_code} {resp.text[:200]}')
                 return
             except Exception as exc:
@@ -428,6 +461,9 @@ def load_all_users(token: str | None = None, page_size: int = 200):
         page_token = data.get('nextPageToken')
         if not page_token:
             break
+        if is_exhausted(PROJECT_ID):
+            print('   ⏭️ Stopping live user scan — quota exhausted')
+            return
         if page_delay > 0:
             time.sleep(page_delay)
 
@@ -499,8 +535,7 @@ def build_firestore_snapshot(
 
     users = load_thesis_auth_firestore_users(token)
     if len(users) >= min_users:
-        _save_users_snapshot(users)
-        print(f'   💾 Saved Firestore snapshot ({len(users):,} users)')
+        _maybe_save_users_snapshot(users)
         return len(users)
 
     stale = _load_users_snapshot(max_age_hours=None)
@@ -510,31 +545,70 @@ def build_firestore_snapshot(
     return len(users) or len(stale)
 
 
-def load_all_users_list(token: str, *, use_cache_on_failure: bool = True) -> list[dict]:
+def _existing_snapshot_count() -> int:
+    if not USERS_SNAPSHOT_CACHE.exists():
+        return 0
+    try:
+        return int(json.loads(USERS_SNAPSHOT_CACHE.read_text(encoding='utf-8')).get('count') or 0)
+    except Exception:
+        return 0
+
+
+def _maybe_save_users_snapshot(users: list[dict]) -> None:
+    """Persist a snapshot only when it is not a sparse 429 leftover."""
+    min_users = int(os.getenv('THESIS_FIRESTORE_SNAPSHOT_MIN', '1000'))
+    existing = _existing_snapshot_count()
+    if len(users) < min_users and len(users) <= existing:
+        print(
+            f'   ⚠️ Not saving sparse Firestore snapshot '
+            f'({len(users):,} < {min_users}, existing {existing:,})'
+        )
+        return
+    try:
+        _save_users_snapshot(users)
+        print(f'   💾 Saved Firestore snapshot ({len(users):,} users)')
+    except Exception as exc:
+        print(f'   ⚠️ Could not save Firestore snapshot: {exc}')
+
+
+def load_all_users_list(
+    token: str | None = None,
+    *,
+    use_cache_on_failure: bool = True,
+    page_size: int = 200,
+) -> list[dict]:
     """Load all Firestore users with retry + optional snapshot fallback."""
     prefer_snapshot = os.getenv('THESIS_FIRESTORE_SNAPSHOT_FIRST', '').lower() in ('1', 'true', 'yes')
     min_users = int(os.getenv('THESIS_FIRESTORE_SNAPSHOT_MIN', '1000'))
     max_age = int(os.getenv('THESIS_FIRESTORE_SNAPSHOT_MAX_AGE_HOURS', '720'))
 
-    if prefer_snapshot:
-        cached = _load_users_snapshot(max_age_hours=max_age)
+    if prefer_snapshot or is_exhausted(PROJECT_ID):
+        cached = _load_users_snapshot(max_age_hours=max_age if prefer_snapshot else None)
         if len(cached) >= min_users:
-            print(f'   📦 Snapshot-first: {len(cached):,} users (skipping live Firestore)')
+            why = 'quota exhausted' if is_exhausted(PROJECT_ID) and not prefer_snapshot else 'snapshot-first'
+            print(f'   📦 {why}: {len(cached):,} users (skipping live Firestore)')
             return cached
+        if is_exhausted(PROJECT_ID):
+            stale = _load_users_snapshot(max_age_hours=None)
+            if stale:
+                print(f'   📦 Quota exhausted — using stale snapshot ({len(stale):,} users)')
+                return stale
 
-    users = list(load_all_users(token))
-    if users:
-        try:
-            _save_users_snapshot(users)
-            print(f'   💾 Saved Firestore snapshot ({len(users):,} users)')
-        except Exception as exc:
-            print(f'   ⚠️ Could not save Firestore snapshot: {exc}')
+    users = list(_iter_all_users_live(token, page_size=page_size))
+    if len(users) >= min_users:
+        _maybe_save_users_snapshot(users)
         return users
     if use_cache_on_failure:
         cached = _load_users_snapshot(max_age_hours=None)
-        if cached:
+        if len(cached) > len(users):
+            print(
+                f'   ⚠️ Live Firestore sparse ({len(users):,}) — '
+                f'using snapshot ({len(cached):,} users)'
+            )
             return cached
-    return []
+    if users:
+        _maybe_save_users_snapshot(users)
+    return users
 
 
 def load_users_dict(token: str):
@@ -552,6 +626,9 @@ def load_theses_by_status(token: str, statuses: Iterable[str], page_size: int = 
     Uses :runQuery rather than collection scan + filter so we don't pull
     every draft when we only care about completed ones.
     """
+    if is_exhausted(PROJECT_ID):
+        print('   ⏭️ Firestore quota exhausted — skip theses query')
+        return
     statuses = list(statuses)
     url = f"{FIRESTORE_BASE}/projects/{PROJECT_ID}/databases/(default)/documents:runQuery"
     # Firestore REST `IN` filter requires explicit array of typed values.
@@ -575,6 +652,10 @@ def load_theses_by_status(token: str, statuses: Iterable[str], page_size: int = 
             url, headers={'Authorization': f'Bearer {token}', 'Content-Type': 'application/json'},
             json=body, timeout=60,
         )
+        if resp.status_code == 429:
+            mark_exhausted(PROJECT_ID)
+            print(f'   ❌ theses runQuery {resp.status_code}: {resp.text[:200]}')
+            return
         if resp.status_code != 200:
             print(f'   ❌ theses runQuery {resp.status_code}: {resp.text[:200]}')
             return

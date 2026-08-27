@@ -164,6 +164,17 @@ def main():
             break
         run_one(name, mod, dry_run)
         time.sleep(0.5)
+        try:
+            from firestore_quota import is_exhausted
+            from thesis_users_loader import PROJECT_ID as THESIS_FS
+            if not only and is_exhausted(THESIS_FS):
+                print(
+                    f'⏭️ Thesis Firestore quota exhausted after {name} — '
+                    'skipping remaining live senders, founder-story will use snapshot'
+                )
+                break
+        except Exception:
+            pass
     if not only:
         if _thesis_volume_open():
             run_founder_story_catchup(dry_run=dry_run)

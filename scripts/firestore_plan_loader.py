@@ -17,10 +17,14 @@ Mirrors the structure of firestore_language_loader.py:
 - Falls back to a local cache file when the token / quota fails
 """
 import os
+import sys
 import json
 import requests
 from datetime import datetime, timezone
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent))
+from firestore_quota import is_exhausted, mark_exhausted
 
 
 FIRESTORE_BASE = 'https://firestore.googleapis.com/v1'
@@ -105,6 +109,10 @@ class FirestorePlanLoader:
         project_id = project_config['project_id']
         cache_file = self.cache_dir / project_config['cache_file']
 
+        if is_exhausted(project_id):
+            print(f"   ⏭️ Firestore quota exhausted — using cached plans for {app_name}")
+            return self._load_cache(cache_file)
+
         token = self._get_access_token()
         if not token:
             return self._load_cache(cache_file)
@@ -125,6 +133,10 @@ class FirestorePlanLoader:
 
             try:
                 resp = requests.get(url, headers=headers, params=params, timeout=30)
+                if resp.status_code == 429:
+                    mark_exhausted(project_id)
+                    print(f"   ❌ Firestore API error: {resp.status_code} {resp.text[:200]}")
+                    break
                 if resp.status_code != 200:
                     print(f"   ❌ Firestore API error: {resp.status_code} {resp.text[:200]}")
                     break
