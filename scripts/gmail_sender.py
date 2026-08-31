@@ -30,11 +30,16 @@ def _sanitize_tag(value: str) -> str:
 
 
 def _sanitize_subject(subject: str, max_len: int = 2000) -> str:
-    """Resend rejects newlines and subjects over 2000 chars."""
+    """Strip newlines and truncate. ZeptoMail rejects subjects over ~200 chars
+    (TM_8001 / SM_129); Resend allows 2000."""
     s = re.sub(r'[\r\n]+', ' ', subject or '').strip()
-    if len(s) > max_len:
-        s = s[: max_len - 1] + '…'
-    return s
+    if len(s) <= max_len:
+        return s
+    cut = s[: max_len - 1].rstrip()
+    # Prefer a word boundary so truncated thesis topics still read cleanly.
+    if ' ' in cut[max(0, max_len // 2):]:
+        cut = cut.rsplit(' ', 1)[0].rstrip()
+    return cut + '…'
 
 
 SKIP_RESULTS = {'duplicate', 'suppressed', 'throttled'}
@@ -442,6 +447,8 @@ class GmailSender:
 
         url, key = cls._supabase_creds()
         if not url or not key:
+            default['sent_24h'] = cls._thesis_ledger_count_24h()
+            default['sent_7d'] = max(default['sent_7d'], default['sent_24h'])
             return default
 
         since_7d = (now - timedelta(days=7)).isoformat()
@@ -466,6 +473,8 @@ class GmailSender:
                 )
                 if resp.status_code >= 400:
                     print(f"   ⚠️ Thesis cap metrics fallback: {resp.status_code} {resp.text[:160]}")
+                    default['sent_24h'] = cls._thesis_ledger_count_24h()
+                    default['sent_7d'] = max(default['sent_7d'], default['sent_24h'])
                     return default
                 page = resp.json()
                 rows.extend(page)
@@ -474,6 +483,8 @@ class GmailSender:
                 start += page_size
         except Exception as e:
             print(f"   ⚠️ Thesis cap metrics fallback: {e}")
+            default['sent_24h'] = cls._thesis_ledger_count_24h()
+            default['sent_7d'] = max(default['sent_7d'], default['sent_24h'])
             return default
 
         metrics = dict(default)
@@ -492,6 +503,14 @@ class GmailSender:
                 metrics['clicked_7d'] += 1
             elif event_type == 'email.bounced':
                 metrics['bounced_7d'] += 1
+
+        # ZeptoMail webhooks do not write email.sent, so email_events often
+        # shows sent_24h=0. The local ledger is the source of truth across
+        # 09:00 / 17:00 cron processes.
+        ledger_24h = cls._thesis_ledger_count_24h()
+        if ledger_24h > metrics['sent_24h']:
+            metrics['sent_24h'] = ledger_24h
+            metrics['sent_7d'] = max(metrics['sent_7d'], ledger_24h)
 
         base = int(os.getenv('THESIS_DAILY_SEND_CAP_BASE', '500'))
         max_cap = int(os.getenv('THESIS_DAILY_SEND_CAP_MAX', '3000'))
@@ -813,7 +832,8 @@ class GmailSender:
                 return 'duplicate'
 
         sender_email, sender_name = self._effective_sender(app, from_name)
-        subject_clean = _sanitize_subject(subject)
+        subject_max = 180 if self._use_zeptomail else 2000
+        subject_clean = _sanitize_subject(subject, max_len=subject_max)
 
         if not is_warming and self._health_blocks(sender_email):
             print(f"   ⏸️ Sender health red — skipping {sender_email}")
@@ -849,6 +869,7 @@ class GmailSender:
             self._persist_daily_recipient(dedup_key)
         if _is_thesis_app(app):
             GmailSender._run_counts['thesis'] += 1
+            self._thesis_ledger_record()
         if _is_kaynel_app(app):
             self._consume_kaynel_cap()
 
@@ -946,6 +967,42 @@ class GmailSender:
                     state = info or {}
                     break
         return (state.get('status') or 'unknown').lower() == 'red'
+
+    @classmethod
+    def _thesis_volume_ledger_path(cls):
+        return Path(__file__).resolve().parent.parent / 'cache' / 'thesis_volume_sends.json'
+
+    @classmethod
+    def _thesis_ledger_load(cls) -> list[str]:
+        path = cls._thesis_volume_ledger_path()
+        try:
+            data = json.loads(path.read_text()) if path.exists() else {}
+        except Exception:
+            data = {}
+        stamps = [str(s) for s in (data.get('sent_at') or []) if s]
+        cutoff = _utc_now() - timedelta(hours=24)
+        kept = []
+        for s in stamps:
+            dt = _parse_iso(s)
+            if dt and dt >= cutoff:
+                kept.append(s)
+        return kept
+
+    @classmethod
+    def _thesis_ledger_count_24h(cls) -> int:
+        return len(cls._thesis_ledger_load())
+
+    @classmethod
+    def _thesis_ledger_record(cls):
+        kept = cls._thesis_ledger_load()
+        kept.append(_utc_now().strftime('%Y-%m-%dT%H:%M:%SZ'))
+        path = cls._thesis_volume_ledger_path()
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps({
+            'count_24h': len(kept),
+            'sent_at': kept,
+            'updated_at': _utc_now().strftime('%Y-%m-%dT%H:%M:%SZ'),
+        }, indent=2), encoding='utf-8')
 
     @classmethod
     def _kaynel_quota_path(cls):

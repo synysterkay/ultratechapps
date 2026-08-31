@@ -86,6 +86,7 @@ jobs:
             cache/kaynel_daily_quota.json
             cache/onbrief_daily_quota.json
             cache/vowcraft_daily_quota.json
+            cache/thesis_volume_sends.json
             cache/onbrief_templates/
             cache/vowcraft_templates/
             cache/thesis_templates/
@@ -163,13 +164,14 @@ jobs:
           PREDICTIFY_DISABLE_FOUNDER_FALLBACK: "0"
           FOUNDER_STORY_LAPSED_DAYS: "14"
           FOUNDER_STORY_V2_GAP_DAYS: "7"
-          V2_DAILY_SEND_CAP: "250"
+          V2_DAILY_SEND_CAP: "300"
           # Daily chunked backfill — one pass per cron run until cohort is done.
-          FOUNDER_STORY_SEND_CAP: "250"
-          FOUNDER_STORY_V2_SEND_CAP: "150"
-          FOUNDER_STORY_HORSE_SEND_CAP: "50"
-          FOUNDER_STORY_THESIS_BACKFILL_DAILY_CAP: "150"
-          FOUNDER_STORY_THESIS_2_BACKFILL_DAILY_CAP: "100"
+          FOUNDER_STORY_SEND_CAP: "300"
+          FOUNDER_STORY_V2_SEND_CAP: "180"
+          FOUNDER_STORY_HORSE_SEND_CAP: "80"
+          FOUNDER_STORY_THESIS_DAILY_CAP: "80"
+          FOUNDER_STORY_THESIS_BACKFILL_DAILY_CAP: "200"
+          FOUNDER_STORY_THESIS_2_BACKFILL_DAILY_CAP: "150"
           # Manual bulk backfill (workflow_dispatch only).
           FOUNDER_STORY_BULK_SEND_CAP: "2000"
           FOUNDER_STORY_PASSES: "1"
@@ -177,16 +179,16 @@ jobs:
           ZEPTOMAIL_SEND_DELAY_SECONDS: "0.35"
           # Soft Thesis daily cap while ramping on ZeptoMail / thesisgenerator.io.
           THESIS_DAILY_SEND_CAP_DISABLED: "0"
-          THESIS_DAILY_SEND_CAP_BASE: "250"
-          THESIS_DAILY_SEND_CAP_MAX: "400"
+          THESIS_DAILY_SEND_CAP_BASE: "400"
+          THESIS_DAILY_SEND_CAP_MAX: "550"
           # Prefer cached Thesis Firestore users so a 429 cannot stall the job.
           THESIS_FIRESTORE_SNAPSHOT_FIRST: "1"
           THESIS_FIRESTORE_SNAPSHOT_MIN: "1000"
           THESIS_FIRESTORE_SNAPSHOT_MAX_AGE_HOURS: "720"
           # Crosspromotion Thesis phase 1 (ZeptoMail / passedai.io)
           CROSSPROMO_ENABLED: "1"
-          CROSSPROMO_DAILY_CAP: "180"
-          CROSSPROMO_ENROLL_CAP: "180"
+          CROSSPROMO_DAILY_CAP: "240"
+          CROSSPROMO_ENROLL_CAP: "240"
           CROSSPROMO_SEND_DELAY_SECONDS: "0.35"
         run: |
           MODE="${{ github.event.inputs.mode || 'send' }}"
@@ -269,19 +271,16 @@ jobs:
             python -u scripts/ong_orchestrator.py || true
             echo "--- Running Onbrief orchestrator (kaynel.solutions / Agent 2) ---"
             python -u scripts/onbrief_orchestrator.py || true
-            # ── Volume Booster Pro (pro-minimal) hooked senders ──
-            echo "--- Running pro-minimal orchestrator (Volume Booster Pro) ---"
-            python -u scripts/pro_minimal_orchestrator.py || true
             echo "--- Horse Racing founder story catch-up ---"
             python -u scripts/founder_story_horse_sender.py || true
             echo "--- Soccer FS1 daily backfill (unsent cohort) ---"
-            FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_SEND_CAP:-250}" \
+            FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_SEND_CAP:-300}" \
               python -u scripts/founder_story_predictify_sender.py --backfill --passes 1 || true
             echo "--- Soccer FS2 daily backfill (v1 received, free users) ---"
-            FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_V2_SEND_CAP:-150}" \
+            FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_V2_SEND_CAP:-180}" \
               python -u scripts/founder_story_predictify_sender.py --v2 --non-subscribers-only --passes 1 || true
             echo "--- Horse FS1 daily backfill (unsent cohort) ---"
-            FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_HORSE_SEND_CAP:-50}" \
+            FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_HORSE_SEND_CAP:-80}" \
               PREDICTIFY_APP_NAME='Predictify: Horse Racing AI' \
               PREDICTIFY_FIREBASE_PROJECT_ID='horse-racing-f67e8' \
               python -u scripts/founder_story_predictify_sender.py --backfill --passes 1 || true
@@ -358,7 +357,7 @@ jobs:
       - name: Save retention state
         if: always()
         run: |
-          STATE_PATHS="cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json cache/abandoned_thesis_state.json cache/free_quota_hit_state.json cache/trial_ending_state.json cache/winback_state.json cache/streak_milestone_state.json cache/weekly_progress_state.json cache/stuck_on_outline_state.json cache/cumulative_stats_state.json cache/founder_story_thesis_state.json cache/founder_story_thesis_v2_state.json cache/founder_story_thesis_2_state.json cache/crosspromo_thesis_state.json cache/pro_minimal_*_state.json cache/ong_*_state.json cache/ong_daily_quota.json cache/kaynel_daily_quota.json cache/daily_recipient_sends.json cache/onbrief_*_state.json cache/onbrief_daily_quota.json cache/vowcraft_*_state.json cache/vowcraft_daily_quota.json cache/ong_templates/ cache/onbrief_templates/ cache/vowcraft_templates/ cache/thesis_templates/ cache/thesis_users_snapshot.json firebase_exports/"
+          STATE_PATHS="cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json cache/abandoned_thesis_state.json cache/free_quota_hit_state.json cache/trial_ending_state.json cache/winback_state.json cache/streak_milestone_state.json cache/weekly_progress_state.json cache/stuck_on_outline_state.json cache/cumulative_stats_state.json cache/founder_story_thesis_state.json cache/founder_story_thesis_v2_state.json cache/founder_story_thesis_2_state.json cache/crosspromo_thesis_state.json cache/ong_*_state.json cache/ong_daily_quota.json cache/kaynel_daily_quota.json cache/thesis_volume_sends.json cache/daily_recipient_sends.json cache/onbrief_*_state.json cache/onbrief_daily_quota.json cache/vowcraft_*_state.json cache/vowcraft_daily_quota.json cache/ong_templates/ cache/onbrief_templates/ cache/vowcraft_templates/ cache/thesis_templates/ cache/thesis_users_snapshot.json firebase_exports/"
           # Thesis-only / founder-story runs may not touch retention_state.json.
           has_state=0
           for path in $STATE_PATHS; do

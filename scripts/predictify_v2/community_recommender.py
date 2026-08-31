@@ -80,6 +80,12 @@ class CommunityRecommender:
                 timeout=15,
             )
             if not r.ok:
+                if 'index' in r.text.lower() or r.status_code in (400, 412):
+                    print(
+                        '   ⚠️ CommunityRecommender: Firestore index missing '
+                        f'on {_uc.FIREBASE_PROJECT_ID} — skipping community invites'
+                    )
+                    return 0
                 print(f'   ⚠️ CommunityRecommender pool query {r.status_code}: '
                       f'{r.text[:200]}')
                 return 0

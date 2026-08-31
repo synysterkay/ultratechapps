@@ -1193,6 +1193,17 @@ def status():
                 kind = doc.get('fields', {}).get('kind', {}).get('stringValue')
                 if kind:
                     rows.append(kind)
+        elif 'index' in r.text.lower():
+            print('   ⚠️ status: sent_at index missing — using full send scan')
+            today_dt = datetime.now(timezone.utc).replace(
+                hour=0, minute=0, second=0, microsecond=0
+            )
+            for kinds in _firestore_all_sends().values():
+                for kind, dt in kinds.items():
+                    if dt >= today_dt:
+                        rows.append(kind)
+        else:
+            print(f'⚠️ status query failed: {r.status_code} {r.text[:160]}')
         print(f'📅 {_today()}: {len(rows)} v2 emails sent')
         by_kind: dict[str, int] = {}
         for k in rows:
