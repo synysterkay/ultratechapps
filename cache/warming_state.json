@@ -1,7 +1,7 @@
 {
   "warming_started": "2026-04-03T22:02:50.126548+00:00",
-  "total_sent": 25248,
-  "total_opened": 11976,
+  "total_sent": 31947,
+  "total_opened": 14567,
   "total_replied": 2263,
   "daily_log": {
     "2026-04-03": {
@@ -897,6 +897,228 @@
       "opened": 60,
       "replied": 0,
       "week": 22
+    },
+    "2026-09-01": {
+      "sent": 200,
+      "opened": 60,
+      "replied": 0,
+      "week": 22
+    },
+    "2026-09-02": {
+      "sent": 200,
+      "opened": 60,
+      "replied": 0,
+      "week": 22
+    },
+    "2026-09-03": {
+      "sent": 200,
+      "opened": 60,
+      "replied": 0,
+      "week": 22
+    },
+    "2026-09-04": {
+      "sent": 200,
+      "opened": 60,
+      "replied": 0,
+      "week": 22
+    },
+    "2026-09-05": {
+      "sent": 200,
+      "opened": 60,
+      "replied": 0,
+      "week": 23
+    },
+    "2026-09-06": {
+      "sent": 200,
+      "opened": 60,
+      "replied": 0,
+      "week": 23
+    },
+    "2026-09-07": {
+      "sent": 200,
+      "opened": 60,
+      "replied": 0,
+      "week": 23
+    },
+    "2026-09-08": {
+      "sent": 200,
+      "opened": 60,
+      "replied": 0,
+      "week": 23
+    },
+    "2026-09-09": {
+      "sent": 200,
+      "opened": 60,
+      "replied": 0,
+      "week": 23
+    },
+    "2026-09-10": {
+      "sent": 200,
+      "opened": 60,
+      "replied": 0,
+      "week": 23
+    },
+    "2026-09-11": {
+      "sent": 200,
+      "opened": 60,
+      "replied": 0,
+      "week": 23
+    },
+    "2026-09-12": {
+      "sent": 200,
+      "opened": 60,
+      "replied": 0,
+      "week": 24
+    },
+    "2026-09-13": {
+      "sent": 200,
+      "opened": 60,
+      "replied": 0,
+      "week": 24
+    },
+    "2026-09-14": {
+      "sent": 200,
+      "opened": 60,
+      "replied": 0,
+      "week": 24
+    },
+    "2026-09-15": {
+      "sent": 200,
+      "opened": 60,
+      "replied": 0,
+      "week": 24
+    },
+    "2026-09-16": {
+      "sent": 200,
+      "opened": 60,
+      "replied": 0,
+      "week": 24
+    },
+    "2026-09-17": {
+      "sent": 200,
+      "opened": 71,
+      "replied": 0,
+      "week": 24
+    },
+    "2026-09-18": {
+      "sent": 200,
+      "opened": 80,
+      "replied": 0,
+      "week": 24
+    },
+    "2026-09-19": {
+      "sent": 200,
+      "opened": 80,
+      "replied": 0,
+      "week": 25
+    },
+    "2026-09-20": {
+      "sent": 200,
+      "opened": 80,
+      "replied": 0,
+      "week": 25
+    },
+    "2026-09-21": {
+      "sent": 200,
+      "opened": 80,
+      "replied": 0,
+      "week": 25
+    },
+    "2026-09-22": {
+      "sent": 0,
+      "opened": 80,
+      "replied": 0,
+      "week": 25
+    },
+    "2026-09-23": {
+      "sent": 0,
+      "opened": 80,
+      "replied": 0,
+      "week": 25
+    },
+    "2026-09-24": {
+      "sent": 0,
+      "opened": 80,
+      "replied": 0,
+      "week": 25
+    },
+    "2026-09-25": {
+      "sent": 200,
+      "opened": 80,
+      "replied": 0,
+      "week": 25
+    },
+    "2026-09-26": {
+      "sent": 200,
+      "opened": 80,
+      "replied": 0,
+      "week": 26
+    },
+    "2026-09-27": {
+      "sent": 200,
+      "opened": 80,
+      "replied": 0,
+      "week": 26
+    },
+    "2026-09-28": {
+      "sent": 200,
+      "opened": 80,
+      "replied": 0,
+      "week": 26
+    },
+    "2026-09-29": {
+      "sent": 200,
+      "opened": 80,
+      "replied": 0,
+      "week": 26
+    },
+    "2026-09-30": {
+      "sent": 200,
+      "opened": 80,
+      "replied": 0,
+      "week": 26
+    },
+    "2026-10-01": {
+      "sent": 200,
+      "opened": 80,
+      "replied": 0,
+      "week": 26
+    },
+    "2026-10-02": {
+      "sent": 200,
+      "opened": 80,
+      "replied": 0,
+      "week": 26
+    },
+    "2026-10-03": {
+      "sent": 200,
+      "opened": 80,
+      "replied": 0,
+      "week": 27
+    },
+    "2026-10-04": {
+      "sent": 200,
+      "opened": 80,
+      "replied": 0,
+      "week": 27
+    },
+    "2026-10-05": {
+      "sent": 199,
+      "opened": 80,
+      "replied": 0,
+      "week": 27
+    },
+    "2026-10-06": {
+      "sent": 200,
+      "opened": 80,
+      "replied": 0,
+      "week": 27
+    },
+    "2026-10-07": {
+      "sent": 100,
+      "opened": 40,
+      "replied": 0,
+      "week": 27
     }
   },
   "per_domain": {}
