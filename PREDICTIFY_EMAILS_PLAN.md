@@ -27,19 +27,21 @@ core (P0/P1 behavioral is).
 - **Hourly:** `streak_saver` only (`predictify-streak-hourly.yml`)
 - **Lapsed:** `founder_story_soccer` → `founder_story_soccer_v2` (orchestrator fallback)
 - **Templates:** `scripts/predictify_v2/templates/`
-- **Backfill:** optional manual only — prefer lapsed catch-up over bulk blast
+- **Bulk backfill:** **FROZEN** (value-first). Daily FS1/FS2 and workflow modes no-op. Override: `FOUNDER_STORY_BULK_UNFREEZE=1`.
 
 ## NBA (`Predictify: NBA AI`)
 
 - **Welcome + behavioral:** `predictify-nba-emails.yml` (v2 NBA profile)
-- **Lapsed:** `founder_story_nba` → `founder_story_nba_v2`
+- **Lapsed:** `founder_story_nba` → `founder_story_nba_v2` (v2 orchestrator only)
+- **Bulk backfill:** **FROZEN** (same as Soccer)
 - **Templates:** `scripts/predictify_v2/templates_nba/founder_story_nba_*.json`
 - **Env:** `PREDICTIFY_APP_NAME`, `PREDICTIFY_FIREBASE_PROJECT_ID=nba-predictify`, `PREDICTIFY_TEMPLATES_DIR=templates_nba`
 
 ## Tennis (`Predictify: Tennis AI`)
 
 - **Welcome + behavioral:** `predictify-tennis-emails.yml` (v2 Tennis profile)
-- **Lapsed:** `founder_story_tennis` → `founder_story_tennis_v2`
+- **Lapsed:** `founder_story_tennis` → `founder_story_tennis_v2` (v2 orchestrator only)
+- **Bulk backfill:** **FROZEN** (same as Soccer)
 - **Templates:** `scripts/predictify_v2/templates_tennis/founder_story_tennis_*.json`
 - **Instant:** `predictify-tennis-first-win-email`, `predictify-tennis-streak-broken-email`, `predictify-tennis-paywall-hit-email`, `predictify-tennis-leaderboard-email`
 - **Env:** `PREDICTIFY_APP_NAME='Predictify: Tennis AI'`, `PREDICTIFY_FIREBASE_PROJECT_ID=tenis-b5d4e`, `PREDICTIFY_TEMPLATES_DIR=templates_tennis`
@@ -79,10 +81,10 @@ FOUNDER_STORY_THESIS_DAILY_CAP=50
 
 | Mode | Action |
 |------|--------|
-| `founder-story` | Soccer v1 backfill |
-| `founder-story-non-sub` | Soccer v2 to free users |
+| `founder-story` | Frozen (value-first) |
+| `founder-story-non-sub` | Frozen (value-first) |
 | `founder-story-horse` | Frozen (value-first) |
-| `thesis-founder-story` | Thesis v1 backfill |
-| `thesis-founder-story-2` | Thesis v2 backfill |
+| `thesis-founder-story` | Frozen (value-first) |
+| `thesis-founder-story-2` | Frozen (value-first) |
 
 Legacy `founder_story_wc2026` sends count as v1 received (dedup).

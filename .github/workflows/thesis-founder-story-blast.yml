@@ -1,10 +1,8 @@
 name: Thesis Founder Story Blast
 
 on:
-  schedule:
-    # Price-change resend: Aug 5 → part 1, Aug 6 → part 2, Aug 7 → part 3
-    - cron: '0 11 * * *'
-
+  # Schedule disabled — founder bulk blast frozen (value-first).
+  # Re-enable cron only with FOUNDER_STORY_BULK_UNFREEZE=1.
   workflow_dispatch:
     inputs:
       mode:
@@ -138,13 +136,23 @@ jobs:
         run: |
           MODE="${{ github.event.inputs.mode || 'auto-part' }}"
           LIMIT="${{ github.event.inputs.limit || '0' }}"
+          UNFREEZE="${FOUNDER_STORY_BULK_UNFREEZE:-}"
           case "$MODE" in
             status)
               python3 scripts/thesis_founder_story_blast_sender.py --status
+              exit 0
               ;;
             dry-run)
               python3 scripts/thesis_founder_story_blast_sender.py --auto-part --dry-run --limit "$LIMIT"
+              exit 0
               ;;
+          esac
+          if [ "$UNFREEZE" != "1" ] && [ "$UNFREEZE" != "true" ]; then
+            echo "⏭️ Thesis founder-story blast FROZEN (value-first)."
+            echo "   Set FOUNDER_STORY_BULK_UNFREEZE=1 to override for a manual send."
+            exit 0
+          fi
+          case "$MODE" in
             part-1) PART=1 ;;
             part-2) PART=2 ;;
             part-3) PART=3 ;;

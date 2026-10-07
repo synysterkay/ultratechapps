@@ -526,6 +526,19 @@ def main(dry_run: bool = False, warm_only: bool = False, passes: int = 1, daily:
         warm_templates(refresh=refresh_templates)
         return
 
+    # Value-first: bulk backfill frozen. --daily (lapsed catch-up) still allowed.
+    # Escape hatch: FOUNDER_STORY_BULK_UNFREEZE=1
+    unfreeze = (os.environ.get('FOUNDER_STORY_BULK_UNFREEZE') or '').strip() in {
+        '1', 'true', 'yes', 'on',
+    }
+    if not daily and not unfreeze:
+        print(
+            '⏭️ Thesis founder bulk backfill FROZEN (value-first). '
+            'Use --daily (orchestrator lapsed catch-up) or set '
+            'FOUNDER_STORY_BULK_UNFREEZE=1 to override.'
+        )
+        return
+
     _write_en_cache()
     cap = DAILY_CATCHUP_CAP if daily else BACKFILL_CAP
     lapsed_only = daily

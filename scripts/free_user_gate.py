@@ -42,9 +42,20 @@ def paid_emails_for_app(app_slug: str, users: Iterable[dict] | None = None) -> s
     if not activity_name or activity_name not in ACTIVITY_PROJECTS:
         print(f'   ⚠️ free_user_gate: no activity project for {app_slug}')
         return set()
+    user_list = list(users) if users else None
     loader = FirestoreActivityLoader()
-    by_email, _by_uid = loader.load_activity(activity_name, users=list(users) if users else None)
-    paid = {e for e, act in by_email.items() if activity_is_paid(act)}
+    by_email, by_uid = loader.load_activity(activity_name, users=user_list)
+    paid = {e for e, act in by_email.items() if '@' in e and activity_is_paid(act)}
+    # Explicit Auth join: uid-keyed Firestore docs → email
+    if user_list:
+        for u in user_list:
+            uid = u.get('localId') or u.get('uid') or ''
+            email = (u.get('email') or u.get('Email') or '').lower().strip()
+            if not email or '@' not in email:
+                continue
+            act = by_uid.get(uid) or by_email.get(email)
+            if activity_is_paid(act):
+                paid.add(email)
     print(f'   🎯 free_user_gate[{app_slug}]: {len(paid)} paid emails to skip')
     return paid
 

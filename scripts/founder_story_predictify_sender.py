@@ -80,6 +80,25 @@ def main() -> None:
         warm_templates(refresh='--refresh-templates' in sys.argv)
         return
 
+    # Value-first: bulk founder backfill / FS2 cohort blasts are frozen.
+    # Lapsed catch-up still runs via predictify_v2.orchestrator daily path.
+    # Escape hatch: FOUNDER_STORY_BULK_UNFREEZE=1
+    bulk_mode = (
+        '--backfill' in sys.argv
+        or '--v2' in sys.argv
+        or '--non-subscribers-only' in sys.argv
+    )
+    unfreeze = (os.environ.get('FOUNDER_STORY_BULK_UNFREEZE') or '').strip() in {
+        '1', 'true', 'yes', 'on',
+    }
+    if bulk_mode and not unfreeze:
+        print(
+            '⏭️ Predictify founder bulk backfill FROZEN (value-first). '
+            'Use v2 orchestrator lapsed catch-up only. '
+            'Set FOUNDER_STORY_BULK_UNFREEZE=1 to override.'
+        )
+        return
+
     passes = 1
     for i, arg in enumerate(sys.argv):
         if arg == '--passes' and i + 1 < len(sys.argv):
