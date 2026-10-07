@@ -870,13 +870,13 @@ const APP_CONFIG: Record<string, AppConfig> = {
     googlePlayUrl: "https://play.google.com/store/apps/details?id=com.volume.booster.free.pro",
     emails: {
       en: {
-        subject: "The sound setting 95% of users miss completely",
-        cta_text: "Boost Your Sound Now",
+        subject: "Tip: EQ preset first — then the boost knob",
+        cta_text: "Open Volume Booster",
         body_paragraphs: [
-          "You just downloaded Volume Booster. And right now, your phone is playing audio at maybe 60% of what it's actually capable of. Not because of your speakers. Because of one setting buried inside the app that most people scroll right past.",
-          "Here's the thing: cranking your phone's volume slider to max does almost nothing for actual loudness. That's like turning up a broken speaker. The real trick is the Loudness Enhancer inside the app. It amplifies your audio signal BEFORE it hits the speaker, which means cleaner, louder, richer sound without distortion. Combined with the Bass Booster, your phone suddenly sounds like a completely different device.",
-          "Open the app right now. You'll see the big volume knob on the main screen. But don't just spin it. Tap the equalizer icon first. Select your music genre preset - Pop, Rock, Electronic, whatever you listen to most. THEN crank the knob. The difference is night and day. You'll hear bass you didn't know your phone had.",
-          "Tap the button below and try it with your favorite song. Just one song. You'll never go back to default audio again. P.S. Play something with heavy bass first. The reaction on your face will be worth it.",
+          "You just downloaded Volume Booster. Tip: don't only spin the big knob. Open the equalizer, pick your genre preset (Pop, Rock, Electronic), then raise the boost — cleaner loudness without harsh distortion.",
+          "Phone max volume alone rarely unlocks bass. The Loudness Enhancer amplifies the signal before the speaker; pair it with Bass Booster for music you actually play.",
+          "Open the app, set one preset, play one favorite song. That's the whole first session.",
+          "P.S. Welcome only for now — try one track today and see if the EQ path sticks.",
         ],
       },
       es: {
@@ -960,13 +960,13 @@ const APP_CONFIG: Record<string, AppConfig> = {
       "https://play.google.com/store/apps/details?id=com.crypto.trading.ai.analyzer",
     emails: {
       en: {
-        subject: "Your first AI chart setup is waiting — here's what to do",
-        cta_text: "Open Command & Scan",
+        subject: "Tip: scan one chart before the group chat gets loud",
+        cta_text: "Scan my first chart",
         body_paragraphs: [
-          "Telegram is full of confident screenshots. Predictify Crypto exists so a chart becomes a setup you can verify — entry, stop, and targets — not another loud opinion.",
-          "Here's the edge: you don't just get a direction. You get levels and a confidence band you can journal. One clean process beats ten group-chat takes.",
-          "Open the app now. Go to Command. Unlock AI analysis and scan one chart you actually trade. It takes about 30 seconds. Read the stop before you size.",
-          "P.S. Users who complete their first scan on day one are far more likely to build an analysis streak. This is not financial advice — it's a habit: scan → setup → journal → streak.",
+          "Telegram is full of confident screenshots. Tip: turn one chart you actually trade into a written entry / stop / targets before you size.",
+          "Predictify Crypto exists so a screenshot becomes a setup you can journal — not another loud opinion.",
+          "Open Command, upload that chart, and read the stop first. About 30 seconds.",
+          "P.S. Not financial advice. Process first: scan → setup → journal → streak. Unlock more scans when you're ready — no rush.",
         ],
       },
     },

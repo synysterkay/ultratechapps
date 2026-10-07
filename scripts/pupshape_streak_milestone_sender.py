@@ -141,6 +141,8 @@ def main(dry_run: bool = False) -> None:
         email = user.get('email')
         if not uid or not email:
             continue
+        if is_paid(user):
+            continue  # free-only tip doctrine
         current = _current_streak(user)
         if current < STAGES[0]:
             continue

@@ -131,4 +131,4 @@ Hard bounces → `email_suppressions` + `email_events` → skipped by `check-new
 |---------|-----|--------------|
 | `breakuptherapy-e7dc0` | Fresh Start | Supabase cron (ZeptoMail); Firebase skipped when `EMAIL_PROVIDER=zeptomail` |
 | `redflagscanner` | Selka | Firebase instant + lifecycle dispatcher |
-| `soulplan-dateplanner` | SoulPlan | Supabase cron (ZeptoMail); Firebase skipped when `EMAIL_PROVIDER=zeptomail` |
+| `soulplan-dateplanner` | SoulPlan | **Supabase only** (`check-new-users` + `welcome-email`). Do not require Firebase Blaze welcome deploy. |

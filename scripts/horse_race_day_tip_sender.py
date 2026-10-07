@@ -19,6 +19,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from gmail_sender import GmailSender, has_email_credentials, SKIP_RESULTS
 from firebase_user_loader import FirebaseUserLoader
+from free_user_gate import filter_free_users
 
 APP_NAME = 'Predictify: Horse Racing AI'
 APP_SLUG = 'horse_racing'
@@ -178,6 +179,7 @@ def main(dry_run=False):
     if not users:
         print('⚠️ No Horse Auth export found — skip tips')
         return
+    users = filter_free_users(users, APP_SLUG, _email_of)
 
     race_day_src = _race_day_from_template()
     STAGE_COPY['race_day'] = race_day_src

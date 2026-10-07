@@ -40,6 +40,16 @@ ACTIVITY_PROJECTS = {
         'cache_file': 'horse_racing_activity.json',
         'fields': ['streak', 'isSubscribed', 'lastPredictionAt', 'isPremium'],
     },
+    'Crypto AI: Trading Analyzer': {
+        'project_id': 'cryptopredictify',
+        'cache_file': 'cryptopredictify_activity.json',
+        'fields': ['isSubscribed', 'isPremium', 'subscription'],
+    },
+    'Fresh Start': {
+        'project_id': 'breakuptherapy-e7dc0',
+        'cache_file': 'fresh_start_activity.json',
+        'fields': ['isSubscribed', 'isPremium', 'subscription'],
+    },
 }
 
 
@@ -91,6 +101,12 @@ class FirestoreActivityLoader:
             return field['timestampValue']
         if 'doubleValue' in field:
             return float(field['doubleValue'])
+        if 'mapValue' in field:
+            # Flatten one level (e.g. subscription.status for Superwall mirrors)
+            out = {}
+            for k, v in (field['mapValue'].get('fields') or {}).items():
+                out[k] = self._extract_field({'x': v}, 'x')
+            return out
         return None
 
     def _doc_uid(self, doc):
@@ -228,6 +244,8 @@ class FirestoreActivityLoader:
                 continue
             if uid in by_uid_from_fetch:
                 by_uid[uid] = by_uid_from_fetch[uid]
+                # Join uid-keyed Firestore docs onto Auth emails for paid gates
+                by_email[email] = by_uid_from_fetch[uid]
                 continue
             if email not in by_email:
                 by_email[email] = {}

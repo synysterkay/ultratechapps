@@ -117,12 +117,14 @@ def main(dry_run=False):
         last_day = (streak.get('lastSessionDay') or '').strip()
         if last_day == today:
             continue  # Already logged today.
+        if is_paid(user):
+            continue  # free / tip doctrine — skip active Pro
         dogs = user.get('dogs') or []
         if not dogs:
             continue
         targets.append((user, dogs[0], current))
 
-    print(f'🔥 {len(targets)} streaks at risk tonight')
+    print(f'🔥 {len(targets)} streaks at risk tonight (free only)')
     if not targets:
         return
 

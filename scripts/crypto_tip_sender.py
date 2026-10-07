@@ -19,6 +19,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from gmail_sender import GmailSender, has_email_credentials, SKIP_RESULTS
 from firebase_user_loader import FirebaseUserLoader
+from free_user_gate import filter_free_users
 
 APP_NAME = 'Crypto AI: Trading Analyzer'
 APP_SLUG = 'predictify_crypto'
@@ -151,6 +152,7 @@ def main(dry_run=False):
     if not users:
         print('⚠️ No Crypto Auth export found — skip tips (export cryptopredictify)')
         return
+    users = filter_free_users(users, APP_SLUG, _email_of)
 
     tmpl_cache = {}
     for _, kind, _, _ in STAGES:
