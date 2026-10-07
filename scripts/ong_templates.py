@@ -160,13 +160,13 @@ TEMPLATES: dict[str, dict] = {
     },
     'pro_gate': {
         '_': {
-            'subject': 'See who called it',
+            'subject': 'You locked in — next tip: check the reveal',
             'body': [
-                "{{first_name}} — you hit the names gate. You already locked in. The fun part is seeing who said what.",
-                "That's Pro. One tap in the app, then the names. Not a sales sequence — this is the one time we mention it.",
-                "P.S. If you'd rather stay free, ignore this. Reveals still happen. You just don't get the roster.",
+                "{{first_name}} — you already locked in. Tip: the fun part is the reveal, not arguing after the fact. Open the app when the seal cracks and see how your call landed.",
+                "Names on the roster are the bonus after you lock. Reveals still happen on free — you just see the outcome without the full roster.",
+                "P.S. When you're ready, Pro shows who said what. No rush — this is the only email about it.",
             ],
-            'cta': 'See the names',
+            'cta': 'Open the reveal',
         },
     },
     'founder_story': {

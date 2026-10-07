@@ -37,13 +37,13 @@ _REF_SALT = os.getenv('EMAIL_REF_SALT', 'marketing-tool-v1')
 
 
 EN_SOURCE = {
-    'subject': "Your outline's done — pick chapter 1, {{first_name}}",
+    'subject': "Outline done — start with the easiest chapter",
     'body': [
-        "You've got an outline for {{topic}}. The hardest part of academic writing is over — you know what each chapter says.",
-        "Tap a chapter, hit generate, and you have a draft in 60 seconds. Most users do chapter 1 the same day they pick it.",
-        "P.S. You don't have to pick chapter 1 — pick whichever feels easiest. The AI doesn't care about order.",
+        "You've got an outline for {{topic}}. Knowing what each section says is the hardest part of academic writing — and you've already done it.",
+        "Tip: don't force chapter 1. Tap the section you understand best, hit generate, and get a draft in about 60 seconds. Order is optional; momentum isn't.",
+        "P.S. You can always generate chapter 1 tomorrow once the first section is done.",
     ],
-    'cta': 'Generate chapter 1',
+    'cta': 'Generate a chapter',
 }
 
 

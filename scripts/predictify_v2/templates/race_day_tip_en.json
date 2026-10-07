@@ -1,0 +1,16 @@
+{
+  "kind": "race_day_tip",
+  "language": "en",
+  "subject": "Race-day tip: one card, highest confidence first",
+  "preview_text": "Don't spray tips — pressure-test one race.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Race-day tip: open today's card and start with the highest-confidence pick — not the loudest tipster. Read form, going, and the confidence band before the off.",
+    "One race, full reasoning, then stop. That's how you verify the model instead of drowning in opinions.",
+    "P.S. We're not a bookmaker. No guaranteed wins — just transparent forecasts you can check race by race."
+  ],
+  "cta_text": "See today's strongest pick",
+  "cta_deeplink": "predictify://",
+  "app_store_url": "https://apps.apple.com/app/predictify-horse-racing-ai/id6760237594",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.predictify.horse.racing.prediction"
+}

@@ -1,9 +1,9 @@
 {
-  "subject": "Five days. {{couple}} still needs your toast.",
+  "subject": "Restart rule for {{couple}}",
   "body": [
-    "{{first_name}} — your {{role}} speech has been sitting in Vowcraft for five days. The draft didn't rehearse itself.",
-    "Open it once. Finish what's missing. Rehearse. That's it.",
-    "P.S. If this one is dead, start a new speech. Don't keep a zombie draft."
+    "{{first_name}} — five days since you touched your {{role}} speech.",
+    "Restart rule: skim two minutes, finish what's missing, rehearse minute one aloud. If this draft is dead, start clean — don't keep a zombie toast.",
+    "P.S. A rehearsed rough draft beats a perfect unread speech."
   ],
   "cta": "Finish or start clean"
 }

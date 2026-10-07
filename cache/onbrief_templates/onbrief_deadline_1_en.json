@@ -1,8 +1,8 @@
 {
-  "subject": "Tomorrow. Export {{topic}} tonight.",
+  "subject": "Tomorrow — export {{topic}} tonight",
   "body": [
-    "{{first_name}} — the deadline is tomorrow. The brief is still on the phone.",
-    "Open Onbrief, tap Generate all on anything empty, export the PDF before you sleep.",
+    "{{first_name}} — deadline tomorrow. Tip: generate anything empty now, then export before you sleep. Don't leave PDF export for the morning of.",
+    "Open Onbrief once and get the file off the phone.",
     "P.S. This is the last useful hour. Use it."
   ],
   "cta": "Export tonight"

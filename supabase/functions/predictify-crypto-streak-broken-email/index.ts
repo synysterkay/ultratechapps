@@ -12,14 +12,14 @@ const KIND = "streak_broken";
 const TEMPLATES: Record<string, CryptoTemplate> = {
   en: {
     subject:
-      "{{first_name}}, your {{prior_streak}}-day streak just reset — start day 1 again",
+      "{{first_name}}, tip: restart with one chart — day 1 is enough",
     body: [
       "Hey {{first_name}},",
-      "Your {{prior_streak}}-day analysis streak ended. That sting is useful — it means the habit mattered.",
-      "You don't need to make up for lost days. Open Predictify Crypto and scan one chart. Day 1 starts the moment you do.",
-      "P.S. Traders who restart within 24 hours are far more likely to rebuild a longer streak than those who wait a week.",
+      "Your {{prior_streak}}-day analysis streak ended. Tip: you don't need to make up for lost days — one scan of a chart you actually trade restarts the process.",
+      "Open Predictify Crypto, upload that chart, read the stop, and day 1 starts the moment you do.",
+      "P.S. Traders who restart within 24 hours rebuild longer streaks than those who wait a week. Not financial advice.",
     ],
-    cta: "Start day 1",
+    cta: "Scan one chart",
   },
 };
 

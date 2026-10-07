@@ -49,25 +49,26 @@ EN_SOURCES = {
     'h24': {
         'subject': "You've already done the hard part, {{first_name}}",
         'body': [
-            "You generated your first chapter yesterday — the hardest part is over.",
-            "Unlock the rest of your {{work_type}} and finish it this week. The next chapter takes 60 seconds. The one after that, also 60 seconds. By the weekend you have a complete draft.",
+            "You generated your first chapter yesterday — the hardest part of a {{work_type}} is starting, and you already did that.",
+            "The practical next move: keep the same outline and write the next section while the topic is still fresh. Each chapter takes about a minute once you unlock the rest.",
+            "P.S. Your draft and outline are saved. When you're ready, continue from where you left off.",
         ],
-        'cta': 'Unlock all chapters',
+        'cta': 'Continue my {{work_type}}',
     },
     'h72': {
-        'subject': "Most students finish in 4 days once they unlock",
+        'subject': "Finish {{topic}} section by section",
         'body': [
-            "Three days since you generated your first chapter on {{topic}}. {{pain_hook}}",
-            "Once people upgrade, most finish in 4 days — because each chapter takes about a minute. The bottleneck isn't writing time, it's the gate between chapter 1 and chapter 2.",
-            "P.S. The upgrade includes unlimited chapters, PDF export, and language picks. No usage caps after.",
+            "Three days since your first chapter on {{topic}}. {{pain_hook}}",
+            "Students who finish fast don't write more hours — they remove the gap between chapter 1 and chapter 2. One section a day compounds into a full draft by the weekend.",
+            "P.S. Unlocking removes the chapter gate so you can keep that rhythm without stopping mid-outline.",
         ],
-        'cta': 'See the upgrade options',
+        'cta': 'Continue writing',
     },
     'd7': {
-        'subject': "Last week of full access, {{first_name}}",
+        'subject': "Your draft on {{topic}} is still waiting",
         'body': [
-            "A week since your free chapter. Your draft, your outline, and your topic are all still saved — nothing's gone.",
-            "Upgrading today gets you back to writing in two taps. If a week from now you still haven't, this is the last email you'll get about it.",
+            "A week since your free chapter. Your outline, topic, and draft are all still saved — nothing's gone.",
+            "If {{topic}} still matters, open the app and generate the next section while the structure is fresh. This is the last note I'll send about that free chapter.",
         ],
         'cta': 'Continue my {{work_type}}',
     },

@@ -13,15 +13,19 @@ P0P1_KINDS: frozenset[str] = frozenset({
     'streak_saver',
     'welcome_backup',
     'journal_pending',
+    'analysis_tip',
     'win_back',
 })
 
 
 # Placeholder predicates — replace with UserContext fields when loader ships.
+# Auth-export tip sender covers welcome_backup / analysis_tip / win_back by age
+# until Firestore activity snapshots exist.
 # Each is (priority, kind, docstring).
 TRIGGERS: list[tuple[int, str, str]] = [
     (10, 'streak_saver', 'streak>=3 and 18h<=hours_since_analysis<=30'),
     (30, 'welcome_backup', 'total_analyses==0 and days_since_signup in 1..3'),
+    (35, 'analysis_tip', 'days_since_signup in 4..21 (Auth-export tip band)'),
     (40, 'journal_pending', 'pending_journal_count>=1 and hours_since_analysis>=12'),
     (55, 'win_back', 'not premium and 5d<=hours_since_analysis<=14d and total_analyses>=1'),
 ]

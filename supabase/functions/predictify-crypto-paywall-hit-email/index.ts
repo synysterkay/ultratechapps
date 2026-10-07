@@ -11,15 +11,15 @@ const KIND = "paywall_hit";
 
 const TEMPLATES: Record<string, CryptoTemplate> = {
   en: {
-    subject: "{{first_name}}, your chart is ready — unlock the AI setup",
+    subject: "{{first_name}}, tip before you size: write the stop first",
     body: [
       "Hey {{first_name}},",
-      "You hit the unlock step for AI chart analysis. That's the moment most traders bounce back to Telegram screenshots — and lose the edge of a written stop.",
-      "Predictify Crypto turns a chart into entry, stop, and targets you can journal. Subscribe once, scan whenever the setup appears.",
-      "Open the app and finish unlock when you're ready. Your watchlist is already waiting.",
-      "P.S. This is not financial advice — it's a process: scan → setup → journal → streak.",
+      "You opened the AI setup step. Tip: before you chase another Telegram screenshot, get a written entry / stop / targets for the chart you actually trade.",
+      "Predictify Crypto turns a screenshot into that setup so you can journal it. Your watchlist is already waiting.",
+      "Open the app, scan the pair you care about, and read the stop before you size.",
+      "P.S. When you're ready, unlocking removes the gate on more scans. No rush — process first: scan → setup → journal → streak. Not financial advice.",
     ],
-    cta: "Unlock AI analysis",
+    cta: "Open my chart setup",
   },
 };
 

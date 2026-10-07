@@ -94,7 +94,7 @@ def main(dry_run=False):
         )
         result = send_onbrief(
             sender, email=user['email'], subject=tpl['subject'], paragraphs=tpl['body'],
-            cta=tpl['cta'], kind=KIND, stage=stage, gradient='upgrade',
+            cta=tpl['cta'], kind=KIND, stage=stage, gradient='invite',
         )
         if result == 'sent':
             sent += 1

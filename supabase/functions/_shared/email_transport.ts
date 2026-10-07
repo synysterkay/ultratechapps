@@ -9,7 +9,9 @@
  * Unset EMAIL_PROVIDER (or set to "resend") for Resend.
  */
 
+import { createClient } from "jsr:@supabase/supabase-js@2";
 import type { SenderIdentity } from "./sender_pool.ts";
+import { recordEmailSent } from "./email_suppressions.ts";
 
 export type EmailProviderName = "resend" | "mailgun" | "smtp2go" | "zeptomail";
 
@@ -485,8 +487,9 @@ async function sendViaZeptomail(params: SendEmailParams): Promise<SendEmailResul
     to: [{ email_address: { address: params.to, name: params.to.split("@")[0] || "User" } }],
     subject: params.subject,
     htmlbody: params.html,
-    track_clicks: false,
-    track_opens: false,
+    // Required for ZeptoMail open/click webhooks → email_events health metrics.
+    track_clicks: true,
+    track_opens: true,
   };
   if (params.text) body.textbody = params.text;
   if (params.refId) body.client_reference = String(params.refId).slice(0, 256);
@@ -541,6 +544,51 @@ export async function sendEmail(params: SendEmailParams): Promise<SendEmailResul
   const provider = emailProvider();
   if (provider === "mailgun") return sendViaMailgun(params);
   if (provider === "smtp2go") return sendViaSmtp2go(params);
-  if (provider === "zeptomail") return sendViaZeptomail(params);
+  if (provider === "zeptomail") {
+    const result = await sendViaZeptomail(params);
+    if (result.ok) {
+      await maybeRecordZeptomailSent(params, result).catch((err) => {
+        console.error("ZeptoMail email.sent write failed", err);
+      });
+    }
+    return result;
+  }
   return sendViaResend(params);
+}
+
+/** Best-effort email.sent row — ZeptoMail has no sent webhook. */
+async function maybeRecordZeptomailSent(
+  params: SendEmailParams,
+  result: SendEmailResult,
+): Promise<void> {
+  const url = Deno.env.get("SUPABASE_URL") || "";
+  const key = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
+  if (!url || !key) return;
+
+  const app = tagApp(params);
+  const resolved = resolveSender({ email: params.fromEmail, name: params.fromName }, app);
+  const senderDomain = resolved.email.includes("@")
+    ? resolved.email.split("@")[1].toLowerCase()
+    : undefined;
+  const kind = params.tags?.find((t) => t.name === "kind")?.value;
+  const emailNum = params.tags?.find((t) => t.name === "email_num")?.value;
+  const cycle = params.tags?.find((t) => t.name === "cycle")?.value;
+  const language = params.tags?.find((t) => t.name === "language")?.value;
+  const messageId = result.id || "";
+  const eventId = `zm-sent-${messageId || crypto.randomUUID()}-${params.to.toLowerCase()}`;
+
+  const supabase = createClient(url, key);
+  await recordEmailSent(supabase, {
+    recipient: params.to,
+    app: app || "unknown",
+    eventId,
+    messageId: messageId || undefined,
+    senderDomain,
+    kind,
+    emailNum,
+    cycle,
+    language,
+    refId: params.refId,
+    raw: { provider: "zeptomail", details: result.details },
+  });
 }

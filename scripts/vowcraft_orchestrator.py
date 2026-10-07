@@ -7,6 +7,25 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
+SENDERS = [
+    ('quota_hit', 'vowcraft_quota_hit_sender'),
+    ('speech_ready', 'vowcraft_speech_ready_sender'),
+    ('abandoned_speech', 'vowcraft_abandoned_speech_sender'),
+    ('rehearse', 'vowcraft_rehearse_sender'),
+]
+
+
+def run_one(name: str, mod_name: str, dry_run: bool):
+    print(f'\n━━━ {name} ━━━')
+    try:
+        module = importlib.import_module(mod_name)
+        module = importlib.reload(module)
+        module.main(dry_run=dry_run)
+    except ModuleNotFoundError:
+        print(f'   ⏭  {name} not implemented yet — skipping')
+    except Exception as e:
+        print(f'   ⚠️ {name} crashed: {e}')
+
 
 def main():
     dry_run = '--dry-run' in sys.argv
@@ -19,15 +38,12 @@ def main():
         idx = sys.argv.index('--only')
         if idx + 1 < len(sys.argv):
             only = sys.argv[idx + 1]
-    print(f'🚀 Vowcraft orchestrator starting (dry_run={dry_run}, only={only or "templates-only"})')
-    # Behavioral senders can be added later (quota_hit, abandoned_speech, rehearse).
-    # Warm templates are the cache source of truth for welcome + campaigns.
-    from vowcraft_templates import warm, TEMPLATES
-    if dry_run:
-        print(f'   kinds: {", ".join(TEMPLATES.keys())}')
-        print('   (no senders wired yet — use --warm to fill cache/vowcraft_templates)')
-    else:
-        warm()
+    print(f'🚀 Vowcraft orchestrator starting (dry_run={dry_run}, only={only or "all"})')
+    for name, mod_name in SENDERS:
+        if only and only != name:
+            continue
+        run_one(name, mod_name, dry_run)
+        time.sleep(0.5)
     print('\n✅ Vowcraft orchestrator done')
 
 

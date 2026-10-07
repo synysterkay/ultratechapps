@@ -174,3 +174,48 @@ export async function recordComplaint(
     console.error("recordComplaint email_events insert failed", error);
   }
 }
+
+/**
+ * ZeptoMail has no email.sent webhook — write one on successful API accept
+ * so volume caps / health have a sent denominator.
+ */
+export async function recordEmailSent(
+  supabase: SupabaseClient,
+  opts: {
+    recipient: string;
+    app: string;
+    eventId: string;
+    messageId?: string;
+    occurredAt?: string;
+    senderDomain?: string;
+    kind?: string;
+    emailNum?: string;
+    cycle?: string;
+    language?: string;
+    refId?: string;
+    raw?: unknown;
+  },
+): Promise<void> {
+  const recipient = opts.recipient.toLowerCase().trim();
+  if (!recipient) return;
+
+  const { error } = await supabase.from("email_events").insert({
+    svix_id: opts.eventId,
+    message_id: opts.messageId || null,
+    event_type: "email.sent",
+    occurred_at: opts.occurredAt || new Date().toISOString(),
+    recipient,
+    sender_domain: opts.senderDomain || null,
+    app: opts.app || null,
+    kind: opts.kind || null,
+    email_num: opts.emailNum || (opts.kind === "welcome" ? "1" : null),
+    cycle: opts.cycle || (opts.kind === "welcome" ? "1" : null),
+    language: opts.language || null,
+    ref_id: opts.refId || null,
+    raw: opts.raw ?? {},
+  });
+
+  if (error && error.code !== "23505") {
+    console.error("recordEmailSent email_events insert failed", error);
+  }
+}

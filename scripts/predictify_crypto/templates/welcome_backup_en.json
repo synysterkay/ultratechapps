@@ -1,0 +1,15 @@
+{
+  "kind": "welcome_backup",
+  "language": "en",
+  "subject": "{first_name}, tip: scan one chart before opinions pile up",
+  "preview_text": "One screenshot → entry, stop, targets.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "You installed Predictify Crypto but haven't scanned yet. Tip: don't start in Telegram. Open Command, upload one chart you actually trade, and leave with a written entry / stop / targets.",
+    "That first scan is the whole product — noise out, process in.",
+    "P.S. Not financial advice. One clean setup beats a weekend of doomscrolling."
+  ],
+  "cta_text": "Scan my first chart",
+  "cta_deeplink": "predictifycrypto://",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.crypto.trading.ai.analyzer"
+}

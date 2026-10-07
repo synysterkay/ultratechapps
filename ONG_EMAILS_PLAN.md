@@ -8,6 +8,10 @@ ZeptoMail: **Agent 2** (same agent as breakuprelief / passedai — not Agent 1)
 
 No 30-day drip. Hooked-model behavioral mail only — Thesis / Predictify / Kinbound playbook.
 
+**Doctrine (2026-10):** tip / product action first; soft CTA. `pro_gate` is tip-first
+(open the reveal); Pro names only in P.S. Founder story = lapsed catch-up only.
+No trial ending.
+
 ## Why Agent 2 + kaynel.solutions
 
 Agent 1 is thesis + Predictify (high volume). ONG is a social invite loop.

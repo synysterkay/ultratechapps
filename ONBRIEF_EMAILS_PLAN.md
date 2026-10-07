@@ -62,23 +62,30 @@ Briefs live in `theses/{id}` (legacy collection name from the fork):
 Without `lastOpenMs`, abandoned will not fire (by design).
 Without `email`, welcome + every sender skip the user.
 
+## Doctrine (2026-10)
+
+Value / advice first, one soft CTA (continue / export / generate). Soft unlock
+only on `quota_hit` (P.S.). No trial ending. Free-only for quota + brief tips.
+
 ## Senders (Hooked)
 
-Templates live in `cache/onbrief_templates/` (English v1). Warm with
+Templates live in `cache/onbrief_templates/` (English). Warm with
 `python scripts/onbrief_orchestrator.py --warm`.
 
 | Sender | Trigger | Lever |
 |--------|---------|--------|
-| Welcome | First email on the Auth account | External trigger — lock in one brief |
-| Instant `onbrief-complete-email` | `theses.status == completed`, once | Variable reward → export PDF |
-| Instant `onbrief-quota-hit-email` | `usage.freeChapterUsed`, once | Monetization while paywall is open |
-| `onbrief_first_complete` | Same event, batch backup | Variable reward |
-| `onbrief_quota_hit` | 24h / 72h / 7d if instant missed | Monetization |
-| `onbrief_stuck_on_outline` | draft, progress < 20, inactive ≥24h | Funnel rescue — tap Generate all |
-| `onbrief_abandoned_brief` | unfinished, 2d / 5d / 10d | External trigger |
-| `onbrief_deadline` | `plan.deadline` − today ∈ {7, 3, 1, 0} | Urgency |
+| Welcome | First email on the Auth account | Tip — outline then Generate all |
+| Instant `onbrief-complete-email` | `theses.status == completed`, once | Celebrate → export |
+| Instant `onbrief-quota-hit-email` | `usage.freeChapterUsed`, once | Soft continue while paywall is open |
+| `onbrief_first_complete` | Same event, batch backup | Tip + export |
+| `onbrief_quota_hit` | 24h / 72h / 7d if instant missed | Soft monetization |
+| `onbrief_stuck_on_outline` | draft, progress < 20, inactive ≥24h | Easiest-section tip |
+| `onbrief_abandoned_brief` | unfinished, 2d / 5d / 10d | Restart tips |
+| `onbrief_deadline` | `plan.deadline` − today ∈ {7, 3, 1, 0} | Real deadline advice |
+| `onbrief_brief_tip` | free — outline / generate / revise | Value tips |
 
-Skip for v1: 30-day drip, founder story, streak mail, weekly recap, crosspromo into Onbrief.
+Skip: 30-day drip, founder story, streak mail, weekly recap, trial ending,
+crosspromo into Onbrief.
 
 Daily cap: `ONBRIEF_DAILY_SEND_CAP` (default 30) plus shared `KAYNEL_DAILY_SEND_CAP` (50).
 

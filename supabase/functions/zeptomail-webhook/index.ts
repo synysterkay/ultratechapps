@@ -1,18 +1,24 @@
 // Supabase Edge Function: zeptomail-webhook
-// Receives ZeptoMail bounce/open/click webhooks and writes email_events +
-// email_suppressions (hard bounces only) so bad addresses are skipped everywhere.
+// Receives ZeptoMail webhooks and writes email_events (+ suppressions for
+// hard bounces / feedback-loop complaints) for health + auto-ramp.
 //
-// Setup (ZeptoMail dashboard → each verified domain → Webhooks):
+// Setup (ZeptoMail dashboard → each Agent → Webhooks):
 //   Agent 1: thesisgenerator.io + predictifyfootball.com
-//   Agent 2: breakuprelief.com (Fresh Start + Selka + SoulPlan)
+//   Agent 2: passedai.io + breakuprelief.com + kaynel.solutions
 //   URL:   https://jimcdgkwbbrxgakingtg.supabase.co/functions/v1/zeptomail-webhook
-//   Events: Hard bounced (required)
-//   Agent → Webhooks → Authentication Key (top right) → same as ZEPTOMAIL_WEBHOOK_AUTH_KEY
-//   Verify/Send Test uses POST without auth — non-hard-bounce events return 200.
+//   Events: Hard bounced, Soft bounced, Delivered, Open, Click, Feedback loop
+//   Agent → Webhooks → Authentication Key → same as ZEPTOMAIL_WEBHOOK_AUTH_KEY
+//
+// Note: ZeptoMail has no "sent" webhook — successful API sends write email.sent
+// from gmail_sender.py / email_transport.ts. Open/click require track_opens /
+// track_clicks enabled on the send payload.
 
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2";
-import { recordHardBounce } from "../_shared/email_suppressions.ts";
+import {
+  recordComplaint,
+  recordHardBounce,
+} from "../_shared/email_suppressions.ts";
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL") || "";
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
@@ -43,7 +49,14 @@ const KNOWN_APP_SLUGS = new Set([
   "ai_girlfriend",
   "smart_notes",
   "onbrief",
+  "vowcraft",
+  "crosspromo",
 ]);
+
+type MappedEvent = {
+  eventType: string;
+  suppress: "bounce" | "complaint" | null;
+};
 
 function parsePayload(rawBody: string): Record<string, unknown> {
   const trimmed = rawBody.trim();
@@ -92,18 +105,100 @@ function firstEventMessage(payload: Record<string, unknown>): Record<string, unk
   return undefined;
 }
 
-function isHardBounce(payload: Record<string, unknown>): boolean {
-  const eventName = eventNameStr(payload);
+function firstEventData(payload: Record<string, unknown>): Record<string, unknown> | undefined {
   const eventMessage = firstEventMessage(payload);
-  const objectName = String(
-    (payload.event_data as Record<string, unknown> | undefined)?.object ||
+  const nested = eventMessage?.event_data;
+  if (Array.isArray(nested)) {
+    const first = nested[0];
+    return first && typeof first === "object" ? first as Record<string, unknown> : undefined;
+  }
+  if (nested && typeof nested === "object") return nested as Record<string, unknown>;
+
+  const top = payload.event_data;
+  if (Array.isArray(top)) {
+    const first = top[0];
+    return first && typeof first === "object" ? first as Record<string, unknown> : undefined;
+  }
+  if (top && typeof top === "object") return top as Record<string, unknown>;
+  return undefined;
+}
+
+function objectName(payload: Record<string, unknown>): string {
+  const eventData = firstEventData(payload);
+  const eventMessage = firstEventMessage(payload);
+  return String(
+    eventData?.object ||
       eventMessage?.object ||
       "",
   ).toLowerCase();
+}
 
-  return eventName.includes("hard") ||
-    objectName.includes("hardbounce") ||
-    objectName === "hardbounce";
+function firstDetail(payload: Record<string, unknown>): Record<string, unknown> | undefined {
+  const eventData = firstEventData(payload);
+  const details = eventData?.details;
+  if (Array.isArray(details)) {
+    const first = details[0];
+    return first && typeof first === "object" ? first as Record<string, unknown> : undefined;
+  }
+  if (details && typeof details === "object") return details as Record<string, unknown>;
+  return undefined;
+}
+
+/** Map ZeptoMail event → Resend-compatible email_events.event_type. */
+function mapZeptoEvent(payload: Record<string, unknown>): MappedEvent | null {
+  const name = eventNameStr(payload);
+  const obj = objectName(payload);
+  const blob = `${name} ${obj}`;
+
+  if (
+    blob.includes("hardbounce") ||
+    blob.includes("hard bounce") ||
+    (blob.includes("hard") && blob.includes("bounce"))
+  ) {
+    return { eventType: "email.bounced", suppress: "bounce" };
+  }
+
+  if (
+    blob.includes("softbounce") ||
+    blob.includes("soft bounce") ||
+    (blob.includes("soft") && blob.includes("bounce"))
+  ) {
+    // Temporary failure — do not suppress; avoid inflating hard-bounce health.
+    return { eventType: "email.delivery_delayed", suppress: null };
+  }
+
+  if (
+    blob.includes("email_open") ||
+    blob.includes("email open") ||
+    blob.includes("opened") ||
+    /\bopen\b/.test(blob)
+  ) {
+    return { eventType: "email.opened", suppress: null };
+  }
+
+  if (
+    blob.includes("email_link_click") ||
+    blob.includes("link click") ||
+    blob.includes("clicked") ||
+    /\bclick\b/.test(blob)
+  ) {
+    return { eventType: "email.clicked", suppress: null };
+  }
+
+  if (blob.includes("delivered") || blob.includes("email_deliver")) {
+    return { eventType: "email.delivered", suppress: null };
+  }
+
+  if (
+    blob.includes("feedback") ||
+    blob.includes("fbl") ||
+    blob.includes("complaint") ||
+    blob.includes("spam")
+  ) {
+    return { eventType: "email.complained", suppress: "complaint" };
+  }
+
+  return null;
 }
 
 function webhookAuthed(
@@ -176,6 +271,15 @@ async function verifyProducerSignature(
 }
 
 function extractRecipient(payload: Record<string, unknown>): string {
+  const detail = firstDetail(payload);
+  const bounced = String(detail?.bounced_recipient || detail?.email || detail?.recipient || "")
+    .toLowerCase()
+    .trim();
+  if (bounced.includes("@")) return bounced;
+
+  const fblFrom = String(detail?.fblFrom || "").toLowerCase().trim();
+  if (fblFrom.includes("@")) return fblFrom;
+
   const eventMessage = firstEventMessage(payload);
   const emailInfo = eventMessage?.email_info as Record<string, unknown> | undefined;
 
@@ -189,11 +293,6 @@ function extractRecipient(payload: Record<string, unknown>): string {
       if (address.includes("@")) return address;
     }
   }
-
-  const eventData = payload.event_data as Record<string, unknown> | undefined;
-  const details = eventData?.details as Record<string, unknown> | undefined;
-  const fromDetails = String(details?.email || details?.recipient || "").toLowerCase().trim();
-  if (fromDetails.includes("@")) return fromDetails;
 
   const recipient = String(payload.recipient || emailInfo?.recipient || "").toLowerCase().trim();
   if (recipient.includes("@")) return recipient;
@@ -237,6 +336,25 @@ function extractMimeTag(payload: Record<string, unknown>, tagName: string): stri
   return null;
 }
 
+function extractClickedUrl(payload: Record<string, unknown>): string | null {
+  const detail = firstDetail(payload);
+  for (const key of ["clicked_link", "link", "url", "target_link"]) {
+    const value = detail?.[key];
+    if (value != null && String(value).trim()) return String(value).trim();
+  }
+  return null;
+}
+
+function extractClientReference(payload: Record<string, unknown>): string {
+  const eventMessage = firstEventMessage(payload);
+  const emailInfo = eventMessage?.email_info as Record<string, unknown> | undefined;
+  return String(
+    emailInfo?.client_reference ||
+      payload.client_reference ||
+      "",
+  );
+}
+
 function normalizeAppSlug(raw: string | null): string | null {
   if (!raw) return null;
   const slug = raw.toLowerCase().trim();
@@ -249,13 +367,7 @@ function inferApp(payload: Record<string, unknown>, senderDomain: string | null)
   const tagApp = normalizeAppSlug(extractMimeTag(payload, "app"));
   if (tagApp) return tagApp;
 
-  const clientRef = String(
-    (payload.event_message as Record<string, unknown> | undefined)?.email_info &&
-      ((payload.event_message as Record<string, unknown>).email_info as Record<string, unknown>)
-        .client_reference ||
-      payload.client_reference ||
-      "",
-  ).toLowerCase();
+  const clientRef = extractClientReference(payload).toLowerCase();
 
   if (clientRef.includes("predictify_nba") || clientRef.includes("nba")) return "predictify_nba";
   if (clientRef.includes("predictify_tennis") || clientRef.includes("tennis") || clientRef.includes("tenis")) {
@@ -263,7 +375,9 @@ function inferApp(payload: Record<string, unknown>, senderDomain: string | null)
   }
   if (clientRef.includes("horse_racing") || clientRef.includes("horse")) return "horse_racing";
   if (clientRef.includes("thesis")) return "thesis_generator";
+  if (clientRef.includes("crosspromo") || clientRef.includes("passed")) return "crosspromo";
   if (clientRef.includes("onbrief")) return "onbrief";
+  if (clientRef.includes("vowcraft")) return "vowcraft";
   if (clientRef.includes("ong") || clientRef.includes("sealed")) return "ong";
   if (clientRef.includes("pupshape")) return "pupshape";
   if (clientRef.includes("kinbound")) return "kinbound";
@@ -280,6 +394,7 @@ function inferApp(payload: Record<string, unknown>, senderDomain: string | null)
 
   if (senderDomain === "thesisgenerator.io") return "thesis_generator";
   if (senderDomain === "predictifyfootball.com") return "predictify";
+  if (senderDomain === "passedai.io") return "crosspromo";
   if (senderDomain === "kaynel.solutions") return "ong";
   if (senderDomain === "breakuprelief.com") {
     const fromAddr = String(
@@ -329,8 +444,10 @@ Deno.serve(async (req) => {
     return new Response("Invalid payload", { status: 400 });
   }
 
-  if (!isHardBounce(payload)) {
-    return new Response(JSON.stringify({ ok: true, ignored: "not_hard_bounce" }), {
+  const mapped = mapZeptoEvent(payload);
+  if (!mapped) {
+    // Unknown / empty verify payload — ack so Zepto dashboard tests stay green.
+    return new Response(JSON.stringify({ ok: true, ignored: "unmapped_event" }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
@@ -339,14 +456,22 @@ Deno.serve(async (req) => {
   if (WEBHOOK_AUTH_KEY) {
     const authed = await webhookAuthed(req, payload, rawBody);
     if (!authed) {
-      console.error("ZeptoMail webhook auth mismatch (hard bounce)");
-      return new Response("Unauthorized", { status: 401 });
+      // Destructive events must be authenticated. Engagement events without auth
+      // are ignored with 200 so Zepto "Send Test" does not fail the UI.
+      if (mapped.suppress) {
+        console.error(`ZeptoMail webhook auth mismatch (${mapped.eventType})`);
+        return new Response("Unauthorized", { status: 401 });
+      }
+      return new Response(JSON.stringify({ ok: true, ignored: "unauthenticated" }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      });
     }
   }
 
   const recipient = extractRecipient(payload);
   if (!recipient) {
-    console.error("ZeptoMail hard bounce without recipient", payload);
+    console.error(`ZeptoMail ${mapped.eventType} without recipient`, payload);
     return new Response(JSON.stringify({ ok: false, error: "missing recipient" }), {
       status: 422,
       headers: { "Content-Type": "application/json" },
@@ -356,37 +481,92 @@ Deno.serve(async (req) => {
   const senderDomain = extractSenderDomain(payload);
   const app = inferApp(payload, senderDomain);
   const tagKind = extractMimeTag(payload, "kind");
+  const tagEmailNum = extractMimeTag(payload, "email_num");
+  const tagCycle = extractMimeTag(payload, "cycle");
+  const tagLanguage = extractMimeTag(payload, "language");
   const eventId = String(
     payload.webhook_request_id ||
       payload.request_id ||
       `zm-${crypto.randomUUID()}`,
   );
-  const messageId = String(payload.request_id || "");
-  const eventData = payload.event_data as Record<string, unknown> | undefined;
-  const details = eventData?.details as Record<string, unknown> | undefined;
-  const occurredAt = String(details?.time || payload.processed_time || new Date().toISOString());
-  const clientRef = String(
-    (firstEventMessage(payload)?.email_info as Record<string, unknown> | undefined)
-      ?.client_reference || "",
+  const messageId = String(
+    payload.request_id ||
+      firstEventMessage(payload)?.request_id ||
+      "",
   );
+  const detail = firstDetail(payload);
+  const occurredAt = String(
+    detail?.time ||
+      detail?.modified_time ||
+      payload.processed_time ||
+      new Date().toISOString(),
+  );
+  const clientRef = extractClientReference(payload);
+  const clickedUrl = mapped.eventType === "email.clicked" ? extractClickedUrl(payload) : null;
 
   const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
-  await recordHardBounce(supabase, {
-    recipient,
-    app,
-    eventId: `zm-${eventId}`,
-    messageId,
-    occurredAt,
-    senderDomain: senderDomain || undefined,
-    kind: tagKind || undefined,
-    refId: clientRef || undefined,
-    raw: payload,
-  });
+  const svixId = `zm-${mapped.eventType.replace("email.", "")}-${eventId}`;
 
-  console.log(`ZeptoMail hard bounce suppressed: ${recipient} (${app})`);
+  if (mapped.suppress === "bounce") {
+    await recordHardBounce(supabase, {
+      recipient,
+      app,
+      eventId: svixId,
+      messageId,
+      occurredAt,
+      senderDomain: senderDomain || undefined,
+      kind: tagKind || undefined,
+      language: tagLanguage || undefined,
+      refId: clientRef || undefined,
+      raw: payload,
+    });
+  } else if (mapped.suppress === "complaint") {
+    await recordComplaint(supabase, {
+      recipient,
+      app,
+      eventId: svixId,
+      messageId,
+      occurredAt,
+      senderDomain: senderDomain || undefined,
+      kind: tagKind || undefined,
+      language: tagLanguage || undefined,
+      refId: clientRef || undefined,
+      raw: payload,
+    });
+  } else {
+    const { error } = await supabase.from("email_events").insert({
+      svix_id: svixId,
+      message_id: messageId || null,
+      event_type: mapped.eventType,
+      occurred_at: occurredAt,
+      recipient,
+      sender_domain: senderDomain,
+      app,
+      kind: tagKind,
+      email_num: tagEmailNum,
+      cycle: tagCycle,
+      language: tagLanguage,
+      ref_id: clientRef || null,
+      clicked_url: clickedUrl,
+      raw: payload,
+    });
 
-  return new Response(JSON.stringify({ ok: true, recipient, app }), {
-    status: 200,
-    headers: { "Content-Type": "application/json" },
-  });
+    if (error && error.code !== "23505") {
+      console.error("ZeptoMail email_events insert failed", error);
+      return new Response(JSON.stringify({ error: error.message }), {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+  }
+
+  console.log(`ZeptoMail ${mapped.eventType}: ${recipient} (${app})`);
+
+  return new Response(
+    JSON.stringify({ ok: true, recipient, app, event_type: mapped.eventType }),
+    {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    },
+  );
 });

@@ -27,6 +27,11 @@ Flutter (Kinbound)
 
 Guests without linked email are skipped by batch senders (no `email` in Firestore).
 
+## Doctrine (2026-10)
+
+Value / tip first. Soft CTA opens Help me now / app. Copilot-limit email is
+tip-first (saved scripts CTA); Premium only in P.S. No trial ending.
+
 ## Batch senders (`scripts/kinbound_orchestrator.py`)
 
 | Sender | Trigger | Dedup |
@@ -35,6 +40,7 @@ Guests without linked email are skipped by batch senders (no `email` in Firestor
 | `kinbound_streak_milestone_sender` | streak 3 / 7 / 14 / 30 | once per stage |
 | `kinbound_streak_at_risk_sender` | streak ≥2, no check-in today, after 18:00 UTC | once per uid per day |
 | `kinbound_abandoned_app_sender` | `lastOpenMs` ≥2/5/10d, free | once per stage |
+| `kinbound_parenting_tip_sender` | free — meltdown / bedtime / repair tips | once per stage |
 
 ## Instant Edge Functions
 

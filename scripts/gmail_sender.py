@@ -428,6 +428,63 @@ class GmailSender:
         cls._suppression_cache = None
 
     @classmethod
+    def _record_sent_event(cls, to_email, app, *, sender_email=None, tags=None,
+                           ref_id=None, message_id=None, details=None):
+        """ZeptoMail has no email.sent webhook — log accepts for volume/health."""
+        url, key = cls._supabase_creds()
+        if not url or not key:
+            return
+
+        recipient = (to_email or '').lower().strip()
+        if not recipient:
+            return
+
+        app_slug = cls._normalize_bounce_app(app)
+        sender_domain = None
+        if sender_email and '@' in sender_email:
+            sender_domain = sender_email.split('@', 1)[1].lower().strip()
+
+        tag_map = {}
+        for t in tags or []:
+            name = (t.get('name') or '').strip()
+            if name:
+                tag_map[name] = str(t.get('value') or '')
+
+        mid = str(message_id or '').strip()
+        seed = mid or f'{recipient}:{app_slug}:{ref_id or ""}:{_utc_now().isoformat()}'
+        event_id = 'zm-sent-' + hashlib.sha256(seed.encode('utf-8')).hexdigest()[:28]
+
+        headers = {
+            'apikey': key,
+            'Authorization': f'Bearer {key}',
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal',
+        }
+        try:
+            requests.post(
+                f'{url}/rest/v1/email_events',
+                headers=headers,
+                json={
+                    'svix_id': event_id,
+                    'message_id': mid or None,
+                    'event_type': 'email.sent',
+                    'occurred_at': _utc_now().isoformat(),
+                    'recipient': recipient,
+                    'sender_domain': sender_domain,
+                    'app': app_slug,
+                    'kind': tag_map.get('kind') or None,
+                    'email_num': tag_map.get('email_num') or None,
+                    'cycle': tag_map.get('cycle') or None,
+                    'language': tag_map.get('language') or None,
+                    'ref_id': (str(ref_id)[:256] if ref_id else None),
+                    'raw': {'provider': 'zeptomail', 'details': details or {}},
+                },
+                timeout=12,
+            )
+        except Exception as e:
+            print(f'   ⚠️ sent event write failed: {e}')
+
+    @classmethod
     def _thesis_cap_disabled(cls) -> bool:
         """Daily Thesis send cap is off by default — set THESIS_DAILY_SEND_CAP_DISABLED=0 to re-enable."""
         return os.getenv('THESIS_DAILY_SEND_CAP_DISABLED', '1').lower() in ('1', 'true', 'yes')
@@ -504,9 +561,8 @@ class GmailSender:
             elif event_type == 'email.bounced':
                 metrics['bounced_7d'] += 1
 
-        # ZeptoMail webhooks do not write email.sent, so email_events often
-        # shows sent_24h=0. The local ledger is the source of truth across
-        # 09:00 / 17:00 cron processes.
+        # ZeptoMail has no email.sent webhook; successful API accepts are written
+        # via _record_sent_event. Delivered/open/click come from zeptomail-webhook.
         ledger_24h = cls._thesis_ledger_count_24h()
         if ledger_24h > metrics['sent_24h']:
             metrics['sent_24h'] = ledger_24h
@@ -1214,8 +1270,9 @@ class GmailSender:
             'to': [{'email_address': {'address': to_email, 'name': to_email.split('@')[0] or 'User'}}],
             'subject': subject,
             'htmlbody': html_body,
-            'track_clicks': False,
-            'track_opens': False,
+            # Required for ZeptoMail open/click webhooks → email_events health.
+            'track_clicks': True,
+            'track_opens': True,
             'mime_headers': mime_headers,
         }
         if ref_id:
@@ -1235,7 +1292,29 @@ class GmailSender:
             )
 
             if resp.status_code in (200, 201):
+                message_id = ''
+                details = {}
+                try:
+                    details = resp.json() if resp.text else {}
+                    data = details.get('data') or {}
+                    message_id = str(
+                        data.get('message_id')
+                        or data.get('request_id')
+                        or details.get('request_id')
+                        or ''
+                    )
+                except Exception:
+                    details = {'raw': resp.text[:300]}
                 self._mark_sent(dedup_key, app)
+                self._record_sent_event(
+                    to_email,
+                    app,
+                    sender_email=sender_email,
+                    tags=tags,
+                    ref_id=ref_id,
+                    message_id=message_id,
+                    details=details,
+                )
                 return 'sent'
 
             error_msg = resp.text[:200]

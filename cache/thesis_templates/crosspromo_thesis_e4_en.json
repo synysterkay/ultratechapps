@@ -1,13 +1,14 @@
 {
-  "subject": "Still free. Still no credit card. Still works at 2am.",
-  "preview": "The objections I hear — answered in 20 seconds.",
+  "subject": "Deadline tip: outline tonight, draft tomorrow",
+  "preview": "Split the work so 2am-you isn't inventing structure.",
   "body": [
-    "{{first_name}}, if you skipped the last emails, fair. Here's the honest pitch:",
-    "• Free download — no card to try\n• Built for real research assignments\n• Outline + research statement before you spiral",
-    "If writing isn't on your plate this week, ignore this. If it is — open the app before the deadline owns you.",
-    "P.S. Worst case you spend 3 minutes and learn it isn't for you. Best case you sleep."
+    "{{first_name}}, if a deadline is close, don't try to write and structure in one sitting.",
+    "Tonight: research question + outline only.\nTomorrow: generate sections from that outline.\nThat split is how people stop rewriting the intro five times.",
+    "Research Generator is free to try for the outline step — no card required.",
+    "If writing isn't on your plate this week, ignore this. If it is — get the outline done before the deadline owns you.",
+    "P.S. Worst case: 3 minutes and you learn it isn't for you. Best case: you sleep."
   ],
-  "cta": "Download free",
+  "cta": "Build my outline free",
   "cta_ios": "App Store",
   "cta_android": "Google Play"
 }

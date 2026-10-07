@@ -1,0 +1,15 @@
+{
+  "kind": "analysis_tip",
+  "language": "en",
+  "subject": "Trading tip: read the stop before you size",
+  "preview_text": "Process > prediction.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "Quick tip that survives every cycle: decide invalidation before size. If the stop isn't written, it's not a setup — it's a hope.",
+    "Open Predictify Crypto, scan one chart, and check that the stop is something you can actually live with. Then journal the result later.",
+    "P.S. Not financial advice. The edge is the process: scan → setup → journal → streak."
+  ],
+  "cta_text": "Scan a chart",
+  "cta_deeplink": "predictifycrypto://",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.crypto.trading.ai.analyzer"
+}

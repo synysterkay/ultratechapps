@@ -13,6 +13,7 @@ SENDERS = [
     ('deadline', 'onbrief_deadline_sender'),
     ('abandoned_brief', 'onbrief_abandoned_brief_sender'),
     ('stuck_on_outline', 'onbrief_stuck_on_outline_sender'),
+    ('brief_tip', 'onbrief_brief_tip_sender'),
 ]
 
 

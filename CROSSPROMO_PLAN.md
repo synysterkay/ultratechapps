@@ -12,17 +12,22 @@ Owned-list cross-sell from portfolio app users into **Research Generator** insta
 
 Product lifecycle mail for Thesis stays on ZeptoMail Agent 1 / `thesisgenerator.io`. Crosspromo uses Agent 2 / `passedai.io` (same agent as `breakuprelief.com`).
 
-## Sequence (EN)
+## Sequence (EN) — tip → install CTA
 
-| Stage | Day | Kind tag | Job |
-|-------|-----|----------|-----|
-| e1 | 0 | `crosspromo_thesis_e1` | Curiosity hook |
-| e2 | 2 | `crosspromo_thesis_e2` | 5-minute micro-win |
-| e3 | 5 | `crosspromo_thesis_e3` | Social proof |
-| e4 | 10 | `crosspromo_thesis_e4` | Objection crush |
-| e5 | 14 | `crosspromo_thesis_e5` | Soft close / breakup |
+Value-first doctrine (2026-10): each email teaches one academic method;
+Research Generator is the tool for that method. One install CTA. No hard sell.
+
+| Stage | Day | Kind tag | Tip job |
+|-------|-----|----------|---------|
+| e1 | 0 | `crosspromo_thesis_e1` | Research question before blank page |
+| e2 | 2 | `crosspromo_thesis_e2` | Generate 2–3 outlines, keep strongest |
+| e3 | 5 | `crosspromo_thesis_e3` | Outline unlocks drafting momentum |
+| e4 | 10 | `crosspromo_thesis_e4` | Outline tonight, draft tomorrow |
+| e5 | 14 | `crosspromo_thesis_e5` | Soft close + method recap |
 
 Copy lives in `scripts/crosspromo_thesis_sender.py` → `EN_SOURCES`.
+Tags unchanged: `app=crosspromo`, `system=crosspromotion`, `target=thesis`,
+`kind=crosspromo_thesis_e{N}`, `stage`, `language`.
 
 ## Commands
 

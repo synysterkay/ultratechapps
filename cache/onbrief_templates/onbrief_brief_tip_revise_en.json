@@ -1,0 +1,9 @@
+{
+  "subject": "One-pass revise: claim → evidence → ask",
+  "body": [
+    "You already have draft text on {{topic}}. Before generating more, do one focused pass:",
+    "1) Underline each claim\n2) Ask what evidence supports it\n3) Add the ask / recommendation\n4) Then export",
+    "That pass turns AI draft into something a manager can act on. Open the brief and try it on two paragraphs."
+  ],
+  "cta": "Open my brief"
+}

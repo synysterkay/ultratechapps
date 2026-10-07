@@ -52,11 +52,11 @@ _REF_SALT = os.getenv('EMAIL_REF_SALT', 'marketing-tool-v1')
 
 
 EN_SOURCE = {
-    'subject': '🎓 You did it, {{first_name}} — export your {{work_type}}',
+    'subject': 'You finished {{topic}} — one last pass before you submit',
     'body': [
         "{{first_name}}, your {{work_type}} on {{topic}} is complete. That's a real accomplishment.",
-        "Now the part that actually counts: export it as a PDF and turn it in. Tap below to open the export screen.",
-        "P.S. Save the file somewhere outside the app too — future you will thank you.",
+        "Before you turn it in: skim once for claim → evidence → citation, then export the PDF. A clean export is what supervisors actually read.",
+        "P.S. Save a copy outside the app too — future you will thank you.",
     ],
     'cta': 'Export my PDF',
 }

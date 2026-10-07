@@ -1,0 +1,15 @@
+{
+  "kind": "journal_pending",
+  "language": "en",
+  "subject": "Tip: close the loop — mark win or loss on your last setup",
+  "preview_text": "Journaling is how the process compounds.",
+  "body_paragraphs": [
+    "Hey {first_name},",
+    "You have an open setup that still needs a result. Tip: mark win or loss while you still remember why you took it — that's how the journal becomes useful next week.",
+    "Open Predictify Crypto, find the pending setup, and log the outcome in under a minute.",
+    "P.S. Consistency beats intensity. One logged trade beats five forgotten ones."
+  ],
+  "cta_text": "Open my journal",
+  "cta_deeplink": "predictifycrypto://",
+  "google_play_url": "https://play.google.com/store/apps/details?id=com.crypto.trading.ai.analyzer"
+}

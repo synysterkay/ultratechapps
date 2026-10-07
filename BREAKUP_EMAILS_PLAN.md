@@ -19,12 +19,17 @@ ZeptoMail retention for **[breakuprelief.com](http://breakuprelief.com)** — **
 | Selka | `selka@breakuprelief.com` (Selka) | `red_flag_scanner` |
 | SoulPlan | `hello@breakuprelief.com` (SoulPlan) | `soulplan` |
 
+## Doctrine (2026-10)
+
+Value / tip first, soft open CTA. Soft Premium only in P.S. (Selka Track B).
+No trial ending.
+
 ## Layers (no 30-day drip)
 
 | Layer | Fresh Start | Selka | SoulPlan |
 |-------|-------------|-------|----------|
 | **Welcome** | Supabase `check-new-users` → `welcome-email` | Firebase `sendSelkaWelcome` (instant) | Supabase `check-new-users` → `welcome-email` |
-| **Behavioral** | TBD (orchestrator / edge functions) | Firebase `email_events` dispatcher (Tracks A–E) | `soulplan-wrapped-ready-email`, `soulplan-silence-nudge-email` |
+| **Behavioral** | `fresh_start_orchestrator.py` tips (emergency / morning / no_contact) | Firebase `email_events` dispatcher (Tracks A–E; Track B tip-softened) | `soulplan-wrapped-ready-email`, `soulplan-silence-nudge-email` |
 | **30-day drip** | **Removed** from `ACTIVE_APPS` | **Removed** from `ACTIVE_APPS` | **Removed** from `ACTIVE_APPS` |
 
 ## Hostinger DNS (add in ZeptoMail → Agent 2 → breakuprelief.com)

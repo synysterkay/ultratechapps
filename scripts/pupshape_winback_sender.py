@@ -43,39 +43,37 @@ STAGES = [7, 30, 60, 90]
 
 EN_SOURCES = {
     7: {
-        'subject': "{{dog_name}}'s plan paused — quick question",
+        'subject': "Tip for {{dog_name}}: weigh-ins still work without the adaptive plan",
         'body': [
-            "{{first_name}}, the plan for {{dog_name}} paused a week ago when the subscription ended. Free mode still tracks weigh-ins; what stops is the adaptive part — the daily recalc and the plateau-detection that does the actual work.",
-            "If something specific broke, tell me — the engine is still being tuned and feedback at this stage actually changes the next version.",
-            "If it just wasn't the right time, the door's open. The first week back is free; the plan picks up from {{dog_name}}'s last weigh-in, not from scratch.",
-            "P.S. The data from your weeks of weigh-ins is still here. Switching Pro back on reactivates the recalc on the same curve.",
+            "{{first_name}}, {{dog_name}}'s plan paused a week ago. Free mode still logs weigh-ins — tip: keep the weekly weigh-in habit even without adaptive recalc. Consistency beats perfect calories.",
+            "The adaptive part (daily recalc + plateau detection) is what bends the curve between snapshots. Your history is still saved from the last weigh-in.",
+            "P.S. When you're ready, Pro picks up that same curve — no rush. Open the app to see {{dog_name}}'s last plan anytime.",
         ],
-        'cta': "Reactivate for {{dog_name}}",
+        'cta': "See {{dog_name}}'s last plan",
     },
     30: {
-        'subject': "One month off — checking on {{dog_name}}",
+        'subject': "One month off — how is {{dog_name}}'s weigh-in habit?",
         'body': [
-            "{{first_name}}, it's been a month since the plan went quiet. Honest question: how is {{dog_name}} doing on the no-app version?",
-            "The reason I ask: the engine's whole job is the in-between. The weigh-in is a snapshot; the plan that adapts between snapshots is what bends the curve. A month is long enough to see whether the gap matters.",
-            "If it does, we'd love {{dog_name}} back. Same data, same plan, picks up from the last weigh-in.",
+            "{{first_name}}, it's been a month since the adaptive plan went quiet. Honest tip: a weigh-in once a week still tells you if the curve drifted — even without Pro.",
+            "The engine's job is the in-between: adapting between snapshots. If the gap matters for {{dog_name}}, same data is waiting to continue from the last weigh-in.",
+            "P.S. Open PupShape when you want to check the history. Pro is optional; the tip is to keep measuring.",
         ],
-        'cta': "Bring {{dog_name}}'s plan back",
+        'cta': "Open {{dog_name}}'s history",
     },
     60: {
-        'subject': "Two months — last gentle nudge for {{dog_name}}",
+        'subject': "Two months — last tip for {{dog_name}}",
         'body': [
             "{{first_name}}, two months out. We won't email about this much longer — promises kept.",
-            "What we're learning from users who came back: the curve almost always drifted in the wrong direction during the gap. Not anyone's fault — that's the nature of an adaptive plan with no one adapting.",
-            "If you do want to restart, the path is the same as ever — just open the app and reactivate Pro. The data is intact.",
+            "Tip from people who came back: restart with one weigh-in, then let the plan adapt — don't try to recreate every meal from memory.",
+            "P.S. The data is intact. Open the app when you want {{dog_name}}'s curve again.",
         ],
-        'cta': "Restart {{dog_name}}'s plan",
+        'cta': "Open PupShape",
     },
     90: {
         'subject': "Last note about {{dog_name}}",
         'body': [
             "{{first_name}}, this is the last winback email — promises kept.",
-            "If you ever want to come back, the door is open and the data is still yours. {{dog_name}}'s history is one tap away in the app whenever you re-install.",
-            "Wishing {{dog_name}} health, whichever path you take from here.",
+            "If you ever want to come back, {{dog_name}}'s history is one tap away. Wishing {{dog_name}} health, whichever path you take.",
         ],
         'cta': "Open PupShape",
     },

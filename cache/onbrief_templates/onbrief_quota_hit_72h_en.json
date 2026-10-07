@@ -1,9 +1,9 @@
 {
-  "subject": "Three days. The outline on {{topic}} is going cold.",
+  "subject": "Finish {{topic}} section by section",
   "body": [
-    "{{first_name}} — it's been three days since you hit the writing gate on {{topic}}. The research is still in the workspace. The PDF is not.",
-    "Open Onbrief once. Unlock. Generate all. Export. That's the whole loop you already started.",
-    "P.S. If the deadline moved, ignore this. If it didn't, this is the cheapest hour you'll spend on it."
+    "{{first_name}} — three days since you started {{topic}}. The research is still in the workspace.",
+    "People who finish fast don't write more hours — they remove the gap between section 1 and section 2. Open once, generate what's empty, export.",
+    "P.S. If the deadline moved, ignore this. If it didn't, this is still the cheapest hour you'll spend on it."
   ],
-  "cta": "Unlock and finish"
+  "cta": "Continue writing"
 }

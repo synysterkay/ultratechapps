@@ -13,6 +13,7 @@ SENDERS = [
     ('streak_milestone',  'kinbound_streak_milestone_sender'),
     ('streak_at_risk',    'kinbound_streak_at_risk_sender'),
     ('abandoned_app',     'kinbound_abandoned_app_sender'),
+    ('parenting_tip',     'kinbound_parenting_tip_sender'),
 ]
 
 

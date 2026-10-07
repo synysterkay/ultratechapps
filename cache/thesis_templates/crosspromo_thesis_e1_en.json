@@ -1,16 +1,15 @@
 {
-  "subject": "The 47-minute research trick nobody teaches in class",
-  "preview": "Blank page → research statement + outline in under 5 minutes.",
+  "subject": "Blank page fix: start with one research question",
+  "preview": "One sentence → outline. Skip the panic draft.",
   "body": [
-    "Hey {{first_name}} — quick one.",
-    "People who already use our apps keep hitting the same wall:",
-    "The blank page when a research paper or essay is due.\nNot the reading.\nThe starting.",
-    "[[LEAD]]Start with your research question.",
-    "[[VALUE]]Research Generator turns it into a research statement + structured outline in under 5 minutes.",
-    "[[SUB]]Free to try. No login maze. No credit card.",
-    "P.S. Open it once. If the outline sucks, delete it. If it doesn't… you just bought yourself a weekend."
+    "Hey {{first_name}} — a writing tip that actually helps:",
+    "Don't open a blank doc and “start writing.” Write one research question first (one sentence). That question is the filter for every paragraph that follows.",
+    "[[LEAD]]Research question → short outline → then draft.",
+    "[[VALUE]]Research Generator does that path for you: question in, research statement + structured outline out — usually under 5 minutes.",
+    "[[SUB]]Free to try. No credit card to peek.",
+    "P.S. If the outline is weak, delete it. If it isn't, you just bought yourself a weekend."
   ],
-  "cta": "Try Research Generator free",
+  "cta": "Try the outline method free",
   "cta_ios": "App Store",
   "cta_android": "Google Play"
 }

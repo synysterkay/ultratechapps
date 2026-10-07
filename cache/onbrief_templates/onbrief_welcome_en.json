@@ -1,9 +1,9 @@
 {
-  "subject": "Your outline is on the desk. 30 seconds to a full brief.",
+  "subject": "Tip: outline first, then Generate all once",
   "body": [
-    "You opened Onbrief. The trap is the same for almost everyone: type a title, glance at the outline, close the app, mean to finish it after the next meeting. Three days later the desk is empty and the deadline is not.",
-    "The fastest win is not writing the whole thing. Open the brief that's already sitting there, tap Generate all, and let the workspace fill. That's the whole product — a finished memo you can export, not another notes app.",
-    "Don't save this for Friday. Open Onbrief now, stay on that one brief, tap Generate all. You'll have a draft before this email is closed.",
+    "You opened Onbrief. The usual trap: type a title, glance at the outline, close the app, mean to finish after the next meeting.",
+    "Fastest win: open the brief that's already on the desk, tap Generate all once, then skim. Don't rewrite the outline ten times first.",
+    "Do that now — one brief, one generate pass. You'll have a draft before this email is closed.",
     "P.S. People who generate the first brief on day one actually export it. Waiting usually means it never leaves the outline."
   ],
   "cta": "Generate all"

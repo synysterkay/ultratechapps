@@ -9,10 +9,10 @@
     "I built Predictify Crypto because trading arguments shouldn't be won by whoever posts the loudest chart. We wanted something you can pressure-test: structure from your screenshot, levels you can verify, and a confidence score you can compare against your journal.",
     "A friend of ours learned this the hard way on a late-night pump. The model returned NO_TRADE with a mid confidence band — basically \"don't force it.\" He ignored it, chased the candle, and got stopped out twice. Two weeks later he scanned a clean setup, respected the stop, and logged the trade in the journal. Same friend. Different process.",
     "That's why we care about the loop: scan → setup → journal → streak. Not hidden tips. Not rewriting history after the move.",
-    "Your next step takes about 30 seconds: open Command, unlock analysis if you haven't, and scan one chart you actually trade. Read the stop before you size.",
+    "Your next step takes about 30 seconds: open Command and scan one chart you actually trade. Tip: read the stop before you size — that's the whole process.",
     "P.S. This is not financial advice and we don't guarantee outcomes. Gut feel is fun in Telegram. A written stop is better before you click buy."
   ],
-  "cta_text": "Open Predictify Crypto",
+  "cta_text": "Scan one chart",
   "cta_deeplink": "predictifycrypto://",
   "cta_ios_text": "Download on the App Store",
   "cta_android_text": "Get it on Google Play",

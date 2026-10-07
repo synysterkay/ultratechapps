@@ -1,9 +1,9 @@
 {
-  "subject": "{{first_name}}, your {{work_type}} on {{topic}} is still open",
+  "subject": "A 10-minute restart for {{topic}}",
   "body": [
-    "It's been two days. The brief is still on the desk in Onbrief — not exported, not sent.",
-    "Open the app, pick up where you left off, tap Generate all if the sections are empty. Then export the PDF before the next meeting swallows it.",
-    "P.S. Unfinished briefs almost never get easier on day five. Day two is the cheap save."
+    "Two days quiet on your {{work_type}}. Tip: don't reopen trying to rewrite everything.",
+    "Open the brief, generate only empty sections, export a draft PDF. One pass beats a guilt spiral.",
+    "P.S. Day two is the cheap save — unfinished briefs almost never get easier on day five."
   ],
   "cta": "Continue this brief"
 }

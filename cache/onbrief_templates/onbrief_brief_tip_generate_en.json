@@ -1,0 +1,9 @@
+{
+  "subject": "Don't polish the outline — generate the easy section",
+  "body": [
+    "Your outline for {{topic}} is ready. Most people stall editing section titles instead of writing.",
+    "Tip: generate the section you already understand first, then fill the rest with Generate all. Momentum beats perfect order.",
+    "Ten minutes from now you can have a full draft instead of a prettier outline."
+  ],
+  "cta": "Generate a section"
+}

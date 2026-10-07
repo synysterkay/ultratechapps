@@ -1,14 +1,14 @@
 {
   "kind": "upgrade_after_hot_week",
   "language": "en",
-  "subject": "{accuracy_pct}% accuracy this week — Pro users average {pro_target_pct}%",
-  "preview_text": "Here's what the model is hiding from your free tier.",
+  "subject": "{accuracy_pct}% this week — bank that form with one habit",
+  "preview_text": "A tip for hot weeks: protect the signal, don't chase every market.",
   "body_paragraphs": [
     "Hey {first_name},",
-    "Your last {recent_total} picks hit {accuracy_pct}% — well above the free-tier average. You're reading the model better than most.",
-    "Pro users see the Strongest Signal for every game — the one call that consistently hits {pro_target_pct}%+ — plus calibrated confidence on every market and player-prop projections (points, rebounds, assists). That's how the top accuracy tiers stay on top.",
-    "Want to try it for 7 days, free? No card required, no auto-renew. If it doesn't move your numbers, you walk away."
+    "Your last {recent_total} picks hit {accuracy_pct}% — you're reading the model well. Tip for hot weeks: stick to the strongest signal card on each game instead of stacking every market.",
+    "Pro unlocks that strongest-signal view on every tipoff (the card that consistently sits near {pro_target_pct}%+), plus calibrated confidence across markets. Use it as a filter, not a binge.",
+    "P.S. When you're ready, open the upgrade screen — no rush. Today's job is to keep the habit: one strong pick, full reasoning, then stop."
   ],
-  "cta_text": "Start 7-day Pro trial",
-  "cta_deeplink": "predictify://upgrade?ref=hot_week"
+  "cta_text": "See today's strongest pick",
+  "cta_deeplink": "predictify://prediction/{fixture_id}"
 }

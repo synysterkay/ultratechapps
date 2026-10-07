@@ -107,7 +107,7 @@ T = {
             "Pro users see the Strongest Signal for every match — the one call that consistently hits {pro_target_pct}%+ — plus calibrated confidence on every market and player-prop projections (aces, double faults, first-serve %). That's how the top accuracy tiers stay on top.",
             "Want to try it for 7 days, free? No card required, no auto-renew. If it doesn't move your numbers, you walk away.",
         ],
-        "cta_text": "Start 7-day Pro trial",
+        "cta_text": "See today's strongest pick",
         "cta_deeplink": "predictify://upgrade?ref=hot_week",
     },
     "pro_power_tip": {

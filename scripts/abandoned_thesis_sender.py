@@ -50,25 +50,26 @@ EN_SOURCES = {
     'stage_2d': {
         'subject': "Your {{work_type}} on {{topic}} is waiting",
         'body': [
-            "Quick check-in, {{first_name}} — your {{work_type}} on {{topic}} is sitting at {{progress}}.",
-            "Generating the next chapter takes about 60 seconds. The first sentence is always the hardest, and you've already crossed it.",
+            "Quick tip, {{first_name}} — your {{work_type}} on {{topic}} is at {{progress}}. Don't reopen trying to “write everything.”",
+            "Open the next unfinished section only. Generate that chapter (~60 seconds), then stop. One section beats a guilt spiral.",
         ],
         'cta': 'Continue my {{work_type}}',
     },
     'stage_5d': {
-        'subject': "5 days quiet — still want to finish {{topic}}?",
+        'subject': "A 10-minute restart for {{topic}}",
         'body': [
-            "It's been five days since you touched your {{work_type}} on {{topic}}. {{pain_hook}}",
-            "If the topic still matters, the next 60 seconds in the app moves the needle. If it doesn't, no judgment — just hit unsubscribe and I'll stop checking in.",
+            "Five days quiet on {{topic}}. {{pain_hook}}",
+            "Restart rule: skim your outline for 2 minutes, pick the easiest remaining section, generate it, and close the app. That single section makes the rest feel smaller.",
+            "If the topic no longer matters, unsubscribe and I'll stop checking in.",
         ],
         'cta': 'Pick up where I left off',
     },
     'stage_10d': {
-        'subject': "Last nudge on {{topic}}, {{first_name}}",
+        'subject': "Last tip on {{topic}}, {{first_name}}",
         'body': [
-            "Last time I'll mention this. Your {{work_type}} on {{topic}} is still in your account, exactly where you left it.",
-            "If you want to come back, tap below — your progress is intact. If life moved on, that's okay too.",
-            "P.S. Even one more chapter changes the difficulty curve for the rest. The hardest part is reopening the app.",
+            "Last note from me. Your {{work_type}} on {{topic}} is still saved exactly where you left it.",
+            "If you come back, generate one chapter today — not a full rewrite. Momentum returns faster than motivation.",
+            "P.S. If life moved on, that's okay. Your draft stays until you need it.",
         ],
         'cta': 'Open my draft',
     },

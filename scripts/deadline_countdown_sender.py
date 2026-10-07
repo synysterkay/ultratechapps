@@ -47,41 +47,41 @@ EN_SOURCES = {
     14: {
         'subject': '{{topic}} — {{days_left}}',
         'body': [
-            "Two weeks out from your {{work_type}} on {{topic}}. {{pain_hook}}",
-            "Two weeks is plenty if you start now — generate the next chapter today and you'll feel a different kind of week ahead.",
+            "Two weeks out on your {{work_type}} for {{topic}}. {{pain_hook}}",
+            "Reverse-plan tip: list remaining sections, assign one per day this week, leave next week for revise + export. Generate today's section now so the plan is real.",
         ],
         'cta': 'Continue my {{work_type}}',
     },
     7: {
-        'subject': 'One week to go on {{topic}}',
+        'subject': 'One week left — one section a day',
         'body': [
-            "A week from your deadline on {{topic}}, {{first_name}}. The next chapter takes about 60 seconds to generate.",
-            "Most of the people who finish on time generate something every day this week. Tap below to keep moving.",
+            "A week to your deadline on {{topic}}, {{first_name}}. The next chapter takes about 60 seconds to generate.",
+            "Simple cadence: one section today, one tomorrow — don't batch-write on day 6. People who finish on time protect that daily slot.",
         ],
         'cta': "Open my {{work_type}}",
     },
     3: {
-        'subject': '3 days left, {{first_name}}',
+        'subject': '3 days left — finish unfinished sections first',
         'body': [
-            "Three days. You can absolutely still make this.",
-            "Open the app, tap the next chapter, and the AI takes care of the rest. Repeat tomorrow.",
-            "P.S. If you're stuck on the topic, edit it in the form screen before generating — even small tweaks help.",
+            "Three days. Skip polishing for now — generate every unfinished section first, then do one claim→evidence pass.",
+            "Open the app, tap the next incomplete chapter, generate, repeat tomorrow.",
+            "P.S. If the topic feels wrong, tweak it in the form before generating — small edits still help this late.",
         ],
         'cta': 'Generate my next chapter',
     },
     1: {
-        'subject': 'Tomorrow is the day for {{topic}}',
+        'subject': 'Tomorrow is deadline day for {{topic}}',
         'body': [
-            "One day left. If you have one chapter left to generate, do it now and export tonight.",
-            "If everything's already drafted, the export flow takes 20 seconds. Tap below.",
+            "One day left. If a chapter is still missing, generate it now. Then export tonight — don't leave PDF export for the morning of.",
+            "If everything is drafted, skim citations once and export. Twenty seconds beats a scramble tomorrow.",
         ],
         'cta': 'Export my {{work_type}}',
     },
     0: {
-        'subject': 'Today: finish {{topic}}',
+        'subject': 'Today: export {{topic}} and submit',
         'body': [
-            "Today is the day. Whatever shape your {{work_type}} is in, export the PDF and turn it in.",
-            "Done beats perfect. The version you submit today matters infinitely more than the perfect one you don't.",
+            "Today is the day. Export the PDF in whatever shape your {{work_type}} is in and turn it in.",
+            "Done beats perfect. The version you submit today matters more than the perfect draft you never send.",
         ],
         'cta': 'Export & finish',
     },

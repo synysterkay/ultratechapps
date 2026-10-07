@@ -291,8 +291,8 @@ function sendViaZeptomail(fromEmail, fromName, toEmail, subject, html, appTag) {
       to: [{email_address: {address: toEmail, name: toEmail.split("@")[0] || "User"}}],
       subject,
       htmlbody: html,
-      track_clicks: false,
-      track_opens: false,
+      track_clicks: true,
+      track_opens: true,
       mime_headers: mimeHeaders,
     });
 

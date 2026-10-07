@@ -594,13 +594,13 @@ const APP_CONFIG: Record<string, AppConfig> = {
     emails: {
       en: {
         subject: "The one mistake most people make at 3AM",
-        preheader: "Emergency Mode is the 30-second exit when your brain won't stop at night.",
-        cta_text: "Try Emergency Mode Now",
+        preheader: "Tip: practice Emergency Mode once while you're calm — so it's ready at night.",
+        cta_text: "Open Emergency Mode",
         body_paragraphs: [
-          "It's 3:17 AM and you're staring at the ceiling again. Your brain is replaying that last conversation on a loop. You know you shouldn't check their socials, but your thumb is already hovering. Here's the truth: that moment isn't just pain\u2014it's a critical turning point most people waste.",
-          "I used to do the same thing. I'd scroll through old photos until sunrise, then feel wrecked all day. Then I discovered something: the 3AM spiral has a secret exit door. It's not about willpower\u2014it's about having the right tool in your pocket when your brain turns against you.",
-          "Open the app right now and tap 'Emergency Mode' on the home screen. Don't wait until tonight. The first time is the hardest, and I want you to have it ready. It's a 30-second audio guide that literally interrupts the obsessive thought cycle\u2014many people use it to fall back asleep instead of falling apart.",
-          "Tap the button below and try Emergency Mode once right now. Just once. So when 3AM hits tonight, you already know the escape route. P.S. The first user who tried this told me 'It felt like someone finally handed me a life raft in the middle of the ocean.' That someone is you, handing it to yourself.",
+          "It's 3:17 AM and you're staring at the ceiling again. Your brain is replaying that last conversation on a loop. Tip: that moment isn't just pain\u2014it's when willpower fails and you need a practiced exit.",
+          "The mistake most people make: waiting until tonight to find the tool. Practice once while you're calm. Emergency Mode is a 30-second audio interrupt for the obsessive loop — many people use it to fall back asleep instead of falling apart.",
+          "Open the app, tap Emergency Mode on the home screen, and run it once now. Just once. So when 3AM hits, you already know the escape route.",
+          "P.S. You're handing yourself a life raft before the wave. That practice pass is the whole tip.",
         ],
       },
     },

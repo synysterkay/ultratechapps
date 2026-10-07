@@ -139,6 +139,7 @@ jobs:
           ZEPTOMAIL_ONBRIEF_SENDER_NAME: Onbrief
           ONG_DAILY_SEND_CAP: "30"
           ONBRIEF_DAILY_SEND_CAP: "30"
+          VOWCRAFT_DAILY_SEND_CAP: "30"
           KAYNEL_DAILY_SEND_CAP: "50"
           EMAIL_HEALTH_GATE: "1"
           EMAIL_ONE_PER_DAY: "1"
@@ -232,11 +233,8 @@ jobs:
             FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_BULK_SEND_CAP:-2000}" \
               python -u scripts/founder_story_predictify_sender.py --backfill --passes "${FOUNDER_STORY_PASSES:-10}"
           elif [ "$MODE" = "founder-story-horse" ]; then
-            python -u scripts/founder_story_horse_sender.py --backfill --dry-run || true
-            FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_BULK_SEND_CAP:-2000}" \
-              PREDICTIFY_APP_NAME='Predictify: Horse Racing AI' \
-              PREDICTIFY_FIREBASE_PROJECT_ID='horse-racing-f67e8' \
-              python -u scripts/founder_story_predictify_sender.py --backfill --passes "${FOUNDER_STORY_HORSE_PASSES:-5}"
+            echo "⏭️ Horse founder bulk backfill frozen (value-first stack)"
+            echo "   Use daily lapsed catch-up via founder_story_horse_sender + race_day tips."
           elif [ "$MODE" = "predictify-warm-founder-templates" ]; then
             python -u scripts/warm_founder_story_templates.py
           elif [ "$MODE" = "thesis-warm-templates" ]; then
@@ -269,21 +267,25 @@ jobs:
             python -u scripts/kinbound_orchestrator.py || true
             echo "--- Running ONG orchestrator (kaynel.solutions / Agent 2) ---"
             python -u scripts/ong_orchestrator.py || true
+            echo "--- Running Fresh Start tip orchestrator (breakuprelief.com / Agent 2) ---"
+            python -u scripts/fresh_start_orchestrator.py || true
             echo "--- Running Onbrief orchestrator (kaynel.solutions / Agent 2) ---"
             python -u scripts/onbrief_orchestrator.py || true
-            echo "--- Horse Racing founder story catch-up ---"
+            echo "--- Running Vowcraft orchestrator (kaynel.solutions / Agent 2) ---"
+            python -u scripts/vowcraft_orchestrator.py || true
+            echo "--- Horse Racing race-day tips (value-first) ---"
+            python -u scripts/horse_race_day_tip_sender.py || true
+            echo "--- Horse Racing founder story catch-up (lapsed only) ---"
             python -u scripts/founder_story_horse_sender.py || true
+            echo "--- Predictify Crypto tip + founder (Auth export) ---"
+            python -u scripts/crypto_orchestrator.py || true
             echo "--- Soccer FS1 daily backfill (unsent cohort) ---"
             FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_SEND_CAP:-300}" \
               python -u scripts/founder_story_predictify_sender.py --backfill --passes 1 || true
             echo "--- Soccer FS2 daily backfill (v1 received, free users) ---"
             FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_V2_SEND_CAP:-180}" \
               python -u scripts/founder_story_predictify_sender.py --v2 --non-subscribers-only --passes 1 || true
-            echo "--- Horse FS1 daily backfill (unsent cohort) ---"
-            FOUNDER_STORY_SEND_CAP="${FOUNDER_STORY_HORSE_SEND_CAP:-80}" \
-              PREDICTIFY_APP_NAME='Predictify: Horse Racing AI' \
-              PREDICTIFY_FIREBASE_PROJECT_ID='horse-racing-f67e8' \
-              python -u scripts/founder_story_predictify_sender.py --backfill --passes 1 || true
+            echo "--- Horse FS1 daily backfill FROZEN (value-first) ---"
             echo "--- Crosspromotion Thesis (ZeptoMail / passedai.io) ---"
             python -u scripts/crosspromo_orchestrator.py || true
           fi
@@ -357,7 +359,7 @@ jobs:
       - name: Save retention state
         if: always()
         run: |
-          STATE_PATHS="cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json cache/abandoned_thesis_state.json cache/free_quota_hit_state.json cache/trial_ending_state.json cache/winback_state.json cache/streak_milestone_state.json cache/weekly_progress_state.json cache/stuck_on_outline_state.json cache/cumulative_stats_state.json cache/founder_story_thesis_state.json cache/founder_story_thesis_v2_state.json cache/founder_story_thesis_2_state.json cache/crosspromo_thesis_state.json cache/ong_*_state.json cache/ong_daily_quota.json cache/kaynel_daily_quota.json cache/thesis_volume_sends.json cache/daily_recipient_sends.json cache/onbrief_*_state.json cache/onbrief_daily_quota.json cache/vowcraft_*_state.json cache/vowcraft_daily_quota.json cache/ong_templates/ cache/onbrief_templates/ cache/vowcraft_templates/ cache/thesis_templates/ cache/thesis_users_snapshot.json firebase_exports/"
+          STATE_PATHS="cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json cache/abandoned_thesis_state.json cache/free_quota_hit_state.json cache/trial_ending_state.json cache/winback_state.json cache/streak_milestone_state.json cache/weekly_progress_state.json cache/stuck_on_outline_state.json cache/writing_tip_state.json cache/fresh_start_tip_state.json cache/kinbound_parenting_tip_state.json cache/horse_race_day_tip_state.json cache/crypto_tip_state.json cache/crypto_founder_story_state.json cache/cumulative_stats_state.json cache/founder_story_thesis_state.json cache/founder_story_thesis_v2_state.json cache/founder_story_thesis_2_state.json cache/crosspromo_thesis_state.json cache/ong_*_state.json cache/ong_daily_quota.json cache/kaynel_daily_quota.json cache/thesis_volume_sends.json cache/daily_recipient_sends.json cache/onbrief_*_state.json cache/onbrief_daily_quota.json cache/vowcraft_*_state.json cache/vowcraft_daily_quota.json cache/ong_templates/ cache/onbrief_templates/ cache/vowcraft_templates/ cache/thesis_templates/ cache/thesis_users_snapshot.json firebase_exports/"
           # Thesis-only / founder-story runs may not touch retention_state.json.
           has_state=0
           for path in $STATE_PATHS; do

@@ -14,31 +14,31 @@ const FOOTERS = {
 
 const TEMPLATES: Record<string, KinboundTemplate> = {
   en: {
-    subject: "{{first_name}}, you used today's free coaching — here's what unlocks",
+    subject: "{{first_name}}, tonight's {{struggle}} still needs words",
     body: [
-      "You reached for Kinbound on a hard {{struggle}} moment and hit the free daily limit. That usually means it was actually helping.",
-      "Premium removes the daily cap — unlimited Help me now scripts, saved coaching history, and the full Family tools. No child data leaves your phone either way.",
-      "P.S. If tonight isn't the night to upgrade, your saved scripts and streak are still there tomorrow.",
+      "You hit today's free Help me now limit on a hard {{struggle}} moment — that usually means the coach was actually useful.",
+      "Tip for tonight: open your saved scripts and reuse the one that worked last time. Name the feeling before the ask. That alone often shortens the spiral.",
+      "P.S. When you're ready, Premium lifts the daily cap so Help me now isn't cut mid-crisis. No rush — your streak and scripts stay either way.",
     ],
-    cta: "See Kinbound Premium",
+    cta: "Open my saved scripts",
   },
   es: {
-    subject: "{{first_name}}, usaste el coaching gratis de hoy — esto desbloquea",
+    subject: "{{first_name}}, esta noche {{struggle}} aún necesita palabras",
     body: [
-      "Buscaste Kinbound en un momento difícil de {{struggle}} y llegaste al límite diario gratuito. Eso suele significar que estaba ayudando.",
-      "Premium quita el tope diario — Ayúdame ahora ilimitado y herramientas Family completas.",
-      "P.D. Si esta noche no es para actualizar, tus guiones guardados siguen ahí mañana.",
+      "Llegaste al límite gratuito de Ayúdame ahora en un momento difícil de {{struggle}} — suele significar que el coach estaba ayudando.",
+      "Consejo: abre tus guiones guardados y reutiliza el que funcionó la última vez. Nombra el sentimiento antes de pedir. Eso acorta la espiral.",
+      "P.D. Cuando quieras, Premium quita el tope diario. Sin prisa — tu racha y guiones siguen ahí.",
     ],
-    cta: "Ver Kinbound Premium",
+    cta: "Abrir mis guiones",
   },
   fr: {
-    subject: "{{first_name}}, vous avez utilisé le coaching gratuit — voici la suite",
+    subject: "{{first_name}}, ce soir {{struggle}} a encore besoin de mots",
     body: [
-      "Vous avez ouvert Kinbound pour {{struggle}} et atteint la limite gratuite du jour. Ça veut souvent dire que ça aidait vraiment.",
-      "Premium enlève le plafond quotidien — Aide-moi maintenant illimité et outils Family complets.",
-      "P.S. Si ce n'est pas le soir pour passer à Premium, vos scripts sauvegardés seront là demain.",
+      "Vous avez atteint la limite gratuite d'Aide-moi maintenant sur un moment difficile de {{struggle}} — signe que le coach aidait vraiment.",
+      "Astuce: ouvrez vos scripts sauvegardés et réutilisez celui qui a marché. Nommez le sentiment avant la demande. Ça raccourcit souvent la spirale.",
+      "P.S. Quand vous serez prêt, Premium enlève le plafond du jour. Sans pression — votre série et vos scripts restent.",
     ],
-    cta: "Voir Kinbound Premium",
+    cta: "Ouvrir mes scripts",
   },
 };
 

@@ -1,7 +1,14 @@
-# Predictify + Thesis Email Plan (2026-07-20)
+# Predictify + Thesis Email Plan (2026-10 value-first)
 
 Four-app email system: **no 30-day drip**. ZeptoMail on **thesisgenerator.io** (Thesis)
 and **predictifyfootball.com** (Predictify Soccer, NBA, Tennis, Horse).
+
+## Doctrine
+
+Value / tip first. One CTA = open pick / continue. Soft Pro only in P.S. on
+hot-week / paywall moments — never “Start 7-day Pro trial” as the primary CTA.
+No trial-ending countdown. Price-change promo blasts are **not** the conversion
+core (P0/P1 behavioral is).
 
 ## Layers (every app)
 
@@ -9,17 +16,18 @@ and **predictifyfootball.com** (Predictify Soccer, NBA, Tennis, Horse).
 |-------|------|-----|
 | Welcome | Signup | Once |
 | Behavioral | Active users (picks, deadlines, streaks) | Event + cooldown |
-| Founder story #1 | ≥14d inactive, no behavioral match | Once |
-| Founder story #2 | ≥7d after #1, still inactive | Once |
+| Founder story #1 | ≥14d inactive, no behavioral match | Once (lapsed) |
+| Founder story #2 | ≥7d after #1, still inactive | Once (lapsed) |
 
 ## Soccer (`Predictify`)
 
 - **Welcome:** `check-new-users` → `welcome-email`
 - **Behavioral (P0/P1):** `streak_saver`, `match_day`, `welcome` backup, `win_back`
+- **Value (ready, not in p0p1 default):** `upgrade_after_hot_week` (tip + soft Pro P.S.), `weekly_recap`
 - **Hourly:** `streak_saver` only (`predictify-streak-hourly.yml`)
 - **Lapsed:** `founder_story_soccer` → `founder_story_soccer_v2` (orchestrator fallback)
-- **Templates:** `scripts/predictify_v2/templates/founder_story_soccer_*.json`
-- **Backfill:** `python scripts/founder_story_predictify_sender.py --backfill`
+- **Templates:** `scripts/predictify_v2/templates/`
+- **Backfill:** optional manual only — prefer lapsed catch-up over bulk blast
 
 ## NBA (`Predictify: NBA AI`)
 
@@ -41,9 +49,11 @@ and **predictifyfootball.com** (Predictify Soccer, NBA, Tennis, Horse).
 ## Horse (`Predictify: Horse Racing AI`)
 
 - **Welcome:** `check-new-users`
+- **Value tips:** `horse_race_day_tip_sender.py` (Auth export; stages early / race_day / process)
 - **Daily lapsed:** `founder_story_horse_sender.py` (v2 orchestrator, cap 50)
-- **Backfill:** workflow mode `founder-story-horse` or `--backfill`
-- **Templates:** `scripts/predictify_v2/templates/founder_story_horse_*.json`
+- **Bulk backfill:** **FROZEN** (value-first). Workflow mode `founder-story-horse` no-ops.
+- **Templates:** `scripts/predictify_v2/templates/founder_story_horse_*.json`, `race_day_tip_en.json`
+- **CTA doctrine:** tip → open today's card / strongest pick. Soft Pro never as primary CTA.
 
 ## Thesis Generator
 
@@ -71,7 +81,7 @@ FOUNDER_STORY_THESIS_DAILY_CAP=50
 |------|--------|
 | `founder-story` | Soccer v1 backfill |
 | `founder-story-non-sub` | Soccer v2 to free users |
-| `founder-story-horse` | Horse v1 backfill |
+| `founder-story-horse` | Frozen (value-first) |
 | `thesis-founder-story` | Thesis v1 backfill |
 | `thesis-founder-story-2` | Thesis v2 backfill |
 

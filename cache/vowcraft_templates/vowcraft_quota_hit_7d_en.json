@@ -1,9 +1,9 @@
 {
-  "subject": "Last note on your {{role}} speech",
+  "subject": "Your {{role}} speech is still waiting",
   "body": [
-    "It's been a week. Your speech for {{couple}} is still unfinished in Vowcraft.",
-    "If you still need it, open the app and finish. If you don't, we'll go quiet after this.",
-    "P.S. This is the last upgrade nudge on this speech."
+    "A week since your free draft. Your speech for {{couple}} is still saved — nothing's gone.",
+    "If you still need it, open Vowcraft, finish empty lines, rehearse once. This is the last note I'll send about that free draft.",
+    "P.S. No hard sell — just the method: finish → rehearse → mean it."
   ],
   "cta": "Open Vowcraft"
 }

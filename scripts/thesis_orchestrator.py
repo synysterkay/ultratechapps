@@ -5,20 +5,21 @@ Thesis Generator Email Orchestrator
 Single entry point that runs Thesis-Generator-specific behavioral senders
 in priority order. Invoked from `retention-emails.yml`.
 
-As of 2026-07-20 (ZeptoMail / thesisgenerator.io):
+As of 2026-10 (value-first stack / thesisgenerator.io):
 - The 30-email drip for Thesis is DISABLED in app_retention_emailer.py.
 - Welcome is handled by Supabase check-new-users → welcome-email.
-- This orchestrator runs high-value event triggers (P0 + P1).
-- Founder story v1/v2 runs daily as lapsed catch-up (≥14d inactive, 50/day cap).
-- Founder story backfill runs daily for never-emailed users (150 v1 + 100 v2/day).
+- This orchestrator runs high-value event triggers (P0 + P1) + writing tips.
+- trial_ending is retired (freemium converts on quota / unfinished work).
+- Founder story v1/v2 runs as lapsed catch-up only (≥14d inactive, 50/day cap).
+- Founder story bulk backfill is FROZEN (burns the list).
 
 Order (highest intent / revenue first):
 1. Free-quota-hit upgrade 24h/72h/7d       (monetization) — P0
 2. First-thesis-complete                   (activation) — P0
 3. Deadline countdown 14/7/3/1/0           (urgency) — P1
-4. Trial ending 3d/1d                      (monetization) — P1
-5. Abandoned thesis 2d / 5d                (re-engagement) — P0
-6. Stuck-on-outline                        (funnel rescue) — P1
+4. Abandoned thesis 2d / 5d                (re-engagement) — P0
+5. Stuck-on-outline                        (funnel rescue) — P1
+6. Writing tips outline/chapter/revise     (value) — P2
 
 Run modes:
     python scripts/thesis_orchestrator.py            # send for real
@@ -33,21 +34,17 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-# Active senders (P0/P1 behavioral). Founder story runs as lapsed catch-up after.
+# Active senders (P0/P1 behavioral + value tips). Founder story = lapsed catch-up only.
 SENDERS = [
     ('free_quota_hit',        'free_quota_hit_sender'),
     ('first_thesis_complete', 'first_thesis_complete_sender'),
     ('deadline_countdown',    'deadline_countdown_sender'),
-    ('trial_ending',          'trial_ending_sender'),
     ('abandoned_thesis',      'abandoned_thesis_sender'),
     ('stuck_on_outline',      'stuck_on_outline_sender'),
+    ('writing_tip',           'writing_tip_sender'),
 ]
 
 FOUNDER_STORY_DAILY_CAP = int(os.environ.get('FOUNDER_STORY_THESIS_DAILY_CAP', '50'))
-FOUNDER_STORY_THESIS_BACKFILL_DAILY_CAP = int(
-    os.environ.get('FOUNDER_STORY_THESIS_BACKFILL_DAILY_CAP', '150'))
-FOUNDER_STORY_THESIS_2_BACKFILL_DAILY_CAP = int(
-    os.environ.get('FOUNDER_STORY_THESIS_2_BACKFILL_DAILY_CAP', '100'))
 
 
 def _thesis_volume_open() -> bool:
@@ -90,41 +87,21 @@ def warm_all_translations():
                     kind = f'abandoned_thesis_{key}'
                 elif name == 'free_quota_hit':
                     kind = f'free_quota_hit_{key}'
-                elif name == 'trial_ending':
-                    kind = f'trial_ending_{key}'
+                elif name == 'writing_tip':
+                    kind = f'writing_tip_{key}'
                 elif name == 'deadline_countdown':
                     kind = f'deadline_{key}d'
-                print(f'\n--- warming {kind} ({len(SUPPORTED)-1} langs) ---')
-                warm_all(kind, src)
+                print(f'\n--- warming {kind} ({len(SUPPORTED)-1} langs, refresh) ---')
+                warm_all(kind, src, refresh=True)
                 total_pairs += len(SUPPORTED) - 1
         elif en_source:
             kind = name
-            print(f'\n--- warming {kind} ({len(SUPPORTED)-1} langs) ---')
-            warm_all(kind, en_source)
+            print(f'\n--- warming {kind} ({len(SUPPORTED)-1} langs, refresh) ---')
+            warm_all(kind, en_source, refresh=True)
             total_pairs += len(SUPPORTED) - 1
         else:
             print(f'   ⚠️ {name} has no EN_SOURCE / EN_SOURCES — skipping')
     print(f'\n✅ Warm complete. {total_pairs} (kind, lang) pairs verified.')
-
-
-def run_founder_story_daily_backfill(dry_run: bool = False) -> None:
-    """Chunked backfill for users who never received founder story (no lapsed gate)."""
-    print('\n━━━ founder_story backfill (v1, all unsent) ━━━')
-    try:
-        from founder_story_thesis_sender import run_send as fs1
-        fs1(
-            dry_run=dry_run,
-            send_cap=FOUNDER_STORY_THESIS_BACKFILL_DAILY_CAP,
-            lapsed_only=False,
-        )
-    except Exception as e:
-        print(f'   ⚠️ founder_story v1 backfill crashed: {e}')
-    print('\n━━━ founder_story_2 backfill (FS1≥7d, unsent FS2) ━━━')
-    try:
-        from founder_story_thesis_2_sender import run_send as fs2
-        fs2(dry_run=dry_run, send_cap=FOUNDER_STORY_THESIS_2_BACKFILL_DAILY_CAP)
-    except Exception as e:
-        print(f'   ⚠️ founder_story v2 backfill crashed: {e}')
 
 
 def run_founder_story_catchup(dry_run: bool = False) -> None:
@@ -180,10 +157,7 @@ def main():
             run_founder_story_catchup(dry_run=dry_run)
         else:
             print('⏭️ Skipping founder-story catch-up — Thesis volume cap already hit')
-        if _thesis_volume_open():
-            run_founder_story_daily_backfill(dry_run=dry_run)
-        else:
-            print('⏭️ Skipping founder-story backfill — Thesis volume cap already hit')
+        print('⏭️ Founder-story bulk backfill frozen (value-first stack)')
     print('\n🏁 Thesis orchestrator done.')
 
 

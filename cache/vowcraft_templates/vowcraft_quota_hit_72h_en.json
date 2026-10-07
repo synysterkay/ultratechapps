@@ -1,9 +1,9 @@
 {
-  "subject": "Three days. The toast for {{couple}} is going cold.",
+  "subject": "Finish the toast for {{couple}}, then rehearse once",
   "body": [
-    "{{first_name}} — it's been three days since you hit the writing gate on your {{role}} speech. The draft is still in Vowcraft. The rehearsal is not.",
-    "Open once. Unlock. Finish. Rehearse. That's the loop you already started.",
-    "P.S. If the wedding moved, ignore this. If it didn't, this is the cheapest hour you'll spend on it."
+    "{{first_name}} — three days since you started your {{role}} speech. The draft is still in Vowcraft.",
+    "People who deliver well don't write more hours — they finish the draft, then say the first minute aloud. Open once. Finish. Rehearse.",
+    "P.S. If the wedding moved, ignore this. If it didn't, this is still the cheapest hour you'll spend on it."
   ],
-  "cta": "Unlock and finish"
+  "cta": "Continue writing"
 }
