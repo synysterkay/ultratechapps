@@ -179,7 +179,12 @@ def main(dry_run=False):
     if not users:
         print('⚠️ No Horse Auth export found — skip tips')
         return
-    users = filter_free_users(users, APP_SLUG, _email_of)
+    users = filter_free_users(
+        users, APP_SLUG, _email_of, require_firebase=not dry_run,
+    )
+    if not users:
+        print('⚠️ No free Horse users — skip tips')
+        return
 
     race_day_src = _race_day_from_template()
     STAGE_COPY['race_day'] = race_day_src

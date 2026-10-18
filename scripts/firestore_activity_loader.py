@@ -23,22 +23,35 @@ ACTIVITY_PROJECTS = {
     'Predictify': {
         'project_id': 'predictify-3f30d',
         'cache_file': 'predictify_activity.json',
-        'fields': ['streak', 'favoriteLeague', 'isSubscribed', 'lastPredictionAt', 'isPremium'],
+        # Superwall: top-level flags + subscription.{status,isPremium}
+        'fields': [
+            'streak', 'favoriteLeague', 'isSubscribed', 'lastPredictionAt',
+            'isPremium', 'subscription',
+        ],
     },
     'Predictify: NBA AI': {
         'project_id': 'nba-predictify',
         'cache_file': 'predictify_nba_activity.json',
-        'fields': ['streak', 'favoriteLeague', 'isSubscribed', 'lastPredictionAt', 'isPremium'],
+        'fields': [
+            'streak', 'favoriteLeague', 'isSubscribed', 'lastPredictionAt',
+            'isPremium', 'subscription',
+        ],
     },
     'Predictify: Tennis AI': {
         'project_id': 'tenis-b5d4e',
         'cache_file': 'predictify_tennis_activity.json',
-        'fields': ['streak', 'favoriteLeague', 'isSubscribed', 'lastPredictionAt', 'isPremium'],
+        'fields': [
+            'streak', 'favoriteLeague', 'isSubscribed', 'lastPredictionAt',
+            'isPremium', 'subscription',
+        ],
     },
     'Predictify: Horse Racing AI': {
         'project_id': 'horse-racing-f67e8',
         'cache_file': 'horse_racing_activity.json',
-        'fields': ['streak', 'isSubscribed', 'lastPredictionAt', 'isPremium'],
+        'fields': [
+            'streak', 'isSubscribed', 'lastPredictionAt', 'isPremium',
+            'subscription',
+        ],
     },
     'Crypto AI: Trading Analyzer': {
         'project_id': 'cryptopredictify',

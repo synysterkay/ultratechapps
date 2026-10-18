@@ -163,7 +163,12 @@ def main(dry_run=False):
     if not users:
         print('⚠️ No Crypto Auth export — skip founder story')
         return
-    users = filter_free_users(users, APP_SLUG, _email_of)
+    users = filter_free_users(
+        users, APP_SLUG, _email_of, require_firebase=not dry_run,
+    )
+    if not users:
+        print('⚠️ No free crypto users — skip founder')
+        return
 
     candidates = []
     for u in users:

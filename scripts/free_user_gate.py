@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """Shared free-user gate for Auth-export tip / founder senders.
 
-Skips Superwall / Pro subscribers. Reads Firestore activity via
-FirestoreActivityLoader (isPremium / isSubscribed / subscription map).
+Conversion doctrine: tip + founder emails go to free users only.
+Paying / Superwall subscribers are skipped via Firestore activity
+(isPremium / isSubscribed / subscription map).
 
-Missing activity → treated as free (same as Predictify founder-story path).
-Paid if:
-  • top-level isPremium / isSubscribed
-  • subscription.isPremium / subscription.isSubscribed
-  • subscription.status in {active, trial, past_due}
+Live sends require FIREBASE_TOKEN so we can read Superwall mirrors —
+never blast the full Auth list when we cannot check paid status.
+Missing per-user activity (never opened app / no mirror yet) → free.
 """
 from __future__ import annotations
 
+import os
 from typing import Iterable
 
 from firestore_activity_loader import FirestoreActivityLoader, ACTIVITY_PROJECTS
@@ -73,11 +73,28 @@ def paid_emails_for_app(app_slug: str, users: Iterable[dict] | None = None) -> s
     return paid
 
 
-def filter_free_users(users: list[dict], app_slug: str, email_of) -> list[dict]:
-    """Drop Auth users whose email is in the paid set."""
+def filter_free_users(
+    users: list[dict],
+    app_slug: str,
+    email_of,
+    *,
+    require_firebase: bool = False,
+) -> list[dict]:
+    """Drop Auth users whose email is in the paid set (Firebase Superwall).
+
+    If require_firebase=True and FIREBASE_TOKEN is missing, return [] so we
+    never send tip/founder conversion mail without a live paid check.
+    """
+    activity_name = APP_SLUG_TO_ACTIVITY.get(app_slug)
+    if require_firebase and activity_name and activity_name in ACTIVITY_PROJECTS:
+        if not os.environ.get('FIREBASE_TOKEN'):
+            print(
+                f'❌ free_user_gate[{app_slug}]: FIREBASE_TOKEN required — '
+                'refusing tip/founder (cannot verify free-only via Firebase)'
+            )
+            return []
+
     paid = paid_emails_for_app(app_slug, users)
-    if not paid:
-        return users
     out = []
     skipped = 0
     for u in users:
@@ -87,5 +104,7 @@ def filter_free_users(users: list[dict], app_slug: str, email_of) -> list[dict]:
             continue
         out.append(u)
     if skipped:
-        print(f'   ⏭️ skipped {skipped} paid users ({app_slug})')
+        print(f'   ⏭️ skipped {skipped} paid users ({app_slug}) — free only')
+    else:
+        print(f'   ✅ free-only audience: {len(out)} users ({app_slug})')
     return out

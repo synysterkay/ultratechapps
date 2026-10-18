@@ -370,5 +370,8 @@ def load_dog_milestones(token: str, uid: str, dog_id: str) -> list:
 
 
 def is_paid(user: dict) -> bool:
+    """Superwall mirror — tip/founder doctrine: skip active Pro / trial."""
     sub = user.get('subscription') or {}
-    return (sub.get('status') or '').lower() == 'active'
+    if sub.get('isPremium') is True or sub.get('isSubscribed') is True:
+        return True
+    return (sub.get('status') or '').lower() in {'active', 'trial', 'past_due'}

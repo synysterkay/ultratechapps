@@ -119,7 +119,13 @@ def send_once_ever_founder(
     if not users:
         print(f'⚠️ No Auth export for {app_name} — skip founder')
         return
-    users = filter_free_users(users, app_slug, email_of)
+    # Conversion: free Auth users only — skip Superwall payers via Firebase
+    users = filter_free_users(
+        users, app_slug, email_of, require_firebase=not dry_run,
+    )
+    if not users:
+        print(f'⚠️ No free users for {app_name} founder — skip')
+        return
 
     candidates = []
     for u in users:
@@ -137,7 +143,7 @@ def send_once_ever_founder(
             fn = (u.get('displayName') or u.get('first_name') or '').split(' ')[0]
         candidates.append((email, fn or 'there'))
 
-    print(f'✉️  {len(candidates)} {app_name} founder candidates (cap={daily_cap})')
+    print(f'✉️  {len(candidates)} {app_name} founder candidates (free only, cap={daily_cap})')
     candidates = candidates[:daily_cap]
     if dry_run:
         for email, fn in candidates[:20]:
@@ -216,7 +222,13 @@ def send_staged_tips(
     if not users:
         print(f'⚠️ No Auth export for {app_name} — skip tips')
         return
-    users = filter_free_users(users, app_slug, email_of)
+    # Conversion: free Auth users only — skip Superwall payers via Firebase
+    users = filter_free_users(
+        users, app_slug, email_of, require_firebase=not dry_run,
+    )
+    if not users:
+        print(f'⚠️ No free users for {app_name} tips — skip')
+        return
 
     candidates = []
     for u in users:
@@ -236,7 +248,7 @@ def send_staged_tips(
                 candidates.append((email, stage, days))
                 break
 
-    print(f'💛 {len(candidates)} {app_name} tip candidates (cap={daily_cap})')
+    print(f'💛 {len(candidates)} {app_name} tip candidates (free only, cap={daily_cap})')
     candidates = candidates[:daily_cap]
     if dry_run:
         for email, stage, days in candidates[:20]:

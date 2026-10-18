@@ -253,10 +253,11 @@ def load_all_users(token: str, page_size: int = 300) -> Iterable[dict]:
 
 
 def is_paid(user: dict) -> bool:
+    """Superwall mirror — tip/founder doctrine: skip active Pro / trial."""
     sub = user.get('subscription') or {}
-    if sub.get('isPremium') is True:
+    if sub.get('isPremium') is True or sub.get('isSubscribed') is True:
         return True
-    return (sub.get('status') or '').lower() == 'active'
+    return (sub.get('status') or '').lower() in {'active', 'trial', 'past_due'}
 
 
 def last_open_ms(user: dict):

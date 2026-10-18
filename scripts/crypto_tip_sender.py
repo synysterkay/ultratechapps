@@ -152,7 +152,12 @@ def main(dry_run=False):
     if not users:
         print('⚠️ No Crypto Auth export found — skip tips (export cryptopredictify)')
         return
-    users = filter_free_users(users, APP_SLUG, _email_of)
+    users = filter_free_users(
+        users, APP_SLUG, _email_of, require_firebase=not dry_run,
+    )
+    if not users:
+        print('⚠️ No free crypto users — skip tips')
+        return
 
     tmpl_cache = {}
     for _, kind, _, _ in STAGES:
