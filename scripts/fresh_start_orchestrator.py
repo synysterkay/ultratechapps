@@ -9,6 +9,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 SENDERS = [
     ('tip', 'fresh_start_tip_sender'),
+    ('founder', 'fresh_start_founder_story_sender'),
 ]
 
 

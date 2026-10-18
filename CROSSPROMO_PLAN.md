@@ -91,8 +91,20 @@ CROSSPROMO_DAILY_CAP=50 python3 scripts/crosspromo_orchestrator.py
 | `scripts/deliverability_monitor.py` | `pick_healthy_sender(prefer=passedai)` |
 | `scripts/thesis_template_translator.py` | `mode='adapt'` warm |
 
+## Niche packs (relationship bridges)
+
+Orchestrator runs Thesis + niche packs (`--pack all|thesis|fs_redflag|redflag_soulplan`):
+
+| Pack | Module | Cap env | Eligibility |
+|------|--------|---------|-------------|
+| Thesis | `crosspromo_thesis_sender.py` | `CROSSPROMO_DAILY_CAP` (half when all) | Portfolio → Research Generator |
+| FS → Red Flag | `crosspromo_fs_redflag_sender.py` | `CROSSPROMO_FS_REDFLAG_DAILY_CAP` (60) | Fresh Start tip/founder state; exclude Red Flag Auth |
+| Red Flag → SoulPlan | `crosspromo_redflag_soulplan_sender.py` | `CROSSPROMO_REDFLAG_SOULPLAN_DAILY_CAP` (60) | Red Flag tip/founder state; exclude SoulPlan Auth |
+
+Shared helper: `scripts/crosspromo_niche_base.py`. State: `cache/crosspromo_fs_redflag_state.json`, `cache/crosspromo_redflag_soulplan_state.json`.
+
 ## Later phases
 
-- Same orchestrator + new `EN_SOURCES` packs for Predictify / other targets.
+- More niche packs (KinBound ↔ PupShape, Smart Notes → Thesis already affinity-ranked).
 - Hand-authored market templates or bulk `--warm --adapt`.
 - Engaged-first filter (opened/clicked in last 30d) once volume is stable.

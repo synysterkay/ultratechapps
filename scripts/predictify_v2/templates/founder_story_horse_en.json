@@ -1,16 +1,16 @@
 {
   "kind": "founder_story_horse",
   "language": "en",
-  "subject": "{first_name}, I built this after one too many \"trust the tipster\" takes",
-  "preview_text": "Every result published. Verify us race by race.",
+  "subject": "{first_name}, I built this after one too many tipster \"sure things\"",
+  "preview_text": "Form, jockey, going, draw — real parameters, published results.",
   "body_paragraphs": [
     "Hey {first_name},",
-    "Every race day, the same scene: confident tips flying around — \"this horse is due,\" \"the jockey always delivers here,\" \"I just feel it.\" Nobody checking form, going, draw, or what the numbers actually say.",
-    "I built Predictify Horse Racing because racing arguments shouldn't be won by whoever shouts loudest. We wanted forecasts you can pressure-test: form, jockey, track, going, and a calibrated confidence score on win, place, and each-way picks.",
+    "Every race day, the same scene: confident tips flying around — \"this horse is due,\" \"the jockey always delivers here,\" \"I just feel it.\" Almost nobody checking form, going, draw, or what the numbers actually say.",
+    "I built Predictify Horse Racing because I wanted the best analysis I could pressure-test: mathematics across the parameters that matter — horse, jockey, track, going — plus a calibrated confidence score on win, place, and each-way. Highest-signal logic from real data, not whoever shouts loudest in the group chat.",
     "A friend of ours learned this the hard way at a festival meeting. The model flagged a favorite at 59% confidence — closer to a coin flip than a lock. He ignored it, followed the tipster, and lost. Two weeks later he opened a pick in our highest-confidence band (80%+ tier), read the breakdown, and called it before post time. Same friend. Different process.",
     "That's why we publish every result — wins and losses — so you can verify the track record yourself, race by race.",
     "Your next step takes about 30 seconds: open today's card, pick one race, and read the reasoning before the off.",
-    "P.S. We're not a bookmaker. No guaranteed wins — just transparent forecasts and a record you can check."
+    "P.S. We're not a bookmaker. No guaranteed wins — just transparent forecasts and a record you can check. Data beats vibes. It doesn't erase uncertainty."
   ],
   "cta_text": "See today's strongest pick",
   "cta_deeplink": "predictify://",

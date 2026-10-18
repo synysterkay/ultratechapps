@@ -160,7 +160,7 @@ jobs:
           ONG_DAILY_SEND_CAP: "30"
           ONBRIEF_DAILY_SEND_CAP: "30"
           VOWCRAFT_DAILY_SEND_CAP: "30"
-          KAYNEL_DAILY_SEND_CAP: "50"
+          KAYNEL_DAILY_SEND_CAP: "80"
           EMAIL_HEALTH_GATE: "1"
           EMAIL_ONE_PER_DAY: "1"
           THESIS_SENDER_NAME: Thesis Generator
@@ -208,6 +208,13 @@ jobs:
           THESIS_FIRESTORE_SNAPSHOT_MAX_AGE_HOURS: "720"
           # Crosspromotion Thesis phase 1 (ZeptoMail / passedai.io)
           CROSSPROMO_ENABLED: "1"
+          FRESH_START_FOUNDER_DAILY_CAP: "80"
+          RED_FLAG_FOUNDER_DAILY_CAP: "80"
+          RED_FLAG_TIP_DAILY_CAP: "40"
+          SOULPLAN_FOUNDER_DAILY_CAP: "80"
+          SOULPLAN_TIP_DAILY_CAP: "40"
+          CROSSPROMO_FS_REDFLAG_DAILY_CAP: "60"
+          CROSSPROMO_REDFLAG_SOULPLAN_DAILY_CAP: "60"
           CROSSPROMO_DAILY_CAP: "240"
           CROSSPROMO_ENROLL_CAP: "240"
           CROSSPROMO_SEND_DELAY_SECONDS: "0.35"
@@ -277,12 +284,20 @@ jobs:
             python -u scripts/kinbound_orchestrator.py || true
             echo "--- Running ONG orchestrator (kaynel.solutions / Agent 2) ---"
             python -u scripts/ong_orchestrator.py || true
-            echo "--- Running Fresh Start tip orchestrator (breakuprelief.com / Agent 2) ---"
+            echo "--- Running Fresh Start tip + founder (breakuprelief.com / Agent 2) ---"
             python -u scripts/fresh_start_orchestrator.py || true
+            echo "--- Running Red Flag tip + founder (breakuprelief.com / Agent 2) ---"
+            python -u scripts/red_flag_orchestrator.py || true
+            echo "--- Running SoulPlan tip + founder (breakuprelief.com / Agent 2) ---"
+            python -u scripts/soulplan_orchestrator.py || true
             echo "--- Running Onbrief orchestrator (kaynel.solutions / Agent 2) ---"
             python -u scripts/onbrief_orchestrator.py || true
             echo "--- Running Vowcraft orchestrator (kaynel.solutions / Agent 2) ---"
             python -u scripts/vowcraft_orchestrator.py || true
+            echo "--- Running Smart Notes tip + founder (kaynel.solutions / Agent 2) ---"
+            python -u scripts/smart_notes_orchestrator.py || true
+            echo "--- Running AI Girlfriend founder (kaynel.solutions / Agent 2) ---"
+            python -u scripts/ai_girlfriend_orchestrator.py || true
             echo "--- Horse Racing race-day tips (value-first) ---"
             python -u scripts/horse_race_day_tip_sender.py || true
             echo "--- Horse Racing founder story catch-up (lapsed only) ---"
@@ -364,7 +379,7 @@ jobs:
       - name: Save retention state
         if: always()
         run: |
-          STATE_PATHS="cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json cache/abandoned_thesis_state.json cache/free_quota_hit_state.json cache/trial_ending_state.json cache/winback_state.json cache/streak_milestone_state.json cache/weekly_progress_state.json cache/stuck_on_outline_state.json cache/writing_tip_state.json cache/fresh_start_tip_state.json cache/kinbound_parenting_tip_state.json cache/horse_race_day_tip_state.json cache/crypto_tip_state.json cache/crypto_founder_story_state.json cache/cumulative_stats_state.json cache/founder_story_thesis_state.json cache/founder_story_thesis_v2_state.json cache/founder_story_thesis_2_state.json cache/crosspromo_thesis_state.json cache/ong_*_state.json cache/ong_daily_quota.json cache/kaynel_daily_quota.json cache/thesis_volume_sends.json cache/daily_recipient_sends.json cache/onbrief_*_state.json cache/onbrief_daily_quota.json cache/vowcraft_*_state.json cache/vowcraft_daily_quota.json cache/ong_templates/ cache/onbrief_templates/ cache/vowcraft_templates/ cache/thesis_templates/ cache/thesis_users_snapshot.json firebase_exports/"
+          STATE_PATHS="cache/retention_state.json cache/sender_health.json cache/retention_emails/ cache/predictify_v2_state.json cache/deadline_countdown_state.json cache/first_thesis_complete_state.json cache/streak_at_risk_state.json cache/abandoned_thesis_state.json cache/free_quota_hit_state.json cache/trial_ending_state.json cache/winback_state.json cache/streak_milestone_state.json cache/weekly_progress_state.json cache/stuck_on_outline_state.json cache/writing_tip_state.json cache/fresh_start_tip_state.json cache/fresh_start_founder_story_state.json cache/red_flag_tip_state.json cache/red_flag_founder_story_state.json cache/soulplan_tip_state.json cache/soulplan_founder_story_state.json cache/kinbound_parenting_tip_state.json cache/kinbound_founder_story_state.json cache/pupshape_founder_story_state.json cache/smart_notes_tip_state.json cache/smart_notes_founder_story_state.json cache/ai_girlfriend_founder_story_state.json cache/horse_race_day_tip_state.json cache/crypto_tip_state.json cache/crypto_founder_story_state.json cache/cumulative_stats_state.json cache/founder_story_thesis_state.json cache/founder_story_thesis_v2_state.json cache/founder_story_thesis_2_state.json cache/crosspromo_thesis_state.json cache/crosspromo_fs_redflag_state.json cache/crosspromo_redflag_soulplan_state.json cache/ong_*_state.json cache/ong_daily_quota.json cache/kaynel_daily_quota.json cache/thesis_volume_sends.json cache/daily_recipient_sends.json cache/onbrief_*_state.json cache/onbrief_daily_quota.json cache/vowcraft_*_state.json cache/vowcraft_daily_quota.json cache/ong_templates/ cache/onbrief_templates/ cache/vowcraft_templates/ cache/thesis_templates/ cache/thesis_users_snapshot.json firebase_exports/"
           # Thesis-only / founder-story runs may not touch retention_state.json.
           has_state=0
           for path in $STATE_PATHS; do

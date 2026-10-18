@@ -17,6 +17,8 @@ APP_SLUG_TO_ACTIVITY = {
     'predictify_crypto': 'Crypto AI: Trading Analyzer',
     'fresh_start': 'Fresh Start',
     'predictify': 'Predictify',
+    # Other slugs (red_flag, soulplan, kinbound, …): no activity project yet
+    # → paid_emails empty → treat as free (same as Predictify FS missing docs).
 }
 
 _PAID_STATUS = frozenset({'active', 'trial', 'past_due'})

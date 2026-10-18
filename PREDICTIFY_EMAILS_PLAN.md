@@ -27,7 +27,7 @@ core (P0/P1 behavioral is).
 - **Hourly:** `streak_saver` only (`predictify-streak-hourly.yml`)
 - **Lapsed:** `founder_story_soccer` → `founder_story_soccer_v2` (orchestrator fallback)
 - **Templates:** `scripts/predictify_v2/templates/`
-- **Bulk backfill:** **FROZEN** (value-first). Daily FS1/FS2 and workflow modes no-op. Override: `FOUNDER_STORY_BULK_UNFREEZE=1`.
+- **Bulk backfill:** **FROZEN** (value-first). Daily FS1/FS2 and workflow modes no-op. Override: `FOUNDER_STORY_BULK_UNFREEZE=1` only for intentional Phase-1 free ramps (50–100/day) while health is green — see `PORTFOLIO_EMAIL_OPS.md`.
 
 ## NBA (`Predictify: NBA AI`)
 

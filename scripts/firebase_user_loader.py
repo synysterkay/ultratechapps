@@ -83,7 +83,7 @@ FIREBASE_APPS = {
         'name': 'Predictify: NBA AI',
         'export_file': 'predictify_nba_fresh.json',
         'description': 'AI-powered NBA predictions with calibrated confidence — moneyline, spread, totals & player props, plus injuries and playoff analysis',
-        'app_store_url': 'https://apps.apple.com/app/predictify-nba-ai/id0000000000',
+        'app_store_url': 'https://apps.apple.com/app/predictify-nba-ai/id6764698892',
         'google_play_url': 'https://play.google.com/store/apps/details?id=com.predictify.nba.prediction',
         'multilingual': True,
         'supported_languages': ['en', 'ar', 'de', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'nl', 'pl', 'pp', 'pt', 'tr'],
@@ -92,7 +92,7 @@ FIREBASE_APPS = {
         'name': 'Predictify: Tennis AI',
         'export_file': 'predictify_tennis_fresh.json',
         'description': 'AI-powered tennis predictions with calibrated confidence — match winner, total games, games handicap, first set and straight sets for ATP, WTA and Grand Slams',
-        'app_store_url': 'https://apps.apple.com/app/predictify-tennis',
+        'app_store_url': '',  # iOS listing TBD — Play-first until App Store ID known
         'google_play_url': 'https://play.google.com/store/apps/details?id=com.predictify.tennis.prediction',
         'multilingual': True,
         'supported_languages': ['en', 'ar', 'de', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'nl', 'pl', 'pp', 'pt', 'tr'],

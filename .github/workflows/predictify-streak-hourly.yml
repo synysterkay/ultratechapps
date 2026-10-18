@@ -9,8 +9,9 @@ name: Predictify Streak Hourly Check
 # filter. Cooldown (5 days per kind) prevents over-firing.
 
 on:
-  schedule:
-    - cron: '0 * * * *'  # every hour, top-of-hour
+  # Hourly schedule disabled (ops hygiene 2026-10) — was noisy / often failed.
+  # Re-enable cron only after streak_saver path is confirmed healthy.
+  # Manual: workflow_dispatch.
   workflow_dispatch:
     inputs:
       dry-run:

@@ -55,6 +55,7 @@ SENDERS = [
     ('at_goal_celebration',         'at_goal_celebration_sender'),
     ('invite_friend_reminder',      'invite_friend_reminder_sender'),
     ('winback',                     'pupshape_winback_sender'),
+    ('founder',                     'pupshape_founder_story_sender'),
 ]
 
 
