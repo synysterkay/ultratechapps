@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 """Shared free-user gate for Auth-export tip / founder senders.
 
-Active Pro/Premium emails are skipped. Missing activity → treated as free
-(same as Predictify founder-story path). Explicit isPremium/isSubscribed or
-subscription.status in {active, trial, past_due} → paid.
+Skips Superwall / Pro subscribers. Reads Firestore activity via
+FirestoreActivityLoader (isPremium / isSubscribed / subscription map).
+
+Missing activity → treated as free (same as Predictify founder-story path).
+Paid if:
+  • top-level isPremium / isSubscribed
+  • subscription.isPremium / subscription.isSubscribed
+  • subscription.status in {active, trial, past_due}
 """
 from __future__ import annotations
 
@@ -11,14 +16,18 @@ from typing import Iterable
 
 from firestore_activity_loader import FirestoreActivityLoader, ACTIVITY_PROJECTS
 
-# tip-sender slug → ACTIVITY_PROJECTS key
+# tip/founder slug → ACTIVITY_PROJECTS key
 APP_SLUG_TO_ACTIVITY = {
     'horse_racing': 'Predictify: Horse Racing AI',
     'predictify_crypto': 'Crypto AI: Trading Analyzer',
     'fresh_start': 'Fresh Start',
     'predictify': 'Predictify',
-    # Other slugs (red_flag, soulplan, kinbound, …): no activity project yet
-    # → paid_emails empty → treat as free (same as Predictify FS missing docs).
+    'red_flag_scanner': 'Red Flag Scanner AI',
+    'soulplan': 'SoulPlan',
+    'kinbound': 'Kinbound',
+    'pupshape': 'PupShape',
+    'smart_notes': 'Smart Notes',
+    'ai_girlfriend': 'Ai Girlfriend: Virtual Love',
 }
 
 _PAID_STATUS = frozenset({'active', 'trial', 'past_due'})
@@ -31,6 +40,8 @@ def activity_is_paid(activity: dict | None) -> bool:
         return True
     sub = activity.get('subscription')
     if isinstance(sub, dict):
+        if sub.get('isPremium') is True or sub.get('isSubscribed') is True:
+            return True
         status = (sub.get('status') or '').lower()
         return status in _PAID_STATUS
     if isinstance(sub, str):

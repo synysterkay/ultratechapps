@@ -1,7 +1,10 @@
 # Portfolio email ops — lanes, ceilings, health
 
 Value-first doctrine: tip / behavioral / emotional founder / niche crosspromo.
-Free / non-sub only. ZeptoMail. Soft open CTA. One marketing mail per user per day per brand when `EMAIL_ONE_PER_DAY=1`.
+Free / non-sub only (Firestore Superwall mirror via `free_user_gate` +
+`firestore_activity_loader`: `isPremium` / `isSubscribed` /
+`subscription.status|isPremium`). ZeptoMail. Soft open CTA. One marketing
+mail per user per day per brand when `EMAIL_ONE_PER_DAY=1`.
 
 ## Send lanes (daily ceilings while health ≠ red)
 

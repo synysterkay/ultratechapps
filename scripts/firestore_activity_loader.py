@@ -50,6 +50,37 @@ ACTIVITY_PROJECTS = {
         'cache_file': 'fresh_start_activity.json',
         'fields': ['isSubscribed', 'isPremium', 'subscription'],
     },
+    # Superwall mirrors: subscription.{status,isPremium} on users/{uid}
+    'Red Flag Scanner AI': {
+        'project_id': 'redflagscanner',
+        'cache_file': 'redflag_activity.json',
+        'fields': ['isSubscribed', 'isPremium', 'subscription'],
+    },
+    'SoulPlan': {
+        'project_id': 'soulplan-dateplanner',
+        'cache_file': 'soulplan_activity.json',
+        'fields': ['isSubscribed', 'isPremium', 'subscription'],
+    },
+    'Kinbound': {
+        'project_id': 'parents-ai-e49a8',
+        'cache_file': 'kinbound_activity.json',
+        'fields': ['isSubscribed', 'isPremium', 'subscription'],
+    },
+    'PupShape': {
+        'project_id': 'petmealai',
+        'cache_file': 'pupshape_activity.json',
+        'fields': ['isSubscribed', 'isPremium', 'subscription'],
+    },
+    'Smart Notes': {
+        'project_id': 'audio-recorder-microphone',
+        'cache_file': 'smart_notes_activity.json',
+        'fields': ['isSubscribed', 'isPremium', 'subscription'],
+    },
+    'Ai Girlfriend: Virtual Love': {
+        'project_id': 'apb412---ai-girlfriend-app',
+        'cache_file': 'ai_girlfriend_activity.json',
+        'fields': ['isSubscribed', 'isPremium', 'subscription'],
+    },
 }
 
 
