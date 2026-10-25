@@ -28,7 +28,7 @@ PLAY = 'https://play.google.com/store/apps/details?id=com.crypto.trading.ai.anal
 STATE_FILE = Path(__file__).parent.parent / 'cache' / 'crypto_tip_state.json'
 TEMPLATES = Path(__file__).parent / 'predictify_crypto' / 'templates'
 _REF_SALT = os.getenv('EMAIL_REF_SALT', 'marketing-tool-v1')
-DAILY_CAP = int(os.getenv('CRYPTO_TIP_DAILY_CAP', '40'))
+DAILY_CAP = int(os.getenv('CRYPTO_TIP_DAILY_CAP', '80'))
 
 # (stage, template_kind, min_days, max_days)
 STAGES = [

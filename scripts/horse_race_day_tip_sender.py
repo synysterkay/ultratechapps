@@ -29,7 +29,7 @@ PLAY = 'https://play.google.com/store/apps/details?id=com.predictify.horse.racin
 STATE_FILE = Path(__file__).parent.parent / 'cache' / 'horse_race_day_tip_state.json'
 TEMPLATES = Path(__file__).parent / 'predictify_v2' / 'templates'
 _REF_SALT = os.getenv('EMAIL_REF_SALT', 'marketing-tool-v1')
-DAILY_CAP = int(os.getenv('HORSE_RACE_DAY_TIP_DAILY_CAP', '40'))
+DAILY_CAP = int(os.getenv('HORSE_RACE_DAY_TIP_DAILY_CAP', '80'))
 
 # (stage, min_days, max_days)
 STAGES = [

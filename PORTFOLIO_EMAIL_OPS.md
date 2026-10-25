@@ -25,10 +25,12 @@ Unknown health status = treat as yellow (moderate caps). **Red From = skip.**
 3. If complaints/bounces spike on a domain → cut that lane ~50% for 3–7 days.
 4. Suppressions and one-per-day always win over caps.
 
-## Founder volume
+## Tip + founder volume
 
-Phase 1 free-user batches: **50–100 / app / day** (env caps per sender).
-Do not unfreeze unlimited Predictify/Thesis bulk FS.
+Tips default **80 / app / day** (was 40). Founders **80 / app / day**
+(Phase 1 free-user band: **50–100**). Do not unfreeze unlimited
+Predictify/Thesis bulk FS. If breakuprelief complaints spike, cut tips
+back to 40 for 3–7 days.
 
 ## Crosspromo budget split (shared daily cap)
 

@@ -16,7 +16,7 @@ KIND = 'red_flag_tip'
 STORE = 'https://apps.apple.com/app/red-flag-scanner-ai/id6740946063'
 STATE = CACHE / 'red_flag_tip_state.json'
 EXPORTS = ['redflagscanner_fresh.json', 'red_flag_scanner_fresh.json']
-DAILY_CAP = int(os.getenv('RED_FLAG_TIP_DAILY_CAP', '40'))
+DAILY_CAP = int(os.getenv('RED_FLAG_TIP_DAILY_CAP', '80'))
 
 STAGES = [
     ('notice', 0, 21),

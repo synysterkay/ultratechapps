@@ -26,7 +26,7 @@ KIND = 'fresh_start_tip'
 APP_STORE = 'https://apps.apple.com/app/fresh-start-breakup-therapy-ai/id6749954260'
 STATE_FILE = Path(__file__).parent.parent / 'cache' / 'fresh_start_tip_state.json'
 _REF_SALT = os.getenv('EMAIL_REF_SALT', 'marketing-tool-v1')
-DAILY_CAP = int(os.getenv('FRESH_START_TIP_DAILY_CAP', '40'))
+DAILY_CAP = int(os.getenv('FRESH_START_TIP_DAILY_CAP', '80'))
 
 # (stage, min_days_since_signup, max_days)
 STAGES = [

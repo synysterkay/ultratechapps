@@ -16,7 +16,7 @@ KIND = 'soulplan_tip'
 STORE = 'https://apps.apple.com/app/soulplan-plan-dates-together/id6702018988'
 STATE = CACHE / 'soulplan_tip_state.json'
 EXPORTS = ['soulplan-dateplanner_fresh.json', 'soulplan_fresh.json']
-DAILY_CAP = int(os.getenv('SOULPLAN_TIP_DAILY_CAP', '40'))
+DAILY_CAP = int(os.getenv('SOULPLAN_TIP_DAILY_CAP', '80'))
 
 STAGES = [
     ('spark', 0, 21),
