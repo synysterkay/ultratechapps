@@ -1,7 +1,7 @@
 {
   "warming_started": "2026-04-03T22:02:50.126548+00:00",
-  "total_sent": 32647,
-  "total_opened": 15487,
+  "total_sent": 34047,
+  "total_opened": 16074,
   "total_replied": 2263,
   "daily_log": {
     "2026-04-03": {
@@ -1185,6 +1185,48 @@
       "opened": 80,
       "replied": 0,
       "week": 29
+    },
+    "2026-10-19": {
+      "sent": 200,
+      "opened": 80,
+      "replied": 0,
+      "week": 29
+    },
+    "2026-10-20": {
+      "sent": 200,
+      "opened": 75,
+      "replied": 0,
+      "week": 29
+    },
+    "2026-10-21": {
+      "sent": 200,
+      "opened": 80,
+      "replied": 0,
+      "week": 29
+    },
+    "2026-10-22": {
+      "sent": 200,
+      "opened": 80,
+      "replied": 0,
+      "week": 29
+    },
+    "2026-10-23": {
+      "sent": 200,
+      "opened": 80,
+      "replied": 0,
+      "week": 29
+    },
+    "2026-10-24": {
+      "sent": 200,
+      "opened": 92,
+      "replied": 0,
+      "week": 30
+    },
+    "2026-10-25": {
+      "sent": 200,
+      "opened": 100,
+      "replied": 0,
+      "week": 30
     }
   },
   "per_domain": {}
