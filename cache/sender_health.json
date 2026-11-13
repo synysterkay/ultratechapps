@@ -2,7 +2,7 @@
   "active_sender_index": 2,
   "senders": {
     "apps@kaynel.pl": {
-      "last_check": "2026-10-25T03:21:30.295994Z",
+      "last_check": "2026-11-12T03:14:43.290786Z",
       "status": "unknown",
       "rotated_out_at": "2026-03-23T18:23:03.109197",
       "metrics_history": [
@@ -165,7 +165,7 @@
       ]
     },
     "hello@bestaiapps.site": {
-      "last_check": "2026-10-25T03:21:30.295994Z",
+      "last_check": "2026-11-12T03:14:43.290786Z",
       "status": "red",
       "rotated_out_at": "2026-03-24T18:26:33.606857",
       "metrics_history": [
@@ -502,7 +502,7 @@
       ]
     },
     "apps@vitazelki.pl": {
-      "last_check": "2026-10-25T03:21:30.295994Z",
+      "last_check": "2026-11-12T03:14:43.290786Z",
       "status": "red",
       "rotated_out_at": "2026-03-23T09:32:41.182478",
       "metrics_history": [
@@ -1002,7 +1002,7 @@
       ]
     },
     "hello@aibettips.io": {
-      "last_check": "2026-10-25T03:21:30.295994Z",
+      "last_check": "2026-11-12T03:14:43.290786Z",
       "status": "unknown",
       "rotated_out_at": "2026-03-24T09:27:52.743454",
       "metrics_history": [
@@ -1339,142 +1339,10 @@
       ]
     },
     "tips@predictifyfootball.com": {
-      "last_check": "2026-10-25T03:21:30.295994Z",
+      "last_check": "2026-11-12T03:14:43.290786Z",
       "status": "unknown",
       "rotated_out_at": "2026-03-25T09:26:23.544012",
       "metrics_history": [
-        {
-          "at": "2026-09-26T03:20:47.612909Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 56,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-09-27T03:23:00.341103Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 53,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-09-28T03:26:40.849188Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 46,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-09-29T03:23:22.012360Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 55,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-09-30T03:23:57.237522Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 66,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-10-01T03:27:08.561557Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 75,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-10-02T03:23:17.751696Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 74,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-10-03T03:28:34.422034Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 80,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-10-04T04:20:14.961903Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 89,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-10-05T03:29:23.417112Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 102,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-10-06T03:23:03.830911Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 103,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-10-07T03:25:11.485903Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 98,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
         {
           "at": "2026-10-08T03:25:24.166866Z",
           "status": "unknown",
@@ -1672,146 +1540,146 @@
           "open_rate": 0,
           "bounce_rate": 0,
           "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-26T03:25:10.638529Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 597,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-27T03:21:26.822080Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 597,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-28T03:16:03.061362Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 329,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-29T03:16:21.420912Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 254,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-31T03:13:11.601902Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 213,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-01T03:16:13.229278Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 163,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-02T03:16:29.140992Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 131,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-03T03:14:41.937845Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 105,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-06T03:14:20.945428Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 89,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-08T03:15:07.153267Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 160,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-10T03:14:10.038085Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 185,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-12T03:14:43.290786Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 195,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
         }
       ]
     },
     "hello@thesisgenerator.io": {
-      "last_check": "2026-10-25T03:21:30.295994Z",
+      "last_check": "2026-11-12T03:14:43.290786Z",
       "status": "unknown",
       "rotated_out_at": "2026-03-31T09:33:34.813174",
       "metrics_history": [
-        {
-          "at": "2026-09-26T03:20:47.612909Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 11,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-09-27T03:23:00.341103Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 12,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-09-28T03:26:40.849188Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 7,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-09-29T03:23:22.012360Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 6,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-09-30T03:23:57.237522Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 8,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-10-01T03:27:08.561557Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 9,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-10-02T03:23:17.751696Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 9,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-10-03T03:28:34.422034Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 11,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-10-04T04:20:14.961903Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 10,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-10-05T03:29:23.417112Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 12,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-10-06T03:23:03.830911Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 16,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
-        {
-          "at": "2026-10-07T03:25:11.485903Z",
-          "status": "unknown",
-          "delivered": 0,
-          "opens": 0,
-          "bounces": 17,
-          "complaints": 0,
-          "open_rate": 0,
-          "bounce_rate": 0,
-          "complaint_rate": 0
-        },
         {
           "at": "2026-10-08T03:25:24.166866Z",
           "status": "unknown",
@@ -2009,11 +1877,143 @@
           "open_rate": 0,
           "bounce_rate": 0,
           "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-26T03:25:10.638529Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 124,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-27T03:21:26.822080Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 124,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-28T03:16:03.061362Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 156,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-29T03:16:21.420912Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 113,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-31T03:13:11.601902Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 126,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-01T03:16:13.229278Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 123,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-02T03:16:29.140992Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 122,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-03T03:14:41.937845Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 54,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-06T03:14:20.945428Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 68,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-08T03:15:07.153267Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 47,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-10T03:14:10.038085Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 77,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-12T03:14:43.290786Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 50,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
         }
       ]
     },
     "hello@kaynel.solutions": {
-      "last_check": "2026-10-25T03:21:30.295994Z",
+      "last_check": "2026-11-12T03:14:43.290786Z",
       "status": "unknown",
       "rotated_out_at": null,
       "metrics_history": [
@@ -2192,146 +2192,146 @@
           "open_rate": 0,
           "bounce_rate": 0,
           "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-26T03:25:10.638529Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-27T03:21:26.822080Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-28T03:16:03.061362Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-29T03:16:21.420912Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-31T03:13:11.601902Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-01T03:16:13.229278Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-02T03:16:29.140992Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-03T03:14:41.937845Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-06T03:14:20.945428Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-08T03:15:07.153267Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-10T03:14:10.038085Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-12T03:14:43.290786Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
         }
       ]
     },
     "hello@passedai.io": {
-      "last_check": "2026-10-25T03:21:30.295994Z",
+      "last_check": "2026-11-12T03:14:43.290786Z",
       "status": "unknown",
       "rotated_out_at": "2026-04-06T09:39:15.515973",
       "metrics_history": [
-        {
-          "at": "2026-07-05T04:28:53.947135Z",
-          "status": "red",
-          "delivered": 10432,
-          "opens": 0,
-          "bounces": 151,
-          "complaints": 0,
-          "open_rate": 0.0,
-          "bounce_rate": 0.0145,
-          "complaint_rate": 0.0
-        },
-        {
-          "at": "2026-07-06T04:34:05.561872Z",
-          "status": "red",
-          "delivered": 10432,
-          "opens": 0,
-          "bounces": 151,
-          "complaints": 0,
-          "open_rate": 0.0,
-          "bounce_rate": 0.0145,
-          "complaint_rate": 0.0
-        },
-        {
-          "at": "2026-07-07T04:25:58.006371Z",
-          "status": "red",
-          "delivered": 10432,
-          "opens": 0,
-          "bounces": 151,
-          "complaints": 0,
-          "open_rate": 0.0,
-          "bounce_rate": 0.0145,
-          "complaint_rate": 0.0
-        },
-        {
-          "at": "2026-07-08T04:07:26.051349Z",
-          "status": "red",
-          "delivered": 10432,
-          "opens": 0,
-          "bounces": 151,
-          "complaints": 0,
-          "open_rate": 0.0,
-          "bounce_rate": 0.0145,
-          "complaint_rate": 0.0
-        },
-        {
-          "at": "2026-07-09T04:29:33.237666Z",
-          "status": "red",
-          "delivered": 10432,
-          "opens": 0,
-          "bounces": 151,
-          "complaints": 0,
-          "open_rate": 0.0,
-          "bounce_rate": 0.0145,
-          "complaint_rate": 0.0
-        },
-        {
-          "at": "2026-07-09T13:17:25.242593Z",
-          "status": "red",
-          "delivered": 10432,
-          "opens": 0,
-          "bounces": 151,
-          "complaints": 0,
-          "open_rate": 0.0,
-          "bounce_rate": 0.0145,
-          "complaint_rate": 0.0
-        },
-        {
-          "at": "2026-07-10T04:25:59.984565Z",
-          "status": "red",
-          "delivered": 10432,
-          "opens": 0,
-          "bounces": 151,
-          "complaints": 0,
-          "open_rate": 0.0,
-          "bounce_rate": 0.0145,
-          "complaint_rate": 0.0
-        },
-        {
-          "at": "2026-07-11T04:06:27.093450Z",
-          "status": "red",
-          "delivered": 10432,
-          "opens": 0,
-          "bounces": 151,
-          "complaints": 0,
-          "open_rate": 0.0,
-          "bounce_rate": 0.0145,
-          "complaint_rate": 0.0
-        },
-        {
-          "at": "2026-07-12T04:16:05.866177Z",
-          "status": "red",
-          "delivered": 1875,
-          "opens": 0,
-          "bounces": 13,
-          "complaints": 0,
-          "open_rate": 0.0,
-          "bounce_rate": 0.0069,
-          "complaint_rate": 0.0
-        },
-        {
-          "at": "2026-07-13T04:18:35.470204Z",
-          "status": "red",
-          "delivered": 1843,
-          "opens": 0,
-          "bounces": 12,
-          "complaints": 0,
-          "open_rate": 0.0,
-          "bounce_rate": 0.0065,
-          "complaint_rate": 0.0
-        },
-        {
-          "at": "2026-07-14T04:04:03.062278Z",
-          "status": "red",
-          "delivered": 431,
-          "opens": 0,
-          "bounces": 6,
-          "complaints": 0,
-          "open_rate": 0.0,
-          "bounce_rate": 0.0139,
-          "complaint_rate": 0.0
-        },
-        {
-          "at": "2026-07-15T04:04:33.852279Z",
-          "status": "unknown",
-          "delivered": 58,
-          "opens": 0,
-          "bounces": 0,
-          "complaints": 0,
-          "open_rate": 0.0,
-          "bounce_rate": 0.0,
-          "complaint_rate": 0.0
-        },
         {
           "at": "2026-07-16T04:05:30.739051Z",
           "status": "unknown",
@@ -2529,12 +2529,144 @@
           "open_rate": 0,
           "bounce_rate": 0,
           "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-26T03:25:10.638529Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-27T03:21:26.822080Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-28T03:16:03.061362Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-29T03:16:21.420912Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-10-31T03:13:11.601902Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-01T03:16:13.229278Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-02T03:16:29.140992Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-03T03:14:41.937845Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-06T03:14:20.945428Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-08T03:15:07.153267Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-10T03:14:10.038085Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
+        },
+        {
+          "at": "2026-11-12T03:14:43.290786Z",
+          "status": "unknown",
+          "delivered": 0,
+          "opens": 0,
+          "bounces": 0,
+          "complaints": 0,
+          "open_rate": 0,
+          "bounce_rate": 0,
+          "complaint_rate": 0
         }
       ]
     },
     "tips@predictify.fun": {
       "status": "unknown",
-      "last_check": "2026-10-25T03:21:30.295994Z",
+      "last_check": "2026-11-12T03:14:43.290786Z",
       "rotated_out_at": null,
       "metrics_history": [
         {
