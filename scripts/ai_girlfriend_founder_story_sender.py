@@ -16,7 +16,7 @@ KIND = 'ai_girlfriend_founder_story'
 STORE = 'https://apps.apple.com/app/ai-girlfriend-virtual-love/id6757268335'
 STATE = CACHE / 'ai_girlfriend_founder_story_state.json'
 EXPORTS = ['girlfriend_ai_fresh.json', 'ai_girlfriend_fresh.json']
-DAILY_CAP = int(os.getenv('AI_GIRLFRIEND_FOUNDER_DAILY_CAP', '40'))
+DAILY_CAP = int(os.getenv('AI_GIRLFRIEND_FOUNDER_DAILY_CAP', '60'))
 
 SUBJECT = "{first_name}, a companion that helps you grow"
 BODY = [

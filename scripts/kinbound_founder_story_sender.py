@@ -16,7 +16,7 @@ KIND = 'kinbound_founder_story'
 STORE = 'https://apps.apple.com/app/kinbound-ai-parent-life-coach/id6757409071'
 STATE = CACHE / 'kinbound_founder_story_state.json'
 EXPORTS = ['parents_ai_e49a8_fresh.json', 'kinbound_fresh.json']
-DAILY_CAP = int(os.getenv('KINBOUND_FOUNDER_DAILY_CAP', '40'))
+DAILY_CAP = int(os.getenv('KINBOUND_FOUNDER_DAILY_CAP', '60'))
 
 SUBJECT = "{first_name}, I didn't want to regret what I allowed"
 BODY = [

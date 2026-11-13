@@ -11,10 +11,10 @@ mail per user per day per brand when `EMAIL_ONE_PER_DAY=1`.
 | Lane | Domain | Agent | Ceiling | Notes |
 |------|--------|-------|---------|--------|
 | A | thesisgenerator.io | 1 | 400–550 | Thesis behavioral + FS lapsed |
-| B | predictifyfootball.com | 1 | 250–400 | Sports tips + P0/P1 + Horse FS |
-| C | breakuprelief.com | 2 | 150–250 | Fresh Start, Red Flag, SoulPlan |
-| D | passedai.io | 2 | ≤240 | Crosspromo (`CROSSPROMO_DAILY_CAP`) |
-| E | kaynel.solutions | 2 | 50→80 (ramp) | KinBound, PupShape, Smart Notes, AI GF, ONG… |
+| B | predictifyfootball.com | 1 | 300–450 | Sports tips + P0/P1 + Horse FS |
+| C | breakuprelief.com | 2 | 200–350 | Fresh Start, Red Flag, SoulPlan |
+| D | passedai.io | 2 | ≤360 | Crosspromo (`CROSSPROMO_DAILY_CAP`) |
+| E | kaynel.solutions | 2 | 80→120 (ramp) | KinBound, PupShape, Smart Notes, AI GF, ONG… |
 
 Unknown health status = treat as yellow (moderate caps). **Red From = skip.**
 
@@ -27,10 +27,10 @@ Unknown health status = treat as yellow (moderate caps). **Red From = skip.**
 
 ## Tip + founder volume
 
-Tips default **80 / app / day** (was 40). Founders **80 / app / day**
-(Phase 1 free-user band: **50–100**). Do not unfreeze unlimited
-Predictify/Thesis bulk FS. If breakuprelief complaints spike, cut tips
-back to 40 for 3–7 days.
+Tips + founders default **120 / app / day** (+50% from 80). Soccer
+`V2_DAILY_SEND_CAP` **450**. Crosspromo shared **360**. Kaynel founders
+**60**. Do not unfreeze unlimited Predictify/Thesis bulk FS. If
+breakuprelief complaints spike, cut tips back to 80 for 3–7 days.
 
 ## Crosspromo budget split (shared daily cap)
 

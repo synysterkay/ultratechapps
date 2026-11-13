@@ -16,7 +16,7 @@ KIND = 'pupshape_founder_story'
 STORE = 'https://apps.apple.com/app/pupshape-dog-weight-loss-plan/id6739601749'
 STATE = CACHE / 'pupshape_founder_story_state.json'
 EXPORTS = ['petmealai_fresh.json', 'pupshape_fresh.json']
-DAILY_CAP = int(os.getenv('PUPSHAPE_FOUNDER_DAILY_CAP', '40'))
+DAILY_CAP = int(os.getenv('PUPSHAPE_FOUNDER_DAILY_CAP', '60'))
 
 SUBJECT = "{first_name}, your dog is family — love them longer"
 BODY = [

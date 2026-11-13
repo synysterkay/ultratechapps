@@ -16,7 +16,7 @@ KIND = 'red_flag_founder_story'
 STORE = 'https://apps.apple.com/app/red-flag-scanner-ai/id6740946063'
 STATE = CACHE / 'red_flag_founder_story_state.json'
 EXPORTS = ['redflagscanner_fresh.json', 'red_flag_scanner_fresh.json']
-DAILY_CAP = int(os.getenv('RED_FLAG_FOUNDER_DAILY_CAP', '80'))
+DAILY_CAP = int(os.getenv('RED_FLAG_FOUNDER_DAILY_CAP', '120'))
 
 SUBJECT = "{first_name}, I kept repeating the same relationship"
 BODY = [

@@ -21,7 +21,7 @@ EXPORTS = [
     'fresh_start_fresh.json',
     'breakup_therapy_fresh.json',
 ]
-DAILY_CAP = int(os.getenv('FRESH_START_FOUNDER_DAILY_CAP', '80'))
+DAILY_CAP = int(os.getenv('FRESH_START_FOUNDER_DAILY_CAP', '120'))
 
 SUBJECT = "{first_name}, breakup feels like dying — it isn't"
 BODY = [

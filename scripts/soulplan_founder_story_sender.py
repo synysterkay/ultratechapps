@@ -16,7 +16,7 @@ KIND = 'soulplan_founder_story'
 STORE = 'https://apps.apple.com/app/soulplan-plan-dates-together/id6702018988'
 STATE = CACHE / 'soulplan_founder_story_state.json'
 EXPORTS = ['soulplan-dateplanner_fresh.json', 'soulplan_fresh.json']
-DAILY_CAP = int(os.getenv('SOULPLAN_FOUNDER_DAILY_CAP', '80'))
+DAILY_CAP = int(os.getenv('SOULPLAN_FOUNDER_DAILY_CAP', '120'))
 
 SUBJECT = "{first_name}, I got tired of “what do you want to do?”"
 BODY = [

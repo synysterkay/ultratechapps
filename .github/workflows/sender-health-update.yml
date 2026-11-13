@@ -34,5 +34,11 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add cache/sender_health.json
-          git diff --staged --quiet || git commit -m "Update sender health from email_events [skip ci]"
-          git push || true
+          if git diff --staged --quiet; then
+            echo 'No sender_health.json changes'
+          else
+            git commit -m "Update sender health from email_events [skip ci]"
+            # Retry push once — concurrent warming commits can race.
+            git pull --rebase origin main || true
+            git push || true
+          fi

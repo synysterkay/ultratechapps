@@ -16,7 +16,7 @@ KIND = 'smart_notes_tip'
 STORE = 'https://apps.apple.com/app/smart-notes-ai-meeting-summary/id6756840480'
 STATE = CACHE / 'smart_notes_tip_state.json'
 EXPORTS = ['smart_notes_fresh.json', 'audio-recorder-microphone_fresh.json']
-DAILY_CAP = int(os.getenv('SMART_NOTES_TIP_DAILY_CAP', '30'))
+DAILY_CAP = int(os.getenv('SMART_NOTES_TIP_DAILY_CAP', '45'))
 
 STAGES = [
     ('yap', 0, 30),
