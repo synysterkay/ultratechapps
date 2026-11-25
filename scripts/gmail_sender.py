@@ -503,7 +503,7 @@ class GmailSender:
         }
 
         url, key = cls._supabase_creds()
-        if not url or not key:
+        if os.getenv('THESIS_VOLUME_USE_LEDGER') == '1' or not url or not key:
             default['sent_24h'] = cls._thesis_ledger_count_24h()
             default['sent_7d'] = max(default['sent_7d'], default['sent_24h'])
             return default

@@ -200,6 +200,8 @@ jobs:
           ZEPTOMAIL_SEND_DELAY_SECONDS: "0.35"
           # Soft Thesis daily cap while ramping on ZeptoMail / thesisgenerator.io.
           THESIS_DAILY_SEND_CAP_DISABLED: "0"
+          # Use the restored send ledger while the aggregate query is unavailable.
+          THESIS_VOLUME_USE_LEDGER: "1"
           THESIS_DAILY_SEND_CAP_BASE: "500"
           THESIS_DAILY_SEND_CAP_MAX: "688"
           # Prefer cached Thesis Firestore users so a 429 cannot stall the job.
